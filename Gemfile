@@ -8,6 +8,12 @@ gem 'pg', '~> 0.12.1'
 gem 'devise', '~> 2.0.0'
 gem 'cancan', '~> 1.6.7'
 
+# provide a comprehensive library of sass mixins
+gem 'bourbon'
+
+# alternate HTTP server for Rack applications
+gem 'unicorn'
+
 #Simple form for better form management
 gem 'simple_form', '~> 2.0.0.rc'
 

@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'Avenir Heavy';
+    src: url('/assets/avenirltstd-heavy-webfont.eot');
+    src: url('/assets/avenirltstd-heavy-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/avenirltstd-heavy-webfont.woff') format('woff'),
+         url('/assets/avenirltstd-heavy-webfont.ttf') format('truetype'),
+         url('/assets/avenirltstd-heavy-webfont.svg#AvenirLTStd85Heavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Light';
+    src: url('/assets/avenirltstd-light-webfont.eot');
+    src: url('/assets/avenirltstd-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/avenirltstd-light-webfont.woff') format('woff'),
+         url('/assets/avenirltstd-light-webfont.ttf') format('truetype'),
+         url('/assets/avenirltstd-light-webfont.svg#AvenirLTStd35Light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Medium';
+    src: url('/assets/avenirltstd-medium-webfont.eot');
+    src: url('/assets/avenirltstd-medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/avenirltstd-medium-webfont.woff') format('woff'),
+         url('/assets/avenirltstd-medium-webfont.ttf') format('truetype'),
+         url('/assets/avenirltstd-medium-webfont.svg#AvenirLTStd65Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+	font-family: 'Pictos';
+	src: url('/assets/pictos-web.eot');
+	src: local('☺'), url('/assets/pictos-web.woff') format('woff'), 
+	      url('/assets/pictos-web.ttf') format('truetype'), 
+	      url('/assets/pictos-web.svg#webfontphKv1xv9') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+h1 {
+  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  font-size: 280%;
+  letter-spacing: -0.06em;
+  color: $lime;
+  margin-bottom: 15px;
+}
+.sidebar {
+  h1 {
+    font-size: 200%;
+  }
+}
+h2 {
+  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  font-size: 180%;
+  color: #444;
+  letter-spacing: -0.06em;
+  //color: transparentize($mdblue, 0.6);
+  color: darken($oatmeal, 60%);
+  text-shadow: 0 1px 0 #fff;
+}
+h3 {
+  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  font-size: 90%;
+  color: #444;
+  letter-spacing: -0.06em;
+  color: $orange;
+  text-transform: uppercase;
+}
+p {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size: 120%;
+  line-height: 1.6em;
+  color: #555;
+}
