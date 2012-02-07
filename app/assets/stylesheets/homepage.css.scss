@@ -23,12 +23,53 @@ form {
 
 section#app-spinner {
   .content {
+    padding-right: 0;
+    width: 940px;
     dl {
+      font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
       float: left;
-      border: 1px solid darken($oatmeal, 15%);
-      padding: 20px;
-      background: darken($oatmeal, 10%);
+      border: 1px solid transparentize($orange, 0.5);
+      padding: 20px 10px;
+      background: $orange;
       margin: 20px 20px 0 0;
+      width: 110px;
+      @include border-radius(5px);
+      @include box-shadow(0 1px 0 #fff);
+      color: darken($orange, 40%);
+      text-align: center;
+      
+      dt {
+        strong {
+          font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+          font-weight: 500;
+        }
+      }
+      
+      dt.icon {
+        font-family: 'Pictos';
+        color: darken($orange, 15%);
+        font-size: 500%;
+        margin-top: -60px;
+        padding: 0;
+        text-shadow: 0 1px 0 lighten($orange, 10%);
+      }
     }
   }
+}
+
+.button {
+  background: #f7941d;
+  @include border-radius(3px);
+  @include linear-gradient(lighten(#f7941d, 20%) 30%, #f7941d);
+  padding: 6px 3px;
+  margin: 10px 0 -10px 0;
+  font-family: 'Avenir Heavy', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  border: 1px solid darken(#f7941d, 30%);
+  @include box-shadow(0 1px 0 lighten(#f7941d, 90%) inset, 0 2px 8px darken($orange, 10%));
+}
+
+footer {
+  background: darken($oatmeal, 10%);
+  width: 100%;
 }
