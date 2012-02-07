@@ -11,6 +11,6 @@ Feature: A visitor can supply an email address and password to sign up tradition
     Given I successfully register with my email "testman@example.com"
      Then I am on my profile page
 
-  Scenario: User unsuccessfully registers for paperwoven
+  Scenario: User unsuccessfully registers for code for america
     Given I unsuccessfully register by not filling in my email
      Then I am notified that the email field can't be blank
