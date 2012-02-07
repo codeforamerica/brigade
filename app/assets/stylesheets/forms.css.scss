@@ -1,0 +1,19 @@
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size: 120%;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 1px solid #d7d7d7;
+  padding: 10px;
+  @include border-radius(4px);
+  @include box-shadow(0 1px 0 #fff);
+}
+label {
+  font-family: 'Avenir Heavy', Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  display: block;
+  color: #555;
+  margin-bottom: 10px;
+}

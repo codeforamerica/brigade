@@ -1,0 +1,103 @@
+/* Base Setup
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+body {
+  background: $oatmeal;
+  font-size: small;
+}
+
+/* Generic blocks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.content {
+  width: 880px;
+  padding: 40px;
+  margin: auto;
+  position: relative; /* Do this just in case we ever want to absolutely position children */
+  
+  &.has-columns {
+    @include columns(2 20px);
+  }
+}
+
+/* Page Containers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#main {
+  width: 960px;
+  margin: auto;
+}
+.sidebar {
+  float: left;
+  width: 300px;
+}
+section {
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 40px;
+  
+  &.white {
+    background: #fff;
+    margin-top: -20px;
+  }
+}
+/* Navigation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+header#top-deck {
+  width: 100%;
+  background: $mud;
+  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  
+  .logo {
+    width: 200px;
+    height: 100px;
+    float: left;
+    position: relative;
+    top: -12px;
+    left: 0;
+    background: transparentize(#fff, 0.8);
+    margin-right: 20px;
+  }
+  
+  nav {
+    overflow: auto;
+    color: transparentize(#fff, 0.4);
+    
+    ul {
+      margin-top: 20px;
+      
+      li {
+        float: left;
+        padding: 10px;
+      }
+    }
+    &.primary {
+      float: left;
+    }
+    &.admin {
+      float: right;
+    }
+  }
+}
+
+/* Sizes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.full {
+  width: 100%;
+}
+.half {
+  width: 50%;
+}
+.third {
+  width: 75%;
+}
+.quarter {
+  width: 25%;
+}
+
+/* Ugh
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.clear {
+  clear: both;
+}
