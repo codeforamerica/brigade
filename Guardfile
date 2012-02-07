@@ -40,6 +40,7 @@ end
 guard 'cucumber', bundle: false, keep_failed: true, cli: '--drb --format pretty --color --strict --no-profile --tags ~@slow --tags ~@wip'  do
   watch(%r{^app/(.+)\.rb$})
   watch(%r{^app/(.+)\.erb$})
+  watch(%r{^app/(.+)\.haml$})
   watch(%r{^lib/(.+)\.rb$})
   watch(%r{^features/.+\.feature$})
   watch(%r{^features/support/.+$})          { 'features' }
