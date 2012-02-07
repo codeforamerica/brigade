@@ -50,6 +50,8 @@ group :test do
   #Rspec for testing instead of test::unit
   gem "rspec-rails"
 
+  gem "launchy"
+
   #VCR for recording transcations with webmock
   gem 'webmock'
   gem 'vcr'

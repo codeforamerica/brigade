@@ -13,5 +13,4 @@ Feature: A visitor can supply an email address and password to sign up tradition
 
   Scenario: User unsuccessfully registers for paperwoven
     Given I unsuccessfully register by not filling in my email
-     Then I am back on the registration page
-      And I am notified that the email field can't be blank
+     Then I am notified that the email field can't be blank
