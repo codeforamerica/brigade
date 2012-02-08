@@ -8,7 +8,7 @@ form {
   background: transparentize($lime, 0.5);
   padding: 20px 20px 35px;
   @include border-radius(10px);
-  
+
   input[type="text"],
   input[type="email"],
   input[type="password"] {
@@ -25,7 +25,7 @@ section#app-spinner {
   .content {
     padding-right: 0;
     width: 940px;
-    
+
     dl {
       font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
       float: left;
@@ -39,14 +39,14 @@ section#app-spinner {
       @include linear-gradient($orange, darken($orange, 20%));
       color: darken($orange, 40%);
       text-align: center;
-      
+
       dt {
         strong {
           font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
           font-weight: 500;
         }
       }
-      
+
       dt.icon {
         font-family: 'Pictos';
         color: darken($orange, 15%);

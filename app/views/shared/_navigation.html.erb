@@ -4,7 +4,7 @@
     <nav class="primary">
       <ul>
         <li>Home</li>
-        <li>Applications</li>
+        <li><%= link_to 'Applications', applications_path %></li>
         <li>Cities</li>
         <li>People</li>
         <li>About</li>
@@ -12,8 +12,7 @@
     </nav>
     <nav class="admin">
       <ul>
-        <li>Sign In</li>
-        <li>Sign Up</li>
+        <%= display_session_links %>
       </ul>
     </nav>
     <div class="clear"></div>

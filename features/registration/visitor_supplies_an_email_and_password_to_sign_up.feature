@@ -5,7 +5,7 @@ Feature: A visitor can supply an email address and password to sign up tradition
 
   Background:
     Given I am on the homepage
-      And I follow the "Get Started" link
+      And I follow the "Sign Up" link
 
   Scenario: User successfully registers for code for america
     Given I successfully register with my email "testman@example.com"

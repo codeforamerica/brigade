@@ -14,7 +14,7 @@ body {
   padding: 40px;
   margin: auto;
   position: relative; /* Do this just in case we ever want to absolutely position children */
-  
+
   &.has-columns {
     @include columns(2 20px);
   }
@@ -35,7 +35,7 @@ section {
   width: 100%;
   overflow: auto;
   padding-bottom: 40px;
-  
+
   &.white {
     background: #fff;
     margin-top: -20px;
@@ -48,7 +48,7 @@ header#top-deck {
   width: 100%;
   background: $mud;
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
-  
+
   .logo {
     width: 200px;
     height: 100px;
@@ -59,17 +59,22 @@ header#top-deck {
     background: url('/assets/logo.png') center center no-repeat;
     margin-right: 20px;
   }
-  
+
   nav {
     overflow: auto;
     color: transparentize(#fff, 0.4);
-    
+
     ul {
       margin-top: 20px;
-      
+
       li {
         float: left;
         padding: 10px;
+
+        a {
+          color: transparentize(#fff, 0.4);
+          text-decoration: none;
+        }
       }
     }
     &.primary {

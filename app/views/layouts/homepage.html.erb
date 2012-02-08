@@ -1,106 +1,100 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>CodeForAmerica</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  
-<%= render 'shared/navigation' %>
+  <%= render 'shared/head' %>
+  <body>
 
-<section class="white">
-  <div id="main">
+  <%= render 'shared/navigation' %>
+
+  <section class="white">
+    <div id="main">
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+  </section>
+
+  <section id="app-spinner">
     <div class="content">
-      <%= yield %>
+      <h2>Featured Applications</h2>
+
+      <dl>
+        <dt class="icon">q</dt>
+        <dt><strong>Adopt-a-Hydrant</strong></dt>
+        <dd class="image-icon"></dd>
+        <dd>In 43 Cities</dd>
+        <dd>85 Brigades</dd>
+        <dd>2000 People</dd>
+        <dd class="button xsmall">Deploy App</dd>
+      </dl>
+
+      <dl>
+        <dt class="icon">P</dt>
+        <dt><strong>Class Talk</strong></dt>
+        <dd class="image-icon"></dd>
+        <dd>In 43 Cities</dd>
+        <dd>85 Brigades</dd>
+        <dd>2000 People</dd>
+        <dd class="button xsmall">Deploy App</dd>
+      </dl>
+
+      <dl>
+        <dt class="icon">C</dt>
+        <dt><strong>CityGroups</strong></dt>
+        <dd class="image-icon"></dd>
+        <dd>In 43 Cities</dd>
+        <dd>85 Brigades</dd>
+        <dd>2000 People</dd>
+        <dd class="button xsmall">Deploy App</dd>
+      </dl>
+
+      <dl>
+        <dt class="icon">W</dt>
+        <dt><strong>Lunch Roulette</strong></dt>
+        <dd class="image-icon"></dd>
+        <dd>In 43 Cities</dd>
+        <dd>85 Brigades</dd>
+        <dd>2000 People</dd>
+        <dd class="button xsmall">Deploy App</dd>
+      </dl>
+
+      <dl>
+        <dt class="icon">W</dt>
+        <dt><strong>DiscoverBPS</strong></dt>
+        <dd class="image-icon"></dd>
+        <dd>In 43 Cities</dd>
+        <dd>85 Brigades</dd>
+        <dd>2000 People</dd>
+        <dd class="button xsmall">Deploy App</dd>
+      </dl>
+
+      <dl>
+        <dt class="icon">q</dt>
+        <dt><strong>Eventbrite</strong></dt>
+        <dd class="image-icon"></dd>
+        <dd>In 43 Cities</dd>
+        <dd>85 Brigades</dd>
+        <dd>2000 People</dd>
+        <dd class="button xsmall">Deploy App</dd>
+      </dl>
+
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="app-spinner">
-  <div class="content">
-    <h2>Featured Applications</h2>
-    
-    <dl>
-      <dt class="icon">q</dt>
-      <dt><strong>Adopt-a-Hydrant</strong></dt>
-      <dd class="image-icon"></dd>
-      <dd>In 43 Cities</dd>
-      <dd>85 Brigades</dd>
-      <dd>2000 People</dd>
-      <dd class="button xsmall">Deploy App</dd>
-    </dl>
-    
-    <dl>
-      <dt class="icon">P</dt>
-      <dt><strong>Class Talk</strong></dt>
-      <dd class="image-icon"></dd>
-      <dd>In 43 Cities</dd>
-      <dd>85 Brigades</dd>
-      <dd>2000 People</dd>
-      <dd class="button xsmall">Deploy App</dd>
-    </dl>
-    
-    <dl>
-      <dt class="icon">C</dt>
-      <dt><strong>CityGroups</strong></dt>
-      <dd class="image-icon"></dd>
-      <dd>In 43 Cities</dd>
-      <dd>85 Brigades</dd>
-      <dd>2000 People</dd>
-      <dd class="button xsmall">Deploy App</dd>
-    </dl>
-    
-    <dl>
-      <dt class="icon">W</dt>
-      <dt><strong>Lunch Roulette</strong></dt>
-      <dd class="image-icon"></dd>
-      <dd>In 43 Cities</dd>
-      <dd>85 Brigades</dd>
-      <dd>2000 People</dd>
-      <dd class="button xsmall">Deploy App</dd>
-    </dl>
-    
-    <dl>
-      <dt class="icon">W</dt>
-      <dt><strong>DiscoverBPS</strong></dt>
-      <dd class="image-icon"></dd>
-      <dd>In 43 Cities</dd>
-      <dd>85 Brigades</dd>
-      <dd>2000 People</dd>
-      <dd class="button xsmall">Deploy App</dd>
-    </dl>
-    
-    <dl>
-      <dt class="icon">q</dt>
-      <dt><strong>Eventbrite</strong></dt>
-      <dd class="image-icon"></dd>
-      <dd>In 43 Cities</dd>
-      <dd>85 Brigades</dd>
-      <dd>2000 People</dd>
-      <dd class="button xsmall">Deploy App</dd>
-    </dl>
-    
-  </div>
-</section>
-
-<section>
-  <div class="content has-columns">
-    <div class="column">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <section>
+    <div class="content has-columns">
+      <div class="column">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="column">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
     </div>
-    <div class="column">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </section>
+
+  <footer>
+    <div class="content">
+      <p>Copyright &copy; 2012 Code for America</p>
     </div>
-  </div>
-</section>
+  </footer>
 
-<footer>
-  <div class="content">
-    <p>Copyright &copy; 2012 Code for America</p>
-  </div>
-</footer>
-
-</body>
+  </body>
 </html>

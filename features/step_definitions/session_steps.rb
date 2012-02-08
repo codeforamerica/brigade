@@ -1,6 +1,6 @@
 Given /^I have previously registered for an account$/ do
   step "I am on the homepage"
-  step "I follow the \"Get Started\" link"
+  step "I follow the \"Sign Up\" link"
   step "I successfully register with my email \"testman@example.com\""
 
   click_on 'Sign Out'
