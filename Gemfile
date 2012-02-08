@@ -3,13 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.1'
 gem 'bourbon'
 gem 'unicorn'
+gem 'pg'
 
 group :development do
   gem 'sqlite3'
-end
-
-group :production do
-  gem 'pg'
 end
 
 group :assets do

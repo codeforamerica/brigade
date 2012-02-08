@@ -1,0 +1,11 @@
+LOG:  database system was shut down at 2012-02-08 15:35:02 EST
+LOG:  database system is ready to accept connections
+LOG:  autovacuum launcher started
+ERROR:  role "njones" already exists
+STATEMENT:  CREATE ROLE njones SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;
+	
+FATAL:  database "njones" does not exist
+LOG:  received smart shutdown request
+LOG:  autovacuum launcher shutting down
+LOG:  shutting down
+LOG:  database system is shut down
