@@ -27,3 +27,10 @@ end
 Then /^I should be informed that my log in was unsucessfull and I need to try again$/ do
   page.should have_content "Invalid email or password"
 end
+
+When /^I follow the "([^"]*)" link after logging in$/ do |link|
+  step 'I want to access my account'
+  step "I correctly fill in my email \"testman@example.com\" and password \"password\""
+
+  click_on link
+end

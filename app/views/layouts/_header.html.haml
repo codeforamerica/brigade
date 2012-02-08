@@ -1,0 +1,5 @@
+= link_to 'Applications', applications_path
+- if current_user
+  = link_to 'Sign Out', sign_out_path
+- else
+  = link_to 'Sign In', sign_in_path

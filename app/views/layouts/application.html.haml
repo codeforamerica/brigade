@@ -6,10 +6,6 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    - if current_user
-      = link_to 'Sign Out', sign_out_path
-    - else
-      = link_to 'Sign In', sign_in_path
-
+    = render partial: 'layouts/header'
     = render partial: 'layouts/flashes'
     = yield
