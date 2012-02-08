@@ -2,7 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 body {
-  background: $oatmeal;
+  background: $oatmeal url('/assets/noise.png');
   font-size: small;
 }
 
@@ -45,7 +45,7 @@ section {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 header#top-deck {
   width: 100%;
-  background: $mud;
+  background: $mud url('/assets/toplight.png') bottom center no-repeat;
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
   
   .logo {
