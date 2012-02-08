@@ -39,13 +39,14 @@ section {
   &.white {
     background: #fff;
     margin-top: -20px;
+    border-bottom: 1px solid #b9b7b2;
   }
 }
 /* Navigation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 header#top-deck {
   width: 100%;
-  background: $mud url('/assets/toplight.png') bottom center no-repeat;
+  background: $mud;
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
   
   .logo {

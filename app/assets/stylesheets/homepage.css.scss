@@ -6,7 +6,7 @@
 form {
   margin-top: 20px;
   background: transparentize($lime, 0.5);
-  padding: 20px;
+  padding: 20px 20px 35px;
   @include border-radius(10px);
   
   input[type="text"],

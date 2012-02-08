@@ -59,7 +59,9 @@ h2 {
   font-size: 180%;
   color: #444;
   letter-spacing: -0.06em;
-  color: transparentize($mdblue, 0.6);
+  //color: transparentize($mdblue, 0.6);
+  color: darken($oatmeal, 60%);
+  text-shadow: 0 1px 0 #fff;
 }
 h3 {
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
