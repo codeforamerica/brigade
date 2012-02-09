@@ -6,6 +6,7 @@ help civic hackers colaborate
 How do users interact with system?
 ----------------------------------
 As a user:
+
 1. I want to help with a specific app, show me all the deployed versions.
 2. I want to help out in my city, show me all the deployed apps in my city.
 3. I belong to a brigade already, show me the deployed apps they are working on.
