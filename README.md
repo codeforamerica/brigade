@@ -3,6 +3,14 @@ Code for America
 
 help civic hackers colaborate
 
+How do users interact with system?
+----------------------------------
+As a user:
+1. I want to help with a specific app, show me all the deployed versions.
+2. I want to help out in my city, show me all the deployed apps in my city.
+3. I belong to a brigade already, show me the deployed apps they are working on.
+4. I want to deploy a new app in my city, show me what has been deployed and what has not.
+
 Project Jargon
 --------------
 - user - civic hacker (developers, designers, etc)
