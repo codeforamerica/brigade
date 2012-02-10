@@ -1,0 +1,14 @@
+<div class='form-wrapper span5 offset3'>
+  <%= devise_error_messages! %>
+
+  <h2>Sign up</h2>
+
+  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-vertical' } do |form| %>
+    <%= form.input :email, input_html: {class: 'span5'} %>
+    <%= form.input :password, input_html: {class: 'span5'} %>
+
+    <%= form.submit 'Sign up', class: 'btn-large btn' %>
+
+    <%= link_to "Sign up with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info' %>
+  <%end%>
+</div>

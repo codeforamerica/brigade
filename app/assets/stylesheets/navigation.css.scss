@@ -1,0 +1,47 @@
+@import "colors";
+
+/* Navigation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+header#top-deck {
+  width: 100%;
+  background: $mud;
+  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+
+  .logo {
+    width: 200px;
+    height: 100px;
+    float: left;
+    position: relative;
+    top: -12px;
+    left: -10px;
+    background: url('/assets/logo.png') center center no-repeat;
+    margin-right: 20px;
+  }
+
+  nav {
+    overflow: auto;
+    color: transparentize(#fff, 0.4);
+
+    ul {
+      list-style: none;
+      margin-top: 20px;
+
+      li {
+        float: left;
+        padding: 10px;
+
+        a {
+          color: transparentize(#fff, 0.4);
+          text-decoration: none;
+        }
+      }
+    }
+    &.primary {
+      float: left;
+    }
+    &.admin {
+      float: right;
+    }
+  }
+}
+

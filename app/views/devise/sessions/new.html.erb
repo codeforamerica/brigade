@@ -1,19 +1,21 @@
-<h2>Sign in</h2>
+<div class='form-wrapper span5 offset3'>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <h2>Sign in</h2>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' } do |form| %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+    <%= form.input :email, input_html: {class: 'span5'} %>
+    <%= form.input :password, input_html: {class: 'span5'} %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+    <%= form.submit 'Sign in', class: 'btn-large btn' %>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+    <% if devise_mapping.rememberable? %>
+      <%= form.label :remember_me, class: 'checkbox', id: 'remember_me_checkbox' do %>
+        <%= form.check_box :remember_me %>
+        Remember Me
+      <%end%>
+    <% end %>
 
-<%= render "links" %>
+    <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info' %>
+  <%end%>
+</div>

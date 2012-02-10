@@ -8,6 +8,9 @@ gem 'pg', '~> 0.12.1'
 gem 'devise', '~> 2.0.0'
 gem 'cancan', '~> 1.6.7'
 
+# Allow Devise to authenticate via github
+gem 'omniauth-github', '~> 1.0.1'
+
 # provide a comprehensive library of sass mixins
 gem 'bourbon'
 
