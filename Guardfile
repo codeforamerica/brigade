@@ -26,8 +26,6 @@ guard 'pow' do
   watch(%r{^config/initializers/.*\.rb$})
 end
 
-guard 'sass', input: 'sass', output: 'css'
-
 guard 'spork', wait: 60, cucumber: true, rspec: true, test_unit: false do
   watch('config/application.rb')
   watch('config/environment.rb')
