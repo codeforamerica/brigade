@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-  <%= render 'shared/head' %>
+  <head>
+    <title>CodeForAmerica</title>
+    <%= stylesheet_link_tag    'home', :media => 'all' %>
+    <%= javascript_include_tag 'home' %>
+    <%= csrf_meta_tags %>
+  </head>
   <body>
 
   <%= render 'shared/navigation' %>
