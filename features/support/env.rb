@@ -8,6 +8,18 @@ require 'rubygems'
 require 'spork'
 
 Spork.prefork do
+  # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujutsu
+  Spork.trap_method(Rails::Application, :reload_routes!)
+  Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
+
+  Spork.trap_class_method(FactoryGirl, :find_definitions)
+
+  # Prevent main application to eager_load in the prefork block (do not load files in autoload_paths)
+  Spork.trap_method(Rails::Application, :eager_load!)
+
+  # Load all railties files
+  Rails.application.railties.all { |r| r.eager_load! }
+
   require 'cucumber/rails'
 
   # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
