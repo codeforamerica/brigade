@@ -34,7 +34,9 @@
 @font-face {
 	font-family: 'Pictos';
 	src: url('/assets/pictos-web.eot');
-	src: url('/assets/pictos-web.ttf') format('truetype'),
+	src: url('/assets/pictos-web.eot?#iefix') format('embedded-opentype'),
+       url('/assets/pictos-web.woff') format('woff')
+       url('/assets/pictos-web.ttf') format('truetype'),
 	     url('/assets/pictos-web.svg#webfontphKv1xv9') format('svg');
 	font-weight: normal;
 	font-style: normal;
