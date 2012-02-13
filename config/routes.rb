@@ -8,7 +8,8 @@ CodeForAmerica::Application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :applications, only: [:index]
+  resources :applications, only: [:index, :show]
+  resources :brigades, only: [:show]
 
   root :to => 'home#index'
 end
