@@ -1,42 +1,47 @@
-<div class="application-page-content">
+<div class="application-page-content row">
   <%= link_to "Applications > #{@app.name}", application_path(@app), id: "application-page-link"  %>
 </div>
 <div class="application-page-content">
-  <div id="application_page_nav_bar">
-    <h3><%= @app.name %> is used in these Cities</h3>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <h3>These brigades are working on <%= @app.name %></h3>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <h3>Technical Contacts</h3>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-    <%= link_to "Fake Link", "#" %>
-  </div>
-  <div id="application_page_main_column">
-    <h2>Work on <%= @app.name %> in Fake City!</h2>
-    <div class="application-page-main-column-boxes">
-      <h3>Here is where the super cool working application goes!</h3>
-      <%= link_to "Github", @app.repository_url %>
-      IRC Channel: <%= @app.irc_channel %>
-      Twitter Hashtag: <%= @app.twitter_hashtag %>
-      Description: <%= @app.description %>
-      Brigades that have deployed this app:
-      <%= @app.participating_brigade_links %>
+  <div class='row-fluid'>
+    <div id="application_page_nav_bar" class="span4">
+      <h3><%= @app.name %> is used in these Cities</h3>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <h3>These brigades are working on <%= @app.name %></h3>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <h3>Technical Contacts</h3>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
+      <div><%= link_to "Fake Link", "#" %></div>
     </div>
-    <div class="application-page-main-column-boxes">
-      <h3>Deploy <%= @app.name %></h3>
-      <% @app.tasks.each do |task| %>
-        <div claass="row">
-          <%= task.description %>
+    <div id="application_page_main_column" class="span8">
+      <h2>Work on <%= @app.name %> in Fake City!</h2>
+      <div class="application-page-main-column-boxes">
+        <p><%= @app.default_description %></p>
+        <div><%= link_to "Github", @app.repository_url %></div>
+        <div>IRC Channel: <%= @app.irc_channel %></div>
+        <div>Twitter Hashtag: <%= @app.twitter_hashtag %></div>
+        <div>Creator: <%= @app.creator %></div>
+        <div>License: <%= @app.license %></div>
+        <div>
+          Brigades that have deployed this app:
+          <%= @app.participating_brigade_links %>
         </div>
-      <% end %>
+      </div>
+      <div class="application-page-main-column-boxes">
+        <h3>Deploy <%= @app.name %></h3>
+        <% @app.tasks.each do |task| %>
+          <div claass="row">
+            <%= task.description %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

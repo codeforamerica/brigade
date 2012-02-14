@@ -5,6 +5,7 @@ FactoryGirl.define do
     irc_channel       '#brigade-channel'
     twitter_hashtag   '#brigade-hashtag'
     description       'Long winded description of application'
+    nid               '13685'
   end
 
   factory :application_with_tasks_and_brigades, parent: :application do

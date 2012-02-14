@@ -7,8 +7,8 @@ describe Application do
     subject.should be_valid
   end
 
-  it 'should be invalid without a name' do
-    subject.name = nil
+  it 'should be invalid without a nid' do
+    subject.nid = nil
     subject.should_not be_valid
   end
 

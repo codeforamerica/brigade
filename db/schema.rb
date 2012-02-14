@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213203506) do
+ActiveRecord::Schema.define(:version => 20120215233038) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(:version => 20120213203506) do
     t.string "irc_channel"
     t.string "twitter_hashtag"
     t.text   "description"
+    t.string "nid"
+    t.string "creator"
+    t.string "short_description"
+    t.string "license"
+    t.text   "civic_commons_description"
   end
 
   create_table "brigades", :force => true do |t|

@@ -8,4 +8,13 @@ class AppDecorator < ApplicationDecorator
 
     h.raw(brigade_links.join(' '))
   end
+
+  def default_description
+    if application.description
+      application.description
+    else
+      h.raw application.civic_commons_description
+    end
+  end
+
 end

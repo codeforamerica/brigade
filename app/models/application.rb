@@ -1,6 +1,6 @@
 class Application < ActiveRecord::Base
 
-  validates :name, presence: true
+  validates :nid, presence: true
 
   has_many :tasks
 

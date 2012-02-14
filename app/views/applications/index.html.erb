@@ -3,9 +3,7 @@
   <dl class='application-card'>
     <dt><strong><%= app.name %></strong></dt>
     <dd class="image-icon"></dd>
-    <dd>In 43 Cities</dd>
-    <dd>85 Brigades</dd>
-    <dd>2000 People</dd>
+    <dd><%= app.short_description %></dd>
     <dd class="button xsmall"><%= link_to 'Show App', application_path(app), title: app.name %></dd>
   </dl>
 <% end %>
