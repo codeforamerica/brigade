@@ -33,6 +33,13 @@ gem 'chronic', '~> 0.6.7'
 # Kaminari for adding pagination
 gem 'kaminari', '~> 0.13.0'
 
+# Faraday to serve as middleware to perform requests on civic commons API
+gem 'faraday', '~> 0.7.6'
+gem 'faraday_middleware', '~> 0.8.4'
+
+# Hashie to convert hashes to objects
+gem 'hashie', '~> 1.2.0'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

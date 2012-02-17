@@ -1,1 +1,1 @@
-[ 'Application Name', 'Other Name', 'Random Name'].each { |app_name| Application.create!(name: app_name) }
+[ '14133', '14387', '13422', '13685', '14012', '14110', '13489', '13465', '13744', '13808' ].each { |node_id| Application.create!(nid: node_id) }
