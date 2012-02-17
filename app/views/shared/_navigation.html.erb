@@ -5,7 +5,7 @@
       <ul>
         <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Applications', applications_path %></li>
-        <li>Cities</li>
+        <li><%= link_to 'Cities', deployed_applications_path(filter_by: 'locations') %></li>
         <li>People</li>
         <li>About</li>
       </ul>
