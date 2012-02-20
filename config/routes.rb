@@ -1,10 +1,6 @@
-class LocationPresentConstraint
-  def matches?(request)
-    request.params[:location].present?
-  end
-end
-
 CodeForAmerica::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   devise_scope :user do
