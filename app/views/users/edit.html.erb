@@ -1,0 +1,21 @@
+<div class='form-wrapper span5 offset3'>
+  <%= simple_form_for @user, html: { class: 'form-vertical' } do |f| %>
+    <%= f.input :avatar %>
+    <%= f.association :location, collection: (Location.all.map { |location| [location.name, location.id] } << ['Add Location', 'Add Location']) %>
+    <%= f.input :skill_list, label: 'Skill Set (comma separated)' %>
+    <%= f.input :opt_out, label: 'It is not ok for other civic hackers to contact me for assistance', wrapper: :checkbox, label_html: { class: :checkbox } %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
+
+<div class='modal fade span5', id='add_location_container'>
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h2>Add Location</h2>
+
+    <%= simple_form_for @location, remote: true do |location_form| %>
+      <%= location_form.input :name %>
+      <%= location_form.button :submit %>
+    <% end %>
+  </div>
+</div>

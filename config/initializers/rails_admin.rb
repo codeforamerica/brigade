@@ -114,6 +114,24 @@ unless Rails.env == 'test'
       #     configure :participating_brigades, :has_many_association   #   # Found columns:
     end
 
+    # My attempt to include managing tags in rails admin
+    # If you create a Tag model that inerits the
+    # ActsAsTaggableOn::Tag then it'll work but
+    # rails_admin does not seem to play nicely with the
+    # namespace
+    #config.model ActsAsTaggableOn::Tag do
+    #  label 'Tag'
+    #  label_plural 'Tags'
+
+    #  list do
+    #    field :name
+    #  end
+
+    #  edit do
+    #    field :name
+    #  end
+    #end
+
     # config.model Brigade do
     #   # Found associations:
     #     configure :deployed_applications, :has_many_association   #   # Found columns:
@@ -158,8 +176,16 @@ unless Rails.env == 'test'
     #   create do; end
     #   update do; end
     # end
+
     # config.model User do
+    #  edit do
+    #    field :skills
+    #  end
     #   # Found associations:
+    #     configure :taggings, :has_many_association         # Hidden 
+    #     configure :base_tags, :has_many_association         # Hidden 
+    #     configure :skills, :has_many_association         # Hidden 
+    #     configure :skill_taggings, :has_many_association         # Hidden   #   # Found columns:
     #   # Found columns:
     #     configure :id, :integer 
     #     configure :email, :string 

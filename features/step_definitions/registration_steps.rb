@@ -14,3 +14,9 @@ Given /^I unsuccessfully register by not filling in my email$/ do
 
   click_on 'Sign up'
 end
+
+Given /^I have registered for an account with "([^"]*)"$/ do |email|
+  step 'I am on the homepage'
+  step "I follow the \"Sign Up\" link"
+  step "I successfully register with my email \"#{email}\""
+end
