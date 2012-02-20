@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(user)
-    user_path(user)
+    if user.admin?
+      rails_admin_path
+    else
+      user_path(user)
+    end
   end
 end
