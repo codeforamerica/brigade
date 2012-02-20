@@ -1,13 +1,28 @@
 @import 'styling-dependencies';
 
-.application-card {
+.application-card{
+  width: 110px;
+
+  dt.icon{
+    margin-top: -60px;
+  }
+}
+
+.deployed-application-card{
+  width: 150px;
+
+  .application-name{
+    font-weight: bold;
+  }
+}
+
+.application-card, .deployed-application-card {
   font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
   float: left;
   border: 1px solid darken($orange, 25%);
   padding: 20px 10px;
   background: $orange;
   margin: 20px 20px 0 0;
-  width: 110px;
   @include border-radius(5px);
   @include box-shadow(0 0 5px darken($orange, 25%) inset, 0 1px 0 #fff);
   @include linear-gradient($orange, darken($orange, 20%));
@@ -30,7 +45,6 @@
     font-family: 'Pictos';
     color: darken($orange, 15%);
     font-size: 500%;
-    margin-top: -60px;
     padding: 0;
     text-shadow: 0 1px 0 lighten($orange, 10%);
   }

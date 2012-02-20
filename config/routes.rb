@@ -1,3 +1,9 @@
+class LocationPresentConstraint
+  def matches?(request)
+    request.params[:location].present?
+  end
+end
+
 CodeForAmerica::Application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
@@ -10,6 +16,16 @@ CodeForAmerica::Application.routes.draw do
 
   resources :applications, only: [:index, :show]
   resources :brigades, only: [:show]
+
+  resources :locations do
+    collection do
+      post :find
+    end
+
+    resources :deployed_applications, only: [:index], controller: 'locations/deployed_applications'
+  end
+
+  resources :deployed_applications, only: [:index]
 
   root :to => 'home#index'
 end
