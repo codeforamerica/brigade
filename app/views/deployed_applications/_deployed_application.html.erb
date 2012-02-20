@@ -1,6 +1,6 @@
-<tr>
+<%= content_tag_for(:tr, deployed_application) do %>
   <td><%= deployed_application.name %></td>
   <td><%= deployed_application.location_name %></td>
   <td><%= deployed_application.brigade_name %></td>
   <td>View App</td>
-</tr>
+<% end %>
