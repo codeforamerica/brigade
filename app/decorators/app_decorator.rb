@@ -6,7 +6,7 @@ class AppDecorator < ApplicationDecorator
       h.link_to(brigade.name, h.brigade_path(brigade))
     end
 
-    h.raw(brigade_links.join(' '))
+    h.raw(brigade_links.join('<br/>'))
   end
 
   def default_description

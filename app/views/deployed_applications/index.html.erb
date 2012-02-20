@@ -1,7 +1,19 @@
 <%= render partial: "#{@filter_type}/deployed_applications_search_form" %>
 
 <% if @deployed_applications.present? %>
-  <%= render partial: 'deployed_applications/deployed_application', collection: @deployed_applications %>
+  <table class='table-striped full'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Brigade Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'deployed_applications/deployed_application', collection: @deployed_applications %>
+    </tbody>
+  </table>
 <%else%>
   <%= content_tag :h2, "There are no apps currently deployed" %>
 <% end %>

@@ -1,7 +1,6 @@
-<%= content_tag_for(:dl, deployed_application, class: 'deployed-application-card') do %>
-  <dt class='icon'>P</dt>
-  <dd class='application-name'><%= deployed_application.name %></dd>
-  <dd><%= deployed_application.location_name %></dd>
-  <dd><%= deployed_application.brigade_name %></dd>
-  <dd class="button xsmall">View App</dd>
-<%end%>
+<tr>
+  <td><%= deployed_application.name %></td>
+  <td><%= deployed_application.location_name %></td>
+  <td><%= deployed_application.brigade_name %></td>
+  <td>View App</td>
+</tr>

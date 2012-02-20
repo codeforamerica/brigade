@@ -1,9 +1,19 @@
 <h2>Applications</h2>
-<% @apps.each do |app| %>
-  <dl class='application-card'>
-    <dt><strong><%= app.name %></strong></dt>
-    <dd class="image-icon"></dd>
-    <dd><%= app.short_description %></dd>
-    <dd class="button xsmall"><%= link_to 'Show App', application_path(app), title: app.name %></dd>
-  </dl>
-<% end %>
+<table class='table-striped'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Short Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @apps.each do |app| %>
+      <tr>
+        <td><strong><%= app.name %></strong></td>
+        <td><%= app.short_description %></td>
+        <td><%= link_to 'Show App', application_path(app), title: app.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
