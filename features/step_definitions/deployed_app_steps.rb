@@ -10,9 +10,14 @@ Given /^the following apps have been deployed:$/ do |table|
   end
 end
 
-When /^I view all of the apps by "([^"]*)"$/ do |arg1|
+When /^I view all of the apps by "([^"]*)"$/ do |type|
   visit ('/')
-  click_on 'Cities'
+
+  if type == 'Brigade'
+    click_on 'People'
+  else
+    click_on 'Cities'
+  end
 end
 
 Then /^I should see the following applications:$/ do |table|
@@ -46,8 +51,17 @@ When /^I filter the deployed apps to only those that have been deployed in "([^"
   click_on 'Search'
 end
 
+When /^I filter the deployed apps to only those that have been deployed by "([^"]*)"$/ do | brigade|
+  fill_in 'Brigade', with: brigade
+  click_on 'Search'
+end
+
 Then /^I should be informed that there are no applications deployed in "([^"]*)"$/ do |city_name|
   page.should have_content "There are no apps currently deployed in #{city_name}"
+end
+
+Then /^I should be informed that there are no applications deployed by "([^"]*)"$/ do |brigade_name|
+  page.should have_content "There are no apps currently deployed by #{brigade_name}"
 end
 
 When /^I search for all applications named "([^"]*)"$/ do |application_name|

@@ -1,0 +1,10 @@
+<%= form_tag brigade_deployed_applications_path(@brigade), method: :get do %>
+  <%= text_field_tag :query %>
+  <%= submit_tag 'Search' %>
+<%end%>
+
+<% if @deployed_applications.present? %>
+  <%= render partial: 'deployed_applications/deployed_application', collection: @deployed_applications %>
+<%else%>
+  <%= content_tag :h2, "There are no apps currently deployed" %>
+<% end %>

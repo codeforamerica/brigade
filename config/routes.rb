@@ -11,7 +11,14 @@ CodeForAmerica::Application.routes.draw do
   resources :users, only: [:show]
 
   resources :applications, only: [:index, :show]
-  resources :brigades, only: [:show]
+
+  resources :brigades do
+    collection do
+      post :find
+    end
+
+    resources :deployed_applications, only: [:index], controller: 'brigades/deployed_applications'
+  end
 
   resources :locations do
     collection do
