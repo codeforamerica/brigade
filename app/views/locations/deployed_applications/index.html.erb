@@ -3,6 +3,8 @@
   <%= submit_tag 'Search' %>
 <%end%>
 
+<%= link_to 'Deploy new application', new_location_deployed_application_path(@location) %>
+
 <% if @deployed_applications.present? %>
   <table class='table-striped full'>
     <thead>

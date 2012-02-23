@@ -1,0 +1,11 @@
+<%= simple_form_for @deployed_application, url: url do |form| %>
+  <%= form.simple_fields_for :location do |location_fields| %>
+    <%= location_fields.input :name, label: 'Choose a location', collection: Location.all, input_html: { class: 'span5' } %>
+  <%end%>
+
+  <%= form.simple_fields_for :brigade do |brigade_fields| %>
+    <%= brigade_fields.input :name, label: 'Choose a brigade', collection: Brigade.all, input_html: { class: 'span3' } %>
+  <%end%>
+
+  <%= form.button :submit, 'Deploy This Application!', class: 'btn-large btn-primary' %>
+<%end%>

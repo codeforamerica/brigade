@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="application-page-main-column-boxes">
-        <h3>Deploy <%= @app.name %></h3>
+        <h3><%= link_to "Deploy #{@app.name}", new_application_deployed_application_path(@app) %></h3>
         <% @app.tasks.each do |task| %>
           <div claass="row">
             <%= task.description %>

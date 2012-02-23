@@ -1,0 +1,5 @@
+<div class='form-wrapper span4 offset4'>
+  <%= content_tag :h2, "Deploy a new instance of #{@application}" %>
+
+  <%= render 'deployed_applications/form', url: application_deployed_applications_path(@application),  deployed_application: @deployed_application %>
+</div>

@@ -8,12 +8,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @apps.each do |app| %>
-      <tr>
-        <td><strong><%= app.name %></strong></td>
-        <td><%= app.short_description %></td>
-        <td><%= link_to 'Show App', application_path(app), title: app.name %></td>
-      </tr>
+    <%= content_tag_for :tr, @apps do |application| %>
+      <td><strong><%= application.name %></strong></td>
+      <td><%= application.short_description %></td>
+      <td><%= link_to 'Show App', application_path(application), title: application.name %></td>
     <% end %>
   </tbody>
 </table>

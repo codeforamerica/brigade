@@ -10,14 +10,17 @@ CodeForAmerica::Application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :applications, only: [:index, :show]
+  resources :applications, only: [:index, :show] do
+
+    resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
+  end
 
   resources :brigades do
     collection do
       post :find
     end
 
-    resources :deployed_applications, only: [:index], controller: 'brigades/deployed_applications'
+    resources :deployed_applications, only: [:new, :create, :index], controller: 'brigades/deployed_applications'
   end
 
   resources :locations do
@@ -25,10 +28,10 @@ CodeForAmerica::Application.routes.draw do
       post :find
     end
 
-    resources :deployed_applications, only: [:index], controller: 'locations/deployed_applications'
+    resources :deployed_applications, only: [:new, :create, :index], controller: 'locations/deployed_applications'
   end
 
-  resources :deployed_applications, only: [:index]
+  resources :deployed_applications, only: [:index, :new, :create, :show]
 
   root :to => 'home#index'
 end

@@ -6,4 +6,8 @@ class Application < ActiveRecord::Base
 
   has_many :deployed_applications
   has_many :participating_brigades, through: :deployed_applications, source: :brigade
+
+  def to_s
+    name
+  end
 end

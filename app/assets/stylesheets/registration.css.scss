@@ -6,6 +6,11 @@
   padding: 20px;
   @include border-radius(10px);
 
+  form{
+    margin: auto;
+  }
+
+
   h2{
     color: #333;
     margin: 10px 0;

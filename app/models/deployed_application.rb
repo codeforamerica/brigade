@@ -4,9 +4,11 @@ class DeployedApplication < ActiveRecord::Base
 
   belongs_to :location
   delegate :name, to: :location, prefix: true
+  accepts_nested_attributes_for :location
 
   belongs_to :brigade
   delegate :name, to: :brigade, prefix: true
+  accepts_nested_attributes_for :brigade
 
   def self.search(query = nil)
     if query
