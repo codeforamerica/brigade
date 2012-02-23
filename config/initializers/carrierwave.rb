@@ -10,10 +10,10 @@ CarrierWave.configure do |config|
   config.cache_dir = "#{Rails.root}/tmp/uploads"
 
   if Rails.env.production?
-    config.fog_directory  = 'brigade_production'
+    config.fog_directory  = 'brigade-production'
   elsif Rails.env.test?
-    config.fog_directory  = 'brigade_test'
+    config.fog_directory  = 'brigade-test'
   else
-    config.fog_directory  = 'brigade_dev'
+    config.fog_directory  = 'brigade-dev'
   end
 end

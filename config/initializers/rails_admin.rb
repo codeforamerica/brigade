@@ -96,9 +96,11 @@ unless Rails.env == 'test'
           label "Civic Commons Node ID"
         end
         field :description
+        field :video_embed_code
         field :repository_url
         field :irc_channel
         field :twitter_hashtag
+        field :pictures
         field :tasks
       end
 
