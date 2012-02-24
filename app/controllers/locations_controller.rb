@@ -9,4 +9,14 @@ class LocationsController < ApplicationController
       redirect_to deployed_applications_path(filter_by: 'locations'), notice: "There are no apps currently deployed in #{params[:location]}"
     end
   end
+
+  def create
+    @location = Location.new params[:location]
+
+    if @location.save
+      render json: @location, status: 200
+    else
+      render json: @location.errors, status: 400
+    end
+  end
 end

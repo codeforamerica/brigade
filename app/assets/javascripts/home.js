@@ -12,4 +12,4 @@
 //
 //= require jquery
 //= require ui
-
+//= require bootstrap

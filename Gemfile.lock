@@ -45,6 +45,8 @@ GEM
     activesupport (3.2.1)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    acts-as-taggable-on (2.2.2)
+      rails (~> 3.0)
     addressable (2.2.6)
     arel (3.0.0)
     bbenezech-nested_form (0.0.2)
@@ -64,6 +66,8 @@ GEM
     capybara-webkit (0.9.0)
       capybara (>= 1.0.0, < 1.2)
       json
+    carrierwave (0.5.8)
+      activesupport (~> 3.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     chronic (0.6.7)
@@ -100,6 +104,7 @@ GEM
       eventmachine (>= 0.12.9)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    excon (0.9.5)
     execjs (1.3.0)
       multi_json (~> 1.0)
     factory_girl (2.5.1)
@@ -114,6 +119,17 @@ GEM
     faraday_middleware (0.8.4)
       faraday (>= 0.7.4, < 0.9)
     ffi (1.0.11)
+    fog (1.1.2)
+      builder
+      excon (~> 0.9.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0.3)
+      net-scp (~> 1.0.4)
+      net-ssh (>= 2.1.3)
+      nokogiri (~> 1.5.0)
+      ruby-hmac
+    formatador (0.2.1)
     gherkin (2.7.7)
       json (>= 1.4.6)
     guard (1.0.0)
@@ -166,6 +182,9 @@ GEM
     mime-types (1.17.2)
     multi_json (1.0.4)
     multipart-post (1.1.4)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.3.0)
     nokogiri (1.5.0)
     oauth2 (0.5.2)
       faraday (~> 0.7)
@@ -220,6 +239,7 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     remotipart (1.0.2)
+    rmagick (2.13.1)
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
       rspec-expectations (~> 2.8.0)
@@ -233,6 +253,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.8.0)
+    ruby-hmac (0.4.0)
     rubyzip (0.9.5)
     sass (3.1.14)
     sass-rails (3.2.4)
@@ -281,9 +302,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 2.2.2)
   bourbon
   cancan (~> 1.6.7)
   capybara-webkit (~> 0.9.0)
+  carrierwave (~> 0.5.8)
   chronic (~> 0.6.7)
   coffee-rails (~> 3.2.1)
   cucumber-rails (~> 1.2.1)
@@ -293,6 +316,7 @@ DEPENDENCIES
   factory_girl_rails (~> 1.6.0)
   faraday (~> 0.7.6)
   faraday_middleware (~> 0.8.4)
+  fog (~> 1.1.2)
   guard (~> 1.0.0)
   guard-bundler (~> 0.1.3)
   guard-cucumber (~> 0.7.5)
@@ -312,6 +336,7 @@ DEPENDENCIES
   rails (~> 3.2.1)
   rails_admin!
   rb-fsevent (~> 0.9.0)
+  rmagick (~> 2.13.1)
   rspec-rails (~> 2.8.1)
   sass-rails (~> 3.2.3)
   simple_form (~> 2.0.0.rc)

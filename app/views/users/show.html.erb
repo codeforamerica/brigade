@@ -1,0 +1,25 @@
+<div class='form-wrapper span5 offset3'>
+  <h2>User Info</h2>
+  <div class='row'>
+    <%= @user.avatar %>
+  </div>
+  <div class='row'>
+    <h3 class='span2'>Email:</h3>
+    <%= @user.email %>
+  </div>
+  <div class='row'>
+    <h3 class='span2'>Location:</h3>
+    <%= @user.location_name %>
+  </div>
+  <div class='row'>
+    <h3 class='span2'>Skill Set:</h3>
+    <%= @user.skill_set %>
+  </div>
+  <h2>Contact Settings</h2>
+  <p>
+    <%= @user.contact_preference_message %>
+  </p>
+  <div class='row'>
+    <%= link_to 'Edit', edit_user_path(@user), class: 'btn-large btn-info' %>
+  </div>
+</div>

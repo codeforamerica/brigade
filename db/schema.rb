@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220174659) do
+ActiveRecord::Schema.define(:version => 20120223170230) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -59,6 +59,23 @@ ActiveRecord::Schema.define(:version => 20120220174659) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "tasks", :force => true do |t|
     t.text    "description"
     t.integer "application_id"
@@ -79,6 +96,8 @@ ActiveRecord::Schema.define(:version => 20120220174659) do
     t.datetime "updated_at",                                :null => false
     t.boolean  "admin",                  :default => false
     t.boolean  "opt_out",                :default => false
+    t.integer  "location_id"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
