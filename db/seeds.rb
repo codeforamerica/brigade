@@ -16,3 +16,5 @@ Application.all.each do |app|
     end
   end
 end
+
+User.create!(email: 'ryan@wearetitans.net', password: 'foobar')

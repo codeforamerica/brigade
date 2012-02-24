@@ -40,6 +40,16 @@ gem 'faraday_middleware', '~> 0.8.4'
 # Hashie to convert hashes to objects
 gem 'hashie', '~> 1.2.0'
 
+# CarrierWave for uploading files
+gem 'rmagick', '~> 2.13.1', :require => 'RMagick'
+gem 'carrierwave', '~> 0.5.8'
+
+# fog for using Amazon S3 with carrierwave
+gem 'fog', '~> 1.1.2'
+
+# acts as taggable for tagging user skills and app requirements
+gem 'acts-as-taggable-on', '~> 2.2.2'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

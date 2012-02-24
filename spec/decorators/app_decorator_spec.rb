@@ -3,7 +3,7 @@ require 'spec_helper'
 describe AppDecorator do
   before { ApplicationController.new.set_current_view_context }
 
-  describe 'brigades' do
+  describe '#participating_brigade_links' do
 
     it 'should return a url formatted string containging brigade names and their links when the application has deployed apps' do
       application = FactoryGirl.build(:application)
