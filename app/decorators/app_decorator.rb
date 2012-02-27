@@ -2,14 +2,16 @@ class AppDecorator < ApplicationDecorator
   decorates :application
 
   def participating_brigade_links
-    raw_html = '<ul class="unstyled">'
-      application.participating_brigades.each do |brigade|
-        raw_html << '<li>'
-        raw_html << h.link_to(brigade.name, h.brigade_path(brigade))
-        raw_html << '</li>'
-      end
-    raw_html << '</ul>'
-    h.raw(raw_html)
+    unless application.participating_brigades.empty?
+      raw_html = '<ul class="unstyled">'
+        application.participating_brigades.each do |brigade|
+          raw_html << '<li>'
+          raw_html << h.link_to(brigade.name, h.brigade_path(brigade))
+          raw_html << '</li>'
+        end
+      raw_html << '</ul>'
+      h.raw(raw_html)
+    end
   end
 
   def default_description

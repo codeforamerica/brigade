@@ -78,7 +78,7 @@ When /^I choose to deploy "([^"]*)"$/ do |application_name|
     click_on 'Show App'
   end
 
-  click_on "Deploy #{application_name}"
+  click_on "Deploy This App"
 end
 
 Then /^I should be presented with a form that lets me deploy "([^"]*)"$/ do |application_name|

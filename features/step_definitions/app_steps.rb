@@ -21,6 +21,6 @@ Then /^I can see the "([^"]*)" page after followwing the "([^"]*)" link$/ do |ap
   page.should have_content '#brigade-channel'
   page.should have_content '#brigade-hashtag'
   page.should have_content 'Long winded description of application'
-  page.should have_content 'Brigades that have deployed this app: '
+  page.should have_content 'Deployed Brigades'
   page.should have_content '1 Brigade Name'
 end

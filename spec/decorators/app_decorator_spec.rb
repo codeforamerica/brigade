@@ -15,10 +15,10 @@ describe AppDecorator do
       subject.participating_brigade_links.should match /#{first_brigade.name}/ #, second_brigade.name]
     end
 
-    it 'should return an empty string when the application does not have deployed apps' do
+    it 'should return nil when the application does not have deployed apps' do
       application = FactoryGirl.build(:application)
       subject = AppDecorator.new(application)
-      subject.participating_brigade_links.should == ''
+      subject.participating_brigade_links.should be_nil
     end
   end
 
