@@ -86,6 +86,11 @@ h3 {
   color: $orange;
   text-transform: uppercase;
 }
+h6 {
+  line-height: 30px;
+  //color: darken($oatmeal, 40%);
+  color: $orange;
+}
 p {
   font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
   font-size: 120%;

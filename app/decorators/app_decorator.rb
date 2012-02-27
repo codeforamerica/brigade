@@ -13,7 +13,7 @@ class AppDecorator < ApplicationDecorator
   end
 
   def default_description
-    if application.description
+    if application.description && ! application.description.empty?
       application.description
     else
       h.raw application.civic_commons_description
@@ -24,8 +24,8 @@ class AppDecorator < ApplicationDecorator
     unless application.pictures.empty?
       raw_html = '<ul class="thumbnails">'
         application.pictures.each do |pic|
-          raw_html << '<li class="span3">'
-          raw_html << h.image_tag(pic.file_url(:thumb), class: "thumbnail")
+          raw_html << '<li class="span2">'
+          raw_html << h.image_tag(pic.file_url(:thumb))
           raw_html << '</li>'
         end
       raw_html << '</ul>'

@@ -31,7 +31,6 @@ body {
 }
 
 #sidebar {
-
   .icon {
     font-weight: lighter;
   }
@@ -132,6 +131,65 @@ hgroup.app-title {
   }
 }
 
+.vid-embed-block {
+  margin-bottom: 10px;
+
+  iframe {
+    width: 100%;
+  }
+}
+.gallery-block {
+  ul.thumbnail {
+    li {
+      background: #fff;
+    }
+  }
+}
+
+ul.thumbnails {
+  li {
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      &:before {
+        width: 100px;
+        height: 95%;
+        font-family: 'ModernPictogramsNormal';
+        color: #fff;
+        font-size: 60px;
+        text-align: center;
+        line-height: 85px;
+        background: transparentize(#111, 0.4);
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "y";
+        text-shadow: 0 2px 1px #000;
+      }
+    }
+
+    &:after {
+      width: 100px;
+      height: 4px;
+      content: "";
+      background: url('/assets/thumbnail-bottom-edge.png') bottom center no-repeat;
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      z-index: 99;
+    }
+  }
+  img {
+    background: #fff;
+    @include linear-gradient(#fff, #ebebeb);
+    @include box-shadow(0 -1px 0 #fff inset);
+    border: 1px solid #999;
+    padding: 4px;
+    min-height: 70px;
+  }
+}
+
 .app-info {
   background: transparentize(darken($oatmeal, 20%), 0.5);
   padding: 10px;
@@ -146,7 +204,7 @@ hgroup.app-title {
       text-transform: uppercase;
       color: darken($oatmeal, 50%);
     }
-  }
+ }
 
   h3 {
     text-transform: uppercase;
@@ -167,7 +225,7 @@ hgroup.app-title {
   background: lighten($oatmeal, 10%);
   padding: 10px;
   width: 97%;
-  margin: 10px 0 20px;
+  margin-bottom: 20px;
   border-top: 1px solid darken($oatmeal, 5%);
   border-left: 1px solid darken($oatmeal, 5%);
   @include box-shadow(
@@ -188,7 +246,7 @@ hgroup.app-title {
     li {
       color: darken($oatmeal, 50%);
       border-bottom: 1px solid (transparentize(#0072ac, 0.5));
-      padding: 8px 0 8px 30px;
+      padding: 8px 0 8px 35px;
       position: relative;
 
       .check-this {
