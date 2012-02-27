@@ -116,6 +116,24 @@ unless Rails.env == 'test'
       #     configure :participating_brigades, :has_many_association   #   # Found columns:
     end
 
+    config.model Challenge do
+      edit do
+        field :description
+        field :purpose
+        field :organization_name
+        field :location
+        field :success_description
+        field :mission
+        field :audience
+        field :user_story
+        field :status do
+          partial 'status_dropdown'
+          help ''
+        end
+        field :public_visibility
+        field :admin_note
+      end
+    end
     # My attempt to include managing tags in rails admin
     # If you create a Tag model that inerits the
     # ActsAsTaggableOn::Tag then it'll work but
