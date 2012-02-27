@@ -2,52 +2,87 @@
   <div class="row-fluid">
     <!-- main -->
     <div id="leftcolumn" class="span8">
-      <h2>
-        Work on <%= @app.name %> in Fake City!
-      </h2>
-
+      <hgroup class="app-title">
+        <h2>
+          Work on <%= @app.name %>
+        </h2>
+        <h5>
+          <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
+            <span class="icon">(</span> Deploy This App
+        <% end %>
+        </h5>
+        <div class="clear"></div>
+      </hgroup>
 
       <div class="application-page-main-column-boxes">
-        <div class="app-info">
-          <h3>Get Info</h3>
-          <h4><span class="icon">O</span> Technical Info</h4>
-          <ul class="unstyled">
-            <li><%= link_to "Github", @app.repository_url %></li>
-            <li>IRC Channel: <%= @app.irc_channel %></li>
-            <li>Twitter Hashtag: <%= @app.twitter_hashtag %></li>
-            <li>Creator: <%= @app.creator %></li>
-            <li>License: <%= @app.license %></li>
-          </ul>
 
-          <h4><span class="icon">f</span> People</h4>
-          <ul class="unstyled">
-            <li><%= link_to "Codey McGee", "#" %></li>
-            <li><%= link_to "Worky McWorkface", "#" %></li>
-            <li><%= link_to "Engineery O'Keyboard", "#" %></li>
-            <li><%= link_to "Bob Paperclip", "#" %></li>
-            <li class="see-all">See All &rarr;</li>
+        <p><%= @app.default_description %></p>
+
+        <div class="task-list">
+          <h3>Deployment checklist</h3>
+          <p>
+            The following items will need to be accomplished by teams
+            as part of deployment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.
+          </p>
+          <ul class="check-boxes unstyled">
+            <li>
+              Spin up all the dynos
+              <span class="check-this green">%</span>
+            </li>
+            <li>
+              Process all the unicorn tears
+              <span class="check-this green">%</span>
+            </li>
+            <li>
+              Including a potentially very long and ungainly step
+              <span class="check-this grey">%</span>
+            </li>
+            <li>
+              Drive our enemies before us, hear the lamentations of their women
+              <span class="check-this green">%</span>
+            </li>
+            <li>
+              Eat all the delicious things ever
+              <span class="check-this grey">%</span>
+            </li>          
+          <!--
+          <% @app.tasks.each do |task| %>
+            <li><%= task.description %></li>
+          <% end %>
+          -->
           </ul>
         </div>
 
-        <p><%= @app.default_description %></p>
-          <%= link_to "Deploy #{@app.name}",new_application_deployed_application_path(@app), :class => "btn" %>
         <div><%= raw @app.video_embed_code %></div>
         <%= @app.picture_gallary %>
-      </div>
-
-      <div class="application-page-main-column-boxes">
-        <% @app.tasks.each do |task| %>
-          <div class="row">
-            <%= task.description %>
-          </div>
-        <% end %>
       </div>
 
     </div>
 
     <!-- sidebar -->
     <div id="sidebar" class="span4">
-      <h3><span class="icon">,</span> <%= @app.name %> is deployed in</h3>
+      <div class="app-info">
+        <h3>Get Info</h3>
+        <h4><span class="icon">O</span> Technical</h4>
+        <ul class="unstyled">
+          <li><%= link_to "Github", @app.repository_url %></li>
+          <li>IRC Channel: <%= @app.irc_channel %></li>
+          <li>Twitter Hashtag: <%= @app.twitter_hashtag %></li>
+          <li>Creator: <%= @app.creator %></li>
+          <li>License: <%= @app.license %></li>
+        </ul>
+
+        <h4><span class="icon">f</span> People</h4>
+        <ul class="unstyled">
+          <li><%= link_to "Codey McGee", "#" %></li>
+          <li><%= link_to "Worky McWorkface", "#" %></li>
+          <li><%= link_to "Engineery O'Keyboard", "#" %></li>
+          <li><%= link_to "Bob Paperclip", "#" %></li>
+          <li class="see-all">See All &rarr;</li>
+        </ul>
+
+        <h4><span class="icon">,</span> <%= @app.name %> is deployed in</h4>
         <ul class="unstyled">
           <li><%= link_to "San Francisco", "#" %></li>
           <li><%= link_to "Raleigh", "#" %></li>
@@ -55,10 +90,11 @@
           <li><%= link_to "Norfolk", "#" %></li>
         </ul>
 
-      <h3><span class="icon">)</span> Deployed Brigades</h3>
-        <ul class="unstyled">
-          <%= @app.participating_brigade_links %>
-        </ul>
+        <h4><span class="icon">,</span> Deployed Brigades</h4>
+          <ul class="unstyled">
+            <%= @app.participating_brigade_links %>
+          </ul>
+      </div>
     </div>
 
   </div>

@@ -30,6 +30,13 @@ body {
   padding-top: 20px;
 }
 
+#sidebar {
+
+  .icon {
+    font-weight: lighter;
+  }
+}
+
 #main {
   width: 960px;
   margin: auto;
@@ -109,14 +116,29 @@ table.table-striped {
 /* Application Pages Rules
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+hgroup.app-title {
+  border-bottom: 1px solid darken($oatmeal, 40%);
+
+  h2 {
+    border: 0;
+    width: 75%;
+    float: left;
+    margin-bottom: 0;
+  }
+  h5 {
+    margin: 2px -10px 0 0;
+    width: 25%;
+    float: right;
+  }
+}
+
 .app-info {
   background: transparentize(darken($oatmeal, 20%), 0.5);
   padding: 10px;
+  width: 93%;
   margin-bottom: 10px;
-  width: 180px;
-  float: right;
-  margin: 8px 0 10px 10px;
   @include border-radius(5px);
+  clear: both;
 
   ul {
     li.see-all {
@@ -128,8 +150,9 @@ table.table-striped {
 
   h3 {
     text-transform: uppercase;
-    color: darken($oatmeal, 50%);
-    font-size: 120%;
+    color: $orange;
+    font-size: 140%;
+    margin-bottom: 20px;
   }
   h4 {
     color: darken($oatmeal, 60%);
@@ -138,7 +161,50 @@ table.table-striped {
     margin-bottom: 8px;
   }
 }
-.application-page-main-column-boxes {
-  clear: both;
-  
+
+.task-list {
+  float: left;
+  background: lighten($oatmeal, 10%);
+  padding: 10px;
+  width: 97%;
+  margin: 10px 0 20px;
+  border-top: 1px solid darken($oatmeal, 5%);
+  border-left: 1px solid darken($oatmeal, 5%);
+  @include box-shadow(
+    1px 1px 0 darken($oatmeal, 20%),
+    2px 2px 0 darken($oatmeal, 20%),
+    3px 3px 0 darken($oatmeal, 20%),
+    4px 4px 0 darken($oatmeal, 20%),
+    5px 5px 0 darken($oatmeal, 20%)
+  );
+
+  p {
+    font-size: 90%
+  }
+
+  ul.check-boxes {
+    font-size: 110%;
+
+    li {
+      color: darken($oatmeal, 50%);
+      border-bottom: 1px solid (transparentize(#0072ac, 0.5));
+      padding: 8px 0 8px 30px;
+      position: relative;
+
+      .check-this {
+        font-family: 'ModernPictogramsNormal';
+        font-size: 16px;
+        position: absolute;
+        left: 10px;
+
+        &.green {
+          color: green;
+        }
+        &.grey {
+          color: #d7d7d7;
+        }
+      }
+    }
+  }
 }
+
