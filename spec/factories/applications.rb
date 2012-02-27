@@ -17,4 +17,14 @@ FactoryGirl.define do
       end
     end
   end
+
+  factory :application_with_four_pictures, parent: :application do
+
+    after_create do |application|
+      FactoryGirl.create(:picture, application_id: application.id)
+      FactoryGirl.create(:picture, file: File.open("#{Rails.root}/app/assets/images/logo.png"), application_id: application.id)
+      FactoryGirl.create(:picture, file: File.open("#{Rails.root}/app/assets/images/map.png"), application_id: application.id)
+      FactoryGirl.create(:picture, file: File.open("#{Rails.root}/app/assets/images/noise.png"), application_id: application.id)
+    end
+  end
 end

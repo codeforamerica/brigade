@@ -17,4 +17,17 @@ class AppDecorator < ApplicationDecorator
     end
   end
 
+  def picture_gallary
+    unless application.pictures.empty?
+      raw_html = '<ul class="thumbnails">'
+        application.pictures.each do |pic|
+          raw_html << '<li class="span3">'
+          raw_html << h.image_tag(pic.file_url(:thumb), class: "thumbnail")
+          raw_html << '</li>'
+        end
+      raw_html << '</ul>'
+
+      h.raw(raw_html)
+    end
+  end
 end
