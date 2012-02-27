@@ -12,7 +12,7 @@ body {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .content {
-  width: 880px;
+  width: 920px;
   padding: 40px;
   margin: auto;
   position: relative; /* Do this just in case we ever want to absolutely position children */
@@ -44,6 +44,11 @@ section {
     border-bottom: 1px solid #b9b7b2;
   }
 }
+footer {
+  background: darken($oatmeal, 10%);
+  width: 100%;
+  clear: both;
+}
 
 /* Sizes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -65,4 +70,52 @@ section {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .clear {
   clear: both;
+}
+
+/* Twitter Bootstrap Overrides
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+table.table-striped {
+  color: #444;
+
+  &.tweaked {
+    th {
+      text-align: left;
+      padding: 10px 5px;
+      text-transform: uppercase;
+      color: #444;
+      font-size: 80%;
+    }
+    tr {
+      td {
+        padding: 10px;
+
+        &:last-child {
+          width: 60px;
+        }
+      }
+    }
+    tr:nth-child(odd) td {
+      background: transparentize(#fff, 0.5);
+    }
+  }
+}
+
+/* Application Pages Rules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.app-info {
+  background: transparentize(darken($oatmeal, 20%), 0.5);
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 180px;
+  float: right;
+  margin: 0 0 10px 10px;
+  @include border-radius(5px);
+
+  h3 {
+    text-transform: uppercase;
+    color: darken($oatmeal, 30%);
+    font-size: 110%;
+  }
 }
