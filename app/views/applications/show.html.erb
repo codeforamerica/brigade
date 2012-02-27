@@ -24,6 +24,8 @@
       <h2>Work on <%= @app.name %> in Fake City!</h2>
       <div class="application-page-main-column-boxes">
         <p><%= @app.default_description %></p>
+        <div><%= raw @app.video_embed_code %></div>
+        <%= @app.picture_gallary %>
         <div><%= link_to "Github", @app.repository_url %></div>
         <div>IRC Channel: <%= @app.irc_channel %></div>
         <div>Twitter Hashtag: <%= @app.twitter_hashtag %></div>
