@@ -1,62 +1,63 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <!-- main -->
-    <div class="span8">
-      <h2>Work on <%= @app.name %> in Fake City!</h2>
+    <div id="leftcolumn" class="span8">
+      <h2>
+        Work on <%= @app.name %> in Fake City!
+      </h2>
+
 
       <div class="application-page-main-column-boxes">
         <div class="app-info">
-          <h3>Get In Touch</h3>
-          <div><%= link_to "Github", @app.repository_url %></div>
-          <div>IRC Channel: <%= @app.irc_channel %></div>
-          <div>Twitter Hashtag: <%= @app.twitter_hashtag %></div>
-          <div>Creator: <%= @app.creator %></div>
-          <div>License: <%= @app.license %></div>
+          <h3>Get Info</h3>
+          <h4><span class="icon">O</span> Technical Info</h4>
+          <ul class="unstyled">
+            <li><%= link_to "Github", @app.repository_url %></li>
+            <li>IRC Channel: <%= @app.irc_channel %></li>
+            <li>Twitter Hashtag: <%= @app.twitter_hashtag %></li>
+            <li>Creator: <%= @app.creator %></li>
+            <li>License: <%= @app.license %></li>
+          </ul>
+
+          <h4><span class="icon">f</span> People</h4>
+          <ul class="unstyled">
+            <li><%= link_to "Codey McGee", "#" %></li>
+            <li><%= link_to "Worky McWorkface", "#" %></li>
+            <li><%= link_to "Engineery O'Keyboard", "#" %></li>
+            <li><%= link_to "Bob Paperclip", "#" %></li>
+            <li class="see-all">See All &rarr;</li>
+          </ul>
         </div>
 
         <p><%= @app.default_description %></p>
+          <%= link_to "Deploy #{@app.name}",new_application_deployed_application_path(@app), :class => "btn" %>
         <div><%= raw @app.video_embed_code %></div>
         <%= @app.picture_gallary %>
-
-        <div>
-          <h3>Brigades that have deployed this app:</h3>
-          <%= @app.participating_brigade_links %>
-        </div>
       </div>
+
       <div class="application-page-main-column-boxes">
-        <h3><%= link_to "Deploy #{@app.name}", new_application_deployed_application_path(@app) %></h3>
         <% @app.tasks.each do |task| %>
           <div class="row">
             <%= task.description %>
           </div>
         <% end %>
       </div>
+
     </div>
 
     <!-- sidebar -->
-    <div class="span4">
-      <h3><%= @app.name %> is used in these cities</h3>
-        <ul>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
+    <div id="sidebar" class="span4">
+      <h3><span class="icon">,</span> <%= @app.name %> is deployed in</h3>
+        <ul class="unstyled">
+          <li><%= link_to "San Francisco", "#" %></li>
+          <li><%= link_to "Raleigh", "#" %></li>
+          <li><%= link_to "New York", "#" %></li>
+          <li><%= link_to "Norfolk", "#" %></li>
         </ul>
 
-      <h3>Working on <%= @app.name %></h3>
-        <ul>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
-        </ul>
-
-      <h3>Project Contacts</h3>
-        <ul>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
-          <li><%= link_to "Fake Link", "#" %></li>
+      <h3><span class="icon">)</span> Deployed Brigades</h3>
+        <ul class="unstyled">
+          <%= @app.participating_brigade_links %>
         </ul>
     </div>
 

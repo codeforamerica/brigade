@@ -25,6 +25,11 @@ body {
 /* Page Containers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+#leftcolumn,
+#sidebar {
+  padding-top: 20px;
+}
+
 #main {
   width: 960px;
   margin: auto;
@@ -110,12 +115,30 @@ table.table-striped {
   margin-bottom: 10px;
   width: 180px;
   float: right;
-  margin: 0 0 10px 10px;
+  margin: 8px 0 10px 10px;
   @include border-radius(5px);
+
+  ul {
+    li.see-all {
+      text-align: right;
+      text-transform: uppercase;
+      color: darken($oatmeal, 50%);
+    }
+  }
 
   h3 {
     text-transform: uppercase;
-    color: darken($oatmeal, 30%);
-    font-size: 110%;
+    color: darken($oatmeal, 50%);
+    font-size: 120%;
   }
+  h4 {
+    color: darken($oatmeal, 60%);
+    border-bottom: 1px dotted darken($oatmeal, 40%);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+}
+.application-page-main-column-boxes {
+  clear: both;
+  
 }
