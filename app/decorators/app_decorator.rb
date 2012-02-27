@@ -2,15 +2,20 @@ class AppDecorator < ApplicationDecorator
   decorates :application
 
   def participating_brigade_links
-    brigade_links = application.participating_brigades.map do |brigade|
-      h.link_to(brigade.name, h.brigade_path(brigade))
+    unless application.participating_brigades.empty?
+      raw_html = '<ul class="unstyled">'
+        application.participating_brigades.each do |brigade|
+          raw_html << '<li>'
+          raw_html << h.link_to(brigade.name, h.brigade_path(brigade))
+          raw_html << '</li>'
+        end
+      raw_html << '</ul>'
+      h.raw(raw_html)
     end
-
-    h.raw(brigade_links.join('<br/>'))
   end
 
   def default_description
-    if application.description
+    if application.description && ! application.description.empty?
       application.description
     else
       h.raw application.civic_commons_description
@@ -21,8 +26,8 @@ class AppDecorator < ApplicationDecorator
     unless application.pictures.empty?
       raw_html = '<ul class="thumbnails">'
         application.pictures.each do |pic|
-          raw_html << '<li class="span3">'
-          raw_html << h.image_tag(pic.file_url(:thumb), class: "thumbnail")
+          raw_html << '<li class="span2">'
+          raw_html << h.image_tag(pic.file_url(:thumb))
           raw_html << '</li>'
         end
       raw_html << '</ul>'

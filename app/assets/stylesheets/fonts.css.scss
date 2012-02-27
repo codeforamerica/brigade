@@ -42,6 +42,18 @@
 	font-style: normal;
 }
 
+@font-face {
+    font-family: 'ModernPictogramsNormal';
+    src: url('/assets/modernpics-webfont.eot');
+    src: url('/assets/modernpics-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/modernpics-webfont.woff') format('woff'),
+         url('/assets/modernpics-webfont.ttf') format('truetype'),
+         url('/assets/modernpics-webfont.svg#ModernPictogramsNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 h1 {
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
   font-size: 280%;
@@ -62,6 +74,9 @@ h2 {
   //color: transparentize($mdblue, 0.6);
   color: darken($oatmeal, 60%);
   text-shadow: 0 1px 0 #fff;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid darken($oatmeal, 40%);
+  padding-bottom: 10px;
 }
 h3 {
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
@@ -71,9 +86,21 @@ h3 {
   color: $orange;
   text-transform: uppercase;
 }
+h6 {
+  line-height: 30px;
+  //color: darken($oatmeal, 40%);
+  color: $orange;
+}
 p {
   font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
   font-size: 120%;
   line-height: 1.6em;
   color: #555;
+  margin-top: 10px;
+}
+.icon {
+  font-family: 'ModernPictogramsNormal';
+  font-size: 14px;
+  text-align: center;
+  text-transform: none;
 }

@@ -12,7 +12,7 @@ body {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .content {
-  width: 880px;
+  width: 920px;
   padding: 40px;
   margin: auto;
   position: relative; /* Do this just in case we ever want to absolutely position children */
@@ -24,6 +24,17 @@ body {
 
 /* Page Containers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#leftcolumn,
+#sidebar {
+  padding-top: 20px;
+}
+
+#sidebar {
+  .icon {
+    font-weight: lighter;
+  }
+}
 
 #main {
   width: 960px;
@@ -43,6 +54,11 @@ section {
     margin-top: -20px;
     border-bottom: 1px solid #b9b7b2;
   }
+}
+footer {
+  background: darken($oatmeal, 10%);
+  width: 100%;
+  clear: both;
 }
 
 /* Sizes
@@ -66,3 +82,158 @@ section {
 .clear {
   clear: both;
 }
+
+/* Application Pages Rules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+hgroup.app-title {
+  border-bottom: 1px solid darken($oatmeal, 40%);
+
+  h2 {
+    border: 0;
+    width: 75%;
+    float: left;
+    margin-bottom: 0;
+  }
+  h5 {
+    margin: 2px -10px 0 0;
+    width: 25%;
+    float: right;
+  }
+}
+
+.vid-embed-block {
+  margin-bottom: 10px;
+
+  iframe {
+    width: 100%;
+  }
+}
+.gallery-block {
+  ul.thumbnail {
+    li {
+      background: #fff;
+    }
+  }
+}
+
+ul.thumbnails {
+  li {
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      &:before {
+        width: 100px;
+        height: 95%;
+        font-family: 'ModernPictogramsNormal';
+        color: #fff;
+        font-size: 60px;
+        text-align: center;
+        line-height: 85px;
+        background: transparentize(#111, 0.4);
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "y";
+        text-shadow: 0 2px 1px #000;
+      }
+    }
+
+    &:after {
+      width: 100px;
+      height: 4px;
+      content: "";
+      background: url('/assets/thumbnail-bottom-edge.png') bottom center no-repeat;
+      position: absolute;
+      bottom: 1px;
+      left: 0;
+      z-index: 99;
+    }
+  }
+  img {
+    background: #fff;
+    @include linear-gradient(#fff, #ebebeb);
+    @include box-shadow(0 -1px 0 #fff inset);
+    border: 1px solid #999;
+    padding: 4px;
+    min-height: 70px;
+  }
+}
+
+.app-info {
+  background: transparentize(darken($oatmeal, 20%), 0.5);
+  padding: 10px;
+  width: 93%;
+  margin-bottom: 10px;
+  @include border-radius(5px);
+  clear: both;
+
+  ul {
+    li.see-all {
+      text-align: right;
+      text-transform: uppercase;
+      color: darken($oatmeal, 50%);
+    }
+ }
+
+  h3 {
+    text-transform: uppercase;
+    color: $orange;
+    font-size: 140%;
+    margin-bottom: 20px;
+  }
+  h4 {
+    color: darken($oatmeal, 60%);
+    border-bottom: 1px dotted darken($oatmeal, 40%);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+}
+
+.task-list {
+  float: left;
+  background: lighten($oatmeal, 10%);
+  padding: 10px;
+  width: 97%;
+  margin-bottom: 20px;
+  border-top: 1px solid darken($oatmeal, 5%);
+  border-left: 1px solid darken($oatmeal, 5%);
+  @include box-shadow(
+    1px 1px 0 darken($oatmeal, 20%),
+    2px 2px 0 darken($oatmeal, 20%),
+    3px 3px 0 darken($oatmeal, 20%),
+    4px 4px 0 darken($oatmeal, 20%),
+    5px 5px 0 darken($oatmeal, 20%)
+  );
+
+  p {
+    font-size: 90%
+  }
+
+  ul.check-boxes {
+    font-size: 110%;
+
+    li {
+      color: darken($oatmeal, 50%);
+      border-bottom: 1px solid (transparentize(#0072ac, 0.5));
+      padding: 8px 0 8px 35px;
+      position: relative;
+
+      .check-this {
+        font-family: 'ModernPictogramsNormal';
+        font-size: 16px;
+        position: absolute;
+        left: 10px;
+
+        &.green {
+          color: green;
+        }
+        &.grey {
+          color: #d7d7d7;
+        }
+      }
+    }
+  }
+}
+
