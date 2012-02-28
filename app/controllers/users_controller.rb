@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:edit, :update]
 
   def show
     @user = UserDecorator.new(User.find(params[:id]))
@@ -20,4 +20,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    session[:query] = params[:query] if params[:query]
+
+    @search = User.search do
+      fulltext session[:query]
+    end
+
+    @users = @search.results
+  end
 end

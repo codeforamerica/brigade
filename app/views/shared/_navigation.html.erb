@@ -6,7 +6,8 @@
         <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Applications', applications_path %></li>
         <li><%= link_to 'Cities', deployed_applications_path(filter_by: 'locations') %></li>
-        <li><%= link_to 'People', deployed_applications_path(filter_by: 'brigades') %></li>
+        <li><%= link_to 'Brigades', deployed_applications_path(filter_by: 'brigades') %></li>
+        <li><%= link_to 'People', users_path %></li>
         <li>About</li>
       </ul>
     </nav>

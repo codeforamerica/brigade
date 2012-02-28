@@ -57,6 +57,24 @@ Spork.each_run do
     raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
   end
 
+  Before do
+
+    unless $sunspot
+      $sunspot = Sunspot::Rails::Server.new
+      pid = fork do
+        STDERR.reopen('/dev/null')
+        STDOUT.reopen('/dev/null')
+        $sunspot.run
+      end
+      # shut down the Solr server
+      #
+      at_exit { Process.kill('TERM', pid) }
+      # wait for solr to start
+      sleep 5
+    end
+
+    User.remove_all_from_index!
+  end
   # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
   # See the DatabaseCleaner documentation for details. Example:
   #

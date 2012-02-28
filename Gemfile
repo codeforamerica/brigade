@@ -50,6 +50,9 @@ gem 'fog', '~> 1.1.2'
 # acts as taggable for tagging user skills and app requirements
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
+#Sunspot for search with Solr
+gem 'sunspot_rails', '~> 1.3.0'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -75,6 +78,8 @@ group :development, :test do
 
   # Gem haml-rails for generators
   gem 'haml-rails', '~> 0.3.4'
+
+  gem 'sunspot_solr', '~> 1.3.0'
 end
 
 group :test do

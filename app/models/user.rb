@@ -13,9 +13,23 @@ class User < ActiveRecord::Base
                   :opt_out, :location_id, :avatar, :skill_list
 
   belongs_to :location
+  delegate :name, to: :location, prefix: true, allow_nil: true
 
-  def location_name
-    'Test'
+  has_and_belongs_to_many :brigades
+  has_many :applications, through: :brigades
+
+  searchable do
+    text :email
+    text :skill_list
+    text :location_name
+
+    text :brigade_names do
+      brigades.map { |brigade| brigade.name }
+    end
+
+    text :application_names do
+      applications.map { |application| application.name }
+    end
   end
 
   def self.find_for_github_oauth(access_token, signed_in_resource=nil)
