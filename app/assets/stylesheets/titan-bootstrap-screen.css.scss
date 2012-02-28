@@ -107,6 +107,7 @@ hgroup.app-title {
 
   iframe {
     width: 100%;
+    height: 380px;
   }
 }
 .gallery-block {
@@ -166,14 +167,55 @@ ul.thumbnails {
   padding: 10px;
   width: 93%;
   margin-bottom: 10px;
-  @include border-radius(5px);
   clear: both;
+  @include box-shadow(
+    1px 1px 0 darken($oatmeal, 20%),
+    2px 2px 0 darken($oatmeal, 20%),
+    3px 3px 0 darken($oatmeal, 20%),
+    4px 4px 0 darken($oatmeal, 20%),
+    5px 5px 0 darken($oatmeal, 20%)
+  );
+  position: relative;
 
+  // -> This is a little callout for deploys
+  dl.stats {
+    float: right;
+    color: darken($oatmeal, 30%);
+    margin-top: 20px;
+
+    dt {
+      text-align: right;
+      font-size: 500%;
+      text-shadow: 
+        0 -1px 0 darken($oatmeal, 50%),
+        0 1px 0 $oatmeal;
+    }
+    dd {
+      text-align: right;
+      line-height: 30px;
+      margin-top: 10px;
+    }
+  }
+  // -> Callout ends
+  
   ul {
     li.see-all {
       text-align: right;
       text-transform: uppercase;
       color: darken($oatmeal, 50%);
+    }
+    &#users {
+      img {
+        float: left;
+        margin: 0 5px 5px 0;
+      }
+      h4 {
+        font-size: 10px;
+        font-weight: lighter;
+        font-style: italic;
+        color: darken($oatmeal, 40%);
+        line-height: 10px;
+      }
     }
  }
 
@@ -237,3 +279,7 @@ ul.thumbnails {
   }
 }
 
+/* Deployed Applications Pages Rules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.application-search {
+}
