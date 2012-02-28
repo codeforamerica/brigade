@@ -162,12 +162,26 @@ ul.thumbnails {
   }
 }
 
+.graph {
+  float: right;
+
+  .inlinesparkline {
+    padding: 0;
+  }
+  .sparklabel {
+    font-size: 8px;
+    color: darken($oatmeal, 40%);
+    text-align: right;
+  }
+}
+
 .app-info {
   background: transparentize(darken($oatmeal, 20%), 0.5);
   padding: 10px;
   width: 93%;
   margin-bottom: 10px;
   clear: both;
+  position: relative;
   @include box-shadow(
     1px 1px 0 darken($oatmeal, 20%),
     2px 2px 0 darken($oatmeal, 20%),
@@ -175,7 +189,10 @@ ul.thumbnails {
     4px 4px 0 darken($oatmeal, 20%),
     5px 5px 0 darken($oatmeal, 20%)
   );
-  position: relative;
+
+  iframe {
+    margin-bottom: 20px;
+  }
 
   // -> This is a little callout for deploys
   dl.stats {
@@ -197,8 +214,10 @@ ul.thumbnails {
     }
   }
   // -> Callout ends
-  
+
   ul {
+    margin-bottom: 20px;
+
     li.see-all {
       text-align: right;
       text-transform: uppercase;
@@ -227,7 +246,7 @@ ul.thumbnails {
   }
   h4 {
     color: darken($oatmeal, 60%);
-    border-bottom: 1px dotted darken($oatmeal, 40%);
+    border-bottom: 1px solid darken($oatmeal, 20%);
     padding-bottom: 4px;
     margin-bottom: 8px;
   }

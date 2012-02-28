@@ -70,7 +70,13 @@
     <div id="sidebar" class="span4">
       <div class="app-info">
 
+        <div class="graph">
+          <div class="inlinesparkline">Loading...</div>
+          <div class="sparklabel">Commits / 90 Days</div>
+        </div>
+
         <h3>Get Info</h3>
+
         <h4><span class="icon">O</span> Technical</h4>
         <ul class="unstyled">
           <li><%= link_to "Github", @app.repository_url %></li>
@@ -78,7 +84,6 @@
           <li>Twitter Hashtag: <%= @app.twitter_hashtag %></li>
           <li>Creator: <%= @app.creator %></li>
           <li>License: <%= @app.license %></li>
-          <li class="see-all">See All &rarr;</li>
         </ul>
 
         <h4><span class="icon">f</span> People</h4>
@@ -103,7 +108,6 @@
             <%= link_to "Bob Paperclip", "#" %>
             <h4>San Francisco</h4>
           </li>
-          <li class="see-all">See All &rarr;</li>
         </ul>
 
         <h4><span class="icon">,</span> <%= @app.name %> is deployed in</h4>
