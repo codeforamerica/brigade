@@ -162,18 +162,6 @@ ul.thumbnails {
   }
 }
 
-.graph {
-  float: right;
-
-  .inlinesparkline {
-    padding: 0;
-  }
-  .sparklabel {
-    font-size: 8px;
-    color: darken($oatmeal, 40%);
-    text-align: right;
-  }
-}
 
 .app-info {
   background: transparentize(darken($oatmeal, 20%), 0.5);
@@ -190,30 +178,44 @@ ul.thumbnails {
     5px 5px 0 darken($oatmeal, 20%)
   );
 
+  table.small-stats {
+    float: right;
+    margin: -5px -5px 0 10px;
+    color: $oatmeal;
+
+    td {
+      padding: 5px 5px 0 0;
+    }
+    td.deploy-count {
+      font-size: 240%;
+      text-align: center;
+      line-height: 0;
+    }
+    tr.labels {
+      td {
+        font-size: 8px;
+        text-align: center;
+        padding: 0;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  h4 {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid darken($oatmeal, 30%);
+    text-transform: uppercase;
+    color: #444;
+  }
+
   iframe {
     margin-bottom: 20px;
   }
 
-  // -> This is a little callout for deploys
-  dl.stats {
-    float: right;
-    color: darken($oatmeal, 30%);
-    margin-top: 20px;
-
-    dt {
-      text-align: right;
-      font-size: 500%;
-      text-shadow: 
-        0 -1px 0 darken($oatmeal, 50%),
-        0 1px 0 $oatmeal;
-    }
-    dd {
-      text-align: right;
-      line-height: 30px;
-      margin-top: 10px;
-    }
+  #user-name {
+    color: #fff;
   }
-  // -> Callout ends
 
   ul {
     margin-bottom: 20px;
@@ -223,6 +225,7 @@ ul.thumbnails {
       text-transform: uppercase;
       color: darken($oatmeal, 50%);
     }
+
     &#users {
       img {
         float: left;
@@ -236,19 +239,61 @@ ul.thumbnails {
         line-height: 10px;
       }
     }
+
+    &#user-grid {
+      width: 265px;
+      margin: 0 0 20px;
+      overflow: auto;
+
+      li {
+        list-style: none;
+        float: left;
+        margin: 0 5px 5px 0;
+        background: #fff;
+        width: 48px;
+        height: 48px;
+        position: relative;
+        cursor: pointer;
+        background: $oatmeal;
+        @include border-radius(5px);
+
+        img {
+          @include border-radius(5px);
+        }
+
+        &:hover {
+          &:before {
+            width: 48px;
+            height: 48px;
+            font-family: 'ModernPictogramsNormal';
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+            background: transparentize(#111, 0.4);
+            position: absolute;
+            font-weight: lighter;
+            @include border-radius(5px);
+            top: 0;
+            left: 0;
+            content: "b";
+            text-shadow: 0 2px 1px #000;
+          }
+        }
+      }
+    }
  }
 
   h3 {
     text-transform: uppercase;
-    color: $orange;
+    color: $oatmeal;
+    font-weight: 100;
+    padding: 10px;
+    margin: -10px -10px 10px -10px;
+    //background: #3ba933;
+    background: $lime;
     font-size: 140%;
     margin-bottom: 20px;
-  }
-  h4 {
-    color: darken($oatmeal, 60%);
-    border-bottom: 1px solid darken($oatmeal, 20%);
-    padding-bottom: 4px;
-    margin-bottom: 8px;
   }
 }
 

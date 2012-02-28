@@ -70,14 +70,20 @@
     <div id="sidebar" class="span4">
       <div class="app-info">
 
-        <div class="graph">
-          <div class="inlinesparkline">Loading...</div>
-          <div class="sparklabel">Commits / 90 Days</div>
-        </div>
+        <table class="small-stats">
+          <tr>
+            <td class="inlinesparkline"></td>
+            <td class="deploy-count">76</td>
+          </tr>
+          <tr class="labels">
+            <td>Commits/30 Days</td>
+            <td>Deploys</td>
+          </tr>
+        </table>
 
         <h3>Get Info</h3>
-
         <h4><span class="icon">O</span> Technical</h4>
+
         <ul class="unstyled">
           <li><%= link_to "Github", @app.repository_url %></li>
           <li>IRC Channel: <%= @app.irc_channel %></li>
@@ -86,7 +92,112 @@
           <li>License: <%= @app.license %></li>
         </ul>
 
-        <h4><span class="icon">f</span> People</h4>
+        <h4><span class="icon">f</span> People <span id="user-name"></span></h4>
+
+        <ul id="user-grid">
+          <li data-name="Wil Shipley">
+            <a href="#" alt="User's Name">
+              <img src="/assets/avatars/avatar-1.png">
+            </a>
+          </li>
+          <li data-name="Anil Dash">
+            <a href="#">
+              <img src="/assets/avatars/avatar-2.png">
+            </a>
+          </li>
+          <li data-name="Tweetbot">
+            <a href="#">
+              <img src="/assets/avatars/avatar-3.png">
+            </a>
+          </li>
+          <li data-name="Jason Snell">
+            <a href="#">
+              <img src="/assets/avatars/avatar-4.png">
+            </a>
+          </li>
+          <li data-name="Jason Kottke">
+            <a href="#">
+              <img src="/assets/avatars/avatar-5.png">
+            </a>
+          </li>
+          <li data-name="Paul Irish">
+            <a href="#">
+              <img src="/assets/avatars/avatar-6.png">
+            </a>
+          </li>
+          <li data-name="Amy Hoy">
+            <a href="#">
+              <img src="/assets/avatars/avatar-7.png">
+            </a>
+          </li>
+          <li data-name="Cameron Moll">
+            <a href="#">
+              <img src="/assets/avatars/avatar-8.png">
+            </a>
+          </li>
+          <li data-name="Todd Dominey">
+            <a href="#">
+              <img src="/assets/avatars/avatar-9.png">
+            </a>
+          </li>
+          <li data-name="Grant Hutchinson">
+            <a href="#">
+              <img src="/assets/avatars/avatar-10.png">
+            </a>
+          </li>
+          <li data-name="Dan Cederholm">
+            <a href="#">
+              <img src="/assets/avatars/avatar-11.png">
+            </a>
+          </li>
+          <li data-name="Merlin Mann">
+            <a href="#">
+              <img src="/assets/avatars/avatar-12.png">
+            </a>
+          </li>
+          <li data-name="Shaun Inman">
+            <a href="#">
+              <img src="/assets/avatars/avatar-13.png">
+            </a>
+          </li>
+          <li data-name="Jon Snook">
+            <a href="#">
+              <img src="/assets/avatars/avatar-14.png">
+            </a>
+          </li>
+          <li data-name="Nvn Mrgan">
+            <a href="#">
+              <img src="/assets/avatars/avatar-15.png">
+            </a>
+          </li>
+          <li data-name="Mike Davidson">
+            <a href="#">
+              <img src="/assets/avatars/avatar-16.png">
+            </a>
+          </li>
+          <li data-name="Typekit">
+            <a href="#">
+              <img src="/assets/avatars/avatar-17.png">
+            </a>
+          </li>
+          <li data-name="Sarah Hatter">
+            <a href="#">
+              <img src="/assets/avatars/avatar-18.png">
+            </a>
+          </li>
+          <li data-name="Uncle Ken">
+            <a href="#">
+              <img src="/assets/avatars/avatar-19.png">
+            </a>
+          </li>
+          <li data-name="Brennan Dunn">
+            <a href="#">
+              <img src="/assets/avatars/avatar-20.png">
+            </a>
+          </li>
+        </ul>
+
+        <!-- user grid as mostly text
         <ul class="unstyled" id="users">
           <li>
             <%= image_tag('/assets/small-avatar.png') %>
@@ -109,6 +220,7 @@
             <h4>San Francisco</h4>
           </li>
         </ul>
+        -->
 
         <h4><span class="icon">,</span> <%= @app.name %> is deployed in</h4>
 
