@@ -56,7 +56,6 @@ section {
   }
 }
 footer {
-  background: darken($oatmeal, 10%);
   width: 100%;
   clear: both;
 }
@@ -114,6 +113,100 @@ hgroup.app-title {
   ul.thumbnail {
     li {
       background: #fff;
+    }
+  }
+}
+
+/* Styles for tables of apps */
+table.all-apps {
+
+  /* Table striping */
+  tr.odd {
+    td {
+      background: transparentize(darken($oatmeal, 5%), 0.5);
+    }
+  }
+
+  tr {
+    td {
+
+      .small-stats {
+        color: darken($oatmeal, 40%);
+        margin: 0;
+        background: none;
+      }
+
+      h3 {
+        font-size: 120%;
+        color: #444;
+        text-transform: none;
+        margin: 0;
+        line-height: 1.4em;
+        padding: 0;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+      p {
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 90%;
+      }
+
+      &.show-app {
+        vertical-align: middle;
+        padding: 0 20px;
+      }
+    }
+  }
+  
+}
+
+.show-button {
+  background: darken($oatmeal, 10%);
+  padding: 3px 6px 3px 30px;
+  @include border-radius(3px);
+  position: relative;
+  border: 1px solid darken($oatmeal, 30%);
+  @include box-shadow(0 1px 0 lighten($oatmeal, 5%) inset);
+  text-shadow: 0 1px 0 $oatmeal;
+  @include linear-gradient($oatmeal, darken($oatmeal, 13%));
+
+  &:before {
+    font-family: 'ModernPictogramsNormal';
+    font-size: 14px;
+    content: "E";
+    color: darken($oatmeal, 40%);
+    padding-right: 3px;
+    border-right: 1px solid darken($oatmeal, 30%);
+    width: 14px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    left: 4px;
+    line-height: 21px;
+  }
+}
+
+/* Styles for tiny stats table */
+table.small-stats {
+  float: right;
+  margin: -5px -5px 0 10px;
+  color: $oatmeal;
+
+  td {
+    padding: 5px 5px 0 0;
+  }
+
+  td.deploy-count {
+    font-size: 240%;
+    text-align: center;
+    line-height: 0;
+  }
+  tr.labels {
+    td {
+      font-size: 8px;
+      text-align: center;
+      padding: 0;
+      text-transform: uppercase;
     }
   }
 }
@@ -177,29 +270,6 @@ ul.thumbnails {
     4px 4px 0 darken($oatmeal, 20%),
     5px 5px 0 darken($oatmeal, 20%)
   );
-
-  table.small-stats {
-    float: right;
-    margin: -5px -5px 0 10px;
-    color: $oatmeal;
-
-    td {
-      padding: 5px 5px 0 0;
-    }
-    td.deploy-count {
-      font-size: 240%;
-      text-align: center;
-      line-height: 0;
-    }
-    tr.labels {
-      td {
-        font-size: 8px;
-        text-align: center;
-        padding: 0;
-        text-transform: uppercase;
-      }
-    }
-  }
 
   h4 {
     padding: 5px;
