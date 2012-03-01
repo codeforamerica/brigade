@@ -2,16 +2,20 @@ Then /^I edit my account information$/ do
   click_on 'Edit'
 
   check "user[opt_out]"
-  select "Add Location", from: "user[location_id]"
   fill_in 'user[skill_list]', with: 'Ruby, Java, Project Management'
 
+  step "I create a new location with a modal in the \"user\" form"
+
+  click_on 'Update User'
+end
+
+Then /^I create a new location with a modal in the "([^"]*)" form$/ do |form_name|
+  select "Add Location", from: "#{form_name}[location_id]"
   fill_in 'location[name]', with: 'Random Location'
   find_field('location[name]').value.should == 'Random Location'
   click_on 'Create Location'
 
   wait_until { Location.find_by_name('Random Location') }
-  click_on 'Update User'
-
 end
 
 Then /^I see the updated information on my account page$/ do
