@@ -22,6 +22,7 @@ gem 'simple_form', '~> 2.0.0.rc'
 
 #Rails Admin for managing the database
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
+gem 'rails_admin_tag_list_field', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list_field.git'
 
 # Draper for nice decorators for the views
 gem 'draper', '~> 0.10.0'
