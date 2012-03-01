@@ -115,3 +115,12 @@ end
 Then /^I should be able to deploy another application if I choose$/ do
   page.should have_link 'Deploy new application'
 end
+
+When /^I click the button to share the deployed application$/ do
+  click_on 'Share'
+end
+
+Then /^I should be able to share with my facebook and twitter networks$/ do
+  page.should have_content 'facebook'
+  page.should have_content 'twitter'
+end

@@ -1,0 +1,16 @@
+production:
+  facebook_app_id: 000000
+  twitter_app_id: 000000
+
+default: &DEFAULT
+  facebook_app_id: 123050457758183
+  twitter_app_id: 000000
+
+development:
+  <<: *DEFAULT
+
+test:
+  <<: *DEFAULT
+
+cucumber:
+  <<: *DEFAULT
