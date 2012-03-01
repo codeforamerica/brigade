@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :opt_out, :location_id, :avatar, :skill_list
+                  :opt_out, :location_id, :avatar, :skill_list, :avatar_cache
 
   belongs_to :location
   delegate :name, to: :location, prefix: true, allow_nil: true

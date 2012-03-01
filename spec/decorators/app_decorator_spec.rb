@@ -7,8 +7,8 @@ describe AppDecorator do
 
     it 'should return a url formatted string containging brigade names and their links when the application has deployed apps' do
       application = FactoryGirl.build(:application)
-      first_brigade = FactoryGirl.build(:brigade)
-      second_brigade = FactoryGirl.build(:brigade)
+      first_brigade = FactoryGirl.create(:brigade)
+      second_brigade = FactoryGirl.create(:brigade)
 
       application.stub(:participating_brigades).and_return([first_brigade, second_brigade])
       subject = AppDecorator.new(application)
