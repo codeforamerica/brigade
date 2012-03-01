@@ -1,0 +1,14 @@
+<%= simple_form_for @challenge, html: { class: 'form-vertical' } do |f| %>
+  <%= f.input :purpose, label: 'Why do you do what you do?' %>
+  <%= f.input :organization_name, label: 'Organization (or Chapter) Name' %>
+  <%= render partial: 'shared/location_select', locals: { f: f } %>
+  <%= f.input :mission %>
+  <%= f.input :audience %>
+  <%= f.input :description, label: 'Challenge' %>
+  <%= f.input :technology_platform_list, label: 'Appropriate technology platforms' %>
+  <%= f.input :success_description, label: 'Success' %>
+  <%= f.input :user_story, label: 'User Story' %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= render 'shared/location_modal' %>
