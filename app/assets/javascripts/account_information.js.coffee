@@ -1,5 +1,5 @@
 $ ->
-  $('#user_location_id').live 'change', (event) ->
+  $('select.location-selector').live 'change', (event) ->
 
     if $(@).val() is 'Add Location'
 
@@ -7,8 +7,8 @@ $ ->
 
   $('form.new_location').bind 'ajax:success', (data, status, xhr) ->
     $('#add_location_container').modal('hide')
-    $('#user_location_id option').removeAttr('selected')
-    $('#user_location_id').append("<option value=\"#{status.id}\" selected='selected'>#{status.name}</option>")
+    $('select.location-selector option').removeAttr('selected')
+    $('select.location-selector').append("<option value=\"#{status.id}\" selected='selected'>#{status.name}</option>")
 
   $('form.new_location').bind 'ajax:error', (xhr, status, error) ->
     # Going for the extremely simple solution until we decide how this will actually work - RMC

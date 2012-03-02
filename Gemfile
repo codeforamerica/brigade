@@ -22,6 +22,7 @@ gem 'simple_form', '~> 2.0.0.rc'
 
 #Rails Admin for managing the database
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
+gem 'rails_admin_tag_list_field', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list_field.git'
 
 # Draper for nice decorators for the views
 gem 'draper', '~> 0.10.0'
@@ -50,6 +51,12 @@ gem 'fog', '~> 1.1.2'
 # acts as taggable for tagging user skills and app requirements
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
+#Sunspot for search with Solr
+gem 'sunspot_rails', '~> 1.3.0'
+
+# state_machine for adds support for creating state machines for attribute
+gem 'state_machine', '~>1.1.2'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -75,6 +82,8 @@ group :development, :test do
 
   # Gem haml-rails for generators
   gem 'haml-rails', '~> 0.3.4'
+
+  gem 'sunspot_solr', '~> 1.3.0'
 end
 
 group :test do
@@ -88,6 +97,9 @@ group :test do
 
   #Rspec for testing instead of test::unit
   gem "rspec-rails", '~> 2.8.1'
+
+  #Email spec for cucumber matchers for emails
+  gem 'email_spec', '~> 1.2.1'
 
   gem 'launchy', '~> 2.0.5'
 

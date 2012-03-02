@@ -17,4 +17,10 @@ Application.all.each do |app|
   end
 end
 
-User.create!(email: 'ryan@wearetitans.net', password: 'foobar')
+user = User.create!(email: 'ryan@wearetitans.net', password: 'foobar', skill_list: 'ruby, javascript, html')
+user.brigades << Brigade.first
+
+user = User.create!(email: 'joe@wearetitans.net', password: 'rosebud', skill_list: 'java, coffeescript, css')
+user.brigades << Brigade.last
+
+

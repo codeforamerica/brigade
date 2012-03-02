@@ -10,21 +10,35 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :opt_out, :location_id, :avatar, :skill_list
+                  :opt_out, :location_id, :avatar, :skill_list, :avatar_cache
 
   belongs_to :location
+  delegate :name, to: :location, prefix: true, allow_nil: true
 
-  def location_name
-    'Test'
+  has_and_belongs_to_many :brigades
+  has_many :applications, through: :brigades
+
+  searchable do
+    text :email
+    text :skill_list
+    text :location_name
+
+    text :brigade_names do
+      brigades.map { |brigade| brigade.name }
+    end
+
+    text :application_names do
+      applications.map { |application| application.name }
+    end
   end
 
   def self.find_for_github_oauth(access_token, signed_in_resource=nil)
-    data = access_token.extra.raw_info
+    email = access_token.info.email.downcase
 
-    if user = User.where(:email => data.email.downcase).first
+    if user = User.where(:email => email).first
       user
     else # Create a user with a stub password.
-      User.create!(:email => data.email, :password => Devise.friendly_token[0,20])
+      User.create!(:email => email, :password => Devise.friendly_token[0,20])
     end
   end
 end

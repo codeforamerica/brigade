@@ -9,11 +9,16 @@
 /bundler_stubs
 /bin
 
+/config/database.yml
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+log/
 /tmp
 
 .sass-cache/
+
+#Ignore my local installation of solr
+solr/

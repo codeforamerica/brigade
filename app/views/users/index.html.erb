@@ -1,0 +1,27 @@
+<h2>People hacking across the country!</h2>
+
+<%= form_tag users_path, method: :get, class: 'span4', style: 'margin-top: 7px;' do %>
+  <%= text_field_tag :query, session[:query], placeholder: 'Search', class: 'span3' %>
+  <%= submit_tag "Search", name: nil %>
+<% end %>
+
+<% if @users.empty? %>
+  <h3> There aren't any hackers that match that criteria! </h3>
+<% else %>
+  <table class='table-striped'>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Location</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= content_tag_for :tr, @users do |user| %>
+        <td><strong><%= user.email %></strong></td>
+        <td><%= user.location_name %></td>
+        <td><%= link_to 'Show', user%></td>
+      <% end %>
+    </tbody>
+  </table>
+<%end%>

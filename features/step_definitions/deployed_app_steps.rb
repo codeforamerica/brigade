@@ -14,7 +14,7 @@ When /^I view all of the apps by "([^"]*)"$/ do |type|
   visit ('/')
 
   if type == 'Brigade'
-    click_on 'People'
+    click_on 'Brigades'
   else
     click_on 'Cities'
   end
