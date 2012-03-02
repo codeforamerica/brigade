@@ -35,4 +35,11 @@ describe UserDecorator do
     end
 
   end
+
+  describe '#gravatr_small' do
+
+    it 'returns an img tag containing a link with the md5 generated from the user email address' do
+      subject.gravatar_small.should match /#{Digest::MD5.hexdigest(subject.email)}/
+    end
+  end
 end

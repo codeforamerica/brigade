@@ -31,37 +31,10 @@
         <h6><%= @app.name %> Deployment Checklist</h6>
         <div class="task-list">
           <p>
-            The following items will need to be accomplished by teams
-            as part of deployment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.
+          The following items will need to be accomplished by teams
+          as part of deployment.
           </p>
-          <ul class="check-boxes unstyled">
-            <li>
-              Spin up all the dynos
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Process all the unicorn tears
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Including a potentially very long and ungainly step
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Drive our enemies before us, hear the lamentations of their women
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Eat all the delicious things ever
-              <span class="check-this green">%</span>
-            </li>
-          <!--
-          <% @app.tasks.each do |task| %>
-            <li><%= task.description %></li>
-          <% end %>
-          -->
-          </ul>
+          <%= @app.task_list %>
         </div>
 
     </div>
