@@ -52,4 +52,27 @@ describe Application do
       @app_with_pics.should_not be_valid
     end
   end
+
+  context 'deployed applications' do
+    before do
+      @deployed_application = Factory :deployed_application, application: subject
+      @user = Factory :user
+      @private_user = Factory :user, opt_out: true
+      @deployed_application.brigade.users << @user
+      @deployed_application.brigade.users << @private_user
+    end
+
+    describe '#deployed_users' do
+
+      it 'returns a list of users who are involved in one or many deploys of the said applications' do
+        subject.contactable_deployed_application_users.should include @user
+      end
+
+      it 'does not return users who do not want to be contacted' do
+        subject.contactable_deployed_application_users.should_not include @private_user
+      end
+
+    end
+  end
 end
+

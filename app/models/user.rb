@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :brigades
   has_many :applications, through: :brigades
 
+  scope :contactable, where(opt_out: false)
+
   searchable do
     text :email
     text :skill_list
