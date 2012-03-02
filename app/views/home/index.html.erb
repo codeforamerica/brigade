@@ -1,3 +1,8 @@
+<%= form_tag find_locations_path, id: 'hacking_form' do %>
+  <%= text_field_tag :location, nil, placeholder: 'I want to start hacking in:', data: { autocomplete_source: Location.names } %>
+  <%= submit_tag 'Let\'s go!' %>
+<%end%>
+
 <div id="map">
   <h3>Sign up to start a local</br> brigade in your city.</h3>
   <h1>Hack your city!</h1>
