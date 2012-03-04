@@ -24,3 +24,20 @@ Then /^I can see the "([^"]*)" page after followwing the "([^"]*)" link$/ do |ap
   page.should have_content 'Deployed Brigades'
   page.should have_content '1 Brigade Name'
 end
+
+When /^I visit the application "([^"]*)" page$/ do |app_name|
+  app = Application.find_by_name(app_name)
+
+  visit('/')
+  click_on 'Applications'
+
+  within "#application_#{app.id}" do
+    click_on 'Show App'
+  end
+end
+
+When /^I logout and visit the application "([^"]*)" page$/ do |app_name|
+  click_on 'Sign Out'
+
+  step "I visit the application \"#{app_name}\" page"
+end

@@ -12,6 +12,7 @@ Feature: A user deploys an app
       | Second App |
       | Third App  |
       | Fourth App |
+    And I have registered for an account with "testman@example.com"
     And I choose to deploy "First App"
     And I live in "Norfolk, VA"
     And I belong to the brigade "Test Brigade"
@@ -21,8 +22,16 @@ Feature: A user deploys an app
 
   Scenario: User successfully deploys an application specifying an existing brigade
     When I successfully deploy the application "First App"
-    Then I should be informed that the application was deployed successfully
+    Then I should be informed that the application "First App" was deployed successfully
 
   Scenario: User unsuccessfully deploys an application specifying an existing brigade
     When I unsuccessfully deploy the application "First App"
     Then I should be informed that the application was not deployed
+
+  Scenario: Only users can deploy an application
+    When I logout and visit the application "First App" page
+    Then I can not see "Deploy This App"
+
+  @javascript
+  Scenario: User successfully deploys an application specifying a new location and a new brigade
+    And show me the page

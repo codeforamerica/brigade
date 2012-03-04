@@ -5,6 +5,11 @@ class Applications::DeployedApplicationsController < DeployedApplicationsControl
     @deployed_application = @application.deployed_applications.build
     @deployed_application.build_location
     @deployed_application.build_brigade
+
+    # Build these in case a new one needs to be created
+    @location = Location.new
+
+    authorize! :create, @deployed_application
   end
 
   def create
@@ -18,6 +23,8 @@ class Applications::DeployedApplicationsController < DeployedApplicationsControl
       redirect_to @deployed_application, notice: 'The application was deployed successfully!'
     else
       flash[:error] = 'The application could not be deployed'
+
+      @location = Location.new
       render :new
     end
   end

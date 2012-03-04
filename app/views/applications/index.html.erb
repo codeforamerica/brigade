@@ -1,7 +1,7 @@
 <h2>Applications</h2>
   <table class="all-apps" cellpadding="4">
-    <%= content_tag_for :tr, @apps do |application| %>
-      <tr class="<%= cycle "odd", "even" %>">
+    <% @apps.each do |application| %>
+      <tr class="<%= cycle "odd", "even" %>", id="<%= "application_#{application.id}" %>">
         <td>
           <img src="/assets/avatars/avatar-3.png">
         </td>

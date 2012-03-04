@@ -7,9 +7,11 @@
           Work on <%= @app.name %>
         </h2>
         <h5>
-          <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
-            <span class="icon">(</span> Deploy This App
-        <% end %>
+          <% if can? :create, DeployedApplication %>
+            <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
+              <span class="icon">(</span> Deploy This App
+            <% end %>
+          <% end %>
         </h5>
         <div class="clear"></div>
       </hgroup>
