@@ -1,14 +1,22 @@
+require 'code-for-america/github_omniauth_parser'
+
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def github
-    # You need to implement the method below in your model
-    @user = User.find_for_github_oauth(request.env["omniauth.auth"], current_user)
 
-    if @user.persisted?
+    parser = CodeForAmerica::GithubOmniAuthParser.new request.env["omniauth.auth"]
+    email = parser.email
+    github_uid = parser.github_uid
+
+    # You need to implement the method below in your model
+    user = current_user || User.find_or_create_by_email_and_github_uid(email, github_uid)
+
+    if user.persisted?
+      user.update_github_uid(github_uid)
       flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => "Github"
-      sign_in_and_redirect @user, :event => :authentication
+      sign_in_and_redirect user, :event => :authentication
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      session["devise.github_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
     end
   end

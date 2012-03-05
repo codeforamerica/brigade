@@ -1,5 +1,6 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in home.js.
+#
 
 $ ->
   data = [2,3,4,5,5,7,6,5,4,2,2,3,4,5,5,7,9,5,3,2,2,3,2,3,4,5,5,7,6,5,4,2,2,4,2,2,3,4]
@@ -14,3 +15,6 @@ $ ->
 
   #$('ul#user-grid li').mouseout ->
   #  $('#user-name').html("")
+
+  $('#hacking_form #location').autocomplete
+    source: $('#hacking_form #location').data('autocomplete-source')

@@ -6,7 +6,7 @@ class LocationsController < ApplicationController
     if @location
       redirect_to location_deployed_applications_path(@location)
     else
-      redirect_to deployed_applications_path(filter_by: 'locations'), notice: "There are no apps currently deployed in #{params[:location]}"
+      redirect_to root_path, notice: "There are no apps currently deployed in #{params[:location]}"
     end
   end
 

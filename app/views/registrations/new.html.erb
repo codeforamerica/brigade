@@ -5,7 +5,7 @@
 
   <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-vertical' } do |form| %>
     <%= form.input :email, input_html: {class: 'span5'} %>
-    <%= form.input :password, input_html: {class: 'span5'} %>
+    <%= form.input :password, input_html: {class: 'span5'}  if @user.password_required? %>
 
     <%= form.submit 'Sign up', class: 'btn-large btn' %>
 

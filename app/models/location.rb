@@ -5,6 +5,10 @@ class Location < ActiveRecord::Base
 
   validates :name, uniqueness: true, presence: true
 
+  def self.names
+    all.map(&:name)
+  end
+
   def to_s
     name
   end

@@ -16,3 +16,5 @@
 //= require ui
 //= require bootstrap
 //= require account_information
+//= require google_analytics
+//
