@@ -15,7 +15,7 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-log/
+/log
 /tmp
 
 .sass-cache/
