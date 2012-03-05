@@ -7,9 +7,11 @@
           Work on <%= @app.name %>
         </h2>
         <h5>
-          <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
-            <span class="icon">(</span> Deploy This App
-        <% end %>
+          <% if can? :create, DeployedApplication %>
+            <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
+              <span class="icon">(</span> Deploy This App
+            <% end %>
+          <% end %>
         </h5>
         <div class="clear"></div>
       </hgroup>
@@ -31,37 +33,10 @@
         <h6><%= @app.name %> Deployment Checklist</h6>
         <div class="task-list">
           <p>
-            The following items will need to be accomplished by teams
-            as part of deployment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.
+          The following items will need to be accomplished by teams
+          as part of deployment.
           </p>
-          <ul class="check-boxes unstyled">
-            <li>
-              Spin up all the dynos
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Process all the unicorn tears
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Including a potentially very long and ungainly step
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Drive our enemies before us, hear the lamentations of their women
-              <span class="check-this green">%</span>
-            </li>
-            <li>
-              Eat all the delicious things ever
-              <span class="check-this green">%</span>
-            </li>
-          <!--
-          <% @app.tasks.each do |task| %>
-            <li><%= task.description %></li>
-          <% end %>
-          -->
-          </ul>
+          <%= @app.task_list %>
         </div>
 
     </div>
@@ -69,34 +44,62 @@
     <!-- sidebar -->
     <div id="sidebar" class="span4">
       <div class="app-info">
+
+        <table class="small-stats">
+          <tr>
+            <td class="inlinesparkline"></td>
+            <td class="deploy-count">76</td>
+          </tr>
+          <tr class="labels">
+            <td>Commits/30 Days</td>
+            <td>Deploys</td>
+          </tr>
+        </table>
+
         <h3>Get Info</h3>
         <h4><span class="icon">O</span> Technical</h4>
+
         <ul class="unstyled">
           <li><%= link_to "Github", @app.repository_url %></li>
           <li>IRC Channel: <%= @app.irc_channel %></li>
           <li>Twitter Hashtag: <%= @app.twitter_hashtag %></li>
           <li>Creator: <%= @app.creator %></li>
           <li>License: <%= @app.license %></li>
-          <li class="see-all">See All &rarr;</li>
         </ul>
 
-        <h4><span class="icon">f</span> People</h4>
-        <ul class="unstyled">
-          <li><%= link_to "Codey McGee", "#" %></li>
-          <li><%= link_to "Worky McWorkface", "#" %></li>
-          <li><%= link_to "Engineery O'Keyboard", "#" %></li>
-          <li><%= link_to "Bob Paperclip", "#" %></li>
-          <li class="see-all">See All &rarr;</li>
+        <h4><span class="icon">f</span> People <span id="user-name"></span></h4>
+
+        <%= @app.decorated_deployed_application_users %>
+
+        <!-- user grid as mostly text
+        <ul class="unstyled" id="users">
+          <li>
+            <%= image_tag('/assets/small-avatar.png') %>
+            <%= link_to "Codey McGee", "#" %>
+            <h4>Chicago</h4>
+          </li>
+          <li>
+            <%= image_tag('/assets/small-avatar.png') %>
+            <%= link_to "Worky McWorkface", "#" %>
+            <h4>Norfolk</h4>
+          </li>
+          <li>
+            <%= image_tag('/assets/small-avatar.png') %>
+            <%= link_to "Engineery O'Keyboard", "#" %>
+            <h4>Charlotte</h4>
+          </li>
+          <li>
+            <%= image_tag('/assets/small-avatar.png') %>
+            <%= link_to "Bob Paperclip", "#" %>
+            <h4>San Francisco</h4>
+          </li>
         </ul>
+        -->
 
         <h4><span class="icon">,</span> <%= @app.name %> is deployed in</h4>
-        <ul class="unstyled">
-          <li><%= link_to "San Francisco", "#" %></li>
-          <li><%= link_to "Raleigh", "#" %></li>
-          <li><%= link_to "New York", "#" %></li>
-          <li><%= link_to "Norfolk", "#" %></li>
-          <li class="see-all">See All &rarr;</li>
-        </ul>
+
+        <!-- minimap -->
+        <iframe width="265" height="230" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;t=p&amp;ll=37.996163,-98.085937&amp;spn=31.692265,46.40625&amp;z=3&amp;output=embed"></iframe>
 
         <h4><span class="icon">[</span> Deployed Brigades</h4>
           <ul class="unstyled">

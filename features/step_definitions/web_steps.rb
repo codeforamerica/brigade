@@ -9,3 +9,7 @@ end
 Given /^I follow the "([^"]*)" link$/ do |link|
   click_on link
 end
+
+Then /^I can not see "([^"]*)"$/ do |text|
+  page.should have_no_content(text)
+end

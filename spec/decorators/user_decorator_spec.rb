@@ -35,4 +35,25 @@ describe UserDecorator do
     end
 
   end
+
+  describe '#gravatr_small' do
+
+    it 'returns an img tag containing a link with the md5 generated from the user email address' do
+      subject.gravatar_small.should match /#{Digest::MD5.hexdigest(subject.email)}/
+    end
+  end
+
+  # These stories don't pass right now because we're throwing in the image tag
+  #
+  describe '#as_link' do
+
+    it 'returns a link to email the user if they have not opted out from being contacted' do
+      subject.as_link.should == "<a href=\"mailto:#{subject.email}\">#{subject.email}</a>"
+    end
+
+    it 'returns an nil if the user has opted to not being contacted' do
+      subject.opt_out = true
+      subject.as_link.should be_nil
+    end
+  end
 end
