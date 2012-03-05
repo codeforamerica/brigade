@@ -10,6 +10,9 @@ class DeployedApplication < ActiveRecord::Base
   delegate :name, to: :brigade, prefix: true
   accepts_nested_attributes_for :brigade
 
+  validates :location, presence: true
+  validates :brigade, presence: true
+
   def self.search(query = nil)
     if query
       joins(:brigade, :application).where("brigades.name ILIKE ? OR applications.name ILIKE ?", "%#{query}%","%#{query}%" )

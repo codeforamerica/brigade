@@ -18,4 +18,14 @@ class Application < ActiveRecord::Base
   def to_s
     name
   end
+
+  def deployed_application_users
+    users = Array.new
+
+    deployed_applications.map(&:brigade).each do |brigade|
+      users = users + brigade.users
+    end
+
+    users.uniq
+  end
 end

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.sparkline.min
+//= require ui
 //= require bootstrap
 //= require account_information
 //= require google_analytics
