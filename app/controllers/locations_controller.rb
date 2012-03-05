@@ -14,6 +14,7 @@ class LocationsController < ApplicationController
     @location = Location.new params[:location]
 
     if @location.save
+      @location.geocode
       render json: @location, status: 200
     else
       render json: @location.errors, status: 400

@@ -3,6 +3,8 @@ class Location < ActiveRecord::Base
   has_many :users
   has_many :challenges
 
+  geocoded_by :name
+
   validates :name, uniqueness: true, presence: true
 
   def self.names

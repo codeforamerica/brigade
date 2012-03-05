@@ -57,6 +57,9 @@ gem 'sunspot_rails', '~> 1.3.0'
 # state_machine for adds support for creating state machines for attribute
 gem 'state_machine', '~>1.1.2'
 
+# geocoder to geocode city/state pairs
+gem 'geocoder', '~> 1.1.1'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
