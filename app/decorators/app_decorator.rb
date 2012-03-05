@@ -57,4 +57,45 @@ class AppDecorator < ApplicationDecorator
 
     h.raw raw_html
   end
+
+  def repository_participation
+    if model.repository_url.present?
+      uri = URI.parse(model.repository_url.sub(/http:/, 'https:') + '/graphs/participation')
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      begin
+        request = Net::HTTP::Get.new(uri.request_uri)
+        json = JSON.parse(http.request(request).body)
+      rescue
+        json =''
+      end
+      return json['all'][22..52] if json['all'].present?
+    end
+  end
+
+  def repository_sparkline
+    participation = AppDecorator.new(model).repository_participation
+    raw_html = ''
+    unless participation.blank?
+      raw_html << h.content_tag('td', '', class: 'inlinesparkline')
+      raw_html << h.content_tag('div', participation, class: 'hidden', id: 'repository_participation')
+      h.raw raw_html
+    else
+      raw_html << h.content_tag('td','')
+      h.raw raw_html
+    end
+  end
+
+  def repository_sparkline_label
+    participation = AppDecorator.new(model).repository_participation
+    unless participation.blank?
+      'Commits/30 days'
+    end
+  end
+
+  def number_of_deploys
+    model.deployed_applications.count
+  end
+
+
 end

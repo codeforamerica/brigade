@@ -44,17 +44,7 @@
     <!-- sidebar -->
     <div id="sidebar" class="span4">
       <div class="app-info">
-
-        <table class="small-stats">
-          <tr>
-            <td class="inlinesparkline"></td>
-            <td class="deploy-count">76</td>
-          </tr>
-          <tr class="labels">
-            <td>Commits/30 Days</td>
-            <td>Deploys</td>
-          </tr>
-        </table>
+        <%= render 'applications/small-stats', application: @app %>
 
         <h3>Get Info</h3>
         <h4><span class="icon">O</span> Technical</h4>

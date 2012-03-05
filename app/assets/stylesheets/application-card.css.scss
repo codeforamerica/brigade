@@ -58,3 +58,13 @@
   border: 1px solid darken(#f7941d, 30%);
   @include box-shadow(0 1px 0 lighten(#f7941d, 90%) inset, 0 2px 8px darken($orange, 25%));
 }
+
+.hidden{
+  display: none;
+}
+
+table.small-stats {
+  td.deploy-count {
+    height: 18px;
+  }
+}

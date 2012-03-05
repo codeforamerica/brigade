@@ -34,4 +34,3 @@ Feature: A user deploys an app
 
   @javascript
   Scenario: User successfully deploys an application specifying a new location and a new brigade
-    And show me the page

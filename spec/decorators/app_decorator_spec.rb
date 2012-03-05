@@ -35,4 +35,13 @@ describe AppDecorator do
       application_with_pictures.picture_gallary.should match /ul class="thumbnails"/
     end
   end
+
+  describe '#number_of_deploys' do
+
+    it 'returns the number of times the application has been deployed' do
+      application = AppDecorator.new(FactoryGirl.build(:application))
+      application.number_of_deploys.should == application.deployed_applications.count
+    end
+
+  end
 end
