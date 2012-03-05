@@ -7,20 +7,8 @@
     <p><%= application.short_description %></p>
   </td>
   <td>
-
-    <!-- inset stats table -->
-    <table class="small-stats">
-      <tr>
-        <td class="inlinesparkline"></td>
-        <td class="deploy-count"><%= application.deployed_applications.count %></td>
-      </tr>
-      <tr class="labels">
-        <td>Commits/30 Days</td>
-        <td>Deploys</td>
-      </tr>
-    </table>
-    <!-- end stats tables -->
-
+    <%= render 'applications/small-stats', application: AppDecorator.new(application) %>
+  </td>
   <td class="show-app">
     <%= link_to 'Show App', application_path(application), title: application.name, :class => "show-button" %></td>
 </tr>

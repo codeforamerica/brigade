@@ -78,7 +78,6 @@ class AppDecorator < ApplicationDecorator
     raw_html = ''
     unless participation.blank?
       raw_html << h.content_tag('td', '', class: 'inlinesparkline')
-      raw_html << h.content_tag('div', participation, class: 'hidden', id: 'repository_participation')
       h.raw raw_html
     else
       raw_html << h.content_tag('td','')

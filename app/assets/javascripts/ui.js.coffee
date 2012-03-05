@@ -3,12 +3,10 @@
 #
 
 $ ->
-  data = $('#repository_participation').text()
-  data = data.replace('[', '').replace(']', '').split(',')
-  console.log data
-  $('.inlinesparkline').sparkline data,
-    type: "discrete"
-    lineColor: "#2d4611"
+  $('.inlinesparkline').each (index) ->
+    $(this).sparkline $(this).parent().parent().parent().prev('#repository_participation').text().replace('[', '').replace(']', '').split(','),
+      type: "discrete"
+      lineColor: "#2d4611"
 
   #$('ul#user-grid li').mouseover ->
   #  name = $(this).data('name')
