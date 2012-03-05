@@ -44,4 +44,14 @@ describe AppDecorator do
     end
 
   end
+
+
+  describe '#repository_sparkline_label' do
+
+    it 'will not return a label of there is no repository information' do
+      application = AppDecorator.new(FactoryGirl.build(:application))
+      application.repository_sparkline_label.should == nil 
+    end
+
+  end
 end

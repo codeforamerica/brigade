@@ -7,6 +7,11 @@ class Location < ActiveRecord::Base
 
   validates :name, uniqueness: true, presence: true
 
+  def geocode
+    super
+    save
+  end
+
   def self.names
     all.map(&:name)
   end
