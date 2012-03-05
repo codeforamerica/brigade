@@ -45,15 +45,15 @@ describe UserDecorator do
 
   # These stories don't pass right now because we're throwing in the image tag
   #
-  #describe '#as_link' do
+  describe '#as_link' do
 
-  #  it 'returns a link to email the user if they have not opted out from being contacted' do
-  #    subject.as_link.should == "<a href=\"mailto:#{subject.email}\">#{subject.email}</a>"
-  #  end
+    it 'returns a link to email the user if they have not opted out from being contacted' do
+      subject.as_link.should == "<a href=\"mailto:#{subject.email}\">#{subject.email}</a>"
+    end
 
-  #  it 'returns an nil if the user has opted to not being contacted' do
-  #    subject.opt_out = true
-  #    subject.as_link.should be_nil
-  #  end
-  #end
+    it 'returns an nil if the user has opted to not being contacted' do
+      subject.opt_out = true
+      subject.as_link.should be_nil
+    end
+  end
 end

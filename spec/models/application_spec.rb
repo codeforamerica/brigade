@@ -63,17 +63,17 @@ describe Application do
     end
 
     # Tests are also broken here because we changed the method. May just kill these tests or refactor
-    #describe '#deployed_users' do
+    describe '#deployed_users' do
 
-    #  it 'returns a list of users who are involved in one or many deploys of the said applications' do
-    #    subject.deployed_application_users.should include @user
-    #  end
+      it 'returns a list of users who are involved in one or many deploys of the said applications' do
+        subject.deployed_application_users.should include @user
+      end
 
-    #  it 'does not return users who do not want to be contacted' do
-    #    subject.deployed_application_users.should_not include @private_user
-    #  end
+      it 'does not return users who do not want to be contacted' do
+        subject.deployed_application_users.should_not include @private_user
+      end
 
-    #end
+    end
   end
 end
 
