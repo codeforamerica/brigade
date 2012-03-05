@@ -89,7 +89,9 @@
         <h4><span class="icon">,</span> <%= @app.name %> is deployed in</h4>
 
         <!-- minimap -->
-        <iframe width="265" height="230" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;t=p&amp;ll=37.996163,-98.085937&amp;spn=31.692265,46.40625&amp;z=3&amp;output=embed"></iframe>
+        <div class='map', id='map' style="width: 265px; height: 230px;"></div>
+        <div class='hidden' id='locations'><%= @app.deployed_applications.map(&:location).uniq.to_json %></div>
+        <!-- <iframe width="265" height="230" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;t=p&amp;ll=37.996163,-98.085937&amp;spn=31.692265,46.40625&amp;z=3&amp;output=embed"></iframe> -->
 
         <h4><span class="icon">[</span> Deployed Brigades</h4>
           <ul class="unstyled">
@@ -100,3 +102,38 @@
 
   </div>
 </div>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAU73pt7g1lj1KfSffmFgWfKHcbn_xJQyE&sensor=true"></script>
+<script tpye='text/javascript'>
+  var map;
+
+
+  function initialize() {
+    var myOptions = {
+      center: new google.maps.LatLng(39.5, -98.35),
+      zoom: 2,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+  }
+
+
+  //var myOptions = {
+  //  zoom: 4,
+  //  mapTypeId: google.maps.MapTypeId.ROADMAP
+  //}
+
+  //map =  new google.maps.Map($('#map'), myOptions);
+
+  initialize();
+
+  var locations = $.parseJSON($('#locations').text())
+
+  $.each(locations, function(index, value){
+    latlong = new google.maps.LatLng(value.latitude, value.longitude);
+    marker = new google.maps.Marker({ position: latlong, title: value.name });
+    marker.setMap(map)
+  })
+
+
+</script>
