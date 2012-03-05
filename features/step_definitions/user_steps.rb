@@ -2,7 +2,11 @@ Given /^the following civic hackers exist:$/ do |table|
   table.hashes.each do |hash|
 
     location = Location.find_or_create_by_name(hash['Location'])
-    brigade = Brigade.find_or_create_by_name(hash['Brigade'])
+    brigade = Brigade.find_by_name(hash['Brigade'])
+
+    unless brigade
+      brigade = Brigade.create(name: hash['Brigade'], point_of_contact_address: 'testman@example.com')
+    end
 
     user = FactoryGirl.create(:user, email: hash['Email'], brigade_ids: [brigade.id], location_id: location.id, skill_list: hash['Skills'])
   end

@@ -57,22 +57,17 @@ describe Application do
     before do
       @deployed_application = Factory :deployed_application, application: subject
       @user = Factory :user
-      @private_user = Factory :user, opt_out: true
+      @second_user = Factory :user, opt_out: true
       @deployed_application.brigade.users << @user
-      @deployed_application.brigade.users << @private_user
+      @deployed_application.brigade.users << @second_user
     end
 
-    # Tests are also broken here because we changed the method. May just kill these tests or refactor
     describe '#deployed_users' do
 
       it 'returns a list of users who are involved in one or many deploys of the said applications' do
         subject.deployed_application_users.should include @user
+        subject.deployed_application_users.should include @second_user
       end
-
-      it 'does not return users who do not want to be contacted' do
-        subject.deployed_application_users.should_not include @private_user
-      end
-
     end
   end
 end

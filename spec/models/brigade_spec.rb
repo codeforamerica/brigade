@@ -11,4 +11,9 @@ describe Brigade do
     subject.name = nil
     subject.should_not be_valid
   end
+
+  it 'should not be valid without a point of contact address' do
+    subject.point_of_contact_address = nil
+    subject.should_not be_valid
+  end
 end

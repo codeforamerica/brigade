@@ -8,4 +8,14 @@ class BrigadesController < ApplicationController
       redirect_to deployed_applications_path(filter_by: 'brigades'), notice: "There are no apps currently deployed by #{params[:brigade]}"
     end
   end
+
+  def create
+    @brigade = Brigade.new params[:brigade]
+
+    if @brigade.save
+      render json: @brigade, status: 200
+    else
+      render json: @brigade.errors, status: 400
+    end
+  end
 end
