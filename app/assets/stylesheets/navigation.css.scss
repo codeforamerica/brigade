@@ -6,8 +6,10 @@ header#top-deck {
   width: 100%;
   background: $mud;
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  margin-bottom: 10px;
 
-  .logo {
+  a.logo {
+    display: block;
     width: 200px;
     height: 100px;
     float: left;
@@ -34,6 +36,8 @@ header#top-deck {
           color: transparentize(#fff, 0.4);
           text-decoration: none;
         }
+
+        &.active a { color: #ffa; }
       }
     }
     &.primary {

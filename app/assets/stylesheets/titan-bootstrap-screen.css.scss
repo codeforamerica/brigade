@@ -183,6 +183,8 @@ table.all-apps {
     left: 4px;
     line-height: 21px;
   }
+
+  &:hover { text-decoration: none; }
 }
 
 /* Styles for tiny stats table */
