@@ -35,4 +35,26 @@ class AppDecorator < ApplicationDecorator
       h.raw(raw_html)
     end
   end
+
+  def task_list
+    unless application.tasks.empty?
+      raw_html = '<ul class="check-boxes unstyled">'
+      application.tasks.each do |task|
+        raw_html << "<li>#{task.description}<span class=\"check-this green\">%</span></li>"
+      end
+      raw_html << '</ul>'
+
+      h.raw(raw_html)
+    end
+  end
+
+  def decorated_deployed_application_users
+    raw_html = '<ul id="user-grid">'
+    deployed_application_users.each do |user|
+      raw_html << "<li>#{UserDecorator.new(user).as_link}</li>"
+    end
+    raw_html << '</ul>'
+
+    h.raw raw_html
+  end
 end
