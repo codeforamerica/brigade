@@ -19,13 +19,13 @@ class Application < ActiveRecord::Base
     name
   end
 
-  def contactable_deployed_application_users
+  def deployed_application_users
     users = Array.new
 
     deployed_applications.map(&:brigade).each do |brigade|
-      users = users + brigade.users.contactable
+      users = users + brigade.users
     end
 
-    users
+    users.uniq
   end
 end

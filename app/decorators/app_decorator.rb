@@ -48,15 +48,13 @@ class AppDecorator < ApplicationDecorator
     end
   end
 
-  def decorated_contactable_deployed_application_users
-    unless contactable_deployed_application_users.empty?
-      raw_html = '<ul id="user-grid">'
-      contactable_deployed_application_users.each do |user|
-        raw_html << "<li><a href=\"mailto:#{user.email}\">#{UserDecorator.new(user).gravatar_small}</a></li>"
-      end
-      raw_html << '</ul>'
-
-      h.raw raw_html
+  def decorated_deployed_application_users
+    raw_html = '<ul id="user-grid">'
+    deployed_application_users.each do |user|
+      raw_html << "<li>#{UserDecorator.new(user).as_link}</li>"
     end
+    raw_html << '</ul>'
+
+    h.raw raw_html
   end
 end

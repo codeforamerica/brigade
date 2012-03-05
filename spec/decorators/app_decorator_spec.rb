@@ -35,17 +35,4 @@ describe AppDecorator do
       application_with_pictures.picture_gallary.should match /ul class="thumbnails"/
     end
   end
-
-  #describe '#decorated_contactable_deployed_application_users' do
-
-  #  before do
-  #    @deployed_application = Factory :deployed_application
-  #    @user = Factory :user
-  #    @deployed_application.brigade.users << @user
-  #  end
-
-  #  it 'returns raw html for a list of contactable users who have deployed the application' do
-  #    
-  #  end
-  #end
 end
