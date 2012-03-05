@@ -91,7 +91,6 @@
         <!-- minimap -->
         <div class='map', id='map' style="width: 265px; height: 230px;"></div>
         <div class='hidden' id='locations'><%= @app.deployed_applications.map(&:location).uniq.to_json %></div>
-        <!-- <iframe width="265" height="230" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;t=p&amp;ll=37.996163,-98.085937&amp;spn=31.692265,46.40625&amp;z=3&amp;output=embed"></iframe> -->
 
         <h4><span class="icon">[</span> Deployed Brigades</h4>
           <ul class="unstyled">
@@ -108,7 +107,7 @@
   var map;
 
 
-  function initialize() {
+  function initialize_map() {
     var myOptions = {
       center: new google.maps.LatLng(39.5, -98.35),
       zoom: 2,
@@ -118,14 +117,7 @@
   }
 
 
-  //var myOptions = {
-  //  zoom: 4,
-  //  mapTypeId: google.maps.MapTypeId.ROADMAP
-  //}
-
-  //map =  new google.maps.Map($('#map'), myOptions);
-
-  initialize();
+  initialize_map();
 
   var locations = $.parseJSON($('#locations').text())
 
