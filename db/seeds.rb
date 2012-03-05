@@ -38,4 +38,4 @@ user.brigades << Brigade.first
 user = User.create!(email: 'joe@wearetitans.net', password: 'rosebud', skill_list: 'java, coffeescript, css')
 user.brigades << Brigade.last
 
-
+Location.all.each(&:geocode)
