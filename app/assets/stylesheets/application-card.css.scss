@@ -19,13 +19,10 @@
 .application-card, .deployed-application-card {
   font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
   float: left;
-  border: 1px solid darken($orange, 25%);
   padding: 20px 10px;
   background: $orange;
   margin: 20px 20px 0 0;
   @include border-radius(5px);
-  @include box-shadow(0 0 5px darken($orange, 25%) inset, 0 1px 0 #fff);
-  @include linear-gradient($orange, darken($orange, 20%));
   color: darken($orange, 40%);
   text-align: center;
 
@@ -60,4 +57,14 @@
   font-weight: 500;
   border: 1px solid darken(#f7941d, 30%);
   @include box-shadow(0 1px 0 lighten(#f7941d, 90%) inset, 0 2px 8px darken($orange, 25%));
+}
+
+.hidden{
+  display: none;
+}
+
+table.small-stats {
+  td.deploy-count {
+    height: 18px;
+  }
 }

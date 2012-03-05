@@ -56,7 +56,6 @@ section {
   }
 }
 footer {
-  background: darken($oatmeal, 10%);
   width: 100%;
   clear: both;
 }
@@ -107,12 +106,108 @@ hgroup.app-title {
 
   iframe {
     width: 100%;
+    height: 380px;
   }
 }
 .gallery-block {
   ul.thumbnail {
     li {
       background: #fff;
+    }
+  }
+}
+
+/* Styles for tables of apps */
+table.all-apps {
+
+  /* Table striping */
+  tr.odd {
+    td {
+      background: transparentize(darken($oatmeal, 5%), 0.5);
+    }
+  }
+
+  tr {
+    td {
+
+      .small-stats {
+        color: darken($oatmeal, 40%);
+        margin: 0;
+        background: none;
+      }
+
+      h3 {
+        font-size: 120%;
+        color: #444;
+        text-transform: none;
+        margin: 0;
+        line-height: 1.4em;
+        padding: 0;
+        font-family: Helvetica, Arial, sans-serif;
+      }
+      p {
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 90%;
+      }
+
+      &.show-app {
+        vertical-align: middle;
+        padding: 0 20px;
+      }
+    }
+  }
+}
+
+.show-button {
+  background: darken($oatmeal, 10%);
+  padding: 3px 6px 3px 30px;
+  @include border-radius(3px);
+  position: relative;
+  border: 1px solid darken($oatmeal, 30%);
+  @include box-shadow(0 1px 0 lighten($oatmeal, 5%) inset);
+  text-shadow: 0 1px 0 $oatmeal;
+  @include linear-gradient($oatmeal, darken($oatmeal, 13%));
+
+  &:before {
+    font-family: 'ModernPictogramsNormal';
+    font-size: 14px;
+    content: "E";
+    color: darken($oatmeal, 40%);
+    padding-right: 3px;
+    border-right: 1px solid darken($oatmeal, 30%);
+    width: 14px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    left: 4px;
+    line-height: 21px;
+  }
+
+  &:hover { text-decoration: none; }
+}
+
+/* Styles for tiny stats table */
+table.small-stats {
+  float: right;
+  margin: -5px -5px 0 10px;
+  color: $oatmeal;
+
+  td {
+    padding: 5px 5px 0 0;
+  }
+
+  td.deploy-count {
+    font-size: 240%;
+    text-align: center;
+    line-height: 0;
+  }
+  tr.labels {
+    td {
+      font-size: 8px;
+      text-align: center;
+      padding: 0;
+      text-transform: uppercase;
     }
   }
 }
@@ -161,33 +256,115 @@ ul.thumbnails {
   }
 }
 
+
 .app-info {
   background: transparentize(darken($oatmeal, 20%), 0.5);
   padding: 10px;
   width: 93%;
   margin-bottom: 10px;
-  @include border-radius(5px);
   clear: both;
+  position: relative;
+  @include box-shadow(
+    1px 1px 0 darken($oatmeal, 20%),
+    2px 2px 0 darken($oatmeal, 20%),
+    3px 3px 0 darken($oatmeal, 20%),
+    4px 4px 0 darken($oatmeal, 20%),
+    5px 5px 0 darken($oatmeal, 20%)
+  );
+
+  h4 {
+    padding: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid darken($oatmeal, 30%);
+    text-transform: uppercase;
+    color: #444;
+  }
+
+  iframe {
+    margin-bottom: 20px;
+  }
+
+  #user-name {
+    color: #fff;
+  }
 
   ul {
+    margin-bottom: 20px;
+
     li.see-all {
       text-align: right;
       text-transform: uppercase;
       color: darken($oatmeal, 50%);
     }
+
+    &#users {
+      img {
+        float: left;
+        margin: 0 5px 5px 0;
+      }
+      h4 {
+        font-size: 10px;
+        font-weight: lighter;
+        font-style: italic;
+        color: darken($oatmeal, 40%);
+        line-height: 10px;
+      }
+    }
+
+    &#user-grid {
+      width: 265px;
+      margin: 0 0 20px;
+      overflow: auto;
+
+      li {
+        list-style: none;
+        float: left;
+        margin: 0 5px 5px 0;
+        background: #fff;
+        width: 48px;
+        height: 48px;
+        position: relative;
+        cursor: pointer;
+        background: $oatmeal;
+        @include border-radius(5px);
+
+        img {
+          @include border-radius(5px);
+        }
+
+        &:hover {
+          &:before {
+            width: 48px;
+            height: 48px;
+            font-family: 'ModernPictogramsNormal';
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+            background: transparentize(#111, 0.4);
+            position: absolute;
+            font-weight: lighter;
+            @include border-radius(5px);
+            top: 0;
+            left: 0;
+            content: "b";
+            text-shadow: 0 2px 1px #000;
+          }
+        }
+      }
+    }
  }
 
   h3 {
     text-transform: uppercase;
-    color: $orange;
+    color: $oatmeal;
+    font-weight: 100;
+    padding: 10px;
+    margin: -10px -10px 10px -10px;
+    //background: #3ba933;
+    background: $lime;
     font-size: 140%;
     margin-bottom: 20px;
-  }
-  h4 {
-    color: darken($oatmeal, 60%);
-    border-bottom: 1px dotted darken($oatmeal, 40%);
-    padding-bottom: 4px;
-    margin-bottom: 8px;
   }
 }
 
@@ -237,3 +414,7 @@ ul.thumbnails {
   }
 }
 
+/* Deployed Applications Pages Rules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.application-search {
+}

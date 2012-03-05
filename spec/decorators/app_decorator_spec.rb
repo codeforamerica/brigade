@@ -35,4 +35,23 @@ describe AppDecorator do
       application_with_pictures.picture_gallary.should match /ul class="thumbnails"/
     end
   end
+
+  describe '#number_of_deploys' do
+
+    it 'returns the number of times the application has been deployed' do
+      application = AppDecorator.new(FactoryGirl.build(:application))
+      application.number_of_deploys.should == application.deployed_applications.count
+    end
+
+  end
+
+
+  describe '#repository_sparkline_label' do
+
+    it 'will not return a label of there is no repository information' do
+      application = AppDecorator.new(FactoryGirl.build(:application))
+      application.repository_sparkline_label.should == nil 
+    end
+
+  end
 end

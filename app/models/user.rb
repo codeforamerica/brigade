@@ -10,13 +10,15 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :opt_out, :location_id, :avatar, :skill_list, :avatar_cache
+                  :opt_out, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid
 
   belongs_to :location
   delegate :name, to: :location, prefix: true, allow_nil: true
 
   has_and_belongs_to_many :brigades
   has_many :applications, through: :brigades
+
+  scope :contactable, where(opt_out: false)
 
   searchable do
     text :email
@@ -32,13 +34,21 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_for_github_oauth(access_token, signed_in_resource=nil)
-    email = access_token.info.email.downcase
+  def self.find_or_create_by_email_and_github_uid(email, github_uid)
+    #This function is about findin a user from the github oauth hash or creating
+    #one if one doesn't exist.
 
-    if user = User.where(:email => email).first
-      user
-    else # Create a user with a stub password.
-      User.create!(:email => email, :password => Devise.friendly_token[0,20])
-    end
+    #Try to find the user by github_id
+    user = User.find_by_email(email) || User.find_by_github_uid(github_uid)
+
+    user || User.create(email: email, github_uid: github_uid)
+  end
+
+  def update_github_uid(github_uid)
+    update_attribute(:github_uid, github_uid)
+  end
+
+  def password_required?
+    (github_uid.blank? || password.present?) && super
   end
 end

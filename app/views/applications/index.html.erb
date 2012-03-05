@@ -1,18 +1,6 @@
-<h2>Applications</h2>
-
-<table class='table-striped tweaked'>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Short Description</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= content_tag_for :tr, @apps do |application| %>
-      <td><strong><%= application.name %></strong></td>
-      <td><%= application.short_description %></td>
-      <td><%= link_to 'Show App', application_path(application), title: application.name %></td>
+<h2>Available Applications</h2>
+  <table class="all-apps" cellpadding="4">
+    <% @apps.each do |application| %>
+      <%= render partial: 'application', object: application %>
     <% end %>
-  </tbody>
-</table>
+  </table>

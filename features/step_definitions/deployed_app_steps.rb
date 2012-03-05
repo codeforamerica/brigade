@@ -70,13 +70,7 @@ When /^I search for all applications named "([^"]*)"$/ do |application_name|
 end
 
 When /^I choose to deploy "([^"]*)"$/ do |application_name|
-  app = Application.find_by_name(application_name)
-
-  visit('/')
-  click_on 'Applications'
-  within "#application_#{app.id}" do
-    click_on 'Show App'
-  end
+  step "I visit the application \"#{application_name}\" page"
 
   click_on "Deploy This App"
 end
@@ -90,8 +84,8 @@ end
 When /^I successfully deploy the application "([^"]*)"$/ do |application_name|
   step "I choose to deploy \"#{application_name}\""
 
-  select 'Norfolk, VA', from: 'deployed_application[location_attributes][name]'
-  select 'Test Brigade', from: 'deployed_application[brigade_attributes][name]'
+  select 'Norfolk, VA', from: 'deployed_application[location_id]'
+  select 'Test Brigade', from: 'deployed_application[brigade_id]'
 
   click_on 'Deploy This Application!'
 end
@@ -99,7 +93,7 @@ end
 When /^I unsuccessfully deploy the application "([^"]*)"$/ do |application_name|
   step "I choose to deploy \"#{application_name}\""
 
-  select 'Test Brigade', from: 'deployed_application[brigade_attributes][name]'
+  select 'Test Brigade', from: 'deployed_application[brigade_id]'
 
   click_on 'Deploy This Application!'
 end
@@ -108,8 +102,12 @@ Then /^I should be informed that the application was not deployed$/ do
   page.should have_content 'The application could not be deployed'
 end
 
-Then /^I should be informed that the application was deployed successfully$/ do
+Then /^I should be informed that the application "([^"]*)" was deployed successfully$/ do |application_name|
   page.should have_content 'The application was deployed successfully!'
+
+  page.should have_content application_name
+  page.should have_content 'Norfolk, VA'
+  page.should have_content 'Test Brigade'
 end
 
 Then /^I should be able to deploy another application if I choose$/ do

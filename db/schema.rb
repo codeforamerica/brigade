@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120228154720) do
+ActiveRecord::Schema.define(:version => 20120305210124) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -40,6 +40,20 @@ ActiveRecord::Schema.define(:version => 20120228154720) do
     t.integer "brigade_id"
   end
 
+  create_table "challenges", :force => true do |t|
+    t.text    "description"
+    t.string  "purpose"
+    t.string  "organization_name"
+    t.integer "location_id"
+    t.string  "success_description"
+    t.text    "mission"
+    t.text    "audience"
+    t.text    "user_story"
+    t.string  "status"
+    t.boolean "public_visibility",   :default => false
+    t.text    "admin_note"
+  end
+
   create_table "deployed_applications", :force => true do |t|
     t.integer  "application_id"
     t.datetime "created_at",     :null => false
@@ -50,6 +64,8 @@ ActiveRecord::Schema.define(:version => 20120228154720) do
 
   create_table "locations", :force => true do |t|
     t.string "name"
+    t.float  "latitude"
+    t.float  "longitude"
   end
 
   create_table "pictures", :force => true do |t|
@@ -109,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20120228154720) do
     t.boolean  "opt_out",                :default => false
     t.integer  "location_id"
     t.string   "avatar"
+    t.string   "github_uid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

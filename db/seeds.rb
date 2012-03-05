@@ -1,5 +1,20 @@
-[ '14133', '14387', '13422', '13685', '14012', '14110', '13489', '13465', '13744', '13808' ].each { |node_id| Application.create!(nid: node_id) }
+# Production Data
+app_data =[ {id: '14133', git: 'https://github.com/openplans/shareabouts'}, {id: '14387', git: 'https://github.com/codeforamerica/public_art_finder'}, 
+            {id: '13422'}, {id: '13685', git: 'https://github.com/open-city/Look-at-Cook'}, {id: '14012'}, {id: '14110'}, {id: '13489'},
+            {id: '13465', git: 'https://github.com/codeforamerica/adopt-a-hydrant'}, {id: '13744'}, {id: '13808', git: 'https://github.com/derekeder/Chicago-Buildings'} ]
 
+app_data.each do |app|
+  Application.create!(nid: app[:id], repository_url: app[:git])
+end
+
+# Github repos to be associated
+# https://github.com/derekeder/Chicago-Buildings
+# https://github.com/codeforamerica/adopt-a-hydrant
+# https://github.com/open-city/Look-at-Cook
+# https://github.com/codeforamerica/public_art_finder
+# https://github.com/openplans/shareabouts/
+
+# Test and Dev Data
 [ 'Titans Brigade', 'Code For America Brigade', 'Thoughbot Brigade'].each { |brigade_name| Brigade.create!(name: brigade_name) }
 
 [ 'Norfolk, VA', 'San Fransisco, CA', 'Boston, MA' ].each { |location_name| Location.create!(name: location_name) }
@@ -23,4 +38,4 @@ user.brigades << Brigade.first
 user = User.create!(email: 'joe@wearetitans.net', password: 'rosebud', skill_list: 'java, coffeescript, css')
 user.brigades << Brigade.last
 
-
+Location.all.each(&:geocode)

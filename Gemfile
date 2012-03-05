@@ -54,6 +54,12 @@ gem 'acts-as-taggable-on', '~> 2.2.2'
 #Sunspot for search with Solr
 gem 'sunspot_rails', '~> 1.3.0'
 
+# state_machine for adds support for creating state machines for attribute
+gem 'state_machine', '~>1.1.2'
+
+# geocoder to geocode city/state pairs
+gem 'geocoder', '~> 1.1.1'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -94,6 +100,9 @@ group :test do
 
   #Rspec for testing instead of test::unit
   gem "rspec-rails", '~> 2.8.1'
+
+  #Email spec for cucumber matchers for emails
+  gem 'email_spec', '~> 1.2.1'
 
   gem 'launchy', '~> 2.0.5'
 

@@ -26,4 +26,16 @@ class UserDecorator < ApplicationDecorator
   def skill_set
     user.skills * ", "
   end
+
+  def gravatar_small
+    h.image_tag "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(user.email)}?s=48"
+  end
+
+  def as_link
+    unless user.opt_out
+      h.mail_to user.email, gravatar_small
+    else
+      gravatar_small
+    end
+  end
 end
