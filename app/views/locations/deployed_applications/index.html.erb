@@ -6,6 +6,7 @@
 <%= link_to 'Deploy new application', new_location_deployed_application_path(@location) %>
 
 <% if @deployed_applications.present? %>
+  <h2>The following deploys exist in <%= @location.name %></h2>
   <table class='table-striped full'>
     <thead>
       <tr>
@@ -21,4 +22,23 @@
   </table>
 <%else%>
   <%= content_tag :h2, "There are no apps currently deployed" %>
+<% end %>
+
+
+<% if @applications_not_deployed.present? %>
+  <br><br>
+  <h2>Applications that have not yet been deployed in this location</h2>
+  <table class='table-striped full'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @applications_not_deployed %>
+    </tbody>
+  </table>
+<%else%>
+  <%= content_tag :h2, "All available apps are deployed in this location" %>
 <% end %>
