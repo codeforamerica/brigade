@@ -22,7 +22,7 @@ Feature: A user deploys an app
 
   Scenario: User successfully deploys an application specifying an existing brigade
     When I successfully deploy the application "First App"
-    Then I should be informed that the application "First App" was deployed successfully
+    Then I should be informed that the application "First App" was deployed successfully by "Test Brigade" in "Norfolk, VA"
 
   Scenario: User unsuccessfully deploys an application specifying an existing brigade
     When I unsuccessfully deploy the application "First App"
@@ -33,4 +33,6 @@ Feature: A user deploys an app
     Then I can not see "Deploy This App"
 
   @javascript
-  Scenario: User successfully deploys an application specifying a new location and a new brigade
+  Scenario: User successfully deploys an application after specifying a new brigade
+    When I specify a new brigade "We Are Titans Brigade"
+    Then I should be informed that the application "First App" was deployed successfully by "We Are Titans Brigade" in "Norfolk, VA"

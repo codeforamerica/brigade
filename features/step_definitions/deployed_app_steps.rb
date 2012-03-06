@@ -90,6 +90,24 @@ When /^I successfully deploy the application "([^"]*)"$/ do |application_name|
   click_on 'Deploy This Application!'
 end
 
+When /^I specify a new brigade "([^"]*)"$/ do |brigade_name|
+  # I don't really want to put this step here but I haven't figured out why Joe
+  # calls this step again.  Maybe its a race condition? - RMC
+  step "I choose to deploy \"First App\""
+
+  select 'Add Brigade', from: 'deployed_application[brigade_id]'
+
+  fill_in 'brigade[name]', with: brigade_name
+  fill_in 'brigade[point_of_contact_address]', with: 'poc@example.com'
+  click_on 'Create Brigade'
+
+  wait_until { Brigade.find_by_name(brigade_name) }
+
+  select 'Norfolk, VA', from: 'deployed_application[location_id]'
+
+  click_on 'Deploy This Application!'
+end
+
 When /^I unsuccessfully deploy the application "([^"]*)"$/ do |application_name|
   step "I choose to deploy \"#{application_name}\""
 
@@ -102,12 +120,12 @@ Then /^I should be informed that the application was not deployed$/ do
   page.should have_content 'The application could not be deployed'
 end
 
-Then /^I should be informed that the application "([^"]*)" was deployed successfully$/ do |application_name|
+Then /^I should be informed that the application "([^"]*)" was deployed successfully by "([^"]*)" in "([^"]*)"$/ do |application_name, brigade, location|
   page.should have_content 'The application was deployed successfully!'
 
   page.should have_content application_name
-  page.should have_content 'Norfolk, VA'
-  page.should have_content 'Test Brigade'
+  page.should have_content location
+  page.should have_content brigade
 end
 
 Then /^I should be able to deploy another application if I choose$/ do

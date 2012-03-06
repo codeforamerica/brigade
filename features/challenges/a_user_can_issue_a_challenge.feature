@@ -11,3 +11,7 @@ Feature: A user can issue a challenge
      When I fill out a challenge form
      Then I am notified that my challenge has been sent to the CfA staff
       And the CfA staff receives an email notification with my challenge
+
+  Scenario: Only users can submit a challenge form
+    Given I am on the homepage
+     Then I can not see "Submit a challenge"

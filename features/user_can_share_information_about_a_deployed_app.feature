@@ -3,13 +3,14 @@ Feature: A user can share information about a deployed application with a social
   I want to be able to share my deployed application with my friends on my social networks
   So that I can spread the word about the deploy
 
-  Background: 
+  Background:
     Given the following apps have been created
       | Name       |
       | First App  |
       | Second App |
       | Third App  |
       | Fourth App |
+    And I have registered for an account with "testman@example.com"
     And I choose to deploy "First App"
     And I live in "Norfolk, VA"
     And I belong to the brigade "Test Brigade"

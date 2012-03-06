@@ -1,6 +1,6 @@
 <%= simple_form_for @deployed_application, url: url do |form| %>
   <%= render partial: 'shared/location_select', locals: { f: form } %>
 
-  <%= form.association :brigade, collection: Brigade.all %>
+  <%= form.association :brigade, collection: (Brigade.all.map { |location| [location.name, location.id] } << ['Add Brigade', 'Add Brigade']), input_html: { class: 'brigade-selector' } %>
   <%= form.button :submit, 'Deploy This Application!', class: 'btn-large btn-primary' %>
 <%end%>

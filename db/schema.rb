@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(:version => 20120305210124) do
   create_table "brigades", :force => true do |t|
     t.integer  "deployed_application_id"
     t.string   "name"
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
     t.string   "group_url"
+    t.string   "point_of_contact_address"
   end
 
   create_table "brigades_users", :id => false, :force => true do |t|

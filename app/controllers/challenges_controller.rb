@@ -3,6 +3,8 @@ class ChallengesController < ApplicationController
   def new
     @challenge = Challenge.new
     @location = Location.new
+
+    authorize! :create, @challenge
   end
 
   def create
