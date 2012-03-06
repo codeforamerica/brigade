@@ -18,4 +18,8 @@ class BrigadesController < ApplicationController
       render json: @brigade.errors, status: 400
     end
   end
+
+  def show
+    @brigade = BrigadeDecorator.new(Brigade.find(params[:id]))
+  end
 end
