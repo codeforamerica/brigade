@@ -140,3 +140,17 @@ Then /^I should be able to share with my facebook and twitter networks$/ do
   page.should have_content 'facebook'
   page.should have_content 'twitter'
 end
+
+Given /^a deployed application exists with the name "([^"]*)"$/ do |name|
+  FactoryGirl.create(:deployed_application, name: name)
+end
+
+When /^I view the last deployed app page/ do
+    da = DeployedApplication.last
+    visit deployed_application_url(da)
+end
+
+Then /^I should see the last deployed application's name/ do
+    da = DeployedApplication.last
+    page.should have_content da.application.name
+end

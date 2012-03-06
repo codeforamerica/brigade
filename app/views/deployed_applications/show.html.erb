@@ -1,5 +1,95 @@
-<a class="btn" data-toggle="modal" href="#share">Share</a>
-<%= render 'deployed_applications/social_network_modal' %>
-<%= @deployed_application.name %>
-<%= @deployed_application.location.name %>
-<%= @deployed_application.brigade.name %>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <!-- main -->
+    <div id="leftcolumn" class="span8">
+      <hgroup class="app-title">
+        <div class='title'>
+          <h2><%= @deployed_application.name %> &rarr; forked from <%= link_to @deployed_application.application.name, application_url(@deployed_application.application) %></h2>
+          <h5>
+            <a class="btn" data-toggle="modal" href="#share">Share</a>
+            <%= render 'deployed_applications/social_network_modal' %>
+          </h5>
+          <div class='clear'></div>
+          <h4>
+            deployed by <%= link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade) %>
+            in <%= link_to @deployed_application.location.name, location_deployed_applications_url(@deployed_application.location) %>
+          </h4>
+        </div>
+        <div class="clear"></div>
+      </hgroup>
+
+      <h6>About <%= @app.name %></h6>
+      <p><%= @app.default_description %></p>
+
+      <h6><%= @app.name %> Media</h6>
+
+      <div class="vid-embed-block">
+        <%= raw @app.video_embed_code %>
+      </div>
+
+      <div class="gallery-block">
+        <%= @app.picture_gallary %>
+      </div>
+
+      <h6><%= @app.name %> Deployment Checklist</h6>
+      <div class="task-list">
+        <p>
+        The following items will need to be accomplished by teams
+        as part of deployment.
+        </p>
+        <%= @app.task_list %>
+      </div>
+
+
+    </div>
+
+    <div id="sidebar" class="span4">
+      <div class="app-info">
+        <h3>Info</h3>
+
+        <% if @deployed_application.brigade.group_url.present? %>
+          <h4><span class="icon">O</span> Connect</h4>
+          <p><%= link_to @deployed_application.brigade.group_url, @deployed_application.brigade.group_url %></p>
+        <% end %>
+
+
+        <h4><span class="icon">f</span> People <span id="user-name"></span></h4>
+        <%= BrigadeDecorator.new(@deployed_application.brigade).decorated_members %>
+
+        <h4><span class="icon">,</span> Deployed in</h4>
+        <!-- minimap -->
+        <div class='map', id='map' style="width: 265px; height: 230px;"></div>
+        <div class='hidden' id='locations'>[<%= @deployed_application.location.to_json %>]</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAU73pt7g1lj1KfSffmFgWfKHcbn_xJQyE&sensor=true"></script>
+<script tpye='text/javascript'>
+  var map;
+
+
+  function initialize_map() {
+    var myOptions = {
+      center: new google.maps.LatLng(39.5, -98.35),
+      zoom: 2,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+  }
+
+
+  initialize_map();
+
+  var locations = $.parseJSON($('#locations').text())
+
+  $.each(locations, function(index, value){
+    latlong = new google.maps.LatLng(value.latitude, value.longitude);
+    marker = new google.maps.Marker({ position: latlong, title: value.name });
+    marker.setMap(map)
+  })
+
+
+</script>

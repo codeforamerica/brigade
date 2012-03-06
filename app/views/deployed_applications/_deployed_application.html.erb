@@ -2,5 +2,5 @@
   <td><%= deployed_application.name %></td>
   <td><%= deployed_application.location_name %></td>
   <td><%= deployed_application.brigade_name %></td>
-  <td>Show App</td>
+  <td><%= link_to 'Show App', deployed_application_url(deployed_application) %></td>
 <% end %>
