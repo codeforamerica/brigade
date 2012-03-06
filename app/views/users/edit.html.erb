@@ -1,9 +1,23 @@
-<div class='form-wrapper span5 offset3'>
+<div id="leftcolumn" class='span7'>
+  <h2>User Info</h2>
+
+  <div id="user_info" class='row'>
   <%= simple_form_for @user, html: { class: 'form-vertical' } do |f| %>
-    <%= f.input :avatar %>
-    <%= f.input :skill_list, label: 'Skill Set (comma separated)' %>
-    <%= render partial: 'shared/location_select', locals: { f: f } %>
-    <%= f.input :opt_out, label: 'It is not ok for other civic hackers to contact me for assistance', wrapper: :checkbox, label_html: { class: :checkbox } %>
+
+    <div class='span2'>
+      <%= @user.gravatar_medium %>
+      <a id="gravatar_link" class="capitalized-link" href="http://www.gravatar.com/" target="_blank" title="your gravatar is associated with your email address">change picture</a>
+      <div id="gravatar_info"></div>
+    </div>
+
+    <div class='span5'>
+      <%= f.input :skill_list, label: 'Skill Set (comma separated)' %>
+      <%= render partial: 'shared/location_select', locals: { f: f } %>
+    </div>
+  </div>
+
+  <h2>Contact Settings</h2>
+    <%= f.input :opt_out, label: "I don't want other civic hackers to contact me for assistance", wrapper: :checkbox, label_html: { class: :checkbox } %>
     <%= f.button :submit %>
   <% end %>
 </div>
