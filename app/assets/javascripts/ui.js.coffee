@@ -15,5 +15,6 @@ $ ->
   #$('ul#user-grid li').mouseout ->
   #  $('#user-name').html("")
 
-  #$('#hacking_form #location').autocomplete
-  #  source: $('#hacking_form #location').data('autocomplete-source')
+  if $('#hacking_form #location').length > 0
+    $('#hacking_form #location').autocomplete
+      source: $('#hacking_form #location').data('autocomplete-source')

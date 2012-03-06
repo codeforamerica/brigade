@@ -1,5 +1,5 @@
 <%= form_tag find_locations_path, id: 'hacking_form' do %>
-  <%= text_field_tag :location, nil, placeholder: 'I want to start hacking in:', data: { autocomplete_source: Location.names } %>
+  <%= text_field_tag :location, nil, placeholder: 'I want to start hacking in:', autocomplete: 'off', data: { autocomplete_source: Location.names } %>
   <%= submit_tag 'Let\'s go!' %>
 <%end%>
 
