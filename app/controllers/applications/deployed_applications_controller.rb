@@ -3,11 +3,8 @@ class Applications::DeployedApplicationsController < DeployedApplicationsControl
 
   def new
     @deployed_application = @application.deployed_applications.build
-    @deployed_application.build_location
-    @deployed_application.build_brigade
-
-    # Build these in case a new one needs to be created
-    @location = Location.new
+    @location = @deployed_application.build_location
+    @brigade = @deployed_application.build_brigade
 
     authorize! :create, @deployed_application
   end
@@ -25,6 +22,7 @@ class Applications::DeployedApplicationsController < DeployedApplicationsControl
       flash[:error] = 'The application could not be deployed'
 
       @location = Location.new
+      @brigade = Brigade.new
       render :new
     end
   end
