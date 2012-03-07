@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update_with_password(params[:user])
+    result = false
+    result = @user.update_with_password(params[:user]) unless @user.github_uid.present?
+    result = @user.update_without_password(params[:user]) if @user.github_uid.present?
+
+    if result
       sign_in(@user, :bypass => true)
       redirect_to user_path(@user)
     else

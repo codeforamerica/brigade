@@ -18,5 +18,7 @@ Feature: A visitor signs up using Github
   Scenario: User registers with github account that has no public email address
     Given I have a github account that doesn't have a public email address listed
      When I sign up using "Github"
-      And I fill in my email address, "testman@example.com", when prompted
+      And I fill in my email address "testman@example.com" when prompted
      Then I am on my profile page
+
+  Scenario: User registers with github account that hos no public name
