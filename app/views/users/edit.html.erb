@@ -24,7 +24,7 @@
       <br>
       <hr>
 
-      <%= f.input :current_password, label: 'Enter your current password to make these changes' %>
+      <%= f.input :current_password, label: 'Enter your current password to make these changes' unless @user.github_uid.present? %>
       <%= f.button :submit %>
     </div>
   <% end %>
