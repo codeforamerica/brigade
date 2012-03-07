@@ -1,4 +1,5 @@
 Given /^I successfully register with my email "([^"]*)"$/ do |email|
+  fill_in "user[full_name]", with: "Test Man"
   fill_in "user[email]", with: email
   fill_in "user[password]", with: "password"
 

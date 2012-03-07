@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(:version => 20120307195230) do
     t.boolean  "opt_in",                 :default => false
     t.integer  "location_id"
     t.string   "github_uid"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

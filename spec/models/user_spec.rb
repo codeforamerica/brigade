@@ -64,10 +64,6 @@ describe User do
           @user = User.find_or_create_by_email_and_github_uid(@email, @github_uid)
         end
 
-        it 'creates a new user' do
-          @user.should be_persisted
-        end
-
         it 'should set the email address of the new user to the email specified' do
           @user.email.should == @email
         end
