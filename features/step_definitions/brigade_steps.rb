@@ -15,3 +15,13 @@ Then /^I should see the brigade's name: "([^"]*)"$/ do |brigade_name|
     brigade = Brigade.find_by_name(brigade_name)
     page.should have_content brigade.name
 end
+
+Given /^"([^"]*)" is part of the "([^"]*)" brigade$/ do |email, brigade_name|
+  user = User.find_by_email email
+  brigade = Factory :brigade, name: brigade_name
+  user.brigades << brigade
+end
+
+Then /^I should see the "([^"]*)" brigade$/ do |brigade_name|
+  page.should have_content brigade_name
+end

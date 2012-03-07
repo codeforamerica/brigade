@@ -24,6 +24,15 @@
             <%= @user.skill_set %>
           </div>
         </div>
+        <% if @user.brigades.any? %>
+          <div class='row'>
+            <h3 class='span2'>Brigades:</h3>
+            <div class='offset1'>
+              <%= raw @user.brigades.map{|b| link_to b.name, brigade_url(b)}.join(', ') %>
+            </div>
+          </div>
+        <% end %>
+
       </div>
     </div>
 

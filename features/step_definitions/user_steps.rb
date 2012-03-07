@@ -44,6 +44,11 @@ When /^I go to edit my profile as "([^"]*)"$/ do |email|
   visit edit_user_url(user)
 end
 
+When /^I go to my profile as "([^"]*)"$/ do |email|
+  user = User.find_by_email(email)
+  visit user_url(user)
+end
+
 Then /^I can change my password$/ do
   User.last.update_attributes password: 'password1', password_confirmation: 'password1'
   fill_in 'Password', with: 'password'
