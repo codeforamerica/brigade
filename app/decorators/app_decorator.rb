@@ -96,5 +96,4 @@ class AppDecorator < ApplicationDecorator
     model.deployed_applications.count
   end
 
-
 end

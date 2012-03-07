@@ -4,15 +4,15 @@ describe UserDecorator do
   before { ApplicationController.new.set_current_view_context }
   subject { UserDecorator.new(Factory(:user)) }
 
-  describe '#contact_preference_message' do
+  describe '#contact_preference' do
 
-    it 'returns an opt-in message when someone has chosen to opt in' do
-      subject.contact_preference_message.should == 'Does want to be contacted by other civic hackers.'
+    it 'returns a clickable email address when someone has chosen to opt in' do
+      subject.contact_preference.should == "<a href=\"mailto:#{subject.email}\">#{subject.email}</a>"
     end
 
     it 'returns an opt-out message when someone has chosen to opt out' do
       subject.opt_out = true
-      subject.contact_preference_message.should == 'Does not want to be contacted by other civic hackers.'
+      subject.contact_preference.should == 'Does not want to be contacted by other civic hackers.'
     end
   end
 

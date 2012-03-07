@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305210124) do
+ActiveRecord::Schema.define(:version => 20120306223212) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(:version => 20120305210124) do
     t.boolean  "admin",                  :default => false
     t.boolean  "opt_out",                :default => false
     t.integer  "location_id"
-    t.string   "avatar"
     t.string   "github_uid"
   end
 
