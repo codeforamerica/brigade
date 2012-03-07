@@ -13,13 +13,22 @@
     <div class='span5'>
       <%= f.input :skill_list, label: 'Skill Set (comma separated)' %>
       <%= render partial: 'shared/location_select', locals: { f: f } %>
-    </div>
-  </div>
 
-  <h2>Contact Settings</h2>
-    <%= f.input :opt_out, label: "I don't want other civic hackers to contact me for assistance", wrapper: :checkbox, label_html: { class: :checkbox } %>
-    <%= f.button :submit %>
+      <h2>Contact Settings</h2>
+      <%= f.input :opt_out, label: "I don't want other civic hackers to contact me for assistance", wrapper: :checkbox, label_html: { class: :checkbox } %>
+      <br>
+      <h2>Change your password</h2>
+      <%= f.input :password, label: 'Password' %>
+      <%= f.input :password_confirmation, label: 'Confirm password' %>
+      <i>Optional, you can leave these fields blank</i>
+      <br>
+      <hr>
+
+      <%= f.input :current_password, label: 'Enter your current password to make these changes' %>
+      <%= f.button :submit %>
+    </div>
   <% end %>
+  </div>
 </div>
 
 <%= render 'shared/location_modal' %>

@@ -3,6 +3,7 @@ Then /^I edit my account information$/ do
 
   check "user[opt_out]"
   fill_in 'user[skill_list]', with: 'Ruby, Java, Project Management'
+  fill_in 'Enter your current password to make these changes', with: 'password'
 
   step "I create a new location with a modal in the \"user\" form"
 

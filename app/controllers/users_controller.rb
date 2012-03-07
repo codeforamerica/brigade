@@ -13,9 +13,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update_attributes(params[:user])
+    if @user.update_with_password(params[:user])
+      sign_in(@user, :bypass => true)
       redirect_to user_path(@user)
     else
+      @user = UserDecorator.new(@user)
+      @location = @user.location || Location.new
       render :edit
     end
   end

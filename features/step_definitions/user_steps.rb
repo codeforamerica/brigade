@@ -41,16 +41,13 @@ end
 
 When /^I go to edit my profile as "([^"]*)"$/ do |email|
   user = User.find_by_email(email)
-  visit user_url(user)
+  visit edit_user_url(user)
 end
 
 Then /^I can change my password$/ do
-  fill_in 'password', with: 'password'
-  fill_in 'password_confirmation', with: 'password'
-  click_on 'Save'
-end
-
-Then /^I am still on my edit profile page for "([^"]*)"$/ do |email|
-  user = User.find_by_email(email)
-  page.current_path.should == user_url(user)
+  User.last.update_attributes password: 'password1', password_confirmation: 'password1'
+  fill_in 'Password', with: 'password'
+  fill_in 'Confirm password', with: 'password'
+  fill_in 'Enter your current password to make these changes', with: 'password1'
+  click_on 'Update User'
 end
