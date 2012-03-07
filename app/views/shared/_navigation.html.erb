@@ -2,24 +2,22 @@
   <div class="content">
     <a href="/" class="logo"></a>
     <nav class="primary">
-      <ul>
-        <li class="<%= 'active' if current_page?(root_path) %>">
+      <ul id="site-sections">
+        <li data-desc="Welcome to Code for America" class="<%= 'active' if current_page?(root_path) %>">
           <%= link_to 'Home', root_path %>
         </li>
-        <li class="<%= 'active' if current_page?(applications_path) %>">
+        <li data-desc="About CfA Brigades' mission">About</li>
+        <li data-desc="See all available applications" class="<%= 'active' if current_page?(applications_path) %>">
           <%= link_to 'Applications', applications_path %>
         </li>
-        <li class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
+        <li data-desc="See all participating cities" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
           <%= link_to 'Cities', deployed_applications_path(filter_by: 'locations') %>
         </li>
-        <li class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'brigades')) %>">
-          <%= link_to 'Brigades', deployed_applications_path(filter_by: 'brigades') %>
-        </li>
-        <li class="<%= 'active' if current_page?(users_path) %>">
+        <li data-desc="Search for other civic hackers" class="<%= 'active' if current_page?(users_path) %>">
           <%= link_to 'People', users_path %>
         </li>
-        <li>About</li>
       </ul>
+      <span class="talker"></span>
     </nav>
     <nav class="admin">
       <ul>

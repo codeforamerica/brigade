@@ -1,24 +1,18 @@
-<%= form_tag find_locations_path, id: 'hacking_form' do %>
-  <%= text_field_tag :location, nil, placeholder: 'I want to start hacking in:', autocomplete: 'off', data: { autocomplete_source: Location.names } %>
-  <%= submit_tag 'Let\'s go!' %>
-<%end%>
+<div id="hacking-form">
+  <%= form_tag find_locations_path, id: 'hacking_form' do %>
+    <h1>I want to start hacking in
+      <span class="wordbox">
+        <%= text_field_tag :location, nil, id: 'location', placeholder: 'Norfolk, VA', autocomplete: 'off', data: { autocomplete_source: Location.names } %>
+      </span>.
+    </h1>
+  <%end%>
 
-<div id="map">
-  <h3>Sign up to start a local</br> brigade in your city.</h3>
-  <h1>Hack your city!</h1>
-  <%= image_tag('map.png') %>
+  <div class="stars">
+    ***
+  </div>
+
+  <h3>Code <span class="amp">for</span> America Brigades allow civic hackers to deploy useful, open-source apps in their very own communities. Whether you join a brigade or start your own, help on an existing app or deploy a new one—you're helping to change your community for the better through software. Start now.</h3>
+
 </div>
 
-<div class="sidebar">
-  <h3>Sign up to start a local</br> brigade in your city.</h3>
-  <h1>Don't see your city?</h1>
 
-  <form action="index_submit" method="get" accept-charset="utf-8">
-    <label for="name">Full Name</label>
-    <input type="text" name="name" placeholder="Your Name">
-    <label for="email">Email</label>
-    <input type="email" name="email" placeholder="Your Email">
-    <input type="submit" value="Get Started">
-    <div class="clear"></div>
-  </form>
-</div>
