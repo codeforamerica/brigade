@@ -3,8 +3,6 @@
   <%= submit_tag 'Search' %>
 <%end%>
 
-<%= link_to 'Deploy new application', new_location_deployed_application_path(@location) %>
-
 <% if @deployed_applications.present? %>
   <h2>The following deploys exist in <%= @location.name %></h2>
   <table class='table-striped full'>
