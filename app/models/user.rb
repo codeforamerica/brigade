@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  mount_uploader :avatar, PictureUploader
 
   acts_as_taggable_on :skills
 
