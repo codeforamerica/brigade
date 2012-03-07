@@ -17,185 +17,28 @@
     <div id="flipper-outer-shell">
   <section id="app-flipper">
     <div class="shell">
-      <dl class="application-card">
-        <dt class="icon">q</dt>
-        <dt>
-          <strong>
-            Adopt-a-Hydrant
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
 
-      <dl class="application-card">
-        <dt class="icon">i</dt>
-        <dt>
-          <strong>
-            SnapFresh
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
-
-      <dl class="application-card">
-        <dt class="icon">e</dt>
-        <dt>
-          <strong>
-            Look at Cook
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
-
-      <dl class="application-card">
-        <dt class="icon">I</dt>
-        <dt>
-          <strong>
-            SweepAround.Us
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
-
-      <dl class="application-card">
-        <dt class="icon">_</dt>
-        <dt>
-          <strong>
-            Open Data Catalog
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
-
-      <dl class="application-card">
-        <dt class="icon">_</dt>
-        <dt>
-          <strong>
-            Open Data Kit
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
-
-      <dl class="application-card">
-        <dt class="icon">p</dt>
-        <dt>
-          <strong>
-            Sheltr.org
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
-
-      <dl class="application-card">
-        <dt class="icon">s</dt>
-        <dt>
-          <strong>
-            Building Finder
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
-
-      <dl class="application-card">
-        <dt class="icon">(</dt>
-        <dt>
-          <strong>
-            Shareabouts
-          </strong>
-        </dt>
-        <dd>
-          <div class="location-count">
-            <span class="count">43</span>
-            <span class="label">Locations</span>
-          </div>
-          <div class="commit-count">
-            <span class="count">17</span>
-            <span class="label">Commits</span>
-          </div>
-        </dd>
-        <dd class="deploy-button">Deploy App</dd>
-      </dl>
+      <% AppDecorator.decorate(Application.all.take(9)).each do |application| %>
+        <dl class="application-card">
+          <dt class="icon">q</dt>
+          <dt>
+            <strong>
+              <%= application.name.truncate(20) %>
+            </strong>
+          </dt>
+          <dd>
+            <div class="location-count">
+              <span class="count"><%= application.deployed_applications.map(&:location).size %></span></br>
+              <span class="label">Locations</span>
+            </div>
+            <div class="commit-count">
+              <span class="count"><%= application.number_of_deploys %></span></br>
+              <span class="label">Deploys</span>
+            </div>
+          </dd>
+          <dd class="deploy-button"><%= link_to 'Show App', application_path(application) %></dd>
+        </dl>
+      <% end %>
     </div>
   </section>
 </div>

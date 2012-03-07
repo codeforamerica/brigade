@@ -1,5 +1,6 @@
 # Story #24736665
 
+@javascript
 Feature: A user views a list of all deployed apps in their city
   As a user
   I want to view all of the deployed apps related to a city
