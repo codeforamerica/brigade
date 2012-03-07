@@ -39,8 +39,12 @@
     //color: #d7d7d7;
     color: $truered;
     font-size: 24px;
-    letter-spacing: 0.7em;
     line-height: 20px;
+    text-align: center;
+
+    .big {
+      font-size: 34px;
+    }
   }
 
   .amp {

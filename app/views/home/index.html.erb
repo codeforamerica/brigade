@@ -4,11 +4,14 @@
       <span class="wordbox">
         <%= text_field_tag :location, nil, id: 'location', placeholder: 'Norfolk, VA', autocomplete: 'off', data: { autocomplete_source: Location.names } %>
       </span>.
-      <%= submit_tag 'Let\'s go!' %>
     </h1>
   <%end%>
 
-  <div class="stars">***</div>
+  <div class="stars">
+    <span class="small">*</span>
+    <span class="big">*</span>
+    <span class="small">*</span>
+  </div>
 
   <h3>Code <span class="amp">for</span> America Brigades allow civic hackers to deploy useful, open-source apps in their very own communities. Whether you join a brigade or start your own, help on an existing app or deploy a new one—you're helping to change your community for the better through software. Start now.</h3>
 

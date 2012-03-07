@@ -73,6 +73,7 @@
           left: 0;
           background: transparentize(#111, 0.3);
           @include border-radius(5px);
+          @include box-shadow(0 0 8px #000 inset);
           width: 170px;
           height: 100%;
           z-index: 999;
