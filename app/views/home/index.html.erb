@@ -4,6 +4,7 @@
       <span class="wordbox">
         <%= text_field_tag :location, nil, id: 'location', placeholder: 'Norfolk, VA', autocomplete: 'off', data: { autocomplete_source: Location.names } %>
       </span>.
+      <%= submit_tag 'Let\'s go!' %>
     </h1>
   <%end%>
 
