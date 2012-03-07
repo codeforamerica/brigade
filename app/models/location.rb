@@ -12,6 +12,10 @@ class Location < ActiveRecord::Base
     save
   end
 
+  def applications_not_deployed
+    Application.all - deployed_applications.map(&:application).uniq
+  end
+
   def self.names
     all.map(&:name)
   end

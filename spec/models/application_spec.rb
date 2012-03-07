@@ -57,7 +57,7 @@ describe Application do
     before do
       @deployed_application = Factory :deployed_application, application: subject
       @user = Factory :user
-      @second_user = Factory :user, opt_out: true
+      @second_user = Factory :user, opt_in: true
       @deployed_application.brigade.users << @user
       @deployed_application.brigade.users << @second_user
     end

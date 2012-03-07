@@ -1,25 +1,42 @@
-<div class='form-wrapper span5 offset3'>
+<div id="leftcolumn" class='span7'>
   <h2>User Info</h2>
-  <div class='row'>
-    <%= @user.avatar %>
-  </div>
-  <div class='row'>
-    <h3 class='span2'>Email:</h3>
-    <%= @user.email %>
-  </div>
-  <div class='row'>
-    <h3 class='span2'>Location:</h3>
-    <%= @user.location_name %>
-  </div>
-  <div class='row'>
-    <h3 class='span2'>Skill Set:</h3>
-    <%= @user.skill_set %>
-  </div>
-  <h2>Contact Settings</h2>
-  <p>
-    <%= @user.contact_preference_message %>
-  </p>
-  <div class='row'>
-    <%= link_to 'Edit', edit_user_path(@user), class: 'btn-large btn-info' %>
-  </div>
+
+    <div id="user_info" class='row'>
+      <div class='span2'>
+        <%= @user.gravatar_medium %>
+      </div>
+      <div class='span5'>
+        <div class='row'>
+          <h3 class='span2'>Public Contact:</h3>
+          <div class='offset1'>
+            <%= @user.contact_preference %>
+          </div>
+        </div>
+        <div class='row'>
+          <h3 class='span2'>Location:</h3>
+          <div class='offset1'>
+            <%= @user.location_name %>
+          </div>
+        </div>
+        <div class='row'>
+          <h3 class='span2'>Skill Set:</h3>
+          <div class='offset1'>
+            <%= @user.skill_set %>
+          </div>
+        </div>
+        <% if @user.brigades.any? %>
+          <div class='row'>
+            <h3 class='span2'>Brigades:</h3>
+            <div class='offset1'>
+              <%= raw @user.brigades.map{|b| link_to b.name, brigade_url(b)}.join(', ') %>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+
+    <% if can? :edit, @user %>
+      <%= link_to 'Edit', edit_user_path(@user), class: 'btn' %>
+    <% end %>
 </div>

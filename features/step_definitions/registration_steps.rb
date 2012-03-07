@@ -6,7 +6,7 @@ Given /^I successfully register with my email "([^"]*)"$/ do |email|
 end
 
 Then /^I am on my profile page$/ do
-  page.should have_content 'testman@example.com'
+  page.should_not have_content 'testman@example.com'
 end
 
 Given /^I unsuccessfully register by not filling in my email$/ do

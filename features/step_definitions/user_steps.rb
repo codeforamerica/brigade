@@ -39,3 +39,20 @@ Then /^I should be informed that there are no hackers who fit that criteria$/ do
   page.should have_content "There aren't any hackers that match that criteria!"
 end
 
+When /^I go to edit my profile as "([^"]*)"$/ do |email|
+  user = User.find_by_email(email)
+  visit edit_user_url(user)
+end
+
+When /^I go to my profile as "([^"]*)"$/ do |email|
+  user = User.find_by_email(email)
+  visit user_url(user)
+end
+
+Then /^I can change my password$/ do
+  User.last.update_attributes password: 'password1', password_confirmation: 'password1'
+  fill_in 'Password', with: 'password'
+  fill_in 'Confirm password', with: 'password'
+  fill_in 'Enter your current password to make these changes', with: 'password1'
+  click_on 'Update User'
+end

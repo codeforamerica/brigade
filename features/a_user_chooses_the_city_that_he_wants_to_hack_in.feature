@@ -20,6 +20,12 @@ Feature: A user views a list of all deployed apps in their city
       | First Test App  | Norfolk, VA  | The Test Brigade |
       | Third Test App  | Norfolk, VA  | The Best Brigade |
 
+  Scenario: User views applications not deployed in the location he searches for
+    When I decide that I want to start hacking in "Norfolk, VA"
+    Then I should see the following undeployed applications:
+      | App Name         |
+      | Second Test App  |
+
   Scenario: User enters a city that doesn't yet exist in the system
     When I decide that I want to start hacking in "Boston, MA"
     Then I am on the homepage

@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  mount_uploader :avatar, PictureUploader
 
   acts_as_taggable_on :skills
 
@@ -10,7 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :opt_out, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid
+                  :opt_in, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid
 
   belongs_to :location
   delegate :name, to: :location, prefix: true, allow_nil: true
@@ -18,7 +17,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :brigades
   has_many :applications, through: :brigades
 
-  scope :contactable, where(opt_out: false)
+  scope :contactable, where(opt_in: true)
 
   searchable do
     text :email

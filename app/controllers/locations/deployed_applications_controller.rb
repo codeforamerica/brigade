@@ -20,5 +20,6 @@ class Locations::DeployedApplicationsController < ApplicationController
 
   def index
     @deployed_applications = @location.deployed_applications.search(params[:query])
+    @applications_not_deployed = @location.applications_not_deployed
   end
 end
