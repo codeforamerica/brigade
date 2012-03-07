@@ -30,7 +30,7 @@ header#top-deck {
 
     .talker {
       width: 94%;
-      background: darken($mud, 5%); 
+      background: darken($mud, 5%);
       @include linear-gradient(darken($mud, 5%), $mud);
       padding: 10px;
       @include border-radius(5px);
@@ -56,8 +56,8 @@ header#top-deck {
           text-decoration: none;
         }
 
-        &.active a { 
-          color: #0072ac; 
+        &.active a {
+          color: #0072ac;
         }
 
         &:hover {
