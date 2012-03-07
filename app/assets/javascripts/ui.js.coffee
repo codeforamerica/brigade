@@ -24,3 +24,12 @@ $ ->
   $('.deploy-button').click ->
     $(this).parent().addClass('active')
     console.log('Class added');
+
+  $('ul#site-sections li').mouseenter ->
+    desc = $(this).data('desc')
+    $('.talker').show().html(desc);
+
+  $('ul#site-sections li').mouseleave ->
+    $('.talker').hide().html("");
+
+  $('#app-flipper').scrollLeft(100);
