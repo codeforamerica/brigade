@@ -15,7 +15,7 @@
       <%= render partial: 'shared/location_select', locals: { f: f } %>
 
       <h2>Contact Settings</h2>
-      <%= f.input :opt_out, label: "I don't want other civic hackers to contact me for assistance", wrapper: :checkbox, label_html: { class: :checkbox } %>
+      <%= f.input :opt_in, label: "I want other civic hackers to be able to contact me for assistance", wrapper: :checkbox, label_html: { class: :checkbox } %>
       <br>
       <h2>Change your password</h2>
       <%= f.input :password, label: 'Password' %>

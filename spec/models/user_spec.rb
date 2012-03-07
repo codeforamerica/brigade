@@ -8,13 +8,13 @@ describe User do
   end
 
   it 'should be valid with an opt_out attribute' do
-    subject.opt_out = true
+    subject.opt_in = true
     subject.should be_valid
   end
 
-  context 'opt_out' do
+  context 'opt_in' do
     it 'should be false by default' do
-      subject.opt_out.should == false
+      subject.opt_in.should == false
     end
   end
 

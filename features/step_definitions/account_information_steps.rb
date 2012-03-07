@@ -1,7 +1,6 @@
 Then /^I edit my account information$/ do
   click_on 'Edit'
 
-  check "user[opt_out]"
   fill_in 'user[skill_list]', with: 'Ruby, Java, Project Management'
   fill_in 'Enter your current password to make these changes', with: 'password'
 

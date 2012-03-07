@@ -2,7 +2,7 @@ class UserDecorator < ApplicationDecorator
   decorates :user
 
   def contact_preference
-    if user.opt_out
+    unless user.opt_in?
       'Does not want to be contacted by other civic hackers.'
     else
       h.mail_to user.email
@@ -28,7 +28,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def as_link
-    unless user.opt_out
+    if user.opt_in?
       h.mail_to user.email, gravatar_small
     else
       gravatar_small
