@@ -37,7 +37,9 @@ header#top-deck {
           text-decoration: none;
         }
 
-        &.active a { color: #ffa; }
+        &.active a { 
+          color: #0072ac; 
+        }
       }
     }
     &.primary {

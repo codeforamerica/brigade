@@ -18,3 +18,9 @@ $ ->
   if $('#hacking_form #location').length > 0
     $('#hacking_form #location').autocomplete
       source: $('#hacking_form #location').data('autocomplete-source')
+
+  $('input#location').focus()
+
+  $('.deploy-button').click ->
+    $(this).parent().addClass('active')
+    console.log('Class added');

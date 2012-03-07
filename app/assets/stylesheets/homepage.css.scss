@@ -1,37 +1,68 @@
 @import 'styling-dependencies';
 
-#map {
-  float: left;
-  width: 540px;
-  padding-right: 40px;
-}
-form {
-  margin-top: 20px;
-  background: transparentize($lime, 0.5);
-  padding: 20px 20px 35px;
-  @include border-radius(10px);
+#three-up {
+  width: 980px;
+  margin: 0 auto 0 auto;
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 92%;
-    border: 0;
-    @include box-shadow(none);
-  }
-  label {
-    color: darken($lime, 10%);
+  .column {
+    float: left;
+    padding: 20px;
+    width: 280px;
   }
 }
 
-#hacking_form{
-  margin: -10px 0 30px 0;
-  padding: 20px;
+#hacking-form{
+  padding: 0;
+  margin: 0 auto 0 auto;
+
+  .wordbox {
+    background: url('/assets/homepage-input-label.png') bottom center no-repeat;
+    padding-bottom: 18px;
+  }
+
+  h1 {
+    font-size: 525%;
+    color: $truered;
+  }
+
+  h3 {
+    font-size: 150%;
+    color: #0072ac;
+    text-transform: none;
+    text-align: center;
+  }
+
+  .stars {
+    width: 120px;
+    margin: 0 auto 20px auto;
+    font-family: 'ModernPictogramsNormal';
+    //color: #d7d7d7;
+    color: $truered;
+    font-size: 24px;
+    letter-spacing: 0.7em;
+    line-height: 20px;
+  }
+
+  .amp {
+    font-family: Baskerville, Palatino, "Book Antiqua", serif;
+    font-style: italic;
+  }
 
   input[type="text"]{
-    width: 85%;
+    font-family: 'RockSaltRegular';
+    color: $mud;
     border: 0;
-    margin-bottom: 0;
-    @include box-shadow(none);
+    border-bottom: 1px dashed $mud;
+    @include border-radius(0);
+    padding: 0;
+    width: 200px;
+    font-size: 24px;
+    text-align: center;
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   input[type='submit']{
@@ -47,6 +78,7 @@ ul.ui-autocomplete {
   padding: 0;
   border: solid 1px #999;
   cursor: default;
+
   li {
     background-color: #FFF;
     border-top: solid 1px #DDD;
@@ -61,16 +93,4 @@ ul.ui-autocomplete {
       background-color: #FFFCB2;
     }
   }
-}
-
-section#app-spinner {
-  .content {
-    padding-right: 0;
-    width: 940px;
-
-  }
-}
-
-footer {
-  width: 100%;
 }

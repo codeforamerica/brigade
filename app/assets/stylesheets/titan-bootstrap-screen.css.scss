@@ -37,27 +37,24 @@ body {
 }
 
 #main {
-  width: 960px;
+  width: 940px;
   margin: auto;
 }
+
 .sidebar {
   float: left;
   width: 300px;
 }
+
 section {
   width: 100%;
-  overflow: auto;
-  padding-bottom: 40px;
 
   &.white {
     background: #fff;
     margin-top: -20px;
+    padding: 20px 0;
     border-bottom: 1px solid #b9b7b2;
   }
-}
-footer {
-  width: 100%;
-  clear: both;
 }
 
 /* Sizes
@@ -119,6 +116,7 @@ hgroup.app-title {
 
 /* Styles for tables of apps */
 table.all-apps {
+  width: 100%;
 
   /* Table striping */
   tr.odd {

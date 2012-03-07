@@ -1,7 +1,15 @@
 @import 'styling-dependencies';
 
 footer {
-  background: darken($oatmeal, 10%);
   width: 100%;
   margin-top: 10px;
+
+  .content {
+    padding: 0;
+    width: 940px;
+  }
+
+  p {
+    font-size: 90%;
+  }
 }
