@@ -38,7 +38,7 @@ describe User do
       end
 
       it 'returns the user that was found' do
-        User.find_or_create_by_email_and_github_uid(@email, @github_uid).should == subject
+        User.find_or_create_by_email_and_github_uid(@email, 'Name', @github_uid).should == subject
       end
     end
 
@@ -49,7 +49,7 @@ describe User do
       end
 
       it 'returns the user that was found' do
-        User.find_or_create_by_email_and_github_uid(@email, @github_uid).should == subject
+        User.find_or_create_by_email_and_github_uid(@email, 'Name', @github_uid).should == subject
       end
     end
 
@@ -61,11 +61,7 @@ describe User do
 
       context 'when there is an email address included' do
         before do
-          @user = User.find_or_create_by_email_and_github_uid(@email, @github_uid)
-        end
-
-        it 'creates a new user' do
-          @user.should be_persisted
+          @user = User.find_or_create_by_email_and_github_uid(@email, 'Name', @github_uid)
         end
 
         it 'should set the email address of the new user to the email specified' do
@@ -84,7 +80,7 @@ describe User do
           User.stub(:find_by_email).with(@email).and_return(nil)
           User.stub(:find_by_github_uid).with(@github_uid).and_return(nil)
 
-          @user = User.find_or_create_by_email_and_github_uid(@email, @github_uid)
+          @user = User.find_or_create_by_email_and_github_uid(@email, 'Name', @github_uid)
         end
 
         it 'should build a new user' do

@@ -11,4 +11,8 @@ class CodeForAmerica::GithubOmniAuthParser
   def email
     @hash.info.email
   end
+
+  def name
+    @hash.info.name
+  end
 end

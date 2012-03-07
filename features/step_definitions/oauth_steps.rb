@@ -32,7 +32,7 @@ Given /^I have a github account that doesn't have a public email address listed$
     })
 end
 
-When /^I fill in my email address, "([^"]*)", when prompted$/ do |email|
+When /^I fill in my email address "([^"]*)" when prompted$/ do |email|
   fill_in "user[email]", with: email
   click_on 'Sign up'
 end

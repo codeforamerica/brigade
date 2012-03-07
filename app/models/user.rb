@@ -9,7 +9,10 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :opt_in, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid
+                  :opt_in, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid,
+                  :full_name
+
+  validates :full_name, presence: true
 
   belongs_to :location
   delegate :name, to: :location, prefix: true, allow_nil: true
@@ -33,14 +36,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_or_create_by_email_and_github_uid(email, github_uid)
-    #This function is about findin a user from the github oauth hash or creating
+  def self.find_or_create_by_email_and_github_uid(email, name, github_uid)
+    #This function is about finding a user from the github oauth hash or creating
     #one if one doesn't exist.
 
     #Try to find the user by github_id
     user = User.find_by_email(email) || User.find_by_github_uid(github_uid)
 
-    user || User.create(email: email, github_uid: github_uid)
+    user || User.create(email: email, github_uid: github_uid, full_name: name)
   end
 
   def update_github_uid(github_uid)
@@ -50,4 +53,17 @@ class User < ActiveRecord::Base
   def password_required?
     (github_uid.blank? || password.present?) && super
   end
+
+  def full_name
+    "#{first_name} #{last_name}" unless first_name.nil? and last_name.nil?
+  end
+
+  def full_name=(name)
+    split = name.split(' ', 2)
+    self.first_name = split.first
+    self.last_name = split.last
+  end
+
+  alias :name :full_name
+
 end
