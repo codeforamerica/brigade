@@ -1,3 +1,4 @@
+@import "bourbon";
 @import "colors";
 
 /* Navigation
@@ -21,23 +22,48 @@ header#top-deck {
   }
 
   nav {
-    overflow: auto;
+    overflow: hidden;
     color: transparentize(#fff, 0.4);
+    padding-bottom: 30px;
+    position: relative;
+    margin-top: -18px;
+
+    .talker {
+      width: 94%;
+      background: darken($mud, 5%);
+      @include linear-gradient(darken($mud, 5%), $mud);
+      padding: 10px;
+      @include border-radius(5px);
+      position: absolute;
+      bottom: 0;
+      display: none;
+      font-style: italic;
+      color: transparentize($oatmeal, 0.5);
+      font-family: $georgia;
+    }
 
     ul {
       list-style: none;
-      margin-top: 20px;
+      margin: 20px 0 10px 0;
 
       li {
         float: left;
         padding: 10px;
+        cursor: pointer;
 
         a {
           color: transparentize(#fff, 0.4);
           text-decoration: none;
         }
 
-        &.active a { color: #ffa; }
+        &.active a {
+          color: #0072ac;
+        }
+
+        &:hover {
+          background: darken($mud, 5%);
+          @include border-radius(5px);
+        }
       }
     }
     &.primary {
