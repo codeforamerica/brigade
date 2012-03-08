@@ -5,5 +5,5 @@ end
 When /^I decide that I want to start hacking in "([^"]*)"$/ do |city|
   visit('/')
   fill_in 'location', with: city
-  click_on 'Let\'s go!'
+  page.evaluate_script("document.forms[0].submit()")
 end

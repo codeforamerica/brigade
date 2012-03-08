@@ -46,7 +46,7 @@ CodeForAmerica::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-   config.assets.precompile += %w( home.js home.css )
+  config.assets.precompile += %w( home.js home.css rails_admin/rails_admin.js rails_admin/rails_admin.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
