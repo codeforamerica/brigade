@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :opt_in, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid,
-                  :full_name
+                  :full_name, :first_name, :last_name
 
   validates :full_name, presence: true
 
@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
 
   searchable do
     text :email
+    text :first_name
+    text :last_name
     text :skill_list
     text :location_name
 
