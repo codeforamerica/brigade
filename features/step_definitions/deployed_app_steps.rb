@@ -57,7 +57,7 @@ When /^I filter the deployed apps to only those that have been deployed by "([^"
 end
 
 Then /^I should be informed that there are no applications deployed in "([^"]*)"$/ do |city_name|
-  page.should have_content "There are no apps currently deployed in #{city_name}"
+  page.should have_content "No apps have been deployed to #{city_name}, deploy one today!"
 end
 
 Then /^I should be informed that there are no applications deployed by "([^"]*)"$/ do |brigade_name|

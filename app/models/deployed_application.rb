@@ -12,6 +12,7 @@ class DeployedApplication < ActiveRecord::Base
 
   validates :location, presence: true
   validates :brigade, presence: true
+  validates :application_id, presence: true, uniqueness: { scope: [:location_id, :brigade_id] }
 
   def self.search(query = nil)
     if query

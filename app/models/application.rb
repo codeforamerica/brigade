@@ -7,6 +7,7 @@ class Application < ActiveRecord::Base
   has_many :participating_brigades, through: :deployed_applications, source: :brigade
 
   validates :nid, presence: true
+  validates :logo, length: { in: 0..1 }
   validate :cannot_have_more_than_four_pictures
 
   def cannot_have_more_than_four_pictures

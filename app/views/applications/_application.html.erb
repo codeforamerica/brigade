@@ -11,5 +11,7 @@
   </td>
   <td class="show-app">
     <%= link_to 'Show App', application_path(application), title: application.name, :class => "show-button" %></td>
+  <!--Following line is Thomas's fix to Nick's code -->
+  <td><%= link_to 'Show App', application_url(application), class: 'show-button' %></td>
 </tr>
 

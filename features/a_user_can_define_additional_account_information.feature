@@ -13,7 +13,10 @@ Feature: A user can define additional account information
     When I edit my account information
     Then I see the updated information on my account page
 
-  @javascript
   Scenario: No location is used when a user leaves the select location box with add location
     When I edit my account information and leave the select box on Add Location
     Then I am on the show user page with no location
+
+  Scenario: email is shown when user opts in to helping other civic hackers
+    When I edit my email preferences
+    Then I see a clickable "testman@example.com" on my account page
