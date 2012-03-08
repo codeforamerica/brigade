@@ -1,6 +1,6 @@
 <tr class="<%= cycle "odd", "even" %>", id="<%= "application_#{application.id}" %>">
-  <td>
-    <img src="/assets/avatars/avatar-3.png">
+  <td class="avatar">
+    *
   </td>
   <td>
     <h3><%= link_to application.name, application_path(application) %></h3>
@@ -12,4 +12,3 @@
   <td class="show-app">
     <%= link_to 'Show App', application_path(application), title: application.name, :class => "show-button" %></td>
 </tr>
-

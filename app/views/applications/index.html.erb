@@ -1,6 +1,5 @@
-<h2>Available Applications</h2>
-  <table class="all-apps" cellpadding="4">
-    <% @apps.each do |application| %>
-      <%= render partial: 'application', object: application %>
-    <% end %>
-  </table>
+<table class="all-apps" cellpadding="4">
+  <% @apps.each do |application| %>
+    <%= render partial: 'application', object: application %>
+  <% end %>
+</table>

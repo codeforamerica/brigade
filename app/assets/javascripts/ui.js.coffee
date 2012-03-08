@@ -33,3 +33,5 @@ $ ->
     $('.talker').hide().html("");
 
   $('#app-flipper').scrollLeft(100);
+
+  $('table#sortable').tablesorter()

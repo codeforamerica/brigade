@@ -58,8 +58,8 @@ h1 {
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
   font-size: 280%;
   letter-spacing: -0.06em;
-  color: $lime;
-  margin-bottom: 15px;
+  color: $truered;
+  font-weight: lighter;
 }
 .sidebar {
   h1 {
@@ -74,9 +74,7 @@ h2 {
   //color: transparentize($mdblue, 0.6);
   color: darken($oatmeal, 60%);
   text-shadow: 0 1px 0 #fff;
-  margin: 0 0 10px 0;
-  border-bottom: 1px solid darken($oatmeal, 40%);
-  padding-bottom: 10px;
+  padding: 20px 0;
 }
 h3 {
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
