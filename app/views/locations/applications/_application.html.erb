@@ -1,4 +1,4 @@
 <tr class="<%= cycle "odd", "even" %>", id="<%= "application_#{application.id}" %>">
   <td><%= application.name %></td>
-  <td><%= link_to 'Show App', application_url(application) %></td>
+  <td><%= link_to 'Show App', :class => "show-button", application_url(application) %></td>
 </tr>
