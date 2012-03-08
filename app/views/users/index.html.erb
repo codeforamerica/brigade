@@ -18,8 +18,8 @@
     </thead>
     <tbody>
       <%= content_tag_for :tr, @users do |user| %>
-        <td><strong><%= user.email %></strong></td>
-        <td><%= user.location_name %></td>
+        <td><strong><%= user.full_name %></strong></td>
+        <td><%= link_to user.location_name, location_deployed_applications_url(user.location) %></td>
         <td><%= link_to 'Show', user%></td>
       <% end %>
     </tbody>

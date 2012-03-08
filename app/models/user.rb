@@ -24,6 +24,8 @@ class User < ActiveRecord::Base
 
   searchable do
     text :email
+    text :first_name
+    text :last_name
     text :skill_list
     text :location_name
 
