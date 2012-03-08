@@ -1,6 +1,6 @@
 <%= content_tag_for(:tr, deployed_application) do %>
   <td><%= deployed_application.name %></td>
-  <td><%= deployed_application.location_name %></td>
+  <td><%= link_to deployed_application.location_name, location_deployed_applications_url(deployed_application.location) %></td>
   <td><%= deployed_application.brigade_name %></td>
   <td><%= link_to 'Show App', deployed_application_url(deployed_application) %></td>
 <% end %>

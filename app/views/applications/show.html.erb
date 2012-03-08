@@ -65,7 +65,7 @@
 
         <!-- minimap -->
         <div class='map', id='map' style="width: 265px; height: 230px;"></div>
-        <div class='hidden' id='locations'><%= @app.deployed_applications.map(&:location).uniq.to_json %></div>
+        <div class='hidden' id='locations'><%= @app.deployed_applications.map(&:location).uniq.map {|l| {icon_link: location_deployed_applications_url(l)}.merge(l.attributes.select{|k,v| ['latitude', 'longitude', 'name'].include?(k)}).to_json } %></div>
 
         <h4><span class="icon">[</span> Deployed Brigades</h4>
           <ul class="unstyled">
@@ -80,7 +80,7 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyAU73pt7g1lj1KfSffmFgWfKHcbn_xJQyE&sensor=true"></script>
 <script tpye='text/javascript'>
   var map;
-
+  var markers = [];
 
   function initialize_map() {
     var myOptions = {
@@ -95,11 +95,14 @@
   initialize_map();
 
   var locations = $.parseJSON($('#locations').text())
-
   $.each(locations, function(index, value){
+    value = $.parseJSON(value)
     latlong = new google.maps.LatLng(value.latitude, value.longitude);
-    marker = new google.maps.Marker({ position: latlong, title: value.name });
-    marker.setMap(map)
+    markers[index] = new google.maps.Marker({ position: latlong, title: value.name, url: value.icon_link });
+    google.maps.event.addListener(markers[index], 'click', function() {
+        window.location.href = markers[index].url;
+    });
+    markers[index].setMap(map)
   })
 
 
