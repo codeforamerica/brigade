@@ -6,7 +6,7 @@
 
 <div class="internal-search-box">
   <%= form_tag location_deployed_applications_path(@location), method: :get do %>
-    <%= text_field_tag :query %>
+    <%= text_field_tag :query, nil, placeholder: "Apps or Brigades in #{@location.name}" %>
     <%= submit_tag 'Search' %>
   <%end%>
 </div>
