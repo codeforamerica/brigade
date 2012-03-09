@@ -81,11 +81,12 @@
 <script tpye='text/javascript'>
   var map;
   var markers = [];
+  var latlons = [];
 
   function initialize_map() {
     var myOptions = {
       center: new google.maps.LatLng(39.5, -98.35),
-      zoom: 2,
+      zoom: 3,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     map = new google.maps.Map(document.getElementById("map"), myOptions);
@@ -97,13 +98,18 @@
   var locations = $.parseJSON($('#locations').text())
   $.each(locations, function(index, value){
     value = $.parseJSON(value)
-    latlong = new google.maps.LatLng(value.latitude, value.longitude);
-    markers[index] = new google.maps.Marker({ position: latlong, title: value.name, url: value.icon_link });
+    latlons[index] = new google.maps.LatLng(value.latitude, value.longitude);
+    markers[index] = new google.maps.Marker({ position: latlons[index], title: value.name, url: value.icon_link });
     google.maps.event.addListener(markers[index], 'click', function() {
         window.location.href = markers[index].url;
     });
     markers[index].setMap(map)
   })
 
-
+  var latlngbounds = new google.maps.LatLngBounds( ); 
+  for ( var i = 0; i < latlons.length; i++ )
+  {
+      latlngbounds.extend( latlons[ i ] );
+  }
+  map.fitBounds( latlngbounds );
 </script>
