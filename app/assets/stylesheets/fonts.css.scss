@@ -81,7 +81,7 @@ h3 {
   font-size: 90%;
   color: #444;
   letter-spacing: -0.06em;
-  color: $orange;
+  color: $truered;
   text-transform: uppercase;
 }
 h6 {
@@ -107,4 +107,9 @@ p {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 110%;
+}
+.amp {
+  font-family: Baskerville, Palatino, "Book Antiqua", serif;
+  font-style: italic;
+  font-weight: lighter;
 }
