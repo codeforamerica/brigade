@@ -1,6 +1,6 @@
 <tr class="<%= cycle "odd", "even" %>", id="<%= "application_#{application.id}" %>">
   <td class="avatar">
-    *
+    <%= application.logo %>
   </td>
   <td>
     <h3><%= link_to application.name, application_path(application) %></h3>
@@ -10,6 +10,6 @@
     <%= render 'applications/small-stats', application: AppDecorator.new(application) %>
   </td>
   <td class="show-app">
-    <%= link_to 'Show App', application_url(application), class: 'show-button' %>
+    <%= link_to 'Show App', application_path(application), class: 'show-button' %>
   </td>
 </tr>
