@@ -9,9 +9,21 @@ footer {
   .content {
     padding: 0;
     width: 940px;
+    position: relative;
+
+    #challenge_content {
+      position: absolute;
+      right: 5px;
+      top: -10px;
+    } 
   }
 
   p {
     font-size: 90%;
+  }
+
+  a {
+    text-decoration: none;
+    color: #0072ac;
   }
 }

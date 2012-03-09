@@ -96,10 +96,40 @@ section {
     5px 5px 0 darken($oatmeal, 20%)
   );
 
+  select {
+    width: 380px;
+  }
+
   h2 {
     text-align: center;
   }
 }
+
+/* Messages
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#flash {
+  background: transparentize($mud, 0.2);
+  @include box-shadow(0 -3px 6px lighten($mud, 10%) inset);
+
+  #close-now {
+    font-size: 30px;
+    line-height: 15px;
+    color: $mud;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+
+  .content {
+    padding-bottom: 20px;
+    color: $oatmeal;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  }
+}
+
 
 
 /* Sizes
@@ -166,7 +196,31 @@ hgroup.app-title {
   right: 15px;
 }
 
-/* Styles for tables of apps */
+.adjusted {
+  margin-top: 20px;
+}
+
+/* Styles for tables */
+.user-info {
+  font-size: 140%;
+
+  tr {
+    td {
+      vertical-align: top;
+      padding: 0 20px 20px 0;
+
+      &.prv-label {
+        font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+        font-size: 90%;
+        color: #444;
+        letter-spacing: -0.06em;
+        color: $truered;
+        text-transform: uppercase;
+        text-align: right;
+      }
+    }
+  }
+}
 .all-apps,
 .all-cities {
   width: 100%;
