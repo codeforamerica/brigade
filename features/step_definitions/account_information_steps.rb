@@ -6,6 +6,7 @@ Then /^I edit my account information$/ do
 
   step "I create a new location with a modal in the \"user\" form"
 
+  fill_in 'user[current_password]', with: 'password'
   click_on 'Update User'
 end
 
@@ -29,10 +30,24 @@ Then /^I edit my account information and leave the select box on Add Location$/ 
 
   select "Add Location", from: "user[location_id]"
 
+  fill_in 'user[current_password]', with: 'password'
   click_on 'Update User'
 end
 
 Then /^I am on the show user page with no location$/ do
   page.current_path.should == '/users/1'
   page.should_not have_content 'Add Location'
+end
+
+When /^I edit my email preferences$/ do
+  click_on 'Edit'
+
+  check 'user[opt_in]'
+
+  fill_in 'user[current_password]', with: 'password'
+  click_on 'Update User'
+end
+
+Then /^I see a clickable "([^"]*)" on my account page$/ do |email|
+  page.should have_content email
 end

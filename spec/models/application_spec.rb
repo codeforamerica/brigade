@@ -37,6 +37,17 @@ describe Application do
     subject.should be_valid
   end
 
+  context '#logo' do
+    it 'is invalid if it is more than one character long' do
+      subject.logo = 'random string'
+      subject.should_not be_valid
+    end
+
+    it "is '(' by default" do
+      subject.logo.should == '('
+    end
+  end
+
   context 'pictures' do
 
     before do
