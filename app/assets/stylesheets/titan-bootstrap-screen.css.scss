@@ -36,6 +36,17 @@ body {
   }
 }
 
+header.page-id {
+  width: 940px;
+  margin: 0 auto 25px auto;
+  padding: 20px 0;
+  border-bottom: 1px solid $oatmeal;
+
+  h1 {
+    color: darken($oatmeal, 50%);
+  }
+}
+
 /* Page Containers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
@@ -70,6 +81,26 @@ section {
     border-bottom: 1px solid #b9b7b2;
   }
 }
+
+.login-box {
+  width: 380px;
+  margin: 20px auto;
+  padding: 0 20px 20px;
+  background: $oatmeal;
+  position: relative;
+  @include box-shadow(
+    1px 1px 0 darken($oatmeal, 20%),
+    2px 2px 0 darken($oatmeal, 20%),
+    3px 3px 0 darken($oatmeal, 20%),
+    4px 4px 0 darken($oatmeal, 20%),
+    5px 5px 0 darken($oatmeal, 20%)
+  );
+
+  h2 {
+    text-align: center;
+  }
+}
+
 
 /* Sizes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

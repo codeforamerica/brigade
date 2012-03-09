@@ -7,14 +7,8 @@
   </head>
 
   <body>
-    <%= render partial: 'layouts/flashes' %>
     <%= render partial: 'shared/navigation' %>
-
-    <div class="content no-padding">
-      <h1>
-        <%= controller.controller_name.titleize %>
-      </h1>
-    </div>
+    <%= render partial: 'layouts/flashes' %>
 
     <div class="content no-padding">
       <%= yield %>

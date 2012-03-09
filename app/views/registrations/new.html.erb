@@ -1,4 +1,5 @@
-<div class='form-wrapper span5 offset3'>
+<div class="login-box">
+
   <%= devise_error_messages! %>
 
   <h2>Sign up</h2>
@@ -19,4 +20,5 @@
 
     <%= link_to "Sign up with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info' unless @user.github_uid.present? %>
   <%end%>
+  
 </div>
