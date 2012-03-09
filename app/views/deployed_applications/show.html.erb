@@ -52,9 +52,9 @@
           <%= raw("You are a member of the brigade #{link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade)} who is working on this applicaiton") if can? :leave, @deployed_application.brigade %>
         </p>
 
-        <% if @deployed_application.brigade.group_url.present? %>
+        <% if @deployed_application.brigade.point_of_contact_address.present? %>
           <h4><span class="icon">O</span> Connect</h4>
-          <p><%= link_to @deployed_application.brigade.group_url, @deployed_application.brigade.group_url %></p>
+          <p><%= auto_link @deployed_application.brigade.point_of_contact_address %></p>
         <% end %>
 
 

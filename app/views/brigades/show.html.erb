@@ -23,6 +23,11 @@
           <%= raw("You are a member of this brigade! #{link_to 'Leave this brigade', leave_brigade_url(@brigade), class: 'btn'}") if can? :leave, @brigade %>
         </p>
 
+        <% if @brigade.point_of_contact_address.present? %>
+          <h4><span class="icon">O</span> Connect</h4>
+          <p><%= auto_link @brigade.point_of_contact_address %></p>
+        <% end %>
+
         <h4><span class='icon'>f</span> Members</h4>
         <%= @brigade.decorated_members %>
       </div>

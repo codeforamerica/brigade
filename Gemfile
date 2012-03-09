@@ -31,6 +31,9 @@ gem 'draper', '~> 0.10.0'
 gem 'stamp', '~> 0.1.6'
 gem 'chronic', '~> 0.6.7'
 
+#for auto_link
+gem 'rails_autolink'
+
 # Kaminari for adding pagination
 gem 'kaminari', '~> 0.13.0'
 

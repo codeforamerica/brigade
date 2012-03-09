@@ -239,6 +239,8 @@ GEM
       activesupport (= 3.2.2)
       bundler (~> 1.0)
       railties (= 3.2.2)
+    rails_autolink (1.0.5)
+      rails (~> 3.1)
     railties (3.2.2)
       actionpack (= 3.2.2)
       activesupport (= 3.2.2)
@@ -363,6 +365,7 @@ DEPENDENCIES
   rails (~> 3.2.1)
   rails_admin!
   rails_admin_tag_list_field!
+  rails_autolink
   rb-fsevent (~> 0.9.0)
   rmagick (~> 2.13.1)
   rspec-rails (~> 2.8.1)
