@@ -6,8 +6,10 @@
     </p>
     <% if can? :create, Challenge %>
       <div id='challenge_content'>
+        <p>
         Can't find what you are looking for?
-        <%= link_to 'Submit a challenge', new_challenge_path  %>
+        <%= link_to 'Submit a challenge.', new_challenge_path  %>
+        </p>
       </div>
     <% end %>
   </div>

@@ -9,6 +9,13 @@ footer {
   .content {
     padding: 0;
     width: 940px;
+    position: relative;
+
+    #challenge_content {
+      position: absolute;
+      right: 5px;
+      top: -10px;
+    } 
   }
 
   p {
