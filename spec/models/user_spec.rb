@@ -100,4 +100,38 @@ describe User do
       subject.github_uid.should == "12345"
     end
   end
+
+  describe '#is_member_of' do
+    before do
+      @brigade = Factory :brigade
+    end
+
+    it 'returns a boolean indication wether the user is a member of the passed brigade' do
+      subject.is_member_of?(@brigade).should be_false
+      subject.join_brigade(@brigade)
+      subject.reload.is_member_of?(@brigade).should be_true
+    end
+  end
+
+  describe '#join_brigade' do
+    before do
+      @brigade = Factory :brigade
+    end
+    it 'should add the user to the brigade if the user is not already a member' do
+      subject.join_brigade(@brigade)
+      subject.reload.is_member_of?(@brigade).should be_true
+    end
+  end
+
+  describe '#leave_brigade' do
+    before do
+      @brigade = Factory :brigade
+    end
+    it 'should remove the user from the brigade if the user is a member' do
+      subject.join_brigade(@brigade)
+      subject.leave_brigade(@brigade)
+      subject.is_member_of?(@brigade).should be_false
+    end
+  end
+
 end

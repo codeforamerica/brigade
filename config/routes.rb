@@ -19,6 +19,11 @@ CodeForAmerica::Application.routes.draw do
       post :find
     end
 
+    member do
+      get :join
+      get :leave
+    end
+
     resources :deployed_applications, only: [:new, :create, :index], controller: 'brigades/deployed_applications'
   end
 

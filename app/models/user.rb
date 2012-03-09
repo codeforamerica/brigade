@@ -66,6 +66,19 @@ class User < ActiveRecord::Base
     self.last_name = split.last
   end
 
+  def is_member_of?(brigade)
+    self.brigades.include? brigade
+  end
+
+  def join_brigade(brigade)
+    brigade.users << self unless self.is_member_of?(brigade)
+  end
+
+  def leave_brigade(brigade)
+    user = brigade.users.find_by_id(id)
+    brigade.users.delete(user) if user
+  end
+
   alias :name :full_name
 
 end

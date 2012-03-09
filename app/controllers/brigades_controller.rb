@@ -1,4 +1,6 @@
 class BrigadesController < ApplicationController
+  before_filter :authenticate_user!, only: [:join, :leave]
+
   def find
     @brigade = Brigade.find_by_name params[:brigade]
 
@@ -21,5 +23,18 @@ class BrigadesController < ApplicationController
 
   def show
     @brigade = BrigadeDecorator.new(Brigade.find(params[:id]))
+  end
+
+  def join
+    @brigade = Brigade.find params[:id]
+    current_user.join_brigade(@brigade)
+    params[:redirect_uri] ||= brigade_path(@brigade)
+    redirect_to params[:redirect_uri]
+  end
+
+  def leave
+    @brigade = Brigade.find params[:id]
+    current_user.leave_brigade(@brigade)
+    redirect_to brigade_url(@brigade)
   end
 end

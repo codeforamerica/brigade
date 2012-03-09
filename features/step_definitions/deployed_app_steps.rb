@@ -154,3 +154,11 @@ Then /^I should see the last deployed application's name/ do
     da = DeployedApplication.last
     page.should have_content da.application.name
 end
+
+Then /^I click the button to join the brigade$/ do
+  click_on 'Join the brigade to get involved!'
+end
+
+Then /^I should see a message that I am a member of the brigade associated with this deploy$/ do
+  page.should have_content 'You are a member of '
+end
