@@ -26,7 +26,7 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <tr class="<%= cycle "odd", "even" %>">
+        <tr id="<%="user_#{user.id}"%>" class="<%= cycle "odd", "even" %>">
           <td><strong><%= user.full_name %></strong></td>
           <td><%= user.skill_list %></td>
           <td>

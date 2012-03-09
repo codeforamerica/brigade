@@ -4,7 +4,12 @@
   </h1>
 </header>
 
-<!--<%= render partial: "#{@filter_type}/deployed_applications_search_form" %>-->
+<div class="internal-search-box">
+  <%= form_tag find_locations_path do %>
+    <%= text_field_tag :location, nil, placeholder: "Search by Location" %>
+    <%= submit_tag 'Search' %>
+  <%end%>
+</div>
 
 <% if @deployed_applications.present? %>
   <table class="all-cities" cellpadding="4" id="sortable">

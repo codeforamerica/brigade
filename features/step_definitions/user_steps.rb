@@ -17,10 +17,6 @@ When /^I view all of the civic hackers$/ do
   click_on 'People'
 end
 
-Then /^I should be preseneted with a list of all the civic hackers$/ do
-  page.should have_content 'People hacking across the country'
-end
-
 When /^I search for all civic hackers who are working (?:on|with) "([^"]*)"$/ do |search_term|
   fill_in 'query', with: search_term
   click_on 'Search'

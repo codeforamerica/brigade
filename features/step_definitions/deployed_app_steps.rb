@@ -47,7 +47,7 @@ Then /^I should not see the following applications:$/ do |table|
 end
 
 When /^I filter the deployed apps to only those that have been deployed in "([^"]*)"$/ do |city|
-  fill_in 'City', with: city
+  fill_in 'location', with: city
   click_on 'Search'
 end
 
