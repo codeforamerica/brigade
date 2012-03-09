@@ -15,24 +15,26 @@
   <h3> There aren't any hackers that match that criteria! </h3>
 <% else %>
 
-  <table class="all-cities" cellpadding="4">
+  <table class="all-cities" cellpadding="4" id="sortable">
     <thead>
       <tr>
         <th>Name</th>
+        <th>Skil Set</th>
         <th>Location</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <% @users.each_with_index do |user, index| %>
-        <tr class="<%= index % 2 == 0 ? 'odd' : 'even' %>">
+      <% @users.each do |user| %>
+        <tr class="<%= cycle "odd", "even" %>">
           <td><strong><%= user.full_name %></strong></td>
+          <td><%= user.skill_list %></td>
           <td>
             <% if user.location_name.blank? %>
               None listed.
             <% else %>
             <%= link_to user.location_name, location_deployed_applications_url(user.location) if user.location.present?%>
-            <% end -%>
+            <% end %>
           </td>
           <td><%= link_to 'Show', user%></td>
       </tr>

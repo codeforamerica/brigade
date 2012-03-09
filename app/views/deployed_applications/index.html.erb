@@ -17,7 +17,7 @@
       </tr>
     </thead>
 
-    <%= render @deployed_applications %>
+    <%= render @deployed_applications, brigade_name: true %>
   </table>
 <%else%>
   <%= content_tag :h2, "There are no apps currently deployed" %>

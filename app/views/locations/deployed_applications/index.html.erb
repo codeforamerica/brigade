@@ -24,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= render partial: 'deployed_applications/deployed_application', collection: @deployed_applications %>
+      <%= render partial: 'deployed_applications/deployed_application', collection: @deployed_applications, locals: { brigade_name: true } %>
     </tbody>
   </table>
 <%else%>

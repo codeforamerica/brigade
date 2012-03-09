@@ -1,16 +1,22 @@
+<header class="page-id">
+  <h1><%= @brigade.name %><h1>
+</header>
+
 <div class="container-fluid">
   <div class="row-fluid">
     <!-- main -->
     <div id="leftcolumn" class="span8">
-      <hgroup class="app-title">
-        <h2><%= @brigade.name %><h2>
-        <h5></h5>
-        <div class="clear"></div>
-      </hgroup>
 
-      <h6>Deployed Applications</h6>
-      <table class='table-striped full'>
-        <%= render @brigade.deployed_applications %>
+      <table class="all-cities" cellpadding="4" id="sortable">
+        <thead>
+          <tr>
+            <th>App Name</th>
+            <th>Location</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <%= render @brigade.deployed_applications, brigade_name: false %>
       </table>
     </div>
 
