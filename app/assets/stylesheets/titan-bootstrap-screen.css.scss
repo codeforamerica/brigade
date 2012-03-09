@@ -96,6 +96,10 @@ section {
     5px 5px 0 darken($oatmeal, 20%)
   );
 
+  select {
+    width: 380px;
+  }
+
   h2 {
     text-align: center;
   }
@@ -190,6 +194,10 @@ hgroup.app-title {
   position: absolute;
   top: 40px;
   right: 15px;
+}
+
+.adjusted {
+  margin-top: 20px;
 }
 
 /* Styles for tables */
