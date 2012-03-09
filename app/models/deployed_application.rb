@@ -13,12 +13,4 @@ class DeployedApplication < ActiveRecord::Base
   validates :location_id, presence: true, uniqueness: { scope: [:brigade_id, :application_id], message: "Brigade has already deployed this app in this location" }
   validates :brigade, presence: true
   validates :application, presence: true
-
-  def self.search(query = nil)
-    if query
-      joins(:brigade, :application).where("brigades.name ILIKE ? OR applications.name ILIKE ?", "%#{query}%","%#{query}%" )
-    else
-      all
-    end
-  end
 end
