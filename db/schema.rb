@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307195230) do
+ActiveRecord::Schema.define(:version => 20120308234953) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20120307195230) do
     t.string "license"
     t.text   "civic_commons_description"
     t.text   "video_embed_code"
+    t.string "logo",                      :default => "("
   end
 
   create_table "brigades", :force => true do |t|

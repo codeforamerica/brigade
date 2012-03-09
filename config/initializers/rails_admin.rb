@@ -95,6 +95,9 @@ unless Rails.env == 'test'
         field :nid do
           label "Civic Commons Node ID"
         end
+        field :logo do
+          help "Please enter a single character. Logos are generated via the font found at thedesignoffice.org/project/modern-pictograms/"
+        end
         field :description
         field :video_embed_code
         field :repository_url
@@ -134,6 +137,7 @@ unless Rails.env == 'test'
         field :admin_note
       end
     end
+    #
     # My attempt to include managing tags in rails admin
     # If you create a Tag model that inerits the
     # ActsAsTaggableOn::Tag then it'll work but

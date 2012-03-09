@@ -19,7 +19,7 @@ class Applications::DeployedApplicationsController < DeployedApplicationsControl
       @deployed_application.brigade.users << current_user if @deployed_application.brigade.present?
       redirect_to @deployed_application, notice: 'The application was deployed successfully!'
     else
-      flash[:error] = 'The application could not be deployed'
+      flash[:alert] = 'The application could not be deployed'
 
       @location = Location.new
       @brigade = Brigade.new

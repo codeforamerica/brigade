@@ -8,6 +8,11 @@ describe DeployedApplication do
     subject.should be_valid
   end
 
+  it 'is not valid when the combination of application, location, and brigade is not unique' do
+    duplicate_deployed_application = DeployedApplication.create( application_id: subject.application_id, brigade_id: subject.brigade_id, location_id: subject.location_id )
+    duplicate_deployed_application.should_not be_valid
+  end
+
   describe 'self.search' do
 
     context 'when there were no search parameters passed into the search method' do
