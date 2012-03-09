@@ -25,7 +25,7 @@ Application.all.each do |app|
   end
 end
 
-user = User.create!(email: 'ryan@wearetitans.net', password: 'foobar', name: 'Ryan Castillo', skill_list: 'ruby, javascript, html')
+user = User.create!(email: 'ryan@wearetitans.net', password: 'foobar', first_name: 'Ryan', last_name: 'Castillo', skill_list: 'ruby, javascript, html')
 user.brigades << Brigade.first
 
 Location.all.each(&:geocode)
