@@ -2,7 +2,7 @@
   <div class="content">
     <p>
       Copyright &copy; <%= Date.today.year %> Code for America |
-      <%= link_to "Contact Us", "#" %>
+      <%= mail_to "brigade-info@codeforamerica.org", "Contact Us" %>
     </p>
     <% if can? :create, Challenge %>
       <div id='challenge_content'>

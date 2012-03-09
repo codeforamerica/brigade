@@ -41,48 +41,5 @@
         </tr>
         <% end %>
       </table>
-
-      <!--
-      <div class='span5'>
-        <div class='row'>
-          <h3 class='span2'>Name:</h3>
-          <div class='offset1'>
-            <%= @user.full_name %>
-          </div>
-        </div>
-
-        <div class='row'>
-          <h3 class='span2'>Public Contact:</h3>
-          <div class='offset1'>
-            <%= @user.contact_preference %>
-          </div>
-        </div>
-        <div class='row'>
-          <h3 class='span2'>Location:</h3>
-          <div class='offset1'>
-            <%= @user.location_name %>
-          </div>
-        </div>
-        <div class='row'>
-          <div class='span2'>
-            <h3 >Skill Set:</h3>
-          </div>
-          <div class='offset1'>
-            <%= @user.skill_set %>
-          </div>
-        </div>
-        <% if @user.brigades.any? %>
-          <div class='row'>
-            <div class='span2'>
-              <h3>Brigades:</h3>
-            </div>
-            <div class='offset1'>
-              <%= raw @user.brigades.map{|b| link_to b.name, brigade_url(b)}.join(', ') %>
-            </div>
-          </div>
-        <% end %>
-
-      </div>
-      -->
     </div>
 </div>
