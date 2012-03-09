@@ -1,11 +1,11 @@
-<div class='form-wrapper span5 offset3'>
+<div class="login-box">
 
   <h2>Sign in</h2>
 
-  <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-vertical' } do |form| %>
+  <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |form| %>
 
     <%= form.input :email, input_html: {class: 'span5'} %>
-    <%= form.input :password, input_html: {class: 'span5'} %>
+    <%= form.input :password, input_html: {class: 'span5'}  if @user.password_required? %>
 
     <%= form.submit 'Sign in', class: 'btn-large btn' %>
 
@@ -16,6 +16,9 @@
       <%end%>
     <% end %>
 
-    <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info' %>
+    <br/>
   <%end%>
+
+      <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info' %>
+
 </div>

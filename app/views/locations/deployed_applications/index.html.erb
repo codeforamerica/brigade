@@ -1,17 +1,20 @@
-<%= form_tag location_deployed_applications_path(@location), method: :get do %>
-  <%= text_field_tag :query %>
-  <%= submit_tag 'Search' %>
-<%end%>
+<div class="internal-search-box">
+  <%= form_tag location_deployed_applications_path(@location), method: :get do %>
+    <%= text_field_tag :query %>
+    <%= submit_tag 'Search' %>
+  <%end%>
+</div>
+
 
 <% if @deployed_applications.present? %>
-  <h2>The following deploys exist in <%= @location.name %></h2>
-  <table class='table-striped full'>
+  <h2>These apps have already been deployed in <%= @location.name %>...</h2>
+  <table class="all-apps" cellpadding="4" id="sortable">
     <thead>
       <tr>
         <th>Name</th>
         <th>Location</th>
         <th>Brigade Name</th>
-        <th></th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +29,7 @@
 <% if @applications_not_deployed.present? %>
   <br><br>
   <h2>Applications that have not yet been deployed in this location</h2>
-  <table class='table-striped full'>
+  <table class="all-apps">
     <thead>
       <tr>
         <th>Name</th>

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
   <head>
-    <title>CodeForAmerica</title>
+    <title>Code for America | <%= controller.controller_name.titleize %></title>
     <%= stylesheet_link_tag    'application', :media => 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= render partial: 'layouts/flashes' %>
     <%= render partial: 'shared/navigation' %>
-    <div class='container'>
+    <%= render partial: 'layouts/flashes' %>
+
+    <div class="content no-padding">
       <%= yield %>
     </div>
+    
     <%= render partial: 'shared/footer' %>
   </body>
 </html

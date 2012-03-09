@@ -1,4 +1,4 @@
-<%= content_tag_for(:tr, application) do %>
+<tr class="<%= cycle "odd", "even" %>", id="<%= "application_#{application.id}" %>">
   <td><%= application.name %></td>
-  <td><%= link_to 'Show App', application_url(application) %></td>
-<% end %>
+  <td><%= link_to 'Show App', :class => "show-button", application_url(application) %></td>
+</tr>

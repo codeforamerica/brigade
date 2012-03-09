@@ -1,10 +1,19 @@
 @import 'styling-dependencies';
 
+::selection {
+  background: #0072ac;
+  color: #fff;
+  }
+::-moz-selection {
+  background: #0072ac;
+  color: #fff;
+}
+
 /* Base Setup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 body {
-  background: $oatmeal url('/assets/noise.png');
+  background: #fff;
   font-size: small;
 }
 
@@ -19,6 +28,22 @@ body {
 
   &.has-columns {
     @include columns(2 20px);
+  }
+
+  &.no-padding { /* Well, not really *none*, but *less* */
+    padding: 20px 0 10px 0;
+    width: 940px;
+  }
+}
+
+header.page-id {
+  width: 940px;
+  margin: 0 auto 25px auto;
+  padding: 20px 0;
+  border-bottom: 1px solid $oatmeal;
+
+  h1 {
+    color: darken($oatmeal, 50%);
   }
 }
 
@@ -51,11 +76,31 @@ section {
 
   &.white {
     background: #fff;
-    margin-top: -20px;
+    margin-top: -12px;
     padding: 20px 0;
     border-bottom: 1px solid #b9b7b2;
   }
 }
+
+.login-box {
+  width: 380px;
+  margin: 20px auto;
+  padding: 0 20px 20px;
+  background: $oatmeal;
+  position: relative;
+  @include box-shadow(
+    1px 1px 0 darken($oatmeal, 20%),
+    2px 2px 0 darken($oatmeal, 20%),
+    3px 3px 0 darken($oatmeal, 20%),
+    4px 4px 0 darken($oatmeal, 20%),
+    5px 5px 0 darken($oatmeal, 20%)
+  );
+
+  h2 {
+    text-align: center;
+  }
+}
+
 
 /* Sizes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -114,19 +159,58 @@ hgroup.app-title {
   }
 }
 
+.internal-search-box {
+  width: 280px;
+  position: absolute;
+  top: -40px;
+  right: 0;
+}
+
 /* Styles for tables of apps */
-table.all-apps {
+.all-apps,
+.all-cities {
   width: 100%;
+  @include box-shadow(
+    1px 1px 0 darken($oatmeal, 20%),
+    2px 2px 0 darken($oatmeal, 20%),
+    3px 3px 0 darken($oatmeal, 20%),
+    4px 4px 0 darken($oatmeal, 20%),
+    5px 5px 0 darken($oatmeal, 20%)
+  );
+  margin-bottom: 20px;
+  border: 1px solid $oatmeal;
+
+  th {
+    text-align: left;
+    padding: 15px;
+    cursor: pointer;
+    background: url('/assets/sortNone.png') right center no-repeat;
+
+    &.headerSortUp {
+      background: url('/assets/sortUp.png') right center no-repeat;
+    }
+    &.headerSortDown {
+      background: url('/assets/sortDown.png') right center no-repeat;
+    }
+  }
 
   /* Table striping */
   tr.odd {
     td {
-      background: transparentize(darken($oatmeal, 5%), 0.5);
+      background: #e6e2dd;
     }
+  }
+  td.avatar {
+    font-family: 'ModernPictogramsNormal';
+    font-size: 36px;
+    text-align: center;
+    color: $mud;
   }
 
   tr {
+
     td {
+      padding: 10px 15px;
 
       .small-stats {
         color: darken($oatmeal, 40%);
@@ -157,12 +241,23 @@ table.all-apps {
   }
 }
 
+.stars {
+  width: 120px;
+  margin: 0 auto 20px auto;
+  font-family: 'ModernPictogramsNormal';
+  //color: #d7d7d7;
+  color: $truered;
+  font-size: 24px;
+  line-height: 20px;
+  text-align: center;
+}
+
 .show-button {
-  background: darken($oatmeal, 10%);
+  background: #d7d7d7;
   padding: 3px 6px 3px 30px;
   @include border-radius(3px);
   position: relative;
-  border: 1px solid darken($oatmeal, 30%);
+  border: 1px solid #999;
   @include box-shadow(0 1px 0 lighten($oatmeal, 5%) inset);
   text-shadow: 0 1px 0 $oatmeal;
   @include linear-gradient($oatmeal, darken($oatmeal, 13%));
@@ -182,7 +277,9 @@ table.all-apps {
     line-height: 21px;
   }
 
-  &:hover { text-decoration: none; }
+  &:hover { 
+    text-decoration: none; 
+  }
 }
 
 /* Styles for tiny stats table */

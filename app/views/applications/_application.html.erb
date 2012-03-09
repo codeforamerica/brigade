@@ -1,6 +1,6 @@
 <tr class="<%= cycle "odd", "even" %>", id="<%= "application_#{application.id}" %>">
-  <td>
-    <img src="/assets/avatars/avatar-3.png">
+  <td class="avatar">
+    *
   </td>
   <td>
     <h3><%= link_to application.name, application_path(application) %></h3>
@@ -14,4 +14,3 @@
   <!--Following line is Thomas's fix to Nick's code -->
   <td><%= link_to 'Show App', application_url(application), class: 'show-button' %></td>
 </tr>
-

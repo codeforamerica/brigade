@@ -1,16 +1,17 @@
 <header id="top-deck">
   <div class="content">
     <a href="/" class="logo"></a>
+
     <nav class="primary">
       <ul id="site-sections">
         <li data-desc="Welcome to Code for America" class="<%= 'active' if current_page?(root_path) %>">
           <%= link_to 'Home', root_path %>
         </li>
-        <li data-desc="See all available applications" class="<%= 'active' if current_page?(applications_path) %>">
-          <%= link_to 'Applications', applications_path %>
+        <li data-desc="See all available applications and deploy one in your community" class="<%= 'active' if current_page?(applications_path) %>">
+          <%= link_to 'Deployable Apps', applications_path %>
         </li>
-        <li data-desc="See all participating cities" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
-          <%= link_to 'Cities', deployed_applications_path(filter_by: 'locations') %>
+        <li data-desc="See all the apps currently in use, and help out with one" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
+          <%= link_to 'Deployed Apps', deployed_applications_path(filter_by: 'locations') %>
         </li>
         <li data-desc="Search for other civic hackers" class="<%= 'active' if current_page?(users_path) %>">
           <%= link_to 'People', users_path %>
@@ -18,11 +19,14 @@
       </ul>
       <span class="talker"></span>
     </nav>
+
     <nav class="admin">
       <ul>
         <%= display_session_links %>
       </ul>
     </nav>
+
     <div class="clear"></div>
+
   </div>
 </header>

@@ -19,36 +19,34 @@ header#top-deck {
     left: -10px;
     background: url('/assets/logo.png') center center no-repeat;
     margin-right: 20px;
+    clear: both;
   }
 
   nav {
-    overflow: hidden;
     color: transparentize(#fff, 0.4);
-    padding-bottom: 30px;
-    position: relative;
-    margin-top: -18px;
+    margin: 0 0 -40px -10px;
 
     .talker {
-      width: 94%;
-      background: darken($mud, 5%);
-      @include linear-gradient(darken($mud, 5%), $mud);
+      width: 390px;
       padding: 10px;
-      @include border-radius(5px);
+      @include border-radius(0 0 5px 5px);
       position: absolute;
-      bottom: 0;
+      top: 190px;
+      left: 20px;
       display: none;
       font-style: italic;
-      color: transparentize($oatmeal, 0.5);
+      color: $mud;
       font-family: $georgia;
+      line-height: 10px;
     }
 
     ul {
       list-style: none;
-      margin: 20px 0 10px 0;
+      margin: 0;
 
       li {
         float: left;
-        padding: 10px;
+        padding: 10px 10px 14px;
         cursor: pointer;
 
         a {
@@ -58,19 +56,32 @@ header#top-deck {
 
         &.active a {
           color: #0072ac;
+          background: #fff;
+          padding: 10px 10px 14px;
+          @include border-radius(5px 5px 0 0);
         }
 
         &:hover {
-          background: darken($mud, 5%);
-          @include border-radius(5px);
+          a {
+            color: #0072ac;
+          }
         }
       }
     }
+
     &.primary {
       float: left;
+      clear: both;
+
+      li {
+        font-size: 120%;
+      }
     }
+
     &.admin {
-      float: right;
+      position: absolute;
+      top: 30px;
+      right: 30px;
     }
   }
 }

@@ -1,5 +1,11 @@
 @import 'styling-dependencies';
 
+
+body {
+  background: $oatmeal url('/assets/noise.png');
+  font-size: small;
+}
+
 #three-up {
   width: 980px;
   margin: 0 auto 0 auto;
@@ -13,7 +19,7 @@
 
 #hacking-form{
   padding: 0;
-  margin: 0 auto 0 auto;
+  margin: 20px auto 0 auto;
 
   .wordbox {
     background: url('/assets/homepage-input-label.png') bottom center no-repeat;
@@ -30,21 +36,6 @@
     color: #0072ac;
     text-transform: none;
     text-align: center;
-  }
-
-  .stars {
-    width: 120px;
-    margin: 0 auto 20px auto;
-    font-family: 'ModernPictogramsNormal';
-    //color: #d7d7d7;
-    color: $truered;
-    font-size: 24px;
-    line-height: 20px;
-    text-align: center;
-
-    .big {
-      font-size: 34px;
-    }
   }
 
   .amp {

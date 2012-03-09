@@ -1,18 +1,23 @@
-<%= render partial: "#{@filter_type}/deployed_applications_search_form" %>
+<header class="page-id">
+  <h1>
+    Deployed Applications
+  </h1>
+</header>
+
+<!--<%= render partial: "#{@filter_type}/deployed_applications_search_form" %>-->
 
 <% if @deployed_applications.present? %>
-  <table class='table-striped full'>
+  <table class="all-cities" cellpadding="4" id="sortable">
     <thead>
       <tr>
         <th>Name</th>
         <th>Location</th>
         <th>Brigade Name</th>
-        <th></th>
+        <th>Action</th>
       </tr>
     </thead>
-    <tbody>
-      <%= render @deployed_applications %>
-    </tbody>
+
+    <%= render @deployed_applications %>
   </table>
 <%else%>
   <%= content_tag :h2, "There are no apps currently deployed" %>
