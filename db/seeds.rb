@@ -1,17 +1,10 @@
 # Production Data
-app_data =[ {id: '14133', name: 'Shareabouts', git: 'https://github.com/openplans/shareabouts'},
-            {id: '14387', name: 'Art Finder', git: 'https://github.com/codeforamerica/public_art_finder'},
-            {id: '13422', name: 'SnapFresh'},
-            {id: '13685', name: 'Look at Cook', git: 'https://github.com/open-city/Look-at-Cook'},
-            {id: '14012', name: 'SweepAround'},
-            {id: '14110', name: 'Open Data Catalog'},
-            {id: '13489', name: 'Open Data Kit'},
-            {id: '13465', name: 'Adopt a Hyrdrant',git: 'https://github.com/codeforamerica/adopt-a-hydrant'},
-            {id: '13744', name: 'Sheltr'},
-            {id: '13808', name: 'Chicago Buildings',git: 'https://github.com/derekeder/Chicago-Buildings'} ]
+app_data =[ {id: '14133', git: 'https://github.com/openplans/shareabouts'}, {id: '14387', git: 'https://github.com/codeforamerica/public_art_finder'},
+            {id: '13422'}, {id: '13685', git: 'https://github.com/open-city/Look-at-Cook'}, {id: '14012'}, {id: '14110'}, {id: '13489'},
+            {id: '13465', git: 'https://github.com/codeforamerica/adopt-a-hydrant'}, {id: '13744'}, {id: '13808', git: 'https://github.com/derekeder/Chicago-Buildings'} ]
 
 app_data.each do |app|
-  Application.create!(nid: app[:id], name: app[:name], repository_url: app[:git])
+  Application.create!(nid: app[:id], repository_url: app[:git])
 end
 
 # Test and Dev Data
@@ -32,7 +25,7 @@ Application.all.each do |app|
   end
 end
 
-user = User.create!(email: 'ryan@wearetitans.net', password: 'foobar', first_name: 'Ryan', last_name: 'Castillo', skill_list: 'ruby, javascript, html')
+user = User.create!(email: 'ryan@wearetitans.net', password: 'foobar', name: 'Ryan Castillo', skill_list: 'ruby, javascript, html')
 user.brigades << Brigade.first
 
 Location.all.each(&:geocode)
