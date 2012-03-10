@@ -1,12 +1,12 @@
-<h2>Forgot your password?</h2>
+<div class='login-box'>
+  <h2>Forgot your password?</h2>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "links" %>
+  <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |form| %>
+    <%= form.input :email, input_html: {class: 'span5'} %>
+    <%= form.submit "Send me reset password instructions", class: 'btn-large btn' %>
+  <% end %>
+  <hr>
+  <%= link_to 'Sign In', new_user_session_url, class: 'btn' %>
+  or
+  <%= link_to 'Sign Up', new_user_registration_url, class: 'btn' %>
+</div>
