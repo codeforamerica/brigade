@@ -17,9 +17,6 @@ Feature: A user views all civic hackers
       | First Test App  | Richmond, VA  | The Test Brigade |
      And I view all of the civic hackers
 
-  Scenario: User views all civic hackers
-    Then I should be preseneted with a list of all the civic hackers
-
   @wip
   Scenario: User searches for civic hackers based on Application name
    When I search for all civic hackers who are working on "First Test App"

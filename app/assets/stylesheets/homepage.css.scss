@@ -14,6 +14,11 @@ body {
     float: left;
     padding: 20px;
     width: 280px;
+
+    h3 {
+      color: $truered;
+      font-size: 120%;
+    }
   }
 }
 
@@ -62,6 +67,19 @@ body {
 
   input[type='submit']{
     margin: 0;
+  }
+}
+.complete-list-link {
+  width: 300px;
+  margin: auto;
+  padding-top: 20px;
+  text-align: center;
+
+  a.see-more {
+    font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+    color: #0072ac;
+    text-decoration: none;
+    font-size: 140%;
   }
 }
 

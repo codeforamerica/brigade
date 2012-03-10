@@ -8,13 +8,6 @@ $ ->
       type: "discrete"
       lineColor: "#2d4611"
 
-  #$('ul#user-grid li').mouseover ->
-  #  name = $(this).data('name')
-  #  $('#user-name').html(name)
-
-  #$('ul#user-grid li').mouseout ->
-  #  $('#user-name').html("")
-
   if $('#hacking_form #location').length > 0
     $('#hacking_form #location').autocomplete
       source: $('#hacking_form #location').data('autocomplete-source')
@@ -35,3 +28,7 @@ $ ->
   $('#app-flipper').scrollLeft(100);
 
   $('table#sortable').tablesorter()
+
+  setTimeout (->
+    $("#flash").slideUp()
+  ), 5000

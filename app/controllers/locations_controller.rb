@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   def find
-    @location = Location.find_by_name params[:location]
+    @location = Location.where("name ilike ?", "%#{params[:location]}%").first
 
     if @location
       redirect_to location_deployed_applications_path(@location)

@@ -1,10 +1,15 @@
 <footer>
   <div class="content">
-    <p>Copyright &copy; <%= Date.today.year %> Code for America</p>
+    <p>
+      Copyright &copy; <%= Date.today.year %> Code for America |
+      <%= mail_to "brigade-info@codeforamerica.org", "Contact Us" %>
+    </p>
     <% if can? :create, Challenge %>
       <div id='challenge_content'>
+        <p>
         Can't find what you are looking for?
-        <%= link_to 'Submit a challenge', new_challenge_path  %>
+        <%= link_to 'Submit a challenge.', new_challenge_path  %>
+        </p>
       </div>
     <% end %>
   </div>

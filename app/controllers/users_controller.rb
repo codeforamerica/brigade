@@ -28,10 +28,8 @@ class UsersController < ApplicationController
   end
 
   def index
-    session[:query] = params[:query] if params[:query]
-
     @search = User.search do
-      fulltext session[:query]
+      fulltext params[:query]
     end
 
     @users = @search.results

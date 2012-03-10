@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   scope :contactable, where(opt_in: true)
 
   searchable do
-    text :email
     text :first_name
     text :last_name
     text :skill_list

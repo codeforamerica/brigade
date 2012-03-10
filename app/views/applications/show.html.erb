@@ -8,7 +8,7 @@
         </h2>
         <h5>
           <% if can? :create, DeployedApplication %>
-            <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
+            <%= link_to new_application_deployed_application_path(@app), :class => "btn adjusted" do %>
               <span class="icon">(</span> Deploy This App
             <% end %>
           <% end %>
@@ -106,7 +106,7 @@
     markers[index].setMap(map)
   })
 
-  var latlngbounds = new google.maps.LatLngBounds( ); 
+  var latlngbounds = new google.maps.LatLngBounds( );
   for ( var i = 0; i < latlons.length; i++ )
   {
       latlngbounds.extend( latlons[ i ] );
