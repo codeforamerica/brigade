@@ -50,14 +50,14 @@
         <h4><span class="icon">O</span> Technical</h4>
 
         <ul class="unstyled">
-          <li><%= link_to "Github", @app.repository_url %></li>
-          <li>IRC Channel: <%= @app.irc_channel %></li>
-          <li>Twitter Hashtag: <%= @app.twitter_hashtag %></li>
-          <li>Creator: <%= @app.creator %></li>
-          <li>License: <%= @app.license %></li>
+          <li><span class='icon'>5</span>&nbsp;Github URL: <%= @app.repository_url_link %></li>
+          <li><span class='icon'>w</span>&nbsp;IRC Channel: <%= @app.irc_channel %></li>
+          <li><span class='icon'>U</span>&nbsp;Twitter Hashtag: <%= @app.twitter_hashtag %></li>
+          <li><span class='icon'>f</span>&nbsp;Creator: <%= @app.creator %></li>
+          <li><span class='icon'>K</span>&nbsp;License: <%= @app.license %></li>
         </ul>
 
-        <h4><span class="icon">f</span> People <span id="user-name"></span></h4>
+        <h4><span class="icon">g</span> People <span id="user-name"></span></h4>
 
         <%= @app.decorated_deployed_application_users %>
 

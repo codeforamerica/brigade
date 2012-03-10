@@ -96,4 +96,43 @@ class AppDecorator < ApplicationDecorator
     model.deployed_applications.count
   end
 
+  def repository_url_link
+    handle_none model.repository_url do
+      h.link_to 'Github repository', model.repository_url
+    end
+  end
+
+  def irc_channel
+    handle_none model.irc_channel do
+      model.irc_channel
+    end
+  end
+
+  def twitter_hashtag
+    handle_none model.twitter_hashtag do
+      model.twitter_hashtag
+    end
+  end
+
+  def creator
+    handle_none model.creator do
+      model.creator
+    end
+  end
+
+  def license
+    handle_none model.license do
+      model.license
+    end
+  end
+
+  private
+
+  def handle_none(value)
+    if value.present?
+      yield
+    else
+      h.content_tag :span, "None supplied", class: "none"
+    end
+  end
 end
