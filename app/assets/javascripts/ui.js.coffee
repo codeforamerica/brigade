@@ -27,7 +27,8 @@ $ ->
 
   $('#app-flipper').scrollLeft(100);
 
-  $('table#sortable').tablesorter()
+  if $('table#sortable').length > 0
+    $('table#sortable').tablesorter()
 
   setTimeout (->
     $("#flash").slideUp()

@@ -19,7 +19,7 @@
       <section id="app-flipper">
         <div class="shell">
 
-          <% AppDecorator.decorate(Application.all.take(9)).each do |application| %>
+          <% AppDecorator.decorate(Application.limit(9)).each do |application| %>
             <dl class="application-card">
               <dt class="icon"><%= application.logo %></dt>
               <dt>
@@ -37,7 +37,7 @@
                   <span class="label">Deploys</span>
                 </div>
               </dd>
-              <dd class="deploy-button"><%= link_to 'Show App', application_path(application) %></dd>
+              <dd class="deploy-button"><div class='inner'><%= link_to raw('<span class=link></span>Show App'), application_path(application) %></div></dd>
             </dl>
           <% end %>
         </div>
@@ -69,5 +69,8 @@
 
   <%= render 'shared/footer' %>
 
+  <script type='text/javascript'>
+    $(window).bind('unload', function(){})
+  </script>
 </body>
 </html>
