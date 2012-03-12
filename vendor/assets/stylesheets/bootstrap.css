@@ -1775,6 +1775,10 @@ table .span12 {
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
+.btn-regular {
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary.active,
