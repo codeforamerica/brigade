@@ -6,7 +6,6 @@
 
     <%= form.input :email, input_html: {class: 'span5'} %>
     <%= form.input :password, input_html: {class: 'span5'}  if @user.password_required? %>
-    <%= form.submit 'Sign in', class: 'btn-large btn' %>
 
     <% if devise_mapping.rememberable? %>
       <%= form.label :remember_me, class: 'checkbox', id: 'remember_me_checkbox' do %>
@@ -15,12 +14,17 @@
       <%end%>
     <% end %>
 
-    <br/>
+    <%= form.submit 'Sign in', class: 'btn-large btn-regular btn' %>
+    &nbsp;or&nbsp;
+    <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info btn' %>
   <%end%>
-  <hr>
-  <%= link_to "Sign in with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info' %>
   <div>
-    <br>
     <%= link_to 'forgot your password?' , new_user_password_url %>
   </div>
+  <hr>
+  <div class='pull-right'>
+    <i>don't have an account yet?</i>
+    <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-info' %>
+  </div>
+  <div class='clear'></div>
 </div>

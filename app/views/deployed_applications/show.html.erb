@@ -3,18 +3,12 @@
     <!-- main -->
     <div id="leftcolumn" class="span8">
       <hgroup class="app-title">
-        <div class='title'>
-          <h2><%= @deployed_application.name %> &rarr; forked from <%= link_to @deployed_application.application.name, application_url(@deployed_application.application) %></h2>
-          <h5>
-            <a class="btn" data-toggle="modal" href="#share">Share</a>
-            <%= render 'deployed_applications/social_network_modal' %>
-          </h5>
-          <div class='clear'></div>
-          <h4>
-            deployed by <%= link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade) %>
-            in <%= link_to @deployed_application.location.name, location_deployed_applications_url(@deployed_application.location) %>
-          </h4>
-        </div>
+        <h2 style='width: 100%'><%= @deployed_application.name %> &rarr; forked from <%= link_to @deployed_application.application.name, application_url(@deployed_application.application) %></h2>
+        <div class='clear'></div>
+        <h4>
+          deployed by <%= link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade) %>
+          in <%= link_to @deployed_application.location.name, location_deployed_applications_url(@deployed_application.location) %>
+        </h4>
         <div class="clear"></div>
       </hgroup>
 
@@ -48,7 +42,7 @@
         <h3>Info</h3>
         <h4><span class='icon'>Y</span> Get invlolved</h4>
         <p class='center'>
-          <%= link_to 'Join the brigade to get involved!', join_brigade_url(@deployed_application.brigade, redirect_uri: deployed_application_path(@deployed_application)), class: 'btn primary' if !can? :leave, @deployed_application.brigade%>
+          <%= link_to 'Join the brigade to get involved!', join_brigade_url(@deployed_application.brigade, redirect_uri: deployed_application_path(@deployed_application)), class: 'btn btn-regular primary' if !can? :leave, @deployed_application.brigade%>
           <%= raw("You are a member of the brigade #{link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade)} who is working on this applicaiton") if can? :leave, @deployed_application.brigade %>
         </p>
 
@@ -60,6 +54,14 @@
 
         <h4><span class="icon">f</span> People <span id="user-name"></span></h4>
         <%= BrigadeDecorator.new(@deployed_application.brigade).decorated_members %>
+
+        <h4><span class="icon">b</span> Share </h4>
+        <p><a class='btn btn-mini' href="http://www.facebook.com/dialog/feed?app_id=<%= SOCIAL_NETWORKS['facebook_app_id']%>&redirect_uri=http://www.facebook.com&display=popup" id="fb-control">Share with facebook</a></p>
+        <p>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-text='Check out this deployed application!' data-via="codeforamerica" data-size="small">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </p>
+        <%= render 'deployed_applications/social_network_modal' %>
 
         <h4><span class="icon">,</span> Deployed in</h4>
         <!-- minimap -->

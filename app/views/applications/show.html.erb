@@ -11,6 +11,11 @@
             <%= link_to new_application_deployed_application_path(@app), :class => "btn adjusted" do %>
               <span class="icon">(</span> Deploy This App
             <% end %>
+          <% elsif current_user == nil %>
+            <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
+              <span class="icon">(</span> Sign In or Sign Up to Deploy This App!
+            <% end %>
+
           <% end %>
         </h5>
         <div class="clear"></div>

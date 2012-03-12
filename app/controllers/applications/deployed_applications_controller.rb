@@ -1,5 +1,6 @@
 class Applications::DeployedApplicationsController < DeployedApplicationsController
   load_resource :application
+  before_filter :authenticate_user!, only: [:new]
 
   def new
     @deployed_application = @application.deployed_applications.build

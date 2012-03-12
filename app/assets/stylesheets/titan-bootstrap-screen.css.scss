@@ -38,7 +38,7 @@ body {
 
 header.page-id {
   width: 940px;
-  margin: 0 auto 25px auto;
+  margin: 0 auto 0px auto;
   padding: 20px 0;
   border-bottom: 1px solid $oatmeal;
 
@@ -162,13 +162,13 @@ hgroup.app-title {
 
   h2 {
     border: 0;
-    width: 75%;
+    width: 70%;
     float: left;
     margin-bottom: 0;
   }
   h5 {
     margin: 2px -10px 0 0;
-    width: 25%;
+    width: 30%;
     float: right;
   }
 }
@@ -573,4 +573,8 @@ ul.thumbnails {
 
 span.none {
   color: #888;
+}
+
+.auto-width{
+  width: auto !important;
 }

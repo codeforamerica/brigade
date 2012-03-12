@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     if user.admin?
       rails_admin_path
     else
-      user_path(user)
+      request.env['omniauth.origin'] || stored_location_for(user) || user_path(user)
     end
   end
 end
