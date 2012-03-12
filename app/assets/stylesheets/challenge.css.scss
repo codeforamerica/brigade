@@ -1,0 +1,50 @@
+@import 'styling-dependencies';
+
+#challenge-form{
+  padding: 0;
+  margin: 20px auto 0 auto;
+
+  .wordbox {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  h1 {
+    font-size: 525%;
+    color: $truered;
+  }
+
+  h3 {
+    font-size: 150%;
+    color: #0072ac;
+    text-transform: none;
+    text-align: center;
+  }
+
+  .amp {
+    font-family: Baskerville, Palatino, "Book Antiqua", serif;
+    font-style: italic;
+  }
+
+  input[type="text"]{
+    font-family: 'RockSaltRegular';
+    color: $mud;
+    border: 0;
+    border-bottom: 1px dashed $mud;
+    @include border-radius(0);
+    padding: 0;
+    width: 800px;
+    height: 58px;
+    font-size: 24px;
+    text-align: left;
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  input[type='submit']{
+    margin: 0;
+  }
+}

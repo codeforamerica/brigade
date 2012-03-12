@@ -4,11 +4,10 @@ class Challenge < ActiveRecord::Base
   belongs_to :location
 
   validates :purpose, presence: true
+  validates :location, presence: true
+
   validates :organization_name, presence: true
   validates :description, presence: true
-  validates :location, presence: true
-  validates :technology_platform_list, presence: true
-  validates :success_description, presence: true
 
   state_machine :status, initial: :submitted do
     state :submitted
