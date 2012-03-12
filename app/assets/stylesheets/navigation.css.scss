@@ -79,9 +79,20 @@ header#top-deck {
     }
 
     &.admin {
+      color: #222;
       position: absolute;
       top: 30px;
       right: 30px;
+      a{
+        cursor: pointer;
+      }
+      a.btn{
+        color: $lime;
+      }
+
+      a.btn-info{
+        color: #333;
+      }
     }
   }
 }
