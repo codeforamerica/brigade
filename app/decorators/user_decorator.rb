@@ -28,11 +28,15 @@ class UserDecorator < ApplicationDecorator
   end
 
   def as_link
+    raw_html = ''
     if user.opt_in?
-      h.mail_to user.email, gravatar_small
+      raw_html << h.mail_to(user.email, gravatar_small)
     else
-      gravatar_small
+      raw_html << gravatar_small
     end
+    raw_html << h.content_tag(:span, user.full_name + '&nbsp;(' + h.link_to('profile', h.user_url(user)) + ')', {class: 'hidden'})
+
+    return h.raw raw_html
   end
 
   private
