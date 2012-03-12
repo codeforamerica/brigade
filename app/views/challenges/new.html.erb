@@ -3,18 +3,21 @@
     <h1>
       I challenge
       <%= f.select :location_id, (Location.all.map { |location| [location.name, location.id] } << ['Add Location', 'Add Location']), {}, class: 'location-selector' %>
-      to
+      to...
+    <span class="wordbox">
+      <%= f.text_field :purpose, placeholder: 'do something cool' %>
+    </span>
     </h1>
-    <h1>
-      <div class="wordbox">
-        <%= f.text_field :purpose, placeholder: 'describe foo' %>.
-      </div>
-    </h1>
-  </div>
-    <div>
-      <h2>Please provide additional details</h2>
-      <%= f.text_field :organization_name, label: 'Organization (or Chapter) Name' %>
-      <%= f.text_field :description, label: 'Challenge' %>
+</div>
+<div class="stars">
+  ***
+</div>
+<div>
+  <h1>Please provide additional details</h1></br>
+    <%= f.label :organization_name, 'Organization (or Chapter) Name' %>
+    <%= f.text_field :organization_name, class: 'span12' %>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'span12' %>
     <%= f.submit %>
   <% end %>
 </div>
