@@ -55,6 +55,9 @@ GEM
     acts-as-taggable-on (2.2.2)
       rails (~> 3.0)
     addressable (2.2.6)
+    airbrake (3.0.9)
+      activesupport
+      builder
     arel (3.0.2)
     bbenezech-nested_form (0.0.5)
     bcrypt-ruby (3.0.1)
@@ -331,6 +334,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 2.2.2)
+  airbrake
   bourbon
   cancan (~> 1.6.7)
   capybara-webkit (~> 0.9.0)

@@ -66,6 +66,8 @@ gem 'state_machine', '~>1.1.2'
 # geocoder to geocode city/state pairs
 gem 'geocoder', '~> 1.1.1'
 
+gem 'airbrake'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
