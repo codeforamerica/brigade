@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  include Errship::Rescuers
+  include Errship::ActiveRecord::Rescuers
+
   protect_from_forgery
 
   rescue_from CanCan::AccessDenied do |exception|

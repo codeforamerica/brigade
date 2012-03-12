@@ -37,6 +37,9 @@ gem 'rails_autolink'
 # Kaminari for adding pagination
 gem 'kaminari', '~> 0.13.0'
 
+# Error messages
+gem 'errship', '~> 2.2.0'
+
 # Faraday to serve as middleware to perform requests on civic commons API
 gem 'faraday', '~> 0.7.6'
 gem 'faraday_middleware', '~> 0.8.4'
