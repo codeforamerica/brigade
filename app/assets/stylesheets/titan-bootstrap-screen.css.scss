@@ -366,21 +366,23 @@ ul.thumbnails {
     position: relative;
     cursor: pointer;
 
-    &:hover {
-      &:before {
-        width: 100px;
-        height: 95%;
-        font-family: 'ModernPictogramsNormal';
-        color: #fff;
-        font-size: 60px;
-        text-align: center;
-        line-height: 85px;
-        background: transparentize(#111, 0.4);
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: "y";
-        text-shadow: 0 2px 1px #000;
+    a {
+      &:hover {
+        &:before {
+          width: 100px;
+          height: 95%;
+          font-family: 'ModernPictogramsNormal';
+          color: #fff;
+          font-size: 60px;
+          text-align: center;
+          line-height: 85px;
+          background: transparentize(#111, 0.4);
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: "y";
+          text-shadow: 0 2px 1px #000;
+        }
       }
     }
 

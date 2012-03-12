@@ -29,7 +29,7 @@ class AppDecorator < ApplicationDecorator
       raw_html = '<ul class="thumbnails">'
         application.pictures.each do |pic|
           raw_html << '<li class="span2">'
-          raw_html << h.image_tag(pic.file_url(:thumb))
+          raw_html << h.link_to(h.image_tag(pic.file_url(:thumb)), pic.file_url)
           raw_html << '</li>'
         end
       raw_html << '</ul>'

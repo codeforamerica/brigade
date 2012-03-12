@@ -25,15 +25,17 @@
         <h6>About <%= @app.name %></h6>
         <p><%= @app.default_description %></p>
 
-        <h6><%= @app.name %> Media</h6>
+        <% unless @app.video_embed_code.nil? && @app.picture_gallary.nil? %>
+          <h6><%= @app.name %> Media</h6>
 
-        <div class="vid-embed-block">
-          <%= raw @app.video_embed_code %>
-        </div>
+          <div class="vid-embed-block">
+            <%= raw @app.video_embed_code %>
+          </div>
 
-        <div class="gallery-block">
-          <%= @app.picture_gallary %>
-        </div>
+          <div class="gallery-block">
+            <%= @app.picture_gallary %>
+          </div>
+        <% end %>
 
         <h6><%= @app.name %> Deployment Checklist</h6>
         <div class="task-list">
