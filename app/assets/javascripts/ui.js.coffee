@@ -33,3 +33,18 @@ $ ->
   setTimeout (->
     $("#flash").slideUp()
   ), 5000
+
+  $('ul#user-grid li').each ->
+    $(this).qtip
+      content:
+          text: $(this).text()
+      position:
+        my: 'bottom center'
+        at: 'top center'
+      style:
+        classes: 'ui-tooltip-light ui-tooltip-shadow'
+      show:
+        solo: true
+      hide:
+        fixed: true
+        delay: 500

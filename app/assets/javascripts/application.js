@@ -18,5 +18,6 @@
 //= require bootstrap
 //= require account_information
 //= require google_analytics
-//= require new_brigade_modal
+//= require jquery.qtip.min
+//
 //

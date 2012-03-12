@@ -7,4 +7,5 @@
  *= require footer
  *= require user-info
  *= require application-card
+ *= require jquery.qtip.min
 */
