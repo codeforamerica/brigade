@@ -2,7 +2,10 @@ module ApplicationHelper
 
   def display_session_links
     if current_user
-       (content_tag :li, (raw('Welcome, ' + link_to(current_user.full_name, user_url(current_user))))) << (content_tag :li, (link_to 'Sign Out', sign_out_path))
+       header = (content_tag :li, (raw('Welcome, ' + link_to(current_user.full_name, user_url(current_user)))))
+       header << (content_tag :li, raw(link_to('Admin', rails_admin_path))) if current_user.admin?
+       header << (content_tag :li, (link_to 'Sign Out', sign_out_path))
+       return header
     else
       # Use '<<' to concat the two links so that they're returned together
       (content_tag :li, (link_to 'Sign In', sign_in_path, class: 'btn btn-regular')) << (content_tag :li, (link_to 'Sign Up', new_user_registration_path, class: 'btn btn-info'))

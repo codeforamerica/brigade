@@ -12,10 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(user)
-    if user.admin?
-      rails_admin_path
-    else
-      request.env['omniauth.origin'] || stored_location_for(user) || user_path(user)
-    end
+    request.env['omniauth.origin'] || stored_location_for(user) || user_path(user)
   end
+
 end
