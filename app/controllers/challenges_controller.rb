@@ -20,4 +20,8 @@ class ChallengesController < ApplicationController
       render :new
     end
   end
+
+  def index
+    @challenges = Challenge.publicly_visible_challenges
+  end
 end

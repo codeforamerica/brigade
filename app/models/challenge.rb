@@ -20,4 +20,12 @@ class Challenge < ActiveRecord::Base
     state_machines[:status].states.map(&:name)
   end
 
+  def i_statement
+    "I challenge #{location.name} to #{purpose}."
+  end
+
+  def self.publicly_visible_challenges
+    Challenge.all.keep_if {|x| x.public_visibility == true}
+  end
+
 end

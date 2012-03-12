@@ -1,9 +1,8 @@
 <div id="challenge-form">
   <%= form_for @challenge do |f| %>
-    <h1>I challenge
-      <%= f.fields_for :location do |location_fields| %>
-        <%= location_fields.select :name_id, (Location.all.map { |location| [location.name, location.id] } << ['Add Location', 'Add Location']), {}, class: 'location-selector' %>
-      <% end %>
+    <h1>
+      I challenge
+      <%= f.select :location_id, (Location.all.map { |location| [location.name, location.id] } << ['Add Location', 'Add Location']), {}, class: 'location-selector' %>
       to
     </h1>
     <h1>

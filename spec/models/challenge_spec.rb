@@ -27,16 +27,6 @@ describe Challenge do
     subject.should_not be_valid
   end
 
-  it 'is not valid with an empty technology platform list' do
-    subject.technology_platform_list = ''
-    subject.should_not be_valid
-  end
-
-  it 'is not valid without a success description' do
-    subject.success_description = nil
-    subject.should_not be_valid
-  end
-
   context '#public_visibility' do
 
     it 'is false by default' do
@@ -51,4 +41,21 @@ describe Challenge do
     end
   end
 
+  context '#i_statement' do
+
+    it "is a combination of a challenge's location and purpose" do
+      subject.i_statement.should == "I challenge #{subject.location.name} to #{subject.purpose}."
+    end
+  end
+
+  context "#publicly_visible_challenges" do
+
+    it "is a list of challenges that are publicly visible" do
+      public_challenge_1 = FactoryGirl.create(:challenge, public_visibility: true)
+      public_challenge_2 = FactoryGirl.create(:challenge, public_visibility: true)
+      private_challenge = FactoryGirl.create(:challenge, public_visibility: false)
+
+      Challenge.publicly_visible_challenges.size.should == 2
+    end
+  end
 end
