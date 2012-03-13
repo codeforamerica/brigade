@@ -24,7 +24,9 @@
               <dt class="icon"><%= application.logo %></dt>
               <dt>
                 <strong>
-                  <%= application.name.truncate(20) %>
+                  <% unless application.name.empty? %>
+                    <%= application.name.truncate(20) %>
+                  <% end %>
                 </strong>
               </dt>
               <dd>
