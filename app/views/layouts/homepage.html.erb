@@ -24,7 +24,7 @@
               <dt class="icon"><%= application.logo %></dt>
               <dt>
                 <strong>
-                  <% unless application.name.empty? %>
+                  <% unless application.name.nil? %>
                     <%= application.name.truncate(20) %>
                   <% end %>
                 </strong>
