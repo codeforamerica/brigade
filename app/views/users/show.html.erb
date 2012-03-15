@@ -37,7 +37,7 @@
         <% if @user.brigades.any? %>
         <tr>
           <td class="prv-label">Brigades</td>
-          <td><%= raw @user.brigades.map{|b| link_to b.name, brigade_url(b)}.join(', ') %></td>
+          <td><%= raw @user.brigades.uniq.map{|b| link_to b.name, brigade_url(b)}.join(', ') %></td>
         </tr>
         <% end %>
       </table>

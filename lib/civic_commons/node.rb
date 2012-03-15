@@ -1,6 +1,7 @@
 require 'civic_commons/client'
 
 class CivicCommons::Node
+  attr_reader :body
 
   def initialize(node_id)
     @body = CivicCommons::Client.new.retrieve_node(node_id)

@@ -2,7 +2,7 @@ module CivicCommons
   class Client
 
     def initialize
-      @conn = Faraday.new 'http://marketplace.civiccommons.org/api/v1' do |builder|
+      @conn = Faraday.new 'http://civiccommons.org/api/v1' do |builder|
 
         # Uncomment if want to log to stdout
         # builder.response :logger
@@ -16,7 +16,11 @@ module CivicCommons
     def retrieve_node(node_id)
       resp = @conn.get "node/#{node_id}.json"
 
-      resp.body
+      if resp.env[:status] == 200
+        resp.body
+      else
+        nil
+      end
     end
 
     def retrieve_taxonomy_term(taxonomy_id)

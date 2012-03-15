@@ -6,16 +6,19 @@ class UpdateApplicationsFromCivicCommons
   def self.perform
     Application.all.each do |app|
       node_app = CivicCommons::Application.new(app.nid)
-      app.name = node_app.get_title
-      app.short_description = node_app.get_short_description
-      app.civic_commons_description = node_app.get_description
 
-      node_app_creator = CivicCommons::Creator.new(node_app.get_creator_nid)
-      app.creator = node_app_creator.get_title
+      if node_app.body
+        app.name = node_app.get_title
+        app.short_description = node_app.get_short_description
+        app.civic_commons_description = node_app.get_description
 
-      app.license = CivicCommons::TaxonomyTerm.new(node_app.get_license_tid).get_name
+        node_app_creator = CivicCommons::Creator.new(node_app.get_creator_nid)
+        app.creator = node_app_creator.get_title
 
-      app.save
+        app.license = CivicCommons::TaxonomyTerm.new(node_app.get_license_tid).get_name
+
+        app.save
+      end
     end
   end
 
