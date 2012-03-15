@@ -12,28 +12,7 @@
         <div class="clear"></div>
       </hgroup>
 
-      <h6>About <%= @app.name %></h6>
-      <p><%= @app.default_description %></p>
-
-      <h6><%= @app.name %> Media</h6>
-
-      <div class="vid-embed-block">
-        <%= raw @app.video_embed_code %>
-      </div>
-
-      <div class="gallery-block">
-        <%= @app.picture_gallary %>
-      </div>
-
-      <h6><%= @app.name %> Deployment Checklist</h6>
-      <div class="task-list">
-        <p>
-        The following items will need to be accomplished by teams
-        as part of deployment.
-        </p>
-        <%= @app.task_list %>
-      </div>
-
+      <%= render 'shared/application_body' %>
 
     </div>
 
@@ -98,5 +77,5 @@
     marker.setMap(map)
   })
 
-
+  map.setCenter( latlong );
 </script>
