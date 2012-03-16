@@ -28,10 +28,14 @@ class UsersController < ApplicationController
   end
 
   def index
-    @search = User.search do
-      fulltext params[:query]
-    end
+    if params[:query]
+      @search = User.search do
+        fulltext params[:query]
+      end
 
-    @users = @search.results
+      @users = @search.results
+    else
+      @users = User.all
+    end
   end
 end
