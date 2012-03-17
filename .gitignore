@@ -22,3 +22,5 @@
 
 #Ignore my local installation of solr
 solr/
+
+.DS_Store
