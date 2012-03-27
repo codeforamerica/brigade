@@ -19,7 +19,7 @@
     <div id="sidebar" class="span4">
       <div class="app-info">
         <h3>Info</h3>
-        <h4><span class='icon'>Y</span> Get invlolved</h4>
+        <h4><span class='icon'>Y</span> Get involved</h4>
         <p class='center'>
           <%= link_to 'Join the brigade to get involved!', join_brigade_url(@deployed_application.brigade, redirect_uri: deployed_application_path(@deployed_application)), class: 'btn btn-regular primary' if !can? :leave, @deployed_application.brigade%>
           <%= raw("You are a member of the brigade #{link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade)} who is working on this applicaiton") if can? :leave, @deployed_application.brigade %>
