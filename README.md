@@ -1,5 +1,5 @@
 # Code for America Brigade
-Help civic hackers colaborate
+Help civic hackers collaborate
 
 
 ## <a name="build"></a>Build Status
