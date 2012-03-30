@@ -61,7 +61,7 @@ CodeForAmerica::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { host: 'codeforamerica-staging.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'brigade.codeforamerica.org' }
 
   config.action_mailer.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
