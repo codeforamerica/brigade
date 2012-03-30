@@ -97,6 +97,8 @@ group :development, :test do
   gem 'haml-rails', '~> 0.3.4'
 
   gem 'sunspot_solr', '~> 1.3.0'
+
+  gem 'sqlite3'
 end
 
 group :test do
