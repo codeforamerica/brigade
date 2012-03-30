@@ -2,8 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.1'
 
-gem 'pg', '~> 0.12.1'
-
 #Devise for user registration and cancan for authorization
 gem 'devise', '~> 2.0.0'
 gem 'cancan', '~> 1.6.7'
@@ -79,6 +77,10 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :production do
+  gem 'pg', '~> 0.12.1'
 end
 
 group :development, :test do
