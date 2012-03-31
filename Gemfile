@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.1'
 
-#Devise for user registration and cancan for authorization
+# Devise for user registration and cancan for authorization
 gem 'devise', '~> 2.0.0'
 gem 'cancan', '~> 1.6.7'
 
-# Allow Devise to authenticate via github
+# allow Devise to authenticate via GitHub
 gem 'omniauth-github', '~> 1.0.1'
 
 # provide a comprehensive library of sass mixins
@@ -15,10 +15,10 @@ gem 'bourbon'
 # alternate HTTP server for Rack applications
 gem 'unicorn'
 
-#Simple form for better form management
+# Simple Form for better form management
 gem 'simple_form', '~> 2.0.0.rc'
 
-#Rails Admin for managing the database
+# Rails Admin for managing the database
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
 gem 'rails_admin_tag_list_field', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list_field.git'
 
@@ -29,7 +29,7 @@ gem 'draper', '~> 0.10.0'
 gem 'stamp', '~> 0.1.6'
 gem 'chronic', '~> 0.6.7'
 
-#for auto_link
+# for auto_link
 gem 'rails_autolink'
 
 # Kaminari for adding pagination
@@ -46,7 +46,7 @@ gem 'faraday_middleware', '~> 0.8.4'
 gem 'hashie', '~> 1.2.0'
 
 # CarrierWave for uploading files
-gem 'rmagick', '~> 2.13.1', :require => 'RMagick'
+gem 'rmagick', '~> 2.13.1', :require => 'RMagick' # requires http://www.imagemagick.org/script/download.php
 gem 'carrierwave', '~> 0.5.8'
 
 # fog for using Amazon S3 with carrierwave
@@ -55,15 +55,16 @@ gem 'fog', '~> 1.1.2'
 # acts as taggable for tagging user skills and app requirements
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
-#Sunspot for search with Solr
+# Sunspot for search with Solr
 gem 'sunspot_rails', '~> 1.3.0'
 
-# state_machine for adds support for creating state machines for attribute
+# state_machine adds support for creating state machines for attributes
 gem 'state_machine', '~>1.1.2'
 
 # geocoder to geocode city/state pairs
 gem 'geocoder', '~> 1.1.1'
 
+# Airbrake for collecting errors generated and aggregating them for review
 gem 'airbrake'
 
 # Gems used only for assets and not required
@@ -90,7 +91,7 @@ group :development, :test do
   gem 'pry', '~> 0.9.8'
   gem 'pry-remote', '~> 0.1.0'
 
-  #Factory girl for using factories instead of fixtures
+  # Factory girl for using factories instead of fixtures (simplified object creation)
   gem 'factory_girl_rails', '~> 1.6.0'
 
   # Gem haml-rails for generators
@@ -104,25 +105,26 @@ end
 group :test do
   gem 'database_cleaner', '~> 0.7.1'
 
-  #Spork
+  # Spork
   gem 'spork', '~> 0.9.0'
 
-  #Cucumber for better acceptance testing
+  # Cucumber for better acceptance testing
   gem 'cucumber-rails', '~> 1.2.1'
 
-  #Rspec for testing instead of test::unit
+  # Rspec for testing instead of test::unit
   gem "rspec-rails", '~> 2.8.1'
 
-  #Email spec for cucumber matchers for emails
+  # Email spec for cucumber matchers for emails
   gem 'email_spec', '~> 1.2.1'
 
+  # Lauchy for launching cross-platform applications
   gem 'launchy', '~> 2.0.5'
 
-  #VCR for recording transcations with webmock
+  # VCR for recording transcations with webmock
   gem 'webmock', '~> 1.7.10'
   gem 'vcr', '~> 1.11.3'
 
-  # Guard for file monitoring
+  # Guard for file monitoring (automated testing)
   gem 'rb-fsevent', '~> 0.9.0'
   gem 'guard', '~> 1.0.0'
   gem 'guard-bundler', '~> 0.1.3'
@@ -132,5 +134,6 @@ group :test do
   gem 'guard-livereload', '~> 0.4.0'
   gem 'guard-pow', '~> 0.2.1'
 
-  gem "capybara-webkit", '~> 0.9.0'
+  # Capybara driver using Webkit via QtWebkit
+  gem "capybara-webkit", '~> 0.9.0' # requires https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit
 end
