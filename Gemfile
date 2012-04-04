@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.1'
+gem 'rails', '~> 3.2.3'
 
 #Devise for user registration and cancan for authorization
 gem 'devise', '~> 2.0.0'
@@ -20,7 +20,7 @@ gem 'simple_form', '~> 2.0.0.rc'
 
 #Rails Admin for managing the database
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
-gem 'rails_admin_tag_list_field', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list_field.git'
+gem 'rails_admin_tag_list', :git => 'git://github.com/kryzhovnik/rails_admin_tag_list.git'
 
 # Draper for nice decorators for the views
 gem 'draper', '~> 0.10.0'
