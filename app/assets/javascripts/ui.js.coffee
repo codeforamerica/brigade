@@ -11,7 +11,9 @@ $ ->
   if $('#hacking_form #location').length > 0
     $('#hacking_form #location').autocomplete
       source: $('#hacking_form #location').data('autocomplete-source')
-
+			select: (event, ui) ->
+				$('form#hacking_form').submit()
+			
   $('input#location').focus()
 
   $('.deploy-button').click ->
