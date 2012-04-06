@@ -32,7 +32,9 @@ describe UserDecorator do
   describe '#skill_set' do
 
     it 'returns a comma separated string with user skills' do
-      subject.skill_set.should == 'ruby, foo, random'
+      subject.skill_set.should match /ruby/
+      subject.skill_set.should match /foo/
+      subject.skill_set.should match /random/
     end
 
   end

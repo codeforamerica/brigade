@@ -1,11 +1,11 @@
 <header class="page-id">
   <h1>
-    Deploy Apps
+    Create a challenge to deploy an app
   </h1>
 </header>
 
 <div class="login-box">
-  <%= content_tag :h2, "Deploy a new instance of #{@application}" %>
+  <%= content_tag :h2, "Create a challenge to deploy #{@application}" %>
 
   <%= render 'deployed_applications/form', url: application_deployed_applications_path(@application),  deployed_application: @deployed_application %>
 </div>
