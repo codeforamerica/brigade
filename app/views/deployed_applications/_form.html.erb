@@ -6,5 +6,5 @@
       <%= form.select 'brigade_id', unsorted_grouped_options_for_select({'Existing Brigades' => Brigade.all.map{|b| [b.name, b.id]}, 'Add your own' => ['Add Brigade']}, nil, 'Choose or create a brigade'), {}, {class: 'select required brigade-selector'} %>
     </div>
   </div>
-  <%= form.button :submit, 'Deploy This Application!', class: 'btn-large btn-primary' %>
+  <%= form.button :submit, 'Issue Challenge!', class: 'btn-large btn-primary' %>
 <%end%>
