@@ -2,8 +2,8 @@
 - !ruby/struct:VCR::HTTPInteraction
   request: !ruby/struct:VCR::Request
     method: :get
-    uri: http://marketplace.civiccommons.org:80/api/v1/taxonomy_term/91.json
-    body: 
+    uri: http://civiccommons.org:80/api/v1/taxonomy_term/91.json
+    body:
     headers:
       accept-encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
