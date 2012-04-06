@@ -25,6 +25,8 @@ db/test.sqlite3-journal
 /bundler_stubs
 /bin
 
-#Ignore my local installation of solr
+# Ignore my local installation of solr
 solr/
 
+# Ignore log folder
+/log
