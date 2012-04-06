@@ -1,4 +1,6 @@
-before_script: "bundle exec rake db:create db:schema:load"
+before_script:
+  - bundle exec rake db:create db:schema:load
+  - bundle exec rake sunspot:solr:start
 bundler_args: "--without assets:development:production"
 language: ruby
 rvm:
