@@ -108,7 +108,7 @@ group :test do
   gem 'spork', '~> 0.9.0'
 
   #Cucumber for better acceptance testing
-  gem 'cucumber-rails', '~> 1.2.1'
+  gem 'cucumber-rails', '~> 1.2.1', require: false
 
   #Rspec for testing instead of test::unit
   gem "rspec-rails", '~> 2.8.1'
