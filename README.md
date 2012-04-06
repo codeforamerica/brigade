@@ -25,6 +25,7 @@ You can see a running version of the application at
     rake db:migrate
 
 ## <a name="usage"></a>Usage
+    bundle exec rake sunspot:solr:start
     rails server
 
 
