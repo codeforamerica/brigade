@@ -135,7 +135,7 @@ timely fashion. If critical issues for a particular implementation exist at the
 time of a major release, support for that Ruby version may be dropped.
 
 ## Credits
-[We Are Titans](http://www.wearetitans.net).
+[We Are Titans](http://www.wearetitans.net), Norfolk, VA.
 
 ## <a name="copyright"></a>Copyright
 Copyright (c) 2012 Code for America. See [LICENSE][] for details.
