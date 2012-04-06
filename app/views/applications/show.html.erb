@@ -9,11 +9,11 @@
         <h5>
           <% if can? :create, DeployedApplication %>
             <%= link_to new_application_deployed_application_path(@app), :class => "btn adjusted" do %>
-              <span class="icon">(</span> Deploy This App
+              <span class="icon">(</span> Start a Deployment
             <% end %>
           <% elsif current_user == nil %>
             <%= link_to new_application_deployed_application_path(@app), :class => "btn" do %>
-              <span class="icon">(</span> Sign In or Sign Up to Deploy This App!
+              <span class="icon">(</span> Sign In or Sign Up to Start a Deployment
             <% end %>
 
           <% end %>

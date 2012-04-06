@@ -6,8 +6,13 @@
         <h2 style='width: 100%'><%= @deployed_application.name %> &rarr; forked from <%= link_to @deployed_application.application.name, application_url(@deployed_application.application) %></h2>
         <div class='clear'></div>
         <h4>
-          deployed by <%= link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade) %>
+          <%= link_to @deployed_application.brigade.name, brigade_url(@deployed_application.brigade) %>
           in <%= link_to @deployed_application.location.name, location_deployed_applications_url(@deployed_application.location) %>
+          <% if @deployed_application.deployed %>
+            has deployed this app
+          <% else %>
+            is deploying this app
+          <% end %>
         </h4>
         <div class="clear"></div>
       </hgroup>
