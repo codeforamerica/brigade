@@ -5,6 +5,9 @@ Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require "rails/application"
+  require 'simplecov'
+  SimpleCov.start 'rails'
+
   # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujutsu
   Spork.trap_method(Rails::Application, :reload_routes!)
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
