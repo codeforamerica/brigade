@@ -99,6 +99,7 @@ group :development, :test do
   gem 'sunspot_solr', '~> 1.3.0'
 
   gem 'sqlite3'
+  gem 'simplecov'
 end
 
 group :test do
