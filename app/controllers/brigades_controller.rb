@@ -22,7 +22,7 @@ class BrigadesController < ApplicationController
   end
 
   def index
-    @brigades = Brigade.all
+    @brigades = Brigade.all(:order => 'name')
   end
 
   def show
