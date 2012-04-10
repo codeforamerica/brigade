@@ -18,7 +18,14 @@ You can see a running version of the application at
 
 [demo]: http://brigade.codeforamerica.org/
 
+
+
 ## <a name="installation"></a>Installation
+capybara-webkit depends on a WebKit implementation from Qt, a cross-platform
+development toolkit. You'll need to download the Qt libraries to build and
+install the gem. You can find instructions for downloading and installing QT on
+the [capybara-webkit wiki](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)
+
     git clone git://github.com/codeforamerica/brigade.git
     cd brigade
     bundle install
