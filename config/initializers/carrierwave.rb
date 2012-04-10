@@ -12,11 +12,6 @@ CarrierWave.configure do |config|
   if Rails.env.production?
     config.fog_directory  = 'brigade-production'
   elsif Rails.env.test?
-    config.fog_credentials = {
-      :provider               => 'AWS',
-      :aws_access_key_id      => 'AKIAJM7D4ASWWMB6TOTA',
-      :aws_secret_access_key  => 'abc123'
-    }
     config.fog_directory  = 'brigade-test'
   else
     config.fog_directory  = 'brigade-dev'
