@@ -8,6 +8,15 @@ require 'rubygems'
 require 'spork'
 
 Spork.prefork do
+  require 'simplecov'
+  # SimpleCov.start 'rails'
+
+  require 'cucumber/rails'
+  require 'factory_girl/step_definitions'
+  require 'email_spec'
+  require 'email_spec/cucumber'
+  require "capybara/webkit"
+
   # Use of https://github.com/sporkrb/spork/wiki/Spork.trap_method-Jujutsu
   Spork.trap_method(Rails::Application, :reload_routes!)
   Spork.trap_method(Rails::Application::RoutesReloader, :reload!)
@@ -20,22 +29,18 @@ Spork.prefork do
   # Load all railties files
   Rails.application.railties.all { |r| r.eager_load! }
 
-  require 'cucumber/rails'
-  require 'email_spec/cucumber'
-
   # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
   # order to ease the transition to Capybara we set the default here. If you'd
   # prefer to use XPath just remove this line and adjust any selectors in your
   # steps to use the XPath syntax.
   Capybara.default_selector = :css
   Capybara.javascript_driver = :webkit
-
 end
 
 Spork.each_run do
   # By default, any exception happening in your Rails application will bubble up
-  # to Cucumber so that your scenario will fail. This is a different from how 
-  # your application behaves in the production environment, where an error page will 
+  # to Cucumber so that your scenario will fail. This is a different from how
+  # your application behaves in the production environment, where an error page will
   # be rendered instead.
   #
   # Sometimes we want to override this default behaviour and allow Rails to rescue
@@ -50,6 +55,9 @@ Spork.each_run do
   #
   ActionController::Base.allow_rescue = false
 
+  # reload FactoryGirl factories
+  FactoryGirl.reload
+
   # Remove/comment out the lines below if your app doesn't have a database.
   # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
   begin
@@ -59,7 +67,6 @@ Spork.each_run do
   end
 
   Before do
-
     unless $sunspot
       $sunspot = Sunspot::Rails::Server.new
       pid = fork do
@@ -76,18 +83,18 @@ Spork.each_run do
 
     User.remove_all_from_index!
   end
+
   # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
   # See the DatabaseCleaner documentation for details. Example:
   #
-  #   Before('@no-txn,@selenium,@culerity,@celerity,@javascript') do
+  #   Before('@no-txn,@selenium,@culerity,@celerity,@javascript @with_mysql2_failures') do
   #     DatabaseCleaner.strategy = :truncation, {:except => %w[widgets]}
   #   end
   #
-  #   Before('~@no-txn', '~@selenium', '~@culerity', '~@celerity', '~@javascript') do
+  #   Before('~@no-txn', '~@selenium', '~@culerity', '~@celerity', '~@javascript @with_mysql2_failures') do
   #     DatabaseCleaner.strategy = :transaction
   #   end
   #
-
   # Possible values are :truncation and :transaction
   # The :transaction strategy is faster, but might give you threading problems.
   # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
