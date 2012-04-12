@@ -66,6 +66,8 @@ gem 'geocoder', '~> 1.1.1'
 
 gem 'airbrake'
 
+gem 'pg'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -77,10 +79,6 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
-end
-
-group :production do
-  gem 'pg', '~> 0.12.1'
 end
 
 group :development, :test do
@@ -98,7 +96,6 @@ group :development, :test do
 
   gem 'sunspot_solr', '~> 1.3.0'
 
-  gem 'sqlite3'
   gem 'simplecov'
 
   #Rspec for testing instead of test::unit

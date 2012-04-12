@@ -19,6 +19,9 @@ db/test.sqlite3-journal
 /tmp
 .DS_Store
 
+# Ignore the config
+config/database.yml
+
 
 # Ignore bundler config
 /.bundle
