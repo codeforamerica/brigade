@@ -16,7 +16,6 @@ before_script:
   - bundle exec rake db:test prepare
   - bundle exec rake db:create db:migrate test
   - bundle exec rake sunspot:solr:start
-before_script: "./script/ci/before.sh"
 script: "bundle exec rake travis"
 
 notifications:
