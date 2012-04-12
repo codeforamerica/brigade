@@ -8,7 +8,6 @@ Feature: A user can define additional account information
   Background:
     Given I have registered for an account with "testman@example.com"
 
-  @javascript
   Scenario: A user can edit his account information
     When I edit my account information
     Then I see the updated information on my account page
@@ -20,3 +19,8 @@ Feature: A user can define additional account information
   Scenario: email is shown when user opts in to helping other civic hackers
     When I edit my email preferences
     Then I see a clickable "testman@example.com" on my account page
+
+  @javascript
+  Scenario: A user defines a new location via the Add Location option in the selct box
+    When I create a new location "Random Location" in the location select box
+    Then "Random Location" is available in the select box

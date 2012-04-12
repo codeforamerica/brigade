@@ -72,7 +72,7 @@ end
 When /^I choose to deploy "([^"]*)"$/ do |application_name|
   step "I visit the application \"#{application_name}\" page"
 
-  click_on "Deploy This App"
+  click_on "Start a Deployment"
 end
 
 Then /^I should be presented with a form that lets me deploy "([^"]*)"$/ do |application_name|
@@ -87,7 +87,7 @@ When /^I successfully deploy the application "([^"]*)"$/ do |application_name|
   select 'Norfolk, VA', from: 'deployed_application[location_id]'
   select 'Test Brigade', from: 'deployed_application[brigade_id]'
 
-  click_on 'Deploy This Application!'
+  click_on 'Issue Challenge!'
 end
 
 When /^I specify a new brigade "([^"]*)"$/ do |brigade_name|
@@ -105,7 +105,7 @@ When /^I specify a new brigade "([^"]*)"$/ do |brigade_name|
 
   select 'Norfolk, VA', from: 'deployed_application[location_id]'
 
-  click_on 'Deploy This Application!'
+  click_on 'Issue Challenge!'
 end
 
 When /^I unsuccessfully deploy the application "([^"]*)"$/ do |application_name|
@@ -113,7 +113,7 @@ When /^I unsuccessfully deploy the application "([^"]*)"$/ do |application_name|
 
   select 'Test Brigade', from: 'deployed_application[brigade_id]'
 
-  click_on 'Deploy This Application!'
+  click_on 'Issue Challenge!'
 end
 
 Then /^I should be informed that the application was not deployed$/ do
