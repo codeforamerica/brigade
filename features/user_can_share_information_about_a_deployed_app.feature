@@ -17,6 +17,4 @@ Feature: A user can share information about a deployed application with a social
     And I successfully deploy the application "First App"
 
   Scenario: User able to share to their social networks by clicking a button on the deployed app show page
-    When I click the button to share the deployed application
     Then I should be able to share with my facebook and twitter networks
-

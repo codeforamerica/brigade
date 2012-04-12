@@ -5,6 +5,9 @@ Feature: A user can issue a challenge
   I can issue a challenge to the CfA staff (admin)
   So that they can suggest an app for my needs or issue a request for the app to be developed
 
+  Background:
+    Given that the location "Random Location" has been defined
+
   @javascript
   Scenario: A user submits a form to issue a challenge
     Given I have registered for an account with "testman@example.com"
