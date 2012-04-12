@@ -52,12 +52,12 @@ describe UserDecorator do
 
     it 'returns a link to email the user if they have not opted out from being contacted' do
       subject.opt_in = true
-      subject.as_link.should == "<a href=\"mailto:#{subject.email}\">#{UserDecorator.new(subject).gravatar_small}</a>"
+      subject.as_link.should match /#{subject.email}/
     end
 
-    it 'returns an nil if the user has opted to not being contacted' do
+    it 'returns an no email if the user has opted to not being contacted' do
       subject.opt_in = false
-      subject.as_link.should == "#{UserDecorator.new(subject).gravatar_small}"
+      subject.as_link.should_not match /#{subject.email}/
     end
   end
 end
