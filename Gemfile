@@ -100,6 +100,9 @@ group :development, :test do
 
   gem 'sqlite3'
   gem 'simplecov'
+
+  #Rspec for testing instead of test::unit
+  gem "rspec-rails", '~> 2.8.1'
 end
 
 group :test do
@@ -110,9 +113,6 @@ group :test do
 
   #Cucumber for better acceptance testing
   gem 'cucumber-rails', '~> 1.2.1', require: false
-
-  #Rspec for testing instead of test::unit
-  gem "rspec-rails", '~> 2.8.1'
 
   #Email spec for cucumber matchers for emails
   gem 'email_spec', '~> 1.2.1'
