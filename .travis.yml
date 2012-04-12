@@ -1,11 +1,25 @@
-before_script:
-  - bundle exec rake db:create db:migrate test
-  - bundle exec rake sunspot:solr:start
-bundler_args: "--without assets:development:production"
+branches:
+  only:
+    - 'master'
+
 language: ruby
 rvm:
   - 1.9.2
   - 1.9.3
-script:
-  - bundle exec rake cucumber
-  - bundle exec rake spec
+
+env:
+  - DB=postgres BUILD_TYPE=other
+  - DB=postgres BUILD_TYPE=cucumber
+
+bundler_args: "--without development production heroku"
+before_script:
+  - bundle exec rake db:test prepare
+  - bundle exec rake db:create db:migrate test
+  - bundle exec rake sunspot:solr:start
+before_script: "./script/ci/before.sh"
+script: "bundle exec rake travis"
+
+notifications:
+  irc:
+    channels:
+      - 'irc.freenode.org:6667#codeforamerica'
