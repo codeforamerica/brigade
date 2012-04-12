@@ -103,12 +103,6 @@ group :development, :test do
 
   #Rspec for testing instead of test::unit
   gem "rspec-rails", '~> 2.8.1'
-
-  #Cucumber for better acceptance testing
-  gem 'cucumber-rails', '~> 1.2.1', require: false
-
-  #Email spec for cucumber matchers for emails
-  gem 'email_spec', '~> 1.2.1'
 end
 
 group :test do
@@ -116,6 +110,12 @@ group :test do
 
   #Spork
   gem 'spork', '~> 0.9.0'
+
+  #Cucumber for better acceptance testing
+  gem 'cucumber-rails', '~> 1.2.1', require: false
+
+  #Email spec for cucumber matchers for emails
+  gem 'email_spec', '~> 1.2.1'
 
   gem 'launchy', '~> 2.0.5'
 
