@@ -8,11 +8,11 @@
           <%= link_to 'Home', root_path %>
         </li>
         <li data-desc="See all available applications and deploy one in your community" class="<%= 'active' if current_page?(applications_path) %>">
-          <%= link_to 'Deployable Apps', applications_path %>
+          <%= link_to 'Applications', applications_path %>
         </li>
-        <li data-desc="See all the apps currently in use, and help out with one" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
+        <!--<li data-desc="See all the apps currently in use, and help out with one" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
           <%= link_to 'Deployed Apps', deployed_applications_path(filter_by: 'locations') %>
-        </li>
+        </li>-->
         <li data-desc="List of the different brigades" class="<%= 'active' if current_page?(brigades_path) %>">
           <%= link_to 'Brigades', brigades_path %>
         </li>
