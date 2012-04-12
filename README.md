@@ -26,6 +26,9 @@ development toolkit. You'll need to download the Qt libraries to build and
 install the gem. You can find instructions for downloading and installing QT on
 the [capybara-webkit wiki](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)
 
+You'll also need to install Imagemagick
+    brew install imagemagick
+
     git clone git://github.com/codeforamerica/brigade.git
     cd brigade
     bundle install
