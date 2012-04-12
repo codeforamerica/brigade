@@ -16,7 +16,7 @@
 
     &:before {
       width: 40px;
-      height: 290px;
+      height: 230px;
       content: "";
       position: absolute;
       z-index: 999;
@@ -26,7 +26,7 @@
     }
     &:after {
       width: 40px;
-      height: 290px;
+      height: 230px;
       content: "";
       position: absolute;
       z-index: 999;
@@ -61,7 +61,7 @@
   margin: 20px 20px 0 0;
   @include border-radius(5px);
   text-align: center;
-  min-height: 215px;
+  min-height: 150px;
   position: relative;
   width: 150px;
 
