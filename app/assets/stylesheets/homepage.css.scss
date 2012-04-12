@@ -8,7 +8,7 @@ body {
 
 #three-up {
   width: 980px;
-  margin: 0 auto 0 auto;
+  margin: 30px auto 0 auto;
 
   .column {
     float: left;
@@ -19,6 +19,10 @@ body {
       color: $truered;
       font-size: 120%;
     }
+		a {
+		color: #0072AC;
+		font-weight: bold;
+		}
   }
 }
 
@@ -37,7 +41,7 @@ body {
   }
 
   h3 {
-    font-size: 130%;
+    font-size: 145%;
     color: #0072ac;
     text-transform: none;
     text-align: center;
@@ -110,7 +114,7 @@ ul.ui-autocomplete {
 }
 
 img.home_three {
-  height: 100px;
+  height: 80px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
