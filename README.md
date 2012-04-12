@@ -1,5 +1,5 @@
 # Code for America Brigade
-Help civic hackers colaborate
+Help civic hackers collaborate
 
 
 ## <a name="build"></a>Build Status
@@ -18,13 +18,24 @@ You can see a running version of the application at
 
 [demo]: http://brigade.codeforamerica.org/
 
+
+
 ## <a name="installation"></a>Installation
+capybara-webkit depends on a WebKit implementation from Qt, a cross-platform
+development toolkit. You'll need to download the Qt libraries to build and
+install the gem. You can find instructions for downloading and installing QT on
+the [capybara-webkit wiki](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)
+
+You'll also need to install Imagemagick
+    brew install imagemagick
+
     git clone git://github.com/codeforamerica/brigade.git
     cd brigade
     bundle install
     rake db:migrate
 
 ## <a name="usage"></a>Usage
+    bundle exec rake sunspot:solr:start
     rails server
 
 
@@ -132,6 +143,9 @@ run and pass on that implementation. When something breaks on your
 implementation, you will be personally responsible for providing patches in a
 timely fashion. If critical issues for a particular implementation exist at the
 time of a major release, support for that Ruby version may be dropped.
+
+## Credits
+[We Are Titans](http://www.wearetitans.net), Norfolk, VA.
 
 ## <a name="copyright"></a>Copyright
 Copyright (c) 2012 Code for America. See [LICENSE][] for details.

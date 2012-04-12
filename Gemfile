@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.1'
-
-gem 'pg', '~> 0.12.1'
+gem 'rails', '~> 3.2.3'
 
 #Devise for user registration and cancan for authorization
 gem 'devise', '~> 2.0.0'
@@ -22,7 +20,7 @@ gem 'simple_form', '~> 2.0.0.rc'
 
 #Rails Admin for managing the database
 gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
-gem 'rails_admin_tag_list_field', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list_field.git'
+gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list.git'
 
 # Draper for nice decorators for the views
 gem 'draper', '~> 0.10.0'
@@ -81,6 +79,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  gem 'pg', '~> 0.12.1'
+end
+
 group :development, :test do
 
   # Pry is a nice drop in for irb, which allows for debugging
@@ -95,6 +97,9 @@ group :development, :test do
   gem 'haml-rails', '~> 0.3.4'
 
   gem 'sunspot_solr', '~> 1.3.0'
+
+  gem 'sqlite3'
+  gem 'simplecov'
 end
 
 group :test do
@@ -104,7 +109,7 @@ group :test do
   gem 'spork', '~> 0.9.0'
 
   #Cucumber for better acceptance testing
-  gem 'cucumber-rails', '~> 1.2.1'
+  gem 'cucumber-rails', '~> 1.2.1', require: false
 
   #Rspec for testing instead of test::unit
   gem "rspec-rails", '~> 2.8.1'

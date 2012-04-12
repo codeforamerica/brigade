@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308234953) do
+ActiveRecord::Schema.define(:version => 20120406205543) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -58,10 +58,11 @@ ActiveRecord::Schema.define(:version => 20120308234953) do
 
   create_table "deployed_applications", :force => true do |t|
     t.integer  "application_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "brigade_id"
     t.integer  "location_id"
+    t.boolean  "deployed",       :default => false
   end
 
   create_table "locations", :force => true do |t|
@@ -81,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20120308234953) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end

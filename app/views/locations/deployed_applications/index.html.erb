@@ -1,6 +1,6 @@
 <header class="page-id">
   <h1>
-    Deployed Applications
+    <%= @location.name %>
   </h1>
 </header>
 
@@ -13,11 +13,12 @@
 
 
 <% if @deployed_applications.present? %>
-  <h2>These apps have already been deployed in <%= @location.name %>...</h2>
+  <h2>Join these Brigades to participate in what's already happening <%= @location.name %>:</h2>
   <table class="all-apps" cellpadding="4" id="sortable">
     <thead>
       <tr>
         <th>Name</th>
+        <th>Status</th>
         <th>Location</th>
         <th>Brigade Name</th>
         <th>Action</th>
@@ -34,7 +35,7 @@
 
 <% if @applications_not_deployed.present? %>
   <br><br>
-  <h2>Applications that have not yet been deployed in this location</h2>
+  <h2>Commit to deploying one of these apps not found in <%= @location.name %>:</h2>
   <table class="all-apps">
     <thead>
       <tr>

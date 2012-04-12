@@ -41,7 +41,7 @@ class AppDecorator < ApplicationDecorator
   def task_list
     unless application.tasks.empty?
       raw_html = '<ul class="check-boxes unstyled">'
-      application.tasks.each do |task|
+      application.tasks(:order => 'id').each do |task|
         raw_html << "<li>#{task.description}<span class=\"check-this green\">%</span></li>"
       end
       raw_html << '</ul>'

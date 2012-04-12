@@ -21,6 +21,10 @@ class BrigadesController < ApplicationController
     end
   end
 
+  def index
+    @brigades = Brigade.all(:order => 'name')
+  end
+
   def show
     @brigade = BrigadeDecorator.new(Brigade.find(params[:id]))
   end

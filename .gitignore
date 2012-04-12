@@ -6,19 +6,25 @@
 
 # Ignore bundler config
 /.bundle
-/bundler_stubs
-/bin
 
-/config/database.yml
+# Include SimpleCov directory
+/coverage
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+db/test.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
 /log
 /tmp
+.DS_Store
 
-.sass-cache/
+
+# Ignore bundler config
+/.bundle
+/bundler_stubs
+vendor/bundle
+/bin
 
 #Ignore my local installation of solr
 solr/
