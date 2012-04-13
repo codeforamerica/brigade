@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "Start Xvfb"
+sh -e /etc/init.d/xvfb start
+
+
 # Create a database.yml for the right database
 echo "Setting up database.yml for $DB"
 cp config/database.yml.example config/database.yml
