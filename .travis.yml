@@ -13,8 +13,7 @@ env:
 
 bundler_args: "--without development production heroku"
 before_script:
-  - bundle exec rake db:test:prepare
-  - bundle exec rake db:create db:migrate test
+  - "./script/ci/before.sh"
   - bundle exec rake sunspot:solr:start
 script: "bundle exec rake travis"
 
