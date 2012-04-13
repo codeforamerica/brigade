@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
   <title>The Code for America Brigade</title>
-	<meta name="description" content="The Code for America Brigade connects passionate technologists in their communities to work together to deploy reusable civic apps.">
+  <meta name="description" content="The Code for America Brigade connects passionate technologists in their communities to work together to deploy reusable civic apps.">
   <%= stylesheet_link_tag 'home', :media => 'all' %>
   <%= javascript_include_tag 'home' %>
   <%= csrf_meta_tags %>
@@ -16,25 +16,21 @@
       <%= yield %>
     </div>
 
-	  <section id="three-up">
-
-	    <div class="column">
-				<img src="/assets/apps.png" class="home_three">
-	      <p>Pick from a nearly of dozen fun, useful, and reusable civic apps and challenge your city to deploy them. (And we've even got instructions to make it easy.) <a href="/applications">Check them out.</a></p>
-	    </div>
-	    <div class="column">
-				<img src="/assets/people.png" class="home_three">
-	      <p>Recruit your friends and neighbors in your community to join the brigade, work together, and share skills (and pizza too) to get the app up and running. <a href="/brigades">Find a brigade.</a></p>
-	    </div>
-	    <div class="column">
-				<img src="/assets/geo.png" class="home_three">
-	      <p>Put your city on the map by deploying an app, and you'll be able to learn from and connect to the growing national network of civic leaders.<br /><a href="/users">See who's in.</a></p>
-	    </div>
-
-	    <div class="clear"></div>
-
-	  </section>
-	
+    <section id="three-up">
+    <div class="column">
+      <img src="/assets/apps.png" class="home_three">
+      <p>Pick from a nearly of dozen fun, useful, and reusable civic apps and challenge your city to deploy them. (And we've even got instructions to make it easy.) <a href="/applications">Check them out.</a></p>
+    </div>
+    <div class="column">
+      <img src="/assets/people.png" class="home_three">
+      <p>Recruit your friends and neighbors in your community to join the brigade, work together, and share skills (and pizza too) to get the app up and running. <a href="/brigades">Find a brigade.</a></p>
+    </div>
+    <div class="column">
+      <img src="/assets/geo.png" class="home_three">
+      <p>Put your city on the map by deploying an app, and you'll be able to learn from and connect to the growing national network of civic leaders.<br /><a href="/users">See who's in.</a></p>
+    </div>
+    <div class="clear"></div>
+    </section>
     <div class="complete-list-link">
       <span class="stars">*</span>
       <%= link_to "Featured Applications", applications_path, :class => "see-more" %>
