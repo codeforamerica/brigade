@@ -54,11 +54,11 @@ describe Application do
       VCR.use_cassette(:s3_file_save) { @app_with_pics = FactoryGirl.create(:application_with_four_pictures) }
     end
 
-    it 'should be valid with multiple pictures' do
+    pending it 'should be valid with multiple pictures' do
       @app_with_pics.should be_valid
     end
 
-    it 'should not be valid with more than four pictures' do
+    pending it 'should not be valid with more than four pictures' do
       VCR.use_cassette(:s3_file_save) { @app_with_pics.pictures.create(file: File.open("#{Rails.root}/app/assets/images/rails.png")) }
       @app_with_pics.should_not be_valid
     end
