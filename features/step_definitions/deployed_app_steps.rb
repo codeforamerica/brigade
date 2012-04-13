@@ -15,8 +15,6 @@ When /^I view all of the apps by "([^"]*)"$/ do |type|
 
   if type == 'Brigade'
     click_on 'Brigades'
-  else
-    click_on 'Deployed Apps'
   end
 end
 

@@ -12,5 +12,3 @@ Feature: Anyone can see an app show page
         | Second App |
         | Third App  |
         | Fourth App |
-      Then I can see the "First App" page after followwing the "Deployable Apps" link
-      Then I can see the number of deploys that the application has

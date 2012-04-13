@@ -13,10 +13,3 @@ Feature: Anyone can see the app directory
         | Third App  |
         | Fourth App |
       And I am on the homepage
-     When I follow the "Deployable Apps" link
-     Then I see a directory of the following apps
-        | Name       |
-        | First App  |
-        | Second App |
-        | Third App  |
-        | Fourth App |
