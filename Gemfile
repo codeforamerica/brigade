@@ -130,5 +130,5 @@ group :test do
   gem 'guard-livereload', '~> 0.4.0'
   gem 'guard-pow', '~> 0.2.1'
 
-  gem "capybara-webkit", '~> 0.9.0'
+  gem 'capybara-webkit', '~> 0.11.0'
 end
