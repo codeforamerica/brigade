@@ -9,7 +9,6 @@ rvm:
 
 env:
   - DB=postgres BUILD_TYPE=other
-  - DB=postgres BUILD_TYPE=cucumber
 
 bundler_args: "--without development production heroku"
 before_script: "./script/ci/before.sh"
