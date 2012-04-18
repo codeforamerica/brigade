@@ -31,3 +31,6 @@ vendor/bundle
 
 #Ignore my local installation of solr
 solr/
+
+#Ignore PG Database pulls
+*.dat
