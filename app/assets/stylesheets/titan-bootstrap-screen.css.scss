@@ -582,3 +582,19 @@ span.none {
 .auto-width{
   width: auto !important;
 }
+
+h2.pages {
+  padding-bottom: 0px;
+}
+
+ul.pages {
+  margin-bottom: 10px;
+}
+
+ul.pages li, ol.pages li {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size: 120%;
+  line-height: 1.4em;
+  color: #555;
+  margin-top: 10px;
+}
