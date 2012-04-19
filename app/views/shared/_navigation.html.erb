@@ -19,6 +19,9 @@
         <li data-desc="Search for other civic hackers" class="<%= 'active' if current_page?(users_path) %>">
           <%= link_to 'People', users_path %>
         </li>
+        <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(about_path) %>">
+          <%= link_to 'About', '/about' %>
+        </li>
       </ul>
       <span class="talker"></span>
     </nav>
