@@ -19,7 +19,7 @@ gem 'unicorn'
 gem 'simple_form', '~> 2.0.0.rc'
 
 #Rails Admin for managing the database
-gem "rails_admin", :git => "git://github.com/sferik/rails_admin.git"
+gem 'rails_admin'
 gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list.git'
 
 # Draper for nice decorators for the views
