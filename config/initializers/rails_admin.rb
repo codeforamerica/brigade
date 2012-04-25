@@ -103,6 +103,7 @@ unless Rails.env == 'test'
         field :repository_url
         field :irc_channel
         field :twitter_hashtag
+        field :mailing_list
         field :pictures
         field :tasks
       end
@@ -110,12 +111,12 @@ unless Rails.env == 'test'
       # Hiding these attributes by default since name, creator, short_description
       # license, and civic_commons_description are managed by the job that retrieves
       # data from civic commons
-      #     configure :id, :integer 
-      #     configure :creator, :string 
-      #     configure :short_description, :string 
-      #     configure :license, :string 
+      #     configure :id, :integer
+      #     configure :creator, :string
+      #     configure :short_description, :string
+      #     configure :license, :string
       #     configure :civic_commons_description, :text   #   # Sections:
-      #     configure :deployed_applications, :has_many_association 
+      #     configure :deployed_applications, :has_many_association
       #     configure :participating_brigades, :has_many_association   #   # Found columns:
     end
 
@@ -159,11 +160,11 @@ unless Rails.env == 'test'
     # config.model Brigade do
     #   # Found associations:
     #     configure :deployed_applications, :has_many_association   #   # Found columns:
-    #     configure :id, :integer 
-    #     configure :deployed_application_id, :integer 
-    #     configure :name, :string 
-    #     configure :created_at, :datetime 
-    #     configure :updated_at, :datetime 
+    #     configure :id, :integer
+    #     configure :deployed_application_id, :integer
+    #     configure :name, :string
+    #     configure :created_at, :datetime
+    #     configure :updated_at, :datetime
     #     configure :group_url, :string   #   # Sections:
     #   list do; end
     #   export do; end
@@ -174,11 +175,11 @@ unless Rails.env == 'test'
     # end
     # config.model DeployedApplication do
     #   # Found associations:
-    #     configure :application, :belongs_to_association 
+    #     configure :application, :belongs_to_association
     #     configure :brigade, :has_one_association   #   # Found columns:
-    #     configure :id, :integer 
-    #     configure :application_id, :integer         # Hidden 
-    #     configure :created_at, :datetime 
+    #     configure :id, :integer
+    #     configure :application_id, :integer         # Hidden
+    #     configure :created_at, :datetime
     #     configure :updated_at, :datetime   #   # Sections:
     #   list do; end
     #   export do; end
@@ -190,8 +191,8 @@ unless Rails.env == 'test'
     # config.model Task do
     #   # Found associations:
     #     configure :application, :belongs_to_association   #   # Found columns:
-    #     configure :id, :integer 
-    #     configure :description, :text 
+    #     configure :id, :integer
+    #     configure :description, :text
     #     configure :application_id, :integer         # Hidden   #   # Sections:
     #   list do; end
     #   export do; end
@@ -206,24 +207,24 @@ unless Rails.env == 'test'
     #    field :skills
     #  end
     #   # Found associations:
-    #     configure :taggings, :has_many_association         # Hidden 
-    #     configure :base_tags, :has_many_association         # Hidden 
-    #     configure :skills, :has_many_association         # Hidden 
+    #     configure :taggings, :has_many_association         # Hidden
+    #     configure :base_tags, :has_many_association         # Hidden
+    #     configure :skills, :has_many_association         # Hidden
     #     configure :skill_taggings, :has_many_association         # Hidden   #   # Found columns:
     #   # Found columns:
-    #     configure :id, :integer 
-    #     configure :email, :string 
-    #     configure :password, :password         # Hidden 
-    #     configure :password_confirmation, :password         # Hidden 
-    #     configure :reset_password_token, :string         # Hidden 
-    #     configure :reset_password_sent_at, :datetime 
-    #     configure :remember_created_at, :datetime 
-    #     configure :sign_in_count, :integer 
-    #     configure :current_sign_in_at, :datetime 
-    #     configure :last_sign_in_at, :datetime 
-    #     configure :current_sign_in_ip, :string 
-    #     configure :last_sign_in_ip, :string 
-    #     configure :created_at, :datetime 
+    #     configure :id, :integer
+    #     configure :email, :string
+    #     configure :password, :password         # Hidden
+    #     configure :password_confirmation, :password         # Hidden
+    #     configure :reset_password_token, :string         # Hidden
+    #     configure :reset_password_sent_at, :datetime
+    #     configure :remember_created_at, :datetime
+    #     configure :sign_in_count, :integer
+    #     configure :current_sign_in_at, :datetime
+    #     configure :last_sign_in_at, :datetime
+    #     configure :current_sign_in_ip, :string
+    #     configure :last_sign_in_ip, :string
+    #     configure :created_at, :datetime
     #     configure :updated_at, :datetime   #   # Sections:
     #   list do; end
     #   export do; end
