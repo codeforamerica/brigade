@@ -13,6 +13,8 @@ CarrierWave.configure do |config|
     config.fog_directory  = 'brigade-production'
   elsif Rails.env.test?
     config.fog_directory  = 'brigade-test'
+  elsif Rails.env.staging?
+    config.fog_directory = 'brigade-staging'
   else
     config.fog_directory  = 'brigade-dev'
   end
