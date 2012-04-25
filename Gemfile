@@ -125,7 +125,7 @@ group :test do
   gem 'guard', '~> 1.0.0'
   gem 'guard-bundler', '~> 0.1.3'
   gem 'guard-cucumber', '~> 0.7.5'
-  gem 'guard-rspec', '~> 0.6.0'
+  gem 'guard-rspec', '~> 0.7.0'
   gem 'guard-spork', '~> 0.5.2'
   gem 'guard-livereload', '~> 0.4.0'
   gem 'guard-pow', '~> 0.2.1'
