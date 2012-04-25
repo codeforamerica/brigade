@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120406205543) do
+ActiveRecord::Schema.define(:version => 20120425211114) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120406205543) do
     t.text   "civic_commons_description"
     t.text   "video_embed_code"
     t.string "logo",                      :default => "("
+    t.string "mailing_list"
   end
 
   create_table "brigades", :force => true do |t|
@@ -81,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20120406205543) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
