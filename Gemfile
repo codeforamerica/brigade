@@ -99,7 +99,7 @@ group :development, :test do
   gem 'simplecov'
 
   #Rspec for testing instead of test::unit
-  gem "rspec-rails", '~> 2.8.1'
+  gem 'rspec-rails'
 end
 
 group :test do
