@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe UpdateApplicationsFromCivicCommons do
-  Factory(:application)
+  FactoryGirl.create(:application)
 
   it 'updates application attributes based on data from civic commons' do
     app = Application.last

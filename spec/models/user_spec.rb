@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  subject { Factory(:user) }
+  subject { FactoryGirl.create(:user) }
 
   it 'should be valid with valid attributes' do
     subject.should be_valid
@@ -103,7 +103,7 @@ describe User do
 
   describe '#is_member_of' do
     before do
-      @brigade = Factory :brigade
+      @brigade = FactoryGirl.create(:brigade)
     end
 
     it 'returns a boolean indication wether the user is a member of the passed brigade' do
@@ -115,7 +115,7 @@ describe User do
 
   describe '#join_brigade' do
     before do
-      @brigade = Factory :brigade
+      @brigade = FactoryGirl.create(:brigade)
     end
     it 'should add the user to the brigade if the user is not already a member' do
       subject.join_brigade(@brigade)
@@ -125,7 +125,7 @@ describe User do
 
   describe '#leave_brigade' do
     before do
-      @brigade = Factory :brigade
+      @brigade = FactoryGirl.create(:brigade)
     end
     it 'should remove the user from the brigade if the user is a member' do
       subject.join_brigade(@brigade)

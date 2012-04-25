@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Application do
-  subject { Factory(:application) }
+  subject { FactoryGirl.create(:application) }
 
   it 'should be valid with valid attributes' do
     subject.should be_valid
@@ -66,9 +66,9 @@ describe Application do
 
   context 'deployed applications' do
     before do
-      @deployed_application = Factory :deployed_application, application: subject
-      @user = Factory :user
-      @second_user = Factory :user, opt_in: true
+      @deployed_application = FactoryGirl.create(:deployed_application, application: subject)
+      @user = FactoryGirl.create(:user)
+      @second_user = FactoryGirl.create(:user, opt_in: true)
       @deployed_application.brigade.users << @user
       @deployed_application.brigade.users << @second_user
     end

@@ -18,7 +18,7 @@ end
 
 Given /^"([^"]*)" is part of the "([^"]*)" brigade$/ do |email, brigade_name|
   user = User.find_by_email email
-  brigade = Factory :brigade, name: brigade_name
+  brigade = FactoryGirl.create(:brigade, name: brigade_name)
   user.brigades << brigade
 end
 

@@ -29,9 +29,9 @@ describe Location do
 
     before do
       @location = Location.create name: 'Norfolk, VA'
-      @app_not_deployed = Factory :application
-      @app_deployed = Factory :application
-      @deploy = Factory :deployed_application, application: @app_deployed, location: @location
+      @app_not_deployed = FactoryGirl.create(:application)
+      @app_deployed = FactoryGirl.create(:application)
+      @deploy = FactoryGirl.create(:deployed_application, application: @app_deployed, location: @location)
     end
 
     it 'returns a list of applications that have yet to be deployed at the current location' do

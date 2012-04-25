@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Brigade do
-  subject { Factory(:brigade) }
+  subject { FactoryGirl.create(:brigade) }
 
   it 'should be valid with valid attributes' do
     subject.should be_valid

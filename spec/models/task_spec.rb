@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Task do
-  subject { Factory(:task) }
+  subject { FactoryGirl.create(:task) }
 
   it 'should be valid with valid attributes' do
     subject.should be_valid

@@ -28,7 +28,7 @@ describe DeployedApplication do
         it 'returns any deployed applications whose brigade name is like the query' do
           brigade = FactoryGirl.create(:brigade, name: 'Test Brigade')
           application = FactoryGirl.create(:application, name: 'Cool Application')
-          deployed_application = Factory.create(:deployed_application, application: application, brigade: brigade)
+          deployed_application = FactoryGirl.create(:deployed_application, application: application, brigade: brigade)
 
           DeployedApplication.search('Test').should == [deployed_application]
         end

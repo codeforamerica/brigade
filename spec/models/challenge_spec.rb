@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Challenge do
-  subject { Factory(:challenge) }
+  subject { FactoryGirl.create(:challenge) }
 
   it 'should be valid with valid attributes' do
     subject.should be_valid
