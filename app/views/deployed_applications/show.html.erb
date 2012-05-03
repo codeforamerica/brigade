@@ -34,7 +34,10 @@
           <h4><span class="icon">O</span> Connect</h4>
           <p><%= auto_link @deployed_application.brigade.point_of_contact_address %></p>
         <% end %>
-
+        <h4><span class="icon">w</span> URL </h4>
+        <% unless @deployed_application.deployed_url.nil? %>
+          <p><%= link_to @deployed_application.deployed_url, @deployed_application.deployed_url %></p>
+        <% end %>
 
         <h4><span class="icon">f</span> People <span id="user-name"></span></h4>
         <%= BrigadeDecorator.new(@deployed_application.brigade).decorated_members %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120425211114) do
+ActiveRecord::Schema.define(:version => 20120503225247) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20120425211114) do
     t.integer  "brigade_id"
     t.integer  "location_id"
     t.boolean  "deployed",       :default => false
+    t.string   "deployed_url"
   end
 
   create_table "locations", :force => true do |t|
@@ -82,7 +83,7 @@ ActiveRecord::Schema.define(:version => 20120425211114) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
