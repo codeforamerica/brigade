@@ -132,6 +132,13 @@ class AppDecorator < ApplicationDecorator
     end
   end
 
+  def mailing_list_url_link
+    handle_none model.mailing_list do
+      h.mail_to model.mailing_list, nil, :replace_at => "_at_", :replace_dot => "_dot_"
+    end
+  end
+
+
   private
 
   def handle_none(value)
