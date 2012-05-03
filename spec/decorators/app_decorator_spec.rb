@@ -54,4 +54,15 @@ describe AppDecorator do
     end
 
   end
+
+  describe "#handle_none" do
+    it 'should return handle none for an empty string' do
+      application = AppDecorator.new(FactoryGirl.build(:application))
+      application.mailing_list_url_link.should == "<span class=\"none\">None supplied</span>"
+    end
+    it 'should return handle a formatted mail_to' do
+      application = AppDecorator.new(FactoryGirl.build(:application, :mailing_list => 'test@something.com'))
+      application.mailing_list_url_link.should == "<a href=\"mailto:test@something.com\">test_at_something_dot_com</a>"
+    end
+  end
 end
