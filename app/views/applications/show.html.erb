@@ -22,8 +22,7 @@
       </hgroup>
 
       <%= render 'shared/application_body' %>
-
-    </div>
+      </div>
 
     <!-- sidebar -->
     <div id="sidebar" class="span4">
@@ -52,10 +51,6 @@
         <div class='map', id='map' style="width: 265px; height: 230px;"></div>
         <div class='hidden' id='locations'><%= @app.deployed_applications.map(&:location).uniq.map {|l| {icon_link: location_deployed_applications_url(l)}.merge(l.attributes.select{|k,v| ['latitude', 'longitude', 'name'].include?(k)}).to_json } %></div>
 
-        <h4><span class="icon">[</span> Deployed Brigades</h4>
-          <ul class="unstyled">
-            <%= @app.participating_brigade_links %>
-          </ul>
       </div>
     </div>
 
