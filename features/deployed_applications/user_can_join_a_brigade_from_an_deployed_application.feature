@@ -1,4 +1,4 @@
-Feature: A user can joina brigade from the deployed application page
+Feature: A user can join a brigade from the deployed application page
 
   Background:
     Given I have previously registered for an account
