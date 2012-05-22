@@ -23,7 +23,7 @@ gem 'rails_admin'
 gem 'rails_admin_tag_list', :git => 'https://github.com/kryzhovnik/rails_admin_tag_list.git'
 
 # Draper for nice decorators for the views
-gem 'draper', '~> 0.10.0'
+gem 'draper', '~> 0.14.0'
 
 # Stamp and chronic for parsing and formatting dates
 gem 'stamp', '~> 0.1.6'
