@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 3.2.3'
 
 #Devise for user registration and cancan for authorization
-gem 'devise', '~> 2.0.0'
+gem 'devise', '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
 
 # Allow Devise to authenticate via github
