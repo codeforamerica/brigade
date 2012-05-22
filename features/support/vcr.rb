@@ -1,6 +1,6 @@
 require 'vcr'
 
-VCR.config do |c|
-  c.stub_with        :webmock
+VCR.configure do |c|
+  c.hook_into        :webmock
   c.ignore_localhost = true
 end

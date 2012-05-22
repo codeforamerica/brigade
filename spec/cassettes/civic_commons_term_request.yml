@@ -1,44 +1,50 @@
 ---
-- !ruby/struct:VCR::HTTPInteraction
-  request: !ruby/struct:VCR::Request
-    method: :get
-    uri: http://civiccommons.org:80/api/v1/taxonomy_term/91.json
+http_interactions:
+- request:
+    method: get
+    uri: http://civiccommons.org/api/v1/taxonomy_term/91.json
     body:
+      encoding: US-ASCII
+      string: ''
     headers:
-      accept-encoding:
+      Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response: !ruby/struct:VCR::Response
-    status: !ruby/struct:VCR::ResponseStatus
+  response:
+    status:
       code: 200
       message: OK
     headers:
-      server:
+      Server:
       - nginx/1.0.10
-      content-type:
+      Content-Type:
       - application/json
-      x-drupal-cache:
+      X-Drupal-Cache:
       - MISS
-      expires:
+      Expires:
       - Sun, 19 Nov 1978 05:00:00 GMT
-      last-modified:
+      Last-Modified:
       - Thu, 16 Feb 2012 17:10:59 +0000
-      cache-control:
+      Cache-Control:
       - no-cache, must-revalidate, post-check=0, pre-check=0
-      etag:
+      Etag:
       - ! '"1329412259"'
-      content-length:
+      Content-Length:
       - '434'
-      date:
+      Date:
       - Thu, 16 Feb 2012 17:10:59 GMT
-      x-varnish:
+      X-Varnish:
       - '642314177'
-      age:
+      Age:
       - '0'
-      via:
+      Via:
       - 1.1 varnish
-      connection:
+      Connection:
       - keep-alive
-      x-pantheon-edge-server:
+      X-Pantheon-Edge-Server:
       - 50.57.158.205
-    body: ! '{"tid":"91","vid":"7","name":"BSD","description":"","format":"filtered_html","weight":"1","uuid":"e6fecd32-ef31-9784-e956-ef8bbfc11155","vocabulary_machine_name":"software_licenses","rdf_mapping":{"rdftype":["skos:Concept"],"name":{"predicates":["rdfs:label","skos:prefLabel"]},"description":{"predicates":["skos:definition"]},"vid":{"predicates":["skos:inScheme"],"type":"rel"},"parent":{"predicates":["skos:broader"],"type":"rel"}}}'
+    body:
+      encoding: UTF-8
+      string: ! '{"tid":"91","vid":"7","name":"BSD","description":"","format":"filtered_html","weight":"1","uuid":"e6fecd32-ef31-9784-e956-ef8bbfc11155","vocabulary_machine_name":"software_licenses","rdf_mapping":{"rdftype":["skos:Concept"],"name":{"predicates":["rdfs:label","skos:prefLabel"]},"description":{"predicates":["skos:definition"]},"vid":{"predicates":["skos:inScheme"],"type":"rel"},"parent":{"predicates":["skos:broader"],"type":"rel"}}}'
     http_version: '1.1'
+  recorded_at: Tue, 10 Apr 2012 05:59:45 GMT
+recorded_with: VCR 2.1.1

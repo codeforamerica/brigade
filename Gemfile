@@ -118,7 +118,7 @@ group :test do
 
   #VCR for recording transcations with webmock
   gem 'webmock', '~> 1.8.7'
-  gem 'vcr', '~> 1.11.3'
+  gem 'vcr', '~> 2.1.1'
 
   # Guard for file monitoring
   gem 'rb-fsevent', '~> 0.9.0'
