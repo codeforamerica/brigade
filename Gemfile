@@ -50,7 +50,7 @@ gem 'rmagick', '~> 2.13.1', :require => 'RMagick'
 gem 'carrierwave', '~> 0.6.2'
 
 # fog for using Amazon S3 with carrierwave
-gem 'fog', '~> 1.1.2'
+gem 'fog', '~> 1.3.1'
 
 # acts as taggable for tagging user skills and app requirements
 gem 'acts-as-taggable-on', '~> 2.2.2'
