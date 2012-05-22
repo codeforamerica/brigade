@@ -114,7 +114,7 @@ group :test do
   #Email spec for cucumber matchers for emails
   gem 'email_spec', '~> 1.2.1'
 
-  gem 'launchy', '~> 2.0.5'
+  gem 'launchy', '~> 2.1.0'
 
   #VCR for recording transcations with webmock
   gem 'webmock', '~> 1.8.7'
