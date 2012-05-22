@@ -39,7 +39,7 @@ gem 'kaminari', '~> 0.13.0'
 gem 'errship', '~> 2.2.0'
 
 # Faraday to serve as middleware to perform requests on civic commons API
-gem 'faraday', '~> 0.7.6'
+gem 'faraday', '~> 0.8.0'
 gem 'faraday_middleware', '~> 0.8.4'
 
 # Hashie to convert hashes to objects
