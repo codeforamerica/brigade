@@ -59,8 +59,9 @@ GEM
     capybara-webkit (0.12.0)
       capybara (>= 1.0.0, < 1.2)
       json
-    carrierwave (0.5.8)
-      activesupport (~> 3.0)
+    carrierwave (0.6.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     chronic (0.6.7)
@@ -344,7 +345,7 @@ DEPENDENCIES
   bourbon
   cancan (~> 1.6.7)
   capybara-webkit (~> 0.12.0)
-  carrierwave (~> 0.5.8)
+  carrierwave (~> 0.6.2)
   chronic (~> 0.6.7)
   coffee-rails (~> 3.2.1)
   cucumber-rails (~> 1.3.0)

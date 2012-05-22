@@ -47,7 +47,7 @@ gem 'hashie', '~> 1.2.0'
 
 # CarrierWave for uploading files
 gem 'rmagick', '~> 2.13.1', :require => 'RMagick'
-gem 'carrierwave', '~> 0.5.8'
+gem 'carrierwave', '~> 0.6.2'
 
 # fog for using Amazon S3 with carrierwave
 gem 'fog', '~> 1.1.2'
