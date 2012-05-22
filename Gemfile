@@ -89,7 +89,7 @@ group :development, :test do
   gem 'pry-remote', '~> 0.1.0'
 
   #Factory girl for using factories instead of fixtures
-  gem 'factory_girl_rails', '~> 3.2.0'
+  gem 'factory_girl_rails', '~> 3.3.0'
 
   # Gem haml-rails for generators
   gem 'haml-rails', '~> 0.3.4'

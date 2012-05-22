@@ -10,7 +10,7 @@ FactoryGirl.define do
 
   factory :application_with_tasks_and_brigades, parent: :application do
 
-    after_create do |application|
+    after(:create) do |application|
       5.times do |n|
         FactoryGirl.create(:task, application_id: application.id)
         FactoryGirl.create(:deployed_application, application_id: application.id)
@@ -20,7 +20,7 @@ FactoryGirl.define do
 
   factory :application_with_four_pictures, parent: :application do
 
-    after_create do |application|
+    after(:create) do |application|
       FactoryGirl.create(:picture, application_id: application.id)
       FactoryGirl.create(:picture, file: File.open("#{Rails.root}/app/assets/images/logo.png"), application_id: application.id)
       FactoryGirl.create(:picture, file: File.open("#{Rails.root}/app/assets/images/map.png"), application_id: application.id)
