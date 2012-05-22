@@ -117,7 +117,7 @@ group :test do
   gem 'launchy', '~> 2.0.5'
 
   #VCR for recording transcations with webmock
-  gem 'webmock', '~> 1.7.10'
+  gem 'webmock', '~> 1.8.7'
   gem 'vcr', '~> 1.11.3'
 
   # Guard for file monitoring
