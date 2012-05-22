@@ -124,7 +124,7 @@ group :test do
   gem 'rb-fsevent', '~> 0.9.0'
   gem 'guard', '~> 1.0.0'
   gem 'guard-bundler', '~> 0.1.3'
-  gem 'guard-cucumber', '~> 0.7.5'
+  gem 'guard-cucumber', '~> 0.8.0'
   gem 'guard-rspec', '~> 0.7.0'
   gem 'guard-spork', '~> 0.7.1'
   gem 'guard-livereload', '~> 0.4.0'
