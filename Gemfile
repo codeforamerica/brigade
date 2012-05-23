@@ -106,7 +106,7 @@ group :test do
   gem 'database_cleaner', '~> 0.7.1'
 
   #Spork
-  gem 'spork', '~> 0.9.0'
+  gem 'spork', '~> 0.9.2'
 
   #Cucumber for better acceptance testing
   gem 'cucumber-rails', '~> 1.3.0', require: false
