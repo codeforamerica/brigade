@@ -57,6 +57,7 @@ gem 'acts-as-taggable-on', '~> 2.2.2'
 
 #Sunspot for search with Solr
 gem 'sunspot_rails', '~> 1.3.0'
+gem 'sunspot_test'
 
 # state_machine for adds support for creating state machines for attribute
 gem 'state_machine', '~>1.1.2'
