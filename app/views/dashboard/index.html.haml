@@ -1,0 +1,31 @@
+%header.page-id
+  %h1 Dashboard
+
+%p
+  Statistics on the Brigade platform
+
+.row
+  .span4
+    .hero-unit
+      %h2 Users
+      %h1= @users
+  .span4
+    .hero-unit
+      %h2 Locations
+      %h1= @locations
+  .span4
+    .hero-unit
+      %h2 Brigades
+      %h1= @brigades
+
+.row
+  .span6
+    .hero-unit
+      %h2 Applications
+      %h1= @applications
+  .span6
+    .hero-unit
+      %h2 Deployed Applications
+      %h1= @deployed_apps
+
+
