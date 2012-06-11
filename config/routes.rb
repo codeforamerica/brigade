@@ -40,6 +40,4 @@ CodeForAmerica::Application.routes.draw do
   resources :challenges, only: [:new, :create, :index]
   root :to => 'home#index'
 
-  get 'about' => 'pages#about'
-
 end
