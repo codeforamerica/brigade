@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe PagesController do
+describe HighVoltage::PagesController do
 
-  describe "GET 'about'" do
+  describe "GET 'pages/about'" do
     it "returns http success" do
-      get 'about'
+      get :show, :id => 'about'
       response.should be_success
     end
   end
