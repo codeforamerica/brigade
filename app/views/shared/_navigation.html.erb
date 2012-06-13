@@ -7,8 +7,8 @@
         <li data-desc="Welcome to Code for America" class="<%= 'active' if current_page?(root_path) %>">
           <%= link_to 'Home', root_path %>
         </li>
-        <li data-desc="See all available applications and deploy one in your community" class="<%= 'active' if current_page?(applications_path) %>">
-          <%= link_to 'Applications', applications_path %>
+        <li data-desc="Brigade Activities you can do now" class="<%= 'active' if current_page?(page_path('activities')) %>">
+          <%= link_to 'Activities', page_path('activities') %>
         </li>
         <!--<li data-desc="See all the apps currently in use, and help out with one" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
           <%= link_to 'Deployed Apps', deployed_applications_path(filter_by: 'locations') %>
@@ -21,6 +21,9 @@
         </li>
         <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(page_path('about')) %>">
           <%= link_to 'About', page_path('about') %>
+        </li>
+        <li data-desc="Find Civic Hacking Events" class="<%= 'active' if current_page?(page_path('events')) %>">
+          <%= link_to 'Events', page_path('events') %>
         </li>
       </ul>
       <span class="talker"></span>
