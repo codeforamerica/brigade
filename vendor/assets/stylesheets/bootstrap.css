@@ -373,6 +373,8 @@ ol {
 }
 li {
   line-height: 18px;
+  font-size: 16px;
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
 }
 ul.unstyled {
   margin-left: 0;
