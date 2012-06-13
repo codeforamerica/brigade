@@ -19,11 +19,11 @@
         <li data-desc="Search for other civic hackers" class="<%= 'active' if current_page?(users_path) %>">
           <%= link_to 'People', users_path %>
         </li>
-        <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(page_path('about')) %>">
-          <%= link_to 'About', page_path('about') %>
-        </li>
         <li data-desc="Find Civic Hacking Events" class="<%= 'active' if current_page?(page_path('events')) %>">
           <%= link_to 'Events', page_path('events') %>
+        </li>
+        <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(page_path('about')) %>">
+          <%= link_to 'About', page_path('about') %>
         </li>
       </ul>
       <span class="talker"></span>
