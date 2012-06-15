@@ -34,3 +34,6 @@ solr/
 
 #Ignore PG Database pulls
 *.dat
+
+#Ignore rspec log
+spec/cassettes/civic_commons_request.yml
