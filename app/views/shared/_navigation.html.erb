@@ -10,11 +10,8 @@
         <li data-desc="Brigade Activities you can do now" class="<%= 'active' if current_page?(page_path('activities')) %>">
           <%= link_to 'Activities', page_path('activities') %>
         </li>
-        <!--<li data-desc="See all the apps currently in use, and help out with one" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
-          <%= link_to 'Deployed Apps', deployed_applications_path(filter_by: 'locations') %>
-        </li>-->
-        <li data-desc="List of forums we follow" class="<%= 'active' if current_page?(page_path('forums')) %>">
-          <%= link_to 'Forums', page_path('forums') %>
+        <li data-desc="Connect with others through forums and our conceirge service" class="<%= 'active' if current_page?(page_path('connect')) %>">
+          <%= link_to 'Connections', page_path('connect') %>
         </li>
         <li data-desc="Find Civic Hacking Events" class="<%= 'active' if current_page?(page_path('events')) %>">
           <%= link_to 'Events', page_path('events') %>
