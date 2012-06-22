@@ -6535,6 +6535,17 @@ http_interactions:
       Date:
       - Fri, 22 Jun 2012 15:46:59 GMT
       X-Varnish:
+      - '85357604'
+      - Fri, 22 Jun 2012 15:46:59 +0000
+      Cache-Control:
+      - no-cache, must-revalidate, post-check=0, pre-check=0
+      Etag:
+      - ! '"1340380019"'
+      Content-Length:
+      - '3630'
+      Date:
+      - Fri, 22 Jun 2012 15:46:59 GMT
+      X-Varnish:
       - '85525347'
       Age:
       - '0'
@@ -6585,6 +6596,17 @@ http_interactions:
       Expires:
       - Sun, 19 Nov 1978 05:00:00 GMT
       Last-Modified:
+      - Fri, 22 Jun 2012 15:46:59 +0000
+      Cache-Control:
+      - no-cache, must-revalidate, post-check=0, pre-check=0
+      Etag:
+      - ! '"1340380019"'
+      Content-Length:
+      - '434'
+      Date:
+      - Fri, 22 Jun 2012 15:46:59 GMT
+      X-Varnish:
+      - '85357733'
       - Fri, 22 Jun 2012 15:46:59 +0000
       Cache-Control:
       - no-cache, must-revalidate, post-check=0, pre-check=0
