@@ -13,11 +13,8 @@
         <!--<li data-desc="See all the apps currently in use, and help out with one" class="<%= 'active' if current_page?(deployed_applications_path(filter_by: 'locations')) %>">
           <%= link_to 'Deployed Apps', deployed_applications_path(filter_by: 'locations') %>
         </li>-->
-        <li data-desc="List of the different brigades" class="<%= 'active' if current_page?(brigades_path) %>">
-          <%= link_to 'Brigades', brigades_path %>
-        </li>
-        <li data-desc="Search for other civic hackers" class="<%= 'active' if current_page?(users_path) %>">
-          <%= link_to 'People', users_path %>
+        <li data-desc="List of forums we follow" class="<%= 'active' if current_page?(page_path('forums')) %>">
+          <%= link_to 'Forums', page_path('forums') %>
         </li>
         <li data-desc="Find Civic Hacking Events" class="<%= 'active' if current_page?(page_path('events')) %>">
           <%= link_to 'Events', page_path('events') %>
