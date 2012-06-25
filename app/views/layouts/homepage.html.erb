@@ -66,46 +66,6 @@
       </div>
     </section>
 
-    <div class="complete-list-link">
-      <span class="stars">*</span>
-      <%= link_to "Featured Applications", applications_path, :class => "see-more" %>
-      <span class="stars">*</span>
-    </div>
-
-    <div id="flipper-outer-shell">
-      <section id="app-flipper">
-        <div class="shell">
-
-          <% AppDecorator.decorate(Application.limit(9)).each do |application| %>
-            <dl class="application-card">
-              <dt class="icon"><%= application.logo %></dt>
-              <dt>
-                <strong>
-                  <% if application.name %>
-                    <%= application.name.truncate(20) %>
-                  <% end %>
-                </strong>
-              </dt>
-              <!--<dd>
-                <div class="location-count">
-                  <span class="count"><%= application.deployed_applications.map(&:location).size %></span></br>
-                  <span class="label">Locations</span>
-                </div>
-                <div class="commit-count">
-                  <span class="count"><%= application.number_of_deploys %></span></br>
-                  <span class="label">Deploys</span>
-                </div>
-              </dd>-->
-              <dd class="deploy-button"><%= link_to 'Get Started', application_path(application) %></dd>
-            </dl>
-          <% end %>
-        </div>
-      </section>
-
-
-
-    </div>
-
   <%= render 'shared/footer' %>
 
   <script type='text/javascript'>
