@@ -16,24 +16,56 @@
 
   <section class="white">
     <div id="main">
-      <%= yield %>
+        <img alt="ray" src="/assets/people_and_sitb.png"/>
+        <br/>
+        <center>
+          <h2>Anyone can Code for America, anywhere.</h2>
+        </center>
     </div>
 
-    <section id="three-up">
-      <div class="column">
-        <a href="/applications"><img src="/assets/apps.png" alt="apps icon (noun project)" class="home_three"/></a>
-        <p>Pick from nearly a dozen fun, useful, and reusable civic apps and challenge your city to deploy them. (And we've even got instructions to make it easy.) <a href="/applications">Check them out.</a></p>
+    <section id="two-up">
+      <div class="left-column">
+        <h2>How it works:</h2>
+        <table id="how">
+          <tr>
+            <td>
+              <a title="" href="/pages/connect"><img alt="Connect with people" src="/assets/community.png"/></a>
+            </td>
+            <td>
+             <a title="" href="/pages/connect">Connect with people</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a title="" href="/applications"><img alt="Deploy civic applications" src="/assets/source_code.png"/></a>
+            </td>
+            <td>
+              <a title="" href="/applications">Deploy civic applications</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a title="" href="/pages/activities"><img alt="Hack your city" src="/assets/city.png"/></a>
+            </td>
+            <td>
+              <a title="" href="/pages/activities">Hack your city</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a title="" href="/pages/events"><img alt="Find events" src="/assets/calendar.png"/></a>
+            </td>
+            <td>
+              <a title="" href="/pages/events">Find events</a>
+            </td>
+          </tr>
+        </table>
       </div>
-      <div class="column">
-        <a href="/brigades"><img src="/assets/people.png" alt="people icon (noun project)" class="home_three"/></a>
-        <p>Recruit your friends and neighbors in your community to join the brigade, work together, and share skills (and pizza too) to get the app up and running. <a href="/brigades">Find a brigade.</a></p>
+      <div class="right-column">
+        <iframe width="680" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?msa=0&amp;msid=200211073035932406378.00049db1b90fd8f3be01d&amp;ie=UTF8&amp;ll=37.402882,-50.765523&amp;spn=45.108447,214.106568&amp;t=h&amp;vpsrc=1&amp;output=embed"></iframe><br /><small>View <a href="http://maps.google.com/maps/ms?msa=0&amp;msid=200211073035932406378.00049db1b90fd8f3be01d&amp;ie=UTF8&amp;ll=37.402882,-50.765523&amp;spn=45.108447,214.106568&amp;t=h&amp;vpsrc=1&amp;source=embed" style="color:#0000FF;text-align:left">CityCamp</a> in a larger map</small>
       </div>
-      <div class="column">
-        <a href="/users"><img src="/assets/geo.png" alt="geo icon (noun project)" class="home_three"/></a>
-        <p>Put your city on the map by deploying an app, and you'll be able to learn from and connect to the growing national network of civic leaders.<br /><a href="/users">See who's in.</a></p>
-      </div>
-      <div class="clear"></div>
     </section>
+
     <div class="complete-list-link">
       <span class="stars">*</span>
       <%= link_to "Featured Applications", applications_path, :class => "see-more" %>

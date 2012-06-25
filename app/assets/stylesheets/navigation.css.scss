@@ -5,7 +5,8 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 header#top-deck {
   width: 100%;
-  background: $mud;
+  height: 100px;
+  background: $white;
   font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
   margin-bottom: 10px;
 
@@ -30,8 +31,7 @@ header#top-deck {
       width: 390px;
       padding: 10px;
       @include border-radius(0 0 5px 5px);
-      position: absolute;
-      top: 190px;
+      position: relative;
       left: 20px;
       display: none;
       font-style: italic;
@@ -41,6 +41,7 @@ header#top-deck {
     }
 
     ul {
+      position:relative;
       list-style: none;
       margin: 0;
 
@@ -50,7 +51,7 @@ header#top-deck {
         cursor: pointer;
 
         a {
-          color: transparentize(#fff, 0.4);
+          color: transparentize(#333, 0.4);
           text-decoration: none;
         }
 
@@ -63,7 +64,7 @@ header#top-deck {
 
         &:hover {
           a {
-            color: #0072ac;
+            color: #ce263f;
           }
         }
       }
@@ -72,6 +73,8 @@ header#top-deck {
     &.primary {
       float: left;
       clear: both;
+      position: absolute;
+      left: 300px;
 
       li {
         font-size: 120%;

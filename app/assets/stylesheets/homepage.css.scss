@@ -6,23 +6,48 @@ body {
   font-size: small;
 }
 
-#three-up {
+#two-up {
   width: 980px;
-  margin: 30px auto 0 auto;
+  margin: 0px auto 0 auto;
 
-  .column {
+  .left-column {
     float: left;
     padding: 20px;
-    width: 280px;
+    width: 220px;
 
     h3 {
-      color: $truered;
-      font-size: 120%;
+      color: $cfa-red;
     }
+
     a {
-    color: #0072AC;
-    font-weight: bold;
+      color: #0072AC;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover {
+        color: $cfa-red;
+      }
+
     }
+  }
+
+  .right-column {
+    float: left;
+    padding: 20px;
+    width: 440px;
+  }
+}
+
+#how {
+  tr {
+
+  }
+
+  td {
+    padding: 6px;
+    font-family: 'Gudea';
+    color: $cfa-gray;
+    font-size: 120%;
   }
 }
 
@@ -37,7 +62,7 @@ body {
 
   h1 {
     font-size: 525%;
-    color: $truered;
+    color: $cfa-red;
   }
 
   h3 {

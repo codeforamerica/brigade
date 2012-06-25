@@ -1,3 +1,6 @@
+@import 'http://fonts.googleapis.com/css?family=Enriqueta';
+@import 'http://fonts.googleapis.com/css?family=Gudea';
+
 @font-face {
     font-family: 'Avenir Heavy';
     src: url('/assets/avenirltstd-heavy-webfont.eot');
@@ -55,10 +58,10 @@
 
 
 h1 {
-  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  font-family: 'Enriqueta';
   font-size: 280%;
   letter-spacing: -0.06em;
-  color: $truered;
+  color: $cfa-gray;
   font-weight: lighter;
 }
 .sidebar {
@@ -67,7 +70,7 @@ h1 {
   }
 }
 h2 {
-  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  font-family: 'Enriqueta';
   font-size: 180%;
   color: #444;
   letter-spacing: -0.06em;
@@ -81,7 +84,7 @@ h3 {
   font-size: 90%;
   color: #444;
   letter-spacing: -0.06em;
-  color: $truered;
+  color: $cfa-red;
   text-transform: uppercase;
 }
 h6 {

@@ -14,7 +14,6 @@
 
 body {
   background: #fff;
-  font-size: small;
 }
 
 /* Generic blocks
@@ -31,9 +30,10 @@ body {
   }
 
   &.no-padding { /* Well, not really *none*, but *less* */
-    padding: 20px 0 10px 0;
     width: 940px;
+
   }
+
 }
 
 header.page-id {
@@ -43,8 +43,9 @@ header.page-id {
   border-bottom: 1px solid $oatmeal;
 
   h1 {
-    color: darken($oatmeal, 50%);
+    color: darken($cfa-red, 50%);
   }
+
 }
 
 /* Page Containers
@@ -62,13 +63,37 @@ header.page-id {
 }
 
 #main {
+  background: url('/assets/ray.jpg') center center no-repeat;
   width: 940px;
   margin: auto;
+
+  h2 {
+    font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+    color: #999999;
+  }
+
+  img {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+  }
 }
 
 .sidebar {
   float: left;
   width: 300px;
+}
+
+.activities-left {
+  width: 10%;
+}
+
+.activities-right {
+  width: 90%;
+}
+
+.connect-table {
+  width: 30%;
 }
 
 section {
@@ -77,7 +102,7 @@ section {
   &.white {
     background: #fff;
     margin-top: -12px;
-    padding: 20px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #b9b7b2;
   }
 }
@@ -207,7 +232,7 @@ hgroup.app-title {
   tr {
     td {
       vertical-align: top;
-      padding: 40px 20px 20px 0;
+      padding: 20px;
 
       &.prv-label {
         font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
