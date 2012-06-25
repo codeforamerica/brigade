@@ -38,6 +38,44 @@ body {
   }
 }
 
+#three-up {
+  width: 980px;
+  margin: 0px auto 0 auto;
+  
+  .left-column {
+    float: left;
+    padding: 20px;
+    width: 220px;
+
+    h3 {
+      color: $cfa-red;
+    }
+
+    a {
+      color: #0072AC;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:hover {
+        color: $cfa-red;
+      }
+
+    }
+  }
+  
+  .center-column {
+    float: left;
+    padding: 20px;
+    width: 340px;
+  }
+
+  .right-column {
+    float: left;
+    padding: 20px;
+    width: 140px;
+  }
+}
+
 #how {
   tr {
 
@@ -53,15 +91,15 @@ body {
 
 #hacking-form{
   padding: 0;
-  margin: 20px auto 0 auto;
+  margin: 0px auto 0 auto;
 
   .wordbox {
     background: url('/assets/homepage-input-label.png') bottom center no-repeat;
-    padding-bottom: 18px;
+    padding-bottom: 24px;
   }
 
   h1 {
-    font-size: 525%;
+    font-size: 325%;
     color: $cfa-red;
   }
 
@@ -87,7 +125,7 @@ body {
     @include border-radius(0);
     padding: 0;
     width: 200px;
-    font-size: 24px;
+    font-size: 18px;
     text-align: center;
     position: relative;
 
