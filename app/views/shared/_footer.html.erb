@@ -2,13 +2,19 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <div class="content">
     <a href="/" class="logo"></a>
-    <table>
+    <table width="50%">
       <tr padding="20px" valign="top">
         <td width="100px">
     <p>
        <ul id="site-sections">
           <li class="<%= 'active' if current_page?(page_path('activities')) %>">
             <%= link_to 'Activities', page_path('activities') %>
+          </li>
+          <li class="<%= 'active' if current_page?(page_path('events')) %>">
+            <%= link_to 'Events', page_path('events') %>
+          </li>
+          <li class="<%= 'active' if current_page?(page_path('connect')) %>">
+            <%= link_to 'Connections', page_path('connect') %>
           </li>
         </ul>
     </p>
