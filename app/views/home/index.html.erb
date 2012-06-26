@@ -1,10 +1,10 @@
 <div id="hacking-form">
   <%= form_tag find_locations_path, id: 'hacking_form' do %>
-    <h1>Get started here:
+    <h3>Get started here:
         <span class="wordbox">
           <%= text_field_tag :location, nil, id: 'location', placeholder: 'Norfolk, VA', autocomplete: 'off', data: { autocomplete_source: Location.names } %>.
       </span> Join Us!
-    </h1>
+    </h3>
   <%end%>
 </div>
 

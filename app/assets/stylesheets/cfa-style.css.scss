@@ -65,17 +65,20 @@ header.page-id {
 #main {
   background: url('/assets/ray.jpg') center center no-repeat;
   width: 940px;
+  height: 220px;
   margin: auto;
 
   h2 {
     font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
     color: #999999;
+    padding: 0px;
   }
 
   img {
-    width: 50%;
+    width: 40%;
     height: 50%;
     margin: auto;
+    padding-left: 50px;
   }
 }
 
@@ -102,7 +105,6 @@ section {
   &.white {
     background: #fff;
     margin-top: -12px;
-    padding: 10px 0;
     border-bottom: 1px solid #b9b7b2;
   }
 }

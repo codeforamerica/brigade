@@ -44,8 +44,8 @@ body {
 
   .left-column {
     float: left;
-    padding: 20px;
     width: 220px;
+    padding: 10px 20px 10px 20px;
 
     h3 {
       color: $cfa-red;
@@ -65,13 +65,13 @@ body {
 
   .center-column {
     float: left;
-    padding: 20px;
     width: 340px;
+    padding: 10px 20px 10px 20px;
   }
 
   .right-column {
     float: left;
-    padding: 20px;
+    padding: 10px 20px 10px 20px;
     width: 240px;
   }
 }
@@ -94,8 +94,6 @@ body {
   margin: 0px auto 0 auto;
 
   .wordbox {
-    background: url('/assets/homepage-input-label.png') bottom center no-repeat;
-    padding-bottom: 24px;
   }
 
   h1 {
@@ -108,7 +106,7 @@ body {
     color: $cfa-blue;
     text-transform: none;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
     font-family: 'Avenir Light', 'Avenir Medium', Helvetica;
   }
 
@@ -118,13 +116,12 @@ body {
   }
 
   input[type="text"]{
-    font-family: 'RockSaltRegular';
+    font-family: 'Gudea', san-serif;
     color: $mud;
     border: 0;
     border-bottom: 1px dashed $mud;
     @include border-radius(0);
-    padding: 10;
-    width: 200px;
+    width: 220px;
     font-size: 18px;
     text-align: center;
     position: relative;
