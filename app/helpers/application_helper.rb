@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def display_join_button
-      (content_tag :p, (link_to 'Join Us!', new_user_registration_path, class: 'btn btn-info'))
+      (content_tag :p, (link_to 'JOIN US!', new_user_registration_path, class: 'btn-large btn-join'))
   end
 
 
