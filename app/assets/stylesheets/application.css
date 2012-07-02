@@ -1,12 +1,11 @@
 /*
  *= require bootstrap
- *= require titan-bootstrap-screen
+ *= require cfa-style
  *= require navigation
  *= require registration
  *= require twitter-bootstrap-overrides
  *= require footer
  *= require user-info
  *= require application-card
- *= require challenge
  *= require jquery.qtip.min
 */

@@ -1,12 +1,40 @@
-<footer>
+<footer id="top-deck">
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <div class="content">
+    <a href="/" class="logo"></a>
+    <table width="50%">
+      <tr padding="20px" valign="top">
+        <td width="100px">
     <p>
-      Copyright &copy; <%= Date.today.year %> Code for America |
-      <%= mail_to "brigade-info@codeforamerica.org", "Contact Us" %>
+       <ul id="site-sections">
+          <li class="<%= 'active' if current_page?(page_path('activities')) %>">
+            <%= link_to 'Activities', page_path('activities') %>
+          </li>
+          <li class="<%= 'active' if current_page?(page_path('events')) %>">
+            <%= link_to 'Events', page_path('events') %>
+          </li>
+          <li class="<%= 'active' if current_page?(page_path('connect')) %>">
+            <%= link_to 'Connections', page_path('connect') %>
+          </li>
+        </ul>
     </p>
-    <% if can? :create, Challenge %>
-      <div id='challenge_content'>
-      </div>
-    <% end %>
+    </td>
+    <td width="200px">
+    <p>
+      <ul id="site-sections">
+          <li>
+            <a title="Email brigade-info" href="mailto:brigade-info@codeforamerica.org">Contact</a>
+          </li>
+          <li>
+            <a title="Code for America" href="http://www.codeforamerica.org">Code for America</a>
+          </li>
+          <li>
+            <a title="CfA Commons" href="http://www.civiccommons.org">CfA Commons</a>
+          </li>
+        </ul>
+    </p>
+    </td>
+      </tr>
+    </table>
   </div>
 </footer>

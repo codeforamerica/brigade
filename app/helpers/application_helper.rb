@@ -12,6 +12,10 @@ module ApplicationHelper
     end
   end
 
+  def display_join_button
+      (content_tag :p, (link_to 'JOIN US!', new_user_registration_path, class: 'btn-large btn-join'))
+  end
+
 
   def unsorted_grouped_options_for_select(grouped_options, selected_key = nil, prompt = nil)
     body = ''
