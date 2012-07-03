@@ -14,7 +14,7 @@
 
 body.home {
   background: url('/assets/ray.jpg') no-repeat top center;
-	background-size: 100% 600px;
+  background-size: 100% 600px;
 }
 
 /* Generic blocks
@@ -66,6 +66,7 @@ header.page-id {
 #main {
   width: 940px;
   margin: auto;
+  margin-bottom: 40px;
 
   h2 {
     font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
@@ -77,7 +78,7 @@ header.page-id {
     margin: auto;
     padding-left: 100px;
   }
-  
+
   .intake-form{
     width: 800px;
     padding: 20px;
