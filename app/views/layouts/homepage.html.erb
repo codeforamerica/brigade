@@ -9,20 +9,26 @@
   <%= render partial: 'layouts/google_analytics' %>
   <%= favicon_link_tag %>
 </head>
-<body>
+<body class="home">
 
   <%= render partial: 'layouts/flashes' %>
   <%= render 'shared/navigation' %>
 
-  <section class="white">
+  <section>
     <div id="main">
-        <img alt="ray" src="/assets/people_and_sitb.png"/>
-        <center>
-          <h2>Anyone can Code for America, anywhere.</h2>
-          <%= display_join_button %>
-        </center>
+      <img alt="ray" src="/assets/people_and_sitb.png"/>
+      <center>
+        <h2>Anyone can Code for America, anywhere.</h2>
+      </center>
+      <div class="intake-form">
+        <%= simple_form_for @user, url: registration_path(@user) do |form| %>
+          <%= form.input :email %>
+          <%= form.input :full_name %>
+          <%= form.submit 'Sign up', class: 'btn-large btn' %>
+          <ul>
+        <%end%>
+      </div>
     </div>
-
     <section id="three-up">
       <div class="left-column">
         <h2>How it works:</h2>

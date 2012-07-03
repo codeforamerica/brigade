@@ -12,8 +12,9 @@
 /* Base Setup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-body {
-  background: #fff;
+body.home {
+  background: url('/assets/ray.jpg') no-repeat top center;
+	background-size: 100% 600px;
 }
 
 /* Generic blocks
@@ -63,9 +64,7 @@ header.page-id {
 }
 
 #main {
-  background: url('/assets/ray.jpg') center center no-repeat;
   width: 940px;
-  height: 220px;
   margin: auto;
 
   h2 {
@@ -75,10 +74,16 @@ header.page-id {
   }
 
   img {
-    width: 30%;
-    height: 60%;
     margin: auto;
     padding-left: 100px;
+  }
+  
+  .intake-form{
+    width: 800px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: white;
   }
 }
 
@@ -625,3 +630,15 @@ ul.pages li, ol.pages li {
   color: #555;
   margin-top: 10px;
 }
+
+/* Form
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.intake-form {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  box-shadow: -6px 6px 3px rgba(224,222,222, 1);
+  -moz-box-shadow: -6px 6px 3px rgba(224,222,222, 1);
+  -webkit-box-shadow: -6px 6px 3px rgba(224,222,222, 1);
+  }

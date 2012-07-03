@@ -7,6 +7,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
+    if params[:user][:password].blank?
+      # from: http://blog.logeek.fr/2009/7/2/creating-small-unique-tokens-in-ruby
+      params[:user][:password] = rand(36**8).to_s(36)
+    end
     params[:user][:password_confirmation] = params[:user][:password]
 
     if session["devise.github_data"]
