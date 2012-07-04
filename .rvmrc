@@ -7,7 +7,7 @@
 # development environment upon cd'ing into the directory
 
 # First we specify our desired <ruby>[@<gemset>], the @gemset name is optional.
-environment_id="ruby-1.9.3-head@code-for-america"
+environment_id="ruby-1.9.3@brigade"
 
 #
 # Uncomment following line if you want options to be set only for given project.
