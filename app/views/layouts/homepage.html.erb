@@ -21,10 +21,12 @@
         <h2>Anyone can Code for America, anywhere.</h2>
       </center>
       <div class="intake-form">
-        <%= simple_form_for @user, url: registration_path(@user) do |form| %>
-          <%= form.input :email %>
-          <%= form.input :full_name %>
-          <%= form.submit 'Sign up', class: 'btn-large btn' %>
+        <%= form_for @user, url: registration_path(@user) do |form| %>
+          <h2 class="span3">Get started here:</h2>
+          <span class="span2"><%= form.text_field :full_name, :placeholder => 'Name' %></span>
+          <span class="span1">&nbsp;</span>
+          <span class="span2"><%= form.email_field :email, :placeholder => 'Email' %></span>
+          <span class="span2"><%= form.submit 'Sign up', :class => 'submit btn btn-primary' %></span>
           <ul>
         <%end%>
       </div>

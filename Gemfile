@@ -103,6 +103,7 @@ group :development, :test do
 
   #Rspec for testing instead of test::unit
   gem 'rspec-rails'
+  gem 'heroku'
 end
 
 group :test do
