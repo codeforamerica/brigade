@@ -38,6 +38,7 @@ CodeForAmerica::Application.routes.draw do
 
   resources :deployed_applications, only: [:index, :new, :create, :show]
   resources :challenges, only: [:new, :create, :index]
+  resources :home
   root :to => 'home#index'
 
   match '/about' => 'high_voltage/pages#show', :id => 'about'
