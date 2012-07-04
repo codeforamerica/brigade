@@ -94,12 +94,12 @@ describe User do
     end
   end
 
-  describe '#update_github_uid' do
-    it 'updates the user\'s github_uid to the specified value' do
-      subject.update_github_uid("12345")
-      subject.github_uid.should == "12345"
-    end
-  end
+  # describe '#update_github_uid' do
+  #   it 'updates the user\'s github_uid to the specified value' do
+  #     subject.update_github_uid("12345")
+  #     subject.github_uid.should == "12345"
+  #   end
+  # end
 
   describe '#is_member_of' do
     before do
