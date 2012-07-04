@@ -1,4 +1,4 @@
-class PagesController < ApplicationController
+class PagesController < Devise::RegistrationsController
 
   layout 'pages'
 

@@ -25,16 +25,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def build_user
-    if session["devise.github_data"]
-
-      parser = CodeForAmerica::GithubOmniAuthParser.new session["devise.github_data"]
-      @user = User.new
-
-      @user.github_uid = parser.github_uid
-      @user.full_name = parser.name
-      @user.email = parser.email
-    end
+  def build_user    
     @user ||= User.new
   end
 

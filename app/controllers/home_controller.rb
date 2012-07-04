@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   end
   
   def create
-    puts "--------------------------------HERE--------------------------------"
+
     User.create! do |u|
       
       u.first_name = params[:input_name]

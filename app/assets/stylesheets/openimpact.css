@@ -40,6 +40,11 @@ img.gov {
 /*	width: 150px;*/
 }
 
+.stepup {
+	text-align: center;
+	margin-top: 30px;
+}
+
 .form-horizontal .control-group > label {
 	width: 30px;
 }

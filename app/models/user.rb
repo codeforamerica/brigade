@@ -47,9 +47,9 @@ class User < ActiveRecord::Base
     user || User.create(email: email, github_uid: github_uid, full_name: name)
   end
 
-  def update_github_uid(github_uid)
-    update_attribute(:github_uid, github_uid)
-  end
+  # def update_github_uid(github_uid)
+  #   update_attribute(:github_uid, github_uid)
+  # end
 
   def password_required?
     (github_uid.blank? || password.present?) && super
