@@ -9,7 +9,9 @@ div.form-actions.impact-submit {
 
 span.orange {
 	color: #FFC700;
+	text-decoration: none;
 }
+
 
 div.open-li {
 
@@ -76,7 +78,26 @@ div.form-actions.impact-submit {
 	margin-top: 10px;
 }
 
+.collapse {
+	margin-bottom: 30px;
+}
 
+.wufoo {
+	width: 600px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background: #fff;
+	padding: 10px;
+}
+
+.content-header {
+	cursor: pointer;
+}
+
+blockquote p {
+	font-size: 14px;
+	line-height:20px;
+}
 
 
 
