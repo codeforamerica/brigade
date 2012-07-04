@@ -105,3 +105,11 @@ div.form-actions.impact-submit {
 .government:active {
 	background: url(../img/gov.png) 100px 0 no-repeat ;
 }
+
+li {
+	line-height: 27px;
+}
+
+h2 {
+	padding: 20px 0 0 0;
+}

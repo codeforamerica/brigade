@@ -23,10 +23,11 @@
       <div class="intake-form">
         <%= form_for @user, url: registration_path(@user) do |form| %>
           <h2 class="span3">Get started here:</h2>
-          <span class="span2"><%= form.text_field :full_name, :placeholder => 'Name' %></span>
-          <span class="span1">&nbsp;</span>
-          <span class="span2"><%= form.email_field :email, :placeholder => 'Email' %></span>
-          <span class="span2"><%= form.submit 'Sign up', :class => 'submit btn btn-primary' %></span>
+          <span class="span3 no-margin"><%= form.text_field :full_name, :placeholder => 'Name' %></span>
+          <span class="span1 no-margin">&nbsp;</span>
+          <span class="span3 no-margin"><%= form.email_field :email, :placeholder => 'Email' %></span>
+					<span class="span1 no-margin">&nbsp;</span>
+          <span class="span1"><%= form.submit 'Sign up', :class => 'submit btn btn-primary' %></span>
           <ul>
         <%end%>
       </div>
