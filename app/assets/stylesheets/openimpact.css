@@ -99,34 +99,6 @@ blockquote p {
 	line-height:20px;
 }
 
-
-
-
-
-.citizen {
-	background-image: url("../img/flag.png");
-}
-
-.government {
-	background: url(../img/gov.png) 100px 0 no-repeat ;
-}
-
-.citizen:hover {
-	background: url(../img/flag.png) 100px 0 no-repeat;
-}
-
-.government:hover {
-	background: url(../img/gov.png) 100px 0 no-repeat ;
-}
-
-.citizen:active {
-	background: url(../img/flag.png) 100px 0 no-repeat;
-}
-
-.government:active {
-	background: url(../img/gov.png) 100px 0 no-repeat ;
-}
-
 li {
 	line-height: 27px;
 }
