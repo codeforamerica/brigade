@@ -80,11 +80,12 @@ header.page-id {
   }
 
   .intake-form{
-    width: 800px;
-    padding: 20px;
+    padding: 30px;
+    height: 58px;
     margin: auto;
     margin-top: 30px;
     background-color: white;
+    .submit{ margin-top: 0px;}
   }
 }
 
