@@ -23,6 +23,7 @@ install the gem. You can find instructions for downloading and installing QT on
 the [capybara-webkit wiki](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit)
 
 You'll also need to install Imagemagick
+
     brew install imagemagick
 
     git clone git://github.com/codeforamerica/brigade.git
@@ -31,6 +32,7 @@ You'll also need to install Imagemagick
 You'll have to set up a database.yml file in /config for your local database setup, and install any gems specific to your local database setup (e.g., sqlite3) by adding them to the Gemfile.
 
 Then:
+
     bundle install
     rake db:migrate
 
