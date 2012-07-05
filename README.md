@@ -26,6 +26,8 @@ You'll also need to install Imagemagick
 
     brew install imagemagick
 
+Clone the project:
+
     git clone git://github.com/codeforamerica/brigade.git
     cd brigade
 
