@@ -39,4 +39,8 @@ CodeForAmerica::Application.configure do
   config.serve_static_assets = false
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  
+  # KISS Metrics
+  require 'km'
+  KM.init("a3838ece28f1183d991a6c7a2e91418692b39230")
 end

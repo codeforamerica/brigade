@@ -69,7 +69,11 @@ gem 'airbrake'
 
 gem 'pg'
 
+# HighVoltage for static pages
 gem 'high_voltage'
+
+# KISS Metrics
+gem 'km'
 
 # Gems used only for assets and not required
 # in production environments by default.
