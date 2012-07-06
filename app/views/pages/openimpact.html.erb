@@ -1,55 +1,55 @@
-	<div class="row">
-		<div class="span12">
-			<img src="/assets/openimpact/main_banner.png">
-		</div>
-	</div><!--row-->
-	
-	<div class="row">
-		<br />
-		<div class="span6">
-			<p>Open government is essential to the future of America. Citizens, city leaders - let's work together to transform our cities. Let's create more efficient government services and a more engaged community.</p>
-			<p>It's time to advocate for a better city.</p>
-			<p><strong>It's time to make an Open Impact.</strong></p>
-		</div>
-		
-		<!-- form div-->
-		<div class="span5 offset1">	
-			<%= form_for @user, url: registration_path(@user), :html => { :class => "well form-horizontal" } do |form| %>
-				<fieldset>
-					<legend><span class="orange">.</span>Sign Up</legend>
-					<div class="control-group">
-						<label class="control-label" for="full_name">Name</label>
-						<div class="controls">
-							<%= form.text_field :full_name, :placeholder => 'Name', :class => "input-xlarge" %>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="email">Email</label>
-						<div class="controls">
-							<%= form.text_field :email, :placeholder => 'Email', :class => "input-xlarge" %>
-						</div>
-					</div>
-					<div class="form-actions impact-submit">
-				    	<%= form.submit 'Sign up', :class => 'btn btn-large btn-osubmit' %>
-					</div>
-				</fieldset>
-			<% end %>
-		</div>
-	</div>
+<div class="row">
+  <div class="span12">
+    <img src="/assets/openimpact/main_banner.png">
+  </div>
+</div><!--row-->
 
-	
-	<div class="row">
-		<div class="span12">
-			<h2 class="stepup">Step up. Take action.<h2>
-			<div class="row">
-				<div class="span6">
-					<a href="openimpact-citizen" class="btn massive"><img src="/assets/openimpact/flag.png" width="150px" ><br />I am a citizen</a>
-					<i class="citizen"></i>
-				</div>
-			
-				<div class="span6">
-					<a href="openimpact-government" class="btn massive"><img src="/assets/openimpact/gov.png" class="gov"><br />I am a government official</a>
-				</div>
-			</div>
-		</div>
-	</div><!--row-->
+<div class="row">
+  <br />
+  <div class="span6">
+    <p>Open government is essential to the future of America. Citizens, city leaders - let's work together to transform our cities. Let's create more efficient government services and a more engaged community.</p>
+    <p>It's time to advocate for a better city.</p>
+    <p><strong>It's time to make an Open Impact.</strong></p>
+  </div>
+
+  <!-- form div-->
+  <div class="span5 offset1">
+    <%= form_for @user, url: registration_path(@user), :html => { :class => "well form-horizontal" } do |form| %>
+      <fieldset>
+        <legend><span class="orange">.</span>Sign Up</legend>
+        <div class="control-group">
+          <label class="control-label" for="full_name">Name</label>
+          <div class="controls">
+            <%= form.text_field :full_name, :placeholder => 'Name', :class => "input-xlarge" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="email">Email</label>
+          <div class="controls">
+            <%= form.text_field :email, :placeholder => 'Email', :class => "input-xlarge" %>
+          </div>
+        </div>
+        <div class="form-actions impact-submit">
+            <%= form.submit 'Sign up', :class => 'btn btn-large btn-osubmit' %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="span12">
+    <h2 class="stepup">Step up. Take action.<h2>
+    <div class="row">
+      <div class="span6">
+        <a href="openimpact-citizen" class="btn massive"><img src="/assets/openimpact/flag.png" width="150px" ><br />I am a citizen</a>
+        <i class="citizen"></i>
+      </div>
+
+      <div class="span6">
+        <a href="openimpact-government" class="btn massive"><img src="/assets/openimpact/gov.png" class="gov"><br />I am a government official</a>
+      </div>
+    </div>
+  </div>
+</div><!--row-->

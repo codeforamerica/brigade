@@ -40,9 +40,9 @@ CodeForAmerica::Application.routes.draw do
   resources :challenges, only: [:new, :create, :index]
   resources :home
   root :to => 'home#index'
-  
+
   match "/pages/*id" => 'pages#show', :as => :page, :format => false
 
   match '/about' => 'high_voltage/pages#show', :id => 'about'
-  
+
 end

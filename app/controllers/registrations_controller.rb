@@ -26,7 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def build_user    
+  def build_user
     @user ||= User.new
   end
 
