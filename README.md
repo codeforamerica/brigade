@@ -28,6 +28,8 @@ You'll also need to install Imagemagick
     git clone git://github.com/codeforamerica/brigade.git
     cd brigade
     bundle install
+    cp config/database.yml.example config/database.yml
+    rake db:create
     rake db:migrate
 
 ## Usage
