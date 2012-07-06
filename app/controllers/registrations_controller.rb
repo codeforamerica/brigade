@@ -17,7 +17,8 @@ class RegistrationsController < Devise::RegistrationsController
       parser = CodeForAmerica::GithubOmniAuthParser.new session["devise.github_data"]
       params[:user][:github_uid] = parser.github_uid
     end
-
+    
+    SignupMailer.greeting(@user).deliver
     super
 
     session["devise.github_data"] = nil if @user.persisted?
