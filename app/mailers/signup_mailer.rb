@@ -4,6 +4,6 @@ class SignupMailer < ActionMailer::Base
   def greeting(user)
     puts "HITTING THE MAILER"
     @user = user
-    mail(to: user.email, subject: "Welcome to the CfA Brigade!")
+    mail(to: user.email, subject: "Welcome to the Code for America Brigade!")
   end
 end
