@@ -53,7 +53,7 @@ CodeForAmerica::Application.configure do
 
   # Enable threaded mode
   # config.threadsafe!
-  
+
   # KISS Metrics
   require 'km'
   KM.init("a3838ece28f1183d991a6c7a2e91418692b39230")
