@@ -19,6 +19,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     super
+    KM.record('User Signup')
+    KM.identify(@user.email)
     SignupMailer.greeting(@user).deliver
 
     session["devise.github_data"] = nil if @user.persisted?
