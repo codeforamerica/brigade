@@ -13,7 +13,6 @@ class HomeController < ApplicationController
       u.first_name = params[:input_name]
       u.email = params[:input_email]
       
-      
     end
   end
   
