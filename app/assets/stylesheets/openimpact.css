@@ -1,14 +1,14 @@
 .btn.massive {
-    font-size: 22px;
+    font-size: 18px;
   background-color: #EAEAEA;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(35%, #ffffff), to(#CCC));
-  background-image: -webkit-linear-gradient(#ffffff, #ffffff 35%, #CCC);
-  background-image: -moz-linear-gradient(top, #ffffff, #ffffff 35%, #CCC);
-  background-image: -ms-linear-gradient(#ffffff, #ffffff 35%, #CCC);
-  background-image: -o-linear-gradient(#ffffff, #ffffff 35%, #CCC);
-  background-image: linear-gradient(#ffffff, #ffffff 35%, #CCC);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(40%, #ffffff), to(#DDD));
+  background-image: -webkit-linear-gradient(#ffffff, #ffffff 40%, #DDD);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff 40%, #DDD);
+  background-image: -ms-linear-gradient(#ffffff, #ffffff 40%, #DDD);
+  background-image: -o-linear-gradient(#ffffff, #ffffff 40%, #DDD);
+  background-image: linear-gradient(#ffffff, #ffffff 40%, #DDD);
   background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#CCC', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#DDD', GradientType=0);
 }
 
 .massive {
@@ -18,8 +18,8 @@
 }
 
 .btn.massive:hover {
-    background-color: #CCC;
-    background-position: 0 -25px;
+    background-color: #DDD;
+    background-position: 0 -15px;
 }
 
 div.form-actions.impact-submit {
@@ -122,13 +122,22 @@ li {
     line-height: 27px;
 }
 
-h3.impact {
-    color: #FFC700;
+h3 {
+    /*color: #FFC700;*/
+    color: #000;
 }
 
 /*h2 {
     padding: 20px 0 0 0;
 }*/
+
+.back-to-top {
+    float: right;
+    font-size: 18px;
+    font-weight: normal;
+    color: #555;
+    margin-top: 5px;
+}
 
 /* Open Impact Page headers */
 
@@ -178,7 +187,7 @@ h3.impact {
 }
 
 .pledge-menu .ocall {
-    text-align:justify;
+    text-align:left;
 }
 
 .pledge-menu ul.nav {
@@ -226,7 +235,8 @@ h1.section-header {
 }
 
 h2.subsection-header {
-
+    margin-top:20px;
+    margin-bottom:15px;
 }
 
 .content-header {
@@ -241,12 +251,16 @@ h2.subsection-header {
 }
 
 .content-header h2 {
-    padding: 5px 0 5px 20px;
+    padding: 7px 0 5px 20px;
+    font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+    color: #FFF;
+    text-shadow: none;
+    font-weight: normal;
 }
 
 .content-wrap section {
     margin: 20px 0 20px 0;
-    background-color: #EAEAEA;
+    background-color: #ECECEC;
     -webkit-border-radius: 0 0 6px 6px;
     -moz-border-radius: 0 0 6px 6px;
     -ms-border-radius: 0 0 6px 6px;
@@ -270,7 +284,6 @@ h2.subsection-header {
     padding:20px 30px;
 }
 
-
 .key-point-icon {
     float: left;
     width: 100px;
@@ -286,4 +299,8 @@ h2.subsection-header {
     float : left;
     padding : 6px;
     margin : 2px;
+}
+
+.signup-form {
+    padding-left: 20px;
 }

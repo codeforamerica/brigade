@@ -11,29 +11,41 @@
     <div class="span12">
         <div class="pledge">
             <div class="pledge-form">
-                <div class="pledge-form-inner primary">
+                <div class="pledge-form-inner primary" style="height: 450px;">
                     <div class="pledge-form-content" style="margin-bottom: 30px;">
                         <h2>Join the Open Impact Community!</h2>
                         <p>Stay informed about Open Impact by joining the Code for America brigade. Enter your name and email address below to join a growing group of civic minded volunteers. Then start a movement in your city by following the steps below.</p>
                         <!-- <a href="#" id="pledge-form-learn-more-primary">Learn more.</a> -->
                     </div>
-                    <div id="wufoo-m7x3r3">
-                    Fill out my <a href="http://arielcharney.wufoo.com/forms/m7x3r3">online form</a>.
+
+                    <div class="signup-form">
+                        <%= form_for @user, url: registration_path(@user), :html => { :class => "form-horizontal" } do |form| %>
+                          <fieldset>
+                            <div class="control-group">
+                              <label class="control-label" for="full_name">Name</label>
+                              <div class="controls">
+                                <%= form.text_field :full_name, :placeholder => 'Name', :class => "input-xlarge" %>
+                              </div>
+                            </div>
+                            <div class="control-group">
+                              <label class="control-label" for="email">Email</label>
+                              <div class="controls">
+                                <%= form.text_field :email, :placeholder => 'Email', :class => "input-xlarge" %>
+                              </div>
+                            </div>
+                            <div class="form-actions impact-submit" style="border-top:0;">
+                                <%= form.submit 'Sign up', :class => 'btn btn-large btn-osubmit' %>
+                            </div>
+                          </fieldset>
+                        <% end %>
                     </div>
-                    <script type="text/javascript">var m7x3r3;(function(d, t) {
-                    var s = d.createElement(t), options = {
-                    'userName':'arielcharney',
-                    'formHash':'m7x3r3', 
-                    'autoResize':true,
-                    'height':'340',
-                    'async':true,
-                    'header':'hide'};
-                    s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-                    s.onload = s.onreadystatechange = function() {
-                    var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-                    try { m7x3r3 = new WufooForm();m7x3r3.initialize(options);m7x3r3.display(); } catch (e) {}};
-                    var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
-                    })(document, 'script');</script>
+
+                    <div style="margin-top:30px;">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-text="We the people have the power to change government. Make an #OpenImpact #OpenGov #CfAbrigade" data-size="large" data-url="http://OpenImpact.us">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                        <br /><br />
+                        <iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fbrigade.codeforamerica.org%2Fpages%2Fopenimpact&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80&amp;appId=119332528172230" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+                    </div>
                 </div>
                 <div class="pledge-form-inner secondary hide">
                     <div class="pledge-form-content">
@@ -60,28 +72,27 @@
 
             <p class="ocall">Our local governments are struggling to meet our needs. Budget cuts and bureaucracy aren't helping. With the combined power of the web, technology, and our voices, the tools for change are in our hands.</p>
 
-            <p class="ocal">
+            <p class="ocall">
                 Open Impact is calling on you to lead the charge for revolutionizing the way our city governments deliver services and interact with citizens.
             </p>
 
             <h2>
-                Transform your city today:
+                Take action, now:
             </h2>
 
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="#section-learn">1. Learn About Open Government <span style="float:right;">&darr;</span></a></li>
                 <li><a id="flash-join-form" href="#wufoo-m7x3r3">2. Join the Open Impact Community <span style="float:right;">&rarr;</span></a></li>
-                <li><a href="#section-build-your-movement">3. Build Your Movement <span style="float:right;">&darr;</span></a></li>
+                <li><a href="#section-build-your-movement">3. Open Your City <span style="float:right;">&darr;</span></a></li>
             </ul>
-
         </div>
     </div>
 </div>
 
 <div class="content-wrap">
-
     <h1 class="section-header" id="section-learn">
         Learn About Open Government
+        <a href="#" class="back-to-top">&uarr; Back to top</a>
     </h1>
 
     <section class="rounded">
@@ -131,6 +142,7 @@
 
     <h1 class="section-header" id="section-build-your-movement">
         Open Your City
+        <a href="#" class="back-to-top">&uarr; Back to top</a>
     </h1>
 
     <h2 class="subsection-header">Energize Your Community</h2>
@@ -499,6 +511,7 @@
 
     <h1 class="section-header" id="section-resources">
         Resources
+        <a href="#" class="back-to-top">&uarr; Back to top</a>
     </h1>
     <p></p>
 </div>

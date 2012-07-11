@@ -11,34 +11,6 @@
 </div>
 
 <div class="row">
-  <% if false %>
-  <!-- form div-->
-  <div class="span5 offset1">
-    <%= form_for @user, url: registration_path(@user), :html => { :class => "well form-horizontal" } do |form| %>
-      <fieldset>
-        <legend><span class="orange"></span>Sign Up</legend>
-        <div class="control-group">
-          <label class="control-label" for="full_name">Name</label>
-          <div class="controls">
-            <%= form.text_field :full_name, :placeholder => 'Name', :class => "input-xlarge" %>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label" for="email">Email</label>
-          <div class="controls">
-            <%= form.text_field :email, :placeholder => 'Email', :class => "input-xlarge" %>
-          </div>
-        </div>
-        <div class="form-actions impact-submit">
-            <%= form.submit 'Sign up', :class => 'btn btn-large btn-osubmit' %>
-        </div>
-      </fieldset>
-    <% end %>
-  </div>
-  <% end %>
-</div>
-
-<div class="row">
   <div class="span12">
     <h2 class="stepup">Step up. Take action.</h2>
   </div>
