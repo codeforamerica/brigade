@@ -21,8 +21,13 @@ class RegistrationsController < Devise::RegistrationsController
     super
     KM.record('User Signup')
     KM.identify(@user.email)
-    SignupMailer.greeting(@user).deliver
-
+    
+    if params[:user][:source] == "open_impact"
+      SignupMailer.open_impact_greeting(@user).deliver
+    else
+      SignupMailer.greeting(@user).deliver
+    end
+    
     session["devise.github_data"] = nil if @user.persisted?
   end
 
