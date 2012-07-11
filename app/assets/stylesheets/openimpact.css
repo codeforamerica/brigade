@@ -259,6 +259,17 @@ h2.subsection-header {
 
 .key-point-icon {
     float: left;
-    width: 110px;
+    width: 100px;
     margin: 30px 50px 0 40px;
+}
+
+.social-links {
+    position : relative;
+    list-style-type : none;
+    height:45px;
+}
+.social-links li {
+    float : left;
+    padding : 6px;
+    margin : 2px;
 }
