@@ -255,3 +255,10 @@ h2.subsection-header {
 .content-wrap section .section-inner {
     padding:20px 30px;
 }
+
+
+.key-point-icon {
+    float: left;
+    width: 110px;
+    margin: 30px 50px 0 40px;
+}
