@@ -1,11 +1,25 @@
 .btn.massive {
-    font-size: 16px;
+    font-size: 22px;
+  background-color: #EAEAEA;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(35%, #ffffff), to(#CCC));
+  background-image: -webkit-linear-gradient(#ffffff, #ffffff 35%, #CCC);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff 35%, #CCC);
+  background-image: -ms-linear-gradient(#ffffff, #ffffff 35%, #CCC);
+  background-image: -o-linear-gradient(#ffffff, #ffffff 35%, #CCC);
+  background-image: linear-gradient(#ffffff, #ffffff 35%, #CCC);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#CCC', GradientType=0);
 }
 
 .massive {
     height: 150px;
     width: 100%;
     padding: 0px;
+}
+
+.btn.massive:hover {
+    background-color: #CCC;
+    background-position: 0 -25px;
 }
 
 div.form-actions.impact-submit {
