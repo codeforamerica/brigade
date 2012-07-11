@@ -181,6 +181,10 @@ h2 {
     width:400px;
 }
 
+.pledge-menu .ocall {
+    text-align:justify;
+}
+
 .pledge-menu ul.nav {
     display:inline;
 }
