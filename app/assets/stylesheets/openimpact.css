@@ -188,3 +188,8 @@ h2 {
 .pledge-menu ul.nav li {
     margin: 10px 0 5px 0;
 }
+
+.pledge-menu ul.nav li a {
+    background-color: #FDB63E;
+    color: #FFF;
+}
