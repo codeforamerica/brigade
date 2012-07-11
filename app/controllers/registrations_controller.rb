@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
     KM.record('User Signup')
     KM.identify(@user.email)
     
-    if params[:user][:source] == "open_impact"
+    if params[:source] == "open_impact"
       SignupMailer.open_impact_greeting(@user).deliver
     else
       SignupMailer.greeting(@user).deliver
