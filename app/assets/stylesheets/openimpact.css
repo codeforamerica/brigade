@@ -101,6 +101,15 @@ div.drop-content {
     margin-bottom: 30px;
 }
 
+.hero {
+    padding: 30px 60px;
+    margin: 30px 0;
+    background-color: whiteSmoke;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
 .wufoo {
     width: 600px;
     border: 1px solid #ddd;
@@ -196,4 +205,5 @@ h2 {
 .pledge-menu ul.nav li a {
     background-color: #FDB63E;
     color: #FFF;
+    font-weight: bold;
 }
