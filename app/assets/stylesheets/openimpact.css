@@ -231,7 +231,7 @@ ul.nav li a:hover {
 }
 
 h1.section-header {
-    margin:40px 0 20px 0;
+    margin:40px 0;
 }
 
 h2.subsection-header {
@@ -303,4 +303,15 @@ h2.subsection-header {
 
 .signup-form {
     padding-left: 20px;
+}
+
+
+.content-header:hover h2 .content-header-down-arrow {
+    color: white;
+}
+
+.content-header h2 .content-header-down-arrow {
+    margin-right:20px;
+    float:right;
+    color: #FEB73E;
 }
