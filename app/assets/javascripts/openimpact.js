@@ -17,4 +17,9 @@ $(document).ready(function () {
         });
         return false;
     });
+
+    $('#flash-join-form').on('click', function(){
+        $('.pledge-form-inner').css('border-color', '#FDB63E');
+        return false;
+    });
 });

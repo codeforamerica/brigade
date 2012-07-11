@@ -51,17 +51,6 @@ img.gov {
     padding:0;
 }
 
-.stepup-points {
-    margin-top: 70px;
-    margin-bottom: 45px;
-}
-
-.stepup-points li {
-    font-size:26px;
-    color: #FFC600;
-    margin: 25px;
-}
-
 .form-horizontal .control-group > label {
     width: 30px;
 }
@@ -110,18 +99,6 @@ div.drop-content {
     border-radius: 6px;
 }
 
-.wufoo {
-    width: 600px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
-    padding: 10px;
-}
-
-.content-header {
-    cursor: pointer;
-}
-
 blockquote p {
     font-size: 14px;
     line-height: 20px;
@@ -135,9 +112,11 @@ h3.impact {
     color: #FFC700;
 }
 
-h2 {
+/*h2 {
     padding: 20px 0 0 0;
-}
+}*/
+
+/* Open Impact Page headers */
 
 .pledge {
     width: 500px;
@@ -155,9 +134,6 @@ h2 {
     margin-top: 5px;
     padding: 15px;
     box-shadow: 0px 0px 10px #aaa;
-}
-
-.pledge-form-content {
 }
 
 .pledge-form-content h2 {
@@ -183,9 +159,6 @@ h2 {
     cursor:pointer;
 }
 
-.wufoo .info {display:none}
-.wufoo header {display:none;}
-
 .pledge-menu {
     width:400px;
 }
@@ -202,8 +175,83 @@ h2 {
     margin: 10px 0 5px 0;
 }
 
-.pledge-menu ul.nav li a {
+/* Pill Nav yellow styling */
+
+ul.nav li a {
     background-color: #FDB63E;
     color: #FFF;
     font-weight: bold;
+}
+
+ul.nav li a:hover {
+    color: #FDB63E;
+}
+
+/* Wufoo forms */
+
+.wufoo {
+    width: 600px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px;
+}
+
+.wufoo .info {display:none}
+.wufoo header {display:none;}
+
+
+/* Page content styles */
+
+.content-wrap {
+    margin-top:40px;
+}
+
+h1.section-header {
+    margin:40px 0 20px 0;
+}
+
+h2.subsection-header {
+
+}
+
+.content-header {
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    background-color: #FEB73E;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -ms-border-radius: 6px 6px 0 0;
+    -o-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.content-header h2 {
+    padding: 5px 0 5px 20px;
+}
+
+.content-wrap section {
+    margin: 20px 0 20px 0;
+    background-color: #EAEAEA;
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    -ms-border-radius: 0 0 6px 6px;
+    -o-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+}
+
+.content-wrap section.rounded {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.content-wrap section.drop-content.collapse {
+    margin: 0;
+}
+
+.content-wrap section .section-inner {
+    padding:20px 30px;
 }
