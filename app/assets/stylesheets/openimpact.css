@@ -47,7 +47,19 @@ img.gov {
 
 .stepup {
     text-align: center;
-    margin-top: 20px;
+    margin:0;
+    padding:0;
+}
+
+.stepup-points {
+    margin-top: 70px;
+    margin-bottom: 45px;
+}
+
+.stepup-points li {
+    font-size:26px;
+    color: #FFC600;
+    margin: 25px;
 }
 
 .form-horizontal .control-group > label {
@@ -116,4 +128,63 @@ h3.impact {
 
 h2 {
     padding: 20px 0 0 0;
+}
+
+.pledge {
+    width: 500px;
+    float: right;
+    margin-left:50px;
+}
+
+.pledge-form {
+    width: 500px;
+}
+
+.pledge-form-inner {
+    background-color: #f5f5f5;
+    border: 5px solid white;
+    margin-top: 5px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.pledge-form-content {
+}
+
+.pledge-form-content h2 {
+    padding:0;
+    margin-bottom:15px;
+}
+
+.pledge-form-content h3 {
+    margin-top:10px;
+}
+
+.pledge-form-content ul {
+    margin-top:10px;
+}
+
+.pledge-form-content ul li {
+    font-size: 14px;
+    line-height:24px;
+}
+
+.pledge-form-learn-more {
+    color: #CE263F;
+    cursor:pointer;
+}
+
+.wufoo .info {display:none}
+.wufoo header {display:none;}
+
+.pledge-menu {
+    width:400px;
+}
+
+.pledge-menu ul.nav {
+    display:inline;
+}
+
+.pledge-menu ul.nav li {
+    margin: 10px 0 5px 0;
 }
