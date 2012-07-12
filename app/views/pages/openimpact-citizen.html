@@ -23,7 +23,7 @@
 
                     <!-- BRIGADE SIGNUP FORM -->
                     <div class="signup-form">
-                        <%= form_for @user, url: registration_path(@user), :html => { :class => "form-horizontal" } do |form| %>
+                        <%= form_for @user, url: registration_path(@user, :source => 'open_impact'), :html => { :class => "form-horizontal" } do |form| %>
                           <fieldset>
                             <div class="control-group">
                               <label class="control-label" for="full_name">Name</label>
