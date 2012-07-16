@@ -10,7 +10,7 @@ class PagesController < HighVoltage::PagesController
     KM.record('Open Civic Data')        if params[:id] == 'opendata'
     KM.record('Advocate')               if params[:id] == 'ogi'
     KM.record('Commit Open Source')     if params[:id] == 'opensource'
-    
+
     super
   end
 end
