@@ -350,3 +350,8 @@ h2.subsection-header {
 .content-header:hover .content-subheader{
     /*background-color: #D2D2D2;*/
 }
+
+.resources a {
+    padding: 5px 5px 5px 30px;
+    background: url('/assets/openimpact/icon_download.png') 1px center no-repeat;
+}
