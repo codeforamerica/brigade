@@ -258,6 +258,11 @@ h2.subsection-header {
     font-weight: normal;
 }
 
+.content-header .content-subheader {
+    background-color: #ECECEC;
+    padding:20px 30px;
+}
+
 .content-wrap section {
     margin: 20px 0 20px 0;
     background-color: #ECECEC;
@@ -281,7 +286,13 @@ h2.subsection-header {
 }
 
 .content-wrap section .section-inner {
-    padding:20px 30px;
+    padding:0 30px 20px 30px;
+    margin-top:-10px;
+}
+
+.content-wrap section.rounded .section-inner {
+    padding: 20px 30px;
+    margin-top:0;
 }
 
 .key-point-icon {
@@ -305,7 +316,6 @@ h2.subsection-header {
     padding-left: 20px;
 }
 
-
 .content-header:hover h2 .content-header-down-arrow {
     color: white;
 }
@@ -314,4 +324,12 @@ h2.subsection-header {
     margin-right:20px;
     float:right;
     color: #FEB73E;
+}
+
+.content-header:hover {
+    background-color: #E78B2D;
+}
+
+.content-header:hover .content-subheader{
+    /*background-color: #D2D2D2;*/
 }
