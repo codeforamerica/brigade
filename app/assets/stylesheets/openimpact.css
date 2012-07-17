@@ -260,7 +260,10 @@ h2.subsection-header {
 
 .content-header .content-subheader {
     background-color: #ECECEC;
-    padding:20px 30px;
+    padding:5px 30px;
+}
+
+.content-header .content-subheader p {
 }
 
 .content-wrap section {
@@ -286,6 +289,10 @@ h2.subsection-header {
 }
 
 .content-wrap section .section-inner {
+    padding:20px 30px;
+}
+
+.content-wrap section .section-inner.below-subheader {
     padding:0 30px 20px 30px;
     margin-top:-10px;
 }
