@@ -302,6 +302,16 @@ h2.subsection-header {
     margin-top:0;
 }
 
+.section-inner h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.content-wrap section.rounded .section-inner h3 {
+    margin:0;
+}
+
 .key-point-icon {
     float: left;
     width: 100px;
