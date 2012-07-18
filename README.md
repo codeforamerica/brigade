@@ -8,6 +8,8 @@ Help civic hackers collaborate
 
 [gemnasium]: https://gemnasium.com/codeforamerica/brigade
 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/codeforamerica/brigade)
+
 ## Demo
 You can see a running version of the application at
 [http://brigade.codeforamerica.org/][demo].
