@@ -1,11 +1,25 @@
 .btn.massive {
-    font-size: 16px;
+    font-size: 18px;
+  background-color: #EAEAEA;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(40%, #ffffff), to(#DDD));
+  background-image: -webkit-linear-gradient(#ffffff, #ffffff 40%, #DDD);
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff 40%, #DDD);
+  background-image: -ms-linear-gradient(#ffffff, #ffffff 40%, #DDD);
+  background-image: -o-linear-gradient(#ffffff, #ffffff 40%, #DDD);
+  background-image: linear-gradient(#ffffff, #ffffff 40%, #DDD);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#DDD', GradientType=0);
 }
 
 .massive {
     height: 150px;
     width: 100%;
     padding: 0px;
+}
+
+.btn.massive:hover {
+    background-color: #DDD;
+    background-position: 0 -15px;
 }
 
 div.form-actions.impact-submit {
@@ -47,7 +61,8 @@ img.gov {
 
 .stepup {
     text-align: center;
-    margin-top: 20px;
+    margin:0;
+    padding:0;
 }
 
 .form-horizontal .control-group > label {
@@ -89,16 +104,13 @@ div.drop-content {
     margin-bottom: 30px;
 }
 
-.wufoo {
-    width: 600px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
-    padding: 10px;
-}
-
-.content-header {
-    cursor: pointer;
+.hero {
+    padding: 30px 60px;
+    margin: 30px 0;
+    background-color: whiteSmoke;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
 blockquote p {
@@ -110,10 +122,236 @@ li {
     line-height: 27px;
 }
 
-h3.impact {
-    color: #FFC700;
+h3 {
+    /*color: #FFC700;*/
+    color: #000;
 }
 
-h2 {
+/*h2 {
     padding: 20px 0 0 0;
+}*/
+
+.back-to-top {
+    float: right;
+    font-size: 18px;
+    font-weight: normal;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Open Impact Page headers */
+
+.pledge {
+    width: 500px;
+    float: right;
+    margin-left:50px;
+}
+
+.pledge-form {
+    width: 500px;
+}
+
+.pledge-form-inner {
+    background-color: #f5f5f5;
+    border: 5px solid white;
+    margin-top: 5px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
+.pledge-form-content h2 {
+    padding:0;
+    margin-bottom:15px;
+}
+
+.pledge-form-content h3 {
+    margin-top:10px;
+}
+
+.pledge-form-content ul {
+    margin-top:10px;
+}
+
+.pledge-form-content ul li {
+    font-size: 14px;
+    line-height:24px;
+}
+
+.pledge-form-learn-more {
+    color: #CE263F;
+    cursor:pointer;
+}
+
+.pledge-menu {
+    width:400px;
+}
+
+.pledge-menu .ocall {
+    text-align:left;
+}
+
+.pledge-menu ul.nav {
+    display:inline;
+}
+
+.pledge-menu ul.nav li {
+    margin: 10px 0 5px 0;
+}
+
+/* Pill Nav yellow styling */
+
+ul.nav li a {
+    background-color: #FDB63E;
+    color: #FFF;
+    font-weight: bold;
+}
+
+ul.nav li a:hover {
+    color: #FDB63E;
+}
+
+/* Wufoo forms */
+
+.wufoo {
+    width: 600px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px;
+}
+
+.wufoo .info {display:none}
+.wufoo header {display:none;}
+
+
+/* Page content styles */
+
+.content-wrap {
+    margin-top:40px;
+}
+
+h1.section-header {
+    margin:40px 0;
+}
+
+h2.subsection-header {
+    margin-top:20px;
+    margin-bottom:15px;
+}
+
+.content-header {
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    background-color: #FEB73E;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -ms-border-radius: 6px 6px 0 0;
+    -o-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.content-header h2 {
+    padding: 7px 0 5px 20px;
+    font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+    color: #FFF;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.content-header .content-subheader {
+    background-color: #ECECEC;
+    padding:5px 30px;
+}
+
+.content-header .content-subheader p {
+}
+
+.content-wrap section {
+    margin: 20px 0 20px 0;
+    background-color: #ECECEC;
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    -ms-border-radius: 0 0 6px 6px;
+    -o-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+}
+
+.content-wrap section.rounded {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.content-wrap section.drop-content.collapse {
+    margin: 0;
+}
+
+.content-wrap section .section-inner {
+    padding:20px 30px;
+}
+
+.content-wrap section .section-inner.below-subheader {
+    padding:0 30px 20px 30px;
+    margin-top:-10px;
+}
+
+.content-wrap section.rounded .section-inner {
+    padding: 20px 30px;
+    margin-top:0;
+}
+
+.section-inner h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.content-wrap section.rounded .section-inner h3 {
+    margin:0;
+}
+
+.key-point-icon {
+    float: left;
+    width: 100px;
+    margin: 30px 50px 0 40px;
+}
+
+.social-links {
+    position : relative;
+    list-style-type : none;
+    height:45px;
+}
+.social-links li {
+    float : left;
+    padding : 6px;
+    margin : 2px;
+}
+
+.signup-form {
+    padding-left: 20px;
+}
+
+.content-header:hover h2 .content-header-down-arrow {
+    color: white;
+}
+
+.content-header h2 .content-header-down-arrow {
+    margin-right:20px;
+    float:right;
+    color: #FEB73E;
+}
+
+.content-header:hover {
+    background-color: #E78B2D;
+}
+
+.content-header:hover .content-subheader{
+    /*background-color: #D2D2D2;*/
+}
+
+.resources a {
+    padding: 5px 5px 5px 30px;
+    background: url('/assets/openimpact/icon_download.png') 1px center no-repeat;
 }

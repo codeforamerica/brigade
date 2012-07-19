@@ -8,6 +8,6 @@ class SignupMailer < ActionMailer::Base
 
   def open_impact_greeting(user)
     @user = user
-    mail(to: user.email, cc: ['kevin@codeforamerica.org', 'jack@codeforamerica.org'], subject: "Welcome to The Open Impact Campaign!")
+    mail(to: user.email, cc: ['kevin@codeforamerica.org', 'jack@codeforamerica.org', 'openimpact@codeforamerica.org'], subject: "Welcome to The Open Impact Campaign!")
   end
 end
