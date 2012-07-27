@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <head>
     <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
-    <title>The Code for America Brigade | <%= controller.controller_name.titleize %></title>
+    <title>The Code for America Brigade | <%= @page_title || controller.controller_name.titleize %></title>
     <meta name="description" content="The Code for America Brigade connects passionate technologists in their communities to work together to deploy reusable civic apps.">
     <%= stylesheet_link_tag    'application', :media => 'all' %>
     <%= javascript_include_tag 'application' %>
