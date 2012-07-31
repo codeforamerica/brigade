@@ -15005,4 +15005,160 @@ http_interactions:
       string: ! '{"tid":"90","vid":"7","name":"MIT","description":"","format":"filtered_html","weight":"3","uuid":"7a7ea731-2ab3-ee34-f9c2-47267e34400d","vocabulary_machine_name":"software_licenses","rdf_mapping":{"rdftype":["skos:Concept"],"name":{"predicates":["rdfs:label","skos:prefLabel"]},"description":{"predicates":["skos:definition"]},"vid":{"predicates":["skos:inScheme"],"type":"rel"},"parent":{"predicates":["skos:broader"],"type":"rel"}}}'
     http_version: 
   recorded_at: Wed, 25 Jul 2012 13:47:44 GMT
+- request:
+    method: get
+    uri: http://civiccommons.org/api/v1/node/13685.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Server:
+      - Apache
+      Location:
+      - http://commons.codeforamerica.org/api/v1/node/13685.json
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html; charset=iso-8859-1
+      Content-Length:
+      - '219'
+      X-Cacheable:
+      - 'YES'
+      Date:
+      - Tue, 31 Jul 2012 01:43:19 GMT
+      X-Varnish:
+      - '1402534602'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA22PwU7DMAyG730K0zvxygRCyOTAWsSkDXrIDhxD4y2dmqRK
+        w6S9PWl35ej/+yz/prv6a6O+2wY+1H4H7eFtt91AeY+4bdQ7Yq3qG3kQK8Tm
+        s5QF2eQGSZa1yUPq08ByvapgHy5soOXotGefhivhDRaEi0w/wVzn/Ur+4+a0
+        oFEqy2BC9+tyDFZP4BaVNNjIx9fSpjS+IHbBueAn0QXDxxC149h3WoR4Qj32
+        eKnQZ4LV+un5UZyn4EtpOTKhloJwnDstbfLd+ZviD5FJJLAIAQAA
+    http_version: 
+  recorded_at: Tue, 31 Jul 2012 01:43:23 GMT
+- request:
+    method: get
+    uri: http://civiccommons.org/api/v1/node/13685.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Server:
+      - Apache
+      Location:
+      - http://commons.codeforamerica.org/api/v1/node/13685.json
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html; charset=iso-8859-1
+      Content-Length:
+      - '219'
+      X-Cacheable:
+      - 'YES'
+      Date:
+      - Tue, 31 Jul 2012 01:56:49 GMT
+      X-Varnish:
+      - '1402534821'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA22PwU7DMAyG730K0zvxygRCyOTAWsSkDXrIDhxD4y2dmqRK
+        w6S9PWl35ej/+yz/prv6a6O+2wY+1H4H7eFtt91AeY+4bdQ7Yq3qG3kQK8Tm
+        s5QF2eQGSZa1yUPq08ByvapgHy5soOXotGefhivhDRaEi0w/wVzn/Ur+4+a0
+        oFEqy2BC9+tyDFZP4BaVNNjIx9fSpjS+IHbBueAn0QXDxxC149h3WoR4Qj32
+        eKnQZ4LV+un5UZyn4EtpOTKhloJwnDstbfLd+ZviD5FJJLAIAQAA
+    http_version: 
+  recorded_at: Tue, 31 Jul 2012 01:56:53 GMT
+- request:
+    method: get
+    uri: http://civiccommons.org/api/v1/node/13685.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Server:
+      - Apache
+      Location:
+      - http://commons.codeforamerica.org/api/v1/node/13685.json
+      Vary:
+      - Accept-Encoding
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html; charset=iso-8859-1
+      Content-Length:
+      - '219'
+      X-Cacheable:
+      - 'YES'
+      Date:
+      - Tue, 31 Jul 2012 02:46:45 GMT
+      X-Varnish:
+      - '1402535502'
+      Age:
+      - '0'
+      Via:
+      - 1.1 varnish
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA22PwU7DMAyG730K0zvxygRCyOTAWsSkDXrIDhxD4y2dmqRK
+        w6S9PWl35ej/+yz/prv6a6O+2wY+1H4H7eFtt91AeY+4bdQ7Yq3qG3kQK8Tm
+        s5QF2eQGSZa1yUPq08ByvapgHy5soOXotGefhivhDRaEi0w/wVzn/Ur+4+a0
+        oFEqy2BC9+tyDFZP4BaVNNjIx9fSpjS+IHbBueAn0QXDxxC149h3WoR4Qj32
+        eKnQZ4LV+un5UZyn4EtpOTKhloJwnDstbfLd+ZviD5FJJLAIAQAA
+    http_version: 
+  recorded_at: Tue, 31 Jul 2012 02:46:48 GMT
 recorded_with: VCR 2.1.1
