@@ -11,6 +11,30 @@
   <%end%>
 </div>
 
+<% if @location.users.present? %>
+  <h2>Here's who is already working in <%= @location.name %>:</h2>
+  <table class="all-apps" cellpadding="4" id="sortable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @location.users.each do |user| %>
+        <tr id="<%="user_#{user.id}"%>" class="<%= cycle "odd", "even" %>">
+          <td><strong><%= user.full_name %></strong></td>
+          <td><%= user.skill_list %></td>
+          <td><%= link_to 'Show', user%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%else%>
+  <%= content_tag :h2, "There are no other people working here." %>
+<% end %>
+
 
 <% if @deployed_applications.present? %>
   <h2>Join these Brigades to participate in what's already happening <%= @location.name %>:</h2>
@@ -49,28 +73,4 @@
   </table>
 <%else%>
   <%= content_tag :h2, "All available apps are deployed in this location" %>
-<% end %>
-
-<% if @location.users.present? %>
-  <h2>Here's who is already working in <%= @location.name %>:</h2>
-  <table class="all-apps" cellpadding="4" id="sortable">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @location.users.each do |user| %>
-        <tr id="<%="user_#{user.id}"%>" class="<%= cycle "odd", "even" %>">
-          <td><strong><%= user.full_name %></strong></td>
-          <td><%= user.skill_list %></td>
-          <td><%= link_to 'Show', user%></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-<%else%>
-  <%= content_tag :h2, "There are no other people working here." %>
 <% end %>
