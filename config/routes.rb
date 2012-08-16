@@ -2,7 +2,7 @@ CodeForAmerica::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
-  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, :path => "members", controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
 
   devise_scope :user do
     get '/sign-in'  => 'sessions#new',     as: :sign_in
