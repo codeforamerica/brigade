@@ -108,6 +108,8 @@ group :development, :test do
   #Rspec for testing instead of test::unit
   gem 'rspec-rails'
   gem 'heroku'
+  gem 'taps'
+  gem 'sqlite3'
 end
 
 group :test do
