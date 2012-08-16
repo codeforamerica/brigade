@@ -2,7 +2,7 @@ module CivicCommons
   class Client
 
     def initialize
-      @conn = Faraday.new 'http://civiccommons.org/api/v1' do |builder|
+      @conn = Faraday.new 'http://commons.codeforamerica.org/api/v1' do |builder|
 
         # Uncomment if want to log to stdout
         # builder.response :logger

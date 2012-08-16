@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://civiccommons.org/api/v1/taxonomy_term/91.json
+    uri: http://commons.codeforamerica.org/api/v1/taxonomy_term/91.json
     body:
       encoding: US-ASCII
       string: ''
