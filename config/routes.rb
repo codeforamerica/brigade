@@ -9,7 +9,7 @@ CodeForAmerica::Application.routes.draw do
     get '/sign-out' => 'sessions#destroy', as: :sign_out
   end
 
-  resources :users, only: [:show, :index, :edit, :update]
+  resources :users, :path => 'members', only: [:show, :index, :edit, :update]
 
   resources :applications, only: [:index, :show] do
     resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
