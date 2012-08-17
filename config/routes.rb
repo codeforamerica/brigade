@@ -11,6 +11,16 @@ CodeForAmerica::Application.routes.draw do
 
   resources :users, :path => 'members', only: [:show, :index, :edit, :update]
 
+  # Redirects after switching users to members
+  
+  match "/users/sign_up"        => redirect("/members/sign_up")
+  match "/users/sign_in"        => redirect("/members/sign_in")
+  match "/users/password/new"   => redirect("/members/password/new")
+  match "/users/edit"           => redirect("/members/edit")
+  match "/users"                => redirect("/members")
+  match "/users/:id/edit"       => redirect("/members/:id/edit")
+  match "/users/:id"            => redirect("/members/:id")
+
   resources :applications, only: [:index, :show] do
     resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
   end
