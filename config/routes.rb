@@ -12,7 +12,6 @@ CodeForAmerica::Application.routes.draw do
   resources :users, :path => 'members', only: [:show, :index, :edit, :update]
 
   # Redirects after switching users to members
-  
   match "/users/sign_up"        => redirect("/members/sign_up")
   match "/users/sign_in"        => redirect("/members/sign_in")
   match "/users/password/new"   => redirect("/members/password/new")
