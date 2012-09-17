@@ -13,6 +13,7 @@ p.race{
 	margin:0px;
 	background:#FAFAF8;	
 	font-family: 'Cabin','Lato', 'Helvetica Neue', 'Helvetica Neue Medium', 'HelveticaNeue LT 65 Medium';
+	font-size:18px;
 }
 
 a {
@@ -75,6 +76,12 @@ ul{
 	margin:0px;
 	padding:0px;
 	list-style:none;	
+}
+
+ol.race li{
+	margin:0px;
+	padding:10px 10px 10px 10px;
+	font-size:18px;	
 }
 
 #header{
