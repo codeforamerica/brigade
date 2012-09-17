@@ -259,13 +259,12 @@ ul{
 	margin-left: 12px;	
 }
 
-#nav_cont ul lis{
+#nav_cont ul li{
 	float:left;
 	font-weight:700;	
 	font-size:24px;
 	line-height:63px;
 	text-align:center;
-	background-color:#fff;
 }
 
 #nav_cont ul li a.race{
@@ -278,7 +277,7 @@ ul{
 	font-family:'Lato', Helvetica, Gotham;	
 	font-weight: 700;
 	font-size: 21px;
-	background-color:#fff;	
+	background-color:transparent;	
 }
 
 #nav_cont ul li a:hover, #nav_cont ul li.active a{
