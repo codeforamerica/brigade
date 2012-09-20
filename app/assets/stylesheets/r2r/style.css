@@ -2,8 +2,8 @@
 /* CSS Document */
 
 body.race{
-	margin:0px;
-	background:#FAFAF8;	
+margin:0px;
+	background:#FAFAF8;
 	font-family: 'Cabin','Lato', 'Helvetica Neue', 'Helvetica Neue Medium', 'HelveticaNeue LT 65 Medium';
 }
 
@@ -11,7 +11,7 @@ p.race{
 	padding-top:10px;
 	padding-bottom:10px;
 	margin:0px;
-	background:#FAFAF8;	
+	background:#FAFAF8;
 	font-family: 'Cabin','Lato', 'Helvetica Neue', 'Helvetica Neue Medium', 'HelveticaNeue LT 65 Medium';
 	font-size:18px;
 }
@@ -28,8 +28,8 @@ a:hover {
 
 h1.race{
 	font-size:37px;
-	color:#3b3b3b;	
-	font-family: 'Oswald','Lato', Helvetica, Gotham;	
+	color:#3b3b3b;
+	font-family: 'Oswald','Lato', Helvetica, Gotham;
 	font-weight: 700;
 	text-align: center;
 	padding-bottom: 10px;
@@ -41,7 +41,7 @@ h2.race{
 	font-size:28px;
 	color:#4299ce;
 	font-weight:700;
-	padding-top:10px;	
+	padding-top:10px;
 }
 
 h3.ribbon{
@@ -52,7 +52,7 @@ h3.ribbon{
 	height:61px;
 	padding-top:3px;
 	line-height: 43px;
-	background:url(/assets/r2r/team_heading.png) center no-repeat;	
+	background:url(/assets/r2r/team_heading.png) center no-repeat;
 }
 
 h4.race {
@@ -64,30 +64,30 @@ h4.race {
 
 h5 {
 	font-size:28px;
-	font-weight:normal;	
+	font-weight:normal;
 }
 
 h5 a{
 	text-decoration:none;
-	color:#3b3b3b;	
+	color:#3b3b3b;
 }
 
 ul{
 	margin:0px;
 	padding:0px;
-	list-style:none;	
+	list-style:none;
 }
 
 ol.race li{
 	margin:0px;
 	padding:10px 10px 10px 10px;
-	font-size:18px;	
+	font-size:18px;
 }
 
 #header{
 	width:100%;
 	height:141px;
-	background:url(/assets/r2r/header_top_bg.jpg) repeat-x;	
+	background:url(/assets/r2r/header_top_bg.jpg) repeat-x;
 	border-top: 5px solid #D40949;
 }
 
@@ -95,7 +95,7 @@ ol.race li{
 	width:870px;
 	height:141px;
 	margin:0px auto;
-	text-align:center;	
+	text-align:center;
 }
 
 #header img.header-logo {
@@ -107,13 +107,13 @@ ol.race li{
 	width:100%;
 	height:287px;
 	position:relative;
-	background: #40A7DB;	
+	background: #40A7DB;
 }
 
 #banner_bg{
 	width:100%;
 	height:287px;
-	position:relative;	
+	position:relative;
 }
 
 #banner_txt{
@@ -136,14 +136,14 @@ ol.race li{
 	letter-spacing: -.05em;
 }
 
-.cufon{	
+.cufon{
 	margin-top:5px;
 }
 
 .banner_des{
 	font-size:25px;
 	font-weight:400;
-	color:#fff;	
+	color:#fff;
 	float:right;
 	margin-right:4px;
 	margin-top:3px;
@@ -157,7 +157,7 @@ ol.race li{
 	font-family: 'lato', 'Helvetica Neue', 'Helvetica Neue Medium', 'HelveticaNeue LT 65 Medium';;
 	text-align:center;
 	font-weight:bold;
-	cursor:pointer;	
+	cursor:pointer;
 	clear:both;
 	color: #ffffff;
 	padding: 10px 10px;
@@ -169,7 +169,7 @@ ol.race li{
 		#66a7ed 25%,
 		#0284db);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#2fa3eb),
 		color-stop(0.25, #66a7ed),
 		to(#0284db));
@@ -196,7 +196,7 @@ ol.race li{
 	font-family: 'lato', 'Helvetica Neue', 'Helvetica Neue Medium', 'HelveticaNeue LT 65 Medium';;
 	text-align:center;
 	font-weight:bold;
-	cursor:pointer;	
+	cursor:pointer;
 	clear:both;
 	color: #ffffff;
 	padding: 10px 10px;
@@ -208,7 +208,7 @@ ol.race li{
 		#66a7ed 25%,
 		#2fa3eb);
 	background: -webkit-gradient(
-		linear, left top, left bottom, 
+		linear, left top, left bottom,
 		from(#0284db),
 		color-stop(0.25, #66a7ed),
 		to(#2fa3eb));
@@ -234,9 +234,9 @@ ol.race li{
 	height:67px;
 	text-align:center;
 	font-weight:bold;
-	color:#fff;	
+	color:#fff;
 	font-size:30px;
-	cursor:pointer;	
+	cursor:pointer;
 	clear:both;
 	margin-top:20px;
 	margin-right:10px;
@@ -263,12 +263,12 @@ ol.race li{
 	margin:0px;
 	padding:0px;
 	list-style:none;
-	margin-left: 12px;	
+	margin-left: 12px;
 }
 
 #nav_cont ul li{
 	float:left;
-	font-weight:700;	
+	font-weight:700;
 	font-size:24px;
 	line-height:63px;
 	text-align:center;
@@ -281,15 +281,15 @@ ol.race li{
 	color:#3b3b3b;
 	display:block;
 	height:84px;
-	font-family:'Lato', Helvetica, Gotham;	
+	font-family:'Lato', Helvetica, Gotham;
 	font-weight: 700;
 	font-size: 21px;
-	background-color:transparent;	
+	background-color:transparent;
 }
 
 #nav_cont ul li a:hover, #nav_cont ul li.active a{
 	color:#fff;
-	background:url(/assets/r2r/nav_hover.png) center no-repeat;	
+	background:url(/assets/r2r/nav_hover.png) center no-repeat;
 }
 
 #wrapper{
@@ -308,7 +308,7 @@ ol.race li{
 .main_cont{
 	width:850px;
 	height:auto;
-	float:left;	
+	float:left;
 	padding:0px 10px;
 	line-height: 26px;
 }
@@ -322,7 +322,7 @@ ol.race li{
 
 .top_art_cont{
 	width:850px;
-	float:left;	
+	float:left;
 	font-size:18px;
 	height:auto;
 	color:#5d5d5c;
@@ -332,14 +332,14 @@ ol.race li{
 	float:left;
 	width:470px;
 	font-weight:normal;
-	color:#5d5d5c;	
+	color:#5d5d5c;
 }
 
 .spend_cont{
 	width:305px;
 	float:right;
 	padding-top: 10px;
-	
+
 }
 
 .spend_top{
@@ -347,13 +347,13 @@ ol.race li{
 	width:305px;
 	height:63px;
 	color:#63c6d3;
-	border-bottom:1px solid #afafb2;	
+	border-bottom:1px solid #afafb2;
 }
 
 .spend_middle{
-	float:left;	
+	float:left;
 	height:188px;
-	width:305px;	
+	width:305px;
 	color:#606062;
 	font-size:16px;
 }
@@ -364,7 +364,7 @@ ol.race li{
 	height:52px;
 	text-align:right;
 	color:#55c2d0;
-	font-size:16px;	
+	font-size:16px;
 	border-top:1px solid #afafb2;
 	padding-top:10px;
 }
@@ -377,11 +377,11 @@ ol.race li{
 .bottom_art_cont{
 	float:left;
 	width:850px;
-	height:auto;	
+	height:auto;
 }
 
 .bottom_art_cont .cufon{
-	margin-top:0px;	
+	margin-top:0px;
 }
 
 .bottom_art_cont li p{
@@ -392,24 +392,24 @@ ol.race li{
 }
 
 .bottom_art_cont li{
-	padding-left:60px;	
+	padding-left:60px;
 }
 
 .liImg1{
-	background:url(/assets/r2r/accelerator_cfa_03.png) left top no-repeat;	
+	background:url(/assets/r2r/accelerator_cfa_03.png) left top no-repeat;
 }
 
 .liImg2{
-	background:url(/assets/r2r/accelerator_cfa_06.png) left top no-repeat;	
+	background:url(/assets/r2r/accelerator_cfa_06.png) left top no-repeat;
 }
 
 .liImg3{
-	background:url(/assets/r2r/accelerator_cfa_08.png) left top no-repeat;	
+	background:url(/assets/r2r/accelerator_cfa_08.png) left top no-repeat;
 }
 
-.redli{	
+.redli{
 	font-size:26px;
-	color:#d40949;	
+	color:#d40949;
 }
 
 #finish_line_cont{
@@ -417,13 +417,13 @@ ol.race li{
 	width:100%;
 	height:60px;
 	background:url(/assets/r2r/finishing_line.jpg) center no-repeat;
-	margin:24px 0px 15px;	
+	margin:24px 0px 15px;
 }
 
 .program_cont ul{
 	margin-left:20px;
 	padding:0px;
-	list-style:disc;	
+	list-style:disc;
 }
 
 .program_cont ul li{
@@ -433,7 +433,7 @@ ol.race li{
 }
 
 .program_cont ul li .cufon{
-	margin-top:0px;	
+	margin-top:0px;
 	*margin-top: 8px; /* IE 7 and below */
    _margin-top/**/: 10px; /* IE 5.0 */
    _margin-top:/**/ 10px; /* IE 5.5 only */
@@ -449,7 +449,7 @@ ol.race li{
 	text-align:center;
 	float:left;
 	width:100%;
-	height:auto;	
+	height:auto;
 }
 
 .proof_cont img{
@@ -495,11 +495,11 @@ img.advisoricons{
 .team_logo{
 	width:100%;
 	height:108px;
-	text-align:center;	
+	text-align:center;
 }
 
 .team_li_cont h4{
-	margin:5px 0px 15px;	
+	margin:5px 0px 15px;
 	font-weight:normal;
 }
 
@@ -511,7 +511,7 @@ img.advisoricons{
 }
 
 .faq_h h1{
-	margin-bottom:0px;	
+	margin-bottom:0px;
 }
 
 #faq p.answers{
@@ -543,14 +543,14 @@ img.advisoricons{
 
 .program_cont{
 	width:850px;
-	float:left;	
+	float:left;
 	height:auto;
 	color:#5d5d5c;
 }
 
 .span3 img {
-	display: block;  
-	margin-left: auto;  
+	display: block;
+	margin-left: auto;
 	margin-right: auto;
 }
 
