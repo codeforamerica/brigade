@@ -2,6 +2,8 @@
 // IT'S ALL JUST JUNK FOR OUR DOCS!
 // ++++++++++++++++++++++++++++++++++++++++++
 
+// ??? Removing it breaks things like the nav menu - KMC
+
 !function ($) {
 
   $(function(){
