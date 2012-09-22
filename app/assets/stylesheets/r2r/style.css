@@ -1385,3 +1385,7 @@ line-height: 66px;
 #information {
 	overflow: hidden;
 }
+
+td.app-table{
+    padding-left:20px;
+}
