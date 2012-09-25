@@ -4,8 +4,8 @@ module UsersHelper
   end
 
   def brigade_links(user)
-    html_safe user.brigades.uniq.map do |brigade|
-      link_to(brigade.name, brigade_url(brigde))
-    end.join(", ")
+    unless user.brigades.empty?
+      raw user.brigades.uniq.map{|b| link_to b.name, brigade_url(:id => b.id)}.join(', ')
+    end
   end
 end
