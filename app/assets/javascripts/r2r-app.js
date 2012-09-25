@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var show_application = function(){
 		$("#information").hide();
 		$("#application").show();
-		window.scrollTo(0,500);
+		window.scrollTo(0,400);
 		window.location.hash = '#application';
 	}
 	
