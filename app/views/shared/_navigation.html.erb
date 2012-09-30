@@ -18,8 +18,11 @@
         <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(page_path('about')) %>">
           <%= link_to 'About', page_path('about') %>
         </li>
+        <li class="sign-up">
+          <%= user_session_management_link %>
+        </li>
       </ul>
-      <span class="talker"></span>
+      <div class="talker"></span>
     </nav>
   </div>
 </header>
