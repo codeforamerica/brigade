@@ -206,8 +206,19 @@ ul.nav li a {
     font-weight: bold;
 }
 
+
 ul.nav li a:hover {
     color: #FDB63E;
+}
+
+ul.race li a {
+    background-color: #0B1A68;
+    color: #FFF;
+    font-weight: bold;
+}
+
+ul.race li a:hover {
+    color: #0B1A68;
 }
 
 /* Wufoo forms */
@@ -243,6 +254,17 @@ h2.subsection-header {
     cursor: pointer;
     margin: 10px 0 0 0;
     background-color: #FEB73E;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    -ms-border-radius: 6px 6px 0 0;
+    -o-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.content-header-race {
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    background-color: #0B1A68;
     -webkit-border-radius: 6px 6px 0 0;
     -moz-border-radius: 6px 6px 0 0;
     -ms-border-radius: 6px 6px 0 0;
