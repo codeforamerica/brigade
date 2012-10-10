@@ -22,4 +22,9 @@ $(document).ready(function () {
         $('.pledge-form-inner').css('border-color', '#FDB63E');
         return false;
     });
+    
+    $('#flash-race-form').on('click', function(){
+        $('.pledge-form-inner').css('border-color', '#203B7F');
+        return false;
+    });
 });

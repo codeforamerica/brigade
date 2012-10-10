@@ -212,13 +212,13 @@ ul.nav li a:hover {
 }
 
 ul.race li a {
-    background-color: #0B1A68;
+    background-color: #203B7F;
     color: #FFF;
     font-weight: bold;
 }
 
 ul.race li a:hover {
-    color: #0B1A68;
+    color: #203B7F;
 }
 
 /* Wufoo forms */
@@ -262,14 +262,7 @@ h2.subsection-header {
 }
 
 .content-header-race {
-    cursor: pointer;
-    margin: 10px 0 0 0;
-    background-color: #0B1A68;
-    -webkit-border-radius: 6px 6px 0 0;
-    -moz-border-radius: 6px 6px 0 0;
-    -ms-border-radius: 6px 6px 0 0;
-    -o-border-radius: 6px 6px 0 0;
-    border-radius: 6px 6px 0 0;
+    background-color: #203B7F;
 }
 
 .content-header h2 {
@@ -367,6 +360,10 @@ h2.subsection-header {
 
 .content-header:hover {
     background-color: #E78B2D;
+}
+
+.content-header-race:hover {
+    background-color: #C1272D;
 }
 
 .content-header:hover .content-subheader{
