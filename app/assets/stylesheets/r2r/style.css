@@ -155,8 +155,8 @@ ol.race li{
 	margin-top:3px;
 }
 
-.button {
-	float:right;
+.button-race {
+	float:center;
 	width:233px;
 	height:55px;
 	font-size: 28px;
@@ -194,8 +194,8 @@ ol.race li{
 		0px 1px 0px rgba(255,255,255,0.3);
 }
 
-.button:hover {
-	float:right;
+.button-race:hover {
+	float:center;
 	width:233px;
 	height:55px;
 	font-size: 28px;
