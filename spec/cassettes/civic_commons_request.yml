@@ -25839,4 +25839,622 @@ http_interactions:
         yNU9FLL9VAOhToS5hxQB38LjcZRFWw9tfXBSU9i71vUXL5QaCLIBAAA=
     http_version: 
   recorded_at: Fri, 19 Oct 2012 19:05:55 GMT
+- request:
+    method: get
+    uri: http://commons.codeforamerica.org/api/v1/node/13685.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "WC1QYW50aGVvbi1TdHl4LUhvc3RuYW1l":
+      - !binary |-
+        c3R5eDFh
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4wLjE1
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbg==
+      !binary "VmFyeQ==":
+      - !binary |-
+        QWNjZXB0LUVuY29kaW5n
+      !binary "WC1EcnVwYWwtQ2FjaGU=":
+      - !binary |-
+        TUlTUw==
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        U3VuLCAxOSBOb3YgMTk3OCAwNTowMDowMCBHTVQ=
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDozOTowNSArMDAwMA==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGUsIG11c3QtcmV2YWxpZGF0ZSwgcG9zdC1jaGVjaz0wLCBwcmUt
+        Y2hlY2s9MA==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjEzNTA3MDc5NDUi
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MTQ5Nw==
+      !binary "QWNjZXB0LVJhbmdlcw==":
+      - !binary |-
+        Ynl0ZXM=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDozOTowNiBHTVQ=
+      !binary "WC1WYXJuaXNo":
+      - !binary |-
+        MTE3NDg1MDQ1
+      !binary "QWdl":
+      - !binary |-
+        MA==
+      !binary "Vmlh":
+      - !binary |-
+        MS4xIHZhcm5pc2g=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "WC1QYW50aGVvbi1FZGdlLVNlcnZlcg==":
+      - !binary |-
+        MTAuMTgzLjc4LjExOA==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        MvjpX62tgFIgEAAA
+    http_version: 
+  recorded_at: Sat, 20 Oct 2012 04:39:05 GMT
+- request:
+    method: get
+    uri: http://commons.codeforamerica.org/api/v1/node/13802.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "WC1QYW50aGVvbi1TdHl4LUhvc3RuYW1l":
+      - !binary |-
+        c3R5eDJh
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4wLjE1
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbg==
+      !binary "VmFyeQ==":
+      - !binary |-
+        QWNjZXB0LUVuY29kaW5n
+      !binary "WC1EcnVwYWwtQ2FjaGU=":
+      - !binary |-
+        TUlTUw==
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        U3VuLCAxOSBOb3YgMTk3OCAwNTowMDowMCBHTVQ=
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDozOTowNiArMDAwMA==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGUsIG11c3QtcmV2YWxpZGF0ZSwgcG9zdC1jaGVjaz0wLCBwcmUt
+        Y2hlY2s9MA==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjEzNTA3MDc5NDYi
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MTQyNA==
+      !binary "QWNjZXB0LVJhbmdlcw==":
+      - !binary |-
+        Ynl0ZXM=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDozOTowNiBHTVQ=
+      !binary "WC1WYXJuaXNo":
+      - !binary |-
+        MTYwODYyMDkxNg==
+      !binary "QWdl":
+      - !binary |-
+        MA==
+      !binary "Vmlh":
+      - !binary |-
+        MS4xIHZhcm5pc2g=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "WC1QYW50aGVvbi1FZGdlLVNlcnZlcg==":
+      - !binary |-
+        MTAuMTgzLjY5Ljk1
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        u5DY07FRGdQ3Dd6L9YPmslvov/wN/VDiFzgOAAA=
+    http_version: 
+  recorded_at: Sat, 20 Oct 2012 04:39:06 GMT
+- request:
+    method: get
+    uri: http://commons.codeforamerica.org/api/v1/taxonomy_term/90.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "WC1QYW50aGVvbi1TdHl4LUhvc3RuYW1l":
+      - !binary |-
+        c3R5eDJh
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4wLjE1
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbg==
+      !binary "VmFyeQ==":
+      - !binary |-
+        QWNjZXB0LUVuY29kaW5n
+      !binary "WC1EcnVwYWwtQ2FjaGU=":
+      - !binary |-
+        TUlTUw==
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        U3VuLCAxOSBOb3YgMTk3OCAwNTowMDowMCBHTVQ=
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDozOTowNiArMDAwMA==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGUsIG11c3QtcmV2YWxpZGF0ZSwgcG9zdC1jaGVjaz0wLCBwcmUt
+        Y2hlY2s9MA==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjEzNTA3MDc5NDYi
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MjY2
+      !binary "QWNjZXB0LVJhbmdlcw==":
+      - !binary |-
+        Ynl0ZXM=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDozOTowNiBHTVQ=
+      !binary "WC1WYXJuaXNo":
+      - !binary |-
+        MTYwODYyMDk2NA==
+      !binary "QWdl":
+      - !binary |-
+        MA==
+      !binary "Vmlh":
+      - !binary |-
+        MS4xIHZhcm5pc2g=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "WC1QYW50aGVvbi1FZGdlLVNlcnZlcg==":
+      - !binary |-
+        MTAuMTgzLjY5Ljk1
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA21QQW6DMBD8i89FogEVhWtPldpTe6siZOx1WBVsyzaJIsTf
+        OzjtBeW2Mztjz84iEmvRimMpnsQljw0mKycC+/H2BaApqsA+sbPgQBgXJpkw
+        Gx4TBdLdkKYRiyvxedgWFcA835+TDcmmei4Osq8KoqouzFEdiro5vDRAdVlq
+        qC9OyX4eZbh1k1QDW+r+QkRn0lUG6kZWZCNFqIM2kHnP9izaZYPp5pH4W8Qf
+        F9tXZxX5JE7/lyzCIyYrmWCHCobYjrKnLXW2YG/eM3FadyfvzVmvybDl3Mlm
+        yNU9FLL9VAOhToS5hxQB38LjcZRFWw9tfXBSU9i71vUXL5QaCLIBAAA=
+    http_version: 
+  recorded_at: Sat, 20 Oct 2012 04:39:06 GMT
+- request:
+    method: get
+    uri: http://commons.codeforamerica.org/api/v1/node/13685.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "WC1QYW50aGVvbi1TdHl4LUhvc3RuYW1l":
+      - !binary |-
+        c3R5eDRh
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4wLjE1
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbg==
+      !binary "VmFyeQ==":
+      - !binary |-
+        QWNjZXB0LUVuY29kaW5n
+      !binary "WC1EcnVwYWwtQ2FjaGU=":
+      - !binary |-
+        TUlTUw==
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        U3VuLCAxOSBOb3YgMTk3OCAwNTowMDowMCBHTVQ=
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDo0MTowMiArMDAwMA==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGUsIG11c3QtcmV2YWxpZGF0ZSwgcG9zdC1jaGVjaz0wLCBwcmUt
+        Y2hlY2s9MA==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjEzNTA3MDgwNjIi
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MTQ5Nw==
+      !binary "QWNjZXB0LVJhbmdlcw==":
+      - !binary |-
+        Ynl0ZXM=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDo0MTowMyBHTVQ=
+      !binary "WC1WYXJuaXNo":
+      - !binary |-
+        MTc5MjU4NDU2Nw==
+      !binary "QWdl":
+      - !binary |-
+        MA==
+      !binary "Vmlh":
+      - !binary |-
+        MS4xIHZhcm5pc2g=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "WC1QYW50aGVvbi1FZGdlLVNlcnZlcg==":
+      - !binary |-
+        MTAuMTc2LjY5LjQz
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        MvjpX62tgFIgEAAA
+    http_version: 
+  recorded_at: Sat, 20 Oct 2012 04:41:03 GMT
+- request:
+    method: get
+    uri: http://commons.codeforamerica.org/api/v1/node/13802.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "WC1QYW50aGVvbi1TdHl4LUhvc3RuYW1l":
+      - !binary |-
+        c3R5eDJh
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4wLjE1
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbg==
+      !binary "VmFyeQ==":
+      - !binary |-
+        QWNjZXB0LUVuY29kaW5n
+      !binary "WC1EcnVwYWwtQ2FjaGU=":
+      - !binary |-
+        TUlTUw==
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        U3VuLCAxOSBOb3YgMTk3OCAwNTowMDowMCBHTVQ=
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDo0MTowMyArMDAwMA==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGUsIG11c3QtcmV2YWxpZGF0ZSwgcG9zdC1jaGVjaz0wLCBwcmUt
+        Y2hlY2s9MA==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjEzNTA3MDgwNjMi
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MTQyNA==
+      !binary "QWNjZXB0LVJhbmdlcw==":
+      - !binary |-
+        Ynl0ZXM=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDo0MTowMyBHTVQ=
+      !binary "WC1WYXJuaXNo":
+      - !binary |-
+        MTYwODYzMTUzOA==
+      !binary "QWdl":
+      - !binary |-
+        MA==
+      !binary "Vmlh":
+      - !binary |-
+        MS4xIHZhcm5pc2g=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "WC1QYW50aGVvbi1FZGdlLVNlcnZlcg==":
+      - !binary |-
+        MTAuMTgzLjY5Ljk1
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        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
+        u5DY07FRGdQ3Dd6L9YPmslvov/wN/VDiFzgOAAA=
+    http_version: 
+  recorded_at: Sat, 20 Oct 2012 04:41:03 GMT
+- request:
+    method: get
+    uri: http://commons.codeforamerica.org/api/v1/taxonomy_term/90.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "WC1QYW50aGVvbi1TdHl4LUhvc3RuYW1l":
+      - !binary |-
+        c3R5eDNh
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4wLjE1
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbg==
+      !binary "VmFyeQ==":
+      - !binary |-
+        QWNjZXB0LUVuY29kaW5n
+      !binary "WC1EcnVwYWwtQ2FjaGU=":
+      - !binary |-
+        TUlTUw==
+      !binary "RXhwaXJlcw==":
+      - !binary |-
+        U3VuLCAxOSBOb3YgMTk3OCAwNTowMDowMCBHTVQ=
+      !binary "TGFzdC1Nb2RpZmllZA==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDo0MTowNCArMDAwMA==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bm8tY2FjaGUsIG11c3QtcmV2YWxpZGF0ZSwgcG9zdC1jaGVjaz0wLCBwcmUt
+        Y2hlY2s9MA==
+      !binary "RXRhZw==":
+      - !binary |-
+        IjEzNTA3MDgwNjQi
+      !binary "Q29udGVudC1FbmNvZGluZw==":
+      - !binary |-
+        Z3ppcA==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MjY2
+      !binary "QWNjZXB0LVJhbmdlcw==":
+      - !binary |-
+        Ynl0ZXM=
+      !binary "RGF0ZQ==":
+      - !binary |-
+        U2F0LCAyMCBPY3QgMjAxMiAwNDo0MTowNCBHTVQ=
+      !binary "WC1WYXJuaXNo":
+      - !binary |-
+        MTEzNDIyMDI3Ng==
+      !binary "QWdl":
+      - !binary |-
+        MA==
+      !binary "Vmlh":
+      - !binary |-
+        MS4xIHZhcm5pc2g=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+      !binary "WC1QYW50aGVvbi1FZGdlLVNlcnZlcg==":
+      - !binary |-
+        MTAuMTc2LjY5LjMz
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA21QQW6DMBD8i89FogEVhWtPldpTe6siZOx1WBVsyzaJIsTf
+        OzjtBeW2Mztjz84iEmvRimMpnsQljw0mKycC+/H2BaApqsA+sbPgQBgXJpkw
+        Gx4TBdLdkKYRiyvxedgWFcA835+TDcmmei4Osq8KoqouzFEdiro5vDRAdVlq
+        qC9OyX4eZbh1k1QDW+r+QkRn0lUG6kZWZCNFqIM2kHnP9izaZYPp5pH4W8Qf
+        F9tXZxX5JE7/lyzCIyYrmWCHCobYjrKnLXW2YG/eM3FadyfvzVmvybDl3Mlm
+        yNU9FLL9VAOhToS5hxQB38LjcZRFWw9tfXBSU9i71vUXL5QaCLIBAAA=
+    http_version: 
+  recorded_at: Sat, 20 Oct 2012 04:41:03 GMT
 recorded_with: VCR 2.1.1
