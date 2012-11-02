@@ -50,6 +50,7 @@ div.open-li ul {
 
 .ocall {
     margin-bottom: 10px;
+    text-align: justify;
 }
 
 img.gov {
@@ -187,7 +188,7 @@ h3 {
 }
 
 .pledge-menu .ocall {
-    text-align:left;
+    text-align:justify;
 }
 
 .pledge-menu ul.nav {
