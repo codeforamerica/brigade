@@ -373,5 +373,5 @@ h2.subsection-header {
 
 .resources a {
     padding: 5px 5px 5px 30px;
-    background: url('/assets/openimpact/icon_download.png') 1px center no-repeat;
+    /*background: url('/assets/openimpact/icon_download.png') 1px center no-repeat;*/
 }
