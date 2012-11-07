@@ -89,10 +89,24 @@ ol.race li{
 	font-size:18px;
 }
 
-table.r4r-cities{
-    width:100%;
-    text-align:center;
-    font-size:18px;
+ table.r4r-cities{
+   width:100%;
+   text-align:center;
+   font-size:14px;
+}
+
+table small {
+ font-size: 85%;
+ color: gray;
+}
+
+table.r4r-cities h4 {
+ font-size: 18px;
+ line-height: 22px;
+}
+
+.resources table.r4r-cities a {
+ padding: 0 0 0 0;
 }
 
 #header{
