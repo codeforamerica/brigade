@@ -30,6 +30,28 @@
           <ul>
         <%end%>
       </div>
+
+			<div class="login-box">
+
+
+			  <h2>Sign up</h2>
+
+			  <%= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form| %>
+			    <% if @user.full_name.present? && !@user.errors[:full_name].any? %>
+			      <%= form.input :full_name, as: :hidden, input_html: {value: @user.full_name}  %>
+			    <% else %>
+			      <%= form.input :full_name, input_html: {class: 'span5'}  %>
+			    <% end %>
+			    <% if @user.email.present? && !@user.errors[:email].any? %>
+			      <%= form.input :email, as: :hidden, input_html: {value: @user.email} %>
+			    <% else %>
+			      <%= form.input :email, input_html: {class: 'span5'} %>
+			    <% end %>
+			    <%= form.input :password, input_html: {class: 'span5'} if @user.password_required? %>
+			    <%= form.submit 'Sign up', class: 'btn-large btn' %>
+			  <%end%>
+
+			</div>
     </div>
     <section id="three-up">
       <div class="left-column">
