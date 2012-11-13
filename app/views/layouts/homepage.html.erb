@@ -20,38 +20,22 @@
         <h2>Anyone can Code for America, anywhere.</h2>
       </center>
       <div class="intake-form">
-        <%= form_for @user, url: registration_path(@user) do |form| %>
-          <h2 class="span3">Join Us:</h2>
-          <span class="span3 no-margin"><%= form.text_field :full_name, :placeholder => 'Name' %></span>
-          <span class="span1 no-margin">&nbsp;</span>
-          <span class="span3 no-margin"><%= form.email_field :email, :placeholder => 'Email' %></span>
-          <span class="span1 no-margin">&nbsp;</span>
-          <span class="span1"><%= form.submit 'Sign up', :class => 'submit btn btn-primary' %></span>
-          <ul>
-        <%end%>
-      </div>
-
-			<div class="login-box">
-
-
-			  <h2>Sign up</h2>
-
+				<h2 class="span1">Join Us</h2>			
 			  <%= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form| %>
-			    <% if @user.full_name.present? && !@user.errors[:full_name].any? %>
+					<% if @user.full_name.present? && !@user.errors[:full_name].any? %>
 			      <%= form.input :full_name, as: :hidden, input_html: {value: @user.full_name}  %>
 			    <% else %>
-			      <%= form.input :full_name, input_html: {class: 'span5'}  %>
+			      <span class="span3 no-margin"><%= form.input :full_name %></span>
 			    <% end %>
-			    <% if @user.email.present? && !@user.errors[:email].any? %>
+					<% if @user.email.present? && !@user.errors[:email].any? %>
 			      <%= form.input :email, as: :hidden, input_html: {value: @user.email} %>
 			    <% else %>
-			      <%= form.input :email, input_html: {class: 'span5'} %>
+			      <span class="span3 no-margin"><%= form.input :email %></span>
 			    <% end %>
-			    <%= form.input :password, input_html: {class: 'span5'} if @user.password_required? %>
-			    <%= form.submit 'Sign up', class: 'btn-large btn' %>
-			  <%end%>
-
-			</div>
+			    <span class="span3 no-margin"><%= form.input :password if @user.password_required? %></span>
+			    <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
+			  <%end%>	
+      </div>
     </div>
     <section id="three-up">
       <div class="left-column">

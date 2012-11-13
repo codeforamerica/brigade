@@ -133,6 +133,7 @@ a:hover {
 }
 .span3 {
   width: 220px;
+  padding-right:30px;
 }
 .span4 {
   width: 300px;
