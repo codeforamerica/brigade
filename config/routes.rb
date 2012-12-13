@@ -54,4 +54,6 @@ CodeForAmerica::Application.routes.draw do
 
   match '/about' => 'high_voltage/pages#show', :id => 'about'
 
+  match '/404' => 'application#render_404_error'
+  match '/500' => redirect("/error")
 end
