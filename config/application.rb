@@ -58,5 +58,9 @@ module CodeForAmerica
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # In Rails 3.2, exception handling is done within the Rack middleware stack.
+    # Configure this application to run through the routes anytime an error occurs.
+    config.exceptions_app = self.routes
   end
 end
