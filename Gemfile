@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.5'
+gem 'rails', '~> 3.2.11'
 
 #Devise for user registration and cancan for authorization
 gem 'devise', '~> 2.1.0'
