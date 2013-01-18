@@ -225,7 +225,7 @@ GEM
     pry-remote (0.1.0)
       pry (~> 0.9.6)
       slop (~> 2.1)
-    rack (1.4.3)
+    rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-pjax (0.5.9)
