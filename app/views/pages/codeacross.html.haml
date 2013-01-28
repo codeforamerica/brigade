@@ -1,6 +1,9 @@
 - @page_title='Race 4 Reuse'
 %LINK{:HREF => "/assets/r2r/style.css", :REL => "StyleSheet", :TYPE => "text/css"}
+%LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
+%LINK{:HREF => "/assets/campaigns.js", :REL => "Script", :TYPE => "text/javascript"}
   %html{:lang => "en"}
+    %a{:name => "top"}
     / BANNER
     .row
       %a{:href => "/pages/codeacross"}
@@ -17,12 +20,12 @@
             .pledge-form-inner.primary{:style => "height: 350px;"}
               .pledge-form-content{:style => "margin-bottom: 30px;"}
                 %div
-                  <iframe width="460" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?ll=36.795669,-76.012628&amp;spn=0.973216,1.376038&amp;t=m&amp;z=10&amp;msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?ll=36.795669,-76.012628&amp;spn=0.973216,1.376038&amp;t=m&amp;z=10&amp;msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;source=embed" style="color:#0000FF;text-align:left">Code Across America 2013</a> in a larger map</small>
+                <iframe width="460" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=23.875,57.630033&amp;t=m&amp;output=embed"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=23.875,57.630033&amp;t=m&amp;source=embed" style="color:#0000FF;text-align:left">Code Across America 2013</a> in a larger map</small>
         / TOP-LEFT CONTENT
         / LEGACY STYLES
         .pledge-menu
           %p.ocall
-            Code Across America is a distributed event when everyone in the national Code for America network contributes to the "Code for America Effect" at (roughly) the same time.
+            Code Across America is a distributed event when the national Code for America network contributes to the "Code for America Effect" at (roughly) the same time.
           %p.ocall
             Code Across America is an event that any municipality can join, big or small, beginner or expert. Individuals and groups can Code Across America, whether you join the social media conversation [LINK], commit to a GitHub [LINK], or participate in one of the many events to be held around the country [LINK].
           %p.ocall
@@ -31,8 +34,9 @@
             Join Code Across America and International Open Data Day by joining or hosting an event where you live. 
           %p.ocall
             %br
-            %a{:href => "", :class => "button-race", :value => "Join"}Join
-            %a{:href => "", :class => "button-race", :value => "Host"}Host
+            / JOIN & HOST
+            %a{:href => "#connect-map", :class => "button-race", :value => "Join"}Join
+            %a{:href => "#host-form", :class => "button-race", :value => "Host"}Host
       / START OF MAIN BODY CONTENT
     %h2#section-cities.section-header Event Types
     %table{:style => "width:1000px;font-size:16px;align:justify"}
@@ -67,6 +71,14 @@
           %img{:title => "RHoK logo", :src => "https://www.google.com/a/cpanel/rhok.org/images/logo.gif", :width => "100", :height => "50"}
       %tr
         %td{:width => "150px;", :height => "70px;"}
+          %h3 Write-a-thon
+        %td{:width => "700px;", :height => "70px;"}
+          If your city, town or community has a LocalWiki you can contribute to it. If you don't have a LocalWiki where you live
+          %a{:title => "localwiki how to", :href => "http://localwiki.org/install/"}you can launch one.
+        %td{:width => "150px;", :height => "70px;", :align => "center"}
+          %img{:title => "LocalWiki logo", :src => "/assets/r2r/localwiki.png", :width => "100", :height => "50"}
+      %tr
+        %td{:width => "150px;", :height => "70px;"}
           %h3 Salon
         %td{:width => "700px;", :height => "70px;"}
           Invite a guest speaker or a panel to speak for an hour on a topic that matters in your community. Facilitate a questions and answers segment. Offer light hors d' oeuvres and beverages
@@ -91,12 +103,33 @@
       %h1#section-cities.section-header
         Connect in these places:
         %a.back-to-top{:href => "#"} &uarr; Back to top
-      <iframe src="http://www.meetup.com/everywhere/widget3/cfabrigade?width=800&amp;bg=light" width="800" height="475" frameborder="0" border="0" allowtransparency="true" scrolling="no"></iframe>
-      %h2
-        %a{:title => "Open Data Day Wiki", :href => "http://wiki.opendataday.org/2013/City_Events#United_States"} Click here for Open Data Day U.S. Locations
+        <iframe id="connect-map" width="940" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=51.618017,-110.917969&amp;spn=55.336942,158.203125&amp;z=3&amp;output=embed"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=51.618017,-110.917969&amp;spn=55.336942,158.203125&amp;z=3&amp;source=embed" style="color:#0000FF;text-align:left">Code Across America 2013</a> in a larger map</small>
+      %h1
+        %a{:title => "Open Data Day Wiki", :href => "http://wiki.opendataday.org/2013/City_Events#United_States"} Click here
+        for a cross-listing of Open Data Day U.S. Locations
       %p
         Don't see your city in the list?   
         %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Code Across City", :title => "email Brigade Concierge"}Let us know.
       %p.ocall
         Check out 
         %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america"}Code Across 2012
+      %div{:id => "host-form"}
+        %a.back-to-top{:href => "#top"} &uarr; Back to top
+        <div id="wufoo-p7p5m7">
+        Fill out my <a href="http://codeforamerica.wufoo.com/forms/p7p5m7">online form</a>.
+        </div>
+        <script type="text/javascript">var p7p5m7;(function(d, t) {
+        var s = d.createElement(t), options = {
+        'userName':'codeforamerica', 
+        'formHash':'p7p5m7', 
+        'autoResize':true,
+        'height':'894',
+        'async':true,
+        'header':'show', 
+        'ssl':true};
+        s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+        s.onload = s.onreadystatechange = function() {
+        var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+        try { p7p5m7 = new WufooForm();p7p5m7.initialize(options);p7p5m7.display(); } catch (e) {}};
+        var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+        })(document, 'script');</script>
