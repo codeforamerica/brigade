@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+
+#host-form {
+    display:none;
+}
+
+#host-form:target {
+    display:block;
+}

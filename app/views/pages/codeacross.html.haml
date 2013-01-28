@@ -3,11 +3,10 @@
 %LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
 %LINK{:HREF => "/assets/campaigns.js", :REL => "Script", :TYPE => "text/javascript"}
   %html{:lang => "en"}
-    %a{:name => "top"}
     / BANNER
     .row
       %a{:href => "/pages/codeacross"}
-        %img{:align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :width => "1000px"}/
+        %img{:id => "banner", :align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :width => "1000px"}/
     / TOP CONTENT (left) / MAP (right)
     .row{:style => "margin-top:20px;"}
       / HEADLINE
@@ -36,7 +35,7 @@
             %br
             / JOIN & HOST
             %a{:href => "#connect-map", :class => "button-race", :value => "Join"}Join
-            %a{:href => "#host-form", :class => "button-race", :value => "Host"}Host
+            %a{:href => "#wufoo-p7p5m7", :class => "button-race", :value => "Host"}Host
       / START OF MAIN BODY CONTENT
     %h2#section-cities.section-header Event Types
     %table{:style => "width:1000px;font-size:16px;align:justify"}
@@ -100,36 +99,44 @@
         %td{:width => "700px;", :height => "70px;"}
           %a{:title => "Google doc event guide", :href => "https://docs.google.com/document/d/16CSiN809nNUksFYiQIpxzxHEhPZRAa_WpGA4DZ9upmc/edit"}Code for America Event Guide
     .content-wrap
-      %h1#section-cities.section-header
+      %h1#connect-map.section-header
         Connect in these places:
         %a.back-to-top{:href => "#"} &uarr; Back to top
-        <iframe id="connect-map" width="940" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=51.618017,-110.917969&amp;spn=55.336942,158.203125&amp;z=3&amp;output=embed"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=51.618017,-110.917969&amp;spn=55.336942,158.203125&amp;z=3&amp;source=embed" style="color:#0000FF;text-align:left">Code Across America 2013</a> in a larger map</small>
+        <iframe id="" width="940" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=51.618017,-110.917969&amp;spn=55.336942,158.203125&amp;z=3&amp;output=embed"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=51.618017,-110.917969&amp;spn=55.336942,158.203125&amp;z=3&amp;source=embed" style="color:#0000FF;text-align:left">Code Across America 2013</a> in a larger map</small>
       %h1
         %a{:title => "Open Data Day Wiki", :href => "http://wiki.opendataday.org/2013/City_Events#United_States"} Click here
         for a cross-listing of Open Data Day U.S. Locations
+      %br
+      %br
+      %h1 Social Media Channels
+      %p
+        Hashtag: #codeacross
+      %p
+        IRC: #codeacross on freenode
+      %p
+        
       %p
         Don't see your city in the list?   
         %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Code Across City", :title => "email Brigade Concierge"}Let us know.
       %p.ocall
         Check out 
         %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america"}Code Across 2012
-      %div{:id => "host-form"}
-        %a.back-to-top{:href => "#top"} &uarr; Back to top
-        <div id="wufoo-p7p5m7">
-        Fill out my <a href="http://codeforamerica.wufoo.com/forms/p7p5m7">online form</a>.
-        </div>
-        <script type="text/javascript">var p7p5m7;(function(d, t) {
-        var s = d.createElement(t), options = {
-        'userName':'codeforamerica', 
-        'formHash':'p7p5m7', 
-        'autoResize':true,
-        'height':'894',
-        'async':true,
-        'header':'show', 
-        'ssl':true};
-        s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-        s.onload = s.onreadystatechange = function() {
-        var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-        try { p7p5m7 = new WufooForm();p7p5m7.initialize(options);p7p5m7.display(); } catch (e) {}};
-        var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
-        })(document, 'script');</script>
+      %a.back-to-top{:href => "#"} &uarr; Back to top
+      <div id="wufoo-p7p5m7">
+      Fill out my <a href="http://codeforamerica.wufoo.com/forms/p7p5m7">online form</a>.
+      </div>
+      <script type="text/javascript">var p7p5m7;(function(d, t) {
+      var s = d.createElement(t), options = {
+      'userName':'codeforamerica', 
+      'formHash':'p7p5m7', 
+      'autoResize':true,
+      'height':'894',
+      'async':true,
+      'header':'show', 
+      'ssl':true};
+      s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+      s.onload = s.onreadystatechange = function() {
+      var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+      try { p7p5m7 = new WufooForm();p7p5m7.initialize(options);p7p5m7.display(); } catch (e) {}};
+      var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+      })(document, 'script');</script>
