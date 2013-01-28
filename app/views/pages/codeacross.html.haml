@@ -14,27 +14,25 @@
         .pledge
           .pledge-form
             / MAP (right)
-            / EMBED GOES HERE
             .pledge-form-inner.primary{:style => "height: 350px;"}
               .pledge-form-content{:style => "margin-bottom: 30px;"}
                 %div
-                 
-                  %br/
+                  <iframe width="460" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?ll=36.795669,-76.012628&amp;spn=0.973216,1.376038&amp;t=m&amp;z=10&amp;msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?ll=36.795669,-76.012628&amp;spn=0.973216,1.376038&amp;t=m&amp;z=10&amp;msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;source=embed" style="color:#0000FF;text-align:left">Code Across America 2013</a> in a larger map</small>
         / TOP-LEFT CONTENT
         / LEGACY STYLES
         .pledge-menu
           %p.ocall
             Code Across America is a distributed event when everyone in the national Code for America network contributes to the "Code for America Effect" at (roughly) the same time.
           %p.ocall
-            Code Across America is an event that any municipality can join, big or small, beginner or expert.
+            Code Across America is an event that any municipality can join, big or small, beginner or expert. Individuals and groups can Code Across America, whether you join the social media conversation [LINK], commit to a GitHub [LINK], or participate in one of the many events to be held around the country [LINK].
           %p.ocall
             Events will be hosted in Fellowship and Brigade cities across the U.S. between 22-24 February. February 23rd is also 
             %a{:title => "International Open Data Day", :href => "http://opendataday.org"} International Open Data Day.
-            Join Code Across America and International Open Data Day by connecting to or hosting an event where you. 
+            Join Code Across America and International Open Data Day by joining or hosting an event where you live. 
           %p.ocall
-            Interested in hosting a Code Across America event where you live?
-          %p.ocall
-          CLICK HERE [BUTTON/LINK]
+            %br
+            %a{:href => "", :class => "button-race", :value => "Join"}Join
+            %a{:href => "", :class => "button-race", :value => "Host"}Host
       / START OF MAIN BODY CONTENT
     %h2#section-cities.section-header Event Types
     %table{:style => "width:1000px;font-size:16px;align:justify"}
@@ -57,12 +55,16 @@
           %a{:title => "Since the inaugural event in Jan 2010, 32 CityCamps have been independently organized in 25 cities across 8 countries and 5 continents.", :href => "http://citycamp.govfresh.com/start-a-camp/"} community-powered, open source, Creative Commons unconference model
           to bring diverse groups together around topics in municipal innovation.
         %td{:width => "150px;", :height => "70px;", :align => "center"}
-          %img{:title => "Meetup logo", :src => "https://twimg0-a.akamaihd.net/profile_images/1100231425/icon-cc.png", :width => "100", :height => "50"}
+          %img{:title => "Meetup logo", :src => "https://twimg0-a.akamaihd.net/profile_images/1100231425/icon-cc.png", :width => "90", :height => "40"}
       %tr
         %td{:width => "150px;", :height => "70px;"}
           %h3 Hackathon
         %td{:width => "700px;", :height => "70px;"}
-          Round up some local government data. Invite subject matter experts to share challenges & insights. Pick open source, civic apps to redeploy. Break into teams to tackle challenges throughout the event.
+          Round up some local government data.
+          %a{:title => "RHoK challenges", :href => "http://www.rhok.org/problems"}Invite subject matter experts to share challenges
+          & insights. Pick open source, civic apps to redeploy. Break into teams to tackle challenges throughout the event.
+        %td{:width => "150px;", :height => "70px;", :align => "center"}
+          %img{:title => "RHoK logo", :src => "https://www.google.com/a/cpanel/rhok.org/images/logo.gif", :width => "100", :height => "50"}
       %tr
         %td{:width => "150px;", :height => "70px;"}
           %h3 Salon
@@ -82,8 +84,9 @@
           Expose, teach and train others how to use modern tools and techniques. Increase the civic digital literacy of your community.
       %tr
         %td{:width => "150px;", :height => "70px;"}
+          %em See also:
         %td{:width => "700px;", :height => "70px;"}
-          %a{:title => "Google doc event guide", :href => "https://docs.google.com/document/d/16CSiN809nNUksFYiQIpxzxHEhPZRAa_WpGA4DZ9upmc/edit"} Code for America Event Guide
+          %a{:title => "Google doc event guide", :href => "https://docs.google.com/document/d/16CSiN809nNUksFYiQIpxzxHEhPZRAa_WpGA4DZ9upmc/edit"}Code for America Event Guide
     .content-wrap
       %h1#section-cities.section-header
         Connect in these places:
@@ -92,8 +95,8 @@
       %h2
         %a{:title => "Open Data Day Wiki", :href => "http://wiki.opendataday.org/2013/City_Events#United_States"} Click here for Open Data Day U.S. Locations
       %p
-        Don't see your city in the list?
-        %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Code Across City", :title => "email Brigade Concierge"} Let us know.
+        Don't see your city in the list?   
+        %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Code Across City", :title => "email Brigade Concierge"}Let us know.
       %p.ocall
-        Code Across 2012 
-        %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america"} #codeacross
+        Check out 
+        %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america"}Code Across 2012
