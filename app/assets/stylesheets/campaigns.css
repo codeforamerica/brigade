@@ -1,10 +1,18 @@
 @charset "utf-8";
 /* CSS Document */
 
-#host-form {
+.host-form {
     display:none;
 }
 
-#host-form:target {
+.host-form:target {
+    display:block;
+}
+
+.interest-form {
+    display:none;
+}
+
+.interest-form:target {
     display:block;
 }
