@@ -36,13 +36,14 @@
             / JOIN & HOST
           %a{:href => "#connect-map", :class => "button-race", :value => "Join"}Join
           %a{:href => "#wufoo-p7p5m7", :class => "button-race", :value => "Host"}Host
-          %a{:href => "#contribute", :class => "button-race", :value => "Give"}Give
           %a{:href => "#share", :class => "button-race", :value => "Share"}Share
+          %a{:href => "#contribute", :class => "button-race", :value => "Give"}Give
+          
       / START OF MAIN BODY CONTENT
       / EVENTS
     .content-wrap
       %h1#connect-map.section-header
-        Connect in these places:
+        Join in these places:
         %a.back-to-top{:href => "#"} &uarr; Back to top
         %table
           %tr
@@ -97,16 +98,16 @@
               }).render().start();
               // ]]></script></div>
               </div>
-      %h3
+      %p{:style => "font-size:18px;font-weight:bold;"}
         %a{:title => "Open Data Day Wiki", :href => "http://wiki.opendataday.org/2013/City_Events#United_States"} Click here
         for a cross-listing of Open Data Day U.S. Locations
         / ACTIVITIES
         %p
-      %p{:style => "font-size:16px;font-weight:bold;"}
+      %p{:style => "font-size:18px;font-weight:bold;"}
         Not seeing an event near you?
         %a{:title => "host form", :href => "#wufoo-p7p5m7"} Host one
-      %p{:style => "font-size:16px;font-weight:bold;"}
-        Not sure how you can participate? Let us know 
+      %p{:style => "font-size:18px;font-weight:bold;"}
+        Let us know 
         %a{:title => "interest form", :href => "#wufoo-p7p5z5"} what activities interest you.
       <div class="interest-form" id="wufoo-p7p5z5">
       Fill out my <a href="http://codeforamerica.wufoo.com/forms/p7p5z5">online form</a>.
@@ -126,43 +127,10 @@
       try { p7p5z5 = new WufooForm();p7p5z5.initialize(options);p7p5z5.display(); } catch (e) {}};
       var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
       })(document, 'script');</script>
+      %br
+      %br
+      %h1 Host an Event
       %a.back-to-top{:href => "#"} &uarr; Back to top
-      %br
-      %br
-      %h1#contribute Contribute to Code Across America
-      %p
-        CfA appreciates the forward-thinking individuals who support the development of open source civic software.
-        %br
-        %a{:title => "CfA donation page", :href => "http://codeforamerica.org/donate"}click here to make a donation today here.
-      %h3 Grantmakers
-      %p
-        If you are a grantmaker who is interested in supporting our mission to bring talented technologists and designers together with committed public servants to make government work better for everyone, please contact Hadley Dynak from the CfA team at hadley@codeforamerica.org.
-
-      %h3 Corporate Sponsors
-      %p
-        Code Across America is a great chance to connect with talented developers, local government leaders, and the civic innovation community. If your company is interested in a sponsored partnership for this event (either nationally or in one of the 30+ cities nationwide where events will be taking place), please contact Ashley Meyers from the CfA team at ashley@codeforamerica.org.
-      %br
-      %br
-      %h1#share Share Code Across America Online
-      %a.back-to-top{:href => "#"} &uarr; Back to top
-      %h2 Social Media Channels
-      %p TODO: logos
-      %p
-        Twitter hashtag: #codeacross
-      %p
-        IRC: #codeacross on freenode
-      %p
-        Flickr...
-      %p
-        Google Hangout...
-      %p
-        Vimeo...
-      %p
-        Youtube...
-      %p
-      %h1 Tools for Organizers
-      %a.back-to-top{:href => "#"} &uarr; Back to top
-      %h2 Event Formats
       %table{:style => "width:1000px;font-size:16px;align:justify"}
         %tr
           %td{:width => "150px;", :height => "70px;"}
@@ -223,9 +191,6 @@
             %em See also:
           %td{:width => "700px;", :height => "70px;"}
             %a{:title => "Google doc event guide", :href => "https://docs.google.com/document/d/16CSiN809nNUksFYiQIpxzxHEhPZRAa_WpGA4DZ9upmc/edit"}Code for America Event Guide 
-      %p
-        Don't see your city in the list?   
-        %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Code Across City", :title => "email Brigade Concierge"}Let us know.
       %p.ocall
         Check out 
         %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america"}Code Across 2012
@@ -248,3 +213,33 @@
       try { p7p5m7 = new WufooForm();p7p5m7.initialize(options);p7p5m7.display(); } catch (e) {}};
       var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
       })(document, 'script');</script>
+      %h1#share Share Code Across America Online
+      %a.back-to-top{:href => "#"} &uarr; Back to top
+      %h2 Social Media Channels
+      %p TODO: logos
+      %p
+        Twitter hashtag: #codeacross
+      %p
+        IRC: #codeacross on freenode
+      %p
+        Flickr...
+      %p
+        Google Hangout...
+      %p
+        Vimeo...
+      %p
+        Youtube...
+      %br
+      %br
+      %h1#contribute Contribute to Code Across America
+      %p
+        CfA appreciates the forward-thinking individuals who support the development of open source civic software.
+        %br
+        %a{:title => "CfA donation page", :href => "http://codeforamerica.org/donate"}click here to make a donation today here.
+      %h3 Grantmakers
+      %p
+        If you are a grantmaker who is interested in supporting our mission to bring talented technologists and designers together with committed public servants to make government work better for everyone, please contact Hadley Dynak from the CfA team at hadley@codeforamerica.org.
+
+      %h3 Corporate Sponsors
+      %p
+        Code Across America is a great chance to connect with talented developers, local government leaders, and the civic innovation community. If your company is interested in a sponsored partnership for this event (either nationally or in one of the 30+ cities nationwide where events will be taking place), please contact Ashley Meyers from the CfA team at ashley@codeforamerica.org.
