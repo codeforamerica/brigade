@@ -40,7 +40,7 @@
           %a{:href => "#contribute", :class => "button-race", :value => "Give"}Give
           
       / START OF MAIN BODY CONTENT
-      / EVENTS
+      / JOIN SECTION
     .content-wrap
       %h1#connect-map.section-header
         Join in these places:
@@ -101,7 +101,7 @@
       %p{:style => "font-size:18px;font-weight:bold;"}
         %a{:title => "Open Data Day Wiki", :href => "http://wiki.opendataday.org/2013/City_Events#United_States"} Click here
         for a cross-listing of Open Data Day U.S. Locations
-        / ACTIVITIES
+        // ACTIVITIES
         %p
       %p{:style => "font-size:18px;font-weight:bold;"}
         Not seeing an event near you?
@@ -127,8 +127,9 @@
       try { p7p5z5 = new WufooForm();p7p5z5.initialize(options);p7p5z5.display(); } catch (e) {}};
       var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
       })(document, 'script');</script>
-      %br
-      %br
+
+      // HOST
+      %hr
       %h1 Host an Event
       %a.back-to-top{:href => "#"} &uarr; Back to top
       %table{:style => "width:1000px;font-size:16px;align:justify"}
@@ -186,15 +187,11 @@
             %h3 Skill Share
           %td{:width => "700px;", :height => "70px;"}
             Expose, teach and train others how to use modern tools and techniques. Increase the civic digital literacy of your community. Record, document and share segments online.
-        %tr
-          %td{:width => "150px;", :height => "70px;"}
-            %em See also:
-          %td{:width => "700px;", :height => "70px;"}
-            %a{:title => "Google doc event guide", :href => "https://docs.google.com/document/d/16CSiN809nNUksFYiQIpxzxHEhPZRAa_WpGA4DZ9upmc/edit"}Code for America Event Guide 
-      %p.ocall
-        Check out 
+      %p{:style => "font-size:28px;font-weight:bold;"}
+        %a{:href => "codeacross-tools"} Tools for Organizers
+      %p{:style => "font-size:28px;font-weight:bold;"}
+        Why we Code Across: Checkout 
         %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america"}Code Across 2012
-      %a.back-to-top{:href => "#"} &uarr; Back to top
       <div class="host-form" id="wufoo-p7p5m7">
       Fill out my <a href="http://codeforamerica.wufoo.com/forms/p7p5m7">online form</a>.
       </div>
@@ -213,8 +210,11 @@
       try { p7p5m7 = new WufooForm();p7p5m7.initialize(options);p7p5m7.display(); } catch (e) {}};
       var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
       })(document, 'script');</script>
+      // SHARE
+      %hr
       %h1#share Share Code Across America Online
       %a.back-to-top{:href => "#"} &uarr; Back to top
+      // SOCIAL MEDIA
       %h2 Social Media Channels
       %p TODO: logos
       %p
@@ -229,8 +229,7 @@
         Vimeo...
       %p
         Youtube...
-      %br
-      %br
+      %hr
       %h1#contribute Contribute to Code Across America
       %p
         CfA appreciates the forward-thinking individuals who support the development of open source civic software.
