@@ -19,7 +19,7 @@
             .pledge-form-inner.primary{:style => "height: 350px;"}
               .pledge-form-content{:style => "margin-bottom: 30px;"}
                 %div
-                <iframe width="460" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=54.367759,-107.929687&amp;spn=73.952607,161.71875&amp;z=2&amp;output=embed"></iframe><br />
+                <iframe width="460" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=43.580391,-101.777344&amp;spn=44.379717,80.859375&amp;z=3&amp;output=embed"></iframe><br /><small>View <a href="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=43.580391,-101.777344&amp;spn=44.379717,80.859375&amp;z=3&amp;source=embed" style="color:#0000FF;text-align:left">Code Across America 2013</a> in a larger map</small>
         / TOP-LEFT CONTENT
         / LEGACY STYLES
         .pledge-menu
@@ -48,23 +48,8 @@
         %table
           %tr
             %td
-              %table{:style => "width:600px;font-size:16px;align:justify;border:1;"}
-                %tr
-                  %td{:width => "300px;", :height => "70px;"}
-                    [LOCATION]
-                  %td{:width => "300px;", :height => "70px;"}
-                    [LOCATION]
-                %tr
-                  %td{:width => "300px;", :height => "70px;"}
-                    [LOCATION]
-                  %td{:width => "300px;", :height => "70px;"}
-                    [LOCATION]
-                %tr
-                  %td{:width => "300px;", :height => "70px;"}
-                    [LOCATION]
-                  %td{:width => "300px;", :height => "70px;"}
-                    [LOCATION]
-            %td
+              %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=0", :width => "580px;", :height => "400px;"}
+            %td{:style => "padding-left:20px;"}
               <div style="width: 250px; float: left;">
               <script charset="utf-8" type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
               <script type="text/javascript">
@@ -215,20 +200,11 @@
       %h1#share Share Code Across America Online
       %a.back-to-top{:href => "#"} &uarr; Back to top
       // SOCIAL MEDIA
-      %h2 Social Media Channels
-      %p TODO: logos
-      %p
-        Twitter hashtag: #codeacross
-      %p
-        IRC: #codeacross on freenode
-      %p
-        Flickr...
-      %p
-        Google Hangout...
-      %p
-        Vimeo...
-      %p
-        Youtube...
+      %p{:style => "font-size:22px;font-weight:bold;"}
+        CHECK IN! Create a new location for your event in Foursquare. Check in to your event using Path, Foursquare and Facebook. Set your location to the event and add '#codeacross' to your status.
+      %p{:style => "font-size:20px;font-weight:bold;"}
+        Look here for links to collections on these platforms:
+      %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=1", :width => "764px;", :height => "400px;"}.
       %hr
       %h1#contribute Contribute to Code Across America
       %p
