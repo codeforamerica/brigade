@@ -6,7 +6,7 @@
     / BANNER
     .row
       %a{:href => "/pages/codeacross"}
-        %img{:id => "banner", :align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :width => "1000px"}/
+        /*%img{:id => "banner", :align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :width => "1000px"}/*/
     / TOP CONTENT (left) / MAP (right)
     .row{:style => "margin-top:20px;"}
       / HEADLINE
@@ -49,7 +49,7 @@
           %tr
             %td
               %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=0", :width => "580px;", :height => "400px;"}
-            %td{:style => "padding-left:20px;"}
+            %td{:style => "padding-left:20px;align:right;"}
               <div style="width: 250px; float: left;">
               <script charset="utf-8" type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
               <script type="text/javascript">
@@ -134,7 +134,7 @@
             %h3 CityCamp
           %td{:width => "700px;", :height => "70px;"}
             Use this 
-            %a{:title => "Since the inaugural event in Jan 2010, 32 CityCamps have been independently organized in 25 cities across 8 countries and 5 continents.", :href => "http://citycamp.govfresh.com/start-a-camp/"} community-powered, open source, Creative Commons unconference model
+            %a{:title => "Since the inaugural event in Jan 2010, 32 CityCamps have been independently organized in 25 cities across 8 countries and 5 continents.", :href => "http://citycamp.govfresh.com/start-a-camp/"} community-powered unconference model
             to bring diverse groups together around topics in municipal innovation.
           %td{:width => "150px;", :height => "70px;", :align => "center"}
             %img{:title => "Meetup logo", :src => "https://twimg0-a.akamaihd.net/profile_images/1100231425/icon-cc.png", :width => "90", :height => "40"}
@@ -142,16 +142,19 @@
           %td{:width => "150px;", :height => "70px;"}
             %h3 Hackathon
           %td{:width => "700px;", :height => "70px;"}
-            Round up some local government data.
-            %a{:title => "RHoK challenges", :href => "http://www.rhok.org/problems"}Invite subject matter experts to share challenges
-            & insights. Pick open source, civic apps to redeploy. Break into teams to tackle challenges throughout the event.
+            Invite subject matter experts from local gov to share civic challenges. 
+            Curate challenges through the 
+            %a{:title => "RHoK challenges", :href => "http://www.rhok.org/problems"} Random Hacks of Kindness platform. 
+            Invite communities to learn about challenges and prototype solutions over a day or a weekend.
           %td{:width => "150px;", :height => "70px;", :align => "center"}
             %img{:title => "RHoK logo", :src => "https://www.google.com/a/cpanel/rhok.org/images/logo.gif", :width => "100", :height => "50"}
         %tr
           %td{:width => "150px;", :height => "70px;"}
             %h3 Write-a-thon
           %td{:width => "700px;", :height => "70px;"}
-            If your city, town or community has a LocalWiki you can contribute to it. If you don't have a LocalWiki where you live
+            If your city, town or neighborhood has a 
+            %a{:title => "Localwiki.org", :href => "http://localwiki.org"} LocalWiki 
+            you can contribute to it. If you don't have a LocalWiki where you live
             %a{:title => "localwiki how to", :href => "http://localwiki.org/install/"}you can launch one.
           %td{:width => "150px;", :height => "70px;", :align => "center"}
             %img{:title => "LocalWiki logo", :src => "/assets/r2r/localwiki.png", :width => "100", :height => "50"}
@@ -159,7 +162,7 @@
           %td{:width => "150px;", :height => "70px;"}
             %h3 Salon
           %td{:width => "700px;", :height => "70px;"}
-            Invite a guest speaker or a panel to speak for an hour on a topic that matters in your community. Facilitate a questions and answers segment. Offer light hors d' oeuvres and beverages
+            Invite a guest speaker or a panel to speak for an hour on a topic that matters in your community. Facilitate a questions and answers segment. Stream and record the event to share online.
           %td{:width => "150px;", :height => "70px;", :align => "center"}
             %img{:title => "Meetup logo", :src => "http://codeforamerica.org/wp-content/uploads/2012/04/CfA_Salon1.png", :width => "150", :height => "100"}
         %tr
@@ -173,9 +176,13 @@
           %td{:width => "700px;", :height => "70px;"}
             Expose, teach and train others how to use modern tools and techniques. Increase the civic digital literacy of your community. Record, document and share segments online.
       %p{:style => "font-size:28px;font-weight:bold;"}
-        %a{:href => "codeacross-tools"} Tools for Organizers
+        %a{:href => "codeacross-tools"}Tools 
+        for Organizers
+      %p{:style => "font-size:24px;font-weight:bold;"}
+        Want to host?
+        %a{:title => "host form", :href => "#wufoo-p7p5m7"} Click Here!
       %p{:style => "font-size:28px;font-weight:bold;"}
-        Why we Code Across: Checkout 
+        Checkout 
         %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america"}Code Across 2012
       <div class="host-form" id="wufoo-p7p5m7">
       Fill out my <a href="http://codeforamerica.wufoo.com/forms/p7p5m7">online form</a>.
@@ -200,21 +207,23 @@
       %h1#share Share Code Across America Online
       %a.back-to-top{:href => "#"} &uarr; Back to top
       // SOCIAL MEDIA
+      %h2 CHECK IN!
       %p{:style => "font-size:22px;font-weight:bold;"}
-        CHECK IN! Create a new location for your event in Foursquare. Check in to your event using Path, Foursquare and Facebook. Set your location to the event and add '#codeacross' to your status.
-      %p{:style => "font-size:20px;font-weight:bold;"}
-        Look here for links to collections on these platforms:
+        Create a new location for your event in Foursquare. Check in to your event using Path, Foursquare and Facebook. Set your location to the event and add '#codeacross' to your status.
+      %h2 Look below for links to collections on these platforms:
       %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=1", :width => "764px;", :height => "400px;"}.
       %hr
       %h1#contribute Contribute to Code Across America
       %p
-        CfA appreciates the forward-thinking individuals who support the development of open source civic software.
-        %br
-        %a{:title => "CfA donation page", :href => "http://codeforamerica.org/donate"}click here to make a donation today here.
+        CfA appreciates the forward-thinking individuals who support civic innovation.
+        %p{:style => "font-size:22px;font-weight:bold;"}
+          %a{:title => "CfA donation page", :href => "http://codeforamerica.org/donate"}click here to make a donation today.
       %h3 Grantmakers
       %p
-        If you are a grantmaker who is interested in supporting our mission to bring talented technologists and designers together with committed public servants to make government work better for everyone, please contact Hadley Dynak from the CfA team at hadley@codeforamerica.org.
+        If you are a grantmaker who is interested in supporting our mission to bring talented technologists and designers together with committed public servants to make government work better for everyone, please contact Hadley Dynak from the CfA team at
+        %a{:title => "email Hadley, subject Code Across Support", :href => "mailto:hadley@codeforamerica.org?subject=Code Across Support"}hadley@codeforamerica.org.
 
       %h3 Corporate Sponsors
       %p
-        Code Across America is a great chance to connect with talented developers, local government leaders, and the civic innovation community. If your company is interested in a sponsored partnership for this event (either nationally or in one of the 30+ cities nationwide where events will be taking place), please contact Ashley Meyers from the CfA team at ashley@codeforamerica.org.
+        Code Across America is a great chance to connect with talented developers, local government leaders, and the civic innovation community. If your company is interested in a sponsored partnership for this event (either nationally or in one of the 30+ cities nationwide where events will be taking place), please contact Ashley Meyers from the CfA team at 
+        %a{:title => "email Ashley, subject Code Across Support", :href => "mailto:ashley@codeforamerica.org?subject=Code Across Support"}ashley@codeforamerica.org.
