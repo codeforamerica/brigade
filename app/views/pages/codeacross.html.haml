@@ -44,7 +44,7 @@
             %br
             / JOIN & HOST
           %a{:href => "#connect-map", :class => "button-race", :value => "Join"}Join
-          %a{:href => "#wufoo-p7p5m7", :class => "button-race", :value => "Host"}Host
+          %a{:href => "#host-section", :class => "button-race", :value => "Host"}Host
           %a{:href => "#share", :class => "button-race", :value => "Share"}Share
           %a{:href => "#contribute", :class => "button-race", :value => "Give"}Give
           
@@ -143,7 +143,7 @@
 
       // HOST
       %hr
-      %h1 Host an Event
+      %h1#host-section Host an Event
       %a.back-to-top{:href => "#"} &uarr; Back to top
       %table{:style => "width:1000px;font-size:16px;align:justify"}
         %tr
@@ -242,6 +242,7 @@
       %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=1", :width => "766px;", :height => "400px;"}.
       %hr
       %h1#contribute Contribute to Code Across America
+      %a.back-to-top{:href => "#"} &uarr; Back to top
       %p
         CfA appreciates the forward-thinking individuals who support civic innovation.
         %p{:style => "font-size:22px;font-weight:bold;"}
