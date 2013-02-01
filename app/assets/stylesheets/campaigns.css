@@ -4,7 +4,7 @@
 .menu {
     font-family:"Gotham Thin", "Helvetica";
     font-size:24px;
-    color:#BBBBBB;
+    color:#444444;
     padding-left:20px;
     padding-right:20px;
 }
@@ -19,8 +19,6 @@ h1.join-section {
     margin-left:30px;
     margin-bottom:10px;
 }
-
-
 
 
 .map {
