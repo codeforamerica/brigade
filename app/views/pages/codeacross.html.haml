@@ -25,7 +25,7 @@
     / JOIN & HOST
     %center
       %hr
-      %a{:href => "#connect-map", :class => "menu", :value => "Join"}Join
+      %a{:href => "#join-section", :class => "menu", :value => "Join"}Join
       %a{:href => "#host-section", :class => "menu", :value => "Host"}Host
       %a{:href => "#share", :class => "menu", :value => "Share"}Share
       %a{:href => "#contribute", :class => "menu", :value => "Give"}Give
@@ -33,7 +33,7 @@
     .row{:style => "margin-top:10px;"}
       / HEADLINE
       %a.back-to-top{:href => "#"} &uarr; Back to top
-      %h1.join-section Join in these places
+      %h1#join-section Join in these places
       .map
         .map-box
           / MAP (right)
@@ -77,7 +77,7 @@
       %table{:style => "width:1000px;font-size:16px;align:justify"}
         %tr
           %td{:width => "700px;", :height => "70px;"}
-            %h3{:style => "font-weight:bold;"} Brigade Meetup
+            %h3 Brigade Meetup
             Use
             %a{:title => "Brigade Meetup site", :href => "http://meetup.com/cfabrigade", :target => "top"}Brigade Meetup
             or
