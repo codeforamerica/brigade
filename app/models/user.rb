@@ -77,6 +77,14 @@ class User < ActiveRecord::Base
     user = brigade.users.find_by_id(id)
     brigade.users.delete(user) if user
   end
+  
+  def linkedin_url
+    @linkedin_url
+  end
+  
+  def linkedin_url=(url)
+    @linkedin_url = url
+  end
 
   alias :name :full_name
 
