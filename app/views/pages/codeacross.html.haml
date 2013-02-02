@@ -5,9 +5,6 @@
 %LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
 %LINK{:HREF => "/assets/campaigns.js", :TYPE => "text/javascript"}
   %html{:lang => "en"}
-    <script type="text/javascript">
-    window.onload = g();
-    </script>
     .row
     %h2 Feb 22-24: Code for America Where You Live
     %p{:style => "font-size:18px;"}
@@ -36,22 +33,76 @@
       / HEADLINE
       %a.back-to-top{:href => "#"} &uarr; Back to top
       %h1#join-section Join in these places
-      .map
-        .map-box
-          / MAP (right)
-          / EMBED GOES HERE
-          .map-box-inner.primary{:style => "height: 350px;"}
-            %div{:id => "map"}
-            <iframe width="420" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=43.580391,-101.777344&amp;spn=44.379717,80.859375&amp;z=3&amp;output=embed"></iframe><br />
-            %br
-            Legend:
-            %span{:style => "color:#4372AA;"} Code Across Event
-            \#
-            %span{:style => "color:#CD5555;"} Open Data Day Event
-            \#
-            %span{:style => "color:#694489;"} All The Things!
-      %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=0&single=true&gridlines=false", :width => "420px;", :height => "396px;", :style => "float:right;padding-left:10px;border:0"}
-          
+      %table
+        %tr
+          %td{:width => "60%"}
+            .map
+              .map-box
+                / MAP (right)
+                / EMBED GOES HERE
+                .map-box-inner.primary{:style => "height: 350px;"}
+                  %div{:id => "map"}
+                  <iframe width="420" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=43.580391,-101.777344&amp;spn=44.379717,80.859375&amp;z=3&amp;output=embed"></iframe><br />
+                  %br
+                  Legend:
+                  %span{:style => "color:#4372AA;"} Code Across Event
+                  \#
+                  %span{:style => "color:#CD5555;"} Open Data Day Event
+                  \#
+                  %span{:style => "color:#694489;"} All The Things!
+          %td{:width => "40%", :align => "center", :style => "font-size:16px;"}
+            %table{:align => "right"}
+              %tr.cities
+                %td{:align => "center"}
+                  Cary, NC
+              %tr.cities
+                %td{:align => "center"}
+                  Honolulu, HI
+              %tr.cities
+                %td{:align => "center"}
+                  Houston, TX
+              %tr.cities
+                %td{:align => "center"}
+                  Kansas City, KS
+              %tr.cities
+                %td{:align => "center"}
+                  Kansas City, MO
+              %tr.cities
+                %td{:align => "center"}
+                  Las Vegas, NV
+              %tr.cities
+                %td{:align => "center"}
+                  Louisville, KY
+              %tr.cities
+                %td{:align => "center"}
+                  Minneapolis-Saint Paul
+              %tr.cities
+                %td{:align => "center"}
+                  New York, NY
+              %tr.cities
+                %td{:align => "center"}
+                  Norfolk, VA
+              %tr.cities
+                %td{:align => "center"}
+                  Oakland, CA
+              %tr.cities
+                %td{:align => "center"}
+                  Sacramento, CA
+              %tr.cities
+                %td{:align => "center"}
+                  San Francisco, CA
+              %tr.cities
+                %td{:align => "center"}
+                  San Mateo County, CA
+              %tr.cities
+                %td{:align => "center"}
+                  South Bend, IN
+              %tr.cities
+                %td{:align => "center"}
+                  Summit County, OH
+              %tr.cities
+                %td{:align => "center"}
+                  Washington, D.C.
       / START OF MAIN BODY CONTENT
       / JOIN SECTION
     %br

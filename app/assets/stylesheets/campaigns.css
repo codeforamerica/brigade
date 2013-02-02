@@ -5,6 +5,10 @@
     font-weight:500;
 }
 
+.cities {
+    height:25px;
+}
+
 .menu {
     font-family:'Avenir Light', Helvetica, Arial, sans-serif;
     font-size:30px;
