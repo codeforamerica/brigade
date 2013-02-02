@@ -5,20 +5,22 @@
 %LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
 %LINK{:HREF => "/assets/campaigns.js", :TYPE => "text/javascript"}
   %html{:lang => "en"}
+    <script type="text/javascript">
+    window.onload = g();
+    </script>
     .row
     %h2 Feb 22-24: Code for America Where You Live
-    %p.ocall
+    %p{:style => "font-size:18px;"}
       Between Feb 22-24, connect with hundreds of passionate citizens from across the country who will be coding for America where they live and work.
-    %p.ocall
+    %p{:style => "font-size:18px;"}
       Code Across America is a distributed network event that any municipality can join, big or small, beginner or expert. Individuals and groups can Code Across America through virtual an in-person activities around the country.
-    %p.ocall
+    %p{:style => "font-size:18px;"}
       February 23rd is also 
       %a{:title => "International Open Data Day", :href => "http://opendataday.org", :target => "top"} International Open Data Day.
       Link Code Across America and International Open Data Day by joining or hosting an event where you live. 
-    %p.ocall
     / BANNER
     .row
-      %a{:href => "/pages/codeacross"}
+      %a{:href => "codeacross"}
         /*%img{:id => "banner", :align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :width => "1000px"}/*/
     / TOP CONTENT (left) / MAP (right)
     .row{:style => "margin-top:20px;"}
@@ -48,7 +50,7 @@
             %span{:style => "color:#CD5555;"} Open Data Day Event
             \#
             %span{:style => "color:#694489;"} All The Things!
-      %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=0&single=true&gridlines=false", :width => "450px;", :height => "396px;", :style => "float:right;padding-left:20px;border:0"}
+      %iframe{:src => "https://docs.google.com/spreadsheet/ccc?key=0AvWC8QOgiwjzdGU5b1ZPTEhwdExlcENyeUpGR3VZM2c&output=html&gid=0&single=true&gridlines=false", :width => "420px;", :height => "396px;", :style => "float:right;padding-left:10px;border:0"}
           
       / START OF MAIN BODY CONTENT
       / JOIN SECTION
@@ -65,7 +67,7 @@
         %a{:title => "host form", :href => "https://codeforamerica.wufoo.com/forms/host-a-code-across-america-event/", :target => "top"} apply to host one
 
       %p{:style => "font-size:18px;"}
-        %a{:title => "Code Across Activities on Github", :href => "https://github.com/codeforamerica/brigade/wiki/Code-Across-America-2013"} Find Activities on GitHub
+        %a{:title => "Code Across Activities on Github", :href => "https://github.com/codeforamerica/brigade/wiki/Code-Across-America-2013", :target => "top"} Find Activities on GitHub
       %p{:style => "font-size:18px;"}
         What activities interest you?
         %a{:title => "interest form", :href => "https://codeforamerica.wufoo.com/forms/code-across-america-activities-events/", :target => "top"} Take this 3 question survey.
@@ -77,7 +79,7 @@
       %table{:style => "width:1000px;font-size:16px;align:justify"}
         %tr
           %td{:width => "700px;", :height => "70px;"}
-            %h3 Brigade Meetup
+            %h3.campaign-header Brigade Meetup
             Use
             %a{:title => "Brigade Meetup site", :href => "http://meetup.com/cfabrigade", :target => "top"}Brigade Meetup
             or
@@ -97,9 +99,9 @@
           %td{:width => "700px;", :height => "70px;"}
             %h3 Hackathon
             Invite subject matter experts from local gov to share civic challenges. 
-            Curate challenges through the 
-            %a{:title => "RHoK challenges", :href => "http://www.rhok.org/problems", :target => "top"} Random Hacks of Kindness platform. 
-            Invite communities to learn about challenges and prototype solutions over a day or a weekend.
+            Curate challenges at 
+            %a{:title => "RHoK challenges", :href => "http://www.rhok.org/problems", :target => "top"} Random Hacks of Kindness. 
+            Invite communities to learn about challenges & prototype solutions over a day or weekend.
           %td{:width => "150px;", :height => "70px;", :align => "center"}
             %img{:title => "RHoK logo", :src => "https://www.google.com/a/cpanel/rhok.org/images/logo.gif", :width => "100", :height => "50"}
         %tr
@@ -126,11 +128,11 @@
             %h3 Skill Share
             Expose, teach and train others how to use modern tools and techniques. Increase the civic digital literacy of your community. Record, document and share segments online.
       %p{:style => "font-size:18px;font-weight:bold;"}
-        %a{:href => "codeacross-tools"}Tools 
+        %a{:href => "codeacross-tools", :target => "top"}Tools 
         for Organizers
       %p{:style => "font-size:18px;font-weight:bold;"}
         Want to host?
-        %a{:title => "host form", :href => "#wufoo-p7p5m7"} Click Here!
+        %a{:title => "host form", :href => "#wufoo-p7p5m7", :target => "top"} Click Here!
       %p{:style => "font-size:18px;font-weight:bold;"}
         Checkout 
         %a{:title => "last year", :href => "http://codeforamerica.org/code-across-america", :target => "top"}Code Across 2012
@@ -149,8 +151,11 @@
               %li
                 %p{:style => "font-size:18px;"}
                   Use
-                  %span{:style => "color:blue;"} #codeacross
+                  %span{:style => "color:#399fd3;"} #codeacross
                   on social media and content sharing platforms.
+            %center
+              %p{:style => "font-size:28px;color:#cf1b41;font-weight:bold"}
+                \#codeacross
             
           %td{:width => "40%"}
             // TWITTER
@@ -193,25 +198,4 @@
       %p
         CfA appreciates the forward-thinking individuals who support civic innovation.
         %p{:style => "font-size:22px;font-weight:bold;"}
-          %a{:class => "button-race", :title => "CfA donation page", :href => "http://codeforamerica.org/donate", :target => "top"}Donate Now
-      %h3 Grantmakers
-      %p
-        If you are a grantmaker who is interested in supporting our mission to bring talented technologists and designers together with committed public servants to make government work better for everyone, please contact Hadley Dynak from the CfA team at
-        %a{:title => "email Hadley, subject Code Across Support", :href => "mailto:hadley@codeforamerica.org?subject=Code Across Support"}hadley@codeforamerica.org.
-
-      %h3 Corporate Sponsors
-      %p
-        Code Across America is a great chance to connect with talented developers, local government leaders, and the civic innovation community. If your company is interested in a sponsored partnership for this event (either nationally or in one of the 30+ cities nationwide where events will be taking place), please contact Ashley Meyers from the CfA team at 
-        %a{:title => "email Ashley, subject Code Across Support", :href => "mailto:ashley@codeforamerica.org?subject=Code Across Support"}ashley@codeforamerica.org.
-    <script type="text/javascript">
-    var f = function(id)
-    {
-    document.getElementById(id).style.display = "none";
-    };
-    var g = function()
-    {
-    f("header");
-    f("footer");
-    }
-    window.onload = g();
-    </script>
+          %a{:class => "button-race", :title => "CfA donation page", :href => "mailto:revenue@codeforamerica.org?subject=Code Across America Support", :target => "top"}Donate Now

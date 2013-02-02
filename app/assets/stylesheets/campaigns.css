@@ -1,9 +1,13 @@
 @charset "utf-8";
 /* CSS Document */
 
+.campaign-header {
+    font-weight:500;
+}
+
 .menu {
-    font-family:"Gotham Thin", "Helvetica";
-    font-size:24px;
+    font-family:'Avenir Light', Helvetica, Arial, sans-serif;
+    font-size:30px;
     color:#444444;
     padding-left:20px;
     padding-right:20px;
@@ -11,7 +15,7 @@
 
 .menu:hover {
     text-decoration:underline;
-    color:#DDDDDD;
+    color:#cf1b41;
 }
 
 h1#join-section {
