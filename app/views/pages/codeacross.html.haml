@@ -44,12 +44,14 @@
                   %div{:id => "map"}
                   <iframe width="420" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=43.580391,-101.777344&amp;spn=44.379717,80.859375&amp;z=3&amp;output=embed"></iframe><br />
                   %br
-                  Legend:
-                  %span{:style => "color:#4372AA;"} Code Across Event
-                  \#
-                  %span{:style => "color:#CD5555;"} Open Data Day Event
-                  \#
-                  %span{:style => "color:#694489;"} All The Things!
+                  %div#legend
+                    Legend:
+                    %a.item1
+                      Code Across Event
+                    %a.item2
+                      Open Data Day Event
+                    %a.item3
+                      All The Things!
           %td{:width => "40%", :align => "center", :style => "font-size:16px;"}
             %table{:align => "right"}
               %tr.cities
@@ -249,4 +251,4 @@
       %p
         CfA appreciates the forward-thinking individuals who support civic innovation.
         %p{:style => "font-size:22px;font-weight:bold;"}
-          %a{:class => "button-race", :title => "CfA donation page", :href => "mailto:revenue@codeforamerica.org?subject=Code Across America Support", :target => "top"}Donate Now
+          %a{:class => "button-race", :title => "CfA donation page", :href => "https://secure.codeforamerica.org/page/contribute/annual-campaign", :target => "top"}Donate Now

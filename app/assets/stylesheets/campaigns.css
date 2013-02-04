@@ -9,6 +9,22 @@
     height:25px;
 }
 
+#legend a {
+    background-image:url('/assets/code_across/legend_map_marker.png');
+    background-repeat:no-repeat;
+    }
+}
+#legend a.item1 {
+    background-position:0px 0px;
+}
+#legend a.item2 {
+    background-position:20px 0px;
+}
+#legend a.item3 {
+    background-position:30px 0px;
+}
+
+
 .menu {
     font-family:'Avenir Light', Helvetica, Arial, sans-serif;
     font-size:30px;
