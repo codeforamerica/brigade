@@ -57,7 +57,7 @@ header#top-deck {
 
         &.active a {
           color: #0072ac;
-          background: #fff;
+          background: rgba(255, 255, 255, 0);
           padding: 10px 10px 14px;
           @include border-radius(5px 5px 5px 5px);
         }
