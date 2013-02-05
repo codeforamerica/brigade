@@ -1,23 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 
-.campaign-header {
-    font-weight:500;
-}
-
-.cities {
-    height:25px;
-}
-
-td.legend {
-    color:#333333;
-    width:5%;
-    padding-left:0px;
-}
-
-td.legend-text {
-    text-align:center;
-}
 
 a.blue {
     background:url('/assets/code_across/legend_map_marker.png') 0px 0px;
@@ -149,6 +132,31 @@ a:hover.kippt {
     background-repeat:no-repeat;
 }
 
+td.legend {
+    color:#333333;
+    width:5%;
+    padding-left:0px;
+}
+
+td.legend-text {
+    text-align:center;
+}
+
+
+.campaign-header {
+    font-weight:500;
+}
+
+.cities {
+    height:25px;
+}
+
+.gray {
+ font-size:22px;
+ font-weight:bold;
+ color:#777777;
+}
+
 .menu {
     font-family:'Avenir Light', Helvetica, Arial, sans-serif;
     font-size:30px;
@@ -161,13 +169,6 @@ a:hover.kippt {
     text-decoration:underline;
     color:#cf1b41;
 }
-
-h1#join-section {
-    margin-top:6px;
-    margin-left:30px;
-    margin-bottom:10px;
-}
-
 
 .map {
     width: 460px;
@@ -189,4 +190,20 @@ h1#join-section {
 
 .rShim {
     align:center;
+}
+
+h1#join-section {
+    margin-top:6px;
+    margin-left:30px;
+    margin-bottom:10px;
+}
+
+ol#act {
+  padding:20px;
+}
+
+ol#act li {
+  font-size:24px;
+  color:#555555;
+  padding:6px;
 }
