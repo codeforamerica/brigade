@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :opt_in, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid,
-                  :full_name, :first_name, :last_name
+                  :full_name, :first_name, :last_name, :linkedin_url
 
   validates :full_name, presence: true
 
@@ -76,6 +76,14 @@ class User < ActiveRecord::Base
   def leave_brigade(brigade)
     user = brigade.users.find_by_id(id)
     brigade.users.delete(user) if user
+  end
+  
+  def linkedin_url
+    @linkedin_url
+  end
+  
+  def linkedin_url=(url)
+    @linkedin_url = url
   end
 
   alias :name :full_name
