@@ -170,9 +170,9 @@ GEM
     hpricot (0.8.6)
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.0.2)
-      railties (>= 3.2.0, < 5.0)
-      thor (~> 0.14)
+    jquery-rails (2.2.0)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
     jquery-ui-rails (0.2.2)
       jquery-rails
       railties (>= 3.1.0)
@@ -394,7 +394,7 @@ DEPENDENCIES
   hashie (~> 1.2.0)
   heroku
   high_voltage
-  jquery-rails (~> 2.0.0)
+  jquery-rails (~> 2.2.0)
   kaminari (~> 0.13.0)
   km
   launchy (~> 2.1.0)
