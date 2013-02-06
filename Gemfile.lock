@@ -178,10 +178,9 @@ GEM
       railties (>= 3.1.0)
     jruby-pageant (1.0.2)
     json (1.7.6)
-    kaminari (0.13.0)
+    kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-      railties (>= 3.0.0)
     kgio (2.7.2)
     km (1.1.2)
     launchy (2.1.0)
@@ -395,7 +394,7 @@ DEPENDENCIES
   heroku
   high_voltage
   jquery-rails (~> 2.2.0)
-  kaminari (~> 0.13.0)
+  kaminari (~> 0.14.1)
   km
   launchy (~> 2.1.0)
   omniauth-github (~> 1.0.1)

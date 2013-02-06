@@ -33,7 +33,7 @@ gem 'chronic', '~> 0.6.7'
 gem 'rails_autolink'
 
 # Kaminari for adding pagination
-gem 'kaminari', '~> 0.13.0'
+gem 'kaminari', '~> 0.14.1'
 
 # Error messages
 gem 'errship', '~> 2.2.0'
