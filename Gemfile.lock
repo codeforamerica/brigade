@@ -227,6 +227,7 @@ GEM
     pry-remote (0.1.0)
       pry (~> 0.9.6)
       slop (~> 2.1)
+    psych (1.3.4)
     rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -407,6 +408,7 @@ DEPENDENCIES
   pg
   pry (~> 0.9.8)
   pry-remote (~> 0.1.0)
+  psych
   rails (~> 3.2.11)
   rails_admin (~> 0.4.4)
   rails_admin_tag_list!
