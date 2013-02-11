@@ -15,6 +15,9 @@ gem 'bourbon'
 # alternate HTTP server for Rack applications
 gem 'unicorn'
 
+# for yaml parsing
+gem 'psych'
+
 #Simple form for better form management
 gem 'simple_form', '~> 2.0.0.rc'
 
