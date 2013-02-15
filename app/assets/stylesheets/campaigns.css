@@ -147,8 +147,17 @@ td.legend-text {
     font-weight:500;
 }
 
-.cities {
+table.cities {
+  width:100%;
+}
+
+tr.cities {
     height:25px;
+}
+
+td.cities {
+  text-align:center;
+  padding:6px;
 }
 
 .gray {

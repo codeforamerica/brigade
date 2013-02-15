@@ -32,16 +32,16 @@
       / HEADLINE
       %a.back-to-top{:href => "#"} &uarr; Back to top
       %h1#join-section Join in these places
-      %table
+      %table.cities
         %tr
           %td{:width => "60%"}
             .map
               .map-box
                 / MAP (right)
                 / EMBED GOES HERE
-                .map-box-inner.primary{:style => "height: 380px;"}
+                .map-box-inner.primary{:style => "height: 380px; width: 460px;"}
                   %div{:id => "map"}
-                  <iframe width="420" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=43.580391,-101.777344&amp;spn=44.379717,80.859375&amp;z=3&amp;output=embed"></iframe><br />
+                  <iframe width="460" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps/ms?msa=0&amp;msid=211836600249959492431.0004d44e7935be28cbabb&amp;ie=UTF8&amp;t=m&amp;ll=42.032974,-112.851562&amp;spn=87.656688,121.71875&amp;z=2&amp;output=embed"></iframe><br />
                   %table
                     %tr
                       %td.legend
@@ -56,68 +56,72 @@
                         %a.purple
                       %td.legend-text
                         All The Things!
-          %td{:width => "40%", :align => "center", :style => "font-size:16px;"}
-            %table{:align => "right"}
+          %td{:width => "40%", :style => "font-size:16px;padding:10px;"}
+            %table{:width => "100%"}
               %tr.cities
-                %td{:align => "center"}
+                %td.cities
                   %a{:title => "Austin, TX registration page", :href => "http://www.open-austin.org/article/137", :target => "top"}Austin, TX
-                %td{:align => "center"}
+                %td.cities
                   %a{:title => "Cary, NC Eventbrite", :href => "http://caryopendataday.eventbrite.com/", :target => "top"}Cary, NC
               %tr.cities
-                %td{:align => "center"}
+                %td.cities
                   %a{:href => "http://www.meetup.com/cfabrigade/Grand-Rapids-MI/859432/"}Grand Rapids, MI
-                %td{:align => "center"}
-                  %a{:href => "http://phcfh-eorg.eventbrite.com/"}Houston, TX
+                %td.cities
+                  %a{:href => "http://myhonolulu.eventbrite.com"}Honolulu, HI
               %tr.cities
-                %td{:align => "center"}
+                %td.cities
+                  %a{:href => "http://phcfh-eorg.eventbrite.com/"}Houston, TX
+                %td.cities
                   %i Kansas City, KS & MO
-                %td{:align => "center"}
+              %tr.cities
+                %td.cities
                   %a{:href => "http://www.vegashack.com/"}
                     %i Las Vegas, NV
-              %tr.cities
-                %td{:align => "center"}
+                %td.cities
                   %a{:href => "http://codeacross-louisville.eventbrite.com/"}
                     %i Louisville, KY
-                %td{:align => "center"}
-                  %a{:href => "http://www.meetup.com/MKEData/events/102101232/"}Milwaukee, WI
               %tr.cities
-                %td{:align => "center"}
-                  %a{:href => "http://www.meetup.com/cfabrigade/Twin-Cities/871962/"}Minneapolis-Saint Paul, MN
-                %td{:align => "center"}
+                %td.cities
+                  %a{:href => "http://www.meetup.com/MKEData/events/102101232/"}Milwaukee, WI
+                %td.cities
+                  %a{:href => "http://www.meetup.com/cfabrigade/Twin-Cities/871962/"}Minneapolis, MN
+              %tr.cities
+                %td.cities
                   %a{:href => "http://www.meetup.com/openny/events/103151862/"}
                     %i New York, NY
-              %tr.cities
-                %td{:align => "center"}
+                %td.cities
                   %a{:href => "http://www.startacademy.co/"}Norfolk, VA
-                %td{:align => "center"}
+              %tr.cities
+                %td.cities
                   %a{:href => "http://opendatadayoakland.eventbrite.com"}
                     %i Oakland, CA
-              %tr.cities
-                %td{:align => "center"}
+                %td.cities
                   %a{:href => "http://www.meetup.com/Code-for-America-Philly/events/104327762/"}Philadelphia, PA
-                %td{:align => "center"}
-                  %a{:title => "Sacramento, CA Meetup", :href => "http://www.meetup.com/cfabrigade/Sacramento-CA/857112/", :target => "top"}Sacramento, CA
               %tr.cities
-                %td{:align => "center"}
+                %td.cities
+                  %a{:title => "Sacramento, CA Meetup", :href => "http://www.meetup.com/cfabrigade/Sacramento-CA/857112/", :target => "top"}Sacramento, CA
+                %td.cities
                   %a{:href => "http://codeacross-sandiego.eventbrite.com/"}San Diego, CA
-                %td{:align => "center"}
+              %tr.cities
+                %td.cities
                   %a{:href => "http://sf_hackyourcity.eventbrite.com/"}
                     %i San Francisco, CA
-              %tr.cities
-                %td{:align => "center"}
+                %td.cities
                   %i San Mateo County, CA
-                %td{:align => "center"}
-                  %a{:href => "http://www.meetup.com/Code-for-Seattle/events/103791052/"}Seattle, WA
               %tr.cities
-                %td{:align => "center"}
+                %td.cities
+                  %a{:href => "http://www.meetup.com/Code-for-Seattle/events/103791052/"}Seattle, WA
+                %td.cities
                   %a{:href => "http://codeacross-southbend.eventbrite.com/"}
                     %i South Bend, IN
-                %td{:align => "center"}
-                  %i Summit County, OH
               %tr.cities
-                %td{:align => "center"}
+                %td.cities
+                  %i Summit County, OH
+                %td.cities
                   %a{:title => "Washington, D.C. Eventbrite", :href => "http://opendataday2013dc.eventbrite.com/", :target => "top"}Washington, D.C.
-                %td{:align => "center"}
+            %hr
+            %p
+            %i 2013 Fellowship Cities
       / START OF MAIN BODY CONTENT
       / JOIN SECTION
     %br
