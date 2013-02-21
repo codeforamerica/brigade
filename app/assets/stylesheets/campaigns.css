@@ -142,9 +142,10 @@ td.legend-text {
     text-align:center;
 }
 
-
-.campaign-header {
-    font-weight:500;
+td.above-scroll {
+  font-family:'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:18px;
+  font-weight:100;
 }
 
 table.cities {
@@ -158,6 +159,10 @@ tr.cities {
 td.cities {
   text-align:center;
   padding:6px;
+}
+
+.campaign-header {
+    font-weight:500;
 }
 
 .gray {
@@ -199,6 +204,15 @@ td.cities {
 
 .rShim {
     align:center;
+}
+
+div#intake-form {
+  padding: 14px;
+  height: 58px;
+  margin: auto;
+  margin-top: 30px;
+  background-color: white;
+  .submit{ margin-top: 0px;}
 }
 
 h1#join-section {
