@@ -14,7 +14,7 @@
       %tr
         %td.above-scroll{:width => "42%"}
           %p{:style => "font-size:18px;"}
-          Citizens who are passionate about technology and their communities are coding across America in service to the places where we live.
+          February 22-24, citizens passionate about technology and their communities are coding across America in service to the places where we live.
           %p{:style => "font-size:18px;"}
           Code Across America is a multi-day event that any municipality or community can join, big or small, beginner or expert. Individuals and groups can Code Across America through virtual and in-person activities around the country.
           %p{:style => "font-size:18px;"}
@@ -135,21 +135,15 @@
             %i 2013 Fellowship Cities
       / START OF MAIN BODY CONTENT
       / JOIN SECTION
-      %div#intake-form
-        <%= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form| %>
-        <% if @user.full_name.present? && !@user.errors[:full_name].any? %>
-        <%= form.input :full_name, as: :hidden, input_html: {value: @user.full_name}  %>
-        <% else %>
-        <span class="span3 no-margin"><%= form.input :full_name, :label => false, :placeholder => 'Name' %></span>
-        <% end %>
-        <% if @user.email.present? && !@user.errors[:email].any? %>
-        <%= form.input :email, as: :hidden, input_html: {value: @user.email} %>
-        <% else %>
-        <span class="span3 no-margin"><%= form.input :email, :label => false, :placeholder => 'Email' %></span>
-        <% end %>
-        <span class="span3 no-margin"><%= form.input :password, :label => false, :placeholder => 'Choose a password' if @user.password_required? %></span>
-        <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
-        <%end%>
+      
+      //%div#intake-form
+      //  = simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form| if @user.full_name.present? && !@user.errors[:full_name].any? 
+      //    = form.input :full_name, as: :hidden, input_html: {value: @user.full_name} else span.span3 
+      //    = form.input :full_name, :label => false, :placeholder => 'Name' end if @user.email.present? && !@user.errors[:email].any?
+      //    = form.input :email, as: :hidden, input_html: {value: @user.email} else span.span3
+      //    = form.input :email, :label => false, :placeholder => 'Email' end span.span3
+      //    = form.input :password, :label => false, :placeholder => 'Choose a password' if @user.password_required?
+      //    = form.submit 'Sign up', class: 'submit btn btn-primary' end
     %br
     .content-wrap
       // ACTIVITIES
