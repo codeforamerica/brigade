@@ -9,16 +9,16 @@
       %a{:href => "codeacross"}
         %img{:id => "banner", :align => "center", :src => "/assets/code_across/code_across_banner.png", :width => "1000px"}
     .row
-    %h2 We're Coding Across America Right Now!
+    %h2 Thank you for coding for America!
     %table
       %tr
         %td.above-scroll{:width => "42%"}
           %p{:style => "font-size:18px;"}
-          February 22-24, citizens passionate about technology and their communities are coding across America in service to the places where we live.
+          February 22-24, citizens passionate about technology and their communities coded across America in service to the places where we live.
           %p{:style => "font-size:18px;"}
-          Code Across America is a multi-day event that any municipality or community can join, big or small, beginner or expert. Individuals and groups can Code Across America through virtual and in-person activities around the country.
+          Code Across America was a multi-day, distributed, in-person and virtual event in 22 cities and counties around the country.
           %p{:style => "font-size:18px;"}
-          February 23rd is
+          February 23rd was
           %a{:title => "International Open Data Day", :href => "http://opendataday.org", :target => "top"} International Open Data Day.
         %td.above-scroll{:width => "58%"}
           .map
@@ -26,27 +26,118 @@
             <div>
             <iframe src="http://player.vimeo.com/video/60114574" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
             </div>
-    / BANNER
-    / TOP CONTENT (left) / MAP (right)
     .row{:style => "margin-top:20px;"}
     / JOIN & HOST
     %center
       %hr
-      %a{:href => "#join-section", :class => "menu", :value => "Join"}Join
       %a{:href => "#share", :class => "menu", :value => "Share"}Share
       %a{:href => "#contribute", :class => "menu", :value => "Give"}Give
       %hr
+    // SHARE
+    %a.back-to-top{:href => "#"} &uarr; Back to top
+    %h1#share Share Your Stories & Achievements!
+    %br
+    %br
+    %table
+      %tr
+        %td
+          <div id="wufoo-p7p4p9">
+          Fill out my <a href="http://codeforamerica.wufoo.com/forms/p7p4p9">online form</a>.
+          </div>
+          <script type="text/javascript">var p7p4p9;(function(d, t) {
+          var s = d.createElement(t), options = {
+          'userName':'codeforamerica', 
+          'formHash':'p7p4p9', 
+          'autoResize':true,
+          'height':'1053',
+          'async':true,
+          'header':'show', 
+          'ssl':true};
+          s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+          s.onload = s.onreadystatechange = function() {
+          var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+          try { p7p4p9 = new WufooForm();p7p4p9.initialize(options);p7p4p9.display(); } catch (e) {}};
+          var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+          })(document, 'script');</script>
+        %td{:width => "40%", :valign => "top"}
+          %center
+            %p{:style => "font-size:28px;color:#cf1b41;font-weight:bold"}
+              \#codeacross
+              // TWITTER
+              <div style="width: 284px;float:center;padding-left:10px;">
+              <script charset="utf-8" type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+              <script type="text/javascript">
+              // <![CDATA[
+              new TWTR.Widget({
+              version: 2,
+              type: 'search',
+              search: 'codeacross',
+              interval: 45000,
+              title: 'Code Across America',
+              subject: 'Meet the Movement',
+              width: 280,
+              height: 350,
+              theme: {
+              shell: {
+              background: '#d15a5a',
+              color: '#ffffff'
+              },
+              tweets: {
+              background: '#ffffff',
+              color: '#444444',
+              links: '#1985b5'
+              }
+              },
+              features: {
+              scrollbar: true,
+              loop: true,
+              live: true,
+              behavior: 'default'
+              }
+              }).render().start();
+              // ]]></script></div>
+              </div>
+          // SOCIAL MEDIA
+          %table
+            %tr
+              %td.social
+                %a.twitter{:href => "http://twitter.com/search/%23codeacross", :target => "top"}
+                %br
+                Twitter
+              %td.social
+                %a.tumblr{:href => "http://www.tumblr.com/tagged/codeacross", :target => "top"}
+                %br
+                Tumblr
+              %td.social
+                %a.facebook{:href => "https://www.facebook.com/search/results.php?q=%23codeacross", :target => "top"}
+                %br
+                Facebook
+              %td.social
+                %a.flickr{:href => "http://www.flickr.com/search/?q=%23codeacross", :target => "top"}
+                %br
+                Flickr
+            %tr
+              %td.social
+                %a.youtube{:href => "www.youtube.com/results?search_query=%23codeacross", :target => "top"}
+                %br
+                YouTube
+              %td.social
+                %a.vimeo{:href => "http://vimeo.com/search?q=%23codeacross", :target => "top"}
+                %br
+                Vimeo
+              %td.social
+                %a.foursquare{:href => "https://foursquare.com/explore?&q=%23codeacross", :target => "top"}
+                %br
+                Foursquare
+              %td.social
+                %a.kippt{:href => "https://kippt.com/search/%23codeacross", :target => "top"}
+                %br
+                Kippt
+    %hr
+    %a.back-to-top{:href => "#"} &uarr; Back to top
+    / TOP CONTENT (left) / MAP (right)
     .row{:style => "margin-top:10px;"}
       / HEADLINE
-      %a.back-to-top{:href => "#"} &uarr; Back to top
-      %h1#join-section Join in these places
-      %p{:style => "font-size:24px;color:#cf1b41;font-weight:bold;padding-left:30px;"}
-        IRC
-        \#codeforamerica
-        on freenode
-      %p{:style => "font-size:24px;padding-left:30px;"}
-        Chicago Brigade Hosts "Ask Me Anything"
-        %a{:href => "https://www.google.com/calendar/embed?src=codeforamerica.org_svq8pao6907bhbpoa02bqlhf6g@group.calendar.google.com", :target => "top"}2PM Central Time
       %table.cities
         %tr
           %td{:width => "60%"}
@@ -142,114 +233,23 @@
             %i 2013 Fellowship Cities
       / START OF MAIN BODY CONTENT
       / JOIN SECTION
-    .content-wrap
-      // ACTIVITIES
-      %p{:style => "font-size:28px;"}
-        %a{:title => "Code Across Activities on Github", :href => "https://github.com/codeforamerica/brigade/wiki/Code-Across-America-2013", :target => "top"} Find Activities on GitHub
-      %p{:style => "font-size:18px;"}
-        What activities interest you?
-        %a{:title => "interest form", :href => "https://codeforamerica.wufoo.com/forms/code-across-america-activities-events/", :target => "top"} Take this 3 question survey.
-      %p{:style => "font-size:18px;"}
-        %a{:title => "Open Data Day Wiki", :href => "http://wiki.opendataday.org/2013/City_Events#United_States", :target => "top"} Click here
-        for a cross-listing of Open Data Day U.S. Locations.
-      // SHARE
-      %hr
+      %div#intake-form
+        /= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form|
+        /  = if @user.full_name.present? && !@user.errors[:full_name].any?
+        /      = form.input :full_name, as: :hidden, input_html: {value: @user.full_name}
+        /  = else
+        /    = <span class="span3 no-margin">
+        /      = form.input :full_name, :label => false, :placeholder => 'Name'
+        /    = </span>
+        /      <% end %>
+        /      <% if @user.email.present? && !@user.errors[:email].any? %>
+        /        <%= form.input :email, as: :hidden, input_html: {value: @user.email} %>
+        /      <% else %>
+        /        <span class="span3 no-margin"><%= form.input :email, :label => false, :placeholder => 'Email' %></span>
+        /      <% end %>
+        /      <span class="span3 no-margin"><%= form.input :password, :label => false, :placeholder => 'Choose a password' if @user.password_required? %></span>
+        /      <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
       %a.back-to-top{:href => "#"} &uarr; Back to top
-      %h1#share Share Code Across America Online
-      %table
-        %tr{:width => "100%;"}
-          %td{:valign => "top", :width => "60%"}
-            // SOCIAL MEDIA
-            %ol
-              %li
-                %p{:style => "font-size:18px;"}
-                  Create a new location for your event in Foursquare. Check in to your event using Path, Foursquare and Facebook. Set your location to the event and add '#codeacross' to your status.
-              %li
-                %p{:style => "font-size:18px;"}
-                  Use
-                  %span{:style => "color:#399fd3;"} #codeacross
-                  on social media and content sharing platforms.
-            %center
-              %p{:style => "font-size:28px;color:#cf1b41;font-weight:bold"}
-                \#codeacross
-              %table
-                %tr
-                  %td.social
-                    %a.twitter{:href => "http://twitter.com/search/%23codeacross", :target => "top"}
-                    %br
-                    Twitter
-                  %td.social
-                    %a.tumblr{:href => "http://www.tumblr.com/tagged/codeacross", :target => "top"}
-                    %br
-                    Tumblr
-                  %td.social
-                    %a.facebook{:href => "https://www.facebook.com/search/results.php?q=%23codeacross", :target => "top"}
-                    %br
-                    Facebook
-                  %td.social
-                    %a.flickr{:href => "http://www.flickr.com/search/?q=%23codeacross", :target => "top"}
-                    %br
-                    Flickr
-                %tr
-                  %td.social
-                    %a.youtube{:href => "www.youtube.com/results?search_query=%23codeacross", :target => "top"}
-                    %br
-                    YouTube
-                  %td.social
-                    %a.vimeo{:href => "http://vimeo.com/search?q=%23codeacross", :target => "top"}
-                    %br
-                    Vimeo
-                  %td.social
-                    %a.foursquare{:href => "https://foursquare.com/explore?&q=%23codeacross", :target => "top"}
-                    %br
-                    Foursquare
-                  %td.social
-                    %a.kippt{:href => "https://kippt.com/search/%23codeacross", :target => "top"}
-                    %br
-                    Kippt
-              %p{:style => "font-size:28px;color:#cf1b41;font-weight:bold"}
-                IRC
-                \#codeforamerica
-                on freenode
-          %td{:width => "40%"}
-            // TWITTER
-            <div style="width: 284px;float:right;padding-left:10px;">
-            <script charset="utf-8" type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
-            <script type="text/javascript">
-            // <![CDATA[
-            new TWTR.Widget({
-            version: 2,
-            type: 'search',
-            search: 'codeforamerica OR cfa2013 OR codeacross',
-            interval: 45000,
-            title: 'Code Across America',
-            subject: 'Meet the Movement',
-            width: 280,
-            height: 350,
-            theme: {
-            shell: {
-            background: '#d15a5a',
-            color: '#ffffff'
-            },
-            tweets: {
-            background: '#ffffff',
-            color: '#444444',
-            links: '#1985b5'
-            }
-            },
-            features: {
-            scrollbar: true,
-            loop: true,
-            live: true,
-            behavior: 'default'
-            }
-            }).render().start();
-            // ]]></script></div>
-            </div>
-    %hr
-    %a.back-to-top{:href => "#"} &uarr; Back to top
-    %h1#contribute Contribute to Code Across America
-    %p{:style => "font-size:18px;"}
-      CfA appreciates the forward-thinking individuals who support civic innovation.
-      %p{:style => "font-size:22px;font-weight:bold;"}
-        %a{:class => "button-race", :title => "CfA donation page", :href => "https://secure.codeforamerica.org/page/contribute/annual-campaign", :target => "top"}Donate Now
+      %center
+        %p#contribute{:style => "font-size:22px;font-weight:bold;"}
+          %a{:class => "button-race", :title => "CfA donation page", :href => "https://secure.codeforamerica.org/page/contribute/annual-campaign", :target => "top"}Please Donate

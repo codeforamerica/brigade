@@ -9,7 +9,7 @@
       %a{:href => "codeacross"}
         %img{:id => "banner", :align => "center", :src => "/assets/code_across/code_across_banner.png", :width => "1000px"}
     .row
-    %h2 Thank you for coding for America!
+    %h2 We're Coding Across America Right Now!
     %table
       %tr
         %td.above-scroll{:width => "42%"}
@@ -40,6 +40,13 @@
       / HEADLINE
       %a.back-to-top{:href => "#"} &uarr; Back to top
       %h1#join-section Join in these places
+      %p{:style => "font-size:24px;color:#cf1b41;font-weight:bold;padding-left:30px;"}
+        IRC
+        \#codeforamerica
+        on freenode
+      %p{:style => "font-size:24px;padding-left:30px;"}
+        Chicago Brigade Hosts "Ask Me Anything"
+        %a{:href => "https://www.google.com/calendar/embed?src=codeforamerica.org_svq8pao6907bhbpoa02bqlhf6g@group.calendar.google.com", :target => "top"}2PM Central Time
       %table.cities
         %tr
           %td{:width => "60%"}
@@ -135,26 +142,9 @@
             %i 2013 Fellowship Cities
       / START OF MAIN BODY CONTENT
       / JOIN SECTION
-      %div#intake-form
-        /= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form|
-        /  = if @user.full_name.present? && !@user.errors[:full_name].any?
-        /      = form.input :full_name, as: :hidden, input_html: {value: @user.full_name}
-        /  = else
-        /    = <span class="span3 no-margin">
-        /      = form.input :full_name, :label => false, :placeholder => 'Name'
-        /    = </span>
-        /      <% end %>
-        /      <% if @user.email.present? && !@user.errors[:email].any? %>
-        /        <%= form.input :email, as: :hidden, input_html: {value: @user.email} %>
-        /      <% else %>
-        /        <span class="span3 no-margin"><%= form.input :email, :label => false, :placeholder => 'Email' %></span>
-        /      <% end %>
-        /      <span class="span3 no-margin"><%= form.input :password, :label => false, :placeholder => 'Choose a password' if @user.password_required? %></span>
-        /      <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
-    %br
     .content-wrap
       // ACTIVITIES
-      %p{:style => "font-size:24px;"}
+      %p{:style => "font-size:28px;"}
         %a{:title => "Code Across Activities on Github", :href => "https://github.com/codeforamerica/brigade/wiki/Code-Across-America-2013", :target => "top"} Find Activities on GitHub
       %p{:style => "font-size:18px;"}
         What activities interest you?
@@ -217,6 +207,10 @@
                     %a.kippt{:href => "https://kippt.com/search/%23codeacross", :target => "top"}
                     %br
                     Kippt
+              %p{:style => "font-size:28px;color:#cf1b41;font-weight:bold"}
+                IRC
+                \#codeforamerica
+                on freenode
           %td{:width => "40%"}
             // TWITTER
             <div style="width: 284px;float:right;padding-left:10px;">
@@ -226,7 +220,7 @@
             new TWTR.Widget({
             version: 2,
             type: 'search',
-            search: 'codeacross',
+            search: 'codeforamerica OR cfa2013 OR codeacross',
             interval: 45000,
             title: 'Code Across America',
             subject: 'Meet the Movement',
