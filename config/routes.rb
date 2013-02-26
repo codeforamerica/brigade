@@ -19,6 +19,11 @@ CodeForAmerica::Application.routes.draw do
   match "/users"                => redirect("/members")
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
+  
+  match "/activities"     => redirect("/pages/activities")
+  match "/connect"        => redirect("/pages/connect")
+  match "/events"         => redirect("/pages/events")
+  match "/tools"          => redirect("/pages/tools")
 
   resources :applications, only: [:index, :show] do
     resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
