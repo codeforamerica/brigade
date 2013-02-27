@@ -18,6 +18,7 @@
   <table class="all-cities" cellpadding="4" id="sortable">
     <thead>
       <tr>
+        <th>Avatar</th>
         <th>Name</th>
         <th>Skill Set</th>
         <th>Location</th>
@@ -27,6 +28,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr id="<%="user_#{user.id}"%>" class="<%= cycle "odd", "even" %>">
+          <td><%= UserDecorator.new(user).gravatar_small %></td>
           <td><strong><%= user.full_name %></strong></td>
           <td><%= user.skill_list %></td>
           <td>
