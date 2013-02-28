@@ -19,7 +19,7 @@ CodeForAmerica::Application.routes.draw do
   match "/users"                => redirect("/members")
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
-  
+
   match "/activities"     => redirect("/pages/activities")
   match "/connect"        => redirect("/pages/connect")
   match "/events"         => redirect("/pages/events")
