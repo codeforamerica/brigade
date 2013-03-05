@@ -24,4 +24,12 @@ class LocationsController < ApplicationController
       render json: @location.errors, status: 400
     end
   end
+  
+  def index
+    @locations = Location.all(:order => 'name')
+  end
+  
+  def show
+    @location = LocationDecorator.new(Location.find(params[:id]))
+  end
 end
