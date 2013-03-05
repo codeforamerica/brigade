@@ -1,6 +1,6 @@
 <header class="page-id">
   <h1>
-    People
+    <% if @users.any? %><%= @users.count.to_s() %><%end%> registered Members and growing
   </h1>
 
   <div class="internal-search-box">
