@@ -94,19 +94,28 @@ header.page-id {
   width: 300px;
 }
 
-h1.activities {
-  font-family: 'Avenir Heavy', Helvetica, Arial, sans-serif;
+
+.activities {
+  font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
   font-size:42px;
   color:#399fd3;
+  padding-top:4px;
 }
 
-.activities-left {
+td.activities-left {
   width: 10%;
+  height:90px;
 }
 
-.activities-right {
-  width: 90%;
-  height:70px;
+td.activities-center {
+  width:90%;
+}
+
+text.activities {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:28px;
+  color:#939699;
+  padding-left:20px;
 }
 
 .connect-table {
