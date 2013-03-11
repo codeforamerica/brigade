@@ -24,6 +24,7 @@ CodeForAmerica::Application.routes.draw do
   match "/connect"        => redirect("/pages/connect")
   match "/events"         => redirect("/pages/events")
   match "/tools"          => redirect("/pages/tools")
+  match "/captain"          => redirect("/pages/captain")
 
   resources :applications, only: [:index, :show] do
     resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
