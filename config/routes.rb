@@ -20,7 +20,6 @@ CodeForAmerica::Application.routes.draw do
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
 
-  match "/connect"        => redirect("/pages/connect")
   match "/captain"          => redirect("/pages/captain")
 
   resources :applications, only: [:index, :show] do
@@ -59,6 +58,7 @@ CodeForAmerica::Application.routes.draw do
   match '/tools' => 'high_voltage/pages#show', :id => 'tools'
   match '/events' => 'high_voltage/pages#show', :id => 'events'
   match '/activities' => 'high_voltage/pages#show', :id => 'activities'
+  match '/connect' => 'high_voltage/pages#show', :id => 'connect'
 
   match '/404' => 'application#render_404_error'
   match '/500' => redirect("/error")
