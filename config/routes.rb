@@ -20,7 +20,12 @@ CodeForAmerica::Application.routes.draw do
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
 
-  match "/captain"          => redirect("/pages/captain")
+  match "/captain"              => redirect("/pages/captain")
+  match "/opendata"             => redirect("/pages/opendata")
+  match "/apps"                 => redirect("/pages/apps")
+  match "/ogi"                  => redirect("/pages/ogi")
+  match "/opengovernment"       => redirect("/pages/ogi")
+  match "/opensource"           => redirect("/pages/opensource")
 
   resources :applications, only: [:index, :show] do
     resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
