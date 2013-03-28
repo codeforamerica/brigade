@@ -19,6 +19,10 @@ class UserDecorator < ApplicationDecorator
     user.skills * ", "
   end
 
+  def linkedin_url
+    user.linkedin_url
+  end
+
   def gravatar_small
     gravatar_image_tag(48)
   end
