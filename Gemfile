@@ -3,6 +3,8 @@ ruby "1.9.3"
 
 gem 'rails', '~> 3.2.11'
 
+gem 'rake' , '0.8.7'
+
 #Devise for user registration and cancan for authorization
 gem 'devise', '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
