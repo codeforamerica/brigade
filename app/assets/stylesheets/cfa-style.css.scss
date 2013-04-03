@@ -670,11 +670,18 @@ td.view-pages-center {
   width:90%;
 }
 
-p.view-pages {
+p.view-pages-big {
   font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
   font-size:28px;
   color:#939699;
   padding-left:20px;
+}
+
+p.view-pages-med {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:18px;
+  color:#6D6E71;
+  padding:0px;
 }
 
 text.view-pages {

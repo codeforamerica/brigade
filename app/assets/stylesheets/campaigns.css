@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-
+/* ELEMENTS, by alpha */
 a.blue {
     background:url('/assets/code_across/legend_map_marker.png') 0px 0px;
     background-repeat:no-repeat;
@@ -80,7 +80,7 @@ a:hover.flickr {
    background:url('/assets/code_across/social_media_icons.png') -216px -60px;
 }
 
- a.youtube {
+a.youtube {
     background:url('/assets/code_across/social_media_icons.png') -288px 0px;
     background-repeat:no-repeat;
     width:58px;
@@ -164,6 +164,8 @@ td.cities {
     font-weight:500;
 }
 
+/* CLASSES, by alpha*/
+
 .gray {
  font-size:22px;
  font-weight:bold;
@@ -201,10 +203,29 @@ td.cities {
     box-shadow: 0px 0px 10px #aaa;
 }
 
+.top-section {
+    width: 500px;
+    float: right;
+    margin-left:50px;
+}
+
+.top-section-form {
+    width: 500px;
+}
+
+.top-section-form-inner {
+    background-color: #f5f5f5;
+    border: 5px solid white;
+    margin-top: 5px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
 .rShim {
     align:center;
 }
 
+/* IDs, by alpha */
 div#intake-form {
   padding: 14px;
   height: 58px;
