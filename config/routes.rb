@@ -80,6 +80,7 @@ CodeForAmerica::Application.routes.draw do
   match '/events'       => 'high_voltage/pages#show', :id => 'events'
   match '/activities'   => 'high_voltage/pages#show', :id => 'activities'
   match '/connect'      => 'high_voltage/pages#show', :id => 'connect'
+  match '/forums'       => 'high_voltage/pages#show', :id => 'forums'
 
   match '/404' => 'application#render_404_error'
   match '/500' => redirect("/error")
