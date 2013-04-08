@@ -20,13 +20,6 @@ CodeForAmerica::Application.routes.draw do
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
 
-  match "/captain"              => redirect("/pages/captain")
-  match "/opendata"             => redirect("/pages/opendata")
-  match "/apps"                 => redirect("/pages/apps")
-  match "/ogi"                  => redirect("/pages/ogi")
-  match "/opengovernment"       => redirect("/pages/ogi")
-  match "/opensource"           => redirect("/pages/opensource")
-  
   # Move legacy events and campaigns to /events & /campaigns
   # TODO: wildcards & regex
   match "/openimpact"                     => redirect("/pages/campaigns/openimpact")
@@ -42,7 +35,7 @@ CodeForAmerica::Application.routes.draw do
   match "/national-day-of-civic-hacking"  => redirect("/pages/events/national-day-of-civic-hacking")
   match "/ndoch"                          => redirect("/pages/events/national-day-of-civic-hacking")
 
-  
+
   resources :applications, only: [:index, :show] do
     resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
   end
@@ -75,12 +68,18 @@ CodeForAmerica::Application.routes.draw do
 
   match "/pages/*id" => 'pages#show', :as => :page, :format => false
 
-  match '/about'        => 'high_voltage/pages#show', :id => 'about'
-  match '/tools'        => 'high_voltage/pages#show', :id => 'tools'
-  match '/events'       => 'high_voltage/pages#show', :id => 'events'
-  match '/activities'   => 'high_voltage/pages#show', :id => 'activities'
-  match '/connect'      => 'high_voltage/pages#show', :id => 'connect'
-  match '/forums'       => 'high_voltage/pages#show', :id => 'forums'
+  match '/about'          => 'high_voltage/pages#show', :id => 'about'
+  match '/tools'          => 'high_voltage/pages#show', :id => 'tools'
+  match '/events'         => 'high_voltage/pages#show', :id => 'events'
+  match '/activities'     => 'high_voltage/pages#show', :id => 'activities'
+  match '/connect'        => 'high_voltage/pages#show', :id => 'connect'
+  match '/forums'         => 'high_voltage/pages#show', :id => 'forums'
+  match "/captain"        => 'high_voltage/pages#show', :id => 'captain'
+  match "/opendata"       => 'high_voltage/pages#show', :id => 'opendata'
+  match "/apps"           => 'high_voltage/pages#show', :id => 'apps'
+  match "/ogi"            => 'high_voltage/pages#show', :id => 'ogi'
+  match "/opengovernment" => 'high_voltage/pages#show', :id => 'opengovernment'
+  match "/opensource"     => 'high_voltage/pages#show', :id => 'opensource'
 
   match '/404' => 'application#render_404_error'
   match '/500' => redirect("/error")
