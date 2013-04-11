@@ -22,18 +22,18 @@ CodeForAmerica::Application.routes.draw do
 
   # Move legacy events and campaigns to /events & /campaigns
   # TODO: wildcards & regex
-  match "/openimpact"                     => redirect("/pages/campaigns/openimpact")
-  match "/pages/openimpact"               => redirect("/pages/campaigns/openimpact")
-  match "/openimpact-citizen"             => redirect("/pages/campaigns/openimpact-citizen")
-  match "/pages/openimpact-citizen"       => redirect("/pages/campaigns/openimpact-citizen")
-  match "/openimpact-government"          => redirect("/pages/campaigns/openimpact-government")
-  match "/pages/openimpact-government"    => redirect("/pages/campaigns/openimpact-government")
-  match "/race-for-reuse"                 => redirect("/pages/campaigns/race-for-reuse")
-  match "/pages/race-for-reuse"           => redirect("/pages/campaigns/race-for-reuse")
-  match "/codeacross"                     => redirect("/pages/events/codeacross")
-  match "/pages/codeacross"               => redirect("/pages/events/codeacross")
-  match "/national-day-of-civic-hacking"  => redirect("/pages/events/national-day-of-civic-hacking")
-  match "/ndoch"                          => redirect("/pages/events/national-day-of-civic-hacking")
+  match "/openimpact"                     => 'high_voltage/pages#show', :id => "/campaigns/openimpact"
+  match "/pages/openimpact"               => 'high_voltage/pages#show', :id => "/campaigns/openimpact"
+  match "/openimpact-citizen"             => 'high_voltage/pages#show', :id => "/campaigns/openimpact-citizen"
+  match "/pages/openimpact-citizen"       => 'high_voltage/pages#show', :id => "/campaigns/openimpact-citizen"
+  match "/openimpact-government"          => 'high_voltage/pages#show', :id => "/campaigns/openimpact-government"
+  match "/pages/openimpact-government"    => 'high_voltage/pages#show', :id => "/campaigns/openimpact-government"
+  match "/race-for-reuse"                 => 'high_voltage/pages#show', :id => "/campaigns/race-for-reuse"
+  match "/pages/race-for-reuse"           => 'high_voltage/pages#show', :id => "/campaigns/race-for-reuse"
+  match "/codeacross"                     => 'high_voltage/pages#show', :id => "/events/codeacross"
+  match "/pages/codeacross"               => 'high_voltage/pages#show', :id => "/events/codeacross"
+  match "/national-day-of-civic-hacking"  => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
+  match "/ndoch"                          => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
 
 
   resources :applications, only: [:index, :show] do
