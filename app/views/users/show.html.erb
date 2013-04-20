@@ -1,14 +1,14 @@
 <header class="page-id">
   <h1>
-    People | <span class="amp"><%= @user.full_name %></span>
+    <%= t("users.show.people") %> | <span class="amp"><%= @user.full_name %></span>
   </h1>
 </header>
 
 <div id="leftcolumn" class='span7'>
   <h2>
-    User Info
+    <%= t("users.show.member_profile") %>
     <% if can? :edit, @user %>
-      <%= link_to '(Edit)', edit_user_path(@user) %>
+      <%= link_to t("users.show.edit"), edit_user_path(@user) %>
     <% end %>
   </h2>
 
@@ -19,29 +19,29 @@
 
       <table class="user-info" cellpadding="4">
         <tr>
-          <td class="prv-label">Name</td>
+          <td class="prv-label"><%= t("users.show.name") %></td>
           <td><%= @user.full_name %></td>
         </tr>
         <tr>
-          <td class="prv-label">Contact</td>
+          <td class="prv-label"><%= t("users.show.contact") %></td>
           <td><%= @user.contact_preference %></td>
         </tr>
         <tr>
-          <td class="prv-label">Location</td>
+          <td class="prv-label"><%= t("users.show.location") %></td>
           <td><%= @user.location_name %></td>
         </tr>
         <tr>
-          <td class="prv-label">Skills</td>
+          <td class="prv-label"><%= t("users.show.skills") %></td>
           <td><%= @user.skill_set %></td>
         </tr>
         <tr>
           <td class="prv-label">LinkedIn</td>
           <td><%= @user.linkedin_url %></td>
         </tr>
-        <% if @user.brigades.any? %>
+        <% if display_brigades?(@user) %>
         <tr>
-          <td class="prv-label">Brigades</td>
-          <td><%= raw @user.brigades.uniq.map{|b| link_to b.name, brigade_url(b)}.join(', ') %></td>
+          <td class="prv-label"><%= t("users.show.brigades") %></td>
+          <td><%= brigade_links(@user) %></td>
         </tr>
         <% end %>
       </table>
