@@ -36,7 +36,7 @@
         </tr>
         <tr>
           <td class="prv-label">LinkedIn</td>
-          <td><%= @user.linkedin_url %></td>
+          <td><%= auto_link @user.linkedin_url %></td>
         </tr>
         <% if display_brigades?(@user) %>
         <tr>
