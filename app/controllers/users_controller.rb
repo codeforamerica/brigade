@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
       @users = @search.results
     else
-      @users = User.all
+      @users = User.all(:include => :location)
     end
   end
 end
