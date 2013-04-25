@@ -37,6 +37,7 @@ gem 'rails_autolink'
 
 # Kaminari for adding pagination
 gem 'kaminari', '~> 0.14.1'
+gem 'kaminari-bootstrap'
 
 # Error messages
 gem 'errship', '~> 2.2.0'

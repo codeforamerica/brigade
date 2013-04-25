@@ -1,6 +1,7 @@
 <header class="page-id">
   <h1>
-    <% if @users.any? %><%= @users.count.to_s() %><%end%> registered Members and growing
+    <% if @users.any? %><%= @count ||  @users.count.to_s() %><%end%> registered Members and growing
+
   </h1>
 
   <div class="internal-search-box">
@@ -43,4 +44,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= paginate @users , :theme => 'twitter-bootstrap' %>
 <%end%>
