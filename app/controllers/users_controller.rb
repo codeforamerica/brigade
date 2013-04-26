@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  NUM_PER_PAGE = 50
+
   load_and_authorize_resource
 
   def show
@@ -28,14 +30,18 @@ class UsersController < ApplicationController
   end
 
   def index
+    page = params[:page] || 1
+
     if params[:query]
       @search = User.search do
         fulltext params[:query]
+        paginate :page => page, :per_page => NUM_PER_PAGE
       end
-
       @users = @search.results
+      @count = @search.total
     else
-      @users = User.all(:include => :location)
+      @users = User.includes(:location).page(page).per(NUM_PER_PAGE)
+      @count = User.count
     end
   end
 end
