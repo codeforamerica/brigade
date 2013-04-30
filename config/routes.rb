@@ -35,6 +35,8 @@ CodeForAmerica::Application.routes.draw do
   match "/national-day-of-civic-hacking"  => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
   match "/ndoch"                          => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
   match "/campaigns"                      => 'high_voltage/pages#show', :id => "/campaigns"
+  match "/civic-coding"                   => 'high_voltage/pages#show', :id => "/campaigns/civic-coding"
+  match "/survey"                         => 'high_voltage/pages#show', :id => "/newsletters"
 
 
   resources :applications, only: [:index, :show] do
