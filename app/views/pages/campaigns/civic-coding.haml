@@ -3,12 +3,14 @@
   %html{:lang => "en"}
     / BANNER
     .row
-      %a{:href => "/pages/codeacross"}
-        %img{:align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :width => "1000px"}/
+      %center
+        %a{:href => "/pages/codeacross"}
+          %img{:align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :height => "60%"}/
     / TOP CONTENT (left) / MAP (right)
     .row{:style => "margin-top:20px;"}
       / HEADLINE
-      %h2 "Build better software, together" - Github >> "Build better <em>civic</em> software, together" - Code for America
+      %h2 "Build better software, together" - Github
+      /%h2 "Build better <em>civic</em> software, together" - Code for America
       .span12
         / LEGACY STYLES
         .top-section
@@ -40,18 +42,23 @@
         / TOP-LEFT CONTENT
         %p.view-pages-med
           At Code for America
-          %a{:href => "opensource", :target => "top"} we publish and contribute to hundreds of open source, civic repos on Github.
+          %a{:href => "opensource", :target => "top"} we publish and contribute to open source, civic repos on Github.
           The same can be said of civic innovators across the country.
+        %h2 We're looking for a few good repo managers!
         %p.view-pages-med
-          Building better software together doesn’t happen by accident. It takes discipline, teamwork, and practice. That’s why we are dedicating a campaign to it.
+          Building better software together doesn’t happen by accident. It takes discipline, teamwork and practice. That’s why we are dedicating a campaign to it.
         %p.view-pages-med
-          May 6 to July 31, 2013, join us!
+          May 6 to August 1, 2013, join us!
         %p.view-pages-med
           %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
         %p.view-pages-med
-          June 1 is National Day of Civic Hacking. Over the weekend thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner. This is an opportunity for contributions to The Great American Civic Hack to be recognized on a national stage 
+          June 1 is
+          %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
+          Over the weekend thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner.
+        %p.view-pages-med
+          This is an opportunity for your contributions to The Great American Code-a-thon to be recognized on a national stage
           %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House.
-      %h2
+      %h1
         Timeline & How it Works
       %img{:src => "/assets/tgac-ndoch/TGAC-timeline.png"}
       / START OF MAIN BODY CONTENT
