@@ -2,54 +2,89 @@
 %LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
   %html{:lang => "en"}
     / BANNER
-    .row
-      %a{:href => "/pages/codeacross"}
-        %img{:align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :width => "1000px"}/
+    .row{:style => "margin:5px"}
+      %center
+        %a{:href => "civic-coding"}
+          %img{:align => "center", :src => "/assets/tgac-ndoch/banner.png", :style => "margin:-20px;"}/
     / TOP CONTENT (left) / MAP (right)
-    .row{:style => "margin-top:20px;"}
+    .row{:style => "margin-top:10px;"}
       / HEADLINE
-      %h2 "Build better software, together" - Github
-      %h2 "Build better civic software, together" - Code for America
+      %a{:name => "inputs"}
+      %h2{:style => "margin-left:20px;"} "Build better software, together" - Github
       .span12
         / LEGACY STYLES
-        .top-section
+        .top-section{:style => "margin-top:-30px;margin-right:-50px"}
           .top-section-form
             / MAP (right)
             / EMBED GOES HERE
-            .top-section-form-inner.primary{:style => "height: 480px;"}
-              .pledge-form-content{:style => "margin-bottom: 30px;"}
+            .top-section-form-inner.primary{:style => "height: 320px;width:400px"}
+              .pledge-form-content{:style => "margin-bottom: 10px;"}
                 %div
-                <div id="wufoo-k7p2w3">
-                Fill out my <a href="http://codeforamerica.wufoo.com/forms/k7p2w3">online form</a>.
-                </div>
-                <script type="text/javascript">var k7p2w3;(function(d, t) {
-                var s = d.createElement(t), options = {
-                'userName':'codeforamerica',
-                'formHash':'k7p2w3',
-                'autoResize':true,
-                'height':'528',
-                'async':true,
-                'header':'show',
-                'ssl':true};
-                s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-                s.onload = s.onreadystatechange = function() {
-                var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-                try { k7p2w3 = new WufooForm();k7p2w3.initialize(options);k7p2w3.display(); } catch (e) {}};
-                var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
-                })(document, 'script');</script>
-                %br
+                  %center
+                    %h2 Nominate Github Repos Here
+                  <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/hotIdeasWidget.do" frameborder="0" scrolling="auto" style="width: 100%; height: 260px;"></iframe>
+            .top-section-form-inner.primary{:style => "height: 390px;width:400px"}
+              .pledge-form-content{:style => "margin-bottom: 10px"}
+                %div{:id => "flash-join-form"}
+                  <div id="wufoo-k7p2w3">
+                  Fill out my <a href="http://codeforamerica.wufoo.com/forms/k7p2w3">online form</a>.
+                  </div>
+                  <script type="text/javascript">var k7p2w3;(function(d, t) {
+                  var s = d.createElement(t), options = {
+                  'userName':'codeforamerica',
+                  'formHash':'k7p2w3',
+                  'autoResize':true,
+                  'height':'528',
+                  'async':true,
+                  'header':'show',
+                  'ssl':true};
+                  s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
+                  s.onload = s.onreadystatechange = function() {
+                  var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
+                  try { k7p2w3 = new WufooForm();k7p2w3.initialize(options);k7p2w3.display(); } catch (e) {}};
+                  var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
+                  })(document, 'script');</script>
+                  %br
         / TOP-LEFT CONTENT
-        %p.view-pages-med
-          At Code for America we publish and contribute to hundreds of open source, civic repos on Github. The same can be said of civic innovators across the country.
-
-        %p.view-pages-med
-          Building better software together doesn’t happen by accident. It takes discipline, teamwork, and practice. That’s why we are dedicating a campaign to social coding.
-        %p.view-pages-med
-          May 6 to July 31, 2013, join us!
-
-      / START OF MAIN BODY CONTENT
-    .content-wrap
-      %h1#section-cities.section-header
-
+        %p.medium
+          Let's build better
+          %em civic
+          software, together.
+        %p.medium
+          Civic innovation everywhere relies heavily on open source, civic software to enact change. We need to take care of our investment!
+        %p.medium
+          We want Brigade members and civic hackers to rally together this summer and whip our collective repos into shape! Think of it as a fitness program for collaborative coding.
+        %p.large
+          %a{:class => "button-med", :href => "#flash-join-form"}
+            Sign Me Up!
+          %a{:class => "button-med", :href => "#info"}
+            Tell Me More!
+        %div{:id => "info"}
+          %h2 We want you!
+          %p.medium
+            %ul.medium
+              %li
+                Repo Managers with well-documented code, organized issues, clear milestones and deadlines!
+              %li
+                Brigade Members to get on Github and help us make better civic software together!
+          %p.medium
+            Use the
+            %a{:href => "#inputs"} IdeaScale
+            to nominate and vote on repos for the national organizing campaign and to share repos that your local brigade will be hacking on during the summer.
+          %p.medium
+            %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
+          %p.medium
+            June 1 is
+            %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
+            Over the weekend thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner.
+          %p.medium
+            This is an opportunity for your contributions to The Great American Civic Hack to be recognized on a national stage
+            %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House.
+      %h1
+        Timeline & How it Works
+      %img{:src => "/assets/tgac-ndoch/TGAC-timeline.png", :style => "padding:0px;"}
+      %p.medium
+        %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Civic Coding"} Email for questions, comments or help
+      %h2#section-cities.section-header
         %a{:title => "last year", :href => "https://twitter.com/search?q=%23cfabrigade"} #cfabrigade
         %a{:title => "last year", :href => "https://twitter.com/search?q=%23hackforchange"} #hackforchange

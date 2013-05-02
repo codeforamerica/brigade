@@ -16,34 +16,15 @@
             <div class="pledge-form">
                 <!-- MAIN PLEDGE CONTENT -->
                 <div class="pledge-form-inner primary" style="height: 450px;">
-                    <div class="pledge-form-content" style="margin-bottom: 30px;">
-                        <h2>Join the Open Impact Community!</h2>
-                        <p>Stay informed about Open Impact by joining the Code for America brigade. Enter your name and email address below to join a growing group of civic minded volunteers. Then start a movement in your city by following the steps below.</p>
-                        <!-- <a href="#" id="pledge-form-learn-more-primary">Learn more.</a> -->
-                    </div>
 
-                    <!-- BRIGADE SIGNUP FORM -->
-                    <div class="signup-form">
-                        <%= form_for @user, url: registration_path(@user, :source => 'open_impact'), :html => { :class => "form-horizontal" } do |form| %>
-                          <fieldset>
-                            <div class="control-group">
-                              <label class="control-label" for="full_name">Name</label>
-                              <div class="controls">
-                                <%= form.text_field :full_name, :placeholder => 'Name', :class => "input-xlarge" %>
-                              </div>
-                            </div>
-                            <div class="control-group">
-                              <label class="control-label" for="email">Email</label>
-                              <div class="controls">
-                                <%= form.text_field :email, :placeholder => 'Email', :class => "input-xlarge" %>
-                              </div>
-                            </div>
-                            <div class="form-actions impact-submit" style="border-top:0;">
-                                <%= form.submit 'Sign up', :class => 'btn btn-large btn-osubmit' %>
-                            </div>
-                          </fieldset>
-                        <% end %>
-                    </div>
+                    <h2>
+                        Take action now:
+                    </h2>
+
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#section-learn">Learn About Open Government <span style="float:right;">&darr;</span></a></li>
+                        <li><a href="#section-build-your-movement">Steps for Action <span style="float:right;">&darr;</span></a></li>
+                    </ul>
 
                     <!-- SOCIAL BUTTONS -->
                     <div style="margin-top:30px;">
@@ -84,15 +65,6 @@
 
             <p class="ocall">Transform your city today: Learn about why open government is important, sign up to join the Open Impact community, and advocate to bring open government to your city.</p>
 
-            <h2>
-                Take action now:
-            </h2>
-
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="#section-learn">1. Learn About Open Government <span style="float:right;">&darr;</span></a></li>
-                <li><a id="flash-join-form" href="#wufoo-m7x3r3">2. Join the Open Impact Community <span style="float:right;">&rarr;</span></a></li>
-                <li><a href="#section-build-your-movement">3. Steps for Action <span style="float:right;">&darr;</span></a></li>
-            </ul>
         </div>
     </div>
 </div>

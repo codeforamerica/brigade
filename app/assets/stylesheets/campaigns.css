@@ -230,7 +230,7 @@ div#intake-form {
   padding: 14px;
   height: 58px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 20px;
   background-color: white;
   .submit{ margin-top: 0px;}
 }
@@ -249,4 +249,8 @@ ol#act li {
   font-size:24px;
   color:#555555;
   padding:6px;
+}
+
+:target {
+border-color: #FDB63E
 }
