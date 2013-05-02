@@ -2,28 +2,28 @@
 %LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
   %html{:lang => "en"}
     / BANNER
-    .row
+    .row{:style => "margin:5px"}
       %center
-        %a{:href => "/pages/codeacross"}
-          %img{:align => "center", :src => "http://gallery.mailchimp.com/d9acf2a4c694efbd76a48936f/images/race_for_reuse_banner_wrap_V2.png", :height => "60%"}/
+        %a{:href => "civic-coding"}
+          %img{:align => "center", :src => "/assets/tgac-ndoch/banner.png", :style => "margin:-20px;"}/
     / TOP CONTENT (left) / MAP (right)
-    .row{:style => "margin-top:20px;"}
+    .row{:style => "margin-top:10px;"}
       / HEADLINE
       %a{:name => "inputs"}
-      %h2 "Build better software, together" - Github
+      %h2{:style => "margin-left:20px;"} "Build better software, together" - Github
       .span12
         / LEGACY STYLES
-        .top-section
+        .top-section{:style => "margin-top:-30px;margin-right:-50px"}
           .top-section-form
             / MAP (right)
             / EMBED GOES HERE
-            .top-section-form-inner.primary{:style => "height: 320px;"}
+            .top-section-form-inner.primary{:style => "height: 320px;width:400px"}
               .pledge-form-content{:style => "margin-bottom: 10px;"}
                 %div
                   %center
                     %h2 Nominate Github Repos Here
                   <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/hotIdeasWidget.do" frameborder="0" scrolling="auto" style="width: 100%; height: 260px;"></iframe>
-            .top-section-form-inner.primary{:style => "height: 370px;"}
+            .top-section-form-inner.primary{:style => "height: 390px;width:400px"}
               .pledge-form-content{:style => "margin-bottom: 10px"}
                 %div{:id => "flash-join-form"}
                   <div id="wufoo-k7p2w3">
@@ -78,8 +78,8 @@
             %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
             Over the weekend thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner.
           %p.medium
-          This is an opportunity for your contributions to The Great American Code-a-thon to be recognized on a national stage
-          %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House.
+            This is an opportunity for your contributions to The Great American Code-a-thon to be recognized on a national stage
+            %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House.
       %h1
         Timeline & How it Works
       %img{:src => "/assets/tgac-ndoch/TGAC-timeline.png", :style => "padding:0px;"}
