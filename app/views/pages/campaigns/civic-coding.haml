@@ -11,19 +11,21 @@
       / HEADLINE
       %a{:name => "inputs"}
       %h2 "Build better software, together" - Github
-      /%h2 "Build better <em>civic</em> software, together" - Code for America
       .span12
         / LEGACY STYLES
         .top-section
           .top-section-form
             / MAP (right)
             / EMBED GOES HERE
-            .top-section-form-inner.primary{:style => "height: 700px;"}
-              .pledge-form-content{:style => "margin-bottom: 30px;"}
+            .top-section-form-inner.primary{:style => "height: 320px;"}
+              .pledge-form-content{:style => "margin-bottom: 10px;"}
                 %div
                   %center
                     %h2 Nominate Github Repos Here
                   <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/hotIdeasWidget.do" frameborder="0" scrolling="auto" style="width: 100%; height: 260px;"></iframe>
+            .top-section-form-inner.primary{:style => "height: 370px;"}
+              .pledge-form-content{:style => "margin-bottom: 10px"}
+                %div{:id => "flash-join-form"}
                   <div id="wufoo-k7p2w3">
                   Fill out my <a href="http://codeforamerica.wufoo.com/forms/k7p2w3">online form</a>.
                   </div>
@@ -44,39 +46,44 @@
                   })(document, 'script');</script>
                   %br
         / TOP-LEFT CONTENT
-        %p.view-pages-med
-          At Code for America
-          %a{:href => "opensource", :target => "top"} we publish and contribute to open source, civic repos on Github.
-          The same can be said of civic innovators across the country.
-        %h2 We're looking for a few good repo managers!
-        %p.view-pages-med
-          Building better software together doesn’t happen by accident. It takes discipline, teamwork and practice. That’s why we are dedicating a campaign to it.
-        %h2 We want you!
-        %p.view-pages-med
-          %ul{:id => "act"}
-            %li
-              %em Repo Managers
-              with well-documented code, organized issues and clear milestones looking for help with their open source, civic software.
-            %li
-              %em Brigade Members
-              to get on Github and make better civic software together.
-        %p.view-pages-med
-          Use the
-          %a{:href => "#inputs"} IdeaScale
-          to nominate repos for the national organizing campaign and to share repos that your local brigade will be hacking on during the summer.
-        %p.view-pages-med
-          %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
-        %p.view-pages-med
-          June 1 is
-          %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
-          Over the weekend thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner.
-        %p.view-pages-med
+        %p.medium
+          Let's build better
+          %em civic
+          software, together.
+        %p.medium
+          Civic innovation everywhere relies heavily on open source, civic software to enact change. We need to take care of our investment!
+        %p.medium
+          We want Brigade members and civic hackers to rally together this summer and whip our collective repos into shape! Think of it as a fitness program for collaborative coding.
+        %p.large
+          %a{:class => "button-med", :href => "#flash-join-form"}
+            Sign Me Up!
+          %a{:class => "button-med", :href => "#info"}
+            Tell Me More!
+        %div{:id => "info"}
+          %h2 We want you!
+          %p.medium
+            %ul.medium
+              %li
+                Repo Managers with well-documented code, organized issues, clear milestones and deadlines!
+              %li
+                Brigade Members to get on Github and help us make better civic software together!
+          %p.medium
+            Use the
+            %a{:href => "#inputs"} IdeaScale
+            to nominate and vote on repos for the national organizing campaign and to share repos that your local brigade will be hacking on during the summer.
+          %p.medium
+            %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
+          %p.medium
+            June 1 is
+            %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
+            Over the weekend thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner.
+          %p.medium
           This is an opportunity for your contributions to The Great American Code-a-thon to be recognized on a national stage
           %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House.
       %h1
         Timeline & How it Works
       %img{:src => "/assets/tgac-ndoch/TGAC-timeline.png", :style => "padding:0px;"}
-      %p.view-pages-med
+      %p.medium
         %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Civic Coding"} Email for questions, comments or help
       %h2#section-cities.section-header
         %a{:title => "last year", :href => "https://twitter.com/search?q=%23cfabrigade"} #cfabrigade

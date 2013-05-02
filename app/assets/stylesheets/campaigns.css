@@ -251,8 +251,6 @@ ol#act li {
   padding:6px;
 }
 
-ul#act li {
-  font-size:18px;
-  color:#555555;
-  padding:6px;
+:target {
+border-color: #FDB63E
 }
