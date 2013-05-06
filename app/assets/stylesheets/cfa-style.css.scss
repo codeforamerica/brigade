@@ -684,6 +684,13 @@ p.medium {
   padding:0px;
 }
 
+p.small {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:18px;
+  color:#6D6E71;
+  padding:0px;
+}
+
 text.view-pages {
   font-size:18px;
   font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
@@ -693,6 +700,12 @@ text.view-pages {
 
 ul.medium li {
   font-size:20px;
+  color:#555555;
+  padding:6px;
+}
+
+ul.small li {
+  font-size:18px;
   color:#555555;
   padding:6px;
 }

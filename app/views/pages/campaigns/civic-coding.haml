@@ -1,5 +1,7 @@
 - @page_title='Campaign for Civic Coding'
 %LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
+%LINK{:HREF => "https://github.com/assets/github-d5919c2c85462b6c3d5b24d94361e0cfe7c6d3c1.css", :REL => "StyleSheet", :TYPE => "text/css"}
+%LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
   %html{:lang => "en"}
     / BANNER
     .row{:style => "margin:5px"}
@@ -10,84 +12,67 @@
     .row{:style => "margin-top:10px;"}
       / HEADLINE
       %a{:name => "inputs"}
-      %h2{:style => "margin-left:20px;"} "Build better software, together" - Github
+      %h2{:style => "padding-left:20px;padding-top:20px;"} "Build better software, together" - Github <span class="mini-icon  mini-icon-blacktocat"></span>
       .span12
         / LEGACY STYLES
         .top-section{:style => "margin-top:-30px;margin-right:-50px"}
           .top-section-form
-            / MAP (right)
-            / EMBED GOES HERE
             .top-section-form-inner.primary{:style => "height: 320px;width:400px"}
-              .pledge-form-content{:style => "margin-bottom: 10px;"}
+              .pledge-form-content
                 %div
                   %center
                     %h2 Nominate Github Repos Here
                   <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/hotIdeasWidget.do" frameborder="0" scrolling="auto" style="width: 100%; height: 260px;"></iframe>
-            .top-section-form-inner.primary{:style => "height: 390px;width:400px"}
-              .pledge-form-content{:style => "margin-bottom: 10px"}
-                %div{:id => "flash-join-form"}
-                  <div id="wufoo-k7p2w3">
-                  Fill out my <a href="http://codeforamerica.wufoo.com/forms/k7p2w3">online form</a>.
-                  </div>
-                  <script type="text/javascript">var k7p2w3;(function(d, t) {
-                  var s = d.createElement(t), options = {
-                  'userName':'codeforamerica',
-                  'formHash':'k7p2w3',
-                  'autoResize':true,
-                  'height':'528',
-                  'async':true,
-                  'header':'show',
-                  'ssl':true};
-                  s.src = ('https:' == d.location.protocol ? 'https://' : 'http://') + 'wufoo.com/scripts/embed/form.js';
-                  s.onload = s.onreadystatechange = function() {
-                  var rs = this.readyState; if (rs) if (rs != 'complete') if (rs != 'loaded') return;
-                  try { k7p2w3 = new WufooForm();k7p2w3.initialize(options);k7p2w3.display(); } catch (e) {}};
-                  var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s, scr);
-                  })(document, 'script');</script>
-                  %br
         / TOP-LEFT CONTENT
-        %p.medium
+        %p.small
           Let's build better
           %em civic
           software, together.
-        %p.medium
-          Civic innovation everywhere depends on open-source, civic software that is easy to adopt and improve. For civic hacking to have maximum impact, the whole ecosystem should be well documented, clean and fork-ready.
-        %p.medium
-          So before we build the next big thing, let's rally together this summer and whip our collective repos into shape! Let's empty our issues lists, merge some pull requests and make it so anyone anywhere can re-use our code. There will be prizes and plenty of fun.
-        %p.medium
-          We encourage local Brigades to choose repos to hack on collectively, and we're also looking for a few repos to feature for our national community to work together on.
+        %p.small
+          Civic innovation everywhere depends on open-source, civic software that is easy to adopt and improve. For civic hacking to have maximum impact we need strong repos that are fork and merge ready. <span class="mini-icon  mini-icon-public-fork"></span> <span class="mini-icon  mini-icon-pull-request"></span>
+        %ul.small
+          %li Well documented
+          %li Strong community
+          %li Engaged repo managers
+          %li Clear road map
+          %li Prioritized, labeled issues
+        %p.small{:style => "padding-top: 20px;"}
+          We're going to track Brigade's extended network of civic hackers this summer and make leader boards for stuff like "Merged pull requests", "Issues closed"  & "Members Added". <span class="mini-icon  mini-icon-merge"></span><span class="mini-icon  mini-icon-issue-closed"></span> <span class="mini-icon  mini-icon-member-added"></span> There will be prizes and plenty of fun.
+        %center
+          %img{:src => "/assets/tgach-ndoch/github-commits.png"}
+        %p.small
+          We encourage local brigades to choose repos to hack on collectively, and we're also looking for a few repos to feature for our national community to work together on.
+        %p.small{:style => "padding-top: 20px;"}
+          So before we build the next big thing, let's rally together this summer and whip our collective repos into shape! Let's empty our issues lists, submit & merge some pull requests and make it so anyone anywhere can re-use our code.
         %p.large
-          %a{:class => "button-med", :href => "#flash-join-form"}
-            Sign Me Up!
-          %a{:class => "button-med", :href => "#info"}
-            Tell Me More!
-        %div{:id => "info"}
-          %h2 We want you!
-          %p.medium
-            %ul.medium
-              %li
-                Repo Managers with well-documented code, organized issues, clear milestones and deadlines!
-              %li
-                Brigade Members with Github skills to help us make better civic software together!
-          %p.medium
-            Nominate and vote on featured repos for the national campaign and to share the repos your local brigade will be hacking on this summer using the
-            %a{:href => "#inputs"} IdeaScale
-            (at right).
-          %p.medium
-            %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
-          %p.medium
-            June 1 is
-            %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
-            Thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner and we encourage everyone to join up. It's a great day to whip your repos into shape with a group.
-          %p.medium
-            Even better, since NDoCH is 
-            %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House
-            it's an opportunity for your contributions to The Great American Civic Hack to be recognized on a national stage.
-      %h1
+        %h2{:style => "padding-left:10px;"} We want you!
+        %ul.small{:style => "padding-left:10px;"}
+          %li
+            Repo Managers with well-documented code, organized issues, clear milestones and deadlines!
+          %li
+            Brigade Members with Github skills to help us make better civic software together!
+        %p.small
+          Nominate and vote on featured repos for the national campaign and to share the repos your local brigade will be hacking on this summer using the
+          %a{:href => "http://cfabrigade.ideascale.com/"} IdeaScale.
+        %p.small
+          %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
+        %p.small
+          June 1 is
+          %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
+          Thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner and we encourage everyone to join up. It's a great day to whip your repos into shape with a group.
+        %p.small
+          Even better, since NDoCH is 
+          %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House
+          it's an opportunity for your contributions to The Great American Civic Hack to be recognized on a national stage.
+      %h2{:style => "padding-left:20px;padding-top:20px"}
         Timeline & How it Works
       %img{:src => "/assets/tgach-ndoch/TGAC-timeline.png", :style => "padding:0px;"}
-      %p.medium
+      %p.small
         %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Civic Coding"} Email for questions, comments or help
+      %h2
+        Introducing the Silver Fork Awards
+      %p.small
+        The Silver Fork Awards are Code for America Brigade's recognitions for civic hacking. We're going to track Brigade's extended network of civic hackers this summer and make leader boards for stuff like "Merged pull requests", "Issues closed"  & "Members Added". <span class="mini-icon  mini-icon-merge"></span><span class="mini-icon  mini-icon-issue-closed"></span> <span class="mini-icon  mini-icon-member-added"></span> There will be winning repos, repo managers and contributors.
       %h2#section-cities.section-header
         %a{:title => "last year", :href => "https://twitter.com/search?q=%23cfabrigade"} #cfabrigade
         %a{:title => "last year", :href => "https://twitter.com/search?q=%23hackforchange"} #hackforchange
