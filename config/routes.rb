@@ -20,6 +20,25 @@ CodeForAmerica::Application.routes.draw do
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
 
+  # Move legacy events and campaigns to /events & /campaigns
+  # TODO: wildcards & regex
+  match "/openimpact"                     => 'high_voltage/pages#show', :id => "/campaigns/openimpact"
+  match "/pages/openimpact"               => 'high_voltage/pages#show', :id => "/campaigns/openimpact"
+  match "/openimpact-citizen"             => 'high_voltage/pages#show', :id => "/campaigns/openimpact-citizen"
+  match "/pages/openimpact-citizen"       => 'high_voltage/pages#show', :id => "/campaigns/openimpact-citizen"
+  match "/openimpact-government"          => 'high_voltage/pages#show', :id => "/campaigns/openimpact-government"
+  match "/pages/openimpact-government"    => 'high_voltage/pages#show', :id => "/campaigns/openimpact-government"
+  match "/race-for-reuse"                 => 'high_voltage/pages#show', :id => "/campaigns/race-for-reuse"
+  match "/pages/race-for-reuse"           => 'high_voltage/pages#show', :id => "/campaigns/race-for-reuse"
+  match "/codeacross"                     => 'high_voltage/pages#show', :id => "/events/codeacross"
+  match "/pages/codeacross"               => 'high_voltage/pages#show', :id => "/events/codeacross"
+  match "/national-day-of-civic-hacking"  => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
+  match "/ndoch"                          => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
+  match "/campaigns"                      => 'high_voltage/pages#show', :id => "/campaigns"
+  match "/civic-coding"                   => 'high_voltage/pages#show', :id => "/campaigns/civic-coding"
+  match "/survey"                         => 'high_voltage/pages#show', :id => "/newsletters"
+
+
   resources :applications, only: [:index, :show] do
     resources :deployed_applications, only: [:new, :create], controller: 'applications/deployed_applications'
   end
@@ -52,7 +71,18 @@ CodeForAmerica::Application.routes.draw do
 
   match "/pages/*id" => 'pages#show', :as => :page, :format => false
 
-  match '/about' => 'high_voltage/pages#show', :id => 'about'
+  match '/about'          => 'high_voltage/pages#show', :id => 'about'
+  match '/tools'          => 'high_voltage/pages#show', :id => 'tools'
+  match '/events'         => 'high_voltage/pages#show', :id => 'events'
+  match '/activities'     => 'high_voltage/pages#show', :id => 'activities'
+  match '/connect'        => 'high_voltage/pages#show', :id => 'connect'
+  match '/forums'         => 'high_voltage/pages#show', :id => 'forums'
+  match "/captain"        => 'high_voltage/pages#show', :id => 'captain'
+  match "/opendata"       => 'high_voltage/pages#show', :id => 'opendata'
+  match "/apps"           => 'high_voltage/pages#show', :id => 'apps'
+  match "/ogi"            => 'high_voltage/pages#show', :id => 'ogi'
+  match "/opengovernment" => 'high_voltage/pages#show', :id => 'opengovernment'
+  match "/opensource"     => 'high_voltage/pages#show', :id => 'opensource'
 
   match '/404' => 'application#render_404_error'
   match '/500' => redirect("/error")

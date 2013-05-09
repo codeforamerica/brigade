@@ -15,6 +15,9 @@ gem 'bourbon'
 # alternate HTTP server for Rack applications
 gem 'unicorn'
 
+# for yaml parsing
+gem 'psych'
+
 #Simple form for better form management
 gem 'simple_form', '~> 2.0.0.rc'
 
@@ -34,6 +37,7 @@ gem 'rails_autolink'
 
 # Kaminari for adding pagination
 gem 'kaminari', '~> 0.14.1'
+gem 'kaminari-bootstrap'
 
 # Error messages
 gem 'errship', '~> 2.2.0'
@@ -99,7 +103,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 3.3.0'
 
   # Gem haml-rails for generators
-  gem 'haml-rails', '~> 0.3.4'
+  gem 'haml-rails', '~> 0.4'
 
   gem 'sunspot_solr', '~> 1.3.0'
 

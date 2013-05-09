@@ -1,11 +1,6 @@
 @import 'styling-dependencies';
 
 
-body {
-  background: $oatmeal url('/assets/noise.png');
-  font-size: small;
-}
-
 #two-up {
   width: 980px;
   margin: 0px auto 0 auto;
@@ -65,14 +60,14 @@ body {
 
   .center-column {
     float: left;
-    width: 340px;
+    width: 360px;
     padding: 10px 20px 10px 20px;
   }
 
   .right-column {
     float: left;
     padding: 10px 20px 10px 20px;
-    width: 240px;
+    width: 260px;
   }
 }
 

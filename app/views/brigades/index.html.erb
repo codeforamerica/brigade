@@ -1,6 +1,6 @@
 <header class="page-id">
   <h1>
-    Brigades
+    <% if @brigades.any? %><%= @brigades.count.to_s() %><%end%> Brigades and growing
   </h1>
 
 </header>

@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-
+/* ELEMENTS, by alpha */
 a.blue {
     background:url('/assets/code_across/legend_map_marker.png') 0px 0px;
     background-repeat:no-repeat;
@@ -80,7 +80,7 @@ a:hover.flickr {
    background:url('/assets/code_across/social_media_icons.png') -216px -60px;
 }
 
- a.youtube {
+a.youtube {
     background:url('/assets/code_across/social_media_icons.png') -288px 0px;
     background-repeat:no-repeat;
     width:58px;
@@ -142,14 +142,29 @@ td.legend-text {
     text-align:center;
 }
 
+td.above-scroll {
+  font-family:'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:18px;
+}
+
+table.cities {
+  width:100%;
+}
+
+tr.cities {
+    height:25px;
+}
+
+td.cities {
+  text-align:center;
+  padding:6px;
+}
 
 .campaign-header {
     font-weight:500;
 }
 
-.cities {
-    height:25px;
-}
+/* CLASSES, by alpha*/
 
 .gray {
  font-size:22px;
@@ -188,8 +203,36 @@ td.legend-text {
     box-shadow: 0px 0px 10px #aaa;
 }
 
+.top-section {
+    width: 500px;
+    float: right;
+    margin-left:50px;
+}
+
+.top-section-form {
+    width: 500px;
+}
+
+.top-section-form-inner {
+    background-color: #f5f5f5;
+    border: 5px solid white;
+    margin-top: 5px;
+    padding: 15px;
+    box-shadow: 0px 0px 10px #aaa;
+}
+
 .rShim {
     align:center;
+}
+
+/* IDs, by alpha */
+div#intake-form {
+  padding: 14px;
+  height: 58px;
+  margin: auto;
+  margin-top: 20px;
+  background-color: white;
+  .submit{ margin-top: 0px;}
 }
 
 h1#join-section {
@@ -206,4 +249,8 @@ ol#act li {
   font-size:24px;
   color:#555555;
   padding:6px;
+}
+
+:target {
+border-color: #FDB63E
 }

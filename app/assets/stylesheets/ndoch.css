@@ -1,0 +1,20 @@
+/*
+ *= require campaigns
+ */
+p.ndoch-big {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:28px;
+  color:#6D6E71;
+}
+
+p.ndoch-med {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:22px;
+  color:#6D6E71;
+}
+
+p.ndoch-sm {
+  font-family: 'Avenir Light', Helvetica, Arial, sans-serif;
+  font-size:18px;
+  color:#6D6E71;
+}

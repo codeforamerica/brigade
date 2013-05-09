@@ -5,7 +5,5 @@ require File.expand_path('../config/application', __FILE__)
 
 CodeForAmerica::Application.load_tasks
 
-load 'vcr/tasks/vcr.rake'
-
 task :default => :spec
 task :test => :spec

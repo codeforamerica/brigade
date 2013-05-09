@@ -1,6 +1,7 @@
 <header class="page-id">
   <h1>
-    People
+    <% if @users.any? %><%= @count ||  @users.count.to_s() %><%end%> registered Members and growing
+
   </h1>
 
   <div class="internal-search-box">
@@ -18,6 +19,7 @@
   <table class="all-cities" cellpadding="4" id="sortable">
     <thead>
       <tr>
+        <th>Avatar</th>
         <th>Name</th>
         <th>Skill Set</th>
         <th>Location</th>
@@ -27,6 +29,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr id="<%="user_#{user.id}"%>" class="<%= cycle "odd", "even" %>">
+          <td><%= UserDecorator.new(user).gravatar_small %></td>
           <td><strong><%= user.full_name %></strong></td>
           <td><%= user.skill_list %></td>
           <td>
@@ -41,4 +44,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= paginate @users , :theme => 'twitter-bootstrap' %>
 <%end%>

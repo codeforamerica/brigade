@@ -7,19 +7,19 @@
           <%= link_to 'Home', root_path %>
         </li>
         <li data-desc="Brigade Activities you can do now" class="<%= 'active' if current_page?(page_path('activities')) %>">
-          <%= link_to 'Activities', page_path('activities') %>
+          <%= link_to 'Activities', 'activities' %>
         </li>
         <li data-desc="Connect with others through forums and our concierge service" class="<%= 'active' if current_page?(page_path('connect')) %>">
-          <%= link_to 'Connections', page_path('connect') %>
+          <%= link_to 'Connections', 'connect' %>
         </li>
         <li data-desc="Find Civic Hacking Events" class="<%= 'active' if current_page?(page_path('events')) %>">
-          <%= link_to 'Events', page_path('events') %>
+          <%= link_to 'Events', 'events' %>
         </li>
         <li data-desc="Get tools for organizing" class="<%= 'active' if current_page?(page_path('tools')) %>">
-          <%= link_to 'Tools', page_path('tools') %>
+          <%= link_to 'Tools', 'tools' %>
         </li>
         <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(page_path('about')) %>">
-          <%= link_to 'About', page_path('about') %>
+          <%= link_to 'About', 'about' %>
         </li>
       </ul>
       <span class="talker"></span>
