@@ -44,6 +44,10 @@ class UsersController < ApplicationController
       @users = User.includes(:location).page(page).per(NUM_PER_PAGE)
       @count = User.count
     end
-    respond_with(@users)
+    respond_to do |format|
+      format.html
+      format.json { render :json => @users.to_json(:except => [:email, :opt_in, :admin, :updated_at]) }
+    end
+
   end
 end
