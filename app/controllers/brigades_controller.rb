@@ -35,7 +35,7 @@ class BrigadesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @brigade_base.to_json(:include => :users) }
+      format.json { render :json => @brigade_base.to_json(:include => {:users  => {:except => [:email, :opt_in, :admin, :updated_at]} }) }
     end
 
   end
