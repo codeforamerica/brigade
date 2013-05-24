@@ -50,6 +50,21 @@ header#top-deck {
         padding: 10px 10px 14px;
         cursor: pointer;
 
+        &.sign-up {
+          color: #eee;
+          padding: 5px;
+
+          a {
+            color: #eee;
+          }
+
+          &:hover {
+            a {
+              color: #eee;
+            }
+          }
+        }
+
         a {
           color: transparentize(#333, 0.4);
           text-decoration: none;
