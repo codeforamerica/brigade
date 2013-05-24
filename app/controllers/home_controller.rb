@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-  layout 'homepage-new'
+  layout 'homepage'
 
   def index
     @user ||= User.new
