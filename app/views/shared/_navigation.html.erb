@@ -1,3 +1,4 @@
+<script src="http://platform.tumblr.com/v1/share.js"></script>
 <header id="top-deck">
   <div class="content">
     <a href="/" class="logo"></a>
@@ -20,6 +21,9 @@
         </li>
         <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(page_path('about')) %>">
           <%= link_to 'About', 'about' %>
+        </li>
+        <li>
+          <a href="http://codeforamerica.tumblr.com" title="visit our Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:20px; height:20px; background:url('http://platform.tumblr.com/v1/share_4T.png') top left no-repeat transparent;">Share on Tumblr</a>
         </li>
       </ul>
       <span class="talker"></span>
