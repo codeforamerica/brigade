@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def user_session_management_link
-    classes = "btn-session"
+    classes = "btn btn-primary btn-large"
 
     if user_signed_in?
       link_to("Sign out", destroy_user_session_path, :class => classes, :method => :delete)
