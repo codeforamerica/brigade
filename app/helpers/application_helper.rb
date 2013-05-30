@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def display_session_links
-    classes = "btn btn-primary btn-regular"
+    classes = "btn btn-regular"
     if current_user
        header = (content_tag :li, (link_to(current_user.full_name, user_url(current_user))))
        header << (content_tag :li, raw(link_to('Admin', rails_admin_path))) if current_user.admin?
@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def user_session_management_link
-    classes = "btn btn-primary btn-regular"
+    classes = "btn btn-regular"
 
     if user_signed_in?
       link_to("Sign out", destroy_user_session_path, :class => classes, :method => :delete)
