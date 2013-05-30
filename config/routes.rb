@@ -6,7 +6,7 @@ CodeForAmerica::Application.routes.draw do
 
   devise_scope :user do
     get '/sign-in'  => 'sessions#new',     as: :sign_in
-    get '/sign-out' => 'sessions#destroy'
+    get '/sign-out' => 'sessions#destroy', as: :sign_out
   end
 
   resources :users, :path => 'members', only: [:show, :index, :edit, :update]
