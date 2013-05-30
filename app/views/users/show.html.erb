@@ -35,6 +35,10 @@
           <td><%= @user.skill_set %></td>
         </tr>
         <tr>
+          <td class="prv-label">GitHub</td>
+          <td><%= auto_link @user.github_uid %></td>
+        </tr>
+        <tr>
           <td class="prv-label">LinkedIn</td>
           <td><%= auto_link @user.linkedin_url %></td>
         </tr>
