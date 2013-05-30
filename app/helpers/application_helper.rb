@@ -1,10 +1,11 @@
 module ApplicationHelper
 
   def display_session_links
+    classes = "btn btn-primary btn-large"
     if current_user
-       header = (content_tag :li, (raw('Welcome, ' + link_to(current_user.full_name, user_url(current_user)))))
+       header = (content_tag :li, (link_to(current_user.full_name, user_url(current_user))))
        header << (content_tag :li, raw(link_to('Admin', rails_admin_path))) if current_user.admin?
-       header << (content_tag :li, (link_to 'Sign Out', sign_out_path))
+       header << (content_tag :li, link_to("Sign out", destroy_user_session_path, :class => classes, :method => :delete))
        return header
     else
       # Use '<<' to concat the two links so that they're returned together
