@@ -10,7 +10,7 @@ gem 'cancan', '~> 1.6.7'
 gem 'omniauth-github', '~> 1.0.1'
 
 # provide a comprehensive library of sass mixins
-gem 'bourbon'
+gem 'bourbon', '~> 1.3.6'
 
 # alternate HTTP server for Rack applications
 gem 'unicorn'

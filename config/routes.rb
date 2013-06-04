@@ -14,6 +14,7 @@ CodeForAmerica::Application.routes.draw do
   # Redirects after switching users to members
   match "/users/sign_up"        => redirect("/members/sign_up")
   match "/users/sign_in"        => redirect("/members/sign_in")
+  match "/users/sign_out"       => redirect("/members/sign_out")
   match "/users/password/new"   => redirect("/members/password/new")
   match "/users/edit"           => redirect("/members/edit")
   match "/users"                => redirect("/members")
@@ -33,7 +34,7 @@ CodeForAmerica::Application.routes.draw do
   match "/codeacross"                     => 'high_voltage/pages#show', :id => "/events/codeacross"
   match "/pages/codeacross"               => 'high_voltage/pages#show', :id => "/events/codeacross"
   match "/national-day-of-civic-hacking"  => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
-  match "/ndoch"                          => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
+  match "/hackforchange"                  => 'high_voltage/pages#show', :id => "/events/national-day-of-civic-hacking"
   match "/campaigns"                      => 'high_voltage/pages#show', :id => "/campaigns"
   match "/civic-coding"                   => 'high_voltage/pages#show', :id => "/campaigns/civic-coding"
   match "/survey"                         => 'high_voltage/pages#show', :id => "/newsletters"

@@ -2,7 +2,9 @@
   <td><%= deployed_application.name %></td>
   <td>
     <% if deployed_application.deployed %>
-      Deployed
+      <% unless deployed_application.deployed_url.nil? %>
+        <%= link_to 'Deployed', deployed_application.deployed_url %>
+      <% end %>
     <% else %>
       In Progress
     <% end %>

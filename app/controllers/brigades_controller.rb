@@ -1,5 +1,6 @@
 class BrigadesController < ApplicationController
   before_filter :authenticate_user!, only: [:join, :leave]
+  respond_to :json, :html
 
   def find
     @brigade = Brigade.find_by_name params[:brigade]
@@ -23,10 +24,20 @@ class BrigadesController < ApplicationController
 
   def index
     @brigades = Brigade.all(:order => 'name')
+    respond_with(@brigades)
   end
 
   def show
-    @brigade = BrigadeDecorator.new(Brigade.find(params[:id]))
+
+    @brigade_base = Brigade.find(params[:id], :include => :users)
+
+    @brigade = BrigadeDecorator.new(@brigade_base)
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @brigade_base.to_json(:include => {:users  => {:except => [:email, :opt_in, :admin, :updated_at]} }) }
+    end
+
   end
 
   def join

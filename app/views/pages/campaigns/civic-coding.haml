@@ -12,57 +12,69 @@
     .row{:style => "margin-top:10px;"}
       / HEADLINE
       %a{:name => "inputs"}
-      %h2{:style => "padding-left:20px;padding-top:20px;"} Join us for a three-month campaign to clean up the top civic repos and build new features to make them better.
+      %h2{:style => "padding-left:20px;padding-top:20px;"} Code with us this summer.
       .span12
-        / LEGACY STYLES
-        .top-section{:style => "margin-top:-30px;margin-right:-50px"}
-          .top-section-form
-            .top-section-form-inner.primary{:style => "height: 320px;width:400px"}
-              .pledge-form-content
-                %div
+        %table{:style => "width:1140px;"}
+          %tr
+            %td{:style => "text-align:justify;vertical-align:top;"}
+              %p.small
+                Here's a chance to code for America where you live by contributing to an open source, civic project.
+              %p.small
+                Join us for the Great American Civic Hack: a three month campaign to take our favorite open source, civic repos to the next level; to close issues, reach milestones and generally make code fork and merge ready. <span class="mini-icon  mini-icon-public-fork"></span> <span class="mini-icon  mini-icon-pull-request"></span>
+              %p.large
+              %h2{:style => "padding-left:10px;"} We want you!
+              %ul.small{:style => "padding-left:10px;"}
+                %li
+                  Repo Managers: Submit repos with well-documented code, organized issues, clear milestones and deadlines!
+                %li
+                  Brigade Members + Civic Hackers:  Vote for the repos you'd like to see featured. June 3, join us to start hacking!
+              %p.small
+                %img{:src => "/assets/tgach-ndoch/github-commits.png"}
+              %p.small
+                Let's rally together this summer for better open source, civic software! Empty issues lists. Submit and merge pull requests. Make code easier to re-use. Let's see what we can code together.
+              %p.large
+              %h2{:style => "padding-left:10px;"} How it works
+              %p.small
+                The Great American Civic Hack is a three month campaign in two stages:
+              %ul.small{:style => "padding-left:10px;"}
+                %li
+                  Stage 1 (May 2013): Repo nomination and voting. Nominations close June 2.
+                %li
+                  Stage 2 (June 3, 2013 to July 31, 2013): Coding
+              %p.small{:style => "padding-top: 20px;"}
+                We'll track Stage 2 on GitHub and Drupal.org. All repos that close the issues identified at the beginning of the campaign will receive a Silver Fork Award: Code for America's recognition for civic hacking. Other Silver Fork Awards will be given for:
+              %ul.small{:style => "padding-left:10px;"}
+                %li
+                  Most merged pull requests
+                %li
+                  Most issues closed
+                %li
+                  Most contributors
+                %li
+                  and others
+              %p.small
+                There's a "National" campaign and "Local" campaign. The national campaign will feature a short list of select repos for national organizing efforts. The local campaign is intended to show off what brigades are working on this summer.
+            %td{:style => "vertical-align:top;"}
+              / LEGACY STYLES
+              .top-section
+                .top-section-form-inner.primary{:style => "height: 1130px;width:260px"}
                   %center
-                    %h2 Nominate Github Repos Here
-                  <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/hotIdeasWidget.do" frameborder="0" scrolling="auto" style="width: 100%; height: 260px;"></iframe>
-        / TOP-LEFT CONTENT
-        %p.small
-          Civic innovation everywhere depends on open-source, civic software that is easy to adopt and improve.
-        %p.small
-          Join us for the Great American Civic Hack: a three month campaign to clean up the top civic repos and make them fork and merge ready. <span class="mini-icon  mini-icon-public-fork"></span> <span class="mini-icon  mini-icon-pull-request"></span>
-        %p.large
-        %h2{:style => "padding-left:10px;"} We want you!
-        %ul.small{:style => "padding-left:10px;"}
-          %li
-            Repo Managers: Submit repos with well-documented code, organized issues, clear milestones and deadlines!
-          %li
-            Brigade Members + Civic Hackers:  Vote for the repos you'd like to see featured. June 1, join us to start hacking!
-        %p.small
-          Let's rally together this summer and whip our collective repos into shape! Let's empty our issues lists, submit and merge some pull requests and make it so anyone anywhere can re-use our code. Let's see what we can code together.
-        %center
-          %img{:src => "/assets/tgach-ndoch/github-commits.png"}
-        %p.large
-        %h2{:style => "padding-left:10px;"} How it works
-        %p.small
-          The Great American Civic Hack is a three month campaign with two stages:
-        %ul.small{:style => "padding-left:10px;"}
-          %li
-            Stage 1 (May 2013): Repo nomination and voting
-          %li
-            Stage 2 (June 1, 2013 to July 31, 2013): Coding
-        %p.small{:style => "padding-top: 20px;"}
-          The Great American Civic Hack will be tracked on GitHub. All repos that close the issues identified at the beginning of the campaign will receive a Silver Fork Award: Code for America's recognition for civic hacking. Other Silver Fork Awards will be given for:
-        %ul.small{:style => "padding-left:10px;"}
-          %li
-            Most merged pull requests
-          %li
-            Most issues closed
+                    %h2{:style => "margin-top:-20px;"} Nominate Repos
+                    %h3 National Repos
+                    %br
+                    <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/widget/super/campaign/46694" frameborder="0" scrolling="auto" style="width: 228px; height: 508px;"></iframe>
+                    %br
+                    %h3 Local Repos
+                    %br
+                    <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/widget/super/campaign/46695" frameborder="0" scrolling="auto" style="width: 228px; height: 508px;"></iframe>
         %p.small
           %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
         %p.small
           June 1 is
           %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
-          Thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner and we encourage everyone to join up. It's a great day to whip your repos into shape with a group.
+          Thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner. Spend it making open source, civic software better.
         %p.small
-          Even better, since NDoCH is
+          Even better, since Hack for Change is
           %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House
           it's an opportunity for your contributions to The Great American Civic Hack to be recognized on a national stage.
       %h2{:style => "padding-left:20px;padding-top:20px"}
