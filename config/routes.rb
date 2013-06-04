@@ -65,7 +65,7 @@ CodeForAmerica::Application.routes.draw do
     resources :deployed_applications, only: [:new, :create, :index], controller: 'locations/deployed_applications'
   end
 
-  resources :deployed_applications, only: [:index, :new, :create, :show]
+  resources :deployed_applications, only: [:index, :new, :create, :show, :edit, :update]
   resources :challenges, only: [:new, :create, :index]
   resources :home
   root :to => 'home#index'
