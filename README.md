@@ -1,5 +1,7 @@
 # Code for America Brigade [![Build Status](https://secure.travis-ci.org/codeforamerica/brigade.png?branch=master)][travis]
-Help civic hackers collaborate
+Help civic hackers collaborate!
+
+The Code for America Brigade website is the platform for the Brigade community to connect to one another and to learn about how to get involved with Brigade activities.
 
 [travis]: http://travis-ci.org/codeforamerica/brigade
 
