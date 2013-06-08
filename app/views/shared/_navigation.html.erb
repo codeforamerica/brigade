@@ -4,25 +4,20 @@
     <a href="/" class="logo"></a>
     <nav class="primary">
       <ul id="site-sections">
-        <!--
-        <li data-desc="Welcome to Code for America Brigade" class="<%= 'active' if current_page?(root_path) %>">
-          <%= link_to 'Home', root_path %>
-        </li>
-        -->
         <li data-desc="What we do" class="<%= 'active' if current_page?(page_path('activities')) %>">
-          <%= link_to 'Activities', 'activities' %>
+          <%= link_to 'Activities', page_path('activities') %>
         </li>
         <li data-desc="Where and how to find us" class="<%= 'active' if current_page?(page_path('connect')) %>">
-          <%= link_to 'Connections', 'connect' %>
+          <%= link_to 'Connections', page_path('connect') %>
         </li>
         <li data-desc="Calendar and Meetups" class="<%= 'active' if current_page?(page_path('events')) %>">
-          <%= link_to 'Events', 'events' %>
+          <%= link_to 'Events', page_path('events') %>
         </li>
         <li data-desc="Get tools for organizing" class="<%= 'active' if current_page?(page_path('tools')) %>">
-          <%= link_to 'Tools', 'tools' %>
+          <%= link_to 'Tools', page_path('tools') %>
         </li>
         <li data-desc="Learn about the Brigade" class="<%= 'active' if current_page?(page_path('about')) %>">
-          <%= link_to 'About', 'about' %>
+          <%= link_to 'About', page_path('about') %>
         </li>
         <li data-desc="Share on our Tumblr">
           <a href="http://codeforamerica.tumblr.com" title="visit our Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:20px; height:20px; background:url('http://platform.tumblr.com/v1/share_4T.png') top left no-repeat transparent;">Share on Tumblr</a>
