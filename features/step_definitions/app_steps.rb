@@ -1,6 +1,6 @@
 Given /^the following apps have been created$/ do |table|
   table.hashes.map do |hash|
-    FactoryGirl.create(:application_with_tasks_and_brigades, name: hash['Name'])
+    FactoryGirl.create(:application_with_brigades, name: hash['Name'])
   end
 end
 
