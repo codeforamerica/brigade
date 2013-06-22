@@ -14,10 +14,6 @@ end
 
 Application.all.each do |app|
 
-  5.times do |i|
-    app.tasks.create!(description: "Task #{i} in checklist")
-  end
-
   Brigade.all.each do |brigade|
     Location.all.each do |location|
       DeployedApplication.create!(application_id: app.id, brigade_id: brigade.id, location_id: location.id)

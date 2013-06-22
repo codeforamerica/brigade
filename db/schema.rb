@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322013825) do
+ActiveRecord::Schema.define(:version => 20130610143957) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -106,11 +106,6 @@ ActiveRecord::Schema.define(:version => 20130322013825) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
-  end
-
-  create_table "tasks", :force => true do |t|
-    t.text    "description"
-    t.integer "application_id"
   end
 
   create_table "users", :force => true do |t|

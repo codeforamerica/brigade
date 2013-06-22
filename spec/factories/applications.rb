@@ -8,11 +8,10 @@ FactoryGirl.define do
     nid               '13685'
   end
 
-  factory :application_with_tasks_and_brigades, parent: :application do
+  factory :application_with_brigades, parent: :application do
 
     after(:create) do |application|
       5.times do |n|
-        FactoryGirl.create(:task, application_id: application.id)
         FactoryGirl.create(:deployed_application, application_id: application.id)
       end
     end
