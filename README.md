@@ -35,6 +35,7 @@ You'll also need to install Imagemagick
     cp config/database.yml.example config/database.yml
     rake db:create
     rake db:migrate
+    rake db:seed
 
 ## Usage
     bundle exec rake sunspot:solr:start
