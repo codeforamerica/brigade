@@ -513,25 +513,6 @@ ul.thumbnails {
 
         a {
           text-decoration: none;
-          &:hover {
-            &:before {
-              width: 48px;
-              height: 48px;
-              font-family: 'ModernPictogramsNormal';
-              color: #fff;
-              font-size: 20px;
-              text-align: center;
-              line-height: 50px;
-              background: transparentize(#111, 0.4);
-              position: absolute;
-              font-weight: lighter;
-              @include border-radius(5px);
-              top: 0;
-              left: 0;
-              content: "m";
-              text-shadow: 0 2px 1px #000;
-            }
-          }
         }
       }
     }
