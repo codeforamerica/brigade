@@ -35,7 +35,7 @@ Spork.prefork do
     config.run_all_when_everything_filtered = true
 
     config.use_transactional_fixtures = true
-
+    config.include Devise::TestHelpers, :type => :controller
     include CustomMatchers
     include EmailSpec::Helpers
     include EmailSpec::Matchers
