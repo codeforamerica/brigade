@@ -50,4 +50,14 @@ class UsersController < ApplicationController
     end
 
   end
+  
+  def destroy
+    user = User.find(params[:id])
+    if user == current_user && user.destroy
+      redirect_to :root
+    else
+      redirect_to user_path(@user)
+    end
+  end
+  
 end
