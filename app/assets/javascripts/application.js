@@ -21,6 +21,8 @@
 //= require new_brigade_modal
 //= require jquery.qtip.min
 //= require openimpact
+//= require Chart
+//= require graphs
 //= require twitter/bootstrap
 //
 //

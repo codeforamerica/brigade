@@ -62,9 +62,13 @@
               %h1.view-pages{:style => "font-size:68px;"} 33
             %td
               %p.large +11 New Forks!
-        <a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0AvWC8QOgiwjzdFRJbEFKcndJYktYbkhEbC1EcG94amc#gid=22"><img width="450" src="https://docs.google.com/a/codeforamerica.org/spreadsheet/oimg?key=0AvWC8QOgiwjzdFRJbEFKcndJYktYbkhEbC1EcG94amc&oid=23&zx=kkjjkebl1acu" /></a><a href="https://docs.google.com/a/codeforamerica.org/spreadsheet/ccc?key=0AvWC8QOgiwjzdFRJbEFKcndJYktYbkhEbC1EcG94amc#gid=23"><img width="450" src="https://docs.google.com/a/codeforamerica.org/spreadsheet/oimg?key=0AvWC8QOgiwjzdFRJbEFKcndJYktYbkhEbC1EcG94amc&oid=25&zx=g103bk8f6rxi" /></a>
-      %p.small
-        (Click for larger view.)
+        %div#chartCarousel.carousel.slide
+          %ol.carousel-indicators
+          %div.carousel-inner
+          %a.carousel-control.left{:href => "#chartCarousel", "data-slide" => "prev"} &lsaquo;
+          %a.carousel-control.right{:href => "#chartCarousel", "data-slide" => "next"} &rsaquo;
+          
+
     %h1.view-pages
       What's this all about?
     %table{:style => "width:1120px;"}
