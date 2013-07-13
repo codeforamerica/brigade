@@ -92,26 +92,39 @@ listCharts = function(chartContainer, indicatorList) {
     }
 }
 
+
+
 $(function(){
 
     listCharts($(".carousel-inner"), $(".carousel-indicators"));
 
     $(".repo.chart").each(function(i, el){ 
-        var response = {}
+        var chartResponse = {}
+        var totalsResponse = {}
         var repoName = $(el).attr("id");
-        var url = "https://s3.amazonaws.com/data.codeforamerica.org/repos/" + repoName + ".json";
+        var charturl = "https://s3.amazonaws.com/data.codeforamerica.org/repos/" + repoName + ".json";
 
-        var request = createCORSRequest("get", url);
-        if (request){
-            request.onload = function(){
-                response = JSON.parse(request.responseText)
-                makeRepoGraph(response, repoName)
+        var chartRequest = createCORSRequest("get", charturl);
+        if (chartRequest){
+            chartRequest.onload = function(){
+                chartResponse = JSON.parse(chartRequest.responseText)
+                makeRepoGraph(chartResponse, repoName)
             };
-            request.send();
+            chartRequest.send();
         }
     });
 
-    $("#OpenTreeMap").show();
-    $("#repo_chart_id").change(selectNewGraph);
+    var totalsUrl = "https://s3.amazonaws.com/data.codeforamerica.org/repos/totals.json";
+    var totalsRequest = createCORSRequest("get", totalsUrl);
+    if (totalsRequest) {
+        totalsRequest.onload = function(){
+            totalsResponse = JSON.parse(totalsRequest.responseText);
+            $("#issues-total").text(totalsResponse.total_closed);
+            $("#forks-total").text(totalsResponse.total_forks);
+            console.log(totalsResponse.total_closed);
+            console.log(totalsResponse.total_forks);
+        }
+        totalsRequest.send();
+    }
 
 });
