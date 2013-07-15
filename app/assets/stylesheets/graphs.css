@@ -9,8 +9,8 @@
     font-size: 90%;
     }
   .graph-legend .legend-scale ul {
-    margin: 0;
-    margin-left: 0;
+    width: 100%;
+    margin: 0 auto;
     margin-bottom: 5px;
     padding: 0;
     float: left;
@@ -22,7 +22,7 @@
     margin-left: 0;
     line-height: 18px;
     margin-bottom: 2px;
-    display: block;
+    display: inline-block;
     }
   .graph-legend ul.legend-labels li span {
     display: block;
