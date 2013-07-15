@@ -27,7 +27,7 @@
         if(locations.length){
           google.maps.visualRefresh = true;
           var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 8,
+            zoom: 4,
             center: new google.maps.LatLng(34.397, -90),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             streetViewControl: false
@@ -46,10 +46,19 @@
                 knownLocations[ cityname ].latlng = results[0].geometry.location;
                 
                 for(var i=0;i<knownLocations[ cityname ].projects.length;i++){
+                  var status = $($(".status")[ knownLocations[ cityname ].projects[i] ]).text();
+                  var statusIcon = null;
+                  if(status == "Deployed"){
+                    statusIcon = "http://google-maps-icons.googlecode.com/files/expert.png";
+                  }
+                  else{
+                    statusIcon = "http://google-maps-icons.googlecode.com/files/menatwork.png";
+                  }
                   new google.maps.Marker({
                     map: map,
                     position: knownLocations[ cityname ].latlng,
-                    blah: knownLocations[ cityname ].projects[i]
+                    icon: statusIcon,
+                    clickable: false
                   });
                 }
                 
@@ -78,9 +87,19 @@
             }
             else{
               if(knownLocations[ itLocation ].latlng){
+                var status = $($(".status")[ knownLocations[ cityname ].projects[i] ]).text();
+                var statusIcon = null;
+                if(status == "Deployed"){
+                  statusIcon = "http://google-maps-icons.googlecode.com/files/expert.png";
+                }
+                else{
+                  statusIcon = "http://google-maps-icons.googlecode.com/files/menatwork.png";
+                }
                 new google.maps.Marker({
                   map: map,
-                  position: knownLocations[ itLocation ].latlng
+                  position: knownLocations[ cityname ].latlng,
+                  icon: statusIcon,
+                  clickable: false
                 });
               }
               else{

@@ -1,6 +1,6 @@
 <tr class="<%= cycle "odd", "even" %>", id="<%= "deployed_application_#{deployed_application.id}" %>">
   <td><%= deployed_application.name %></td>
-  <td>
+  <td class="status">
     <% if deployed_application.deployed %>
       <% unless deployed_application.deployed_url.nil? %>
         <%= link_to 'Deployed', deployed_application.deployed_url %>
