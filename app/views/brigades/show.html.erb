@@ -31,12 +31,49 @@
             center: new google.maps.LatLng(34.397, -90),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           });
+          var geocoder = new google.maps.Geocoder();
+          
           var north = -90;
           var south = 90;
           var east = -180;
           var west = 180;
+          var knownGeoResults = [ ];
+          
+          var addMarker = function(cityname){
+            geocoder.geocode( { 'address': cityname + ", USA" }, function(results, status){
+              if(status == google.maps.GeocoderStatus.OK){
+                knownLocations[ cityname ].latlng = results[0].geometry.location;
+                for(var i=0;i<knownLocations[ cityname ].projects.length;i++){
+                  new google.maps.Marker({
+                    map: map,
+                    position: knownLocations[ cityname ].latlng
+                    blah: knownLocations[ cityname ].projects[i]
+                  });
+                }
+              }
+            });
+          };
+          
           for(var l=0;l<locations.length;l++){
-            
+            var itLocation = $(locations[l]).text();
+            if(typeof knownLocations[ itLocation ] == "undefined"){
+              knownLocations[ itLocation ] = {
+                latlng: null,
+                projects: [ l ]
+              };
+              addMarker( itLocation );
+            }
+            else{
+              if(knownLocations[ itLocation ].latlng){
+                new google.maps.Marker({
+                  map: map,
+                  position knownLocations[ itLocation ].latlng
+                });
+              }
+              else{
+                knownLocations[ itLocation ].projects.push( l );
+              }
+            }
           }
         }
       </script>
