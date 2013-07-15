@@ -61,7 +61,7 @@
                   map.fitBounds( new google.maps.LatLngBounds( new google.maps.LatLng( south, west ), new google.maps.LatLng( north, east ) ) );
                 }
                 else{
-                  map.setCenter(north, east);
+                  map.setCenter( new google.maps.LatLng( north, east ) );
                 }
               }
             });
