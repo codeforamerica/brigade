@@ -29,7 +29,8 @@
           var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 8,
             center: new google.maps.LatLng(34.397, -90),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            streetViewControl: false
           });
           var geocoder = new google.maps.Geocoder();
           
@@ -37,18 +38,30 @@
           var south = 90;
           var east = -180;
           var west = 180;
-          var knownGeoResults = [ ];
+          var knownLocations = [ ];
           
           var addMarker = function(cityname){
             geocoder.geocode( { 'address': cityname + ", USA" }, function(results, status){
               if(status == google.maps.GeocoderStatus.OK){
                 knownLocations[ cityname ].latlng = results[0].geometry.location;
+                
                 for(var i=0;i<knownLocations[ cityname ].projects.length;i++){
                   new google.maps.Marker({
                     map: map,
                     position: knownLocations[ cityname ].latlng,
                     blah: knownLocations[ cityname ].projects[i]
                   });
+                }
+                
+                north = Math.max( north, results[0].geometry.location.lat() );
+                south = Math.min( south, results[0].geometry.location.lat() );
+                east = Math.max( east, results[0].geometry.location.lng() );
+                west = Math.min( west, results[0].geometry.location.lng() );
+                if(north != south){
+                  map.fitBounds( new google.maps.LatLngBounds( new google.maps.LatLng( south, west ), new google.maps.LatLng( north, east ) ) );
+                }
+                else{
+                  map.setCenter(north, east);
                 }
               }
             });
