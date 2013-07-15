@@ -19,6 +19,27 @@
 
         <%= render @brigade.deployed_applications, brigade_name: false %>
       </table>
+      
+      <div id="map">
+      </div>
+      <script type="text/javascript">
+        var locations = $(".location");
+        if(locations.length){
+          google.maps.visualRefresh = true;
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: new google.maps.LatLng(34.397, -90),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+          var north = -90;
+          var south = 90;
+          var east = -180;
+          var west = 180;
+          for(var l=0;l<locations.length;l++){
+            
+          }
+        }
+      </script>
     </div>
 
     <div id="sidebar" class="span4">

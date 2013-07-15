@@ -8,6 +8,9 @@
     <%= csrf_meta_tags %>
     <%= favicon_link_tag %>
     <%= render partial: 'layouts/google_analytics' %>
+    <% if @page_title == "Brigades" %>
+      <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <% end %>
   </head>
 
   <body>
