@@ -1,6 +1,5 @@
 <style type='text/css'>
   .graph-legend {
-    float: right;
   }
   .graph-legend .legend-title {
     text-align: left;
@@ -8,6 +7,10 @@
     font-weight: bold;
     font-size: 90%;
     }
+  .graph-legend .legend-scale {
+    width: 50%;
+    margin: 0 auto;
+  }
   .graph-legend .legend-scale ul {
     width: 100%;
     margin: 0 auto;
@@ -52,5 +55,12 @@
   }
   .chartList li {
     list-style-type: none;
+  }
+  .chart.title {
+    width: 25%;
+    margin: 0 auto;
+  }
+  .carousel-inner .item{
+    padding-left: 50px;
   }
 </style>

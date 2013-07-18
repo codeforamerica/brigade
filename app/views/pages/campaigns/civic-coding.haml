@@ -59,28 +59,37 @@
             %td{:style => "text-align:center;padding-left:10px", :width => "20%"}
               %h1#issues-total.view-pages{:style => "font-size:68px;"} 
             %td{:style => "text-align:center;padding-right:10px", :width => "20%"}
-              %h1#forks-total.view-pages{:style => "font-size:68px;"} 
+              %h1#forks-total.view-pages{:style => "font-size:68px;"}
             %td
-              %p.large +11 New Forks!
-        %div#chartCarousel.carousel.slide
-          %ol.carousel-indicators
-          %div.carousel-inner
-          %a.carousel-control.left{:href => "#chartCarousel", "data-slide" => "prev"} &lsaquo;
-          %a.carousel-control.right{:href => "#chartCarousel", "data-slide" => "next"} &rsaquo;
-        %div.graph-legend{:style => "align: center"}
-          %div.legend-scale
-            %ul.legend-labels
-              %li
-                %span{:style => "background:rgb(160,30,50)"} 
-                Forks
-              %li
-                %span{:style => "background:rgb(70, 160, 210)"} 
-                Closed Issues
-              %li
-                %span{:style => "background:rgb(100, 100, 100);"} 
-                Stars
-          
-
+              %p.large +24 New Forks!
+        %table
+          %tr
+            %td{:width => "60%"}
+              %div#chartCarousel.carousel.slide
+                %ol.carousel-indicators
+                %div.carousel-inner
+                %a.carousel-control.left{:href => "#chartCarousel", "data-slide" => "prev"} &lsaquo;
+                %a.carousel-control.right{:href => "#chartCarousel", "data-slide" => "next"} &rsaquo;
+              %div.graph-legend
+                %div.legend-scale
+                  %ul.legend-labels
+                    %li
+                      %span{:style => "background:rgb(160,30,50)"} 
+                      Forks
+                    %li
+                      %span{:style => "background:rgb(70, 160, 210)"} 
+                      Closed Issues
+                    %li
+                      %span{:style => "background:rgb(100, 100, 100);"} 
+                      Stars
+            %td
+              %center
+                %p.small Thank you to these civic hackers!
+                <br/>
+                <img width="40%"  src="https://secure.gravatar.com/avatar/93703e565323afcd226a76cf6baeb0f7?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+                <img width="40%"  src="https://secure.gravatar.com/avatar/cd763c19458330547e0c42a93c3d32b6?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+                <img width="40%"  src="https://secure.gravatar.com/avatar/c6aa126adb983fdb1e01df27acfbf0c7?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/>
+                <a href="https://github.com/ty10r"><img width="40%"  src="https://secure.gravatar.com/avatar/32cc332da100f58ec9a489a8f29861f5?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/></a>
     %h1.view-pages
       What's this all about?
     %table{:style => "width:1120px;"}

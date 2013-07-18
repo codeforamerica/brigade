@@ -28,7 +28,7 @@ function makeRepoGraph(repoMetrics, rname) {
     var canvas = $("#" + rname);
     canvas.attr({
         "height": "300",
-        "width": "750"
+        "width": "450"
     });
     var opts = {scaleShowGridLines: false};
     var ctx = canvas[0].getContext('2d');
