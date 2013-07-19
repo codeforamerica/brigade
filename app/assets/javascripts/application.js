@@ -22,5 +22,9 @@
 //= require new_brigade_modal
 //= require jquery.qtip.min
 //= require openimpact
+//= require js-routes
+//= require mapbox
+//= require leaflet.markercluster
+//= require brigades
 //
 //

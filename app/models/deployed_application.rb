@@ -22,4 +22,7 @@ class DeployedApplication < ActiveRecord::Base
       all
     end
   end
+  def as_json(options={})
+    super(include: [:location])
+  end
 end

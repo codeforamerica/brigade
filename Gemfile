@@ -73,6 +73,9 @@ gem 'airbrake'
 
 gem 'pg'
 
+gem 'js-routes'
+gem 'mapbox-rails'
+
 # HighVoltage for static pages
 gem 'high_voltage'
 

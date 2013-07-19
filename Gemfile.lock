@@ -183,6 +183,8 @@ GEM
     jquery-ui-rails (3.0.1)
       jquery-rails
       railties (>= 3.1.0)
+    js-routes (0.9.2)
+      rails (>= 3.2)
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -200,6 +202,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mapbox-rails (1.0.3.1)
     method_source (0.8.1)
     mime-types (1.23)
     multi_json (1.7.3)
@@ -410,10 +413,12 @@ DEPENDENCIES
   heroku
   high_voltage
   jquery-rails (~> 2.2.0)
+  js-routes
   kaminari (~> 0.14.1)
   kaminari-bootstrap
   km
   launchy (~> 2.1.0)
+  mapbox-rails
   omniauth-github (~> 1.0.1)
   pg
   pry (~> 0.9.8)

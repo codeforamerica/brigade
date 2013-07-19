@@ -1,4 +1,4 @@
-<header class="page-id">
+<header class="page-id" id="brigade" data-id="<%= @brigade.id %>">
   <h1><%= @brigade.name %></h1>
 </header>
 
@@ -22,94 +22,7 @@
       
       <div id="map">
       </div>
-      <script type="text/javascript">
-        var locations = $(".location");
-        if(locations.length){
-          google.maps.visualRefresh = true;
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: new google.maps.LatLng(34.397, -90),
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            streetViewControl: false
-          });
-          var geocoder = new google.maps.Geocoder();
-          
-          var north = -90;
-          var south = 90;
-          var east = -180;
-          var west = 180;
-          var knownLocations = [ ];
-          
-          var addMarker = function(cityname){
-            geocoder.geocode( { 'address': cityname + ", USA" }, function(results, status){
-              if(status == google.maps.GeocoderStatus.OK){
-                knownLocations[ cityname ].latlng = results[0].geometry.location;
-                
-                for(var i=0;i<knownLocations[ cityname ].projects.length;i++){
-                  var status = $($(".status")[ knownLocations[ cityname ].projects[i] ]).text();
-                  var statusIcon = null;
-                  if(status == "Deployed"){
-                    statusIcon = "http://google-maps-icons.googlecode.com/files/expert.png";
-                  }
-                  else{
-                    statusIcon = "http://google-maps-icons.googlecode.com/files/menatwork.png";
-                  }
-                  new google.maps.Marker({
-                    map: map,
-                    position: knownLocations[ cityname ].latlng,
-                    icon: statusIcon,
-                    clickable: false
-                  });
-                }
-                
-                north = Math.max( north, results[0].geometry.location.lat() );
-                south = Math.min( south, results[0].geometry.location.lat() );
-                east = Math.max( east, results[0].geometry.location.lng() );
-                west = Math.min( west, results[0].geometry.location.lng() );
-                if(north != south){
-                  map.fitBounds( new google.maps.LatLngBounds( new google.maps.LatLng( south, west ), new google.maps.LatLng( north, east ) ) );
-                }
-                else{
-                  map.setCenter( new google.maps.LatLng( north, east ) );
-                }
-              }
-            });
-          };
-          
-          for(var l=0;l<locations.length;l++){
-            var itLocation = $(locations[l]).text();
-            if(typeof knownLocations[ itLocation ] == "undefined"){
-              knownLocations[ itLocation ] = {
-                latlng: null,
-                projects: [ l ]
-              };
-              addMarker( itLocation );
-            }
-            else{
-              if(knownLocations[ itLocation ].latlng){
-                var status = $($(".status")[ knownLocations[ cityname ].projects[i] ]).text();
-                var statusIcon = null;
-                if(status == "Deployed"){
-                  statusIcon = "http://google-maps-icons.googlecode.com/files/expert.png";
-                }
-                else{
-                  statusIcon = "http://google-maps-icons.googlecode.com/files/menatwork.png";
-                }
-                new google.maps.Marker({
-                  map: map,
-                  position: knownLocations[ cityname ].latlng,
-                  icon: statusIcon,
-                  clickable: false
-                });
-              }
-              else{
-                knownLocations[ itLocation ].projects.push( l );
-              }
-            }
-          }
-        }
-      </script>
-    </div>
+      </div>
 
     <div id="sidebar" class="span4">
       <div class="app-info">

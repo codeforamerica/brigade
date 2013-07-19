@@ -52,4 +52,8 @@ class BrigadesController < ApplicationController
     current_user.leave_brigade(@brigade)
     redirect_to brigade_url(@brigade)
   end
+  
+  def application_locations
+    render json: Brigade.find_by_id(params[:id]).deployed_applications
+  end
 end
