@@ -12,4 +12,8 @@ class Brigade < ActiveRecord::Base
   def to_s
     name
   end
+  
+  def as_json(options={})
+    super(include: [:location])
+  end
 end
