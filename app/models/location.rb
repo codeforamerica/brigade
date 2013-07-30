@@ -6,12 +6,9 @@ class Location < ActiveRecord::Base
   geocoded_by :name
 
   validates :name, uniqueness: true, presence: true
-
-  def geocode
-    super
-    save
-  end
-
+  
+  after_validation :geocode
+  
   def applications_not_deployed
     Application.all - deployed_applications.map(&:application).uniq
   end
