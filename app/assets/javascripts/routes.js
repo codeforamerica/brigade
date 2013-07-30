@@ -423,6 +423,10 @@
   locations_path: function(options) {
   return Utils.build_path([], ["format"], [2,[2,[7,"/",false],[6,"locations",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
   },
+// locations_brigades => /brigades/locations(.:format)
+  locations_brigades_path: function(options) {
+  return Utils.build_path([], ["format"], [2,[2,[2,[2,[7,"/",false],[6,"brigades",false]],[7,"/",false]],[6,"locations",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
+  },
 // new_application_deployed_application => /applications/:application_id/deployed_applications/new(.:format)
   new_application_deployed_application_path: function(_application_id, options) {
   return Utils.build_path(["application_id"], ["format"], [2,[2,[2,[2,[2,[2,[2,[2,[7,"/",false],[6,"applications",false]],[7,"/",false]],[3,"application_id",false]],[7,"/",false]],[6,"deployed_applications",false]],[7,"/",false]],[6,"new",false]],[1,[2,[8,".",false],[3,"format",false]],false]], arguments);
