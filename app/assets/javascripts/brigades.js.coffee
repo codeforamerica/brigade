@@ -27,16 +27,17 @@ $ ->
     $.get(brigade_locations_url).done (data) ->
       lat_lngs = []
       for brigade in data
-        lat = brigade.location.latitude
-        lng = brigade.location.longitude
-        name = brigade.name
-        location = brigade.location.name
-        lat_lngs.push([lat,lng])
-        marker = L.marker(new L.LatLng(lat,lng), {
-          icon: L.mapbox.marker.icon({'marker-symbol': 'town-hall'})
-        })
-        marker.bindPopup("#{name}<br/>#{location}")
-        markers.addLayer(marker)
+        if brigade.location
+          lat = brigade.location.latitude
+          lng = brigade.location.longitude
+          name = brigade.name
+          location = brigade.location.name
+          lat_lngs.push([lat,lng])
+          marker = L.marker(new L.LatLng(lat,lng), {
+            icon: L.mapbox.marker.icon({'marker-symbol': 'town-hall'})
+          })
+          marker.bindPopup("#{name}<br/>#{location}")
+          markers.addLayer(marker)
       map.addLayer(markers)
       map.fitBounds(lat_lngs)
 
