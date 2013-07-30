@@ -11,9 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
 ActiveRecord::Schema.define(:version => 20130719214202) do
-
 
   create_table "applications", :force => true do |t|
     t.string "name"
