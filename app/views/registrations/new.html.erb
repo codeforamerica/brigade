@@ -17,8 +17,6 @@
     <% end %>
     <%= form.input :password, input_html: {class: 'span5'} if @user.password_required? %>
     <%= form.submit 'Sign up', class: 'btn-large btn' %>
-    or
-    <%= link_to "Sign up with Github", user_omniauth_authorize_path(:github), class: 'btn-large btn-info' unless @user.github_uid.present? %>
   <%end%>
 
 </div>
