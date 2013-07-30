@@ -75,7 +75,6 @@ gem 'airbrake'
 
 gem 'pg'
 
-gem 'js-routes'
 gem 'mapbox-rails'
 
 # HighVoltage for static pages
@@ -99,6 +98,7 @@ end
 
 group :development, :test do
 
+  gem 'js-routes'
   # Pry is a nice drop in for irb, which allows for debugging
   # of your code anywhere 'binding.pry' is included
   gem 'pry', '~> 0.9.8'
