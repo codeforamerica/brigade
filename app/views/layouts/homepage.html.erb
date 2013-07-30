@@ -19,6 +19,7 @@
       <center>
         <h2>Serve your community through civic tech</h2>
       </center>
+      <% unless user_signed_in? %>
       <div class="intake-form">
         <h2 class="span1">Join</h2>
          <%= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form| %>
@@ -36,6 +37,7 @@
             <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
           <%end%>
       </div>
+      <% end %>
     </div>
     <section id="three-up">
       <div class="left-column">

@@ -9,4 +9,7 @@
  *= require application-card
  *= require jquery.qtip.min
  *= require openimpact.css
+ *= require mapbox
+ *= require MarkerCluster
+ *= require MarkerCluster.Default
 */

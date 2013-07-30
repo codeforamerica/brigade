@@ -1,5 +1,5 @@
 $ ->
-  $('select.location-selector').live 'change', (event) ->
+  $(document).on 'change', 'select.location-selector', (event) ->
 
     if $(@).val() is 'Add Location'
 

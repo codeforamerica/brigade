@@ -69,9 +69,13 @@ gem 'state_machine', '~>1.1.2'
 # geocoder to geocode city/state pairs
 gem 'geocoder', '~> 1.1.1'
 
+gem 'twitter-bootstrap-rails'
+
 gem 'airbrake'
 
 gem 'pg'
+
+gem 'mapbox-rails'
 
 # HighVoltage for static pages
 gem 'high_voltage'
@@ -94,6 +98,7 @@ end
 
 group :development, :test do
 
+  gem 'js-routes'
   # Pry is a nice drop in for irb, which allows for debugging
   # of your code anywhere 'binding.pry' is included
   gem 'pry', '~> 0.9.8'
@@ -123,7 +128,7 @@ group :test do
   gem 'spork', '~> 0.9.2'
 
   #Cucumber for better acceptance testing
-  gem 'cucumber-rails', '~> 1.3.0', require: false
+  gem 'cucumber-rails', '~> 1.3.0'
 
   #Email spec for cucumber matchers for emails
   gem 'email_spec', '~> 1.2.1'
