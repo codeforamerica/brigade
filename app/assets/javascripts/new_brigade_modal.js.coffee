@@ -1,5 +1,5 @@
 $ ->
-  $('select.brigade-selector').live 'change', (event) ->
+  $(document).on 'change', 'select.brigade-selector', (event) ->
 
     if $(@).val() is 'Add Brigade'
 
