@@ -47,6 +47,7 @@ CodeForAmerica::Application.routes.draw do
   resources :brigades do
     collection do
       post :find
+      get :locations
     end
 
     member do
