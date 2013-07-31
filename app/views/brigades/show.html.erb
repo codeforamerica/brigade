@@ -1,4 +1,4 @@
-<header class="page-id">
+<header class="page-id" id="brigade" data-id="<%= @brigade.id %>">
   <h1><%= @brigade.name %></h1>
 </header>
 
@@ -19,7 +19,10 @@
 
         <%= render @brigade.deployed_applications, brigade_name: false %>
       </table>
-    </div>
+      
+      <div id="map">
+      </div>
+      </div>
 
     <div id="sidebar" class="span4">
       <div class="app-info">

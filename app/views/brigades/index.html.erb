@@ -1,4 +1,4 @@
-<header class="page-id">
+<header class="page-id" id="brigades">
   <h1>
     <% if @brigades.any? %><%= @brigades.count.to_s() %><%end%> Brigades and growing
   </h1>
@@ -11,6 +11,8 @@
   <p>
   Brigades are groups of passionate local citizens committed to making a difference: they are standing up apps, gathering civic data, and hosting events, ranging from hackathons to unconferences. See if one of the brigades below is in your community; if not, start one by challenging your city to <a href="/applications">deploy an app.</a>
   </p>
+  <div id="map">
+  </div>
   <table class="all-cities" cellpadding="4" id="sortable">
     <thead>
       <tr>
