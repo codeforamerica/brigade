@@ -31,7 +31,6 @@
 
       <%= f.input :current_password, label: 'Enter your current password to make these changes' unless @user.github_uid.present? %>
       <%= f.button :submit %>
-      <br/>
       <%= link_to t("users.show.delete"), user_path(@user), confirm: "are you sure?", method: :delete, class: "btn btn-danger" %>
     </div>
     
