@@ -148,6 +148,29 @@ time of a major release, support for that Ruby version may be dropped.
 ## Credits
 [We Are Titans](http://www.wearetitans.net), Norfolk, VA.
 
+Thanks also to the following people who have contributed patches or helpful suggestions:
+
+* [annerynearson](http://github.com/annerynearson)
+* [arielcharney](http://github.com/arielcharney)
+* [Bret Fisher](http://github.com/BretFisher)
+* [David Caplan](http://github.com/davecap)
+* [David Michelson](http://github.com/daveism)
+* [Felix Sargent](http://github.com/fsargent)
+* [hannahyoung](http://github.com/hannahyoung)
+* [James McKinney](http://github.com/jpmckinney)
+* [Josh Nichols](http://github.com/technicalpickles)
+* [Josh Whitlock](http://github.com/jwhitlock)
+* [Juan-Pablo Velez](http://github.com/jpvelez)
+* [Mila Frerichs](http://github.com/milafrerichs)
+* [Marc Chung](http://github.com/mchung)
+* [Michael Sergio](http://github.com/michaelsergio)
+* [Noel Hidalgo](http://github.com/noneck)
+* [Philip Hale](http://github.com/hale)
+* [Philip Neustrom](http://github.com/philipn)
+* [Rebecca Williams](http://github.com/rebeccawilliams)
+* [Seth Vincent](http://github.com/sethvincent)
+* [Vanessa Hurst](http://github.com/DBNess)
+
 ## Copyright
 Copyright (c) 2012 Code for America. See [LICENSE][] for details.
 
