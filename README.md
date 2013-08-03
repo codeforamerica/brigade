@@ -169,6 +169,7 @@ Thanks also to the following people who have contributed patches or helpful sugg
 * [Philip Neustrom](http://github.com/philipn)
 * [Rebecca Williams](http://github.com/rebeccawilliams)
 * [Seth Vincent](http://github.com/sethvincent)
+* [Sean Knox](http://github.com/seanknox)
 * [Vanessa Hurst](http://github.com/DBNess)
 
 ## Copyright
