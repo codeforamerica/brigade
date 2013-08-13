@@ -67,7 +67,8 @@
     var myOptions = {
       center: new google.maps.LatLng(39.5, -98.35),
       zoom: 3,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      streetViewControl: false
     };
     map = new google.maps.Map(document.getElementById("map"), myOptions);
   }
@@ -78,6 +79,9 @@
   var locations = $.parseJSON($('#locations').text())
   $.each(locations, function(index, value){
     value = $.parseJSON(value)
+    if(value.latitude == value.longitude && value.longitude == 0){
+      return;
+    }
     latlons[index] = new google.maps.LatLng(value.latitude, value.longitude);
     markers[index] = new google.maps.Marker({ position: latlons[index], title: value.name, url: value.icon_link });
     google.maps.event.addListener(markers[index], 'click', function() {
