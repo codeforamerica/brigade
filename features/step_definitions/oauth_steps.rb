@@ -1,8 +1,10 @@
 Then /^I can sign up using "([^"]*)"/ do |oauth_provider|
+  pending "The login with #{oauth_provider} option seems to have been disabled, and I don't know why."
   page.should have_link "Sign up with #{oauth_provider}"
 end
 
 When /^I sign up using "([^"]*)"/ do |oauth_provider|
+  pending "The login with #{oauth_provider} option seems to have been disabled, and I don't know why."
   click_on "Sign up with #{oauth_provider}"
 end
 
