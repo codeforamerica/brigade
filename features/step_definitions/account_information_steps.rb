@@ -47,7 +47,7 @@ Then /^I edit my account information and leave the select box on Add Location$/ 
 end
 
 Then /^I am on the show user page with no location$/ do
-  page.current_path.should == "/users/#{User.last.id}"
+  page.current_path.should == "/members/#{User.last.id}"
   page.should_not have_content 'Add Location'
 end
 
