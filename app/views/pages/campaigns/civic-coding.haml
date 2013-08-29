@@ -4,88 +4,165 @@
 %LINK{:HREF => "/assets/campaigns.css", :REL => "StyleSheet", :TYPE => "text/css"}
   %html{:lang => "en"}
     / BANNER
-    .row{:style => "margin:5px"}
+    %center
+      %a{:href => "civic-coding"}
+        %img{:align => "center", :src => "/assets/tgach-ndoch/banner.png"}/
+    / HEADLINE
+    %h1{:style => "padding-top:20px;padding-bottom:20px;"} Great Open Source, Civic Repos:
+    %center
+      %table{:width => ""}
+        %tr
+          %td{:style => "padding:15px"}
+            %img{:src => "/assets/tgach-ndoch/Councilmatic.png", :width => "118"}
+          %td{:style => "padding:15px"}
+            %img{:src => "http://www.dobt.co/img/logo-250.png", :width => "98", :height => "98"}
+          %td{:style => "padding:15px"}
+            %img{:src => "/assets/tgach-ndoch/whitehouse-white-bg.jpeg", :width => "108"}
+          %td{:style => "padding:15px"}
+            %img{:src => "/assets/tgach-ndoch/ckan.png", :width => "88", :height => "88"}
+          %td{:style => "padding:15px"}
+            %img{:src => "/assets/tgach-ndoch/opentreemap.png", :width => "98", :height => "98" }
+          %td{:style => "padding:15px"}
+            %img{:src => "/assets/tgach-ndoch/localwiki.jpeg", :width => "98", :height => "98"}
+          %td{:style => "padding:15px"}
+            %img{:src => "/assets/tumblr_glasses.png", :width => "98", :height => "98"}
+        %tr
+          %td{:style => "text-align:center;font-size:20px;"}
+            %a{:href => "https://github.com/codeforamerica/councilmatic"}
+              Councilmatic
+          %td{:style => "text-align:center;font-size:20px;"}
+            %a{:href => "https://github.com/dobtco/procure-io"}
+              Procure.io
+          %td{:style => "text-align:center;font-size:20px;"}
+            %a{:href => "https://github.com/WhiteHouse/petitions"}
+              Petitions
+          %td{:style => "text-align:center;font-size:20px;"}
+            %a{:href => "https://github.com/okfn/ckan"}
+              CKAN
+          %td{:style => "text-align:center;font-size:20px;"}
+            %a{:href => "https://github.com/azavea/OpenTreeMap"}
+              Open Tree Map
+          %td{:style => "text-align:center;font-size:20px;"}
+            %a{:href => "https://github.com/localwiki/localwiki"}
+              LocalWiki
+          %td{:style => "text-align:center;font-size:20px;"}
+            %a{:href => "https://github.com/codeforamerica/brigade"}
+              Brigade
+    %br
+    %br
+    %div{:id => "dashboard"}
       %center
-        %a{:href => "civic-coding"}
-          %img{:align => "center", :src => "/assets/tgach-ndoch/banner.png", :style => "margin:-20px;"}/
-    / TOP CONTENT (left) / MAP (right)
-    .row{:style => "margin-top:10px;"}
-      / HEADLINE
-      %a{:name => "inputs"}
-      %h2{:style => "padding-left:20px;padding-top:20px;"} Code with us this summer.
-      .span12
-        %table{:style => "width:1140px;"}
+        %table
           %tr
-            %td{:style => "text-align:justify;vertical-align:top;"}
-              %p.small
-                Here's a chance to code for America where you live by contributing to an open source, civic project.
-              %p.small
-                Join us for the Great American Civic Hack: a three month campaign to take our favorite open source, civic repos to the next level; to close issues, reach milestones and generally make code fork and merge ready. <span class="mini-icon  mini-icon-public-fork"></span> <span class="mini-icon  mini-icon-pull-request"></span>
-              %p.large
-              %h2{:style => "padding-left:10px;"} We want you!
-              %ul.small{:style => "padding-left:10px;"}
-                %li
-                  Repo Managers: Submit repos with well-documented code, organized issues, clear milestones and deadlines!
-                %li
-                  Brigade Members + Civic Hackers:  Vote for the repos you'd like to see featured. June 3, join us to start hacking!
-              %p.small
-                %img{:src => "/assets/tgach-ndoch/github-commits.png"}
-              %p.small
-                Let's rally together this summer for better open source, civic software! Empty issues lists. Submit and merge pull requests. Make code easier to re-use. Let's see what we can code together.
-              %p.large
-              %h2{:style => "padding-left:10px;"} How it works
-              %p.small
-                The Great American Civic Hack is a three month campaign in two stages:
-              %ul.small{:style => "padding-left:10px;"}
-                %li
-                  Stage 1 (May 2013): Repo nomination and voting. Nominations close June 2.
-                %li
-                  Stage 2 (June 3, 2013 to July 31, 2013): Coding
-              %p.small{:style => "padding-top: 20px;"}
-                We'll track Stage 2 on GitHub and Drupal.org. All repos that close the issues identified at the beginning of the campaign will receive a Silver Fork Award: Code for America's recognition for civic hacking. Other Silver Fork Awards will be given for:
-              %ul.small{:style => "padding-left:10px;"}
-                %li
-                  Most merged pull requests
-                %li
-                  Most issues closed
-                %li
-                  Most contributors
-                %li
-                  and others
-              %p.small
-                There's a "National" campaign and "Local" campaign. The national campaign will feature a short list of select repos for national organizing efforts. The local campaign is intended to show off what brigades are working on this summer.
-            %td{:style => "vertical-align:top;"}
-              / LEGACY STYLES
-              .top-section
-                .top-section-form-inner.primary{:style => "height: 1130px;width:260px"}
-                  %center
-                    %h2{:style => "margin-top:-20px;"} Nominate Repos
-                    %h3 National Repos
-                    %br
-                    <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/widget/super/campaign/46694" frameborder="0" scrolling="auto" style="width: 228px; height: 508px;"></iframe>
-                    %br
-                    %h3 Local Repos
-                    %br
-                    <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/widget/super/campaign/46695" frameborder="0" scrolling="auto" style="width: 228px; height: 508px;"></iframe>
-        %p.small
-          %img{:width => "40%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
-        %p.small
-          June 1 is
-          %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
-          Thousands of civic hackers in 80 locations around the country will be "hacking for change". We're honored to be a national organizing partner. Spend it making open source, civic software better.
-        %p.small
-          Even better, since Hack for Change is
-          %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House
-          it's an opportunity for your contributions to The Great American Civic Hack to be recognized on a national stage.
-      %h2{:style => "padding-left:20px;padding-top:20px"}
-        Timeline
-      %img{:src => "/assets/tgach-ndoch/TGAC-timeline.png", :style => "padding:0px;"}
-      %p.small
-        %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Civic Coding"} Email for questions, comments or help
-      %h2
-        Introducing the Silver Fork Awards
-      %p.small
-        The Silver Fork Awards are Code for America Brigade's recognitions for civic hacking. We're going to track Brigade's extended network of civic hackers this summer and make leader boards for stuff like "Merged pull requests", "Issues closed"  and "Members Added". <span class="mini-icon  mini-icon-merge"></span><span class="mini-icon  mini-icon-issue-closed"></span> <span class="mini-icon  mini-icon-member-added"></span> There will be winning repos, repo managers and contributors.
-      %h2#section-cities.section-header
-        %a{:title => "last year", :href => "https://twitter.com/search?q=%23cfabrigade"} #cfabrigade
-        %a{:title => "last year", :href => "https://twitter.com/search?q=%23hackforchange"} #hackforchange
+            %td
+              %p.large +41 Issues Closed
+            %td{:style => "text-align:center;padding-left:10px", :width => "20%"}
+              %h1.view-pages{:style => "font-size:68px;"} 385
+            %td{:style => "text-align:center;padding-right:10px", :width => "20%"}
+              %h1.view-pages{:style => "font-size:68px;"} 69
+            %td
+              %p.large +12 New Forks
+        %table
+          %tr
+            %td{:width => "50%"}
+              <img src="https://docs.google.com/a/codeforamerica.org/spreadsheet/oimg?key=0AvWC8QOgiwjzdFRJbEFKcndJYktYbkhEbC1EcG94amc&oid=19&zx=8saxviutpwty" />
+            %td
+              <img src="https://docs.google.com/a/codeforamerica.org/spreadsheet/oimg?key=0AvWC8QOgiwjzdFRJbEFKcndJYktYbkhEbC1EcG94amc&oid=42&zx=qrpm06itbx9w" />
+    %p.medium Thank you to these civic hackers!
+    %table
+      %tr
+        %td{:style => "padding:0px;margin:0px;"}
+          <a href="https://github.com/mapmeld" title="mapmeld"><img width="50%" alt="mapmeld" src="https://secure.gravatar.com/avatar/93703e565323afcd226a76cf6baeb0f7?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/></a>
+        %td{:style => "padding:0px;margin:0px;"}
+          <a href="https://github.com/milafrerichs" title="milafrerichs"><img width="50%" alt="milafrerichs"  src="https://secure.gravatar.com/avatar/cd763c19458330547e0c42a93c3d32b6?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/></a>
+        %td{:style => "padding:0px;margin:0px;"}
+          <a href="https://github.com/ssfinney" title="ssfinney" ><img width="50%" alt="ssfinney"  src="https://secure.gravatar.com/avatar/c6aa126adb983fdb1e01df27acfbf0c7?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/></a>
+        %td{:style => "padding:0px;margin:0px;"}
+          <a href="https://github.com/ty10r" title="tyl0r" ><img width="50%" alt="tyl0r"  src="https://secure.gravatar.com/avatar/32cc332da100f58ec9a489a8f29861f5?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/></a>
+        %td{:style => "padding:0px;margin:0px;"}
+          <a href="https://github.com/rshk" title="rshk" ><img width="50%" alt="rshk"  src="https://secure.gravatar.com/avatar/0a9dbf11e725f19a1fc5601f958cbcf1?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/></a>
+        %td{:style => "padding:0px;margin:0px;"}
+          <a href="https://github.com/tobes" title="tobes"><img width="50%" alt="tobes" src="https://i2.wp.com/a248.e.akamai.net/assets.github.com/images/gravatars/gravatar-user-420.png"/></a>
+        %td{:style => "padding:0px;margin:0px;"}
+          <a href="https://github.com/j-po" title="j-po"><img width="50%" alt="j-po" src="https://secure.gravatar.com/avatar/05003d996ec20efc661782fa0078dcf8?s=400&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"/></a>
+      %tr
+        %td{:style => "padding:0px;margin:0px;"}
+          Brigade
+        %td{:style => "padding:0px;margin:0px;"}
+          Brigade
+        %td{:style => "padding:0px;margin:0px;"}
+          Brigade
+        %td{:style => "padding:0px;margin:0px;"}
+          Brigade
+        %td{:style => "padding:0px;margin:0px;"}
+          CKAN
+        %td{:style => "padding:0px;margin:0px;"}
+          CKAN
+        %td{:style => "padding:0px;margin:0px;"}
+          Localwiki
+    %h1.view-pages
+      What's this all about?
+    %table{:style => "width:1120px;"}
+      %tr
+        %td{:style => "text-align:justify;vertical-align:top;", :width => "80%"}
+          %p.small
+            This summer we are going to make better open source, civic software together. Empty issues lists. Submit and merge pull requests. Make code easier to re-use and re-deploy.
+          %img{:src => "/assets/tgach-ndoch/github-commits.png"}
+          %h2 How it works
+          %p.small
+            All repos that close the issues identified at the beginning of the campaign will receive a Silver Fork Award: Code for America's recognition for civic hacking. Other Silver Fork Awards will be given for:
+          %ul.small{:style => "padding-left:10px;"}
+            %li
+              Most merged pull requests
+            %li
+              Most issues closed
+            %li
+              Most contributors
+            %li
+              and others
+          %h2 Calling Brigade
+          %p.medium
+            %a{:href => "https://docs.google.com/document/d/1QcUrUcAHu8eYXdLT7VeX0uLBlkKdCRKwWKYnoyN63qY/edit?usp=sharing"}Learn about the featured repos.
+            %br
+            Fork 'em.
+            %br
+            Close issues.
+            %br
+            Issue pulls.
+            %br
+            %img{:src => "http://i0.kym-cdn.com/photos/images/newsfeed/000/162/317/2vA1a.png?1313349760", :width => "100", :height => "300"}
+            %p.small
+              %img{:width => "70%", :src => "http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"}
+            %p.small
+              June 1 was
+              %a{:href => "http://hackforchange.org/"} National Day of Civic Hacking.
+              Don't let it end there. Add your GitHub or Drupal.org orgs and repos and make a commitment to keep calm and hack on.
+            %p.small
+              Even better, since Hack for Change is
+              %a{:href => "http://www.whitehouse.gov/blog/2013/01/22/roll-your-sleeves-get-involved-and-get-civic-hacking", :target => "top"} sponsored by The White House
+              this an opportunity for your contributions to The Great American Civic Hack to be recognized on a national stage.
+            %h2
+              Introducing the Silver Fork Awards
+            %p.small
+              The Silver Fork Awards are Code for America Brigade's recognitions for civic hacking. We're going to track Brigade's extended network of civic hackers this summer and make leader boards for stuff like "Merged pull requests", "Issues closed"  and "Members Added". <span class="mini-icon  mini-icon-merge"></span><span class="mini-icon  mini-icon-issue-closed"></span> <span class="mini-icon  mini-icon-member-added"></span> There will be winning repos, repo managers and contributors.
+              %h2#section-cities.section-header
+                %a{:title => "last year", :href => "https://twitter.com/search?q=%23cfabrigade"} #cfabrigade
+                %a{:title => "last year", :href => "https://twitter.com/search?q=%23hackforchange"} #hackforchange
+        %td{:style => "text-align:justify;vertical-align:top;", :width => "20%"}
+          / LEGACY STYLES
+          .top-section
+            .top-section-form-inner.primary{:style => "height:1540px;width:260px"}
+              %center
+                %h3{:style => "margin-top:0px;"} What else are you hacking on this summer?
+                %p.small
+                  We're interested in learning about your open source, civic orgs and repos so we can cheer you on, track your progress and report what's happening all over the country. Add your brigade's org and project repos:
+                %h3 Great Civic Hacking Orgs
+                <iframe allowTransparency="true" src="//cfabrigade.ideascale.com/userimages/accounts/91/913369/campaign-widget-7.html?ts=1370558716807" frameborder="0" scrolling="auto" style="width: 248px; height: 600px;"></iframe>
+                %h3 More Civic Repos
+                <iframe allowTransparency="true" src="http://cfabrigade.ideascale.com/a/widget/super/campaign/46695" frameborder="0" scrolling="auto" style="width: 248px; height: 600px;"></iframe>
+    %hr
+    %h2{:style => "padding-top:20px"}
+      Timeline
+    %img{:src => "/assets/tgach-ndoch/TGAC-timeline.png", :style => "padding:0px;"}
+    %p.small
+      %a{:href => "mailto:brigade-info@codeforamerica.org?subject=Civic Coding"} Email for questions, comments or help

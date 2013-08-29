@@ -9,7 +9,7 @@ CodeForAmerica::Application.routes.draw do
     get '/sign-out' => 'sessions#destroy', as: :sign_out
   end
 
-  resources :users, :path => 'members', only: [:show, :index, :edit, :update]
+  resources :users, :path => 'members', only: [:show, :index, :edit, :update, :destroy]
 
   # Redirects after switching users to members
   match "/users/sign_up"        => redirect("/members/sign_up")
@@ -47,11 +47,13 @@ CodeForAmerica::Application.routes.draw do
   resources :brigades do
     collection do
       post :find
+      get :locations
     end
 
     member do
       get :join
       get :leave
+      get :application_locations
     end
 
     resources :deployed_applications, only: [:new, :create, :index], controller: 'brigades/deployed_applications'

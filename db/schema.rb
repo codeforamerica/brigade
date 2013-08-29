@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322013825) do
+ActiveRecord::Schema.define(:version => 20130814121432) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130322013825) do
     t.datetime "updated_at",               :null => false
     t.string   "group_url"
     t.string   "point_of_contact_address"
+    t.integer  "location_id"
   end
 
   create_table "brigades_users", :id => false, :force => true do |t|
@@ -83,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20130322013825) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -108,11 +109,6 @@ ActiveRecord::Schema.define(:version => 20130322013825) do
     t.string "name"
   end
 
-  create_table "tasks", :force => true do |t|
-    t.text    "description"
-    t.integer "application_id"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
     t.string   "encrypted_password",     :default => "",    :null => false
@@ -133,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20130322013825) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "linkedin_url"
+    t.string   "human_check"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

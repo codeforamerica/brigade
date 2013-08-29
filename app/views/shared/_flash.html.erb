@@ -1,8 +1,6 @@
 <section id="flash">
   <div class="content no-padding">
     <%=raw message %>
-    <div class="icon" id="close-now">
-      x
-    </div>
+    <%= link_to_function "x", "$('section#flash').fadeOut()", class: "close-now icon" %>
   </div>
 </section>

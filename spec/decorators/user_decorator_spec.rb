@@ -50,14 +50,8 @@ describe UserDecorator do
   #
   describe '#as_link' do
 
-    it 'returns a link to email the user if they have not opted out from being contacted' do
-      subject.opt_in = true
-      subject.as_link.should match /#{subject.email}/
-    end
-
-    it 'returns an no email if the user has opted to not being contacted' do
-      subject.opt_in = false
-      subject.as_link.should_not match /#{subject.email}/
+    it 'returns a link to the user profile page' do
+      subject.as_link.should match /#{subject.user.id}/
     end
   end
 end

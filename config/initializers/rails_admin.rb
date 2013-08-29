@@ -35,10 +35,10 @@ unless Rails.env == 'test'
 
     #  ==> Included models
     # Add all excluded models here:
-    # config.excluded_models = [Application, Brigade, DeployedApplication, Task, User]
+    # config.excluded_models = [Application, Brigade, DeployedApplication, User]
 
     # Add models here if you want to go 'whitelist mode':
-    # config.included_models = [Application, Brigade, DeployedApplication, Task, User]
+    # config.included_models = [Application, Brigade, DeployedApplication, User]
 
     # Application wide tried label methods for models' instances
     # config.label_methods << :description # Default is [:name, :title]
@@ -105,7 +105,6 @@ unless Rails.env == 'test'
         field :twitter_hashtag
         field :mailing_list
         field :pictures
-        field :tasks
       end
 
       # Hiding these attributes by default since name, creator, short_description
@@ -181,19 +180,6 @@ unless Rails.env == 'test'
     #     configure :application_id, :integer         # Hidden
     #     configure :created_at, :datetime
     #     configure :updated_at, :datetime   #   # Sections:
-    #   list do; end
-    #   export do; end
-    #   show do; end
-    #   edit do; end
-    #   create do; end
-    #   update do; end
-    # end
-    # config.model Task do
-    #   # Found associations:
-    #     configure :application, :belongs_to_association   #   # Found columns:
-    #     configure :id, :integer
-    #     configure :description, :text
-    #     configure :application_id, :integer         # Hidden   #   # Sections:
     #   list do; end
     #   export do; end
     #   show do; end

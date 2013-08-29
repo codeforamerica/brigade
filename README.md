@@ -1,5 +1,7 @@
 # Code for America Brigade [![Build Status](https://secure.travis-ci.org/codeforamerica/brigade.png?branch=master)][travis]
-Help civic hackers collaborate
+Help civic hackers collaborate!
+
+The Code for America Brigade website is the platform for the Brigade community to connect to one another and to learn about how to get involved with Brigade activities.
 
 [travis]: http://travis-ci.org/codeforamerica/brigade
 
@@ -31,11 +33,12 @@ You'll also need to install Imagemagick
     cd brigade
     bundle install
     cp config/database.yml.example config/database.yml
+    bundle exec rake sunspot:solr:start
     rake db:create
     rake db:migrate
+    rake db:seed
 
 ## Usage
-    bundle exec rake sunspot:solr:start
     rails server
 
 
@@ -144,6 +147,30 @@ time of a major release, support for that Ruby version may be dropped.
 
 ## Credits
 [We Are Titans](http://www.wearetitans.net), Norfolk, VA.
+
+Thanks also to the following people who have contributed patches or helpful suggestions:
+
+* [annerynearson](http://github.com/annerynearson)
+* [arielcharney](http://github.com/arielcharney)
+* [Bret Fisher](http://github.com/BretFisher)
+* [David Caplan](http://github.com/davecap)
+* [David Michelson](http://github.com/daveism)
+* [Felix Sargent](http://github.com/fsargent)
+* [hannahyoung](http://github.com/hannahyoung)
+* [James McKinney](http://github.com/jpmckinney)
+* [Josh Nichols](http://github.com/technicalpickles)
+* [Josh Whitlock](http://github.com/jwhitlock)
+* [Juan-Pablo Velez](http://github.com/jpvelez)
+* [Mila Frerichs](http://github.com/milafrerichs)
+* [Marc Chung](http://github.com/mchung)
+* [Michael Sergio](http://github.com/michaelsergio)
+* [Noel Hidalgo](http://github.com/noneck)
+* [Philip Hale](http://github.com/hale)
+* [Philip Neustrom](http://github.com/philipn)
+* [Rebecca Williams](http://github.com/rebeccawilliams)
+* [Seth Vincent](http://github.com/sethvincent)
+* [Sean Knox](http://github.com/seanknox)
+* [Vanessa Hurst](http://github.com/DBNess)
 
 ## Copyright
 Copyright (c) 2012 Code for America. See [LICENSE][] for details.

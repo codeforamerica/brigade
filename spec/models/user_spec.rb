@@ -12,6 +12,11 @@ describe User do
     subject.should be_valid
   end
 
+  it 'should be valide with a blank human check field' do
+    subject.human_check = ''
+    subject.should be_valid
+  end
+
   context 'opt_in' do
     it 'should be false by default' do
       subject.opt_in.should == false
