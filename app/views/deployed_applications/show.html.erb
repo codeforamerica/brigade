@@ -35,7 +35,9 @@
           <p><%= auto_link @deployed_application.brigade.point_of_contact_address %></p>
         <% end %>
         <h4><span class="icon">w</span> URL </h4>
-        <% unless @deployed_application.deployed_url.nil? %>
+        <% if @deployed_application.deployed_url.blank? %>
+          <p><%= link_to "Edit URL", edit_deployed_application_path(@deployed_application), class: 'btn btn-mini' %></p>
+        <% else %>
           <p><%= link_to @deployed_application.deployed_url, @deployed_application.deployed_url %></p>
         <% end %>
 
