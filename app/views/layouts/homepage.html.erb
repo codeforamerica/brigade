@@ -15,30 +15,10 @@
 
   <section>
     <div id="main">
-      <img alt="send in the brigade" src="/assets/people_and_sitb.png" width="40%"/>
-      <center>
-        <h2>Serve your community through civic tech</h2>
-      </center>
-      <% unless user_signed_in? %>
-      <div class="intake-form">
-        <h2 class="span1">Join</h2>
-         <%= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form| %>
-            <% if @user.full_name.present? && !@user.errors[:full_name].any? %>
-              <%= form.input :full_name, as: :hidden, input_html: {value: @user.full_name}  %>
-            <% else %>
-              <span class="span3 no-margin"><%= form.input :full_name, :label => false, :placeholder => 'Name' %></span>
-            <% end %>
-            <% if @user.email.present? && !@user.errors[:email].any? %>
-              <%= form.input :email, as: :hidden, input_html: {value: @user.email} %>
-            <% else %>
-              <span class="span3 no-margin"><%= form.input :email, :label => false, :placeholder => 'Email' %></span>
-            <% end %>
-            <span class="span3 no-margin"><%= form.input :password, :label => false, :placeholder => 'Choose a password' if @user.password_required? %></span>
-            <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
-          <%end%>
-      </div>
-      <% end %>
+      <img alt="send in the brigade" src="/assets/people_and_sitb.png" />
+      <h2>Serve your community through civic tech</h2>
     </div>
+
     <section id="three-up">
       <div class="left-column">
         <h2>How it works:</h2>

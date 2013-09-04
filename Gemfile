@@ -128,7 +128,7 @@ group :test do
   gem 'spork', '~> 0.9.2'
 
   #Cucumber for better acceptance testing
-  gem 'cucumber-rails', '~> 1.3.0'
+  gem 'cucumber-rails', '~> 1.3.0', :require => false
 
   #Email spec for cucumber matchers for emails
   gem 'email_spec', '~> 1.2.1'
