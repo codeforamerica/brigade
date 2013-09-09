@@ -39,7 +39,7 @@
 
 
 <% if @deployed_applications.present? %>
-  <h2>Join these Brigades to participate in what's already happening <%= @location.name %>:</h2>
+  <h2>Participate in what's already happening <%= @location.name %>:</h2>
   <table class="all-apps" cellpadding="4" id="sortable">
     <thead>
       <tr>
@@ -61,7 +61,7 @@
 
 <% if @applications_not_deployed.present? %>
   <br><br>
-  <h2>Commit to deploying one of these apps not found in <%= @location.name %>:</h2>
+  <h2>Learn about one of these apps not found in <%= @location.name %>:</h2>
   <table class="all-apps">
     <thead>
       <tr>
