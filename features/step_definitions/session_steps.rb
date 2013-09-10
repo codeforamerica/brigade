@@ -3,7 +3,7 @@ Given /^I have previously registered for an account$/ do
   step "I follow the \"Sign Up\" link"
   step "I successfully register with my email \"testman@example.com\""
 
-  click_on 'Sign Out'
+  click_on 'Sign out'
 end
 
 Given /^I want to access my account$/ do
