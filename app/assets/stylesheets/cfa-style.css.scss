@@ -145,7 +145,7 @@ section {
   background: transparentize($mud, 0.2);
   @include box-shadow(0 -3px 6px lighten($mud, 10%) inset);
 
-  #close-now {
+  a.close-now {
     font-size: 30px;
     line-height: 15px;
     color: $mud;

@@ -3,7 +3,7 @@ FactoryGirl.define do
     full_name         "Test Man"
     sequence(:email)  { |n| "testman#{n}@example.com" }
     password          "password"
-
-    skill_list 'random, foo, ruby'
+    human_check       ''
+    skill_list        'random, foo, ruby'
   end
 end
