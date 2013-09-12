@@ -37,4 +37,20 @@ CodeForAmerica::Application.configure do
 
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  Geocoder.configure(:lookup => :test)
+
+  Geocoder::Lookup::Test.set_default_stub(
+      [
+          {
+              'latitude'     => 40.7143528,
+              'longitude'    => -74.0059731,
+              'address'      => 'New York, NY, USA',
+              'state'        => 'New York',
+              'state_code'   => 'NY',
+              'country'      => 'United States',
+              'country_code' => 'US'
+          }
+      ]
+  )
 end
