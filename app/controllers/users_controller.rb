@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     end
 
   end
-  
+
   def destroy
     user = User.find(params[:id])
     if user == current_user && user.destroy
@@ -59,5 +59,5 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     end
   end
-  
+
 end
