@@ -171,6 +171,7 @@ Thanks also to the following people who have contributed patches or helpful sugg
 * [Seth Vincent](http://github.com/sethvincent)
 * [Sean Knox](http://github.com/seanknox)
 * [Vanessa Hurst](http://github.com/DBNess)
+* [Will Green](http://github.com/hotgazpacho)
 
 ## Copyright
 Copyright (c) 2012 Code for America. See [LICENSE][] for details.
