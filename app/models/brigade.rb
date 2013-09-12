@@ -7,6 +7,7 @@ class Brigade < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   validates :name, presence: true
+  validates_uniqueness_of :name
   validates :point_of_contact_address, presence: true
 
   def to_s
