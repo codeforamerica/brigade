@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814121432) do
+ActiveRecord::Schema.define(:version => 20130912030609) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20130814121432) do
     t.string   "point_of_contact_address"
     t.integer  "location_id"
   end
+
+  add_index "brigades", ["name"], :name => "unique_brigade_name", :unique => true
 
   create_table "brigades_users", :id => false, :force => true do |t|
     t.integer "user_id"
