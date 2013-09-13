@@ -6,6 +6,9 @@ gem 'rails', '~> 3.2.11'
 gem 'devise', '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
 
+# used to block some ips
+gem 'rack-attack'  
+
 # Allow Devise to authenticate via github
 gem 'omniauth-github', '~> 1.0.1'
 
