@@ -18,6 +18,7 @@
           <% else %>
             <span class="span3 no-margin"><%= form.input :email, :label => false, :placeholder => 'Email' %></span>
           <% end %>
+          <%= form.input :human_check, input_html: {class: 'hidden'}, label: false %> 
           <span class="span3 no-margin"><%= form.input :password, :label => false, :placeholder => 'Choose a password' if @user.password_required? %></span>
           <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
         <%end%>
