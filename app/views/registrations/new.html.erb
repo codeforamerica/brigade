@@ -16,7 +16,7 @@
       <%= form.input :email, input_html: {class: 'span5'} %>
     <% end %>
     <%= form.input :password, input_html: {class: 'span5'} if @user.password_required? %>
-    <%= form.input :human_check, as: :hidden %> 
+    <%= form.input :human_check, input_html: {class: 'hidden'}, label: false %> 
     <%= form.submit 'Sign up', class: 'btn-large btn' %>
     <!--
     or
