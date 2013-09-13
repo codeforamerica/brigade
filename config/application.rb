@@ -62,5 +62,8 @@ module CodeForAmerica
     # In Rails 3.2, exception handling is done within the Rack middleware stack.
     # Configure this application to run through the routes anytime an error occurs.
     config.exceptions_app = self.routes
+    
+    config.middleware.use Rack::Attack
+    
   end
 end
