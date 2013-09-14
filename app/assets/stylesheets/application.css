@@ -5,6 +5,8 @@
  *= require registration
  *= require twitter-bootstrap-overrides
  *= require footer
+ *= require homepage
+ *= require forms
  *= require user-info
  *= require application-card
  *= require jquery.qtip.min
