@@ -4,4 +4,9 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-CodeForAmerica::Application.config.secret_token = 'b8be3f3d7ef7cfaa4de1931ae3498c929afe6a38ad85523ebafd5cf2762c5043685cd108779d92a0c54685b758e3b142b7eaf318fb67e8eb4d6fcbb3af2f5411'
+
+if Rails.env.production? && ENV['SECRET_TOKEN'].blank?
+  raise 'The SECRET_TOKEN environment variable is not set. To generate it, run "rake secret", then set it on the production server. If you\'re using Heroku, you do this with "heroku config:set SECRET_TOKEN=the_token_you_generated"'
+end
+
+CodeForAmerica::Application.config.secret_token = ENV['SECRET_TOKEN'] || '6b1e071e036f4774088668dd143b1192d762a23d7b14d27f90e8297d48b8dde273d8172454ad9ce91db20b7fcb3e544be2c3cdc28443d5a3f64f31f31b649a95'

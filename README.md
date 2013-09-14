@@ -41,6 +41,12 @@ You'll also need to install Imagemagick
 ## Usage
     rails server
 
+## Deployment
+In production, you will have to set the environment variable SECRET\_TOKEN to protect against attacks. To generate a token, cd into the project directory and run `rake secret`.
+
+For illustration, on Heroku setting an environment variable can be done with the following command:
+
+`heroku config:set SECRET_TOKEN=mynewlygeneratedtoken`
 
 ## How do users interact with system?
 As a user:
