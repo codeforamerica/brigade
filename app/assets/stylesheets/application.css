@@ -5,6 +5,7 @@
  *= require registration
  *= require twitter-bootstrap-overrides
  *= require footer
+ *= require homepage
  *= require user-info
  *= require application-card
  *= require jquery.qtip.min
@@ -12,4 +13,5 @@
  *= require mapbox
  *= require MarkerCluster
  *= require MarkerCluster.Default
+ *= require forms
 */

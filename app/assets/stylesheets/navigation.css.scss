@@ -9,6 +9,8 @@ header#top-deck {
   height: 100px;
   font-family: 'Gudea', Helvetica, Arial, sans-serif;
   margin-bottom: 10px;
+  overflow:hidden;
+  position:relative;
 
   a.logo {
     display: block;
