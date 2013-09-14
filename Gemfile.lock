@@ -241,6 +241,8 @@ GEM
       slop (~> 3.0)
     psych (1.3.4)
     rack (1.4.5)
+    rack-attack (2.2.1)
+      rack
     rack-cache (1.2)
       rack (>= 0.4)
     rack-pjax (0.7.0)
@@ -429,6 +431,7 @@ DEPENDENCIES
   pry (~> 0.9.8)
   pry-remote (~> 0.1.0)
   psych
+  rack-attack
   rails (~> 3.2.11)
   rails_admin (~> 0.4.4)
   rails_admin_tag_list!
