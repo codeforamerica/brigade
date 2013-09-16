@@ -140,6 +140,29 @@ section {
     max-width: 800px;
   }
 }
+#map.homepage{ 
+  height:350px;
+  position:absolute;
+  top:200px;
+  left:0px;
+  right:0px;
+  border:solid 1px #ccc;
+}
+.map-padding{ 
+  height:340px;
+}
+div.start-your-own{ 
+  padding-top:20px;
+  background:#fff;
+  height:40px;
+  h2{ 
+    display:inline;
+  }
+  .btn{ 
+     margin-left:20px;
+  }
+}
+
 
 /* Messages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

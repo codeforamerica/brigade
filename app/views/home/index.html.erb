@@ -1,9 +1,21 @@
 <section>
   <div id="main">
-    <img alt="send in the brigade" src="/assets/people_and_sitb.png" />
-    <center>
-      <h2>Serve your community through civic tech</h2>
-    </center>
+    <h2>Serve your community through civic tech</h2>
+    <h2>Join us in a city near you!</h2>
+    
+
+    <div id="map" class="homepage"></div>
+    <div class="map-padding"></div>
+
+
+    <div class="start-your-own">
+      <h2>Don't see your city?</h2>
+      <a href="/organize"><div class="btn btn-primary">Organize your own group</div></a>
+    </div>
+
+
+    
+<!--
     <% unless user_signed_in? %>
     <div class="intake-form">
       <h2 class="span1">Join</h2>
@@ -24,6 +36,7 @@
         <%end%>
     </div>
     <% end %>
+    -->
   </div>
 </section>
 <section id="three-up">
@@ -82,3 +95,4 @@
 
   </div>
 </section>
+<%= javascript_include_tag 'map' %>

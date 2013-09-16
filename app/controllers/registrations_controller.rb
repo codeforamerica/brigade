@@ -6,6 +6,11 @@ class RegistrationsController < Devise::RegistrationsController
     build_user
   end
 
+  def new_organizer
+    build_user
+  end
+
+  
   def create
     if params[:user][:password].blank?
       # from: http://blog.logeek.fr/2009/7/2/creating-small-unique-tokens-in-ruby
