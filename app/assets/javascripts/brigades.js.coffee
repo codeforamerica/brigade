@@ -7,7 +7,7 @@ $ ->
     $.get(brigade_locations_url).done (data) ->
       lat_lngs = []
       for application in data
-        app = {
+        app = { 
           lat: application.location.latitude
           lng: application.location.longitude
           deployed: application.deployed

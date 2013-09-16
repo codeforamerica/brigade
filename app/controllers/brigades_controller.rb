@@ -52,7 +52,7 @@ class BrigadesController < ApplicationController
     current_user.leave_brigade(@brigade)
     redirect_to brigade_url(@brigade)
   end
-
+  
   def locations
     render json: Brigade.all
   end
