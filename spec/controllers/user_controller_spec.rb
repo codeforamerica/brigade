@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController, :focus do
+describe UsersController do
   describe 'DELETE destroy' do 
     before :each do 
       @user = FactoryGirl.create(:user)
