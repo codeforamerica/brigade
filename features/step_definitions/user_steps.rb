@@ -13,8 +13,7 @@ Given /^the following civic hackers exist:$/ do |table|
 end
 
 When /^I view all of the civic hackers$/ do
-  visit('/')
-  click_on 'People'
+  visit('/members')
 end
 
 When /^I search for all civic hackers who are working (?:on|with) "([^"]*)"$/ do |search_term|

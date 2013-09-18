@@ -28,8 +28,7 @@ end
 When /^I visit the application "([^"]*)" page$/ do |app_name|
   app = Application.find_by_name(app_name)
 
-  visit('/')
-  click_on 'Applications'
+  visit('/applications')
 
   within "#application_#{app.id}" do
     click_on 'Show App'
@@ -37,7 +36,7 @@ When /^I visit the application "([^"]*)" page$/ do |app_name|
 end
 
 When /^I logout and visit the application "([^"]*)" page$/ do |app_name|
-  click_on 'Sign Out'
+  click_on 'Sign out'
 
   step "I visit the application \"#{app_name}\" page"
 end
