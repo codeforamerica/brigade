@@ -10,10 +10,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :opt_in, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid,
-                  :full_name, :first_name, :last_name, :linkedin_url, :human_check
-
-  attr_accessor :work_in_government
-  attr_accessor :willing_to_organize
+                  :full_name, :first_name, :last_name, :linkedin_url, :human_check, 
+                  :work_in_government, :willing_to_organize
   
   validates :full_name, presence: true
   validate :human_check do |user|
