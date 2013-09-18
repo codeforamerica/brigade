@@ -28,8 +28,7 @@ end
 When /^I visit the application "([^"]*)" page$/ do |app_name|
   app = Application.find_by_name(app_name)
 
-  visit('/')
-  click_on 'Applications'
+  visit('/applications')
 
   within "#application_#{app.id}" do
     click_on 'Show App'
