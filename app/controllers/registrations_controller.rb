@@ -43,6 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def build_user
     @user ||= User.new
+    @location ||= Location.new
   end
 
  end

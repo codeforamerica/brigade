@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
                   :full_name, :first_name, :last_name, :linkedin_url, :human_check
 
   attr_accessor :work_in_government
+  attr_accessor :willing_to_organize
+  
   validates :full_name, presence: true
   validate :human_check do |user|
     user.human_check.blank?
