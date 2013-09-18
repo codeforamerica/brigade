@@ -16,6 +16,9 @@ When /^I view all of the apps by "([^"]*)"$/ do |type|
   if type == 'Brigade'
     click_on 'Brigades'
   end
+  if type == 'City'
+    visit('/deployed_applications')
+  end
 end
 
 Then /^I should see the following applications:$/ do |table|
