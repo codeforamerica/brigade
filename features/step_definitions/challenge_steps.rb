@@ -3,7 +3,7 @@ Given /^that the location "([^"]*)" has been defined$/ do |location|
 end
 
 When /^I fill out a challenge form$/ do
-  click_on 'Submit a challenge'
+  visit('/challenges/new')
 
   fill_in 'challenge[purpose]', with: 'This answers the why'
   fill_in 'challenge[organization_name]', with: 'We Are Titans'
