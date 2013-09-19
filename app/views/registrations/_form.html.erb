@@ -1,0 +1,43 @@
+
+  <%= simple_form_for @user, as: "user", url: registration_path("user"), html:{class:'form-inline'} do |form| %>
+    <input type="hidden" name="source" value="<%= @source %>" />
+    <div class="row signup">
+
+      <% if @source == "brigade" %>
+        <div class="span3 offset0 signup-text">
+          <h2>Join your Brigade. Create an account to get started.</h2>
+        </div>
+      <% else %>
+        <div class="span2 offset0 signup-text">
+          <h2>Create an account to get started.</h2>
+        </div>          
+      <% end %>
+      <div class="span3 offset1">
+      <%= form.input :full_name, input_html: {class: 'span3', value: @user.full_name}, required: false  %>
+      <%= form.input :email, input_html: {class: 'span3', value: @user.email} %>
+      <% if @source == "brigade" %>
+        <% if !@brigade.location.blank? %>
+          <%= form.input :location_id,  as: :hidden, value: @brigade.location.id %>
+        <% end %>
+        <input type="hidden" name="brigade_id" value="<%= @brigade.id %>" />
+      <% else %>
+
+         <%= render partial: 'shared/location_select', locals: { f: form } %>         
+      <% end %>
+      </div>
+      <div class="span4 offset1">
+      
+
+    <%= form.input :password, input_html: {class: 'span3'} if @user.password_required? %>
+    <%= form.input :work_in_government, as: :boolean, label_html: {class: "checkbox"},  label:"I work in government", wrapper: :checkbox  %>
+    <%= form.input :human_check, input_html: {class: 'hidden'}, label: false %>
+
+    <% if @source == "organizer" %>
+    <%= form.input :willing_to_organize, collection: [[true, "I'm in. Sign me up to help organize."] ,[false, 'No thanks, but keep me in the loop.']], as: :radio_buttons,  value: @user.willing_to_organize, label: false, :label_method => :last, :value_method => :first, input_html: {class: "offset"}  %>
+
+    <%end%>
+    
+    <%= form.submit "Signup", class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
+ <%end%>

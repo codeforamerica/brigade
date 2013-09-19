@@ -41,6 +41,7 @@
 }
 .content.homepage{ 
   padding:30px 0px 20px;
+  text-align:center;
 }
 
 header.page-id {
@@ -815,4 +816,15 @@ ul.small, ol.small li {
   text-decoration: none;
   /* shadow */
   text-shadow: 0 0 0.5em #444;
+}
+
+.signup{ 
+  background-color:#f2f2f2;
+  border-radius:5px;
+  padding:15px;
+  margin-top:10px;
+
+  .signup-text{ 
+    padding-top:0px;
+  }
 }

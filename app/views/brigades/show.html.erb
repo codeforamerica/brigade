@@ -1,6 +1,12 @@
+
+
+
+
 <header class="page-id" id="brigade" data-id="<%= @brigade.id %>">
   <h1><%= @brigade.name %></h1>
+<!--  <div class="signup"> <div class="btn btn-primary">Join the <%= @brigade.name %></div></div>-->
 </header>
+  <%= render 'registrations/form' %>
 
 <div class="container-fluid">
   <div class="row-fluid">
@@ -27,16 +33,12 @@
 
         <h4><span class="icon">,</span> Location</h4>
         <div id="map"></div>
-        <h5>THIS: <%= @brigade.group_url %></h5>
-        <h4><span class='icon'>Y</span> Get involved</h4>
-        <p class='center'>
-          <%= link_to 'Join the brigade to get involved!', join_brigade_url(@brigade), class: 'btn primary' if !can? :leave, @brigade%>
-          <%= raw("You are a member of this brigade! #{link_to 'Leave this brigade', leave_brigade_url(@brigade), class: 'btn'}") if can? :leave, @brigade %>
-        </p>
 
         <% if @brigade.point_of_contact_address.present? %>
-          <h4><span class="icon">O</span> Connect</h4>
+          <h4><span class="icon">O</span> local brigade info</h4>
           <p><%= auto_link @brigade.point_of_contact_address %></p>
+          <p><%= auto_link @brigade.group_url %></p>
+          <p><%= auto_link @brigade.meetup_url %></p>
         <% end %>
 
         <h4><span class='icon'>f</span> Members</h4>

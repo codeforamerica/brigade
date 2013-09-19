@@ -28,6 +28,9 @@ class BrigadesController < ApplicationController
   end
 
   def show
+    build_user
+    build_location
+    @source="brigade"
 
     @brigade_base = Brigade.find(params[:id], :include => :users)
 
@@ -60,4 +63,13 @@ class BrigadesController < ApplicationController
   def application_locations
     render json: Brigade.find_by_id(params[:id]).deployed_applications
   end
+  
+  private 
+  def build_user
+    @user ||= User.new
+  end
+  def build_location
+    @location ||= Location.new
+  end
+
 end
