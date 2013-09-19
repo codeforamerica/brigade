@@ -6,8 +6,9 @@
   <h1><%= @brigade.name %></h1>
 <!--  <div class="signup"> <div class="btn btn-primary">Join the <%= @brigade.name %></div></div>-->
 </header>
+<% unless user_signed_in? %>
   <%= render 'registrations/form' %>
-
+<% end %>
 <div class="container-fluid">
   <div class="row-fluid">
     <!-- main -->

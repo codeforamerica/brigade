@@ -28,6 +28,7 @@ CodeForAmerica::Application.routes.draw do
   match "/welcome" => "welcome#signup"
   match "/welcome/notify" => "welcome#signup"
   match "/welcome/brigade" => "welcome#brigade"
+  match "/welcome/brigade/:id" => "welcome#brigade"
   
   # Move legacy events and campaigns to /events & /campaigns
   # TODO: wildcards & regex

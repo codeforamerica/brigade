@@ -17,7 +17,7 @@
       <%= form.input :email, input_html: {class: 'span3', value: @user.email} %>
       <% if @source == "brigade" %>
         <% if !@brigade.location.blank? %>
-          <%= form.input :location_id,  as: :hidden, value: @brigade.location.id %>
+          <%= form.input :location_id,  as: :hidden, input_html:{value: @brigade.location_id} %>
         <% end %>
         <input type="hidden" name="brigade_id" value="<%= @brigade.id %>" />
       <% else %>

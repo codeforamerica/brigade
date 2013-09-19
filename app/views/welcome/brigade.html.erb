@@ -1,12 +1,16 @@
 <h2>Welcome new Brigade member!</h2>
 
-<p>Thanks for signing up for [Brigade Name]. Your local leader will be in touch soon.</p>
+<p>Thanks for signing up for <%= @brigade.name %>. Your local leader will be in touch soon.</p>
 
-<p>In the meantime, join [Brigade Name]’s Meetup and check out their upcoming events:</p>
+<p>In the meantime, join <%= @brigade.name %>’s Meetup and check out their upcoming events:</p>
 
 <ul>
-  <li>[Meetup link]</li>
-  <li>[Group URL]</li>
+  <% if @brigade.meetup_url.present? %>
+    <li><%= auto_link @brigade.meetup_url %></li>
+  <% end %>
+  <% if @brigade.group_url.present? %>
+    <li><%= auto_link @brigade.group_url %></li>
+  <% end %>
 </ul>
 
 <p>Thanks again and see you soon.</p>

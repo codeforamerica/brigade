@@ -27,10 +27,15 @@ class RegistrationsController < Devise::RegistrationsController
         session["user_return_to"] = "/welcome/organizer"
       elsif(@source == "no_brigade")
         session["user_return_to"] = "/welcome/notify"
+      elsif(@source == "brigade")
+        if params[:brigade_id].present?
+          session["user_return_to"] = "/welcome/brigade/"+params[:brigade_id]
+        end
       else
         session["user_return_to"] = "/welcome"
       end
     end
+    
     
     super
 
@@ -38,6 +43,13 @@ class RegistrationsController < Devise::RegistrationsController
       KM.record('User Signup')
       KM.identify(@user.email)
 
+      if params[:brigade_id].present?
+        @user.brigades << Brigade.find(params[:brigade_id])
+        @user.save
+      end
+
+      
+      
       if params[:source] == "open_impact"
         SignupMailer.open_impact_greeting(@user).deliver
       else
