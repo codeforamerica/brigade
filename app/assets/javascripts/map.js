@@ -1,6 +1,6 @@
 $(function(){
 
-  var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj', {scrollWheelZoom:false})
+  var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj', {scrollWheelZoom:false, attributionControl: false});
   var lat_lngs = [];
   $.getJSON("/brigades.json", function(data){
     console.log(data)

@@ -328,7 +328,7 @@ hgroup.app-title {
   /* Table striping */
   tr.odd {
     td {
-      background: #e6e2dd;
+      background: #f5f5f5;
     }
   }
   td.avatar {
@@ -493,6 +493,7 @@ ul.thumbnails {
   margin-bottom: 10px;
   clear: both;
   position: relative;
+  overflow: hidden;
 
   h4 {
     padding: 5px;

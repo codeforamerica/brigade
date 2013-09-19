@@ -63,12 +63,10 @@ header#top-deck {
           padding: 10px 10px 14px;
           @include border-radius(5px 5px 5px 5px);
         }
-
-        &:hover {
-          a {
+        
+          a.btn-regular:hover {
             color: #ce263f;
           }
-        }
       }
     }
 

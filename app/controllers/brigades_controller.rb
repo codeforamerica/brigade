@@ -60,6 +60,10 @@ class BrigadesController < ApplicationController
     render json: Brigade.all
   end
 
+  def brigade_location
+    render json: Brigade.find_by_id(params[:id])
+  end
+
   def application_locations
     render json: Brigade.find_by_id(params[:id]).deployed_applications
   end

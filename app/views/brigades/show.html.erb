@@ -1,7 +1,3 @@
-
-
-
-
 <header class="page-id" id="brigade" data-id="<%= @brigade.id %>">
   <h1><%= @brigade.name %></h1>
 <!--  <div class="signup"> <div class="btn btn-primary">Join the <%= @brigade.name %></div></div>-->
@@ -18,9 +14,7 @@
         <thead>
           <tr>
             <th>App Name</th>
-            <th width="17%">Status</th>
-            <th>Location</th>
-            <th>Action</th>
+            <th>Status</th>
           </tr>
         </thead>
 
@@ -33,7 +27,7 @@
       <div class="app-info">
 
         <h4><span class="icon">,</span> Location</h4>
-        <div id="map"></div>
+        <div id="map" data-target='<%= @brigade.id %>'></div>
 
         <% if @brigade.point_of_contact_address.present? %>
           <h4><span class="icon">O</span> local brigade info</h4>
