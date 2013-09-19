@@ -58,7 +58,7 @@ class RegistrationsController < Devise::RegistrationsController
       elsif @source == "brigade"
         SignupMailer.greeting_brigade(@user, @brigade).deliver
       elsif @source == "no_brigade"
-        SignupMailer.greeting_no_brigide(@user).deliver
+        SignupMailer.greeting_no_brigade(@user).deliver
       elsif @source == "organizer"
         SignupMailer.greeting_organizer(@user).deliver
       else
