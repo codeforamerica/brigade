@@ -55,6 +55,12 @@ class RegistrationsController < Devise::RegistrationsController
       
       if params[:source] == "open_impact"
         SignupMailer.open_impact_greeting(@user).deliver
+      elsif @source == "brigade"
+        SignupMailer.greeting_brigade(@user, @brigade).deliver
+      elsif @source == "no_brigade"
+        SignupMailer.greeting_no_brigide(@user).deliver
+      elsif @source == "organizer"
+        SignupMailer.greeting_organizer(@user).deliver
       else
         SignupMailer.greeting(@user).deliver
       end
