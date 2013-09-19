@@ -27,7 +27,12 @@ class RegistrationsController < Devise::RegistrationsController
 
     if session["user_return_to"].blank?
       if(@source == "organizer")
-        session["user_return_to"] = "/welcome/organizer"
+        if params[:user][:willing_to_organize] == "false"
+          @source = "no_brigade"
+          session["user_return_to"] = "/welcome/notify"
+        else
+          session["user_return_to"] = "/welcome/organizer"
+        end
       elsif(@source == "no_brigade")
         session["user_return_to"] = "/welcome/notify"
       elsif(@source == "brigade")
