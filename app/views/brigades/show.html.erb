@@ -20,13 +20,14 @@
         <%= render @brigade.deployed_applications, brigade_name: false %>
       </table>
       
-      <div id="map">
-      </div>
       </div>
 
     <div id="sidebar" class="span4">
       <div class="app-info">
-        <h3>Info</h3>
+
+        <h4><span class="icon">,</span> Location</h4>
+        <div id="map"></div>
+        <h5>THIS: <%= @brigade.group_url %></h5>
         <h4><span class='icon'>Y</span> Get involved</h4>
         <p class='center'>
           <%= link_to 'Join the brigade to get involved!', join_brigade_url(@brigade), class: 'btn primary' if !can? :leave, @brigade%>
