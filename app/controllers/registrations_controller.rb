@@ -11,6 +11,9 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_location
     set_source
+    if params[:brigade_id].present?
+      @brigade = Brigade.find(params[:brigade_id])
+    end
     if params[:user][:password].blank?
       # from: http://blog.logeek.fr/2009/7/2/creating-small-unique-tokens-in-ruby
       params[:user][:password] = rand(36**8).to_s(36)
