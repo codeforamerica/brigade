@@ -24,6 +24,11 @@ CodeForAmerica::Application.routes.draw do
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
 
+  match "/welcome/organizer" => "welcome#organizer"
+  match "/welcome" => "welcome#signup"
+  match "/welcome/notify" => "welcome#signup"
+  match "/welcome/brigade" => "welcome#brigade"
+  
   # Move legacy events and campaigns to /events & /campaigns
   # TODO: wildcards & regex
   match "/openimpact"                     => 'high_voltage/pages#show', :id => "/campaigns/openimpact"

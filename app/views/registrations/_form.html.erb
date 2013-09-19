@@ -25,8 +25,11 @@
          <%= render partial: 'shared/location_select', locals: { f: form } %>         
       <% end %>
       </div>
-      <div class="span4 offset1">
-      
+      <% if @source == "brigade" %>
+      <div class="span3 offset1">
+      <% else %>
+        <div class="span4 offset1">
+      <% end %>
 
     <%= form.input :password, input_html: {class: 'span3'} if @user.password_required? %>
     <%= form.input :work_in_government, as: :boolean, label_html: {class: "checkbox"},  label:"I work in government", wrapper: :checkbox  %>

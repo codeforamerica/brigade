@@ -18,7 +18,7 @@ $(function(){
           marker = L.marker(new L.LatLng(lat,lng), {
             icon: L.mapbox.marker.icon({'marker-symbol': 'town-hall'})
           })
-          marker.bindPopup(brigade.name+" - "+brigade.location.name);
+          marker.bindPopup("<a href='/brigades/"+brigade.id+"'>"+brigade.name+" - "+brigade.location.name+"</a>");
           map.addLayer(marker);
 
         }
