@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130918195632) do
+
+ActiveRecord::Schema.define(:version => 20130919004547) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -37,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20130918195632) do
     t.string   "group_url"
     t.string   "point_of_contact_address"
     t.integer  "location_id"
+    t.string   "meetup_url"
+    t.text     "meetup_json_data"
   end
 
   create_table "brigades_users", :id => false, :force => true do |t|

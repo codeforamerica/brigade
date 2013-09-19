@@ -304,13 +304,6 @@ hgroup.app-title {
 .all-apps,
 .all-cities {
   width: 100%;
-  @include box-shadow(
-    1px 1px 0 darken($oatmeal, 20%),
-    2px 2px 0 darken($oatmeal, 20%),
-    3px 3px 0 darken($oatmeal, 20%),
-    4px 4px 0 darken($oatmeal, 20%),
-    5px 5px 0 darken($oatmeal, 20%)
-  );
   margin-bottom: 20px;
   border: 1px solid $oatmeal;
 
@@ -491,19 +484,11 @@ ul.thumbnails {
 
 
 .app-info {
-  background: transparentize(darken($oatmeal, 20%), 0.5);
   padding: 10px;
   width: 93%;
   margin-bottom: 10px;
   clear: both;
   position: relative;
-  @include box-shadow(
-    1px 1px 0 darken($oatmeal, 20%),
-    2px 2px 0 darken($oatmeal, 20%),
-    3px 3px 0 darken($oatmeal, 20%),
-    4px 4px 0 darken($oatmeal, 20%),
-    5px 5px 0 darken($oatmeal, 20%)
-  );
 
   h4 {
     padding: 5px;
