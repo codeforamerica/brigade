@@ -9,7 +9,8 @@ module ApplicationHelper
        return header
     else
       # Use '<<' to concat the two links so that they're returned together
-      (content_tag :li, (link_to 'Sign In', sign_in_path, class: 'btn btn-regular')) << (content_tag :li, (link_to 'Sign Up', new_user_registration_path, class: 'btn btn-info'))
+      (content_tag :li, (link_to 'Sign In', sign_in_path, class: 'btn btn-regular')) 
+       #<< (content_tag :li, (link_to 'Sign Up', new_user_registration_path, class: 'btn btn-info'))
     end
   end
 
