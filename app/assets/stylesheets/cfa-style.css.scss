@@ -12,10 +12,6 @@
 /* Base Setup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-body.home {
-  background: url('/assets/ray.jpg') no-repeat top center;
-  background-size: 100% 550px;
-}
 
 /* Generic blocks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -34,7 +30,17 @@ body.home {
     width: 940px;
 
   }
+  h2 {
+    font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+    color: #999999;
+    padding: 0px;
+    line-height:32px;
+    margin-bottom:10px;
+  }
 
+}
+.content.homepage{ 
+  padding:30px 0px 20px;
 }
 
 header.page-id {
@@ -47,6 +53,10 @@ header.page-id {
     color: darken($cfa-red, 50%);
   }
 
+}
+
+.btn{ 
+  background-image:none;
 }
 
 /* Page Containers
@@ -132,7 +142,21 @@ section {
     text-align: center;
   }
 }
-
+.map-container{ 
+  background:#f2f2f2;
+  text-align:center;
+  padding-bottom:25px;
+  h2{ 
+    color:#666;
+    font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  }
+  .btn{ 
+    background-color:#cf1b41;
+    background-image:none;
+    padding:10px;
+    font-size:16px;
+  }
+}
 #map{
   height: 250px;
 
@@ -142,18 +166,12 @@ section {
 }
 #map.homepage{ 
   height:350px;
-  position:absolute;
-  top:200px;
-  left:0px;
-  right:0px;
-  border:solid 1px #ccc;
 }
 .map-padding{ 
   height:380px;
 }
 div.start-your-own{ 
   padding-top:20px;
-  background:#fff;
   height:40px;
   h2{ 
     display:inline;

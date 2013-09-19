@@ -7,7 +7,8 @@ CodeForAmerica::Application.routes.draw do
   devise_scope :user do
     get '/sign-in'  => 'sessions#new',     as: :sign_in
     get '/sign-out' => 'sessions#destroy', as: :sign_out
-    get '/organize'  => 'registrations#new_organizer',     as: :new_organizer
+    get '/organize'  => 'registrations#new',     as: :new
+    get '/notify'  => 'registrations#new',     as: :new
   end
 
   resources :users, :path => 'members', only: [:show, :index, :edit, :update, :destroy]

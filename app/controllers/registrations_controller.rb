@@ -4,14 +4,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   def new
     build_user
+    build_location
+    set_source
   end
-
-  def new_organizer
-    build_user
-  end
-
   
   def create
+    build_location
+    set_source
     if params[:user][:password].blank?
       # from: http://blog.logeek.fr/2009/7/2/creating-small-unique-tokens-in-ruby
       params[:user][:password] = rand(36**8).to_s(36)
@@ -23,6 +22,16 @@ class RegistrationsController < Devise::RegistrationsController
       params[:user][:github_uid] = parser.github_uid
     end
 
+    if session["user_return_to"].blank?
+      if(@source == "organizer")
+        session["user_return_to"] = "/welcome/organizer"
+      elsif(@source == "no_brigade")
+        session["user_return_to"] = "/welcome/notify"
+      else
+        session["user_return_to"] = "/welcome"
+      end
+    end
+    
     super
 
     if @user.persisted?
@@ -36,6 +45,9 @@ class RegistrationsController < Devise::RegistrationsController
       end
 
       session["devise.github_data"] = nil
+      
+
+      
     end
   end
 
@@ -43,7 +55,21 @@ class RegistrationsController < Devise::RegistrationsController
 
   def build_user
     @user ||= User.new
+  end
+  def build_location
     @location ||= Location.new
   end
-
+  def set_source
+    if request.path == "/organize"
+      @source = "organizer"
+    elsif request.path == "/notify"
+      @source = "no_brigade"
+    else
+      if(!params[:source].blank?)
+        @source=params[:source]
+      else
+        @source = "base"
+      end
+    end
+  end
  end
