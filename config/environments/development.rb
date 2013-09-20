@@ -35,6 +35,8 @@ CodeForAmerica::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.assets.logger = false
+  
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
