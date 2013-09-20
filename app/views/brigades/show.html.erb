@@ -27,7 +27,7 @@
       <div class="app-info">
 
         <h4><span class="icon">,</span> Location</h4>
-        <div id="map" data-target='<%= @brigade.id %>'></div>
+        <div id="map" class="brigade" data-target='<%= @brigade.id %>'></div>
 
         <% if @brigade.point_of_contact_address.present? %>
           <h4><span class="icon">O</span> local brigade info</h4>
