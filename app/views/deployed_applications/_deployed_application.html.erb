@@ -3,7 +3,7 @@
     <% unless deployed_application.deployed_url.nil? %>
       <%= link_to deployed_application.name, deployed_application.deployed_url %>
     <% else %>
-      Brigade Name
+      <%= deployed_application.name %>
     <% end %>
   </td>
   <td class="status">
