@@ -9,6 +9,8 @@ class Brigade < ActiveRecord::Base
   validates :name, presence: true
   validates :point_of_contact_address, presence: true
 
+  serialize :meetup_json_data, JSON
+
   def to_s
     name
   end

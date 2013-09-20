@@ -63,12 +63,10 @@ header#top-deck {
           padding: 10px 10px 14px;
           @include border-radius(5px 5px 5px 5px);
         }
-
-        &:hover {
-          a {
+        
+          a.btn-regular:hover {
             color: #ce263f;
           }
-        }
       }
     }
 
@@ -102,6 +100,11 @@ header#top-deck {
       }
     }
   }
+  .btn-info,.btn-info:hover{ 
+    color:#fff;
+  }
+
+
 }
 
 footer#top-deck {
@@ -117,7 +120,7 @@ footer#top-deck {
     height: 100px;
     float: left;
     position: relative;
-    top: -10px;
+    top: 0px;
     left: -10px;
     background: url('/assets/logo.png') center center no-repeat;
     margin-right: 20px;

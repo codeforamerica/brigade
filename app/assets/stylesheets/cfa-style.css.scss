@@ -12,10 +12,6 @@
 /* Base Setup
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-body.home {
-  background: url('/assets/ray.jpg') no-repeat top center;
-  background-size: 100% 600px;
-}
 
 /* Generic blocks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -34,7 +30,18 @@ body.home {
     width: 940px;
 
   }
+  h2 {
+    font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+    color: #999999;
+    padding: 0px;
+    line-height:32px;
+    margin-bottom:10px;
+  }
 
+}
+.content.homepage{ 
+  padding:30px 0px 20px;
+  text-align:center;
 }
 
 header.page-id {
@@ -47,6 +54,10 @@ header.page-id {
     color: darken($cfa-red, 50%);
   }
 
+}
+
+.btn{ 
+  background-image:none;
 }
 
 /* Page Containers
@@ -132,6 +143,29 @@ section {
     text-align: center;
   }
 }
+.map-container{ 
+  background:#f2f2f2;
+  text-align:center;
+  padding-bottom:55px;
+  font-size:16px;
+  h2{ 
+    color:#666;
+    font-family: 'Avenir Medium', Helvetica, Arial, sans-serif;
+  }
+  .btn{ 
+    background-color:#cf1b41;
+    background-image:none;
+    padding:10px;
+    font-size:16px;
+    margin-bottom:20px;
+  }
+
+}
+.organize{ 
+  ul{ 
+    padding-left:30px;
+  }
+}
 
 #map{
   height: 250px;
@@ -140,6 +174,23 @@ section {
     max-width: 800px;
   }
 }
+#map.homepage{ 
+  height:350px;
+}
+.map-padding{ 
+  height:380px;
+}
+div.start-your-own{ 
+  padding-top:20px;
+  height:40px;
+  h2{ 
+    display:inline;
+  }
+  .btn{ 
+     margin-left:20px;
+  }
+}
+
 
 /* Messages
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -263,13 +314,6 @@ hgroup.app-title {
 .all-apps,
 .all-cities {
   width: 100%;
-  @include box-shadow(
-    1px 1px 0 darken($oatmeal, 20%),
-    2px 2px 0 darken($oatmeal, 20%),
-    3px 3px 0 darken($oatmeal, 20%),
-    4px 4px 0 darken($oatmeal, 20%),
-    5px 5px 0 darken($oatmeal, 20%)
-  );
   margin-bottom: 20px;
   border: 1px solid $oatmeal;
 
@@ -290,7 +334,7 @@ hgroup.app-title {
   /* Table striping */
   tr.odd {
     td {
-      background: #e6e2dd;
+      background: #f5f5f5;
     }
   }
   td.avatar {
@@ -450,19 +494,12 @@ ul.thumbnails {
 
 
 .app-info {
-  background: transparentize(darken($oatmeal, 20%), 0.5);
   padding: 10px;
   width: 93%;
   margin-bottom: 10px;
   clear: both;
   position: relative;
-  @include box-shadow(
-    1px 1px 0 darken($oatmeal, 20%),
-    2px 2px 0 darken($oatmeal, 20%),
-    3px 3px 0 darken($oatmeal, 20%),
-    4px 4px 0 darken($oatmeal, 20%),
-    5px 5px 0 darken($oatmeal, 20%)
-  );
+  overflow: hidden;
 
   h4 {
     padding: 5px;
@@ -789,4 +826,15 @@ ul.small, ol.small li {
   text-decoration: none;
   /* shadow */
   text-shadow: 0 0 0.5em #444;
+}
+
+.signup{ 
+  background-color:#f2f2f2;
+  border-radius:5px;
+  padding:15px;
+  margin-top:10px;
+
+  .signup-text{ 
+    padding-top:0px;
+  }
 }
