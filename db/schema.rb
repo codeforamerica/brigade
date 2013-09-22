@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 20130919004547) do
     t.text     "meetup_json_data"
   end
 
+  add_index "brigades", ["name"], :name => "unique_brigade_name", :unique => true
+
   create_table "brigades_users", :id => false, :force => true do |t|
     t.integer "user_id"
     t.integer "brigade_id"
