@@ -16,4 +16,16 @@ describe Brigade do
     subject.point_of_contact_address = nil
     subject.should_not be_valid
   end
+
+  it 'should not be valid when another brigade exists with the same name' do
+    other = FactoryGirl.build(:brigade)
+    other.name = subject.name
+    other.should_not be_valid
+  end
+
+  it 'should not be valid when another brigade exists with the same name regardless of casing' do
+    other = FactoryGirl.build(:brigade)
+    other.name = subject.name.downcase
+    other.should_not be_valid
+  end
 end
