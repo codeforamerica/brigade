@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :opt_in, :location_id, :avatar, :skill_list, :avatar_cache, :github_uid,
-                  :full_name, :first_name, :last_name, :linkedin_url, :human_check
-
+                  :full_name, :first_name, :last_name, :linkedin_url, :human_check, 
+                  :work_in_government, :willing_to_organize
+  
   validates :full_name, presence: true
   validate :human_check do |user|
     user.human_check.blank?
@@ -65,7 +66,11 @@ class User < ActiveRecord::Base
   def full_name=(name)
     split = name.split(' ', 2)
     self.first_name = split.first
-    self.last_name = split.last
+    if split.length == 2
+      self.last_name = split.last
+    else
+      self.last_name =""
+    end
   end
 
   def is_member_of?(brigade)

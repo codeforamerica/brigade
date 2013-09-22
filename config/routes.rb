@@ -7,12 +7,15 @@ CodeForAmerica::Application.routes.draw do
   devise_scope :user do
     get '/sign-in'  => 'sessions#new',     as: :sign_in
     get '/sign-out' => 'sessions#destroy', as: :sign_out
+    get '/organize'  => 'registrations#new',     as: :new
+    get '/notify'  => 'registrations#new',     as: :new
   end
 
   resources :users, :path => 'members', only: [:show, :index, :edit, :update, :destroy]
 
   # Redirects after switching users to members
   match "/users/sign_up"        => redirect("/members/sign_up")
+  match "/signup"               => redirect("/members/sign_up")
   match "/users/sign_in"        => redirect("/members/sign_in")
   match "/users/sign_out"       => redirect("/members/sign_out")
   match "/users/password/new"   => redirect("/members/password/new")
@@ -21,6 +24,12 @@ CodeForAmerica::Application.routes.draw do
   match "/users/:id/edit"       => redirect("/members/:id/edit")
   match "/users/:id"            => redirect("/members/:id")
 
+  match "/welcome/organizer" => "welcome#organizer"
+  match "/welcome" => "welcome#signup"
+  match "/welcome/notify" => "welcome#signup"
+  match "/welcome/brigade" => "welcome#brigade"
+  match "/welcome/brigade/:id" => "welcome#brigade"
+  
   # Move legacy events and campaigns to /events & /campaigns
   # TODO: wildcards & regex
   match "/openimpact"                     => 'high_voltage/pages#show', :id => "/campaigns/openimpact"

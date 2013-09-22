@@ -2,8 +2,8 @@
 <head>
   <title>The Code for America Brigade</title>
   <meta name="description" content="The Code for America Brigade is an organizing force for civic-minded technologists who contribute their skills in service to their local governments and communities.">
-  <%= stylesheet_link_tag 'home', :media => 'all' %>
-  <%= javascript_include_tag 'home' %>
+  <%= stylesheet_link_tag 'application', :media => 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <%= render partial: 'layouts/google_analytics' %>
   <%= favicon_link_tag %>
@@ -14,6 +14,7 @@
   <%= render 'shared/navigation' %>
 
   <%= yield %>
+
 
   <%= render 'shared/footer' %>
 

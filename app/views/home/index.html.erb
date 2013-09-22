@@ -1,83 +1,25 @@
 <section>
-  <div id="main">
-    <img alt="send in the brigade" src="/assets/people_and_sitb.png" width="40%"/>
-    <center>
-      <h2>Serve your community through civic tech</h2>
-    </center>
-    <% unless user_signed_in? %>
-    <div class="intake-form">
-      <h2 class="span1">Join</h2>
-       <%= simple_form_for @user, url: registration_path(@user), html: { class: 'form-vertical' } do |form| %>
-          <% if @user.full_name.present? && !@user.errors[:full_name].any? %>
-            <%= form.input :full_name, as: :hidden, input_html: {value: @user.full_name}  %>
-          <% else %>
-            <span class="span3 no-margin"><%= form.input :full_name, :label => false, :placeholder => 'Name' %></span>
-          <% end %>
-          <% if @user.email.present? && !@user.errors[:email].any? %>
-            <%= form.input :email, as: :hidden, input_html: {value: @user.email} %>
-          <% else %>
-            <span class="span3 no-margin"><%= form.input :email, :label => false, :placeholder => 'Email' %></span>
-          <% end %>
-          <span class="span3 no-margin"><%= form.input :password, :label => false, :placeholder => 'Choose a password' if @user.password_required? %></span>
-          <%= form.submit 'Sign up', class: 'submit btn btn-primary' %>
-        <%end%>
+  <div class="content homepage">
+    <h2>Code a <em>difference.</em> Use civic tech to make your community better.</h2>
+  </div>
+  <div class="map-container">
+    <h2 >Join us in a city near you!</h2>
+    <div id="map" class="homepage brigades"></div>
+    <div class="start-your-own">
+      <h2>Don't see your city?</h2>
+      <a href="/organize"><div class="btn btn-primary">Organize your own group</div></a><br />
+      <a href="/notify"> No thanks, but keep me in the loop.</a> 
     </div>
-    <% end %>
   </div>
-</section>
-<section id="three-up">
-  <div class="left-column">
-    <h2>How it works:</h2>
-    <table id="how">
-      <tr>
-        <td>
-          <a title="" href="/connect"><img alt="Connect with people" src="/assets/community.png"/></a>
-        </td>
-        <td>
-         <a title="" href="/connect">Connect with people</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a title="" href="/apps"><img alt="Deploy civic applications" src="/assets/source_code.png"/></a>
-        </td>
-        <td>
-          <a title="" href="/apps">Deploy civic applications</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a title="" href="/activities"><img alt="Hack your city" src="/assets/city.png"/></a>
-        </td>
-        <td>
-          <a title="" href="/activities">Hack your city</a>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <a title="" href="/events"><img alt="Find events" src="/assets/calendar.png"/></a>
-        </td>
-        <td>
-          <a title="" href="/events">Find events</a>
-        </td>
-      </tr>
-    </table>
-    <table width="100%">
-      <tr>
-        <td align="center">
-          <a href="/hackforchange"><img src="http://hackforchange.org/profiles/opencivic/themes/hackathon/logo.png"/></a>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="center-column">
-    <h2>Get involved now:</h2>
-    <a href="/civic-coding"><img style="width:80%" src="/assets/tgach-ndoch/badge.png"/></a>
-  </div>
-  <div class="right-column">
-    <h2>What we're Tweeting:</h2>
-    <a class="twitter-timeline" href="https://twitter.com/search?q=%23cfabrigade" data-widget-id="324718596347543552">Tweets about "#cfabrigade"</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
+</section>
+<section>
+  <div class="content">
+
+    <h2>The Code for America Brigade is how local residents and cities are working together using technology to make their cities better and more connected.</h2>
+    
+    <h2>The Brigade is one of the programs that Code for America offers.
+    <br/>Check out more at <a href="http://codeforamerica.org">codeforamerica.org</a></h2>
   </div>
 </section>
+

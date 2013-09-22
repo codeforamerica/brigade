@@ -10,6 +10,8 @@ class Brigade < ActiveRecord::Base
   validates_uniqueness_of :name, :case_sensitive => false
   validates :point_of_contact_address, presence: true
 
+  serialize :meetup_json_data, JSON
+
   def to_s
     name
   end

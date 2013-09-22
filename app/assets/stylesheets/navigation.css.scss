@@ -9,6 +9,8 @@ header#top-deck {
   height: 100px;
   font-family: 'Gudea', Helvetica, Arial, sans-serif;
   margin-bottom: 10px;
+  overflow:hidden;
+  position:relative;
 
   a.logo {
     display: block;
@@ -32,7 +34,7 @@ header#top-deck {
       padding: 10px;
       @include border-radius(0 0 5px 5px);
       position: relative;
-      left: 20px;
+      left: 5px;
       display: none;
       font-style: italic;
       color: $mud;
@@ -47,7 +49,7 @@ header#top-deck {
 
       li {
         float: left;
-        padding: 10px 10px 14px;
+        padding: 10px 10px 0px;
         cursor: pointer;
 
         a {
@@ -61,12 +63,10 @@ header#top-deck {
           padding: 10px 10px 14px;
           @include border-radius(5px 5px 5px 5px);
         }
-
-        &:hover {
-          a {
+        
+          a.btn-regular:hover {
             color: #ce263f;
           }
-        }
       }
     }
 
@@ -100,6 +100,11 @@ header#top-deck {
       }
     }
   }
+  .btn-info,.btn-info:hover{ 
+    color:#fff;
+  }
+
+
 }
 
 footer#top-deck {
@@ -115,7 +120,7 @@ footer#top-deck {
     height: 100px;
     float: left;
     position: relative;
-    top: -10px;
+    top: 0px;
     left: -10px;
     background: url('/assets/logo.png') center center no-repeat;
     margin-right: 20px;
