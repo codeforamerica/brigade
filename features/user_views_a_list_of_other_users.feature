@@ -17,8 +17,8 @@ Feature: A user views all civic hackers
       | First Test App  | Richmond, VA  | The Test Brigade |
      And I view all of the civic hackers
 
-  @wip
   Scenario: User searches for civic hackers based on Application name
+   When PENDING Do we include the deployed apps in the fulltext search?
    When I search for all civic hackers who are working on "First Test App"
    Then I should see a list of civic hackers that includes "testman@example.com"
 

@@ -40,3 +40,7 @@ When /^I logout and visit the application "([^"]*)" page$/ do |app_name|
 
   step "I visit the application \"#{app_name}\" page"
 end
+
+When /^PENDING/ do
+  pending
+end
