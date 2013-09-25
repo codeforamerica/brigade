@@ -3,7 +3,7 @@ require "spec_helper"
 describe ChallengeMailer do
 
   before do
-    @challenge = FactoryGirl.create(:challenge)
+    @challenge = FactoryGirl.build_stubbed(:challenge)
     @email = ChallengeMailer.notify_of_submitted_challenge(@challenge)
   end
 
