@@ -7,7 +7,7 @@ gem 'devise', '~> 2.1.0'
 gem 'cancan', '~> 1.6.7'
 
 # used to block some ips
-gem 'rack-attack'  
+gem 'rack-attack'
 
 # Allow Devise to authenticate via github
 gem 'omniauth-github', '~> 1.0.1'
@@ -85,6 +85,8 @@ gem 'high_voltage'
 
 # KISS Metrics
 gem 'km'
+
+gem 'foreman'
 
 # Gems used only for assets and not required
 # in production environments by default.
