@@ -3,7 +3,7 @@ require 'uri'
 require 'json'
 
 namespace :meetup do
-  
+
   desc "get upcoming brigade events from group's meetup page"
   task :get_events => :environment do
     base = 'http://api.meetup.com'
@@ -32,7 +32,9 @@ namespace :meetup do
           }
 
         end
-        brigade.meetup_json_data = @events.to_json
+        events_json = JSON.parse(brigade.meetup_json_data)
+        events_json[0]['events'] = @events
+        brigade.meetup_json_data = events_json.to_json
         brigade.save!
       end
     end
