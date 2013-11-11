@@ -39,7 +39,8 @@ You'll also need to install Imagemagick
     rake db:seed
 
 ## Usage
-    rails server
+    $ foreman start
+    Then open your browser to `http://localhost:5000`
 
 ## Deployment
 In production, you will have to set the environment variable SECRET\_TOKEN to protect against attacks. To generate a token, cd into the project directory and run `rake secret`.
