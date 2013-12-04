@@ -29,12 +29,12 @@ $(function(){
 
 
 
-  }else if($("div#map.brigade").length > 0){
+  } else if($("div#map.brigade").length > 0){
 
-    $.getJSON("/brigades/"+brigade_id+".json", function(brigade){
-      if(brigade.location){
+    $.getJSON("/brigades/" + brigade_id + ".json", function(brigade) {
+      if (brigade.location){
 
-        if(brigade.location.latitude && brigade.location.longitude){
+        if (brigade.location.latitude && brigade.location.longitude) {
           var lat = brigade.location.latitude;
           var lng = brigade.location.longitude;
           
@@ -46,10 +46,28 @@ $(function(){
 
         }
       } 
-      
       map.setView([lat,lng], 8);
     });
 
   }
+  // truncuate long brigade descriptions, markup intact
+  // $('div.brigade-description').html(function(index, text){
+  //   var limit = 500;
+
+  //   str = $(this).html();
+  //   console.log(str);
+  //   if (str.length < limit) {
+  //     return str;
+  //   }
+
+  //   for (var i=limit, len=str.length; i<len; i++) {
+  //     // fix this
+  //     if (str[i] == ">") {
+  //       return str.slice(0,i);
+  //     }
+  //   }
+
+  //   return str;
+  // }); 
 });
 

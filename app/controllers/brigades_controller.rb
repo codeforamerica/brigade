@@ -1,3 +1,5 @@
+require 'event'
+
 class BrigadesController < ApplicationController
   before_filter :authenticate_user!, only: [:join, :leave]
   respond_to :json, :html
@@ -33,8 +35,15 @@ class BrigadesController < ApplicationController
     @source="brigade"
 
     @brigade_base = Brigade.find(params[:id], :include => :users)
-
     @brigade = BrigadeDecorator.new(@brigade_base)
+    @meetup = JSON.parse(@brigade.meetup_json_data)
+
+    @events = []
+    @meetup['events'].each do |event|
+      current_event = Event.new(event)
+      @events << current_event
+    end
+    
 
     respond_to do |format|
       format.html
