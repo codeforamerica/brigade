@@ -20,7 +20,7 @@
 
         <%= render @brigade.deployed_applications, brigade_name: false %>
       </table>
-      
+
       </div>
 
     <div id="sidebar" class="span4">
@@ -28,6 +28,10 @@
 
         <h4><span class="icon">,</span> Location</h4>
         <div id="map" class="brigade" data-target='<%= @brigade.id %>'></div>
+        <% unless @brigade.fellowship.blank? %>
+          <h4>Fellowship Year</h4>
+          <p><%= @brigade.fellowship %></p>
+        <% end %>
 
         <% if @brigade.point_of_contact_address.present? %>
           <h4><span class="icon">O</span> local brigade info</h4>
