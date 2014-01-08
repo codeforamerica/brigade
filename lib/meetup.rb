@@ -30,7 +30,7 @@ class Meetup
       if @community_urlname.nil?
         url = API_BASE_URL + "/2/groups?sign=true&group_urlname=" + @meetup_id
       else
-        url = API_BASE_URL + "/ew/communities?&sign=true&urlname=#{@meetup_id}&community_urlname=#{@community_urlname}"
+        url = API_BASE_URL + "/ew/communities?&sign=true&urlname=cfabrigade&community_urlname=#{@community_urlname}"
       end
 
       meetup_response = Net::HTTP.get(URI(url + API_KEY))
@@ -43,7 +43,7 @@ class Meetup
 
   def get_events
     if @community_urlname
-      url = API_BASE_URL + "/ew/events?&sign=true&urlname=#{@meetup_id}&community_urlname=#{@community_urlname}"
+      url = API_BASE_URL + "/ew/events?&sign=true&urlname=cfabrigade&community_urlname=#{@community_urlname}"
     else
       url = API_BASE_URL + "/2/events?sign=true&group_urlname=" + @meetup_id
     end

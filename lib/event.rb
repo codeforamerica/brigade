@@ -20,6 +20,9 @@ class Event
   end
 
   def get_event_time
-    @event_data['time']
+    if @event_data['time']
+      formatted_time = Time.at(@event_data['time'] / 1000)
+      formatted_time.strftime("%b %e %l:%M%p")
+    end
   end
 end

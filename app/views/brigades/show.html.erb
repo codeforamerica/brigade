@@ -10,29 +10,35 @@
     <!-- main -->
     <div id="leftcolumn" class="span8">
 
-      <h2><%= link_to @meetup['name'], @meetup['link'] %></h2>
-      <h3>Description:</h3>
-      <div class="brigade-description"><%= raw @meetup['description'] %></div>
+      <% if @meetup %>
+        <h2><%= link_to @meetup['name'], @meetup['link'] %></h2>
 
-      <br />
-      <br />
-      <h3>Upcoming Events:</h3>
-      <table class="all-cities">
-        <thead>
-          <th>Event</th>
-          <th>Location</th>
-          <th>Time</th>
-        </thead>
-        <tbody>
-            <% @events.each do |event| %>
-              <tr style="border-top: 1px solid #dedbd7;">
-                <td><%= link_to event.get_name, event.get_event_url %></td>
-                <td><%= event.get_venue_name %></td>
-                <td><%= event.get_event_time %></td>
-              </tr>
-            <% end %>
-        </tbody>
-      </table>
+        <%# meetup community groups don't have descriptions %>
+        <% if @meetup['description'] %>
+          <h3>Description:</h3>
+          <div class="brigade-description"><%= raw @meetup['description'] %></div>
+        <% end %>
+
+        <br />
+        <br />
+        <h3>Upcoming Events:</h3>
+        <table class="all-cities">
+          <thead>
+            <th>Event</th>
+            <th>Location</th>
+            <th>Date</th>
+          </thead>
+          <tbody>
+              <% @events.each do |event| %>
+                <tr style="border-top: 1px solid #dedbd7;">
+                  <td><%= link_to event.get_name, event.get_event_url %></td>
+                  <td><%= event.get_venue_name %></td>
+                  <td><%= event.get_event_time %></td>
+                </tr>
+              <% end %>
+          </tbody>
+        </table>
+      <% end %>
 
       <br />
       <h3>Deployed Applications:</h3>
