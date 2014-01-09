@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130919004547) do
+ActiveRecord::Schema.define(:version => 20131104040128) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130919004547) do
     t.integer  "location_id"
     t.string   "meetup_url"
     t.text     "meetup_json_data"
+    t.string   "fellowship"
   end
 
   add_index "brigades", ["name"], :name => "unique_brigade_name", :unique => true
