@@ -19,5 +19,7 @@ namespace :meetup do
         brigade.save!
       end
     end
+
+    puts "updated brigade meetup data!"
   end
 end

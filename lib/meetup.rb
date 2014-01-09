@@ -26,31 +26,29 @@ class Meetup
   end
 
   def get_description
-    if @meetup_description == nil
-      if @community_urlname.nil?
-        url = API_BASE_URL + "/2/groups?sign=true&group_urlname=" + @meetup_id
-      else
-        url = API_BASE_URL + "/ew/communities?&sign=true&urlname=cfabrigade&community_urlname=#{@community_urlname}"
-      end
-
-      meetup_response = Net::HTTP.get(URI(url + API_KEY))
-      meetup_parsed = JSON.parse(meetup_response)["results"]
-      @meetup_description =  meetup_parsed[0]
+    if @community_urlname.nil?
+      url = API_BASE_URL + "/2/groups?sign=true&group_urlname=" + @meetup_id
+    else
+      url = API_BASE_URL + "/ew/communities?&sign=true&urlname=cfabrigade&community_urlname=#{@community_urlname}"
     end
 
-    return @meetup_description    
+    meetup_response = Net::HTTP.get(URI(url + API_KEY))
+    meetup_parsed = JSON.parse(meetup_response)["results"]
+    @meetup_description =  meetup_parsed[0]
+
+    @meetup_description    
   end
 
   def get_events
     if @community_urlname
-      url = API_BASE_URL + "/ew/events?&sign=true&urlname=cfabrigade&community_urlname=#{@community_urlname}"
+      url = API_BASE_URL + "/ew/events?status=upcoming&sign=true&urlname=cfabrigade&community_urlname=#{@community_urlname}"
     else
-      url = API_BASE_URL + "/2/events?sign=true&group_urlname=" + @meetup_id
+      url = API_BASE_URL + "/2/events?status=upcoming&sign=true&group_urlname=" + @meetup_id
     end
 
     events_response = Net::HTTP.get(URI(url + API_KEY))
     events_parsed = JSON.parse(events_response)["results"]
 
-    @events = events_parsed unless events_parsed.length == 0
+    @events = events_parsed.to_a unless events_parsed.length == 0
   end
 end

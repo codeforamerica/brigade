@@ -36,15 +36,19 @@ class BrigadesController < ApplicationController
 
     @brigade_base = Brigade.find(params[:id], :include => :users)
     @brigade = BrigadeDecorator.new(@brigade_base)
-    @events = []
 
     unless @brigade.meetup_json_data.nil?
       @meetup = JSON.parse(@brigade.meetup_json_data)
+      @events = []
 
-      @meetup['events'].each do |event|
-        current_event = Event.new(event)
-        @events << current_event
+      if @meetup['events']
+        @meetup['events'].each do |event|
+          current_event = Event.new(event)
+          @events << current_event
+        end
       end
+      
+      @upcoming_events = @events.first(5)
     end
 
     respond_to do |format|

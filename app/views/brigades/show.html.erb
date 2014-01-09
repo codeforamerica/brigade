@@ -11,7 +11,7 @@
     <div id="leftcolumn" class="span8">
 
       <% if @meetup %>
-        <h2><%= link_to @meetup['name'], @meetup['link'] %></h2>
+        <h2><%= link_to @meetup['name'], @meetup['link'] || @meetup['meetup_url'] %></h2>
 
         <%# meetup community groups don't have descriptions %>
         <% if @meetup['description'] %>
@@ -19,25 +19,28 @@
           <div class="brigade-description"><%= raw @meetup['description'] %></div>
         <% end %>
 
+        <div class="clear"></div>
         <br />
-        <br />
-        <h3>Upcoming Events:</h3>
-        <table class="all-cities">
-          <thead>
-            <th>Event</th>
-            <th>Location</th>
-            <th>Date</th>
-          </thead>
-          <tbody>
-              <% @events.each do |event| %>
-                <tr style="border-top: 1px solid #dedbd7;">
-                  <td><%= link_to event.get_name, event.get_event_url %></td>
-                  <td><%= event.get_venue_name %></td>
-                  <td><%= event.get_event_time %></td>
-                </tr>
-              <% end %>
-          </tbody>
-        </table>
+
+        <% unless @upcoming_events.empty? %>
+          <h3>Upcoming Events:</h3>
+          <table class="all-cities">
+            <thead>
+              <th>Event</th>
+              <th>Location</th>
+              <th>Date</th>
+            </thead>
+            <tbody>
+                <% @upcoming_events.each do |event| %>
+                  <tr style="border-top: 1px solid #dedbd7;">
+                    <td><%= link_to event.get_name, event.get_event_url %></td>
+                    <td><%= event.get_venue_name %></td>
+                    <td><%= event.get_event_time %></td>
+                  </tr>
+                <% end %>
+            </tbody>
+          </table>
+        <% end %>
       <% end %>
 
       <br />
@@ -75,4 +78,3 @@
     </div>
   </div>
 </div>
-

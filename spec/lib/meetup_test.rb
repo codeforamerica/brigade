@@ -17,7 +17,7 @@ describe "meetup api class" do
   describe 'gets meetup description' do
     it 'return valid meetup_description' do
       m.get_description.should_not be_nil
-      m.get_description['group']['urlname'].should eq(m.meetup_id)
+      m.get_description['urlname'].should eq(m.meetup_id)
     end
 
     it 'returns nil for invalid meetup_id' do
@@ -69,6 +69,8 @@ describe "meetup api class" do
         n.get_events.should be_nil
       end
 
+      # returns nil, no UPCOMING events for the Open-San-Diego group
+      # bad test, but no groups have any events :(
       it 'returns valid events' do
         c.get_events.should_not be_nil
         c.get_events.length.should_not eq(0)

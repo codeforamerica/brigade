@@ -1,5 +1,3 @@
-require 'event'
-
 class Brigade < ActiveRecord::Base
   has_many :deployed_applications
   has_many :applications, through: :deployed_applications
