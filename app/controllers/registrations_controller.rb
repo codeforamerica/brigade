@@ -53,7 +53,10 @@ class RegistrationsController < Devise::RegistrationsController
       KM.identify(@user.email)
 
       if params[:brigade_id].present?
-        @user.brigades << Brigade.find(params[:brigade_id])
+        brigade = Brigade.find_by_id(params[:brigade_id])
+        if brigade.present?
+          @user.brigades << brigade
+          @user.location = brigade.location
         @user.save
       end
 
