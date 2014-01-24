@@ -57,6 +57,7 @@ class RegistrationsController < Devise::RegistrationsController
         if brigade.present?
           @user.brigades << brigade
           @user.location = brigade.location
+        end
         @user.save
       end
 
