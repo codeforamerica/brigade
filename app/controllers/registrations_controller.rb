@@ -1,6 +1,7 @@
 require 'code-for-america/github_omniauth_parser'
 
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_filter :verify_authenticity_token
 
   def new
     build_user
