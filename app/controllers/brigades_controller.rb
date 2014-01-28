@@ -24,7 +24,13 @@ class BrigadesController < ApplicationController
 
   def index
     @brigades = Brigade.all(:order => 'name')
-    respond_with(@brigades)
+    respond_to do |format|
+      format.html
+      format.json {
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        render json: @brigades
+      }
+    end
   end
 
   def show
