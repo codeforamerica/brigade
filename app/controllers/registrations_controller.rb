@@ -43,8 +43,8 @@ class RegistrationsController < Devise::RegistrationsController
       else
         session["user_return_to"] = "/welcome"
       end
-      if @new_site
-        session.delete("user_return_to")
+      if params[:new_site].present?
+        session["user_return_to"] = request.referer
       end
     end
     
