@@ -44,7 +44,7 @@ class RegistrationsController < Devise::RegistrationsController
         session["user_return_to"] = "/welcome"
       end
       if(@new_site == true)
-        session["user_return_to"] = "http://codeforamerica.org/brigade"
+        session["user_return_to"] = false
       end
     end
     
