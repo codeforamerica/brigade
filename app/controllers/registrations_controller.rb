@@ -43,8 +43,8 @@ class RegistrationsController < Devise::RegistrationsController
       else
         session["user_return_to"] = "/welcome"
       end
-      if(@new_site == true)
-        session["user_return_to"] = false
+      if @new_site
+        session.delete("user_return_to")
       end
     end
     
