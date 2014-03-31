@@ -43,9 +43,6 @@ class RegistrationsController < Devise::RegistrationsController
       else
         session["user_return_to"] = "/welcome"
       end
-      if params[:new_site].present?
-        session["user_return_to"] = request.referer
-      end
     end
     
     
