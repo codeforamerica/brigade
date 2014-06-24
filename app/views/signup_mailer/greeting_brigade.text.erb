@@ -1,11 +1,18 @@
+Welcome new Brigade member!
+
 Thanks for signing up for <%= @brigade.name %>.
 
 You should join <%= @brigade.name %>’s Meetup and check out their upcoming events:
 
-<%= @brigade.meetup_url %>
-<%= @brigade.group_url %>
+  <% if @brigade.meetup_url.present? %>
+    <%= auto_link @brigade.meetup_url %>
+  <% end %>
+  <% if @brigade.group_url.present? %>
+    <%= auto_link @brigade.group_url %>
+  <% end %>
 
 Thanks again and see you soon.
 
+Brielle Plump - Communities Coordinator
+brielle@codeforamerica.org
 
-Brigade Support Team
