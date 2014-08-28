@@ -5,6 +5,10 @@ The Code for America Brigade website is the platform for the Brigade community t
 
 [travis]: http://travis-ci.org/codeforamerica/brigade
 
+## Deprecation Notice
+This version of the Brigade is being replaced and will no longer be
+maintained. Please see [this repository](https://github.com/codeforamerica/brigade-alpha) for the new version of the site.
+
 ## Dependency Status
 [![Dependency Status](https://gemnasium.com/codeforamerica/brigade.png?travis)][gemnasium]
 
