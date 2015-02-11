@@ -19,4 +19,9 @@ class Brigade < ActiveRecord::Base
   def as_json(options={})
     super(include: [:location])
   end
+
+  def remove_img_tags
+    self.delete!(/^(<img.*?)>/)
+  end
+
 end

@@ -1,7 +1,7 @@
 
   <%= simple_form_for @user, as: "user", url: registration_path("user"), html:{class:'form-inline'} do |form| %>
     <input type="hidden" name="source" value="<%= @source %>" />
-    <div class="row signup">
+    <div class="row">
 
       <% if @source == "brigade" %>
         <div class="span3 offset2 signup-text">

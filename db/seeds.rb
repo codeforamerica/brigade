@@ -8,12 +8,13 @@ app_data.each do |app|
 end
 
 # Test and Dev Data
-[ 'Titans Brigade', 'Code For America Brigade', 'Thoughbot Brigade'].each { |brigade_name| Brigade.create!(name: brigade_name, point_of_contact_address: "testman@example.com") }
+[ 'Titans Brigade', 'Code For America Brigade', 'Thoughbot Brigade', 'Beta NYC'].each do |brigade_name| 
+  Brigade.create!(name: brigade_name, point_of_contact_address: "testman@example.com")
+end
 
 [ 'Norfolk, VA', 'San Fransisco, CA', 'Boston, MA' ].each { |location_name| Location.create!(name: location_name) }
 
 Application.all.each do |app|
-
   Brigade.all.each do |brigade|
     Location.all.each do |location|
       DeployedApplication.create!(application_id: app.id, brigade_id: brigade.id, location_id: location.id)
