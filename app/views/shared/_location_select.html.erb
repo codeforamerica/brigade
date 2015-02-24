@@ -1,1 +1,0 @@
-<%= f.association :location, collection: ([['Add Location', 'Add Location']] + Location.all.map { |location| [location.name, location.id] }.sort), input_html: { class: 'location-selector' } %>
