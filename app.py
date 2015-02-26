@@ -27,5 +27,15 @@ def index():
     brigades = json.dumps(brigades)
     return render_template("index.html", brigades=brigades)
 
+
+@app.route('/<brigadeid>/')
+def brigade(brigadeid):
+    # Get this Brigade's info
+    got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
+    brigade = got.json()
+
+    return render_template("brigade.html", brigade=brigade)
+
+
 if __name__ == '__main__':
     app.run(debug=True)

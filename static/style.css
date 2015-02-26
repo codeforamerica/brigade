@@ -27,3 +27,7 @@ body {
   overflow: auto;
   height: 691px;
 }
+
+h2 {
+  font-weight: bold;
+}

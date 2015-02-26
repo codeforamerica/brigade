@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <section>
+
+    <div class="slab-dark-blue">
+      <div class="layout-semibreve">
+        <h1>{{brigade.name}}</h1>
+        <p><a href="{{brigade.website}}">{{brigade.website}}</a> :: {{brigade.city}}</p>
+
+        <a href="./projects" class="button">Projects</a>
+        <!-- <a href="./people" class="button">People</a> -->
+        <a href="./events" class="button">Events</a>
+        <a href="./stories" class="button">Stories</a>
+      </div>
+    </div>
+
+
+    <div class="slab-white">
+      <div class='layout-semibreve'>
+        <!-- <div class="layout-major-invert"> -->
+
+          {% if brigade.current_projects %}
+            <h2 name="projects">Current Projects</h2>
+            {% for project in brigade.current_projects %}
+              
+              <h3>{{project.name}}</h3>
+              {% if project.link_url %}
+                <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
+              {% endif %}
+
+              {% if project.code_url %}
+                <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
+              {% endif %}
+
+              <p>{{project.description}}</p>
+            {% endfor %}
+            <a href="./projects" class="button">More Projects</a>
+          {% endif %}
+
+        <!-- </div> -->
+
+      </div>
+    </div>
+
+    <div class="slab-red">
+      <div class="layout-semibreve">
+
+        <div class="layout-minim">
+            {% if brigade.current_events %}
+
+              <h2>Current Events</h2>
+                <ul class="list-no-bullets list-icons">
+                  {% for event in brigade.current_events %}
+                    <li class="icon-calendar">
+                      <a href="{{event.event_url}}">{{event.name}}</a>
+                      {% if brigade.location %}
+                        <p>{{event.location}}</p>
+                      {% endif %}
+                      <p>{{event.start_time | timesince}}</p>
+                    </li>
+                  {% endfor %}
+                </ul>
+
+                <a href="./events" class="button">More Events</a>
+            {% endif %}
+          </div>
+
+        <div class="layout-minim">
+          {% if brigade.current_stories %}
+            <h2>Current Stories</h2>
+            <ul class="list-no-bullets list-icons">
+              {% for story in brigade.current_stories %}
+                <li class="icon-bullhorn">
+                  <a href="{{story.link}}">{{story.title}}</a>
+                  <p><br/></p>
+                </li>
+              {% endfor %}
+              <a href="./stories" class="button">More Stories</a>
+            </ul>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+
+    <div class="slab-dark-blue">
+      <div class="layout-semibreve">
+      </div>
+    </div>
+
+    <!-- <div class="layout-minor-invert">
+          <h2>People</h2>
+          <h3>Captain</h3>
+          <ul>
+            <li>Persons Name</li>
+          </ul>
+          <h3>Core Team</h3>
+          <ul>
+            <li>Community Organizer</li>
+            <li>Story Teller</li>
+            <li>Delivery Lead</li>
+          </ul>
+        </div> -->
+
+  </section>
+{% endblock %}
