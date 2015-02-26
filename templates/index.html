@@ -44,6 +44,11 @@
   map.setView(latlon, zoom);
   map.featureLayer.setGeoJSON({{ brigades | safe }});
 
+  map.featureLayer.on('click', function(e) {
+    var brigadeId = e.layer.feature.properties.name.replace(/\s+/g, '-');
+    window.open(brigadeId, "_self");
+  });
+
 
   // This uses the HTML5 geolocation API, which is available on
   // most mobile browsers and modern browsers, but not in Internet Explorer
@@ -69,7 +74,7 @@
     var against = turf.featurecollection(brigade_points);
     var nearest = turf.nearest(point,against);
     var brigadeId = nearest.properties.name.replace(/\s+/g, '-');
-    window.location.replace(brigadeId);
+    window.open(brigadeId, "_self");
   });
 
   // If the user chooses not to allow their location
