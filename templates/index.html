@@ -54,6 +54,7 @@
       geolocate.innerHTML = 'Geolocation is not available';
   } else {
       geolocate.onclick = function (e) {
+          $("#geolocate").addClass("button-progress").text("Finding your local Brigade");
           e.preventDefault();
           e.stopPropagation();
           map.locate();

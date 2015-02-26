@@ -20,7 +20,7 @@ body {
   background-color:rgba(204,39,62,0.9);
   opacity: 0.85;
   position:absolute;
-  top:94px;
+  top:90px;
   left:0;
   width:30%;
   padding: 25px;
@@ -30,4 +30,8 @@ body {
 
 h2 {
   font-weight: bold;
+}
+
+#current-projects {
+  padding-bottom: 25px;
 }

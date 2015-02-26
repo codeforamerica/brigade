@@ -16,8 +16,16 @@ def friendly_time(dt, past_="ago",
     """
 
     now = datetime.utcnow()
-    dt = dt[:19]
-    dt = datetime.strptime(dt, "%Y-%m-%d %H:%M:%S")
+    try:
+        trimmed_time = dt[:19]
+        dt = datetime.strptime(trimmed_time, "%Y-%m-%d %H:%M:%S")
+    except:
+        pass
+    try:
+        # Thu, 26 Feb 2015 03:45:21 GMT
+        dt = datetime.strptime(dt, "%a, %d %b %Y %H:%M:%S %Z")
+    except:
+        pass
     if now > dt:
         diff = now - dt
         dt_is_past = True

@@ -9,17 +9,23 @@
         <h1>{{brigade.name}}</h1>
         <p><a href="{{brigade.website}}">{{brigade.website}}</a> :: {{brigade.city}}</p>
 
-        <a href="./projects" class="button">Projects</a>
+        {% if brigade.current_projects %}
+          <a href="./projects" class="button">Projects</a>
+        {% endif %}
         <!-- <a href="./people" class="button">People</a> -->
-        <a href="./events" class="button">Events</a>
-        <a href="./stories" class="button">Stories</a>
+        {% if brigade.current_events %}
+          <a href=".#events" class="button">Events</a>
+        {% endif %}
+        {% if brigade.current_stories %}
+          <a href=".#stories" class="button">Stories</a>
+        {% endif %}
       </div>
     </div>
 
 
-    <div class="slab-white">
+    <div id="current-projects" class="slab-white">
       <div class='layout-semibreve'>
-        <!-- <div class="layout-major-invert"> -->
+        <div class="layout-major-invert">
 
           {% if brigade.current_projects %}
             <h2 name="projects">Current Projects</h2>
@@ -35,11 +41,18 @@
               {% endif %}
 
               <p>{{project.description}}</p>
+
+              <!-- {% for contributor in project.github_details.contributors %}
+                <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
+              {% endfor %} -->
+
+              <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+
             {% endfor %}
             <a href="./projects" class="button">More Projects</a>
           {% endif %}
 
-        <!-- </div> -->
+        </div>
 
       </div>
     </div>
@@ -51,25 +64,27 @@
             {% if brigade.current_events %}
 
               <h2>Current Events</h2>
-                <ul class="list-no-bullets list-icons">
-                  {% for event in brigade.current_events %}
-                    <li class="icon-calendar">
-                      <a href="{{event.event_url}}">{{event.name}}</a>
-                      {% if brigade.location %}
-                        <p>{{event.location}}</p>
-                      {% endif %}
-                      <p>{{event.start_time | timesince}}</p>
-                    </li>
-                  {% endfor %}
-                </ul>
+              <a name="events" />
+              <ul class="list-no-bullets list-icons">
+                {% for event in brigade.current_events %}
+                  <li class="icon-calendar">
+                    <a href="{{event.event_url}}">{{event.name}}</a>
+                    {% if brigade.location %}
+                      <p>{{event.location}}</p>
+                    {% endif %}
+                    <p>{{event.start_time | timesince}}</p>
+                  </li>
+                {% endfor %}
+              </ul>
 
-                <a href="./events" class="button">More Events</a>
+              <a href="./events" class="button">More Events</a>
             {% endif %}
           </div>
 
         <div class="layout-minim">
           {% if brigade.current_stories %}
             <h2>Current Stories</h2>
+            <a name="stories" />
             <ul class="list-no-bullets list-icons">
               {% for story in brigade.current_stories %}
                 <li class="icon-bullhorn">
