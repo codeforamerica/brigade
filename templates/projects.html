@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <section>
+
+    <div class="slab-dark-blue">
+      <div class="layout-semibreve">
+
+        {% if brigade %}
+          <h1>{{brigade.name}}'s Projects</h1>
+
+          <p><a href="{{brigade.website}}">{{brigade.website}}</a> :: {{brigade.city}}</p>
+
+          {% if brigade.projects_list_url %}
+            <a href="./projects" class="button">Projects</a>
+          {% endif %}
+          <!-- <a href="./people" class="button">People</a> -->
+          {% if brigade.events_url %}
+            <a href=".#events" class="button">Events</a>
+          {% endif %}
+          {% if brigade.rss %}
+            <a href=".#stories" class="button">Stories</a>
+          {% endif %}
+
+        {% else %}
+          <h1>All Brigade Projects</h1>
+        {% endif %}
+
+      </div>
+    </div>
+
+
+    <div id="projects" class="slab-white">
+      <div class='layout-semibreve'>
+
+        {% for project in projects %}
+            <h3>{{project.name}}</h3>
+            {% if project.link_url %}
+              <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
+            {% endif %}
+
+            {% if project.code_url %}
+              <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
+            {% endif %}
+
+            <p>{{project.description}}</p>
+
+            <!-- {% for contributor in project.github_details.contributors %}
+              <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
+            {% endfor %} -->
+
+            <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+
+          {% endfor %}
+
+          <a href="{{next}}" class="button-inactive">More Projects</a>
+
+      </div>
+    </div>
+
+  </section>
+{% endblock %}

@@ -77,6 +77,41 @@ def index():
     return render_template("index.html", brigades=brigades)
 
 
+@app.route("/projects")
+@app.route("/<brigadeid>/projects")
+def projects(brigadeid=None):
+    ''' Display a list of projects '''
+    projects = []
+    brigade = None
+    next = None
+
+    # def get_projects(projects, url):
+    #     got = get(url)
+    #     new_projects = got.json()["objects"]
+    #     projects = projects + new_projects
+    #     if "next" in got.json()["pages"]:
+    #         projects = get_projects(projects, got.json()["pages"]["next"])
+    #     return projects
+
+    if brigadeid:
+        url = "http://codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
+        got = get(url)
+        # projects = get_projects(projects, url)
+        projects = got.json()["objects"]
+        if "next" in got.json()["pages"]:
+            next = got.json()["pages"]["next"]
+        brigade = projects[0]["organization"]
+
+    else:
+        url = "http://codeforamerica.org/api/projects?organization_type=Brigade"
+        got = get(url)
+        projects = got.json()["objects"]
+        if "next" in got.json()["pages"]:
+            next = got.json()["pages"]["next"]
+
+    return render_template("projects.html", projects=projects, brigade=brigade, next=next)
+
+
 @app.route('/<brigadeid>/')
 def brigade(brigadeid):
     # Get this Brigade's info
