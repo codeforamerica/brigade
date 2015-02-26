@@ -1,19 +1,19 @@
 body {
-	color: #5a5a5a;
+  color: #5a5a5a;
 }
 
 #map {
-	width: 100%;
-	height: 691px;
+  width: 100%;
+  height: 691px;
 }
 
 .global-header {
-	margin-bottom : 0px;
+  margin-bottom : 0px;
 }
 
 #map .leaflet-marker-icon
 {
-    cursor: pointer !important;
+  cursor: pointer !important;
 }
 
 #overlay{

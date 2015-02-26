@@ -5,13 +5,17 @@
 
   <div id="overlay" class="slab-red">
 
-    <div id="brigade-info">
+    <div>
 
-      <p id="program-info">The Code for America Brigade program is an international network of people committed to using their voices and hands, in collaboration with local governments, to make their cities better.</p>
+      <!-- <h1>The Brigade</h1> --> 
+      <p>The Code for America Brigade program is an international network of people committed to using their voices and hands, in collaboration with local governments, to make their cities better.</p>
 
     </div>
 
-    <p>Find your local Brigade on the map to see what kind of work they do and join them.</p>
+    <center>
+      <button id='geolocate'><strong>Find your local Brigade</strong></button>
+    </center>
+
 
     <p>Want to start a new Brigade? Check out the <a href="/organize">Organize</a> page.</p>
 
@@ -39,5 +43,46 @@
 
   map.setView(latlon, zoom);
   map.featureLayer.setGeoJSON({{ brigades | safe }});
+
+
+  // This uses the HTML5 geolocation API, which is available on
+  // most mobile browsers and modern browsers, but not in Internet Explorer
+  //
+  // See this chart of compatibility for details:
+  // http://caniuse.com/#feat=geolocation
+  if (!navigator.geolocation) {
+      geolocate.innerHTML = 'Geolocation is not available';
+  } else {
+      geolocate.onclick = function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          map.locate();
+      };
+  }
+
+  // Once we've got a position, zoom and center the map
+  // on it, and add a single marker.
+  map.on('locationfound', function(e) {
+    var my_lnglat = [e.latlng.lng, e.latlng.lat]
+    var point = turf.point(my_lnglat);
+    var against = turf.featurecollection(brigade_points);
+    var nearest = turf.nearest(point,against);
+    var brigadeId = nearest.properties.name.replace(/\s+/g, '-');
+    window.location.replace(brigadeId);
+  });
+
+  // If the user chooses not to allow their location
+  // to be shared, display an error message.
+  map.on('locationerror', function() {
+      geolocate.innerHTML = 'Position could not be found';
+  });
+
+  var brigades = {{ brigades | safe }};
+  var brigade_points = []
+  $.each(brigades, function(i,brigade){
+    brigade_point = turf.point(brigade.geometry.coordinates, brigade.properties);
+    brigade_points.push(brigade_point);
+  });
+
 </script>
 {% endblock %}

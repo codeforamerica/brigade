@@ -6,8 +6,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     # Get location of all civic tech orgs
-    r = get("https://www.codeforamerica.org/api/organizations.geojson")
-    geojson = r.json()
+    got = get("https://www.codeforamerica.org/api/organizations.geojson")
+    geojson = got.json()
     brigades = []
 
     # Prepare the geojson for a map
