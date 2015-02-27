@@ -19,6 +19,7 @@
         {% if brigade.current_stories %}
           <a href=".#stories" class="button">Stories</a>
         {% endif %}
+          <a href=".#issues" class="button">Open Issues</a>
       </div>
     </div>
 
@@ -65,7 +66,7 @@
             {% if brigade.current_events %}
 
               <h2>Current Events</h2>
-              <a name="events" />
+              <a id="events"></a>
               <ul class="list-no-bullets list-icons">
                 {% for event in brigade.current_events %}
                   <li class="icon-calendar">
@@ -85,7 +86,7 @@
         <div class="layout-minim">
           {% if brigade.current_stories %}
             <h2>Current Stories</h2>
-            <a name="stories" />
+            <a id="stories"></a>
             <ul class="list-no-bullets list-icons">
               {% for story in brigade.current_stories %}
                 <li class="icon-bullhorn">
@@ -102,6 +103,7 @@
     </div>
 
     <div class="layout-breve">
+      <a id="issues"></a>
       <h2>Open Github Issues</h2>
       <iframe src="https://www.codeforamerica.org/geeks/civicissues/widget?organization_name={{brigadeid}}&number=3" width="100%" height="600px" frameBorder="0"></iframe>
     </div>
