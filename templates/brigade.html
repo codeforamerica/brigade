@@ -101,6 +101,11 @@
       </div>
     </div>
 
+    <div class="layout-breve">
+      <h2>Open Github Issues</h2>
+      <iframe src="https://www.codeforamerica.org/geeks/civicissues/widget?organization_name={{brigadeid}}&number=3" width="100%" height="600px" frameBorder="0"></iframe>
+    </div>
+
     <div class="slab-dark-blue">
       <div class="layout-semibreve">
       </div>
@@ -121,4 +126,22 @@
         </div> -->
 
   </section>
+{% endblock %}
+
+{% block js %}
+<script>
+  $(document).ready(function(){
+    $('input[name=REFERRAL]').val("{{brigadeid}}");
+
+    // Resize iframe to fit content
+    function resize(){
+      var widget_iframe = document.getElementById('widget');
+      issues_document = widget_iframe.contentWindow.document;
+      if(issues_document){
+        widget_iframe.height = issues_document.body.scrollHeight + "px";
+      }
+    }
+  });
+
+</script>
 {% endblock %}
