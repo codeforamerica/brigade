@@ -17,3 +17,37 @@ The [CfAPI](http://github.com/codeforamerica/cfapi) was built as reaction to how
 V2 was powered by the CfAPI and worked great, yet was built quickly with PHP and Javascript. It was kind of a cobweb of dependent parts.
 
 V3 is meant to simplify the code and make it easier for Brigade members to get involved.
+
+## Installation
+
+The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) and Python with a little bit of Javascript. The `app.py` file describes the routes. The `templates` have the html.
+
+* Set up a [virtualenv](https://pypi.python.org/pypi/virtualenv)
+
+```
+pip install virtualenv
+virtualenv .venv
+source .venv/bin/activate
+```
+
+* Install the required libraries
+
+```
+pip install -r requirements.txt
+```
+
+* To run locally
+
+```
+python app.py
+```
+
+Contacts
+--------
+
+* Andrew Hyder ([ondrae](https://github.com/ondrae))
+
+Copyright
+---------
+
+Copyright (c) 2015 Code for America.
