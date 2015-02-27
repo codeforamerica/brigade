@@ -22,12 +22,20 @@
     <p>If you are a member of government, join our <a href="https://codeforamerica.wufoo.com/forms/welcome-to-the-code-for-america-government-network/">Peer Network</a>.</p>
 
   </div>
+
+  <div>{{email_signup | safe}}</div>
+
+  <div id="sponsors" class="layout-semibreve">
+    <h4>Funders</h4>
+    <p><a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/rally.png') }}" height="100px"></a></p>
+  </div>
+
 {% endblock %}
 
 {% block js %}
 <script>
-  $('#map').css("height", $(window).height() - 91);
-  $('#overlay').css("height", ($(window).height() - 141));
+  $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
+  $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
   
   // Provide your access token
   L.mapbox.accessToken = 'pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiSTZlTTZTcyJ9.3aSlHLNzvsTwK-CYfZsG_Q';

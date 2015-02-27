@@ -74,7 +74,17 @@ def index():
             brigades.append(org)
 
     brigades = json.dumps(brigades)
-    return render_template("index.html", brigades=brigades)
+
+    # Get footer html
+    r = get("http://www.codeforamerica.org/fragments/global-footer.html")
+    footer = r.content
+
+    # Get email sign up form
+    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
+    email_signup = r.content
+
+    return render_template("index.html", brigades=brigades, footer=footer,
+        email_signup=email_signup )
 
 
 @app.route("/projects")
@@ -114,11 +124,17 @@ def projects(brigadeid=None):
 
 @app.route('/<brigadeid>/')
 def brigade(brigadeid):
+    # Get email sign up form
+    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
+    email_signup = r.content
+
     # Get this Brigade's info
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
     brigade = got.json()
 
-    return render_template("brigade.html", brigade=brigade)
+
+
+    return render_template("brigade.html", brigade=brigade, email_signup=email_signup, brigadeid=brigadeid)
 
 
 if __name__ == '__main__':
