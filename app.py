@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 from datetime import datetime
 
+# http://flask.pocoo.org/snippets/33/
 @app.template_filter("timesince")
 def friendly_time(dt, past_="ago", 
     future_="from now", 
