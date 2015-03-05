@@ -11,6 +11,10 @@ body {
   margin-bottom : 0px;
 }
 
+#logo {
+  margin-top: 25px;
+}
+
 #map .leaflet-marker-icon
 {
   cursor: pointer !important;
