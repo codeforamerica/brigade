@@ -21,8 +21,7 @@ body {
 }
 
 #overlay{
-  background-color:rgba(204,39,62,0.9);
-  opacity: 0.85;
+  background-color:rgba(204,39,62,0.85);
   position:absolute;
   top:90px;
   left:0;
