@@ -132,8 +132,11 @@
 
 {% block js %}
 <script>
+
   $(document).ready(function(){
-    $('input[name=REFERRAL]').val("{{brigadeid}}");
+
+    $('input[name="group[10273][8192]"]').prop('checked',true);
+    $('input[name=REFERRAL]').val("cfapi_id:{{brigadeid}}");
 
     // Resize iframe to fit content
     function resize(){
