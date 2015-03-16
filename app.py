@@ -1,6 +1,6 @@
 import json
 from requests import get
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 from datetime import datetime
@@ -81,6 +81,13 @@ def index():
     footer = r.content
 
     return render_template("index.html", brigades=brigades, footer=footer )
+
+
+@app.route("/signup/", methods=["POST"])
+def signup():
+    print request.form.get("name")
+    print request.form.get("email")
+    return "THANKS"
 
 
 @app.route("/projects")
