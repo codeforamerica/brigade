@@ -26,6 +26,7 @@ body {
   top:90px;
   left:0;
   width:30%;
+  min-width: 333px;
   padding: 0 25px;
   overflow: auto;
   height: 691px;
@@ -42,4 +43,15 @@ h2 {
 /* SIGN UP FORM*/
 #signup {
   margin: 30px 0;
+}
+
+#modal {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
 }

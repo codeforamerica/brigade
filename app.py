@@ -1,5 +1,5 @@
 import json
-from requests import get
+from requests import get, post
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
@@ -85,9 +85,20 @@ def index():
 
 @app.route("/signup/", methods=["POST"])
 def signup():
-    print request.form.get("name")
-    print request.form.get("email")
-    return "THANKS"
+    # POST to mailchimp
+    data = {
+        'FNAME' : request.form.get("fname"),
+        'LNAME' : request.form.get("lname"),
+        'EMAIL' : request.form.get("email"),
+        'group[10273][8192]' : '8192', # I attend Brigade events
+        'REFERRAL' : '/brigade'
+        }
+
+    response = post("https://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5&c=", data=data)
+
+    # POST to PeopleDB
+
+    return response.content
 
 
 @app.route("/projects")

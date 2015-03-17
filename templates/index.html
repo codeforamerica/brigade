@@ -11,22 +11,31 @@
 
     <button id='geolocate'>Find your local Brigade</button>
 
-    <form id="signup" action="/signup/" method="POST">
+    <form id="signup">
 
       <h4><i class="icon-envelop"></i>Join our email list.</h4>
 
       <ul class="list-form">
         <li class="form-field-group">
           <div class="form-field">
-            <label for="name">Your Name</label>
-            <input type="text" name="name" id="name" />
+            <label for="fname">First Name</label>
+            <input type="text" name="fname" id="fname" />
           </div>
+          <div class="form-field">
+            <label for="fname">Last Name</label>
+            <input type="text" name="lname" id="lname" />
+          </div>
+        </li>
+        <li class="form-field-group">
           <div class="form-field">
             <label for="name">Your Email</label>
             <input type="email" name="email" id="email" />
-          </div>
+            </div>
+            <div class="form-field">
+              <button type="submit" value="Submit" id="submit">Join</button>
+            </div>
         </li>
-        <button type="submit" value="Submit">Join</button>
+
       </ul>
     </form>
 
@@ -35,6 +44,9 @@
   <div id="sponsors" class="layout-semibreve">
     <h4>Funders</h4>
     <p><a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/rally.png') }}" height="100px"></a></p>
+  </div>
+
+  <div id="modal">
   </div>
 
 
