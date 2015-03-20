@@ -39,14 +39,13 @@
       </ul>
     </form>
 
+    <div id="signup-response" class="icon-envelop"></div>
+
   </div>
 
   <div id="sponsors" class="layout-semibreve">
     <h4>Funders</h4>
     <p><a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/rally.png') }}" height="100px"></a></p>
-  </div>
-
-  <div id="modal">
   </div>
 
 
@@ -116,6 +115,21 @@
   $.each(brigades, function(i,brigade){
     brigade_point = turf.point(brigade.geometry.coordinates, brigade.properties);
     brigade_points.push(brigade_point);
+  });
+
+  // SIGN UP FORM
+  $("#signup").on( "submit", function( event ) {
+    event.preventDefault();
+    $.post("/signup/", $( this ).serialize(), function(response){
+      if (response.result == "error"){
+        $("#signup-response").addClass("alert-error");
+      } else {
+        $("#signup-response").addClass("alert-success");
+      }
+      $("#signup-response").html(response.msg);
+      $("#signup-response").show();
+      $("#signup").hide();
+    }, "json");
   });
 
 </script>
