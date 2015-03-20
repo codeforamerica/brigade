@@ -45,13 +45,7 @@ h2 {
   margin: 30px 0;
 }
 
-#modal {
-    position: fixed;
-    z-index:100;
-    top: 0px;
-    left: 0px;
-    height:100%;
-    width:100%;
-    background: #000;
-    display: none;
+#signup-response {
+  margin: 30px 0;
+  display: none;
 }
