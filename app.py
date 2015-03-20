@@ -85,20 +85,32 @@ def index():
 
 @app.route("/signup/", methods=["POST"])
 def signup():
+
     # POST to mailchimp
-    data = {
+    if "mailchimp_url" in request.form:
+        mailchimp_url = request.form.get("mailchimp_url")
+        mailchimp_data = {
+            'FNAME' : request.form.get("fname"),
+            'LNAME' : request.form.get("lname"),
+            'EMAIL' : request.form.get("email"),
+            'group[10273][8192]' : '8192', # I attend Brigade events
+            'REFERRAL' : '/brigade'
+            }
+
+        mailchimp_response = post(mailchimp_url, data=mailchimp_data)
+
+    # POST to PeopleDB
+    peopledb_data = {
         'FNAME' : request.form.get("fname"),
         'LNAME' : request.form.get("lname"),
         'EMAIL' : request.form.get("email"),
-        'group[10273][8192]' : '8192', # I attend Brigade events
-        'REFERRAL' : '/brigade'
+        'brigade_id' : request.form.get("brigade_id"),
+        'SECRETKEY' : "woot"
         }
 
-    response = post("https://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5&c=", data=data)
+    peopledb_response = post("https://people.codeforamerica.org/brigade/sign-up", data=peopledb_data)
 
-    # POST to PeopleDB
-
-    return response.content
+    return json.dumps(mailchimp_response.json())
 
 
 @app.route("/projects")
