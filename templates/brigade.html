@@ -23,7 +23,39 @@
       </div>
     </div>
 
-    <div>{{email_signup | safe}}</div>
+    <div class="slab-red">
+      <div class="layout-semibreve no-padding">
+
+        <form id="signup">
+          <h4><i class="icon-envelop"></i>Join our email list.</h4>
+
+          <div class="form-field-group">
+            <div class="form-field">
+              <label for="fname">First Name</label>
+              <input type="text" name="fname" />
+            </div>
+            <div class="form-field">
+              <label for="fname">Last Name</label>
+              <input type="text" name="lname" />
+            </div>
+            <div class="form-field">
+              <label for="name">Your Email</label>
+              <input type="email" name="email" />
+            </div>
+            <!-- KC TESTING LIST https://codeforamerica.us6.list-manage.com/subscribe/post-json?u=4502ac760d&amp;id=81aec8f541 -->
+            <input type="hidden" name="mailchimp_url" value="" />
+            <input type="hidden" name="brigade_id" value="{{brigadeid}}" />
+
+            <div class="form-field">
+              <button type="submit" value="Submit">Join</button>
+            </div>
+          </div>
+        </form>
+
+        <div id="signup-response" class="icon-envelop"></div>
+
+      </div>
+    </div>
 
     <div id="current-projects" class="slab-white">
       <div class='layout-semibreve'>
@@ -32,7 +64,7 @@
           {% if brigade.current_projects %}
             <h2 name="projects">Current Projects</h2>
             {% for project in brigade.current_projects %}
-              
+
               <h3>{{project.name}}</h3>
               {% if project.link_url %}
                 <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
@@ -135,9 +167,6 @@
 
   $(document).ready(function(){
 
-    $('input[name="group[10273][8192]"]').prop('checked',true);
-    $('input[name=REFERRAL]').val("cfapi_id:{{brigadeid}}");
-
     // Resize iframe to fit content
     function resize(){
       var widget_iframe = document.getElementById('widget');
@@ -146,7 +175,26 @@
         widget_iframe.height = issues_document.body.scrollHeight + "px";
       }
     }
+
+    // SIGN UP FORM
+    $("#signup").on( "submit", function( event ) {
+      event.preventDefault();
+      $.post("/signup/", $( this ).serialize(), function(response){
+        if (response.result == "error"){
+          $("#signup-response").addClass("alert-error");
+        } else {
+          $("#signup-response").addClass("alert-success");
+        }
+        $("#signup-response").html(response.msg);
+        $("#signup-response").show();
+        $("#signup").hide();
+      }, "json");
+    });
+
+
   });
+
+
 
 </script>
 {% endblock %}

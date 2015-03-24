@@ -164,17 +164,11 @@ def projects(brigadeid=None):
 
 @app.route('/<brigadeid>/')
 def brigade(brigadeid):
-    # Get email sign up form
-    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
-    email_signup = r.content
-
     # Get this Brigade's info
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
     brigade = got.json()
 
-
-
-    return render_template("brigade.html", brigade=brigade, email_signup=email_signup, brigadeid=brigadeid)
+    return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
 if __name__ == '__main__':
