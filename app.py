@@ -85,32 +85,46 @@ def index():
 
 @app.route("/signup/", methods=["POST"])
 def signup():
+    ''' Takes in signup requests from /brigade/signup/form
+        Sends the data to a requested mailchimp list, our mailchimp list, and the peopledb
+    '''
 
-    # POST to mailchimp
-    if "mailchimp_url" in request.form:
-        mailchimp_url = request.form.get("mailchimp_url")
-        mailchimp_data = {
-            'FNAME' : request.form.get("fname"),
-            'LNAME' : request.form.get("lname"),
-            'EMAIL' : request.form.get("email"),
-            'group[10273][8192]' : '8192', # I attend Brigade events
-            'REFERRAL' : '/brigade'
-            }
+    # Prep mailchimp data
+    mailchimp_data = {
+        'FNAME' : request.form.get("fname"),
+        'LNAME' : request.form.get("lname"),
+        'EMAIL' : request.form.get("email")
+        }
 
-        mailchimp_response = post(mailchimp_url, data=mailchimp_data)
+    # POST to Brigade's mailchimp
+    mailchimp_url = request.form.get("mailchimp_url", None)
+    if mailchimp_url:
+        brigade_mailchimp_response = post(mailchimp_url, data=mailchimp_data)
+
+    # POST to Code for America's mailchimp
+    mailchimp_data['group[10273][8192]'] = '8192' # I attend Brigade events
+
+    if request.form.get("brigade_id", None):
+        mailchimp_data['REFERRAL'] = '/brigade/' + request.form.get("brigade_id", None)
+    else:
+        mailchimp_data['REFERRAL'] = '/brigade'
+
+    cfa_mailchimp_url = "https://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
+    # cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
 
     # POST to PeopleDB
     peopledb_data = {
         'FNAME' : request.form.get("fname"),
         'LNAME' : request.form.get("lname"),
         'EMAIL' : request.form.get("email"),
-        'brigade_id' : request.form.get("brigade_id"),
-        'SECRETKEY' : "woot"
+        'brigade_id' : request.form.get("brigade_id", None),
+        'SECRET_KEY' : "woot"
         }
 
-    peopledb_response = post("https://people.codeforamerica.org/brigade/sign-up", data=peopledb_data)
+    # peopledb_response = post("https://people.codeforamerica.org/brigade/signup", data=peopledb_data)
 
-    return json.dumps(mailchimp_response.json())
+    # Choose a response to show
+    return json.dumps(brigade_mailchimp_response.json())
 
 
 @app.route("/projects")
