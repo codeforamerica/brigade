@@ -1,4 +1,5 @@
 import json
+import os
 from requests import get, post
 from flask import Flask, render_template, request
 app = Flask(__name__)
@@ -118,13 +119,16 @@ def signup():
         'LNAME' : request.form.get("lname"),
         'EMAIL' : request.form.get("email"),
         'brigade_id' : request.form.get("brigade_id", None),
-        'SECRET_KEY' : "woot"
+        'SECRET_KEY' : os.environ.get("SECRET_KEY")
         }
 
-    # peopledb_response = post("https://people.codeforamerica.org/brigade/signup", data=peopledb_data)
+    peopledb_response = post("http://localhost:5000/brigade/signup", data=peopledb_data)
 
-    # Choose a response to show
-    return json.dumps(brigade_mailchimp_response.json())
+    response = {
+        "status_code" : peopledb_response.status_code,
+        "msg" : peopledb_response.content
+    }
+    return json.dumps(response)
 
 
 @app.route("/projects")
