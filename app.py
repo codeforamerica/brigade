@@ -129,7 +129,7 @@ def signup():
         return brigade_mailchimp_response
 
     elif cfa_mailchimp_response:
-        return cfa_mailchimp_response
+        return cfa_mailchimp_response.content
 
     elif peopledb_response:
         response = {

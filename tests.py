@@ -15,6 +15,8 @@ class BrigadeTests(unittest.TestCase):
         pass
 
     def response_content(self, url, request):
+        if "list-manage.com/subscribe/post" in url.geturl():
+            return response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             return response(200, "Added to the peopledb")
 
@@ -24,7 +26,7 @@ class BrigadeTests(unittest.TestCase):
             "FNAME" : "FIRST NAME",
             "LNAME" : "LAST NAME",
             "EMAIL" : "EMAIL",
-            "mailchimp_url" : "FAKE MAILCHIMP URL",
+            "mailchimp_url" : None,
             "brigade_id" : "FAKE-BRIGADE-ID"
         }
 
@@ -38,13 +40,13 @@ class BrigadeTests(unittest.TestCase):
         with HTTMock(self.response_content):
             response = self.app.post('/signup/', data=signup)
             response = json.loads(response.data)
-            self.assertEqual(response['msg'], 'Added to the peopledb')
+            self.assertEqual(response['msg'], "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you.")
 
         # Test that our responses are being packaged up the way we expect
         with HTTMock(self.response_content):
             response = self.app.post('/signup/', data=signup)
             response = json.loads(response.data)
-            self.assertEqual(response['msg'], 'Added to the peopledb')
+            self.assertEqual(response['msg'], "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you.")
 
 if __name__ == '__main__':
     unittest.main()
