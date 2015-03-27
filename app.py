@@ -191,5 +191,6 @@ def brigade(brigadeid):
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
+
 if __name__ == '__main__':
     app.run(debug=True)
