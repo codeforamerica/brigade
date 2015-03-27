@@ -89,16 +89,16 @@ def signup():
     ''' Takes in signup requests from /brigade/signup/form
         Sends the data to a requested mailchimp list, our mailchimp list, and the peopledb
     '''
-
     # Prep mailchimp data
     mailchimp_data = {
-        'FNAME' : request.form.get("fname"),
-        'LNAME' : request.form.get("lname"),
+        'FNAME' : request.form.get("first_name"),
+        'LNAME' : request.form.get("last_name"),
         'EMAIL' : request.form.get("email")
         }
 
     # POST to Brigade's mailchimp
     mailchimp_url = request.form.get("mailchimp_url", None)
+    brigade_mailchimp_response = None
     if mailchimp_url:
         brigade_mailchimp_response = post(mailchimp_url, data=mailchimp_data)
 
@@ -111,24 +111,38 @@ def signup():
         mailchimp_data['REFERRAL'] = '/brigade'
 
     cfa_mailchimp_url = "https://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
-    # cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
+    cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
 
     # POST to PeopleDB
     peopledb_data = {
-        'FNAME' : request.form.get("fname"),
-        'LNAME' : request.form.get("lname"),
-        'EMAIL' : request.form.get("email"),
+        'first_name' : request.form.get("first_name"),
+        'last_name' : request.form.get("last_name"),
+        'email' : request.form.get("email"),
         'brigade_id' : request.form.get("brigade_id", None),
-        'SECRET_KEY' : os.environ.get("SECRET_KEY")
+        'SECRET_KEY' : os.environ.get("SECRET_KEY", "boop")
         }
 
-    peopledb_response = post("http://localhost:5000/brigade/signup", data=peopledb_data)
+    peopledb_response = post("https://people.codeforamerica.org/brigade/signup", data=peopledb_data)
 
-    response = {
-        "status_code" : peopledb_response.status_code,
-        "msg" : peopledb_response.content
-    }
-    return json.dumps(response)
+    # Choose a response to show
+    if brigade_mailchimp_response:
+        return brigade_mailchimp_response
+
+    elif cfa_mailchimp_response:
+        return cfa_mailchimp_response
+
+    elif peopledb_response:
+        response = {
+            "status_code" : peopledb_response.status_code,
+            "msg" : peopledb_response.content
+        }
+        return json.dumps(response)
+
+    else:
+        response = {
+            "status_code" : 500,
+            "msg" : "Something went wrong. You were not added to any lists."
+        }
 
 
 @app.route("/projects")
