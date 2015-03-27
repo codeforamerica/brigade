@@ -1,3 +1,5 @@
 language: python
 install: pip install -r requirements.txt
 script:  python tests.py
+notifications:
+  webhooks: http://project-monitor.codeforamerica.org/projects/cfa-project-monitor/status
