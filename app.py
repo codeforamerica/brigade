@@ -54,6 +54,8 @@ def friendly_time(dt, past_="ago",
 
     return default
 
+
+# ROUTES
 @app.route('/')
 def index():
     # Get location of all civic tech orgs
