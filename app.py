@@ -147,6 +147,26 @@ def signup():
         }
 
 
+@app.route("/about/")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/organize/")
+def organize():
+    return render_template("organize.html")
+
+
+@app.route("/tools/")
+def tools():
+    return render_template("tools.html")
+
+
+@app.route("/tools/template/")
+def template():
+    return render_template("template.html")
+
+
 @app.route("/projects")
 @app.route("/<brigadeid>/projects")
 def projects(brigadeid=None):
