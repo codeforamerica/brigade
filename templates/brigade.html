@@ -94,29 +94,28 @@
     <div class="slab-red">
       <div class="layout-semibreve">
 
+        {% if brigade.current_events %}
         <div class="layout-minim">
-            {% if brigade.current_events %}
+            <h2>Current Events</h2>
+            <a id="events"></a>
+            <ul class="list-no-bullets list-icons">
+              {% for event in brigade.current_events %}
+                <li class="icon-calendar">
+                  <a href="{{event.event_url}}">{{event.name}}</a>
+                  {% if brigade.location %}
+                    <p>{{event.location}}</p>
+                  {% endif %}
+                  <p>{{event.start_time | timesince}}</p>
+                </li>
+              {% endfor %}
+            </ul>
 
-              <h2>Current Events</h2>
-              <a id="events"></a>
-              <ul class="list-no-bullets list-icons">
-                {% for event in brigade.current_events %}
-                  <li class="icon-calendar">
-                    <a href="{{event.event_url}}">{{event.name}}</a>
-                    {% if brigade.location %}
-                      <p>{{event.location}}</p>
-                    {% endif %}
-                    <p>{{event.start_time | timesince}}</p>
-                  </li>
-                {% endfor %}
-              </ul>
+            <a href="{{brigade.events_url}}" class="button">More Events</a>
+        </div>
+        {% endif %}
 
-              <a href="{{brigade.events_url}}" class="button">More Events</a>
-            {% endif %}
-          </div>
-
+        {% if brigade.current_stories %}
         <div class="layout-minim">
-          {% if brigade.current_stories %}
             <h2>Current Stories</h2>
             <a id="stories"></a>
             <ul class="list-no-bullets list-icons">
@@ -128,9 +127,9 @@
               {% endfor %}
               <a href="{{brigade.rss}}" class="button">More Stories</a>
             </ul>
-          {% endif %}
-
         </div>
+        {% endif %}
+
       </div>
     </div>
 
