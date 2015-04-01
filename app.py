@@ -100,6 +100,23 @@ def signup():
         }
 
 
+@app.route("/signup/", methods=["GET"])
+def signup_form():
+    # Get all of the organizations from the api
+    organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+    organizations = organizations.json()
+
+    # Filter out just the organization names
+    brigades = []
+    for org in organizations['features']:
+        brigades.append(org['properties']['name'])
+
+    # Alphabetize names
+    brigades.sort()
+
+    return render_template("signup.html", brigades=brigades)
+
+
 @app.route("/about/")
 def about():
     return render_template("about.html")

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+  <div class="layout-semibreve">
+
+    <h1>Brigade Signup Form Builder</h1>
+
+    <form id="signup-form-builder" class="spotlight">
+
+      <ul class="list-form">
+        <li class="form-field">
+          <h1>1.</h1>
+          	<select id="brigadeid">
+              <option>Choose your Brigade</option>
+              {% for brigade in brigades %}
+              <option>{{brigade}}</option>
+              {% endfor %}
+            </select>
+        </li>
+      </ul>
+
+    </form>
+
+    <!-- <form id="signup">
+
+      <h4><i class="icon-envelop"></i>Join our email list.</h4>
+
+      <ul class="list-form">
+        <li class="form-field">
+          <label for="first_name">First Name</label>
+          <input type="text" name="first_name" />
+        </li>
+        <li class="form-field">
+          <label for="last_name">Last Name</label>
+          <input type="text" name="last_name" />
+        </li>
+        <li class="form-field">
+          <label for="name">Your Email</label>
+          <input type="email" name="email" />
+        </li>
+        <input type="hidden" name="mailchimp_url" value="" />
+        <input type="hidden" name="brigade_id" value="" />
+        <li class="form-field">
+          <button type="submit" value="Submit">Join</button>
+        </li>
+      </ul>
+
+    </form> -->
+    <!-- <ul class="list-form">
+      <li class="form-field">
+          <label>Choose your group</label>
+        	<select name="organizations" id="organization">
+            <option value="">---</option>
+            {% for name in organization_names %}
+              <option value="{{ name }}">{{ name }}</option>
+            {% endfor %}
+          </select>
+          <small class="note">Leave blank to search across the whole network.</small>
+        </li>
+        <li class="form-field-group">
+          <div class="form-field">
+            <label>Choose a list of labels to search for</label>
+            <input id="labels" type="text" name="labels" plaeholder='help wanted, bug, python'>
+            <small class="note">We recommend "help wanted"</small>
+          </div>
+          <div class="form-field">
+            <label>How many issues to return</label>
+            <input id="number" type="number" max="30" value="12">
+          </div>
+      </li>
+      <li class="form-field">
+        <label>Embed the following code into your website.</label>
+        <textarea id="embed" rows='1'>&lt;iframe src="https://www.codeforamerica.org/geeks/civicissues/widget" width="100%" height="600px" frameBorder="0" &gt; &lt;&#47;iframe&gt;</textarea>
+      </li>
+    </ul> -->
+  </div>
+</section>
+  {% endblock %}
