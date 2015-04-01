@@ -144,6 +144,7 @@ def projects(brigadeid=None):
     projects = []
     brigade = None
     next = None
+    search = request.args.get("q", None)
 
     # def get_projects(projects, url):
     #     got = get(url)
@@ -154,7 +155,9 @@ def projects(brigadeid=None):
     #     return projects
 
     if brigadeid:
-        url = "http://codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
+        url = "http://localhost:5000/api/organizations/"+ brigadeid +"/projects"
+        if search:
+            url += "?q=" + search
         got = get(url)
         # projects = get_projects(projects, url)
         projects = got.json()["objects"]
@@ -163,7 +166,10 @@ def projects(brigadeid=None):
         brigade = projects[0]["organization"]
 
     else:
-        url = "http://codeforamerica.org/api/projects?organization_type=Brigade"
+        url = "https://www.codeforamerica.org/api/projects?organization_type=Brigade"
+        if search:
+            url += "&q=" + search
+        print url
         got = get(url)
         projects = got.json()["objects"]
         if "next" in got.json()["pages"]:

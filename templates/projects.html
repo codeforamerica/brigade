@@ -9,23 +9,30 @@
 
         {% if brigade %}
           <h1>{{brigade.name}}'s Projects</h1>
-
-          <p><a href="{{brigade.website}}">{{brigade.website}}</a> :: {{brigade.city}}</p>
-
-          {% if brigade.projects_list_url %}
-            <a href="./projects" class="button">Projects</a>
-          {% endif %}
-          <!-- <a href="./people" class="button">People</a> -->
-          {% if brigade.events_url %}
-            <a href=".#events" class="button">Events</a>
-          {% endif %}
-          {% if brigade.rss %}
-            <a href=".#stories" class="button">Stories</a>
-          {% endif %}
-
         {% else %}
           <h1>All Brigade Projects</h1>
         {% endif %}
+
+        <form action="{{ request.path }}" method="get">
+            {% if request.args.get('q') %}
+            <input type="search" name="q" value="{{ request.args.get('q') }}" width="100">
+            {% else %}
+            <input type="search" name="q" placeholder="Search for a project" width="100">
+            {% endif %}
+            <button>Search</button>
+            <a href="#" id="help"><small class="note">Help</small></a>
+        </form>
+
+        <div id="helptext" class="hidden">
+          <p>Search for projects on their name, their description, or their status. Common statuses inlcude:
+            <ul class="list-inline">
+              <li>Alpha</li>
+              <li>Beta</li>
+              <li>Launched</li>
+              <li>Dead</li>
+            </ul>
+          </p>
+        </div>
 
       </div>
     </div>
@@ -60,4 +67,17 @@
     </div>
 
   </section>
+{% endblock %}
+
+{% block js %}
+  <script>
+  $( "#help" ).click(function( event ) {
+    event.preventDefault();
+    if ($( "#helptext" ).hasClass("hidden")){
+      $( "#helptext" ).removeClass("hidden");
+    } else {
+      $( "#helptext" ).addClass("hidden");
+    }
+  });
+  </script>
 {% endblock %}
