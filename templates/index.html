@@ -9,39 +9,7 @@
     <img id="logo" src="{{ url_for('static', filename='images/the_brigade.png') }}" />
     <p>Code for America Brigades are local volunteer groups that bring together community members to help make government work better. Brigades use technology to build new tools to help with local civic issues. Code for America supports Brigade chapters with resources, tools, and access to the wider civic technology movement. </p>
 
-    <button id='geolocate'>Find your local Brigade</button>
-
-    <form id="signup">
-
-      <h4><i class="icon-envelop"></i>Join our email list.</h4>
-
-      <ul class="list-form">
-        <li class="form-field-group">
-          <div class="form-field">
-            <label for="first_name">First Name</label>
-            <input type="text" name="first_name" />
-          </div>
-          <div class="form-field">
-            <label for="last_name">Last Name</label>
-            <input type="text" name="last_name" />
-          </div>
-        </li>
-        <li class="form-field-group">
-          <div class="form-field">
-            <label for="name">Your Email</label>
-            <input type="email" name="email" />
-            </div>
-            <input type="hidden" name="mailchimp_url" value="" />
-            <input type="hidden" name="brigade_id" value="" />
-            <div class="form-field">
-              <button type="submit" value="Submit">Join</button>
-            </div>
-        </li>
-
-      </ul>
-    </form>
-
-    <div id="signup-response" class="icon-envelop"></div>
+    <center><button id='geolocate'>Find your local Brigade</button></center>
 
   </div>
 
@@ -49,6 +17,8 @@
     <h4>Funders</h4>
     <p><a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/rally.png') }}" height="100px"></a></p>
   </div>
+
+  {{ signup | safe }}
 
 
 {% endblock %}
@@ -120,19 +90,8 @@
   });
 
   // SIGN UP FORM
-  $("#signup").on( "submit", function( event ) {
-    event.preventDefault();
-    $.post("/signup/", $( this ).serialize(), function(response){
-      if (response.result == "error"){
-        $("#signup-response").addClass("alert-error");
-      } else {
-        $("#signup-response").addClass("alert-success");
-      }
-      $("#signup-response").html(response.msg);
-      $("#signup-response").show();
-      $("#signup").hide();
-    }, "json");
-  });
+  $('input[name="group[10273][8192]"]').prop('checked',true);
+  $('input[name=REFERRAL]').val("/brigade");
 
 </script>
 {% endblock %}

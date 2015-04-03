@@ -32,11 +32,15 @@ def index():
 
     brigades = json.dumps(brigades)
 
+    # Get universal sign up
+    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
+    signup = r.content
+
     # Get footer html
     r = get("http://www.codeforamerica.org/fragments/global-footer.html")
     footer = r.content
 
-    return render_template("index.html", brigades=brigades, footer=footer )
+    return render_template("index.html", brigades=brigades, signup=signup, footer=footer )
 
 
 @app.route("/signup/", methods=["POST"])
