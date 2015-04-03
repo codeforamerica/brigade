@@ -18,9 +18,6 @@
     <p><a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/rally.png') }}" height="100px"></a></p>
   </div>
 
-  {{ signup | safe }}
-
-
 {% endblock %}
 
 {% block js %}
@@ -91,7 +88,7 @@
 
   // SIGN UP FORM
   $('input[name="group[10273][8192]"]').prop('checked',true);
-  $('input[name=REFERRAL]').val("/brigade");
+  $('input[name=REFERRAL]').val(location.path);
 
 </script>
 {% endblock %}

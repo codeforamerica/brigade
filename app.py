@@ -50,12 +50,12 @@ def signup():
     '''
     # Prep mailchimp data
     mailchimp_data = {
-        'FNAME' : request.form.get("first_name"),
-        'LNAME' : request.form.get("last_name"),
-        'EMAIL' : request.form.get("email")
+        'FNAME' : request.form.get("FNAME"),
+        'LNAME' : request.form.get("LNAME"),
+        'EMAIL' : request.form.get("EMAIL")
         }
-
-    # POST to Brigade's mailchimp
+    #
+    # # POST to Brigade's mailchimp
     mailchimp_url = request.form.get("mailchimp_url", None)
     brigade_mailchimp_response = None
     if mailchimp_url:
@@ -64,33 +64,28 @@ def signup():
     # POST to Code for America's mailchimp
     mailchimp_data['group[10273][8192]'] = '8192' # I attend Brigade events
 
-    if request.form.get("brigade_id", None):
-        mailchimp_data['REFERRAL'] = '/brigade/' + request.form.get("brigade_id", None)
-    else:
-        mailchimp_data['REFERRAL'] = '/brigade'
-
-    cfa_mailchimp_url = "https://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
+    cfa_mailchimp_url = "http://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
     cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
 
     # POST to PeopleDB
     peopledb_data = {
-        'first_name' : request.form.get("first_name"),
-        'last_name' : request.form.get("last_name"),
-        'email' : request.form.get("email"),
+        'first_name' : request.form.get("FNAME"),
+        'last_name' : request.form.get("LNAME"),
+        'email' : request.form.get("EMAIL"),
         'brigade_id' : request.form.get("brigade_id", None),
         'SECRET_KEY' : os.environ.get("SECRET_KEY", "boop")
         }
 
-    peopledb_response = post("https://people.codeforamerica.org/brigade/signup", data=peopledb_data)
+    peopledb_response = post("http://people.codeforamerica.org/brigade/signup", data=peopledb_data)
 
     # Choose a response to show
     if brigade_mailchimp_response:
         return brigade_mailchimp_response
 
-    elif cfa_mailchimp_response:
+    if cfa_mailchimp_response:
         return cfa_mailchimp_response.content
 
-    elif peopledb_response:
+    if peopledb_response:
         response = {
             "status_code" : peopledb_response.status_code,
             "msg" : peopledb_response.content
@@ -102,6 +97,7 @@ def signup():
             "status_code" : 500,
             "msg" : "Something went wrong. You were not added to any lists."
         }
+        return response
 
 
 @app.route("/signup/", methods=["GET"])
@@ -159,7 +155,7 @@ def projects(brigadeid=None):
     #     return projects
 
     if brigadeid:
-        url = "http://localhost:5000/api/organizations/"+ brigadeid +"/projects"
+        url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
         if search:
             url += "?q=" + search
         got = get(url)
@@ -173,7 +169,6 @@ def projects(brigadeid=None):
         url = "https://www.codeforamerica.org/api/projects?organization_type=Brigade"
         if search:
             url += "&q=" + search
-        print url
         got = get(url)
         projects = got.json()["objects"]
         if "next" in got.json()["pages"]:
@@ -188,8 +183,15 @@ def brigade(brigadeid):
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
     brigade = got.json()
 
-    return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
+    # Get universal sign up
+    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
+    signup = r.content
 
+    # Get footer html
+    r = get("http://www.codeforamerica.org/fragments/global-footer.html")
+    footer = r.content
+
+    return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid, signup=signup, footer=footer)
 
 
 if __name__ == '__main__':

@@ -23,40 +23,6 @@
       </div>
     </div>
 
-    <div class="slab-red">
-      <div class="layout-semibreve no-padding">
-
-        <form id="signup">
-          <h4><i class="icon-envelop"></i>Join our email list.</h4>
-
-          <div class="form-field-group">
-            <div class="form-field inline">
-              <label for="first_name">First Name</label>
-              <input type="text" name="first_name" />
-            </div>
-            <div class="form-field inline">
-              <label for="last_name">Last Name</label>
-              <input type="text" name="last_name" />
-            </div>
-            <div class="form-field inline">
-              <label for="name">Your Email</label>
-              <input type="email" name="email" />
-            </div>
-            <!-- KC TESTING LIST https://codeforamerica.us6.list-manage.com/subscribe/post-json?u=4502ac760d&amp;id=81aec8f541 -->
-            <input type="hidden" name="mailchimp_url" value="" />
-            <input type="hidden" name="brigade_id" value="{{brigadeid}}" />
-
-            <div class="form-field inline">
-              <button type="submit" value="Submit">Join</button>
-            </div>
-          </div>
-        </form>
-
-        <div id="signup-response" class="icon-envelop"></div>
-
-      </div>
-    </div>
-
     <div id="current-projects" class="slab-white">
       <div class='layout-semibreve'>
         <div class="layout-major-invert">
@@ -139,11 +105,6 @@
       <iframe src="https://www.codeforamerica.org/geeks/civicissues/widget?organization_name={{brigadeid}}&number=3" width="100%" height="600px" frameBorder="0"></iframe>
     </div>
 
-    <div class="slab-dark-blue">
-      <div class="layout-semibreve">
-      </div>
-    </div>
-
     <!-- <div class="layout-minor-invert">
           <h2>People</h2>
           <h3>Captain</h3>
@@ -176,24 +137,16 @@
     }
 
     // SIGN UP FORM
-    $("#signup").on( "submit", function( event ) {
+    $('input[name="group[10273][8192]"]').prop('checked',true);
+    $('input[name=REFERRAL]').val(location.path);
+    $("#email-signup-data-form").on( "submit", function( event ) {
       event.preventDefault();
       $.post("/signup/", $( this ).serialize(), function(response){
-        if (response.result == "error"){
-          $("#signup-response").addClass("alert-error");
-        } else {
-          $("#signup-response").addClass("alert-success");
-        }
-        $("#signup-response").html(response.msg);
-        $("#signup-response").show();
-        $("#signup").hide();
+        console.log(response);
       }, "json");
     });
 
-
   });
-
-
 
 </script>
 {% endblock %}
