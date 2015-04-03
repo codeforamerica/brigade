@@ -8,6 +8,22 @@ import filters
 app = Flask(__name__)
 app.register_blueprint(filters.blueprint)
 
+
+@app.context_processor
+def get_fragments():
+    ''' The base template includes the signup form and the footer
+        pulled from our main site.
+    '''
+    # Get universal sign up form
+    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
+    signup = r.content
+
+    # Get footer html
+    r = get("http://www.codeforamerica.org/fragments/global-footer.html")
+    footer = r.content
+    return dict(signup=signup, footer=footer)
+
+
 # ROUTES
 @app.route('/')
 def index():
@@ -32,15 +48,7 @@ def index():
 
     brigades = json.dumps(brigades)
 
-    # Get universal sign up
-    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
-    signup = r.content
-
-    # Get footer html
-    r = get("http://www.codeforamerica.org/fragments/global-footer.html")
-    footer = r.content
-
-    return render_template("index.html", brigades=brigades, signup=signup, footer=footer )
+    return render_template("index.html", brigades=brigades )
 
 
 @app.route("/signup/", methods=["POST"])
@@ -183,15 +191,7 @@ def brigade(brigadeid):
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
     brigade = got.json()
 
-    # Get universal sign up
-    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
-    signup = r.content
-
-    # Get footer html
-    r = get("http://www.codeforamerica.org/fragments/global-footer.html")
-    footer = r.content
-
-    return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid, signup=signup, footer=footer)
+    return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
 if __name__ == '__main__':
