@@ -54,20 +54,20 @@ def signup():
         'LNAME' : request.form.get("LNAME"),
         'EMAIL' : request.form.get("EMAIL")
         }
-    #
-    # # POST to Brigade's mailchimp
+
+    # Optionally POST to Brigade's mailchimp
     mailchimp_url = request.form.get("mailchimp_url", None)
     brigade_mailchimp_response = None
     if mailchimp_url:
         brigade_mailchimp_response = post(mailchimp_url, data=mailchimp_data)
 
-    # POST to Code for America's mailchimp
+    # Always POST to Code for America's mailchimp
     mailchimp_data['group[10273][8192]'] = '8192' # I attend Brigade events
 
     cfa_mailchimp_url = "http://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
     cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
 
-    # POST to PeopleDB
+    # Always POST to PeopleDB
     peopledb_data = {
         'first_name' : request.form.get("FNAME"),
         'last_name' : request.form.get("LNAME"),
@@ -82,10 +82,10 @@ def signup():
     if brigade_mailchimp_response:
         return brigade_mailchimp_response
 
-    if cfa_mailchimp_response:
+    elif cfa_mailchimp_response:
         return cfa_mailchimp_response.content
 
-    if peopledb_response:
+    elif peopledb_response:
         response = {
             "status_code" : peopledb_response.status_code,
             "msg" : peopledb_response.content
