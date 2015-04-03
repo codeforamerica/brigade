@@ -57,23 +57,23 @@ def signup():
         Sends the data to a requested mailchimp list, our mailchimp list, and the peopledb
     '''
     # Prep mailchimp data
-    mailchimp_data = {
-        'FNAME' : request.form.get("FNAME"),
-        'LNAME' : request.form.get("LNAME"),
-        'EMAIL' : request.form.get("EMAIL")
-        }
+    # mailchimp_data = {
+    #     'FNAME' : request.form.get("FNAME"),
+    #     'LNAME' : request.form.get("LNAME"),
+    #     'EMAIL' : request.form.get("EMAIL")
+    #     }
 
     # Optionally POST to Brigade's mailchimp
-    mailchimp_url = request.form.get("mailchimp_url", None)
-    brigade_mailchimp_response = None
-    if mailchimp_url:
-        brigade_mailchimp_response = post(mailchimp_url, data=mailchimp_data)
+    # mailchimp_url = request.form.get("mailchimp_url", None)
+    # brigade_mailchimp_response = None
+    # if mailchimp_url:
+    #     brigade_mailchimp_response = post(mailchimp_url, data=mailchimp_data)
 
     # Always POST to Code for America's mailchimp
-    mailchimp_data['group[10273][8192]'] = '8192' # I attend Brigade events
+    # mailchimp_data['group[10273][8192]'] = '8192' # I attend Brigade events
 
-    cfa_mailchimp_url = "http://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
-    cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
+    # cfa_mailchimp_url = "http://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
+    # cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
 
     # Always POST to PeopleDB
     peopledb_data = {
@@ -87,13 +87,13 @@ def signup():
     peopledb_response = post("http://people.codeforamerica.org/brigade/signup", data=peopledb_data)
 
     # Choose a response to show
-    if brigade_mailchimp_response:
-        return brigade_mailchimp_response
+    # if brigade_mailchimp_response:
+    #     return brigade_mailchimp_response
 
-    elif cfa_mailchimp_response:
-        return cfa_mailchimp_response.content
+    # elif cfa_mailchimp_response:
+    #     return cfa_mailchimp_response.content
 
-    elif peopledb_response:
+    if peopledb_response:
         response = {
             "status_code" : peopledb_response.status_code,
             "msg" : peopledb_response.content
