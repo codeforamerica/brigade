@@ -56,6 +56,7 @@ def signup():
     ''' Takes in signup requests from /brigade/signup/form
         Sends the data to a requested mailchimp list, our mailchimp list, and the peopledb
     '''
+
     # Prep mailchimp data
     # mailchimp_data = {
     #     'FNAME' : request.form.get("FNAME"),
@@ -84,7 +85,7 @@ def signup():
         'SECRET_KEY' : os.environ.get("SECRET_KEY", "boop")
         }
 
-    peopledb_response = post("http://people.codeforamerica.org/brigade/signup", data=peopledb_data)
+    peopledb_response = post("https://people.codeforamerica.org/brigade/signup", data=peopledb_data)
 
     # Choose a response to show
     # if brigade_mailchimp_response:

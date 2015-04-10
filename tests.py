@@ -40,13 +40,8 @@ class BrigadeTests(unittest.TestCase):
         with HTTMock(self.response_content):
             response = self.app.post('/signup/', data=signup)
             response = json.loads(response.data)
-            self.assertEqual(response['msg'], "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you.")
+            self.assertEqual(response['msg'], "Added to the peopledb")
 
-        # Test that our responses are being packaged up the way we expect
-        with HTTMock(self.response_content):
-            response = self.app.post('/signup/', data=signup)
-            response = json.loads(response.data)
-            self.assertEqual(response['msg'], "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you.")
 
 if __name__ == '__main__':
     unittest.main()
