@@ -21,6 +21,12 @@
 {% endblock %}
 
 {% block js %}
+
+<script src="{{ url_for('static', filename='js/turf.min.js') }}"></script>
+
+<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+
 <script>
   $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
   $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
