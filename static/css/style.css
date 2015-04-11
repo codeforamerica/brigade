@@ -54,6 +54,24 @@ h2 {
   display: inline-block;
 }
 
+/* MOBILE VIEW*/
+@media (max-width: 40em) {
+
+  main {
+    margin-top: 50px;
+  }
+
+  #map {
+    display: none;
+  }
+
+  #overlay{
+    position: static;
+    width: 90%;
+  }
+
+}
+
 
 /* Brigade page*/
 
