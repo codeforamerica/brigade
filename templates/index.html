@@ -28,8 +28,11 @@
 <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
 
 <script>
-  $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
-  $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
+  if ($(window).width() > 480){
+    $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
+    $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
+  }
+
 
   // Provide your access token
   L.mapbox.accessToken = 'pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiSTZlTTZTcyJ9.3aSlHLNzvsTwK-CYfZsG_Q';
