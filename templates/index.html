@@ -11,6 +11,8 @@
 
     <center><button id='geolocate'>Find your local Brigade</button></center>
 
+    <div class="alert-success" style="display:none;">No one has organized a Brigade near you yet. Click <a href="/organize" class="button">Organize</a> to learn more about how you can.</div>
+
   </div>
 
   <div id="sponsors" class="layout-semibreve">
@@ -78,6 +80,11 @@
     var point = turf.point(my_lnglat);
     var against = turf.featurecollection(brigade_points);
     var nearest = turf.nearest(point,against);
+    var distance = turf.distance(point, nearest, "miles");
+    if (distance > 200) {
+      $("#geolocate").removeClass("button-progress").addClass("button-disabled");
+      $(".alert-success").show();
+    }
     var brigadeId = nearest.properties.name.replace(/\s+/g, '-');
     window.open(brigadeId, "_self");
   });
