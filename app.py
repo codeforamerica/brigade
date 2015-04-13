@@ -25,7 +25,7 @@ def get_fragments():
 
 
 # ROUTES
-@app.route('/')
+@app.route('/brigade/')
 def index():
     # Get location of all civic tech orgs
     got = get("https://www.codeforamerica.org/api/organizations.geojson")
@@ -51,7 +51,7 @@ def index():
     return render_template("index.html", brigades=brigades )
 
 
-@app.route("/signup/", methods=["POST"])
+@app.route("/brigade/signup/", methods=["POST"])
 def signup():
     ''' Takes in signup requests from /brigade/signup/form
         Sends the data to a requested mailchimp list, our mailchimp list, and the peopledb
@@ -109,7 +109,7 @@ def signup():
         return response
 
 
-@app.route("/signup/", methods=["GET"])
+@app.route("/brigade/signup/", methods=["GET"])
 def signup_form():
     # Get all of the organizations from the api
     organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
@@ -126,28 +126,28 @@ def signup_form():
     return render_template("signup.html", brigades=brigades)
 
 
-@app.route("/about/")
+@app.route("/brigade/about/")
 def about():
     return render_template("about.html")
 
 
-@app.route("/organize/")
+@app.route("/brigade/organize/")
 def organize():
     return render_template("organize.html")
 
 
-@app.route("/tools/")
+@app.route("/brigade/tools/")
 def tools():
     return render_template("tools.html")
 
 
-@app.route("/tools/template/")
+@app.route("/brigade/tools/template/")
 def template():
     return render_template("template.html")
 
 
-@app.route("/projects")
-@app.route("/<brigadeid>/projects")
+@app.route("/brigade/projects/")
+@app.route("/brigade/<brigadeid>/projects/")
 def projects(brigadeid=None):
     ''' Display a list of projects '''
     projects = []
@@ -186,7 +186,7 @@ def projects(brigadeid=None):
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
 
-@app.route('/<brigadeid>/')
+@app.route('/brigade/<brigadeid>/')
 def brigade(brigadeid):
     # Get this Brigade's info
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)

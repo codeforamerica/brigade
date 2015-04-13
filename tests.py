@@ -31,14 +31,14 @@ class BrigadeTests(unittest.TestCase):
         }
 
         # Test that our data is going through
-        with app.test_request_context("/signup/", method="POST", data=signup):
+        with app.test_request_context("/brigade/signup/", method="POST", data=signup):
             self.assertEqual(flask.request.form.get("FNAME"), "FIRST NAME")
             self.assertEqual(flask.request.form.get("LNAME"), "LAST NAME")
             self.assertEqual(flask.request.form.get("EMAIL"), "EMAIL")
 
         # Test that our responses are being packaged up the way we expect
         with HTTMock(self.response_content):
-            response = self.app.post('/signup/', data=signup)
+            response = self.app.post('/brigade/signup/', data=signup)
             response = json.loads(response.data)
             self.assertEqual(response['msg'], "Added to the peopledb")
 
