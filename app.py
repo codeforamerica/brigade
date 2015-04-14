@@ -191,14 +191,14 @@ def organize():
     return render_template("organize.html", brigades=brigades, signup=signup)
 
 
+
 @app.route("/brigade/tools/")
-def tools():
-    return render_template("tools.html")
-
-
-@app.route("/brigade/tools/template/")
-def template():
-    return render_template("template.html")
+@app.route("/brigade/tools/<page>/")
+def tools(page=None):
+    if page:
+        return render_template("tools/"+page+".html")
+    else:
+        return render_template("tools/index.html")
 
 
 @app.route("/brigade/projects/")
