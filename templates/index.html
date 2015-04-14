@@ -107,7 +107,7 @@
   $('input[name=REFERRAL]').val("/brigade");
   $("#email-signup-data-form").on( "submit", function( event ) {
     event.preventDefault();
-    $.post("/signup/", $( this ).serialize(), function(response){
+    $.post("/brigade/signup/", $( this ).serialize(), function(response){
       console.log(response);
     }, "json");
   });
