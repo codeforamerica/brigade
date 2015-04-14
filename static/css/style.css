@@ -2,7 +2,10 @@ body {
   color: #5a5a5a;
 }
 
-
+#banner {
+	text-align: center;
+	padding-top:5px;
+}
 
 .global-header {
   margin-bottom : 0px;
@@ -52,7 +55,7 @@ h2 {
   #overlay{
     background-color:rgba(204,39,62,0.85);
     position:absolute;
-    top:90px;
+    top:154px;
     left:0;
     width:30%;
     min-width: 333px;
