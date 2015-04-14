@@ -179,6 +179,8 @@ def organize():
         # Grab only orgs with type Brigade
         if "Brigade" in org["properties"]["type"]:
             brigades.append(org)
+        elif "Code for All" in org["properties"]["type"]:
+            brigades.append(org)
 
     brigades = json.dumps(brigades)
 
