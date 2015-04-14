@@ -14,44 +14,26 @@
 
   <div class="layout-semibreve">
 
-    <div class="layout-centered">
-        <h2 class="isolate">Want to Organize a Brigade?</h2>
-        <p>That's fantastic!  We are so excited you and your
-          team are interested in joining this awesome network
-          of developers, designers, community organizers,
-          storytellers, government partners, and caring residents.</p>
-        <p>Your first step if to fill out the form below and be sure to click the "I want to lead a Brigade in my community" box.  Once you have filled out the form we will send you an email with complete organizing instructions.</p>
-        <p>If you do not click the box - perhaps you are not ready to start organizing, or maybe there is already a Brigade in your city (<a href="http://www.codeforamerica.org/brigade">click here to double check)</a> - we will add you to our mailing list so you can stay up to date with what is happening in the network.</p>
-    </div>
+    <h2 class="isolate">Want to Organize a Brigade?</h2>
+    <p>That's fantastic!  We are so excited you and your team are interested in joining this awesome network of developers, designers, community organizers, storytellers, government partners, and caring residents.</p>
 
-    <form action="<?= $base_url ?>/signup" method="POST" accept-charset="UTF-8">
-      <ul class="list-form">
-        <li class="form-field">
-            <label for="name">Full name</label>
-            <input name="name" type="text" placeholder="Ben Franklin" required>
-        </li>
-        <li class="form-field">
-            <label for="email">Email</label>
-            <input name="email" type="text" placeholder="benfranklin@codeforamerica.org" required>
-        </li>
-        <li class="form-field">
-            <label for="location">City</label>
-            <input name="location" type="text" placeholder="Tulsa, OK">
-        </li>
-        <li class="form-field" style="display:none;">
-            <label>
-              <input name="source" type="checkbox" value="organizer" checked/>
-              I want to lead a Brigade in my community!
-            </label>
-        </li>
-        <li class="form-field">
-            <input type="hidden" name="user[location_id]" value="" /><!-- why is this here? -->
-            <button>Join</button>
-        </li>
-        <p> Joining from outside the United States? Learn more about the international civic-tech network by visiting <a href="codeforall.org">codeforall.org</a>.</p>
-        <p> Are you employed by your city or state?  Be sure to check out our <a href="http://www.codeforamerica.org/governments/">Government resources</a>.</p>
-      </ul>
-    </form>
+
+    <ol>
+      <li>Check to see if there is already an active Brigade near you. <button id='geolocate'>Check for a nearby Brigade</button></li>
+      <div class="alert-success" style="display:none;">
+        <p>The closest Brigade to you is <a id="closest-brigade">...</a>.</p>
+      </div>
+      <li>Fill out this signup form and we will send you an email with complete organizing instructions.</li>
+
+    </ol>
+  </div>
+
+  <div id="newsignup">{{ signup | safe }}</div>
+
+  <div class="layout-semibreve">
+    <p> Joining from outside the United States? Learn more about the international civic-tech network by visiting <a href="codeforall.org">codeforall.org</a>.</p>
+
+    <p> Are you employed by your city or state?  Be sure to check out our <a href="http://www.codeforamerica.org/governments/">Government resources</a>.</p>
 
   </div>
 
@@ -76,5 +58,71 @@
       <a href="http://codeforall.org/about">codeforall.org/about</a>.</p>
 
 </section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/turf.min.js') }}"></script>
+
+<script>
+
+$(document).ready(function(){
+
+  $("#geolocate").click(function(e){
+    e.preventDefault();
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log(position.coords.longitude, position.coords.latitude);
+        $("#geolocate").addClass("button-progress").text("Finding the closest Brigade");
+        var brigades = {{ brigades | safe }};
+        var brigade_points = []
+        $.each(brigades, function(i,brigade){
+          brigade_point = turf.point(brigade.geometry.coordinates, brigade.properties);
+          brigade_points.push(brigade_point);
+        });
+        var my_lnglat = [position.coords.longitude, position.coords.latitude]
+        var point = turf.point(my_lnglat);
+        var against = turf.featurecollection(brigade_points);
+        var nearest = turf.nearest(point,against);
+
+        $("#geolocate").hide();
+
+        $("#closest-brigade").attr("href", nearest.properties.website).text(nearest.properties.name);
+        $(".alert-success").show();
+
+
+      });
+    } else {
+      $("#geolocate").text = 'Geolocation is not available';
+    }
+  });
+
+  
+  // Set up form
+  $("#signupformdiv").remove();
+  $("#newsignup h4").text("Sign up to organize");
+  $(".slab-medium-red").attr("style","text-align: center;");
+
+  $('input[name=REFERRAL]').val("/brigade/organize");
+  $('input[name="group[10273][8192]"]').prop('checked',true);
+
+  // Hide other groups
+  $("#email-signup-data-form ul").children().slice(4,7).hide();
+  // Add Organize group
+  $("#email-signup-data-form ul").append('<li id="organize-checkbox"><input type="checkbox" value="16777216" name="group[10273][16777216]" id="mce-group[10273]-10273-4" checked="checked" ><label for="mce-group[10273]-10273-4">I want to organize a Brigade</label></li>');
+
+  $("#email-signup-data-form").on( "submit", function( event ) {
+    event.preventDefault();
+    $.post("/brigade/signup/", $( this ).serialize(), function(response){
+      console.log(response);
+    }, "json");
+  });
+
+})
+
+
+
+
+</script>
 
 {% endblock %}
