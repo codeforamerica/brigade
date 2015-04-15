@@ -6,7 +6,7 @@ import datetime
 from flask import Flask, render_template, request
 import filters
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="/brigade/static")
 app.register_blueprint(filters.blueprint)
 
 
