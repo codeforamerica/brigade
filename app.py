@@ -207,36 +207,42 @@ def projects(brigadeid=None):
     ''' Display a list of projects '''
     projects = []
     brigade = None
-    next = None
     search = request.args.get("q", None)
+    page = request.args.get("page", None)
+    if page:
+        next = "/brigade/projects?page=" + str(int(page) + 1)
+    else:
+        next = "/brigade/projects?page=2"
 
-    # def get_projects(projects, url):
-    #     got = get(url)
-    #     new_projects = got.json()["objects"]
-    #     projects = projects + new_projects
-    #     if "next" in got.json()["pages"]:
-    #         projects = get_projects(projects, got.json()["pages"]["next"])
-    #     return projects
+    def get_projects(projects, url, limit=None):
+        got = get(url)
+        import pdb; pdb.set_trace()
+        new_projects = got.json()["objects"]
+        projects = projects + new_projects
+        if limit:
+            if len(projects) >= limit:
+                return projects
+        if "next" in got.json()["pages"]:
+            projects = get_projects(projects, got.json()["pages"]["next"])
+        return projects
 
     if brigadeid:
         url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
         if search:
             url += "?q=" + search
         got = get(url)
-        # projects = get_projects(projects, url)
-        projects = got.json()["objects"]
-        if "next" in got.json()["pages"]:
-            next = got.json()["pages"]["next"]
+        projects = get_projects(projects, url)
         brigade = projects[0]["organization"]
 
     else:
         url = "https://www.codeforamerica.org/api/projects?organization_type=Brigade"
         if search:
             url += "&q=" + search
+        if page:
+            url += "&page=" + page
         got = get(url)
-        projects = got.json()["objects"]
-        if "next" in got.json()["pages"]:
-            next = got.json()["pages"]["next"]
+        limit = 10
+        projects = get_projects(projects, url, limit)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
