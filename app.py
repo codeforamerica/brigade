@@ -3,7 +3,7 @@ import os
 from requests import get, post
 import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import filters
 
 app = Flask(__name__, static_url_path="/brigade/static")
@@ -246,6 +246,11 @@ def projects(brigadeid=None):
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
+
+@app.route('/brigade/index/<brigadeid>/')
+def redirect_brigade(brigadeid):
+    ''' Redirect old Brigade links to new Brigade links'''
+    return redirect("/brigade/"+brigadeid, code=301)
 
 @app.route('/brigade/<brigadeid>/')
 def brigade(brigadeid):

@@ -43,5 +43,11 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(response['msg'], "Added to the peopledb")
 
 
+    def test_old_brigade_links(self):
+        ''' Test that the old brigade links are being redirected '''
+        response = self.app.get("/brigade/index/Code-for-San-Francisco")
+        self.assertTrue(response.status_code == 301)
+
+
 if __name__ == '__main__':
     unittest.main()
