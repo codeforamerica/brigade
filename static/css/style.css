@@ -65,6 +65,10 @@ h2 {
   }
 }
 
+.center {
+  text-align: center;
+}
+
 /* MOBILE VIEW*/
 @media (max-width: 40em) {
 

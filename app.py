@@ -258,6 +258,9 @@ def brigade(brigadeid):
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
     brigade = got.json()
 
+    if brigade['status'] == 'Resource Not Found':
+        return render_template('404.html'), 404
+
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 

@@ -20,6 +20,7 @@ class BrigadeTests(unittest.TestCase):
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             return response(200, "Added to the peopledb")
 
+
     def test_signup(self):
         ''' Test that main page signups work '''
         signup = {
@@ -47,6 +48,12 @@ class BrigadeTests(unittest.TestCase):
         ''' Test that the old brigade links are being redirected '''
         response = self.app.get("/brigade/index/Code-for-San-Francisco")
         self.assertTrue(response.status_code == 301)
+
+
+    def test_404(self):
+        ''' Test for 404 links '''
+        response = self.app.get("/brigade/404/")
+        self.assertTrue(response.status_code == 404)
 
 
 if __name__ == '__main__':
