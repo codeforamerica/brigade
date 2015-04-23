@@ -46,8 +46,14 @@ class BrigadeTests(unittest.TestCase):
 
     def test_old_brigade_links(self):
         ''' Test that the old brigade links are being redirected '''
-        response = self.app.get("/brigade/index/Code-for-San-Francisco")
+        response = self.app.get("/brigade/index/Code-for-San-Francisco/")
         self.assertTrue(response.status_code == 301)
+
+
+    def test_good_links(self):
+        ''' Test that normal Brigade links are working '''
+        response = self.app.get("/brigade/Code-for-San-Francisco/")
+        self.assertTrue(response.status_code == 200)
 
 
     def test_404(self):
