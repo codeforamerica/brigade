@@ -216,7 +216,6 @@ def projects(brigadeid=None):
 
     def get_projects(projects, url, limit=None):
         got = get(url)
-        import pdb; pdb.set_trace()
         new_projects = got.json()["objects"]
         projects = projects + new_projects
         if limit:
