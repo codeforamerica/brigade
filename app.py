@@ -144,20 +144,6 @@ def numbers():
     got = got.json()
     projects = got['objects']
     projects_total = got['total']
-    # active_projects = []
-    # for project in projects:
-    #     # Sat, 14 Mar 2015 00:01:04 GMT
-    #     tformat = "%a, %d %b %Y %H:%M:%S %Z"
-    #     last_updated = datetime.datetime.strptime(project['last_updated'], tformat)
-    #     delta = datetime.datetime.now() - last_updated
-    #     if delta.days < 7:
-    #         print delta.days
-    #         active_projects.append(project)
-    #     else:
-    #         break
-    # Do some paging here to get more projects
-
-    # active_projects_total = len(active_projects)
 
     return render_template("numbers.html", brigades_total=brigades_total, official_brigades_total=official_brigades_total, projects_total=projects_total)
 
