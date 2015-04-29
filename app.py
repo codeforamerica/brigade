@@ -140,10 +140,10 @@ def numbers():
     official_brigades_total = got['total']
 
     # Get the projects updated within the last month
-    # got = get("https://www.codeforamerica.org/api/projects?only_ids=True&per_page=100")
-    # got = got.json()
-    # projects = got['objects']
-    # projects_total = got['total']
+    got = get("https://www.codeforamerica.org/api/projects?only_ids=True&per_page=100")
+    got = got.json()
+    projects = got['objects']
+    projects_total = got['total']
     # active_projects = []
     # for project in projects:
     #     # Sat, 14 Mar 2015 00:01:04 GMT
