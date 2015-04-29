@@ -210,11 +210,17 @@ def projects(brigadeid=None):
     search = request.args.get("q", None)
     page = request.args.get("page", None)
     if page:
-        next = "/brigade/projects?page=" + str(int(page) + 1)
+        if brigadeid:
+            next = "/brigade/"+brigadeid+"/projects?page=" + str(int(page) + 1)
+        else:
+            next = "/brigade/projects?page=" + str(int(page) + 1)
     else:
-        next = "/brigade/projects?page=2"
+        if brigadeid:
+            next = "/brigade/"+brigadeid+"/projects?page=2"
+        else:
+            next = "/brigade/projects?page=2"
 
-    def get_projects(projects, url, limit=None):
+    def get_projects(projects, url, limit=10):
         got = get(url)
         new_projects = got.json()["objects"]
         projects = projects + new_projects
@@ -222,7 +228,7 @@ def projects(brigadeid=None):
             if len(projects) >= limit:
                 return projects
         if "next" in got.json()["pages"]:
-            projects = get_projects(projects, got.json()["pages"]["next"])
+            projects = get_projects(projects, got.json()["pages"]["next"], limit)
         return projects
 
     if brigadeid:
@@ -240,8 +246,7 @@ def projects(brigadeid=None):
         if page:
             url += "&page=" + page
         got = get(url)
-        limit = 10
-        projects = get_projects(projects, url, limit)
+        projects = get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
