@@ -208,17 +208,19 @@ def projects(brigadeid=None):
     projects = []
     brigade = None
     search = request.args.get("q", None)
+    sort_by = request.args.get("sort_by", None)
     page = request.args.get("page", None)
+
     if page:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects?page=" + str(int(page) + 1)
+            next = "/brigade/"+brigadeid+"/projects/?page=" + str(int(page) + 1)
         else:
-            next = "/brigade/projects?page=" + str(int(page) + 1)
+            next = "/brigade/projects/?page=" + str(int(page) + 1)
     else:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects?page=2"
+            next = "/brigade/"+brigadeid+"/projects/?page=2"
         else:
-            next = "/brigade/projects?page=2"
+            next = "/brigade/projects/?page=2"
 
     def get_projects(projects, url, limit=10):
         got = get(url)
@@ -233,8 +235,14 @@ def projects(brigadeid=None):
 
     if brigadeid:
         url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
+        if search or sort_by or page:
+            url += "?"
         if search:
-            url += "?q=" + search
+            url += "&q=" + search
+        if sort_by:
+            url += "&sort_by" + sort_by
+        if page:
+            url += "&page=" + page
         got = get(url)
         projects = get_projects(projects, url)
         brigade = projects[0]["organization"]
@@ -243,6 +251,8 @@ def projects(brigadeid=None):
         url = "https://www.codeforamerica.org/api/projects?organization_type=Brigade"
         if search:
             url += "&q=" + search
+        if sort_by:
+            url += "&sort_by" + sort_by
         if page:
             url += "&page=" + page
         got = get(url)
