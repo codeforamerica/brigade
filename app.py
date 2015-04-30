@@ -280,7 +280,7 @@ def projects(brigadeid=None):
         brigade = projects[0]["organization"]
 
     else:
-        url = "https://www.codeforamerica.org/api/projects?organization_type=Brigade"
+        url = "https://www.codeforamerica.org/api/projects"
         if search:
             url += "&q=" + search
         if sort_by:
