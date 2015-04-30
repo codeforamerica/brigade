@@ -139,13 +139,59 @@ def numbers():
     got = got.json()
     official_brigades_total = got['total']
 
-    # Get the projects updated within the last month
-    got = get("https://www.codeforamerica.org/api/projects?only_ids=True&per_page=100")
+    # Get the total number of Code for All Groups
+    got = get("https://www.codeforamerica.org/api/organizations?type=Code for All&per_page=1")
+    got = got.json()
+    cfall_total = got['total']
+
+    # Get the total number of Government Groups
+    got = get("https://www.codeforamerica.org/api/organizations?type=Government&per_page=1")
+    got = got.json()
+    government_total = got['total']
+
+    # Get total number of projects
+    got = get("https://www.codeforamerica.org/api/projects?per_page=1")
     got = got.json()
     projects = got['objects']
     projects_total = got['total']
 
-    return render_template("numbers.html", brigades_total=brigades_total, official_brigades_total=official_brigades_total, projects_total=projects_total)
+    # Get total number of Brigade projects
+    got = get("https://www.codeforamerica.org/api/projects?organization_type=Brigade&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    brigade_projects_total = got['total']
+
+    # Get total number of Code for All projects
+    got = get("https://www.codeforamerica.org/api/projects?organization_type=Code for All&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    cfall_projects_total = got['total']
+
+    # Get total number of Government projects
+    got = get("https://www.codeforamerica.org/api/projects?organization_type=Government&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    gov_projects_total = got['total']
+
+    # Get number of Health projects
+    got = get("https://www.codeforamerica.org/api/projects?q=health&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    health_total = got['total']
+
+    # Get number of Money projects
+    got = get("https://www.codeforamerica.org/api/projects?q=money&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    money_total = got['total']
+
+    # Get number of Justice projects
+    got = get("https://www.codeforamerica.org/api/projects?q=justice&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    justice_total = got['total']
+
+    return render_template("numbers.html", brigades_total=brigades_total, official_brigades_total=official_brigades_total, cfall_total=cfall_total, government_total=government_total, projects_total=projects_total, brigade_projects_total=brigade_projects_total, cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total, health_total=health_total, money_total=money_total, justice_total=justice_total)
 
 
 @app.route("/brigade/about/")

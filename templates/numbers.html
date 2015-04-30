@@ -7,13 +7,30 @@
     <div class="slab-dark-blue">
       <div class="layout-semibreve">
 
-        <h1>Numbers</h1>
+        <h1>Civic Tech Movement Numbers</h1>
 
-        <h2>Total Brigades: {{ brigades_total }}</h2>
-        <h2>Official Brigades: {{ official_brigades_total }}</h2>
+        <div class="layout-minim">
+          <h2>Brigades</h2>
 
-        <h2>Total Projects: {{ projects_total }}</h2>
+          <h3>Total Brigades: {{ brigades_total }}</h3>
+          <h3>Official Brigades: {{ official_brigades_total }}</h3>
 
+          <h3>Code for All Organizations: {{ cfall_total }}</h3>
+          <h3>Governments: {{ government_total }}</h3>
+        </div>
+
+        <div class="layout-minim">
+          <h2>Projects</h2>
+
+          <h3>Total Projects: {{ projects_total }}</h3>
+          <h3>Total Brigade Projects: {{ brigade_projects_total }}</h3>
+          <h3>Total Code for All Projects: {{ cfall_projects_total }}</h3>
+          <h3>Total Government Projects: {{ gov_projects_total }}</h3>
+
+          <h3>Total Health Projects: {{ health_total }}</h3>
+          <h3>Total Money Projects: {{ money_total }}</h3>
+          <h3>Total Justice Projects: {{ justice_total }}</h3>
+        </div>
       </div>
     </div>
 
