@@ -281,6 +281,8 @@ def projects(brigadeid=None):
 
     else:
         url = "https://www.codeforamerica.org/api/projects"
+        if search or sort_by or page:
+            url += "?"
         if search:
             url += "&q=" + search
         if sort_by:
