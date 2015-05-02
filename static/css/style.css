@@ -96,3 +96,22 @@ h2 {
 .no-padding {
   padding: 0px;
 }
+
+/* Sign Up Form Builder */
+#signup-form-builder ol li{
+
+  list-style-type: decimal;
+  font-family: "Interstate", "Gotham A", "Gotham B", "Open Sans Regular", "Verdana", "Helvetica", "Arial";
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -3px;
+  line-height: 52px;
+  text-transform: uppercase;
+  margin-left: 75px;
+
+}
+
+#signupform-code {
+  width: 100%;
+  height: 25em;
+}
