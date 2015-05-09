@@ -19,7 +19,13 @@ class BrigadeTests(unittest.TestCase):
             return response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             return response(200, "Added to the peopledb")
-
+        if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' \
+        or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
+            return response(200, '''<html>bunch of HTML</html>''')
+        if url.geturl() == 'https://www.codeforamerica.org/api/organizations/404':
+            return response(404, '{"status": "Resource Not Found"}')
+        if url.geturl() == 'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco':
+            return response(200, '{"city": "San Francisco, CA"}')
 
     def test_signup(self):
         ''' Test that main page signups work '''
@@ -46,19 +52,22 @@ class BrigadeTests(unittest.TestCase):
 
     def test_old_brigade_links(self):
         ''' Test that the old brigade links are being redirected '''
-        response = self.app.get("/brigade/index/Code-for-San-Francisco/")
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/index/Code-for-San-Francisco/")
         self.assertTrue(response.status_code == 301)
 
 
     def test_good_links(self):
         ''' Test that normal Brigade links are working '''
-        response = self.app.get("/brigade/Code-for-San-Francisco/")
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/Code-for-San-Francisco/")
         self.assertTrue(response.status_code == 200)
 
 
     def test_404(self):
         ''' Test for 404 links '''
-        response = self.app.get("/brigade/404/")
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
 
 
