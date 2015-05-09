@@ -1,5 +1,8 @@
+from urlparse import parse_qsl
+from base64 import b64decode
 import unittest
 import json
+import os
 
 import flask
 from httmock import response, HTTMock
@@ -9,6 +12,7 @@ from app import app
 class BrigadeTests(unittest.TestCase):
 
     def setUp(self):
+        os.environ['SECRET_KEY'] = 'muy bueno'
         self.app = app.test_client()
 
     def tearDown(self):
@@ -17,8 +21,6 @@ class BrigadeTests(unittest.TestCase):
     def response_content(self, url, request):
         if "list-manage.com/subscribe/post" in url.geturl():
             return response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
-        if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
-            return response(200, "Added to the peopledb")
         if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' \
         or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
             return response(200, '''<html>bunch of HTML</html>''')
@@ -26,6 +28,18 @@ class BrigadeTests(unittest.TestCase):
             return response(404, '{"status": "Resource Not Found"}')
         if url.geturl() == 'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco':
             return response(200, '{"city": "San Francisco, CA"}')
+        if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
+            if request.method == 'POST':
+                form = dict(parse_qsl(request.body))
+                
+                if form.get('SECRET_KEY') == os.environ['SECRET_KEY']:
+                    return response(200, 'Added to the peopledb')
+            
+                return response(401, 'Go away')
+            
+            raise NotImplementedError()
+        
+        raise ValueError('Bad {} to "{}"'.format(request.method, url.geturl()))
 
     def test_signup(self):
         ''' Test that main page signups work '''
