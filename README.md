@@ -30,7 +30,7 @@ The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) a
 1. Set up a [Python virtual environment](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md).
 2. Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
 
-To run locally, ensure that the environment variable `BRIGADE_SINGUP_SECRET`
+To run locally, ensure that the environment variable `BRIGADE_SIGNUP_SECRET`
 is present:
 
     python app.py

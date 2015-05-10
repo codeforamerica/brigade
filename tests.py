@@ -7,7 +7,7 @@ import os
 import flask
 from httmock import response, HTTMock
 
-os.environ['BRIGADE_SINGUP_SECRET'] = 'muy bueno'
+os.environ['BRIGADE_SIGNUP_SECRET'] = 'muy bueno'
 
 from app import app
 
@@ -39,10 +39,10 @@ class BrigadeTests(unittest.TestCase):
                     if method == 'Basic':
                         username, password = b64decode(encoded).split(':', 1)
                 
-                if (username, password) == (os.environ['BRIGADE_SINGUP_SECRET'], 'x-brigade-signup'):
+                if (username, password) == (os.environ['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'):
                     return response(200, 'Added to the peopledb')
                 
-                if form.get('BRIGADE_SINGUP_SECRET') == os.environ['BRIGADE_SINGUP_SECRET']:
+                if form.get('BRIGADE_SIGNUP_SECRET') == os.environ['BRIGADE_SIGNUP_SECRET']:
                     return response(200, 'Added to the peopledb')
             
                 return response(401, 'Go away')
