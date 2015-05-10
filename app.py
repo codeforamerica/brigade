@@ -9,6 +9,7 @@ import filters
 app = Flask(__name__, static_url_path="/brigade/static")
 app.register_blueprint(filters.blueprint)
 
+app.config['BRIGADE_SINGUP_SECRET'] = os.environ['BRIGADE_SINGUP_SECRET']
 
 @app.context_processor
 def get_fragments():
@@ -85,7 +86,7 @@ def signup():
         'brigade_id' : request.form.get("brigade_id", None)
         }
     
-    auth = os.environ['SECRET_KEY'], 'x-brigade-signup'
+    auth = app.config['BRIGADE_SINGUP_SECRET'], 'x-brigade-signup'
     url = 'https://people.codeforamerica.org/brigade/signup'
 
     peopledb_response = post(url, data=peopledb_data, auth=auth)
