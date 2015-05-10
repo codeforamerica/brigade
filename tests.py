@@ -31,6 +31,15 @@ class BrigadeTests(unittest.TestCase):
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             if request.method == 'POST':
                 form = dict(parse_qsl(request.body))
+                username, password = None, None
+                
+                if 'Authorization' in request.headers:
+                    method, encoded = request.headers['Authorization'].split(' ', 1)
+                    if method == 'Basic':
+                        username, password = b64decode(encoded).split(':', 1)
+                
+                if (username, password) == (os.environ['SECRET_KEY'], 'x-brigade-signup'):
+                    return response(200, 'Added to the peopledb')
                 
                 if form.get('SECRET_KEY') == os.environ['SECRET_KEY']:
                     return response(200, 'Added to the peopledb')

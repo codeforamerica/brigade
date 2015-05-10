@@ -82,11 +82,13 @@ def signup():
         'first_name' : request.form.get("FNAME"),
         'last_name' : request.form.get("LNAME"),
         'email' : request.form.get("EMAIL"),
-        'brigade_id' : request.form.get("brigade_id", None),
-        'SECRET_KEY' : os.environ.get("SECRET_KEY", "boop")
+        'brigade_id' : request.form.get("brigade_id", None)
         }
+    
+    auth = os.environ['SECRET_KEY'], 'x-brigade-signup'
+    url = 'https://people.codeforamerica.org/brigade/signup'
 
-    peopledb_response = post("https://people.codeforamerica.org/brigade/signup", data=peopledb_data)
+    peopledb_response = post(url, data=peopledb_data, auth=auth)
 
     # Choose a response to show
     # if brigade_mailchimp_response:
