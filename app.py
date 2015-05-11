@@ -9,6 +9,7 @@ import filters
 app = Flask(__name__, static_url_path="/brigade/static")
 app.register_blueprint(filters.blueprint)
 
+app.config['BRIGADE_SIGNUP_SECRET'] = os.environ['BRIGADE_SIGNUP_SECRET']
 
 @app.context_processor
 def get_fragments():
@@ -82,11 +83,13 @@ def signup():
         'first_name' : request.form.get("FNAME"),
         'last_name' : request.form.get("LNAME"),
         'email' : request.form.get("EMAIL"),
-        'brigade_id' : request.form.get("brigade_id", None),
-        'SECRET_KEY' : os.environ.get("SECRET_KEY", "boop")
+        'brigade_id' : request.form.get("brigade_id", None)
         }
+    
+    auth = app.config['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'
+    url = 'https://people.codeforamerica.org/brigade/signup'
 
-    peopledb_response = post("https://people.codeforamerica.org/brigade/signup", data=peopledb_data)
+    peopledb_response = post(url, data=peopledb_data, auth=auth)
 
     # Choose a response to show
     # if brigade_mailchimp_response:

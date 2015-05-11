@@ -27,25 +27,13 @@ V3, the current site, is meant to simplify the code and make it easier for Briga
 
 The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) and Python with a little bit of Javascript. The `app.py` file describes the routes. The `templates` have the html.
 
-* Set up a [virtualenv](https://pypi.python.org/pypi/virtualenv)
+1. Set up a [Python virtual environment](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md).
+2. Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
 
-```
-pip install virtualenv
-virtualenv .venv
-source .venv/bin/activate
-```
+To run locally, ensure that the environment variable `BRIGADE_SIGNUP_SECRET`
+is present:
 
-* Install the required libraries
-
-```
-pip install -r requirements.txt
-```
-
-* To run locally
-
-```
-python app.py
-```
+    python app.py
 
 Contacts
 --------
