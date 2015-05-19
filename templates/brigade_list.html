@@ -30,13 +30,6 @@
 
 <script>
   // Generate list of brigades
-  var brigades = {{ brigades | safe }};
-  var brigadeDiv = $('#brigadeList');
-  brigadeDiv.append('<h4>Full Brigade List</h4>');
-  $.each(brigades, function(i,brigade){
-      brigadeDiv.append('<div><a href="'+brigade.properties.website+'">'+brigade.id+'</a></div>');
-  });
-
   if ($(window).width() > 480){
     $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
     $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
@@ -101,8 +94,12 @@
       geolocate.innerHTML = 'Position could not be found';
   });
 
+  var brigades = {{ brigades | safe }};
+  var brigadeDiv = $('#brigadeList');
+  brigadeDiv.append('<h4>Full Brigade List</h4>');
   var brigade_points = []
   $.each(brigades, function(i,brigade){
+    brigadeDiv.append('<div><a href="'+brigade.properties.website+'">'+brigade.id+'</a></div>');
     brigade_point = turf.point(brigade.geometry.coordinates, brigade.properties);
     brigade_points.push(brigade_point);
   });
