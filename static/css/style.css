@@ -20,7 +20,21 @@ body {
   cursor: pointer !important;
 }
 
+#brigadeList {
+  margin-top: 500px; /* Not sure why this needs to be so large, but the box ends up being ~317px tall */
+  margin-bottom: 20px;
+}
 
+#brigadeList a {
+  margin-left: 20px;
+}
+
+#brigadeList h4 {
+  margin-top: 200px;
+  font-size: 25px;
+  font-weight: 400;
+  margin-left: 14px;
+}
 
 h2 {
   font-weight: bold;
@@ -62,6 +76,7 @@ h2 {
     padding: 0 25px;
     overflow: auto;
     height: 691px;
+    margin-bottom: 10px;
   }
 }
 
@@ -90,6 +105,11 @@ h2 {
 
 }
 
+@media screen and (min-width: 640px) {
+  #brigadeListButton {
+    display: none;
+  }
+}
 
 /* Brigade page*/
 

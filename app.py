@@ -25,10 +25,7 @@ def get_fragments():
     footer = r.content
     return dict(signup=signup, footer=footer)
 
-
-# ROUTES
-@app.route('/brigade/')
-def index():
+def get_brigades():
     # Get location of all civic tech orgs
     got = get("https://www.codeforamerica.org/api/organizations.geojson")
     geojson = got.json()
@@ -49,7 +46,18 @@ def index():
             brigades.append(org)
 
     brigades = json.dumps(brigades)
+    return brigades
 
+# ROUTES
+@app.route('/brigade/list', methods=["GET"])
+def brigade_list():
+    brigades = get_brigades()
+    return render_template("brigade_list.html", brigades=brigades )
+
+
+@app.route('/brigade/')
+def index():
+    brigades = get_brigades()
     return render_template("index.html", brigades=brigades )
 
 
@@ -343,4 +351,4 @@ def brigade(brigadeid):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
