@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+
+  <div class="layout-semibreve">
+
+<section>
+<body>
+		<div class="js-container">
+			<div class="layout-semibreve">
+				{% include nav-breadcrumbs.html %}
+
+				<header class="heading">
+		    	<h1>{{ page.title }}</h1>
+		    	<h2>{{ page.subtitle }}</h2>
+		    </header>
+
+				{% comment %}
+					If this is an index page, don't show the contents.
+				{% endcomment %}
+
+				{% unless page.resource_index %}
+					<!-- start toc block -->
+					<div class="layout-minor">
+						<nav role="navigation" class="toc" id="toc">
+							<h3>Contents</h3>
+							<div class="toc">
+							    {{ page.content | toc_list }}
+							</div>
+						</nav>
+					</div>
+					<!-- end toc block -->
+				{% endunless %}
+
+				<main id="content" {% unless page.resource_index %}class="layout-major"{% endunless %}>
+					{{ content }}
+
+					{% if page.resource_index %}
+						<hr/>
+					{% else %}
+						<!-- content team survey banner -->
+						<div class="alert-info">
+							<a href="https://www.surveymonkey.com/s/codeforamerica-content">Tell us what you think</a> (opens a 3 minute survey on another website)
+						</div>
+						<!-- end content team survey banner -->
+						<hr/>
+						<p><a href="#toc">Skip to contents</a></p>
+					{% endif %}
+				</main>
+
+			</div><!-- end .layout-semibreve -->
+
+			<!-- start detailed guidance specific footer section -->
+	    <div class="slab-gray">
+	    	<div class="layout-breve">
+			    <!-- start community cta -->
+			    {% if page.community-url %}
+						<p>{{ page.community-cta }}</p>
+						<a href="{{ page.community-url }}" class="button-s">Join this community</a>
+			    {% endif %}
+			    <!-- end community cta -->
+
+					<!-- start github feedback -->
+					<p>Help make our documentation better:</p>
+					<ul>
+						<li><a title="View this page history on GitHub" href="https://github.com/codeforamerica/codeforamerica.org/commits/master{{ page.url | replace:'.html','.md' }}">View this page's history on GitHub.</a></li>
+						<li><a title="View and suggest changes to this page source on GitHub" href="https://github.com/codeforamerica/codeforamerica.org/blob/master{{ page.url | replace:'.html','.md' }}">View and suggest changes to this page on GitHub.</a></li>
+					</ul>
+					<!-- end github feedback -->
+				</div>
+	    </div>
+	    <!-- end detailed guidance specific footer section -->
+		
+      <!-- Email signup form -->
+      <div class="slab-medium-red">
+        <div class="layout-breve layout-tight">
+          {% include email-signup-form.html context="footer" %}
+        </div><!-- end .layout-breve -->
+      </div><!-- end .slab-dark-blue -->
+
+	    {% include global-footer.html %}
+	  </div><!-- end .js-container -->
+	  {% include email-signup-modal.html %}
+		{% include footer-scripts.html %}
+ 	</body>
+ 	
+ 	</section>
+
+
+    <h1>Brigade Toolkit Template</h1>
+
+    <h2>
+      <ol>
+        <li>Copy the code from this <a href="https://github.com/codeforamerica/brigade/blob/master/templates/tools/template.html" target="_blank">template</a></li>
+        <li>Make a new <a href="https://github.com/codeforamerica/brigade/blob/master/templates/tools/" target="_blank">toolkit</a>.</li>
+        <li>Paste in the template code, then edit to your liking.</li>
+        <li>Refer to Code for America <a href="http://style.codeforamerica.org/">Style Guide</a></li>
+      </ol>
+    </h2>
+
+  </div>
+
+</section>
+
+<section class="slab-red">
+
+  <div class="layout-semibreve">
+
+    <h2>Another section</h2>
+
+    <p>Drinking vinegar kogi tattooed food truck.</p>
+    <img src="https://camo.githubusercontent.com/88f56d646f58cd9cb7f15283a39cf227d4cb3c21/687474703a2f2f692e67697068792e636f6d2f53495633696a41776b4e7439432e676966" />
+
+  </div>
+
+</section>
+
+<section class="slab-teal">
+
+    <div class="layout-semibreve layout-centered">
+
+        <iframe width="560" height="315" src="//www.youtube.com/embed/_9-E7CLQX48?list=PL65XgbSILalW_PV2Cgmz7gOWY3YLwC87M" frameborder="0" allowfullscreen></iframe>
+
+    </div>
+
+</section>
+
+<section class="slab-blue">
+
+  <div class="layout-semibreve">
+    <h2>Another great point</h2>
+    <p>Drinking vinegar kogi tattooed food truck. Thundercats heirloom irony tousled kitsch Blue Bottle. Blog ugh you probably haven't heard of them chambray, distillery typewriter Marfa 3 wolf moon swag shabby chic cronut narwhal. Aesthetic pug cliche, McSweeney's irony four loko four dollar toast Helvetica next level selfies seitan street art pork belly gentrify listicle. Kogi roof party leggings, Shoreditch cardigan four dollar toast Etsy tousled butcher actually American Apparel selfies occupy food truck pickled. Ennui chambray occupy organic aesthetic art party. Crucifix irony keytar, XOXO dreamcatcher direct trade iPhone swag Odd Future Banksy.</p>
+  </div>
+
+</section>
+
+{% endblock %}
+
+
