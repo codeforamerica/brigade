@@ -20,10 +20,6 @@ body {
   cursor: pointer !important;
 }
 
-#brigadeList {
-  margin-top: 500px; /* Not sure why this needs to be so large, but the box ends up being ~317px tall */
-  margin-bottom: 20px;
-}
 
 #brigadeList a {
   margin-left: 20px;
@@ -97,6 +93,10 @@ h2 {
 
   #overlay p {
     padding: 5px 10px;
+  }
+
+  #overlay {
+    margin-bottom: 25px;
   }
 
 }

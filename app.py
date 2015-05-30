@@ -52,6 +52,8 @@ def get_brigades():
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
     brigades = get_brigades()
+    brigades = json.loads(brigades)
+    brigades.sort(key=lambda x: x['properties']['city'])
     return render_template("brigade_list.html", brigades=brigades )
 
 

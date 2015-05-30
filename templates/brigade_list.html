@@ -2,8 +2,6 @@
 
 {% block content %}
 
-  <div id="map"></div>
-
   <div id="overlay" class="slab-red">
 
     <img id="logo" src="{{ url_for('static', filename='images/the_brigade.png') }}" />
@@ -15,101 +13,32 @@
 
 
   </div>
-  <div style="margin-top: 20px;">
-    <div id="brigadeList"></div>
+
+  <div id="brigadeList">
+    <h4>Full Brigade List</h4>
+    <div class="layout-semibreve">
+
+      {% for brigade in brigades %}
+        <a href="{{brigade.properties.website}}" class="billboard">
+            <strong class="billboard-label">{{ brigade.properties.name }}</strong>
+            {{ brigade.properties.city }}
+        </a>
+      {% endfor %}
+
+    </div>
   </div>
 
 {% endblock %}
 
 {% block js %}
 
-<script src="{{ url_for('static', filename='js/turf.min.js') }}"></script>
-
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
-
 <script>
-  // Seems like all of the map stuff should go into it's own JS, but I'm not familiar enough with Flask to 
-  // know how to pass the geojson to the url_for call for the javascript file.
+
   // Generate list of brigades
   if ($(window).width() > 480){
     $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
     $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
   }
-
-  // Provide your access token
-  L.mapbox.accessToken = 'pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiSTZlTTZTcyJ9.3aSlHLNzvsTwK-CYfZsG_Q';
-
-  // Create a map in the div #map
-  var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj');
-
-  // Don't need to set any of this unless we're actually loading a map.
-  function mapSettings() {
-    map.legendControl.setPosition('topright');
-    map.legendControl.addLegend('<img src="https://www.codeforamerica.org/brigade/static/images/red-marker.png" style="vertical-align: middle;"><strong>Official Brigade</strong>');
-    map.zoomControl.setPosition('topright');
-
-    var latlon = [27, -85], zoom = 2;
-
-    map.setView(latlon, zoom);
-    map.featureLayer.setGeoJSON({{ brigades | safe }});
-
-    map.featureLayer.on('click', function(e) {
-        var brigadeId = e.layer.feature.properties.name.replace(/\s+/g, '-');
-        window.open(brigadeId, "_self");
-        });
-  }
-
-
-  // This uses the HTML5 geolocation API, which is available on
-  // most mobile browsers and modern browsers, but not in Internet Explorer
-  //
-  // See this chart of compatibility for details:
-  // http://caniuse.com/#feat=geolocation
-  if (!navigator.geolocation) {
-      geolocate.innerHTML = 'Geolocation is not available';
-  } else {
-      geolocate.onclick = function (e) {
-          $("#geolocate").addClass("button-progress").text("Finding your local Brigade");
-          e.preventDefault();
-          e.stopPropagation();
-          map.locate();
-      };
-  }
-
-  // Once we've got a position, zoom and center the map
-  // on it, and add a single marker.
-  map.on('locationfound', function(e) {
-    var my_lnglat = [e.latlng.lng, e.latlng.lat]
-    var point = turf.point(my_lnglat);
-    var against = turf.featurecollection(brigade_points);
-    var nearest = turf.nearest(point,against);
-    var distance = turf.distance(point, nearest, "miles");
-    if (distance > 200) {
-      $("#geolocate").removeClass("button-progress").addClass("button-disabled");
-      $(".alert-success").show();
-    }
-    mapSettings();
-
-    var brigadeId = nearest.properties.name.replace(/\s+/g, '-');
-    window.open(brigadeId, "_self");
-  });
-
-  // If the user chooses not to allow their location
-  // to be shared, display an error message.
-  map.on('locationerror', function() {
-      geolocate.innerHTML = 'Position could not be found';
-  });
-
-  var brigades = {{ brigades | safe }};
-  var brigadeDiv = $('#brigadeList');
-  brigadeDiv.append('<h4>Full Brigade List</h4>');
-  var brigade_points = []
-  $.each(brigades, function(i,brigade){
-    brigadeDiv.append('<div><a href="'+brigade.properties.website+'">'+brigade.id+'</a></div>');
-    brigade_point = turf.point(brigade.geometry.coordinates, brigade.properties);
-    brigade_points.push(brigade_point);
-  });
 
   // SIGN UP FORM
   $('input[name="group[10273][8192]"]').prop('checked',true);
