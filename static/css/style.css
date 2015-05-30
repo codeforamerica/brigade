@@ -95,10 +95,6 @@ h2 {
     display: none;
   }
 
-  #overlay{
-    height: 475px;
-  }
-
   #overlay p {
     padding: 5px 10px;
   }
