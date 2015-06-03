@@ -2,139 +2,176 @@
 
 {% block content %}
 
-<section>
 
-  <div class="layout-semibreve">
 
-<section>
-<body>
-		<div class="js-container">
-			<div class="layout-semibreve">
-				{% include nav-breadcrumbs.html %}
+		  		<!-- body title -->
+		  		<h2>Design for People's Needs</h2>
+		  		
+		  		
+					<div class="alert-info">
+						<p><b>Beta: Last updated on November 24, 2014.</b></p>
+					</div>     
+		  		
+		  		
+		  		
+		  		
+				<!-- start toc block -->
+				<div class="layout-minor">
+					<nav role="navigation" class="toc" id="toc">
+						<h3>Contents</h3>
+						
+						<div class="toc">
+						
+						    <ul>
+<li class="level-understand-peoples-needs"><a href="#understand-peoples-needs">1. Understand people's needs</a>
+<ul>
+<li class="level-checklist"><a href="#checklist">Checklist:</a>
+</li>
+</ul>
+</li>
+<li class="level-design-the-service-not-the-website"><a href="#design-the-service-not-the-website">2. Design the service, not the website</a>
+<ul>
+<li class="level-checklist-1"><a href="#checklist-1">Checklist:</a>
+</li>
+</ul>
+</li>
+<li class="level-make-it-accessible-and-intuitive"><a href="#make-it-accessible-and-intuitive">3. Make it accessible and intuitive</a>
+<ul>
+<li class="level-checklist-2"><a href="#checklist-2">Checklist:</a>
+</li>
+</ul>
+</li>
+<li class="level-build-small-things-quickly"><a href="#build-small-things-quickly">4. Build small things quickly</a>
+<ul>
+<li class="level-checklist-3"><a href="#checklist-3">Checklist:</a>
+</li>
+</ul>
+</li>
+<li class="level-establish-performance-benchmarks"><a href="#establish-performance-benchmarks">5. Establish performance benchmarks</a>
+<ul>
+<li class="level-checklist-4"><a href="#checklist-4">Checklist:</a>
+</li>
+</ul>
+</li>
+<li class="level-establish-a-service-governance-plan-that-incorporates-user-feedback"><a href="#establish-a-service-governance-plan-that-incorporates-user-feedback">6. Establish a service governance plan that incorporates user feedback</a>
+<ul>
+<li class="level-checklist-5"><a href="#checklist-5">Checklist:</a>
+</li>
+</ul>
+</li>
+</ul>
 
-				<header class="heading">
-		    	<h1>{{ page.title }}</h1>
-		    	<h2>{{ page.subtitle }}</h2>
-		    </header>
-
-				{% comment %}
-					If this is an index page, don't show the contents.
-				{% endcomment %}
-
-				{% unless page.resource_index %}
-					<!-- start toc block -->
-					<div class="layout-minor">
-						<nav role="navigation" class="toc" id="toc">
-							<h3>Contents</h3>
-							<div class="toc">
-							    {{ page.content | toc_list }}
-							</div>
-						</nav>
-					</div>
-					<!-- end toc block -->
-				{% endunless %}
-
-				<main id="content" {% unless page.resource_index %}class="layout-major"{% endunless %}>
-					{{ content }}
-
-					{% if page.resource_index %}
-						<hr/>
-					{% else %}
-						<!-- content team survey banner -->
-						<div class="alert-info">
-							<a href="https://www.surveymonkey.com/s/codeforamerica-content">Tell us what you think</a> (opens a 3 minute survey on another website)
+						    
 						</div>
-						<!-- end content team survey banner -->
-						<hr/>
-						<p><a href="#toc">Skip to contents</a></p>
-					{% endif %}
+	
+					</nav>
+				</div>
+				<!-- end toc block -->
+	
+				<main id="content" class="layout-major">
+	
+					<p>Government should meet the needs of people who use and rely on their services. In the 21st century, this means designing services to meet user needs and using the best tools digital delivery can offer.</p>
+
+<p>In producing this standard, we have researched best practices from multiple sources and from our work in fellowships across 32 cities  since 2011.  Some of these findings come from the U.S. Digital Services’ <a href="https://playbook.cio.gov/">Playbook</a>, which focuses on agile software development and customer-driven processes.  We have also drawn from what the United Kingdom’s Government Digital Service (GDS) has learned and published in their <a href="https://www.gov.uk/design-principles">Design Principles</a> and <a href="https://www.gov.uk/service-manual">Service Design Manual</a>.</p>
+
+<p>Above all, government services must respect citizens’ time, dignity, and abilities, and those of public servants as well. The Code for America Design Standard is a set of practices for teams designing and delivering public services. They ensure that government services are high quality,  easy to use, and responsive to real peoples’ needs– both the users and the public servants delivering it. Well-designed digital services demonstrate through their design that citizens and government are on the same side.</p>
+
+<p>As governments begin to enact Code for America’s <a href="/governments/principles">Principles for 21st Century Governments</a>, this standard presents a way to evaluate a government’s ability to design and deliver public services that meet people’s needs. This Design Standard is a checklist, not a tactical manual. </p>
+
+<h2 id="understand-peoples-needs">1. Understand people’s needs</h2>
+
+<p>Service design must come from a place of empathy. Above all, the needs of people, not of the policy or the government process, should inform service design decisions.</p>
+
+<h3 id="checklist">Checklist:</h3>
+
+<ul>
+  <li>Identify existing goals, behaviors, and pain points in the way people accomplish tasks through the existing service. </li>
+  <li>Conduct user research with those delivering the service as well as those using it (and who might use it). </li>
+  <li>Critically examine any policies that set the constraints of the service (e.g. requiring “wet signatures” on forms over digital ones). </li>
+</ul>
+
+<h2 id="design-the-service-not-the-website">2. Design the service, not the website</h2>
+
+<p>The ecosystem around a service- including the users, practices they perform, devices being used, etc. is ever evolving. Today, the best way to deliver a digital service is through the web, but that might change. It’s important for government to design a service that might not start or end on their website, and is adaptable to being delivered through new channels. This also includes the experience on the back-end, and the public servants delivering the service.</p>
+
+<h3 id="checklist-1">Checklist:</h3>
+
+<ul>
+  <li>Understanding of where a project fits into the larger way people currently obtain the government service being offered, as well as the way public servants deliver the service.</li>
+  <li>Considering which people will have the most difficulty with the new service. </li>
+</ul>
+
+<h2 id="make-it-accessible-and-intuitive">3. Make it accessible and intuitive</h2>
+
+<p>Government services must be universally designed for everyone. They must be so simple and easy to use that a user will be able to succeed using it the first time, unassisted. While a service should include some directions for those who require them, the ultimate goal is for users to be able to access and employ the service without support. This includes making sure users with disabilities, including visual, auditory, physical, speech, cognitive, and neurological disabilities can use the services as well.</p>
+
+<h3 id="checklist-2">Checklist:</h3>
+
+<ul>
+  <li>The service facilitates a user’s primary task.  </li>
+  <li>The service design is consistent, easy to understand, and comfortable for a user to access on their own. </li>
+  <li>A plan is in place for providing assistance to a user, should they need it (i.e. page of instructions, FAQ, support hotline, etc.).</li>
+  <li>While conducting usability testing and user research, the service is tested on people of different abilities, including elderly and disabled users. </li>
+</ul>
+
+<h2 id="build-small-things-quickly">4. Build small things quickly</h2>
+
+<p>Digital services must be built using agile development and user-centered design. They must be frequently tested with real users in as realistic of environments as possible.  Working this way gets software into real users’ hands quickly, allowing for more time to see what features need to be added, removed or fixed. Testing in real  environments provide context for measuring the service’s overall experience. Working iteratively - making lots of small changes, often - also reduces risk. It makes big failures unlikely, and helps turn small failures into lessons that can be learned by everyone.</p>
+
+<h3 id="checklist-3">Checklist:</h3>
+
+<ul>
+  <li>Projects begin with a prototype that is intended to be thrown away after testing.</li>
+  <li>Requirements are expressed in terms of user needs.</li>
+  <li>Refinements are based on feedback from real users and incorporated into future releases.</li>
+  <li>Releases are frequent, and small. Failures are corrected by quick fixes rather than rollbacks.</li>
+</ul>
+
+<h2 id="establish-performance-benchmarks">5. Establish performance benchmarks</h2>
+
+<p>Measuring your service’s performance will highlight how to better meet your users’ needs. Your metrics must measure the success of your service, and should be based on an understanding of user and stakeholder needs. These metrics should be simple, easy to collect and, ultimately, help tell a story about how to improve your service and know it is meeting user needs. You should use analytic tools to measure what is happening, but also conduct qualitative interviews to understand why users behave a certain way when using a service.</p>
+
+<h3 id="checklist-4">Checklist:</h3>
+
+<ul>
+  <li>Metrics are in place to indicate how well the service is working for its users.</li>
+  <li>The digital service measures customer satisfaction.</li>
+  <li>A target completion rate for users has been established, and the service is modified to help the service reach this target.</li>
+</ul>
+
+<h2 id="establish-a-service-governance-plan-that-incorporates-user-feedback">6. Establish a service governance plan that incorporates user feedback</h2>
+
+<p>After a service is live, the work is not done. A digital service must continuously be improved in response to user needs and react to new demands as they emerge. Plan for ongoing user research and usability testing to continuously test assumptions and provide sustainability to the service.</p>
+
+<h3 id="checklist-5">Checklist:</h3>
+
+<ul>
+  <li>During each stage of usability testing, gaps are identified in addressing user needs and then refined through additional development.</li>
+  <li>Determine who will be responsible for on-going maintenance of your service.</li>
+</ul>
+
+
+	
+					<hr/>
+				
+					<p><a href="#toc">Skip to contents</a></p>
+									
 				</main>
 
-			</div><!-- end .layout-semibreve -->
 
-			<!-- start detailed guidance specific footer section -->
-	    <div class="slab-gray">
-	    	<div class="layout-breve">
-			    <!-- start community cta -->
-			    {% if page.community-url %}
-						<p>{{ page.community-cta }}</p>
-						<a href="{{ page.community-url }}" class="button-s">Join this community</a>
-			    {% endif %}
-			    <!-- end community cta -->
+	  		</div>
+	  	</section>
 
-					<!-- start github feedback -->
-					<p>Help make our documentation better:</p>
-					<ul>
-						<li><a title="View this page history on GitHub" href="https://github.com/codeforamerica/codeforamerica.org/commits/master{{ page.url | replace:'.html','.md' }}">View this page's history on GitHub.</a></li>
-						<li><a title="View and suggest changes to this page source on GitHub" href="https://github.com/codeforamerica/codeforamerica.org/blob/master{{ page.url | replace:'.html','.md' }}">View and suggest changes to this page on GitHub.</a></li>
-					</ul>
-					<!-- end github feedback -->
-				</div>
+		<!-- start github feedback section -->
+	    <div class="layout-breve slab-gray">
+			<p>Help make our documentation better:</p>
+			<ul>
+				<li><a title="View this page history on GitHub" href="https://github.com/codeforamerica/codeforamerica.org/commits/master/governments/principles/design/index.md">View this page's history on GitHub.</a>
+				<li><a title="View and suggest changes to this page source on GitHub" href="https://github.com/codeforamerica/codeforamerica.org/blob/master/governments/principles/design/index.md">View and suggest changes to this page on GitHub.</a>
+			</ul>
 	    </div>
-	    <!-- end detailed guidance specific footer section -->
-		
-      <!-- Email signup form -->
-      <div class="slab-medium-red">
-        <div class="layout-breve layout-tight">
-          {% include email-signup-form.html context="footer" %}
-        </div><!-- end .layout-breve -->
-      </div><!-- end .slab-dark-blue -->
+	    <!-- end github feedback section -->
 
-	    {% include global-footer.html %}
-	  </div><!-- end .js-container -->
-	  {% include email-signup-modal.html %}
-		{% include footer-scripts.html %}
- 	</body>
- 	
- 	</section>
-
-
-    <h1>Brigade Toolkit Template</h1>
-
-    <h2>
-      <ol>
-        <li>Copy the code from this <a href="https://github.com/codeforamerica/brigade/blob/master/templates/tools/template.html" target="_blank">template</a></li>
-        <li>Make a new <a href="https://github.com/codeforamerica/brigade/blob/master/templates/tools/" target="_blank">toolkit</a>.</li>
-        <li>Paste in the template code, then edit to your liking.</li>
-        <li>Refer to Code for America <a href="http://style.codeforamerica.org/">Style Guide</a></li>
-      </ol>
-    </h2>
-
-  </div>
-
-</section>
-
-<section class="slab-red">
-
-  <div class="layout-semibreve">
-
-    <h2>Another section</h2>
-
-    <p>Drinking vinegar kogi tattooed food truck.</p>
-    <img src="https://camo.githubusercontent.com/88f56d646f58cd9cb7f15283a39cf227d4cb3c21/687474703a2f2f692e67697068792e636f6d2f53495633696a41776b4e7439432e676966" />
-
-  </div>
-
-</section>
-
-<section class="slab-teal">
-
-    <div class="layout-semibreve layout-centered">
-
-        <iframe width="560" height="315" src="//www.youtube.com/embed/_9-E7CLQX48?list=PL65XgbSILalW_PV2Cgmz7gOWY3YLwC87M" frameborder="0" allowfullscreen></iframe>
-
-    </div>
-
-</section>
-
-<section class="slab-blue">
-
-  <div class="layout-semibreve">
-    <h2>Another great point</h2>
-    <p>Drinking vinegar kogi tattooed food truck. Thundercats heirloom irony tousled kitsch Blue Bottle. Blog ugh you probably haven't heard of them chambray, distillery typewriter Marfa 3 wolf moon swag shabby chic cronut narwhal. Aesthetic pug cliche, McSweeney's irony four loko four dollar toast Helvetica next level selfies seitan street art pork belly gentrify listicle. Kogi roof party leggings, Shoreditch cardigan four dollar toast Etsy tousled butcher actually American Apparel selfies occupy food truck pickled. Ennui chambray occupy organic aesthetic art party. Crucifix irony keytar, XOXO dreamcatcher direct trade iPhone swag Odd Future Banksy.</p>
-  </div>
-
-</section>
 
 {% endblock %}
 
