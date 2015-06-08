@@ -272,6 +272,11 @@ def tools(page=None):
         return render_template("tools/index.html")
 
 
+@app.route("/brigade/lab")
+def lab():
+    return render_template("lab.html")
+
+
 @app.route("/brigade/projects/")
 @app.route("/brigade/<brigadeid>/projects/")
 def projects(brigadeid=None):
