@@ -357,5 +357,31 @@ def brigade(brigadeid):
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
+@app.route("/brigade/checkin/", methods=["GET", "POST"])
+@app.route("/brigade/<brigadeid>/checkin/", methods=["GET", "POST"])
+def checkin(brigadeid=None):
+    ''' A tool to track attendance at Brigade events '''
+
+    if request.method == "GET":
+        # Get all of the organizations from the api
+        organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+        organizations = organizations.json()
+
+        # Org's names and ids
+        brigades = []
+        for org in organizations['features']:
+            if "Brigade" in org['properties']['type']:
+                brigades.append({ org['properties']['name'] : org['id']})
+
+        # Alphabetize names
+        brigades.sort(key=lambda x: x.values()[0])
+
+        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades)
+
+    if request.method == "POST":
+        # Prep the checkin for posting to the peopledb
+        pass
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
