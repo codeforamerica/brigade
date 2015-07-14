@@ -359,28 +359,57 @@ def brigade(brigadeid):
 
 @app.route("/brigade/checkin/", methods=["GET", "POST"])
 @app.route("/brigade/<brigadeid>/checkin/", methods=["GET", "POST"])
-def checkin(brigadeid=None):
+def checkin(brigadeid=None, remember=None):
     ''' A tool to track attendance at Brigade events '''
+    # Get all of the organizations from the api
+    organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+    organizations = organizations.json()
 
+    # Org's names and ids
+    brigades = []
+    for org in organizations['features']:
+        if "Brigade" in org['properties']['type']:
+            brigades.append({
+                "name": org['properties']['name'],
+                "id": org['id']
+                })
+
+    # Alphabetize names
+    brigades.sort(key=lambda x: x.values()[0])
     if request.method == "GET":
-        # Get all of the organizations from the api
-        organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
-        organizations = organizations.json()
-
-        # Org's names and ids
-        brigades = []
-        for org in organizations['features']:
-            if "Brigade" in org['properties']['type']:
-                brigades.append({ org['properties']['name'] : org['id']})
-
-        # Alphabetize names
-        brigades.sort(key=lambda x: x.values()[0])
-
-        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades)
+        if brigadeid:
+            for brigade in brigades:
+                if brigade["id"] == brigadeid:
+                    remember = brigade
+                    break
+        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, remember=remember)
 
     if request.method == "POST":
         # Prep the checkin for posting to the peopledb
-        pass
+        url = "https://www.codeforamerica.org/api/organizations/"+ request.form["brigade"]
+        if request.form["radio"] == "Other":
+            event = request.form["event-other"]
+        else:
+            event = request.form["radio"]
+        peopledb_post = {
+            "name": request.form["name"],
+            "email": request.form["email"],
+            "date": datetime.datetime.now(),
+            "organization_cfapi_url": url,
+            "event": event,
+            "question":[],
+            "answer":[]
+        }
+        # Check output to peopledb, write test for this
+        # print peopledb_post
+
+        if request.form["brigade"]:
+            for brigade in brigades:
+                if brigade["id"] == request.form["brigade"]:
+                    remember = brigade
+                    break
+
+        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, remember=remember)
 
 
 if __name__ == '__main__':
