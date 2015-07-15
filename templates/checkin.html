@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+
+    <div class="slab-gray">
+        <div class="layout-semibreve">
+            {% if brigadeid %}
+            <h1> Check In: {{brigadeid}}</h1>
+            {% else %}
+            <h1> Check In </h1>
+            {% endif %}
+                <form action="{{request.path}}" method="post">
+                    <p>
+                    <label for="name">Name <abbr title="Required">*</abbr></label>
+                    <input name="name" id="name" class="input" placeholder="Civic Hacker" required/>
+                    </p>
+                    <p>
+                        <label for="email">Email Address <abbr title="Required">*</abbr></label>
+                        <input name="email" id="email" class="input" type="email" placeholder="you@example.com" required/>
+                    </p>
+                    <p>
+                        <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
+                            <select name="brigade">
+                                {% if remember %}
+                                    <option value="{{remember["id"]}}"> {{remember["name"]}} </option>
+                                {% endif %}
+
+                                {% for brigade in brigades %}
+                                <option value="{{brigade["id"]}}"> {{brigade["name"]}} </option>
+                                {% endfor %}
+                            </select>
+                    </p>
+                    <p>
+                        <label for"event">Select the Event you're attending<abbr title="Required">*</abbr></legend>
+                        <ul class="list-form">
+                            <li>
+                                <label for="radio1"><input value="None" id="radio1" name="radio" type="radio" checked/> None</label>
+                            </li>
+                            <li>
+                                <label for="radio2"><input value="Civic Hack Night" id="radio2" name="radio" type="radio"> Civic Hack Night</label>
+                            </li>
+                            <li>
+                                <label for="radio3"><input name="radio" value="Other" id="radio3" type="radio" > Other
+                                    <input name="event-other" id="event" class="input" placeholder="Other Brigade Event">
+                                </label>
+                            </li>
+                        </ul>
+                    </p>
+
+                    <!-- Anticipate for a list of questions and a list of answers 
+
+                    {% if questions %}
+                    {% endif%}
+
+                    {% if answers %}
+                    {% endif %} -->
+                    
+                    <button type="submit" value="Submit">Check In!</button>
+
+                </form>
+        </div>
+</section>
+
+<script>
+document.getElementById('datePicker').value = new Date().toDateInputValue();
+</script>
+
+{% endblock %}
