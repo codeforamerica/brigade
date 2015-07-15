@@ -364,7 +364,7 @@ def checkin(brigadeid=None, remember=None):
     # Get all of the organizations from the api
     organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
     organizations = organizations.json()
-
+    remember = []
     # Org's names and ids
     brigades = []
     for org in organizations['features']:
@@ -380,13 +380,19 @@ def checkin(brigadeid=None, remember=None):
         if brigadeid:
             for brigade in brigades:
                 if brigade["id"] == brigadeid:
-                    remember = brigade
+                    remember.append(brigade)
                     break
         return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, remember=remember)
 
     if request.method == "POST":
-        # Prep the checkin for posting to the peopledb
+        ''' Prep the checkin for posting to the peopledb '''
+
+        # convert brigadeid to organization_cfapi_url
         url = "https://www.codeforamerica.org/api/organizations/"+ request.form["brigade"]
+        
+        # we could implement this in one of two ways:
+        # the first is this, w/ a defaul 'hack night option' + other option
+        # Or, we could have brigades set the option themselves
         if request.form["radio"] == "Other":
             event = request.form["event-other"]
         else:
@@ -400,14 +406,16 @@ def checkin(brigadeid=None, remember=None):
             "question":[],
             "answer":[]
         }
-        # Check output to peopledb, write test for this
-        # print peopledb_post
+        # Checking output to peopledb, write test for this
+        print peopledb_post
 
         if request.form["brigade"]:
             for brigade in brigades:
                 if brigade["id"] == request.form["brigade"]:
-                    remember = brigade
+                    remember.append(brigade)
                     break
+        if request.form["event-other"]:
+            remember.append(event)
 
         return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, remember=remember)
 

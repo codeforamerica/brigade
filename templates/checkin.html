@@ -19,11 +19,13 @@
                         <label for="email">Email Address <abbr title="Required">*</abbr></label>
                         <input name="email" id="email" class="input" type="email" placeholder="you@example.com" required/>
                     </p>
+                    <p> <label for="checkbox10"><input id="checkbox10" name="checkbox" type="checkbox" checked/> Join Brigade Mailing List</label>
+                    </p>
                     <p>
                         <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
                             <select name="brigade">
                                 {% if remember %}
-                                    <option value="{{remember["id"]}}"> {{remember["name"]}} </option>
+                                    <option value="{{remember[0]["id"]}}"> {{remember[0]["name"]}} </option>
                                 {% endif %}
 
                                 {% for brigade in brigades %}
@@ -34,6 +36,21 @@
                     <p>
                         <label for"event">Select the Event you're attending<abbr title="Required">*</abbr></legend>
                         <ul class="list-form">
+                            {% if remember[1] %}
+                            <li>
+                                <label for="radio1"><input value="None" id="radio1" name="radio" type="radio"/> None</label>
+                            </li>
+                            <li>
+                                <label for="radio2"><input value="Civic Hack Night" id="radio2" name="radio" type="radio"/> Civic Hack Night</label>
+                            </li>
+                            <li>
+                                <label for="radio3"><input name="radio" value="Other" id="radio3" type="radio" checked/> Other
+                                    <input name="event-other" id="event" value="{{remember[1]}}" class="input">
+                                </label>
+                            </li>
+
+                            {% else %}
+
                             <li>
                                 <label for="radio1"><input value="None" id="radio1" name="radio" type="radio" checked/> None</label>
                             </li>
@@ -42,9 +59,10 @@
                             </li>
                             <li>
                                 <label for="radio3"><input name="radio" value="Other" id="radio3" type="radio" > Other
-                                    <input name="event-other" id="event" class="input" placeholder="Other Brigade Event">
+                                    <input name="event-other" id="event" class="input" placeholder="Ex. Hackathon">
                                 </label>
                             </li>
+                            {% endif %}
                         </ul>
                     </p>
 
@@ -56,7 +74,7 @@
                     {% if answers %}
                     {% endif %} -->
                     
-                    <button type="submit" value="Submit">Check In!</button>
+                    <button type="submit" value="Submit" class="button-l">Check In!</button>
 
                 </form>
         </div>
