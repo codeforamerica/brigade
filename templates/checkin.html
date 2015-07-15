@@ -1,87 +1,71 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section>
+  <section>
+    <div class="slab-blue">
+      <div class="layout-semibreve">
+        {% if brigadeid %}
+          {% for brigade in brigades%}
+            {% if brigade["id"] == brigadeid %}
+              <h1 style="color: white"> Check In: {{brigade["name"]}}</h1>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+        <h1 style="color:white"> Check In </h1>
+        {% endif %}
+      </div>
+    </div>
 
     <div class="slab-gray">
-        <div class="layout-semibreve">
-            {% if brigadeid %}
-            <h1> Check In: {{brigadeid}}</h1>
-            {% else %}
-            <h1> Check In </h1>
+      <div class="layout-semibreve">
+          <form action="{{request.path}}" method="post">
+            {% if remember%}
+            <p><small style="color:#00a175" class="note"><i class="icon-checkmark"></i>Thanks for checking in at <b>{{remember}}</b>!</small></p>
             {% endif %}
-                <form action="{{request.path}}" method="post">
-                    <p>
-                    <label for="name">Name <abbr title="Required">*</abbr></label>
-                    <input name="name" id="name" class="input" placeholder="Civic Hacker" required/>
-                    </p>
-                    <p>
-                        <label for="email">Email Address <abbr title="Required">*</abbr></label>
-                        <input name="email" id="email" class="input" type="email" placeholder="you@example.com" required/>
-                    </p>
-                    <p> <label for="checkbox10"><input id="checkbox10" name="checkbox" type="checkbox" checked/> Join Brigade Mailing List</label>
-                    </p>
-                    <p>
-                        <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
-                            <select name="brigade">
-                                {% if remember %}
-                                    <option value="{{remember[0]["id"]}}"> {{remember[0]["name"]}} </option>
-                                {% endif %}
-
-                                {% for brigade in brigades %}
-                                <option value="{{brigade["id"]}}"> {{brigade["name"]}} </option>
-                                {% endfor %}
-                            </select>
-                    </p>
-                    <p>
-                        <label for"event">Select the Event you're attending<abbr title="Required">*</abbr></legend>
-                        <ul class="list-form">
-                            {% if remember[1] %}
-                            <li>
-                                <label for="radio1"><input value="None" id="radio1" name="radio" type="radio"/> None</label>
-                            </li>
-                            <li>
-                                <label for="radio2"><input value="Civic Hack Night" id="radio2" name="radio" type="radio"/> Civic Hack Night</label>
-                            </li>
-                            <li>
-                                <label for="radio3"><input name="radio" value="Other" id="radio3" type="radio" checked/> Other
-                                    <input name="event-other" id="event" value="{{remember[1]}}" class="input">
-                                </label>
-                            </li>
-
-                            {% else %}
-
-                            <li>
-                                <label for="radio1"><input value="None" id="radio1" name="radio" type="radio" checked/> None</label>
-                            </li>
-                            <li>
-                                <label for="radio2"><input value="Civic Hack Night" id="radio2" name="radio" type="radio"> Civic Hack Night</label>
-                            </li>
-                            <li>
-                                <label for="radio3"><input name="radio" value="Other" id="radio3" type="radio" > Other
-                                    <input name="event-other" id="event" class="input" placeholder="Ex. Hackathon">
-                                </label>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </p>
-
-                    <!-- Anticipate for a list of questions and a list of answers 
-
-                    {% if questions %}
-                    {% endif%}
-
-                    {% if answers %}
-                    {% endif %} -->
-                    
-                    <button type="submit" value="Submit" class="button-l">Check In!</button>
-
-                </form>
+            <p>
+              <label for="name">Name <abbr title="Required">*</abbr></label>
+              <input name="name" id="name" class="input" placeholder="Civic Hacker" required/>
+            </p>
+            <p>
+              <label for="email">Email Address <abbr title="Required">*</abbr></label>
+              <input name="email" id="email" class="input" type="email" placeholder="you@example.com" required/>
+            </p>
+            <p>
+              <label for="checkbox10"><input id="checkbox10" name="checkbox" type="checkbox" checked/> Join Brigade Mailing List</label>
+            </p>
+            {% if brigadeid %}
+            {% else %}
+            <p>
+              <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
+              <select name="brigade">
+                {% for brigade in brigades %}
+                <option value="{{brigade["id"]}}"> {{brigade["name"]}} </option>
+                {% endfor %}
+            </select>
+            </p>
+            {% endif %}
+            <p>
+              <label for"event">Which Event are you attending?<abbr title="Required">*</abbr></label>
+                {% if remember %}
+                <input name="event" id="event" value="{{remember}}" class="input">
+                {% else %}
+                <input name="event" id="event" class="input" placeholder="Ex. Hackathon"required/>
+                {% endif %}
+            </p>
+            <p>
+              {% if questions %}
+              <p><small class="note">Sample Optional Questions</small></p>
+              {% endif %}
+              {% for question in questions %}
+              <label for="name"> {{question["question"]}} </label>
+              <input name="{{question["id"]}}" id="{{question["id"]}}" class="input" placeholder="" />
+              {% endfor %}
+            </p>
+            <button type="submit" value="Submit" class="button-l">Check In!</button>
+          </form>
         </div>
-</section>
-
-<script>
-document.getElementById('datePicker').value = new Date().toDateInputValue();
-</script>
+      </div>
+    </div>
+  </section>
 
 {% endblock %}

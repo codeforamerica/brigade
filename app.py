@@ -374,50 +374,46 @@ def checkin(brigadeid=None, remember=None):
                 "id": org['id']
                 })
 
+    # fake sample question data
+    questions = [
+        {"id":"question-1","question":"What are your skills?"},
+        {"id":"question-2","question":"What projects would you like to hear more about?"}]
     # Alphabetize names
     brigades.sort(key=lambda x: x.values()[0])
+    
     if request.method == "GET":
-        if brigadeid:
-            for brigade in brigades:
-                if brigade["id"] == brigadeid:
-                    remember.append(brigade)
-                    break
-        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, remember=remember)
+        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades,
+                               remember=remember, questions=questions)
 
     if request.method == "POST":
         ''' Prep the checkin for posting to the peopledb '''
 
         # convert brigadeid to organization_cfapi_url
-        url = "https://www.codeforamerica.org/api/organizations/"+ request.form["brigade"]
-        
-        # we could implement this in one of two ways:
-        # the first is this, w/ a defaul 'hack night option' + other option
-        # Or, we could have brigades set the option themselves
-        if request.form["radio"] == "Other":
-            event = request.form["event-other"]
+        if brigadeid:
+            url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid
         else:
-            event = request.form["radio"]
+            url = "https://www.codeforamerica.org/api/organizations/"+ request.form["brigade"]
+        
+        # If questions are answered, submit them
+        for question in questions:
+            if request.form[question["id"]]:
+                question["answer"] = request.form[question["id"]]
+
         peopledb_post = {
             "name": request.form["name"],
             "email": request.form["email"],
             "date": datetime.datetime.now(),
             "organization_cfapi_url": url,
-            "event": event,
-            "question":[],
-            "answer":[]
+            "event": request.form["event"],
+            "question":questions,
+            "answer":""
         }
         # Checking output to peopledb, write test for this
-        print peopledb_post
+        # print peopledb_post
+        remember = request.form["event"]
 
-        if request.form["brigade"]:
-            for brigade in brigades:
-                if brigade["id"] == request.form["brigade"]:
-                    remember.append(brigade)
-                    break
-        if request.form["event-other"]:
-            remember.append(event)
-
-        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, remember=remember)
+        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, 
+                               remember=remember, questions=questions)
 
 
 if __name__ == '__main__':
