@@ -396,12 +396,13 @@ def checkin(brigadeid=None, event=None):
                                 ('event', u''), ('name', u'Civic Betty')])'''
         # print request.form
 
+
+
         # Remembering event name and brigadeid for later
         event = request.form["event"]
-        # So that we can redirect to just /checkin if we went to /brigade/checkin
-        if brigadeid:
-            brigadeid = request.form["cfapi_url"]
-            brigadeid = brigadeid.replace("https://www.codeforamerica.org/api/organizations/","")
+
+        brigadeid = request.form["cfapi_url"]
+        brigadeid = brigadeid.replace("https://www.codeforamerica.org/api/organizations/","")
 
         return redirect(url_for('checkin', brigadeid=brigadeid,
                                event=event, extras=extras))
