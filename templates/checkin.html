@@ -18,7 +18,7 @@
 
     <div class="slab-gray">
       <div class="layout-semibreve">
-          <form action="/brigade/checkin/" method="post">
+          <form enctype="application/x-www-form-urlencoded" action="/brigade/checkin/" method="post">
             {% if event%}
             <p><small style="color:#00a175" class="note"><i class="icon-checkmark"></i>Thanks for checking in at <b>{{event}}</b>!</small></p>
             {% endif %}
@@ -36,7 +36,7 @@
             {% if brigadeid %}
             <p style="display:none">
               <label for="select">Select Your Brigade Chapter! </label>
-              <select name="brigade">
+              <select name="cfapi_url">
                   {% for brigade in brigades%}
                     {% if brigade["id"] == brigadeid %}
                       <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
@@ -44,11 +44,14 @@
                   {% endfor %}
             </select>
             </p>
-            {% else %} <!-- This *should* never happen -->
+            {% else %}
             <p>
               <label for="select">Select Your Brigade Chapter! </label>
-              <select name="brigade">
+
+              <select name="cfapi_url">
+                {% for brigade in brigades %}
                 <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
+                {% endfor %}
               </select>
             </p>
             {% endif %}
@@ -61,13 +64,9 @@
                 {% endif %}
             </p>
             <p> <!-- Extras, currently undefined -->
-              {% if extras %}
-              <p><small class="note">Sample Optional Questions</small></p>
-              {% endif %}
-              {% for question in questions %}
-              <label for="question"> {{question["question"]}} </label>
-              <input name="test" id="test" class="input" placeholder="" />
-              {% endfor %}
+              <p><small class="note">Extras</small></p>
+              <label name="extras[]" for="question"> Real Question{{extras["question"]}} </label>
+              <input name="extras[]" class="input answer" placeholder="" />
             </p>
             <button type="submit" value="Submit" class="button-l">Check In!</button>
           </form>

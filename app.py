@@ -357,7 +357,7 @@ def brigade(brigadeid):
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
-@app.route("/brigade/checkin/", methods=["POST"])
+@app.route("/brigade/checkin/", methods=["GET", "POST"])
 @app.route("/brigade/<brigadeid>/checkin/", methods=["GET", "POST"])
 def checkin(brigadeid=None, event=None):
 
@@ -378,7 +378,7 @@ def checkin(brigadeid=None, event=None):
     brigades.sort(key=lambda x: x.values()[0])
     
     if request.method == "GET":
-        # Previous events, if filled out have checkin urls which we use to remember the event
+        # If we want to remember the event
         url = request.url
         if "?" in url:
             string = url.split("?")[1].split("=")
@@ -390,23 +390,18 @@ def checkin(brigadeid=None, event=None):
     
     if request.method == "POST":
         ''' Prep the checkin for posting to the peopledb '''
-        
-        ''' We're returning the request.form format not json
-        peopledb_post = {
-            "name": request.form["name"],
-            "email": request.form["email"],
-            "event": request.form["event"],
-            "organization_cfapi_url": request.form["brigade"],
-            "extras": {
-                "question":"",
-                "answer":""
-            }
-        }'''
+        ''' Sample response:
+            ImmutableMultiDict([('email', u'e@cu.com'),
+                                ('cfapi_url', u'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco'),
+                                ('event', u''), ('name', u'Civic Betty')])'''
+        # print request.form
 
-        # Remembering event name and brigadeid
+        # Remembering event name and brigadeid for later
         event = request.form["event"]
-        brigadeid = request.form["brigade"] #immutable type
-        brigadeid = brigadeid.replace("https://www.codeforamerica.org/api/organizations/","")
+        # So that we can redirect to just /checkin if we went to /brigade/checkin
+        if brigadeid:
+            brigadeid = request.form["cfapi_url"]
+            brigadeid = brigadeid.replace("https://www.codeforamerica.org/api/organizations/","")
 
         return redirect(url_for('checkin', brigadeid=brigadeid,
                                event=event, extras=extras))
