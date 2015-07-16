@@ -23,11 +23,11 @@
             <p><small style="color:#00a175" class="note"><i class="icon-checkmark"></i>Thanks for checking in at <b>{{event}}</b>!</small></p>
             {% endif %}
             <p>
-              <label for="name">Name <abbr title="Required">*</abbr></label>
+              <label for="name">Name</label>
               <input name="name" id="name" class="input" placeholder="Civic Hacker" />
             </p>
             <p>
-              <label for="email">Email Address <abbr title="Required">*</abbr></label>
+              <label for="email">Email Address </label>
               <input name="email" id="email" class="input" type="email" placeholder="you@example.com" />
             </p>
             <p>
@@ -35,7 +35,7 @@
             </p>
             {% if brigadeid %}
             <p style="display:none">
-              <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
+              <label for="select">Select Your Brigade Chapter! </label>
               <select name="brigade">
                   {% for brigade in brigades%}
                     {% if brigade["id"] == brigadeid %}
@@ -46,14 +46,14 @@
             </p>
             {% else %} <!-- This *should* never happen -->
             <p>
-              <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
+              <label for="select">Select Your Brigade Chapter! </label>
               <select name="brigade">
                 <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
               </select>
             </p>
             {% endif %}
             <p>
-              <label for"event">Which Event are you attending?<abbr title="Required">*</abbr></label>
+              <label for"event">Which Event are you attending?</label>
                 {% if event %}
                 <input name="event" id="event" value="{{event}}" class="input">
                 {% else %}
