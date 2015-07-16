@@ -18,47 +18,55 @@
 
     <div class="slab-gray">
       <div class="layout-semibreve">
-          <form action="{{request.path}}" method="post">
-            {% if remember%}
-            <p><small style="color:#00a175" class="note"><i class="icon-checkmark"></i>Thanks for checking in at <b>{{remember}}</b>!</small></p>
+          <form action="/brigade/checkin/" method="post">
+            {% if event%}
+            <p><small style="color:#00a175" class="note"><i class="icon-checkmark"></i>Thanks for checking in at <b>{{event}}</b>!</small></p>
             {% endif %}
             <p>
               <label for="name">Name <abbr title="Required">*</abbr></label>
-              <input name="name" id="name" class="input" placeholder="Civic Hacker" required/>
+              <input name="name" id="name" class="input" placeholder="Civic Hacker" />
             </p>
             <p>
               <label for="email">Email Address <abbr title="Required">*</abbr></label>
-              <input name="email" id="email" class="input" type="email" placeholder="you@example.com" required/>
+              <input name="email" id="email" class="input" type="email" placeholder="you@example.com" />
             </p>
             <p>
-              <label for="checkbox10"><input id="checkbox10" name="checkbox" type="checkbox" checked/> Join Brigade Mailing List</label>
+              <label for="checkbox10"><input id="checkbox10" type="checkbox" checked/> Join Brigade Mailing List</label>
             </p>
             {% if brigadeid %}
-            {% else %}
+            <p style="display:none">
+              <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
+              <select name="brigade">
+                  {% for brigade in brigades%}
+                    {% if brigade["id"] == brigadeid %}
+                      <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
+                    {% endif %}
+                  {% endfor %}
+            </select>
+            </p>
+            {% else %} <!-- This *should* never happen -->
             <p>
               <label for="select">Select Your Brigade Chapter! <abbr title="Required">*</abbr></label>
               <select name="brigade">
-                {% for brigade in brigades %}
-                <option value="{{brigade["id"]}}"> {{brigade["name"]}} </option>
-                {% endfor %}
-            </select>
+                <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
+              </select>
             </p>
             {% endif %}
             <p>
               <label for"event">Which Event are you attending?<abbr title="Required">*</abbr></label>
-                {% if remember %}
-                <input name="event" id="event" value="{{remember}}" class="input">
+                {% if event %}
+                <input name="event" id="event" value="{{event}}" class="input">
                 {% else %}
-                <input name="event" id="event" class="input" placeholder="Ex. Hackathon"required/>
+                <input name="event" id="event" class="input" placeholder="Ex. Hackathon"/>
                 {% endif %}
             </p>
-            <p>
-              {% if questions %}
+            <p> <!-- Extras, currently undefined -->
+              {% if extras %}
               <p><small class="note">Sample Optional Questions</small></p>
               {% endif %}
               {% for question in questions %}
-              <label for="name"> {{question["question"]}} </label>
-              <input name="{{question["id"]}}" id="{{question["id"]}}" class="input" placeholder="" />
+              <label for="question"> {{question["question"]}} </label>
+              <input name="test" id="test" class="input" placeholder="" />
               {% endfor %}
             </p>
             <button type="submit" value="Submit" class="button-l">Check In!</button>

@@ -3,7 +3,7 @@ import os
 from requests import get, post
 import datetime
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import filters
 
 app = Flask(__name__, static_url_path="/brigade/static")
@@ -357,14 +357,14 @@ def brigade(brigadeid):
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
-@app.route("/brigade/checkin/", methods=["GET", "POST"])
+@app.route("/brigade/checkin/", methods=["POST"])
 @app.route("/brigade/<brigadeid>/checkin/", methods=["GET", "POST"])
-def checkin(brigadeid=None, remember=None):
+def checkin(brigadeid=None, event=None):
+
     ''' A tool to track attendance at Brigade events '''
     # Get all of the organizations from the api
     organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
     organizations = organizations.json()
-    remember = []
     # Org's names and ids
     brigades = []
     for org in organizations['features']:
@@ -373,47 +373,43 @@ def checkin(brigadeid=None, remember=None):
                 "name": org['properties']['name'],
                 "id": org['id']
                 })
-
-    # fake sample question data
-    questions = [
-        {"id":"question-1","question":"What are your skills?"},
-        {"id":"question-2","question":"What projects would you like to hear more about?"}]
+    extras = []
     # Alphabetize names
     brigades.sort(key=lambda x: x.values()[0])
     
     if request.method == "GET":
-        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades,
-                               remember=remember, questions=questions)
+        # Previous events, if filled out have checkin urls which we use to remember the event
+        url = request.url
+        if "?" in url:
+            string = url.split("?")[1].split("=")
+            event = string[1].replace("+"," ")
 
+        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades,
+                               event=event, extras=extras)
+
+    
     if request.method == "POST":
         ''' Prep the checkin for posting to the peopledb '''
-
-        # convert brigadeid to organization_cfapi_url
-        if brigadeid:
-            url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid
-        else:
-            url = "https://www.codeforamerica.org/api/organizations/"+ request.form["brigade"]
         
-        # If questions are answered, submit them
-        for question in questions:
-            if request.form[question["id"]]:
-                question["answer"] = request.form[question["id"]]
-
+        ''' We're returning the request.form format not json
         peopledb_post = {
             "name": request.form["name"],
             "email": request.form["email"],
-            "date": datetime.datetime.now(),
-            "organization_cfapi_url": url,
             "event": request.form["event"],
-            "question":questions,
-            "answer":""
-        }
-        # Checking output to peopledb, write test for this
-        # print peopledb_post
-        remember = request.form["event"]
+            "organization_cfapi_url": request.form["brigade"],
+            "extras": {
+                "question":"",
+                "answer":""
+            }
+        }'''
 
-        return render_template("checkin.html", brigadeid=brigadeid, brigades=brigades, 
-                               remember=remember, questions=questions)
+        # Remembering event name and brigadeid
+        event = request.form["event"]
+        brigadeid = request.form["brigade"] #immutable type
+        brigadeid = brigadeid.replace("https://www.codeforamerica.org/api/organizations/","")
+
+        return redirect(url_for('checkin', brigadeid=brigadeid,
+                               event=event, extras=extras))
 
 
 if __name__ == '__main__':
