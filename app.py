@@ -359,25 +359,28 @@ def brigade(brigadeid):
 
 @app.route("/brigade/checkin/", methods=["GET", "POST"])
 @app.route("/brigade/<brigadeid>/checkin/", methods=["GET", "POST"])
-def checkin(brigadeid=None, event=None):
-
+def checkin(brigadeid=None, event=None, brigades=None):
     ''' A tool to track attendance at Brigade events '''
-    # Get all of the organizations from the api
-    organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
-    organizations = organizations.json()
-    # Org's names and ids
-    brigades = []
-    for org in organizations['features']:
-        if "Brigade" in org['properties']['type']:
-            brigades.append({
-                "name": org['properties']['name'],
-                "id": org['id']
-                })
     extras = []
-    # Alphabetize names
-    brigades.sort(key=lambda x: x.values()[0])
+
     
     if request.method == "GET":
+        if brigadeid:
+            pass
+        elif brigadeid is None:
+            # Get all of the organizations from the api
+            organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+            organizations = organizations.json()
+            brigades = []
+            # Org's names and ids
+            for org in organizations['features']:
+                if "Brigade" in org['properties']['type']:
+                    brigades.append({
+                        "name": org['properties']['name'],
+                        "id": org['id']
+                        })
+            # Alphabetize names
+            brigades.sort(key=lambda x: x.values()[0])
         # If we want to remember the event
         url = request.url
         if "?" in url:
@@ -394,19 +397,17 @@ def checkin(brigadeid=None, event=None):
             ImmutableMultiDict([('email', u'e@cu.com'),
                                 ('cfapi_url', u'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco'),
                                 ('event', u''), ('name', u'Civic Betty')])'''
-        # print request.form
-
-
 
         # Remembering event name and brigadeid for later
         event = request.form["event"]
-
         brigadeid = request.form["cfapi_url"]
         brigadeid = brigadeid.replace("https://www.codeforamerica.org/api/organizations/","")
+        return redirect(url_for('checkin', event=event, extras=extras, 
+                        brigadeid=brigadeid))
 
-        return redirect(url_for('checkin', brigadeid=brigadeid,
-                               event=event, extras=extras))
-
+def split_hyphen(string):
+    return string.replace("-", " ")
 
 if __name__ == '__main__':
+    app.jinja_env.filters['split_hyphen'] = split_hyphen
     app.run(host='0.0.0.0',debug=True)

@@ -5,11 +5,7 @@
     <div class="slab-blue">
       <div class="layout-semibreve">
         {% if brigadeid %}
-          {% for brigade in brigades%}
-            {% if brigade["id"] == brigadeid %}
-              <h1 style="color: white"> Check In: {{brigade["name"]}}</h1>
-            {% endif %}
-          {% endfor %}
+              <h1 style="color: white"> Check In: {{brigadeid|split_hyphen}}</h1>
         {% else %}
         <h1 style="color:white"> Check In </h1>
         {% endif %}
@@ -37,11 +33,7 @@
             <p style="display:none">
               <label for="select">Select Your Brigade Chapter! </label>
               <select name="cfapi_url">
-                  {% for brigade in brigades%}
-                    {% if brigade["id"] == brigadeid %}
-                      <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
-                    {% endif %}
-                  {% endfor %}
+                      <option value="https://www.codeforamerica.org/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
             </select>
             </p>
             {% else %}
