@@ -2,6 +2,8 @@ import json
 import os
 from requests import get, post
 import datetime
+from datetime import date
+from base64 import b64encode
 
 from flask import Flask, render_template, request, redirect, url_for
 import filters
@@ -9,8 +11,10 @@ import filters
 app = Flask(__name__, static_url_path="/brigade/static")
 app.register_blueprint(filters.blueprint)
 
-app.config['BRIGADE_SIGNUP_SECRET'] = os.environ['BRIGADE_SIGNUP_SECRET']
-
+# app.config['BRIGADE_SIGNUP_SECRET'] = os.environ['BRIGADE_SIGNUP_SECRET']
+PEOPLE_DB = os.environ['PEOPLE_DB']
+PASSCODE = os.environ['PASSCODE']
+USERNAME = os.environ['USERNAME']
 @app.context_processor
 def get_fragments():
     ''' The base template includes the signup form and the footer
@@ -394,14 +398,45 @@ def checkin(brigadeid=None, event=None, brigades=None):
     if request.method == "POST":
         ''' Prep the checkin for posting to the peopledb '''
         ''' Sample response:
-            ImmutableMultiDict([('email', u'e@cu.com'),
+            ImmutableMultiDict([('email', u'test@test.com'),
                                 ('cfapi_url', u'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco'),
-                                ('event', u''), ('name', u'Civic Betty')])'''
+                                ('event', u'Hack Night'), ('name', u'FIRST LAST')])'''
+        
+        name = request.form.get('name', None)
+        if name:
+            if ' ' in request.form['name']:
+                first_name, last_name = name.split(' ', 1)
+            else:
+                first_name, last_name = name, ''
+        else:
+            first_name, last_name = None, None
+        
+        peopledb_post = {
+            "first_name": first_name,
+            "last_name": last_name,
+            "email": request.form.get("email", None),
+            "date": date.today(),
+            "organization_cfapi_url": request.form.get('cfapi_url', None),
+            "event": request.form.get("event", None),
+            "extras": {
+                "question":request.form.get('question', None),
+                "answer":request.form.get('answer', None)
+            }
+        }
+        print peopledb_post
 
         # Remembering event name and brigadeid for later
         event = request.form["event"]
         brigadeid = request.form["cfapi_url"]
         brigadeid = brigadeid.replace("https://www.codeforamerica.org/api/organizations/","")
+        
+        # Re
+        data = request.form
+        print b64encode(PASSCODE)
+        r = post(PEOPLE_DB, data=data, headers={'Authorization':'Basic ' + b64encode(PASSCODE)})
+        print r.text
+        print r.headers
+        print "done"
         return redirect(url_for('checkin', event=event, extras=extras, 
                         brigadeid=brigadeid))
 
