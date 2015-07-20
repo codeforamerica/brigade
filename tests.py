@@ -8,9 +8,9 @@ import os
 import flask
 from httmock import response, HTTMock
 
-from app import app
-
 BRIGADE_SIGNUP_SECRET = os.environ['BRIGADE_SIGNUP_SECRET']
+
+from app import app
 
 class BrigadeTests(unittest.TestCase):
 
