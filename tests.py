@@ -10,7 +10,7 @@ from httmock import response, HTTMock
 
 from app import app
 
-app.config["BRIGADE_SIGNUP_SECRET"] = os.environ['BRIGADE_SIGNUP_SECRET']
+BRIGADE_SIGNUP_SECRET = os.environ['BRIGADE_SIGNUP_SECRET']
 
 class BrigadeTests(unittest.TestCase):
 
@@ -115,7 +115,7 @@ class BrigadeTests(unittest.TestCase):
 
     def test_checkin_post(self):
         ''' Tests if posting to brigade/checkin is successful '''
-        auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
+        auth = BRIGADE_SIGNUP_SECRET + ':x-brigade-signup'
 
         response = self.app.post('/brigade/checkin/',
             data = {
@@ -135,7 +135,7 @@ class BrigadeTests(unittest.TestCase):
 
     def test_bad_checkin(self):
         ''' Tests handling of bad checkins '''
-        auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
+        auth = BRIGADE_SIGNUP_SECRET + ':x-brigade-signup'
 
         # Without org_cfapi_url
         bad_checkin = {
