@@ -1,5 +1,6 @@
 from urlparse import parse_qsl
-from base64 import b64decode
+from base64 import b64decode, b64encode
+from datetime import datetime
 import unittest
 import json
 import os
@@ -7,9 +8,9 @@ import os
 import flask
 from httmock import response, HTTMock
 
-os.environ['BRIGADE_SIGNUP_SECRET'] = 'muy bueno'
-
 from app import app
+
+app.config["BRIGADE_SIGNUP_SECRET"] = os.environ['BRIGADE_SIGNUP_SECRET']
 
 class BrigadeTests(unittest.TestCase):
 
@@ -67,6 +68,8 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(flask.request.form.get("LNAME"), "LAST NAME")
             self.assertEqual(flask.request.form.get("EMAIL"), "EMAIL")
 
+        auth = app.config['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'
+
         # Test that our responses are being packaged up the way we expect
         with HTTMock(self.response_content):
             response = self.app.post('/brigade/signup/', data=signup)
@@ -94,9 +97,60 @@ class BrigadeTests(unittest.TestCase):
             response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
 
-    def test_checking(self):
-        '''Test that checking into the db works'''
+    def test_checkin_data(self):
+        '''Test that posting to brigade/checkin works'''
+        checkin = {
+            "name": "Civic Hacker",
+            "email": "test@test.com",
+            "event": "Civic Hack Night",
+            "date": datetime.now(),
+            "cfapi_url": "https://www.codeforamerica.org/api/organizations/Test-Brigadeid",
+            "extras" : None
+        }
 
+        # Test how our checkin data is being posted
+        with app.test_request_context("/brigade/checkin/", method="POST", data=checkin):
+            self.assertEqual(flask.request.form.get("name"), "Civic Hacker")
+            self.assertEqual(flask.request.form.get("email"), "test@test.com")
+            self.assertEqual(flask.request.form.get("event"), "Civic Hack Night")
+            self.assertEqual(flask.request.form.get("extras"), None)
+
+    def test_checkin_post(self):
+        ''' Tests if posting to brigade/checkin is successful '''
+        auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
+
+        response = self.app.post('/brigade/checkin/',
+            data = {
+                "name": "Civic Hacker",
+                "email": "test@test.com",
+                "event": "Civic Hack Night",
+                "date": datetime.now(),
+                "cfapi_url": "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
+                "extras" : None
+            },
+            headers={'Authorization': 'Basic '+b64encode(auth)}
+        )
+
+        # Redirects on success
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_bad_checkin(self):
+        ''' Make sure there's a good way of handling bad checkins '''
+
+        bad_checkin_1 = {
+            "name": "Civic Hacker",
+            "email": "test@test.com",
+            "event": "Civic Hack Night",
+            "date": datetime.now(),
+            "extras" : None
+        }
+        # Test how response content works
+        with HTTMock(self.response_content):
+            response = self.app.post('/brigade/checkin/', data=checkin)
+            print response
+            response = json.loads(response.data)
+            #self.assertEqual(response['msg'], "Added to the peopledb")
 
 if __name__ == '__main__':
     unittest.main()

@@ -122,7 +122,7 @@ def signup():
             "status_code" : 500,
             "msg" : "Something went wrong. You were not added to any lists."
         }
-        return response
+        return json.dumps(response)
 
 
 @app.route("/brigade/signup/", methods=["GET"])
@@ -420,8 +420,12 @@ def checkin(brigadeid=None, event=None, brigades=None):
             brigadeid = request.form["cfapi_url"].replace("https://www.codeforamerica.org/api/organizations/","")
             return redirect(url_for('checkin', event=event, brigadeid=brigadeid))
 
-        if r.status_code == 422:
+        elif r.status_code == 422:
             return make_response(r.content, 422)
+
+        elif r.status_code == 401:
+            return make_response(r.content, 401)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)
