@@ -68,8 +68,6 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(flask.request.form.get("LNAME"), "LAST NAME")
             self.assertEqual(flask.request.form.get("EMAIL"), "EMAIL")
 
-        auth = app.config['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'
-
         # Test that our responses are being packaged up the way we expect
         with HTTMock(self.response_content):
             response = self.app.post('/brigade/signup/', data=signup)
