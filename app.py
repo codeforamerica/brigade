@@ -440,9 +440,5 @@ def checkin(brigadeid=None, event=None, brigades=None):
         return redirect(url_for('checkin', event=event, extras=extras, 
                         brigadeid=brigadeid))
 
-def split_hyphen(string):
-    return string.replace("-", " ")
-
 if __name__ == '__main__':
-    app.jinja_env.filters['split_hyphen'] = split_hyphen
     app.run(host='0.0.0.0',debug=True)

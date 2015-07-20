@@ -55,3 +55,7 @@ def friendly_time(context, dt, past_="ago",
                 past_ if dt_is_past else future_)
 
     return default
+
+@blueprint.app_template_filter("split_hyphen")
+def split_hyphen(string):
+    return string.replace("-", " ")

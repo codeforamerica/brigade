@@ -94,6 +94,9 @@ class BrigadeTests(unittest.TestCase):
             response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
 
+    def test_checking(self):
+        '''Test that checking into the db works'''
+
 
 if __name__ == '__main__':
     unittest.main()
