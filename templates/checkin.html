@@ -26,9 +26,7 @@
               <label for="email">Email Address </label>
               <input name="email" id="email" class="input" type="email" placeholder="you@example.com" />
             </p>
-            <p>
-              <label for="checkbox10"><input id="checkbox10" type="checkbox" checked/> Join Brigade Mailing List</label>
-            </p>
+
             {% if brigadeid %}
             <p style="display:none">
               <label for="select">Select Your Brigade Chapter! </label>
@@ -56,9 +54,11 @@
                 {% endif %}
             </p>
             <p> <!-- Extras, currently undefined -->
+              {% if extras %}
               <p><small class="note">Extras</small></p>
               <label name="extras[]" for="question"> Real Question{{extras["question"]}} </label>
               <input name="extras[]" class="input answer" placeholder="" />
+              {% endif %}
             </p>
             <button type="submit" value="Submit" class="button-l">Check In!</button>
           </form>
