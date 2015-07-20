@@ -98,7 +98,7 @@ class BrigadeTests(unittest.TestCase):
         self.assertTrue(response.status_code == 404)
 
     def test_checkin_data(self):
-        '''Test that posting to brigade/checkin works'''
+        '''Test that data being posted to brigade/checkin works'''
         checkin = {
             "name": "Civic Hacker",
             "email": "test@test.com",
@@ -136,21 +136,22 @@ class BrigadeTests(unittest.TestCase):
 
 
     def test_bad_checkin(self):
-        ''' Make sure there's a good way of handling bad checkins '''
+        ''' Tests handling of bad checkins '''
+        auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
 
-        bad_checkin_1 = {
+        # Without org_cfapi_url
+        bad_checkin = {
             "name": "Civic Hacker",
             "email": "test@test.com",
             "event": "Civic Hack Night",
             "date": datetime.now(),
             "extras" : None
         }
-        # Test how response content works
-        with HTTMock(self.response_content):
-            response = self.app.post('/brigade/checkin/', data=checkin)
-            print response
-            response = json.loads(response.data)
-            #self.assertEqual(response['msg'], "Added to the peopledb")
+        headers = {'Authorization': 'Basic '+b64encode(auth)}
+
+        # Responds with a 422 'Bad form data' if date or brigadeid isn't defined
+        response = self.app.post('/brigade/checkin/', data=bad_checkin, headers=headers)
+        self.assertEqual(response.status_code, 422)
 
 if __name__ == '__main__':
     unittest.main()

@@ -102,7 +102,7 @@ def signup():
     url = 'https://people.codeforamerica.org/brigade/signup'
 
     peopledb_response = post(url, data=peopledb_data, auth=auth)
-
+    
     # Choose a response to show
     # if brigade_mailchimp_response:
     #     return brigade_mailchimp_response
@@ -422,9 +422,6 @@ def checkin(brigadeid=None, event=None, brigades=None):
 
         elif r.status_code == 422:
             return make_response(r.content, 422)
-
-        elif r.status_code == 401:
-            return make_response(r.content, 401)
 
 
 if __name__ == '__main__':
