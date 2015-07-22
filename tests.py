@@ -8,14 +8,6 @@ import os
 import flask
 from httmock import response, HTTMock
 
-
-
-if os.path.exists('.env'):
-    print('Importing environment from .env...')
-    for line in open('.env'):
-        var = line.strip().split('=')
-        if len(var) == 2:
-            os.environ[var[0]] = var[1]
 BRIGADE_SIGNUP_SECRET = os.environ['BRIGADE_SIGNUP_SECRET']
 
 from app import app
