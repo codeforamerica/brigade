@@ -1,3 +1,10 @@
+if os.path.exists('.env'):
+    print('Importing environment from .env...')
+    for line in open('.env'):
+        var = line.strip().split('=')
+        if len(var) == 2:
+            os.environ[var[0]] = var[1]
+
 from urlparse import parse_qsl
 from base64 import b64decode, b64encode
 from datetime import datetime
