@@ -1,5 +1,6 @@
 from urlparse import parse_qsl
-from base64 import b64decode
+from base64 import b64decode, b64encode
+from datetime import datetime
 import unittest
 import json
 import os
@@ -7,7 +8,7 @@ import os
 import flask
 from httmock import response, HTTMock
 
-os.environ['BRIGADE_SIGNUP_SECRET'] = 'muy bueno'
+BRIGADE_SIGNUP_SECRET = os.environ['BRIGADE_SIGNUP_SECRET']
 
 from app import app
 
@@ -94,6 +95,61 @@ class BrigadeTests(unittest.TestCase):
             response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
 
+    def test_checkin_data(self):
+        '''Test that data being posted to brigade/checkin works'''
+        checkin = {
+            "name": "Civic Hacker",
+            "email": "test@test.com",
+            "event": "Civic Hack Night",
+            "date": datetime.now(),
+            "cfapi_url": "https://www.codeforamerica.org/api/organizations/Test-Brigadeid",
+            "extras" : None
+        }
+
+        # Test how our checkin data is being posted
+        with app.test_request_context("/brigade/checkin/", method="POST", data=checkin):
+            self.assertEqual(flask.request.form.get("name"), "Civic Hacker")
+            self.assertEqual(flask.request.form.get("email"), "test@test.com")
+            self.assertEqual(flask.request.form.get("event"), "Civic Hack Night")
+            self.assertEqual(flask.request.form.get("extras"), None)
+
+    def test_checkin_post(self):
+        ''' Tests if posting to brigade/checkin is successful '''
+        auth = BRIGADE_SIGNUP_SECRET + ':x-brigade-signup'
+
+        response = self.app.post('/brigade/checkin/',
+            data = {
+                "name": "Civic Hacker",
+                "email": "test@test.com",
+                "event": "Civic Hack Night",
+                "date": datetime.now(),
+                "cfapi_url": "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
+                "extras" : None
+            },
+            headers={'Authorization': 'Basic '+b64encode(auth)}
+        )
+
+        # Redirects on success
+        self.assertEqual(response.status_code, 302)
+
+
+    def test_bad_checkin(self):
+        ''' Tests handling of bad checkins '''
+        auth = BRIGADE_SIGNUP_SECRET + ':x-brigade-signup'
+
+        # Without org_cfapi_url
+        bad_checkin = {
+            "name": "Civic Hacker",
+            "email": "test@test.com",
+            "event": "Civic Hack Night",
+            "date": datetime.now(),
+            "extras" : None
+        }
+        headers = {'Authorization': 'Basic '+b64encode(auth)}
+
+        # Responds with a 422 'Bad form data' if date or brigadeid isn't defined
+        response = self.app.post('/brigade/checkin/', data=bad_checkin, headers=headers)
+        self.assertEqual(response.status_code, 422)
 
 if __name__ == '__main__':
     unittest.main()
