@@ -383,10 +383,7 @@ def checkin(brigadeid=None, event=None, brigades=None):
             brigades.sort(key=lambda x: x.values()[0])
 
         # If we want to remember the event
-        url = request.url
-        if "?" in url:
-            string = url.split("?")[1].split("=")
-            event = string[1].replace("+"," ")
+        event = request.args.get("event")
 
         return render_template("checkin.html", brigadeid=brigadeid,
             brigades=brigades, event=event)
