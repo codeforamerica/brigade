@@ -5,13 +5,14 @@ from requests import get, post
 from datetime import datetime
 from base64 import b64encode
 
-from flask import Flask, render_template, request, redirect, url_for, make_response
+from flask import Flask, render_template, request, redirect, url_for, make_response, flash
 import filters
 
 app = Flask(__name__, static_url_path="/brigade/static")
 app.register_blueprint(filters.blueprint)
 
 app.config['BRIGADE_SIGNUP_SECRET'] = os.environ['BRIGADE_SIGNUP_SECRET']
+app.secret_key = 'SECRET KEY'
 
 @app.context_processor
 def get_fragments():
@@ -361,9 +362,9 @@ def brigade(brigadeid):
 
 @app.route("/brigade/checkin/", methods=["GET", "POST"])
 @app.route("/brigade/<brigadeid>/checkin/", methods=["GET", "POST"])
-def checkin(brigadeid=None, event=None, brigades=None):
+def checkin(brigadeid=None):
     ''' A tool to track attendance at Brigade events '''
-
+    brigades = []
     if request.method == "GET":
         if not brigadeid:
             # Get all of the organizations from the api
@@ -402,7 +403,7 @@ def checkin(brigadeid=None, event=None, brigades=None):
             "event": request.form.get("event", None),
             "date": datetime.now(),
             "org_cfapi_url": request.form.get('cfapi_url'),
-            "extras" : None
+            "extras" : request.form.get("extras", None)
         }
 
         auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
@@ -415,7 +416,8 @@ def checkin(brigadeid=None, event=None, brigades=None):
             # Remembering event name and brigadeid for later
             event = request.form.get("event", None)
             brigadeid = request.form["cfapi_url"].replace("https://www.codeforamerica.org/api/organizations/","")
-            return redirect(url_for('checkin', event=event, brigadeid=brigadeid))
+            flash("Thanks for checking into " + event)
+            return render_template("checkin.html", brigadeid=brigadeid, event=event)
 
         if r.status_code == 422:
             return make_response(r.content, 422)
@@ -425,4 +427,4 @@ def split_hyphen(string):
 
 if __name__ == '__main__':
     app.jinja_env.filters['split_hyphen'] = split_hyphen
-    app.run(host='0.0.0.0',debug=True)
+    app.run(host='0.0.0.0',debug=True, port=4000)

@@ -46,6 +46,21 @@ class BrigadeTests(unittest.TestCase):
                     return response(200, 'Added to the peopledb')
             
                 return response(401, 'Go away')
+
+        if url.geturl() == 'https://people.codeforamerica.org/checkin':
+            if request.method == 'POST':
+                form = dict(parse_qsl(request.body))
+                username, password = None, None
+
+                if 'Authorization' in request.headers:
+                    method, encoded = request.headers['Authorization'].split(' ', 1)
+                    if method == 'Basic':
+                        username, password = b64decode(encoded).split(':', 1)
+
+                if (username, password) == (os.environ['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'):
+                    return response(200, 'Added checkin')
+
+                return response(401, 'Go away')
             
             raise NotImplementedError()
         
@@ -93,6 +108,23 @@ class BrigadeTests(unittest.TestCase):
         with HTTMock(self.response_content):
             response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
+
+
+    def test_checkin(self):
+        ''' Test checkin '''
+        checkin = {
+            "name" : "TEST NAME",
+            "email" : "test@testing.com",
+            "event" : "TEST EVENT",
+            "cfapi_url" : "https://www.codeforamerica.org/api/TEST-ORG",
+            "extras" : ''' { "question" : "TEST QUESTION", "answer" : "TEST ANSWER" } '''
+        }
+
+        with HTTMock(self.response_content):
+            response = self.app.post("/brigade/checkin", data=checkin)
+            print response.status_code
+            self.assertTrue(response.status_code == 200)
+
 
 
 if __name__ == '__main__':
