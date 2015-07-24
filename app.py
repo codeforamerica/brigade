@@ -339,6 +339,17 @@ def projects(brigadeid=None):
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
 
+@app.route("/brigade/attendance")
+@app.route("/brigade/<brigadeid>/attendance")
+def attendance(brigadeid=None):
+    ''' Show the Brigade attendance '''
+    if not brigadeid:
+        got = get("https://cfapi-staging.herokuapp.com/api/attendance")
+        attendance = got.json()
+
+    return render_template("attendance.html", brigadeid=brigadeid, attendance=attendance)
+
+
 @app.route('/brigade/index/<brigadeid>/')
 def redirect_brigade(brigadeid):
     ''' Redirect old Brigade links to new Brigade links'''
