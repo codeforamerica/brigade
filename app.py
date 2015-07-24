@@ -360,70 +360,68 @@ def brigade(brigadeid):
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
-@app.route("/brigade/checkin/", methods=["GET", "POST"])
-@app.route("/brigade/<brigadeid>/checkin/", methods=["GET", "POST"])
-def checkin(brigadeid=None):
-    ''' A tool to track attendance at Brigade events '''
-    brigades = []
-    if request.method == "GET":
-        if not brigadeid:
-            # Get all of the organizations from the api
-            organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
-            organizations = organizations.json()
-            brigades = []
+@app.route("/brigade/checkin/", methods=["GET"])
+@app.route("/brigade/<brigadeid>/checkin/", methods=["GET"])
+def get_checkin(brigadeid=None):
+    ''' Checkin to a Brigade event '''
+    brigades = None
+    if not brigadeid:
+        # Get all of the organizations from the api
+        organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+        organizations = organizations.json()
+        brigades = []
+        # Org's names and ids
+        for org in organizations['features']:
+            if "Brigade" in org['properties']['type']:
+                brigades.append({
+                    "name": org['properties']['name'],
+                    "id": org['id']
+                    })
 
-            # Org's names and ids
-            for org in organizations['features']:
-                if "Brigade" in org['properties']['type']:
-                    brigades.append({
-                        "name": org['properties']['name'],
-                        "id": org['id']
-                        })
+        # Alphabetize names
+        brigades.sort(key=lambda x: x.values()[0])
 
-            # Alphabetize names
-            brigades.sort(key=lambda x: x.values()[0])
+    # If we want to remember the event
+    event = request.args.get("event")
 
-        # If we want to remember the event
-        event = request.args.get("event")
-
-        return render_template("checkin.html", brigadeid=brigadeid,
-            brigades=brigades, event=event)
+    return render_template("checkin.html", brigadeid=brigadeid,
+                           event=event, brigades=brigades)
 
 
-    if request.method == "POST":
-        ''' Prep the checkin for posting to the peopledb '''
-        ''' Sample response:
-            ImmutableMultiDict([('email', u'test@test.com'),
-                                ('cfapi_url', u'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco'),
-                                ('event', u'Hack Night'), ('name', u'FIRST LAST')])'''
+@app.route("/brigade/checkin/", methods=["POST"])
+@app.route("/brigade/<brigadeid>/checkin/", methods=["POST"])
+def post_checkin(brigadeid=None):
+    ''' Prep the checkin for posting to the peopledb '''
 
-        peopledb_post = {
-            "name": request.form.get('name', None),
-            "email": request.form.get("email", None),
-            "event": request.form.get("event", None),
-            "date": datetime.now(),
-            "org_cfapi_url": request.form.get('cfapi_url'),
-            "extras" : request.form.get("extras", None)
-        }
+    peopledb_post = {
+        "name": request.form.get('name', None),
+        "email": request.form.get("email", None),
+        "event": request.form.get("event", None),
+        "date": request.form.get("date", datetime.now()),
+        "org_cfapi_url": request.form.get('cfapi_url'),
+        "extras" : request.form.get("extras", None)
+    }
 
-        auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
-        headers = {'Authorization': 'Basic ' + b64encode(auth)}
-        peopleapp = "https://people.codeforamerica.org/checkin"
+    auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
+    headers = {'Authorization': 'Basic ' + b64encode(auth)}
+    peopleapp = "https://people.codeforamerica.org/checkin"
 
-        r = post(peopleapp, data=peopledb_post, headers=headers)
+    r = post(peopleapp, data=peopledb_post, headers=headers)
 
-        if r.status_code == 200:
-            # Remembering event name and brigadeid for later
-            event = request.form.get("event", None)
-            brigadeid = request.form["cfapi_url"].replace("https://www.codeforamerica.org/api/organizations/","")
-            flash("Thanks for checking into " + event)
-            return render_template("checkin.html", brigadeid=brigadeid, event=event)
+    if r.status_code == 200:
+        # Remembering event name and brigadeid for later
+        event = request.form.get("event", None)
+        brigadeid = request.form["cfapi_url"].replace("https://www.codeforamerica.org/api/organizations/","")
+        flash("Thanks for volunteering")
+        return render_template("checkin.html", event=event, brigadeid=brigadeid)
 
-        if r.status_code == 422:
-            return make_response(r.content, 422)
+    if r.status_code == 422:
+        return make_response(r.content, 422)
+
 
 def split_hyphen(string):
     return string.replace("-", " ")
+
 
 if __name__ == '__main__':
     app.jinja_env.filters['split_hyphen'] = split_hyphen
