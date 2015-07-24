@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section>
+    <div class="slab-blue">
+      <div class="layout-semibreve">
+        {% if brigadeid %}
+              <h1 style="color: white"> Check In: {{brigadeid|split_hyphen}}</h1>
+        {% else %}
+        <h1 style="color:white"> Check In </h1>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="slab-gray">
+      <div class="layout-semibreve">
+
+          <form enctype="application/x-www-form-urlencoded"
+          {% if brigadeid %}
+            action="/brigade/{{brigadeid}}/checkin/"
+          {% else %}
+            action="/brigade/checkin/" 
+          {% endif %}
+          method="post">
+
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <p id="flash"><small style="color:#00a175" class="note"><i class="icon-checkmark"></i>{{ message }}</small></p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            <p>
+              <label for="name">Name</label>
+              <input name="name" id="name" class="input" placeholder="Margaret Hamilton" />
+            </p>
+            <p>
+              <label for="email">Email</label>
+              <input name="email" id="email" class="input" type="email" placeholder="apollo@nasa.gov" />
+            </p>
+
+            {% if brigadeid %}
+            <p style="display:none">
+              <select name="cfapi_url">
+                      <option value="https://www.codeforamerica.org/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
+            </select>
+            </p>
+            {% else %}
+            <p>
+              <label for="select">Brigade</label>
+
+              <select name="cfapi_url">
+                {% for brigade in brigades %}
+                <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
+                {% endfor %}
+              </select>
+            </p>
+            {% endif %}
+            <p>
+              <label for"event">Which Event are you attending?</label>
+                {% if event %}
+                <input name="event" id="event" value="{{event}}" class="input">
+                {% else %}
+                <input name="event" id="event" class="input" placeholder="Moon Landing"/>
+                {% endif %}
+            </p>
+            <p> <!-- Extras, currently undefined -->
+              {% if extras %}
+              <p><small class="note">Extras</small></p>
+              <label name="extras[]" for="question"> Real Question{{extras["question"]}} </label>
+              <input name="extras[]" class="input answer" placeholder="" />
+              {% endif %}
+            </p>
+            <button type="submit" value="Submit" class="button-l">Check In!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

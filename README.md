@@ -23,6 +23,45 @@ V2 was powered by the CfAPI and worked great, yet was built quickly with PHP and
 
 V3, the current site, is meant to simplify the code and make it easier for Brigade members to get involved in building the Brigade site.
 
+## Attendance
+
+Brigade's can now track attendance at their events.
+
+* https://www.codeforamerica.org/brigade/attendance
+* https://www.codeforamerica.org/brigade/Code-for-San-Francisco/attendance
+
+Brigade members can checkin at:
+
+* https://www.codeforamerica.org/brigade/checkin
+* https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin
+
+We recommend making a short link of the checkin url for your group.
+
+* https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin?event=Hack Night
+
+#### Build your own Brigade attendance tools
+
+Attendance data can be pulled from the Code for America API.
+
+* https://www.codeforamerica.org/api/attendance
+* https://www.codeforamerica.org/api/organizations/attendance
+* http://www.codeforamerica.org/api/organizations/Code-for-San-Francisco/attendance
+
+Checkins can be posted
+
+* https://www.codeforamerica.org/brigade/checkin
+* https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin
+
+The schema expected for checkins is:
+
+fieldname - type - default - optional - example
+name - string - None - Yes - `Margaret Hamilton`
+email - string - None - Yes - `apollo@nasa.gov`
+event - string - None - Yes - `Moon Landing`
+date - datetime - datetime.now() - Yes - `1969-07-20`
+cfapi_url - string - None - No - `https://www.codeforamerica.org/api/organizations/Code-for-Houston`
+
+
 ## Installation
 
 The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) and Python with a little bit of Javascript. The `app.py` file describes the routes. The `templates` have the html.

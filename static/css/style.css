@@ -112,3 +112,8 @@ h2 {
 .no-padding {
   padding: 0px;
 }
+
+input {
+  width: 286px;
+  padding: 1px 26px;
+}
