@@ -345,9 +345,9 @@ def projects(brigadeid=None):
 def attendance(brigadeid=None):
     ''' Show the Brigade attendance '''
     if not brigadeid:
-        got = get("https://cfapi-staging.herokuapp.com/api/attendance")
+        got = get("https://www.codeforamerica.org/api/attendance")
     else:
-        got = get("https://cfapi-staging.herokuapp.com/api/organizations/%s/attendance" % brigadeid)
+        got = get("https://www.codeforamerica.org/api/organizations/%s/attendance" % brigadeid)
 
     attendance = got.json()
 
