@@ -29,6 +29,8 @@ class BrigadeTests(unittest.TestCase):
             return response(404, '{"status": "Resource Not Found"}')
         if url.geturl() == 'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco':
             return response(200, '{"city": "San Francisco, CA"}')
+        if url.geturl() == "https://www.codeforamerica.org/api/attendance":
+            return response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             if request.method == 'POST':
                 form = dict(parse_qsl(request.body))
@@ -93,6 +95,14 @@ class BrigadeTests(unittest.TestCase):
         with HTTMock(self.response_content):
             response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
+
+
+    def test_attendance(self):
+        ''' Test attendance endpoints '''
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/attendance")
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue('<p class="h1">100</p>' in response.data)
 
 
 if __name__ == '__main__':

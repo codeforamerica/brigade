@@ -2,6 +2,7 @@ import json
 import os
 from requests import get, post
 import datetime
+from operator import itemgetter
 
 from flask import Flask, render_template, request, redirect
 import filters
@@ -337,6 +338,30 @@ def projects(brigadeid=None):
         projects = get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
+
+
+@app.route("/brigade/attendance")
+@app.route("/brigade/<brigadeid>/attendance")
+def attendance(brigadeid=None):
+    ''' Show the Brigade attendance '''
+    if not brigadeid:
+        got = get("https://www.codeforamerica.org/api/attendance")
+    else:
+        got = get("https://www.codeforamerica.org/api/organizations/%s/attendance" % brigadeid)
+
+    attendance = got.json()
+
+    if attendance["weekly"]:
+        attendance["last_week"] = attendance["weekly"][max(attendance["weekly"].keys())]
+
+        # GCharts wants a list of lists
+        attendance["weeks"] = []
+        for key, value in attendance["weekly"].iteritems():
+            week = [str(key), value]
+            attendance["weeks"].append(week)
+        attendance["weeks"] = sorted(attendance["weeks"], key=itemgetter(0))
+
+    return render_template("attendance.html", brigadeid=brigadeid, attendance=attendance)
 
 
 @app.route('/brigade/index/<brigadeid>/')
