@@ -121,8 +121,7 @@ class BrigadeTests(unittest.TestCase):
         }
 
         with HTTMock(self.response_content):
-            response = self.app.post("/brigade/checkin", data=checkin)
-            print response.status_code
+            response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
             self.assertTrue(response.status_code == 200)
 
 

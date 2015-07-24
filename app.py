@@ -419,10 +419,5 @@ def post_checkin(brigadeid=None):
         return make_response(r.content, 422)
 
 
-def split_hyphen(string):
-    return string.replace("-", " ")
-
-
 if __name__ == '__main__':
-    app.jinja_env.filters['split_hyphen'] = split_hyphen
     app.run(host='0.0.0.0',debug=True, port=4000)
