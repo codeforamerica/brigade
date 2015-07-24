@@ -2,6 +2,7 @@ import json
 import os
 from requests import get, post
 import datetime
+from operator import itemgetter
 
 from flask import Flask, render_template, request, redirect
 import filters
@@ -346,6 +347,15 @@ def attendance(brigadeid=None):
     if not brigadeid:
         got = get("https://cfapi-staging.herokuapp.com/api/attendance")
         attendance = got.json()
+
+        attendance["last_week"] = attendance["weekly"][max(attendance["weekly"].keys())]
+
+        # GCharts wants a list of lists
+        attendance["weeks"] = []
+        for key, value in attendance["weekly"].iteritems():
+            week = [str(key), value]
+            attendance["weeks"].append(week)
+        attendance["weeks"] = sorted(attendance["weeks"], key=itemgetter(0))
 
     return render_template("attendance.html", brigadeid=brigadeid, attendance=attendance)
 
