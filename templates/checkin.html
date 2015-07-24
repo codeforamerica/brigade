@@ -14,7 +14,15 @@
 
     <div class="slab-gray">
       <div class="layout-semibreve">
-          <form enctype="application/x-www-form-urlencoded" action="/brigade/checkin/" method="post">
+
+          <form enctype="application/x-www-form-urlencoded"
+          {% if brigadeid %}
+            action="/brigade/{{brigadeid}}/checkin/"
+          {% else %}
+            action="/brigade/checkin/" 
+          {% endif %}
+          method="post">
+
             {% with messages = get_flashed_messages() %}
               {% if messages %}
                 {% for message in messages %}
@@ -24,23 +32,22 @@
             {% endwith %}
             <p>
               <label for="name">Name</label>
-              <input name="name" id="name" class="input" placeholder="Civic Hacker" />
+              <input name="name" id="name" class="input" placeholder="Margaret Hamilton" />
             </p>
             <p>
-              <label for="email">Email Address </label>
-              <input name="email" id="email" class="input" type="email" placeholder="you@example.com" />
+              <label for="email">Email</label>
+              <input name="email" id="email" class="input" type="email" placeholder="apollo@nasa.gov" />
             </p>
 
             {% if brigadeid %}
             <p style="display:none">
-              <label for="select">Select Your Brigade Chapter! </label>
               <select name="cfapi_url">
                       <option value="https://www.codeforamerica.org/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
             </select>
             </p>
             {% else %}
             <p>
-              <label for="select">Select Your Brigade Chapter! </label>
+              <label for="select">Brigade</label>
 
               <select name="cfapi_url">
                 {% for brigade in brigades %}
@@ -54,7 +61,7 @@
                 {% if event %}
                 <input name="event" id="event" value="{{event}}" class="input">
                 {% else %}
-                <input name="event" id="event" class="input" placeholder="Ex. Hackathon"/>
+                <input name="event" id="event" class="input" placeholder="Moon Landing"/>
                 {% endif %}
             </p>
             <p> <!-- Extras, currently undefined -->
