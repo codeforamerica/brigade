@@ -346,8 +346,12 @@ def attendance(brigadeid=None):
     ''' Show the Brigade attendance '''
     if not brigadeid:
         got = get("https://cfapi-staging.herokuapp.com/api/attendance")
-        attendance = got.json()
+    else:
+        got = get("https://cfapi-staging.herokuapp.com/api/organizations/%s/attendance" % brigadeid)
 
+    attendance = got.json()
+
+    if attendance["weekly"]:
         attendance["last_week"] = attendance["weekly"][max(attendance["weekly"].keys())]
 
         # GCharts wants a list of lists
