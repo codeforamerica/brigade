@@ -5,18 +5,20 @@
   <section>
 
     <div class="slab-dark-blue">
-      <div class="layout-breve">
+      <header class="layout-breve">
 
         {% if brigadeid %}
           <h1>{{brigadeid}}'s Attendance</h1>
+          <p>Check in at <a href="https://www.codeforamerica.org/brigade/{{brigadeid}}/checkin">https://www.codeforamerica.org/brigade/{{brigadeid}}/checkin</a></p>
         {% else %}
-          <h1>All Civic Tech Organization's Attendance</h1>
+          <h1>All Attendance</h1>
+          <p>Check in at <a href="https://www.codeforamerica.org/brigade/checkin">https://www.codeforamerica.org/brigade/checkin</a></p>
         {% endif %}
 
-      </div>
+      </header>
     </div>
 
-    <div class='layout-breve'>
+    <div class='layout-breve data'>
 
       <div style="width: 100%;">
         <h2>Weekly Attendance</h2>
@@ -24,12 +26,12 @@
         </div>
       </div>
 
-      <div class="layout-minim">
+      <div class="layout-minim data">
         <h2>Last Week:</h2>
         <p class="h1">{{ attendance.last_week }}</p>
       </div>
 
-      <div class="layout-minim">
+      <div class="layout-minim data">
         <h2>Total:</h2>
         <p class="h1">{{ attendance.total }}</p>
       </div>
