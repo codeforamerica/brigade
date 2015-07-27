@@ -37,7 +37,7 @@ Brigade members can checkin at:
 
 We recommend making a short link of the checkin url for your group.
 
-* https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin?event=Hack Night
+* https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin?event=Hack+Night
 
 #### Build your own Brigade attendance tools
 
