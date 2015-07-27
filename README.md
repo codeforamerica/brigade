@@ -23,7 +23,7 @@ V2 was powered by the CfAPI and worked great, yet was built quickly with PHP and
 
 V3, the current site, is meant to simplify the code and make it easier for Brigade members to get involved in building the Brigade site.
 
-## Attendance
+## Attendance & Check In
 
 Brigade's can now track attendance at their events.
 
