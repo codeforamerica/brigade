@@ -52,6 +52,15 @@ def get_brigades():
     brigades = json.dumps(brigades)
     return brigades
 
+
+def is_json(myjson):
+    if myjson:
+        try:
+            json_object = json.loads(myjson)
+        except (ValueError, TypeError):
+            return False
+    return True
+
 # ROUTES
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
@@ -418,13 +427,19 @@ def get_checkin(brigadeid=None):
 def post_checkin(brigadeid=None):
     ''' Prep the checkin for posting to the peopledb '''
 
+    # Check that extras is json
+    extras = request.form.get("extras", None)
+
+    if not is_json(extras):
+        return make_response("Bad form data. Extras needs to be json.", 422)
+
     peopledb_post = {
         "name": request.form.get('name', None),
         "email": request.form.get("email", None),
         "event": request.form.get("event", None),
         "date": request.form.get("date", datetime.now()),
         "org_cfapi_url": request.form.get('cfapi_url'),
-        "extras" : request.form.get("extras", None)
+        "extras" : extras
     }
 
     auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'

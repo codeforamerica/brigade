@@ -68,6 +68,7 @@ class BrigadeTests(unittest.TestCase):
         
         raise ValueError('Bad {} to "{}"'.format(request.method, url.geturl()))
 
+
     def test_signup(self):
         ''' Test that main page signups work '''
         signup = {
@@ -133,6 +134,16 @@ class BrigadeTests(unittest.TestCase):
         with HTTMock(self.response_content):
             response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
             self.assertTrue(response.status_code == 200)
+
+        checkin["extras"] = None
+        with HTTMock(self.response_content):
+            response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
+            self.assertTrue(response.status_code == 200)
+
+        checkin["extras"] = "BLAH BLAH BLAH"
+        with HTTMock(self.response_content):
+            response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
+            self.assertTrue(response.status_code == 422)
 
 
 if __name__ == '__main__':
