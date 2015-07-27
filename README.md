@@ -53,14 +53,14 @@ Checkins can be posted
 * https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin
 
 The schema expected for checkins is:
-
+```
 fieldname - type - default - optional - example
 name - string - None - Yes - `Margaret Hamilton`
 email - string - None - Yes - `apollo@nasa.gov`
 event - string - None - Yes - `Moon Landing`
 date - datetime - datetime.now() - Yes - `1969-07-20`
 cfapi_url - string - None - No - `https://www.codeforamerica.org/api/organizations/Code-for-Houston`
-
+```
 
 ## Installation
 
