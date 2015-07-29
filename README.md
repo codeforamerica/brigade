@@ -25,7 +25,9 @@ V3, the current site, is meant to simplify the code and make it easier for Briga
 
 ## Attendance & Check In
 
-Brigade's can now track attendance at their events.
+Attendance is one of the basic metrics that needs to be tracked in movement building. Its useful for tracking the impact of your outreach, the growth of your group over time, and individual participation tracking. Its also incredibly useful for fundraising, considering many grants will accept volunteer hours as their matching funding requirement.
+
+We've built a platform for your Brigade to start tracking attendance.
 
 * https://www.codeforamerica.org/brigade/attendance
 * https://www.codeforamerica.org/brigade/Code-for-San-Francisco/attendance
