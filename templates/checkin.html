@@ -64,14 +64,15 @@
                 <input name="event" id="event" class="input" placeholder="Moon Landing"/>
                 {% endif %}
             </p>
-            <p> <!-- Extras, currently undefined -->
-              {% if extras %}
-              <p><small class="note">Extras</small></p>
-              <label name="extras[]" for="question"> Real Question{{extras["question"]}} </label>
-              <input name="extras[]" class="input answer" placeholder="" />
-              {% endif %}
+
+            <p>
+              <label for="extras[answer]">{{question}}</label>
+              <input name="extras[question]" value="{{question}}" type="hidden" />
+              <input class="input" name="extras[answer]" />
             </p>
+
             <button type="submit" value="Submit" class="button-l">Check In!</button>
+
           </form>
         </div>
       </div>

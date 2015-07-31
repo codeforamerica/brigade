@@ -415,11 +415,12 @@ def get_checkin(brigadeid=None):
         # Alphabetize names
         brigades.sort(key=lambda x: x.values()[0])
 
-    # If we want to remember the event
-    event = request.args.get("event")
+    # If we want to remember the event, question
+    event = request.args.get("event", None)
+    question = request.args.get("question", None)
 
     return render_template("checkin.html", brigadeid=brigadeid,
-                           event=event, brigades=brigades)
+        event=event, brigades=brigades, question=question)
 
 
 @app.route("/brigade/checkin/", methods=["POST"])
