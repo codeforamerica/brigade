@@ -434,11 +434,11 @@ def get_checkin(brigadeid=None):
 def post_checkin(brigadeid=None):
     ''' Prep the checkin for posting to the peopledb '''
 
-    # Check that extras is json
-    extras = request.form.get("extras", None)
-
-    if not is_json(extras):
-        return make_response("Bad form data. Extras needs to be json.", 422)
+    # Q&A is stored as a json string
+    extras = {}
+    extras["question"] = request.form.get("question", None)
+    extras["answer"] = request.form.get("answer", None)
+    extras = json.dumps(extras)
 
     peopledb_post = {
         "name": request.form.get('name', None),
@@ -458,9 +458,27 @@ def post_checkin(brigadeid=None):
     if r.status_code == 200:
         # Remembering event name and brigadeid for later
         event = request.form.get("event", None)
-        brigadeid = request.form["cfapi_url"].replace("https://www.codeforamerica.org/api/organizations/","")
+        question = request.form.get("question", None)
+        brigadeid = request.form.get("cfapi_url").replace("https://www.codeforamerica.org/api/organizations/","")
         flash("Thanks for volunteering")
-        return render_template("checkin.html", event=event, brigadeid=brigadeid)
+
+        if brigadeid:
+            url = "brigade/"+ brigadeid +"/checkin/"
+        else:
+            url = "brigade/checkin/"
+
+        if event or question:
+            url += "?"
+            if event:
+                event = event.replace(" ","+")
+                url += "event=" + event
+            if event and question:
+                url += "&"
+            if question:
+                question = question.replace(" ","+")
+                url += "question=" + question
+
+        return redirect(url)
 
     if r.status_code == 422:
         return make_response(r.content, 422)

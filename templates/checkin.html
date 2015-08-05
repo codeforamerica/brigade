@@ -65,11 +65,13 @@
                 {% endif %}
             </p>
 
+            {% if question %}
             <p>
-              <label for="extras[answer]">{{question}}</label>
-              <input name="extras[question]" value="{{question}}" type="hidden" />
-              <input class="input" name="extras[answer]" />
+              <label for="answer">{{question}}</label>
+              <input name="question" value="{{question}}" type="hidden" />
+              <input class="input" name="answer" />
             </p>
+            {% endif %}
 
             <button type="submit" value="Submit" class="button-l">Check In!</button>
 
