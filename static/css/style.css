@@ -114,6 +114,12 @@ h2 {
   #brigadeListButton {
     display: none;
   }
+
+  
+  input {
+    width: 100%;
+    padding: 1px 26px;
+  }
 }
 
 /* Brigade page*/
@@ -122,7 +128,12 @@ h2 {
   padding: 0px;
 }
 
-input {
-  width: 286px;
-  padding: 1px 26px;
+
+@media (max-width: 40em) {
+
+  input {
+    min-width: 300px;
+    padding: 1px 26px;
+  }
+
 }
