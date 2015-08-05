@@ -372,6 +372,8 @@ def attendance(brigadeid=None):
             attendance["weeks"].append(week)
         attendance["weeks"] = sorted(attendance["weeks"], key=itemgetter(0))
 
+        attendance["this_week"] = 0
+        attendance["last_week"] = 0
         if len(attendance["weeks"]) >= 1:
             attendance["this_week"] = attendance["weeks"][-1][1]
             if len(attendance["weeks"]) >= 2:
