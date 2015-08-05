@@ -364,7 +364,6 @@ def attendance(brigadeid=None):
     attendance = got.json()
 
     if attendance["weekly"]:
-        attendance["last_week"] = attendance["weekly"][max(attendance["weekly"].keys())]
 
         # GCharts wants a list of lists
         attendance["weeks"] = []
@@ -372,6 +371,9 @@ def attendance(brigadeid=None):
             week = [str(key), value]
             attendance["weeks"].append(week)
         attendance["weeks"] = sorted(attendance["weeks"], key=itemgetter(0))
+
+        attendance["this_week"] = attendance["weeks"][-1][1]
+        attendance["last_week"] = attendance["weeks"][-2][1]
 
     return render_template("attendance.html", brigadeid=brigadeid, attendance=attendance)
 
