@@ -62,6 +62,8 @@ email - string - None - Yes - `apollo@nasa.gov`
 event - string - None - Yes - `Moon Landing`
 date - datetime - datetime.now() - Yes - `1969-07-20`
 cfapi_url - string - None - No - `https://www.codeforamerica.org/api/organizations/Code-for-Houston`
+question - string - None - Yes - "What did you do today?"
+answer - string - None - Yes - "I invented software engineering and sent the first people to the moon."
 ```
 
 ## Installation
