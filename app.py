@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from requests import get, post
 from operator import itemgetter
 
@@ -434,6 +435,14 @@ def get_checkin(brigadeid=None):
 def post_checkin(brigadeid=None):
     ''' Prep the checkin for posting to the peopledb '''
 
+    # Validate cfapi_url
+    cfapi_url = request.form.get('cfapi_url')
+    if not cfapi_url:
+        return make_response("Missing required cfapi_url", 422)
+
+    if not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", cfapi_url):
+        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
+
     # Q&A is stored as a json string
     extras = {}
     extras["question"] = request.form.get("question", None)
@@ -482,6 +491,31 @@ def post_checkin(brigadeid=None):
 
     if r.status_code == 422:
         return make_response(r.content, 422)
+
+
+@app.route("/brigade/test-checkin/", methods=["POST"])
+@app.route("/brigade/<brigadeid>/test-checkin/", methods=["POST"])
+def post_test_checkin(brigadeid=None):
+    ''' Prep the checkin for posting to the peopledb '''
+
+    test_checkin_data = {
+        "name": request.form.get('name', None),
+        "email": request.form.get("email", None),
+        "event": request.form.get("event", None),
+        "date": request.form.get("date", str(datetime.now())),
+        "cfapi_url": request.form.get('cfapi_url'),
+        "question" : request.form.get("question", None),
+        "answer" : request.form.get("answer", None)
+    }
+
+    if not test_checkin_data["cfapi_url"]:
+        return make_response("Missing required cfapi_url", 422)
+
+    if not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", test_checkin_data["cfapi_url"]):
+        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422) 
+
+    else:
+        return make_response(json.dumps(test_checkin_data), 200)
 
 
 if __name__ == '__main__':

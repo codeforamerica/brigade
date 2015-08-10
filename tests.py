@@ -142,6 +142,46 @@ class BrigadeTests(unittest.TestCase):
             response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
             self.assertTrue(response.status_code == 200)
 
+        # test http
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/TEST-ORG"
+        response = self.app.post("/brigade/checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test missing cfapi_url
+        checkin["cfapi_url"] = None
+        response = self.app.post("/brigade/checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+
+    def test_test_checkin(self):
+        ''' Test the test-checkin route '''
+        checkin = {
+            "name" : "TEST NAME",
+            "email" : "test@testing.com",
+            "event" : "TEST EVENT",
+            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/TEST-ORG",
+            "question" : "TEST QUESTION",
+            "answer" : "TEST ANSWER"
+        }
+
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 200)
+
+        # test http
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/TEST-ORG"
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test bad url
+        checkin["cfapi_url"] = "https://codeforamerica.org/api/organizations/TEST-ORG"
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test missing cfapi_url
+        checkin["cfapi_url"] = None
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
 
 if __name__ == '__main__':
     unittest.main()
