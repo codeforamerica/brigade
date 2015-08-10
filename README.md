@@ -66,6 +66,11 @@ question - string - None - Yes - "What did you do today?"
 answer - string - None - Yes - "I invented software engineering and sent the first people to the moon."
 ```
 
+Testing Checkins
+
+We made a simple testing route to POST to at https://www.codeforamerica.org/brigade/test-checkin/.
+It won't save anything, but it will return the correct error codes if you get the `cfapi_url` wrong. It will return your POSTed data back to you if you get succeed with a 200.
+
 ## Installation
 
 The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) and Python with a little bit of Javascript. The `app.py` file describes the routes. The `templates` have the html.
