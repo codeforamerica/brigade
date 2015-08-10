@@ -29,6 +29,8 @@ class BrigadeTests(unittest.TestCase):
             return response(404, '{"status": "Resource Not Found"}')
         if url.geturl() == 'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco':
             return response(200, '{"city": "San Francisco, CA"}')
+        if url.geturl() == "https://www.codeforamerica.org/api/organizations.geojson":
+            return response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
         if url.geturl() == "https://www.codeforamerica.org/api/attendance":
             return response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
@@ -127,7 +129,7 @@ class BrigadeTests(unittest.TestCase):
             "name" : "TEST NAME",
             "email" : "test@testing.com",
             "event" : "TEST EVENT",
-            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/TEST-ORG",
+            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
             "question" : "TEST QUESTION",
             "answer" : "TEST ANSWER"
         }
@@ -142,8 +144,13 @@ class BrigadeTests(unittest.TestCase):
             response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
             self.assertTrue(response.status_code == 200)
 
+        # test nonexistant Brigade
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/BLAH-BLAH"
+        response = self.app.post("/brigade/checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
         # test http
-        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/TEST-ORG"
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/Code-for-San-Francisco"
         response = self.app.post("/brigade/checkin/", data=checkin)
         self.assertTrue(response.status_code == 422)
 
@@ -159,7 +166,7 @@ class BrigadeTests(unittest.TestCase):
             "name" : "TEST NAME",
             "email" : "test@testing.com",
             "event" : "TEST EVENT",
-            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/TEST-ORG",
+            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
             "question" : "TEST QUESTION",
             "answer" : "TEST ANSWER"
         }
@@ -167,13 +174,18 @@ class BrigadeTests(unittest.TestCase):
         response = self.app.post("/brigade/test-checkin/", data=checkin)
         self.assertTrue(response.status_code == 200)
 
+        # test nonexistant Brigade
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/BLAH-BLAH"
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
         # test http
-        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/TEST-ORG"
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/Code-for-San-Francisco"
         response = self.app.post("/brigade/test-checkin/", data=checkin)
         self.assertTrue(response.status_code == 422)
 
         # test bad url
-        checkin["cfapi_url"] = "https://codeforamerica.org/api/organizations/TEST-ORG"
+        checkin["cfapi_url"] = "https://codeforamerica.org/api/organizations/Code-for-San-Francisco"
         response = self.app.post("/brigade/test-checkin/", data=checkin)
         self.assertTrue(response.status_code == 422)
 

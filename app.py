@@ -54,13 +54,15 @@ def get_brigades():
     return brigades
 
 
-def is_json(myjson):
-    if myjson:
-        try:
-            json_object = json.loads(myjson)
-        except (ValueError, TypeError):
-            return False
-    return True
+def is_existing_brigade(brigadeid):
+    ''' tests that a brigade_id exists '''
+    brigades = get_brigades()
+    brigadeids = []
+    for brigade in json.loads(brigades):
+        brigadeids.append(brigade["properties"]["id"])
+
+    return brigadeid in brigadeids
+
 
 # ROUTES
 @app.route('/brigade/list', methods=["GET"])
@@ -440,8 +442,12 @@ def post_checkin(brigadeid=None):
     if not cfapi_url:
         return make_response("Missing required cfapi_url", 422)
 
-    if not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", cfapi_url):
+    elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", cfapi_url):
         return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
+
+    brigadeid = test_checkin_data["cfapi_url"].split("/")[-1]
+    if not is_existing_brigade(brigadeid):
+        return make_response(brigadeid + "is not an existing brigade." , 422)
 
     # Q&A is stored as a json string
     extras = {}
@@ -511,8 +517,13 @@ def post_test_checkin(brigadeid=None):
     if not test_checkin_data["cfapi_url"]:
         return make_response("Missing required cfapi_url", 422)
 
-    if not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", test_checkin_data["cfapi_url"]):
+    elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", test_checkin_data["cfapi_url"]):
         return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422) 
+
+
+    brigadeid = test_checkin_data["cfapi_url"].split("/")[-1]
+    if not is_existing_brigade(brigadeid):
+        return make_response(brigadeid + "is not an existing brigade." , 422)
 
     else:
         return make_response(json.dumps(test_checkin_data), 200)
