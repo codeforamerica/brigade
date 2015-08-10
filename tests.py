@@ -129,7 +129,7 @@ class BrigadeTests(unittest.TestCase):
             "name" : "TEST NAME",
             "email" : "test@testing.com",
             "event" : "TEST EVENT",
-            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
+            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/TEST-ORG",
             "question" : "TEST QUESTION",
             "answer" : "TEST ANSWER"
         }

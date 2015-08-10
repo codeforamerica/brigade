@@ -445,7 +445,7 @@ def post_checkin(brigadeid=None):
     elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", cfapi_url):
         return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
 
-    brigadeid = test_checkin_data["cfapi_url"].split("/")[-1]
+    brigadeid = request.form.get('cfapi_url').split("/")[-1]
     if not is_existing_brigade(brigadeid):
         return make_response(brigadeid + "is not an existing brigade." , 422)
 
