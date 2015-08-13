@@ -495,8 +495,9 @@ def post_checkin(brigadeid=None):
 
         return redirect(url)
 
-    if r.status_code == 422:
-        return make_response(r.content, 422)
+    # Pass any errors through
+    else:
+        return make_response(r.content, r.status_code)
 
 
 @app.route("/brigade/test-checkin/", methods=["POST"])
