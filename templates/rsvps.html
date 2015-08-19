@@ -9,10 +9,8 @@
 
         {% if brigadeid %}
           <h1>{{brigadeid}}'s RSVPs</h1>
-          <p>Check in at <a href="https://www.codeforamerica.org/brigade/{{brigadeid}}/checkin">https://www.codeforamerica.org/brigade/{{brigadeid}}/checkin</a></p>
         {% else %}
           <h1>All RSVPs</h1>
-          <p>Check in at <a href="https://www.codeforamerica.org/brigade/checkin">https://www.codeforamerica.org/brigade/checkin</a></p>
         {% endif %}
 
       </header>
@@ -22,7 +20,7 @@
 
       <div style="width: 100%;">
         <h2>Weekly RSVPs</h2>
-        <div id="attendance-graph" style="height: 200px;">
+        <div id="rsvps-graph" style="height: 200px;">
         </div>
       </div>
 
@@ -31,17 +29,17 @@
 
       <div class="layout-crotchet data">
         <h2>Total:</h2>
-        <p class="h1">{{ attendance.total }}</p>
+        <p class="h1">{{ rsvps.total }}</p>
       </div>
 
       <div class="layout-crotchet data">
         <h2>Last Week:</h2>
-        <p class="h1">{{ attendance.last_week }}</p>
+        <p class="h1">{{ rsvps.last_week }}</p>
       </div>
 
       <div class="layout-crotchet data">
         <h2>This Week:</h2>
-        <p class="h1">{{ attendance.this_week }}</p>
+        <p class="h1">{{ rsvps.this_week }}</p>
       </div>
 
 
@@ -58,7 +56,7 @@
     google.setOnLoadCallback(drawStuff);
     function drawStuff() {
       var data = google.visualization.arrayToDataTable(
-        {{ attendance.weeks | safe }} , true );
+        {{ rsvps.weeks | safe }} , true );
       var options = {
         vAxis : {
           title: 'RSVPs',
@@ -71,7 +69,7 @@
           gridlines: {
               color: 'transparent'
           },
-          showTextEvery : 15
+          showTextEvery : 30
         },
         legend: { position: 'none' },
         tooltip : {
@@ -79,7 +77,7 @@
         },
         colors: [ "#004b6a" ]
       };
-      var chart = new google.visualization.ColumnChart(document.getElementById('attendance-graph'));
+      var chart = new google.visualization.ColumnChart(document.getElementById('rsvps-graph'));
       chart.draw(data, options);
     };
   </script>

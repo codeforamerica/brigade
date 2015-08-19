@@ -390,9 +390,9 @@ def attendance(brigadeid=None):
 def rsvps(brigadeid=None):
     ''' Show the Brigade rsvps '''
     if not brigadeid:
-        got = get("https://cfapi-staging.herokuapp.com/api/events/rsvps")
+        got = get("https://www.codeforamerica.org/api/events/rsvps")
     else:
-        got = get("https://cfapi-staging.herokuapps.com/api/organizations/%s/events/rsvps" % brigadeid)
+        got = get("https://www.codeforamerica.org/api/organizations/%s/events/rsvps" % brigadeid)
 
     rsvps = got.json()
 
