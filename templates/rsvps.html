@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <section>
+
+    <div class="slab-dark-blue">
+      <header class="layout-breve">
+
+        {% if brigadeid %}
+          <h1>{{brigadeid}}'s RSVPs</h1>
+          <p>Check in at <a href="https://www.codeforamerica.org/brigade/{{brigadeid}}/checkin">https://www.codeforamerica.org/brigade/{{brigadeid}}/checkin</a></p>
+        {% else %}
+          <h1>All RSVPs</h1>
+          <p>Check in at <a href="https://www.codeforamerica.org/brigade/checkin">https://www.codeforamerica.org/brigade/checkin</a></p>
+        {% endif %}
+
+      </header>
+    </div>
+
+    <div class='layout-breve data'>
+
+      <div style="width: 100%;">
+        <h2>Weekly RSVPs</h2>
+        <div id="attendance-graph" style="height: 200px;">
+        </div>
+      </div>
+
+    </div>
+    <div class="layout-breve">
+
+      <div class="layout-crotchet data">
+        <h2>Total:</h2>
+        <p class="h1">{{ attendance.total }}</p>
+      </div>
+
+      <div class="layout-crotchet data">
+        <h2>Last Week:</h2>
+        <p class="h1">{{ attendance.last_week }}</p>
+      </div>
+
+      <div class="layout-crotchet data">
+        <h2>This Week:</h2>
+        <p class="h1">{{ attendance.this_week }}</p>
+      </div>
+
+
+
+    </div>
+
+  </section>
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1.1", {packages:["corechart"]});
+    google.setOnLoadCallback(drawStuff);
+    function drawStuff() {
+      var data = google.visualization.arrayToDataTable(
+        {{ attendance.weeks | safe }} , true );
+      var options = {
+        vAxis : {
+          title: 'RSVPs',
+          gridlines: {
+              color: 'transparent'
+          }
+        },
+        hAxis : {
+          title: 'Week',
+          gridlines: {
+              color: 'transparent'
+          },
+          showTextEvery : 15
+        },
+        legend: { position: 'none' },
+        tooltip : {
+          trigger: 'none'
+        },
+        colors: [ "#004b6a" ]
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById('attendance-graph'));
+      chart.draw(data, options);
+    };
+  </script>
+{% endblock %}

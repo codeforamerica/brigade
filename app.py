@@ -385,6 +385,36 @@ def attendance(brigadeid=None):
     return render_template("attendance.html", brigadeid=brigadeid, attendance=attendance)
 
 
+@app.route("/brigade/rsvps")
+@app.route("/brigade/<brigadeid>/rsvps")
+def rsvps(brigadeid=None):
+    ''' Show the Brigade rsvps '''
+    if not brigadeid:
+        got = get("https://cfapi-staging.herokuapp.com/api/events/rsvps")
+    else:
+        got = get("https://cfapi-staging.herokuapps.com/api/organizations/%s/events/rsvps" % brigadeid)
+
+    rsvps = got.json()
+
+    if rsvps["weekly"]:
+
+        # GCharts wants a list of lists
+        rsvps["weeks"] = []
+        for key, value in rsvps["weekly"].iteritems():
+            week = [str(key), value]
+            rsvps["weeks"].append(week)
+        rsvps["weeks"] = sorted(rsvps["weeks"], key=itemgetter(0))
+
+        rsvps["this_week"] = 0
+        rsvps["last_week"] = 0
+        if len(rsvps["weeks"]) >= 1:
+            rsvps["this_week"] = rsvps["weeks"][-1][1]
+            if len(rsvps["weeks"]) >= 2:
+                rsvps["last_week"] = rsvps["weeks"][-2][1]
+
+    return render_template("rsvps.html", brigadeid=brigadeid, rsvps=rsvps)
+
+
 @app.route('/brigade/index/<brigadeid>/')
 def redirect_brigade(brigadeid):
     ''' Redirect old Brigade links to new Brigade links'''
