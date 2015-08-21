@@ -38,36 +38,41 @@
         </div>
       </div>
 
-      <div class="slab-gray">
-        <div class="layout-semibreve">
+    <div class="slab-gray">
+      <div class="layout-semibreve">
 
-          <form id="checkin-form" enctype="application/x-www-form-urlencoded"
-          {% if brigadeid %}
-            action="/brigade/{{brigadeid}}/checkin/"
-          {% else %}
-            action="/brigade/checkin/" 
-          {% endif %}
-          method="post">
+        <form id="checkin-form" enctype="application/x-www-form-urlencoded"
+        {% if brigadeid %}
+          action="/brigade/{{brigadeid}}/checkin/"
+        {% else %}
+          action="/brigade/checkin/" 
+        {% endif %}
+        method="post">
 
+          <p>
+            <label for="name">Name</label>
+            <input name="name" id="name" class="input" placeholder="Margaret Hamilton" />
+          </p>
+          <p>
+            <label for="email">Email</label>
+            <input name="email" id="email" class="input" type="email" placeholder="apollo@nasa.gov" />
+          </p>
             <p>
-              <label for="name">Name</label>
-              <input name="name" id="name" class="input" placeholder="Margaret Hamilton" />
-            </p>
-            <p>
-              <label for="email">Email</label>
-              <input name="email" id="email" class="input" type="email" placeholder="apollo@nasa.gov" />
+              <label for="checkbox" class="check">
+                <input name="mailinglist" id="mailinglist" type="checkbox" class="checkbox" />
+                Join the Brigade mailing list
+              </label>
             </p>
 
             {% if brigadeid %}
             <p style="display:none">
               <select name="cfapi_url">
-                      <option value="https://www.codeforamerica.org/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
-            </select>
+                <option value="https://www.codeforamerica.org/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
+              </select>
             </p>
             {% else %}
             <p>
               <label for="select">Brigade</label>
-
               <select name="cfapi_url">
                 {% for brigade in brigades %}
                 <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
