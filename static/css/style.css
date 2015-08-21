@@ -132,7 +132,7 @@ h2 {
 @media (max-width: 40em) {
 
   input {
-    min-width: 300px;
+    min-width: 225px;
     padding: 1px 26px;
   }
 

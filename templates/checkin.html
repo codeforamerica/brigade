@@ -6,9 +6,9 @@
   {% with messages = get_flashed_messages() %}
     {% if messages %}
       {% for message in messages %}
-        <div id="thanks" class="layout-semibreve">
+        <div id="thanks" class="layout-semibreve alert-success">
           <img src="http://www.codeforamerica.org/media/images/logos/flag_tag.png" />
-          <h1 id="flash">{{ message }}</h1>
+          <h2 id="flash">{{ message }}</h2>
         </div>
       {% endfor %}
       <script>
