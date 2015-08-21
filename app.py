@@ -54,14 +54,11 @@ def get_brigades():
     return brigades
 
 
-def is_existing_brigade(brigadeid):
-    ''' tests that a brigade_id exists '''
-    brigades = get_brigades()
-    brigadeids = []
-    for brigade in json.loads(brigades):
-        brigadeids.append(brigade["properties"]["id"])
-
-    return brigadeid in brigadeids
+def is_existing_organization(orgid):
+    ''' tests that an organization exists on the cfapi'''
+    got = get("https://www.codeforamerica.org/api/organizations.geojson").json()
+    orgids = [org["properties"]["id"] for org in got["features"]]
+    return orgid in orgids
 
 
 # ROUTES
@@ -297,6 +294,11 @@ def infrastructure():
 @app.route("/brigade/<brigadeid>/projects/")
 def projects(brigadeid=None):
     ''' Display a list of projects '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
     projects = []
     brigade = None
     search = request.args.get("q", None)
@@ -359,6 +361,11 @@ def projects(brigadeid=None):
 @app.route("/brigade/<brigadeid>/attendance")
 def attendance(brigadeid=None):
     ''' Show the Brigade attendance '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
     if not brigadeid:
         got = get("https://www.codeforamerica.org/api/attendance")
     else:
@@ -389,6 +396,11 @@ def attendance(brigadeid=None):
 @app.route("/brigade/<brigadeid>/rsvps")
 def rsvps(brigadeid=None):
     ''' Show the Brigade rsvps '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
     if not brigadeid:
         got = get("https://www.codeforamerica.org/api/events/rsvps")
     else:
@@ -422,13 +434,14 @@ def redirect_brigade(brigadeid):
 
 @app.route('/brigade/<brigadeid>/')
 def brigade(brigadeid):
-    # Get this Brigade's info
+    ''' Get this Brigade's info '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
     brigade = got.json()
-
-    if 'status' in brigade:
-        if brigade['status'] == 'Resource Not Found':
-            return render_template('404.html'), 404
 
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
@@ -437,6 +450,11 @@ def brigade(brigadeid):
 @app.route("/brigade/<brigadeid>/checkin/", methods=["GET"])
 def get_checkin(brigadeid=None):
     ''' Checkin to a Brigade event '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
     brigades = None
     if not brigadeid:
         # Get all of the organizations from the api
@@ -476,7 +494,7 @@ def post_checkin(brigadeid=None):
         return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
 
     brigadeid = request.form.get('cfapi_url').split("/")[-1]
-    if not is_existing_brigade(brigadeid):
+    if not is_existing_organization(brigadeid):
         return make_response(brigadeid + "is not an existing brigade." , 422)
 
     # MAILCHIMP SIGNUP
@@ -583,7 +601,7 @@ def post_test_checkin(brigadeid=None):
 
 
     brigadeid = test_checkin_data["cfapi_url"].split("/")[-1]
-    if not is_existing_brigade(brigadeid):
+    if not is_existing_organization(brigadeid):
         return make_response(brigadeid + "is not an existing brigade." , 422)
 
     else:

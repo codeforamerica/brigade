@@ -195,5 +195,13 @@ class BrigadeTests(unittest.TestCase):
         self.assertTrue(response.status_code == 422)
 
 
+    def test_existing(self):
+        ''' Test that these org ids exist '''
+        from app import is_existing_organization
+        self.assertTrue(is_existing_organization("Code-for-America"))
+        self.assertFalse(is_existing_organization("TEST-TEST"))
+
+
+
 if __name__ == '__main__':
     unittest.main()
