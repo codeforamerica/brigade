@@ -51,7 +51,7 @@
 
           <p>
             <label for="name">Name</label>
-            <input name="name" id="name" class="input" placeholder="Margaret Hamilton" />
+            <input name="name" id="name" class="input" placeholder="Margaret Hamilton" type="text" />
           </p>
           <p>
             <label for="email">Email</label>
@@ -86,7 +86,7 @@
             {% else %}
             <p>
               <label for"event">Which Event are you attending?</label>
-              <input name="event" id="event" class="input" placeholder="Moon Landing"/>
+              <input name="event" id="event" class="input" placeholder="Moon Landing" type="text" />
             </p>
             {% endif %}
 
@@ -94,7 +94,7 @@
             <p>
               <label for="answer">{{question}}</label>
               <input name="question" value="{{question}}" type="hidden" />
-              <input class="input" name="answer" />
+              <input class="input" name="answer" type="text" />
             </p>
             {% endif %}
 
