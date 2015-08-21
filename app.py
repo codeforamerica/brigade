@@ -355,6 +355,13 @@ def projects(brigadeid=None):
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
 
+@app.route("/brigade/projects/popular")
+def popular_projects():
+    ''' Display a list of popular projects '''
+    popular_projects = get('https://cfapi-staging.herokuapp.com/api/projects/popular').json()
+    return render_template("popular_projects.html", projects=popular_projects)
+
+
 @app.route("/brigade/attendance")
 @app.route("/brigade/<brigadeid>/attendance")
 def attendance(brigadeid=None):
