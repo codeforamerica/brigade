@@ -6,15 +6,19 @@
   {% with messages = get_flashed_messages() %}
     {% if messages %}
       {% for message in messages %}
-        <div id="thanks" class="layout-semibreve alert-success">
-          <img src="http://www.codeforamerica.org/media/images/logos/flag_tag.png" />
-          <h2 id="flash">{{ message }}</h2>
+        <div id="thanks" class="alert-success">
+          <div class="layout-semibreve">
+            <img src="http://www.codeforamerica.org/media/images/logos/flag_tag.png" />
+            <h2 id="flash">{{ message }}</h2>
+          </div>
         </div>
       {% endfor %}
       <script>
         $(function() {
+          $("#checkin-page").hide();
           setTimeout(function() {
             $("#thanks").hide(1000);
+            $("#checkin-page").show();
           }, 3500);
         });
       </script>
@@ -22,74 +26,83 @@
   {% endwith %}
 
 
-    <div class="slab-blue">
-      <div class="layout-semibreve">
-        {% if event %}
-        <h1 id="title"> {{ event }} </h1>
-        {% else %}
-        <h1 id="title"> Check In </h1>
-        {% endif %}
-      </div>
-    </div>
+    <div id="checkin-page">
 
-    <div class="slab-gray">
-      <div class="layout-semibreve">
-
-        <form id="checkin-form" enctype="application/x-www-form-urlencoded"
-        {% if brigadeid %}
-          action="/brigade/{{brigadeid}}/checkin/"
-        {% else %}
-          action="/brigade/checkin/" 
-        {% endif %}
-        method="post">
-
-          <p>
-            <label for="name">Name</label>
-            <input name="name" id="name" class="input" placeholder="Margaret Hamilton" />
-          </p>
-          <p>
-            <label for="email">Email</label>
-            <input name="email" id="email" class="input" type="email" placeholder="apollo@nasa.gov" />
-          </p>
-
-          {% if brigadeid %}
-          <p style="display:none">
-            <select name="cfapi_url">
-                    <option value="https://www.codeforamerica.org/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
-          </select>
-          </p>
-          {% else %}
-          <p>
-            <label for="select">Brigade</label>
-
-            <select name="cfapi_url">
-              {% for brigade in brigades %}
-              <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
-              {% endfor %}
-            </select>
-          </p>
-          {% endif %}
-
+      <div class="slab-blue">
+        <div class="layout-semibreve">
           {% if event %}
-          <input name="event" id="event" class="input" value="{{event}}" type="hidden" />
+          <h1 id="title"> {{ event }} </h1>
           {% else %}
-          <p>
-            <label for"event">Which Event are you attending?</label>
-            <input name="event" id="event" class="input" placeholder="Moon Landing"/>
-          </p>
+          <h1 id="title"> Check In </h1>
           {% endif %}
+        </div>
+      </div>
 
-          {% if question %}
-          <p>
-            <label for="answer">{{question}}</label>
-            <input name="question" value="{{question}}" type="hidden" />
-            <input class="input" name="answer" />
-          </p>
+      <div class="slab-gray">
+        <div class="layout-semibreve">
+
+          <form id="checkin-form" enctype="application/x-www-form-urlencoded"
+          {% if brigadeid %}
+            action="/brigade/{{brigadeid}}/checkin/"
+          {% else %}
+            action="/brigade/checkin/" 
           {% endif %}
+          method="post">
 
-          <button type="submit" value="Submit" class="button-l">Check In!</button>
+            <p>
+              <label for="name">Name</label>
+              <input name="name" id="name" class="input" placeholder="Margaret Hamilton" />
+            </p>
+            <p>
+              <label for="email">Email</label>
+              <input name="email" id="email" class="input" type="email" placeholder="apollo@nasa.gov" />
+            </p>
+            <p>
+              <label for="checkbox" class="check">
+                <input id="cfa-mailchimp" type="checkbox" class="checkbox" />
+                Join the Brigade mailing list
+              </label>
+            </p>
 
-        </form>
+            {% if brigadeid %}
+            <p style="display:none">
+              <select name="cfapi_url">
+                      <option value="https://www.codeforamerica.org/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
+            </select>
+            </p>
+            {% else %}
+            <p>
+              <label for="select">Brigade</label>
+
+              <select name="cfapi_url">
+                {% for brigade in brigades %}
+                <option value="https://www.codeforamerica.org/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
+                {% endfor %}
+              </select>
+            </p>
+            {% endif %}
+
+            {% if event %}
+            <input name="event" id="event" class="input" value="{{event}}" type="hidden" />
+            {% else %}
+            <p>
+              <label for"event">Which Event are you attending?</label>
+              <input name="event" id="event" class="input" placeholder="Moon Landing"/>
+            </p>
+            {% endif %}
+
+            {% if question %}
+            <p>
+              <label for="answer">{{question}}</label>
+              <input name="question" value="{{question}}" type="hidden" />
+              <input class="input" name="answer" />
+            </p>
+            {% endif %}
+
+            <button type="submit" value="Submit" class="button-l">Check In!</button>
+
+          </form>
+        </div>
       </div>
     </div>
   </section>
