@@ -467,7 +467,7 @@ def get_checkin(brigadeid=None):
 def post_checkin(brigadeid=None):
     ''' Prep the checkin for posting to the peopledb '''
 
-    # Validate cfapi_url
+    # VALIDATE
     cfapi_url = request.form.get('cfapi_url')
     if not cfapi_url:
         return make_response("Missing required cfapi_url", 422)
@@ -479,6 +479,36 @@ def post_checkin(brigadeid=None):
     if not is_existing_brigade(brigadeid):
         return make_response(brigadeid + "is not an existing brigade." , 422)
 
+    # MAILCHIMP SIGNUP
+    if request.form.get("mailinglist", None):
+        if request.form.get("email", None):
+
+            # Split first and last name
+            name = request.form.get('name', None)
+            if name:
+                if ' ' in request.form['name']:
+                    first_name, last_name = name.split(' ', 1)
+                else:
+                    first_name, last_name = name, ''
+            else:
+                first_name, last_name = None, None
+
+            mailchimp_data = {
+                'FNAME' : first_name,
+                'LNAME' : last_name,
+                'EMAIL' : request.form.get("email"),
+                'REFERRAL' : request.url,
+                'group[10273][8192]' : '8192', # I attend Brigade events
+                'group[10245][32]' : '32' # Brigade newsletter
+                }
+
+            cfa_mailchimp_url = "http://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
+            cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
+
+            if cfa_mailchimp_response.status_code != 200:
+                return cfa_mailchimp_response.content
+
+    # Prep PeopleDB post
     # Q&A is stored as a json string
     extras = {}
     extras["question"] = request.form.get("question", None)
