@@ -234,13 +234,17 @@ def numbers():
     attendance = got['total']
 
     # Get number of Meetup members
+    got = get("http://127.0.0.1:5000/api/member_count")
+    print got.content
+    got = got.json()
+    member_count = got['total']
 
     kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total,
                   cfall_total=cfall_total, government_total=government_total,
                   projects_total=projects_total, brigade_projects_total=brigade_projects_total,
                   cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total,
                   issues_total=issues_total, help_wanted_total=help_wanted_total, bug_total=bug_total,
-                  enhancement_total=enhancement_total, rsvps=rsvps, attendance=attendance)
+                  enhancement_total=enhancement_total, rsvps=rsvps, attendance=attendance, member_count=member_count)
 
     return render_template("numbers.html", **kwargs )
 
