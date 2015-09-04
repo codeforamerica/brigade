@@ -7,14 +7,25 @@ We've built a platform for your Brigade to start tracking attendance.
 * https://www.codeforamerica.org/brigade/attendance
 * https://www.codeforamerica.org/brigade/Code-for-San-Francisco/attendance
 
+<img src="http://i.imgur.com/14XACwl.png" />
+
 Brigade members can checkin at:
 
 * https://www.codeforamerica.org/brigade/checkin
 * https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin
 
+<img src="http://i.imgur.com/HpwqFW0.png" />
+
 We recommend making a short link of the checkin url for your group.
 
 * https://www.codeforamerica.org/brigade/Code-for-San-Francisco/checkin?event=Hack+Night
+
+#### Attendance Data
+Brigade Leadership can find the attendance data for their groups at https://people.codeforamerica.org/brigade/
+
+To get access talk to Hannah or Andrew
+
+<img src="http://i.imgur.com/KNxtM74.png" />
 
 #### Build your own Brigade attendance tools
 
