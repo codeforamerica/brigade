@@ -103,8 +103,7 @@ class BrigadeTests(unittest.TestCase):
 
     def test_good_links(self):
         ''' Test that normal Brigade links are working '''
-        with HTTMock(self.response_content):
-            response = self.app.get("/brigade/Code-for-San-Francisco/")
+        response = self.app.get("/brigade/Code-for-San-Francisco/")
         self.assertTrue(response.status_code == 200)
 
 
