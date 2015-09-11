@@ -80,9 +80,14 @@
             </ul>
             {% endif %}
 
-            {% if project.last_updated %}
-              <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
-            {% endif %}
+            <p>
+              <small>Last Updated: {{project.last_updated | timesince}}</small>
+              {% if project.code_url %}
+                {% if not project.status or project.tags %}
+                <a href="{{request.url}}{{project.id}}/add_civic_json" class="button button-s button-subtle">Add civic.json</a>
+                {% endif %}
+              {% endif %}
+            </p>
 
             <hr />
 
