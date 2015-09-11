@@ -324,17 +324,6 @@ def projects(brigadeid=None):
         else:
             next = "/brigade/projects/?page=2"
 
-    def get_projects(projects, url, limit=10):
-        got = get(url)
-        new_projects = got.json()["objects"]
-        projects = projects + new_projects
-        if limit:
-            if len(projects) >= limit:
-                return projects
-        if "next" in got.json()["pages"]:
-            projects = get_projects(projects, got.json()["pages"]["next"], limit)
-        return projects
-
     if brigadeid:
         url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
         if search or sort_by or page:
