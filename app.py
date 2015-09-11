@@ -224,15 +224,10 @@ def numbers():
     got = got.json()
     help_wanted_total = got['total']
 
-    # Get number of Bug Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/bug?per_page=1")
+    # Get number of civic issue finder clicks
+    got = get("https://www.codeforamerica.org/geeks/civicissues/analytics/total_clicks")
     got = got.json()
-    bug_total = got['total']
-
-    # Get number of Enhancement Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/enhancement?per_page=1")
-    got = got.json()
-    enhancement_total = got['total']
+    total_issue_clicks = got['total_clicks']
 
 
     kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total,
@@ -240,8 +235,7 @@ def numbers():
                   member_count=member_count, rsvps=rsvps, attendance=attendance,
                   projects_total=projects_total, brigade_projects_total=brigade_projects_total,
                   cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total,
-                  issues_total=issues_total, help_wanted_total=help_wanted_total,
-                  bug_total=bug_total, enhancement_total=enhancement_total)
+                  issues_total=issues_total, help_wanted_total=help_wanted_total, total_issue_clicks=total_issue_clicks)
 
     return render_template("numbers.html", **kwargs )
 
