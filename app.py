@@ -8,7 +8,9 @@ from urlparse import urlparse
 from datetime import datetime
 from base64 import b64encode
 
-from flask import Flask, render_template, request, redirect, url_for, make_response, flash
+from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session
+
+from flask.ext.github import GitHub
 import filters
 
 app = Flask(__name__, static_url_path="/brigade/static")
@@ -16,6 +18,14 @@ app.register_blueprint(filters.blueprint)
 
 app.config['BRIGADE_SIGNUP_SECRET'] = os.environ['BRIGADE_SIGNUP_SECRET']
 app.secret_key = 'SECRET KEY'
+
+# Set these values
+app.config["GITHUB_CLIENT_ID"] = os.environ["GITHUB_CLIENT_ID"]
+app.config["GITHUB_CLIENT_SECRET"] = os.environ["GITHUB_CLIENT_SECRET"]
+
+# setup github-flask
+github = GitHub(app)
+
 
 @app.context_processor
 def get_fragments():
@@ -353,21 +363,44 @@ def projects(brigadeid=None):
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
-@app.route("/brigade/projects/<id>/add_civic_json")
-@app.route("/brigade/<brigadeid>/projects/<id>/add_civic_json")
-def add_civic_json(id, brigadeid=None):
+
+@app.route('/brigade/github-callback')
+@github.authorized_handler
+def authorized(access_token):
+    next_url = request.args.get('next') or url_for('index')
+    session['access_token'] = access_token
+    print session['access_token']
+    return redirect(next_url)
+
+@github.access_token_getter
+def token_getter():
+    return session['access_token']
+
+@app.route("/brigade/gh-login")
+def github_login():
+    return github.authorize(scope="repo", redirect_uri=request.url)
+
+
+@app.route("/brigade/projects/<id>/civic_json", methods=["GET", "POST"])
+@app.route("/brigade/<brigadeid>/projects/<id>/civic_json", methods=["GET", "POST"])
+def civic_json(id, brigadeid=None):
     ''' Send a pull request to a project to add a civic.json file '''
-    # Get the relevant project
-    got = get("https://www.codeforamerica.org/api/projects/" + id)
-    project = got.json()
-    project["repo"] = None
-    if project["code_url"]:
-        url = urlparse(project["code_url"])
-        if url.netloc == 'github.com':
-            project["repo"] = url.path
+    if request.method == "GET":
+        # Get the relevant project
+        got = get("https://www.codeforamerica.org/api/projects/" + id)
+        project = got.json()
+        project["repo"] = None
+        if project["code_url"]:
+            url = urlparse(project["code_url"])
+            if url.netloc == 'github.com':
+                project["repo"] = url.path
 
-    return render_template("add_civic_json.html", project=project)
+        return render_template("civic_json.html", project=project)
 
+    if request.method == "POST":
+        user = github.get('/user')
+        print user
+        return json.dumps(request.form)
 
 
 @app.route("/brigade/attendance")
