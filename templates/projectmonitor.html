@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="layout-semibreve layout-centered">
+
+  {% if org_name %}
+  <h1>{{org_name}}'s Project Monitor</h1>
+  {% else %}
+  <h1>The Civic Tech Movement Project Monitor</h1>
+  {% endif %}
+
+  <ul id="projects">
+  </ul>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+
+<script>
+
+$( document ).ready(function() {
+
+  function getProject(project){
+
+    if (project.code_url) {
+
+      if (project.code_url.indexOf('github.com') > -1) {
+
+        repo = project.code_url.replace("https://github.com/","");
+
+        travis_url = 'https://api.travis-ci.org/repositories/' + repo + '/builds'
+
+        $.getJSON(travis_url, function(response){
+
+          if (response[0]) {
+
+            project.when = moment(new Date(project.last_updated)).fromNow()
+
+            if (response[0].result == 0){
+              project.state = "alert-success"
+            } else {
+              project.state = "alert-failure"
+            }
+
+            repo = project.code_url.replace("https://github.com/","");
+            project.travis = 'https://travis-ci.org/' + repo + '/builds/' + response[0].id
+
+            html = '<li class="'+project.state+' layout-centered layout-crotchet"> \
+              <div class="project"> \
+                <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
+                <hr /> \
+                <a class="icon-tools" href="'+project.travis+'"> Built '+project.when+' ago </a> \
+              </div> \
+            </li>'
+
+            $("#projects").append(html);
+
+          }
+
+        });
+
+      }
+
+    }
+
+  }
+
+
+  var projects = {{ projects | tojson }};
+
+  $.each(projects, function(i, project){
+
+    getProject(project);
+
+  });
+
+});
+
+</script>
+
+{% endblock %}
