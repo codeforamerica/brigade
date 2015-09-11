@@ -4,62 +4,162 @@
 
   <section>
 
-    <div class="slab-dark-blue">
-      <div class="layout-semibreve">
+    <div class="layout-breve">
+      <a name="numbers"></a>
+      <h1>Civic Tech Movement Numbers</h1>
+    </div>
 
-        <h1>Civic Tech Movement Numbers</h1>
+    <div class="layout-breve">
 
-        <div class="layout-minim">
+      <div class="layout-minim">
+
+        <ul class="bricks bricks-4">
+
           <h2>Organizations</h2>
 
-          <h3>Total Brigades: {{ brigades_total }}</h3>
-          <h3>Official Brigades: {{ official_brigades_total }}</h3>
-          <a href="https://codeforamerica.org/brigade">https://codeforamerica.org/brigade</a>
+          <li class="brick">
+            <a href="https://codeforamerica.org/brigade">
+              <h3 class="text-feature">{{ brigades_total }}</h3>
+              <p class="text-whisper">Total Brigades</p>
+            </a>
+          </li>
 
-          <h3>Code for All Organizations: {{ cfall_total }}</h3>
-          <a href="https://codeforall.org">https://codeforall.org</a>
-          <h3>Governments: {{ government_total }}</h3>
-        </div>
+          <li class="brick">
+            <a href="https://codeforamerica.org/brigade">
+              <h3 class="text-feature">{{ official_brigades_total }}</h3>
+              <p class="text-whisper">Official Brigades</p>
+            </a>
+          </li>
 
-        <div class="layout-minim">
-          <h2>People</h2>
+          <li class="brick">
+            <a href="https://codeforall.org">
+              <h3 class="text-feature">{{ cfall_total }}</h3>
+              <p class="text-whisper">Code for All Organizations</p>
+            </a>
+          </li>
 
-          <h3>Total RSVPs: {{ rsvps }}</h3>
-          <a href="https://codeforamerica.org/brigade/rsvps">https://codeforamerica.org/brigade/rsvps</a>
-          <h3>Total Attendance: {{ attendance }}</h3>
-          <a href="https://codeforamerica.org/brigade/attendance">https://codeforamerica.org/brigade/attendance</a>
+          <li class="brick">
+            <h3 class="text-feature">{{ government_total }}</h3>
+            <p class="text-whisper">Governments</p>
+          </li>
 
-        </div>
+      </ul>
 
-      </div>
-
-      <div class="layout-semibreve">
-
-        <div class="layout-minim">
-          <h2>Projects</h2>
-
-          <h3>Total Projects: {{ projects_total }}</h3>
-          <a href="https://codeforamerica.org/brigade/projects">https://codeforamerica.org/brigade/projects</a>
-          <h3>Total Brigade Projects: {{ brigade_projects_total }}</h3>
-          <h3>Total Code for All Projects: {{ cfall_projects_total }}</h3>
-          <h3>Total Government Projects: {{ gov_projects_total }}</h3>
-          
-        </div>
-
-        <div class="layout-minim">
-          <h2>Issues</h2>
-
-          <h3>Total Issues: {{ issues_total }}</h3>
-          <h3>Total Help Wanted Issues: {{ help_wanted_total }}</h3>
-          <a href="https://codeforamerica.org/geeks/civicissues">https://codeforamerica.org/geeks/civicissues</a>
-          <h3>Total Bug Issues: {{ bug_total }}</h3>
-          <h3>Total Enhancement Issues: {{ enhancement_total }}</h3>
-        </div>
-      </div>
     </div>
+
+    <div class="layout-minim">
+
+      <ul class="bricks bricks-4">
+
+        <h2>People</h2>
+
+          <li class="brick">
+            <h3 class="text-feature">{{ member_count }}</h3>
+            <p class="text-whisper">Total Meetup.com Members</p>
+          </li>
+
+          <li class="brick">
+            <a href="https://codeforamerica.org/brigade/rsvps">
+              <h3 class="text-feature">{{ rsvps }}</h3>
+              <p class="text-whisper">Total Meetup.com RSVPs</p>
+            </a>
+          </li>
+
+          <li class="brick">
+            <a href="https://codeforamerica.org/brigade/attendance">
+              <h3 class="text-feature">{{ attendance }}</h3>
+              <p class="text-whisper">Event Attendance</p>
+            </a>
+          </li>
+
+      </ul>
+
+    </div>
+
+
+  </div>
+
+  <div class="layout-breve">
+
+    <div class="layout-minim">
+
+      <ul class="bricks bricks-4">
+
+        <h2>Projects</h2>
+
+        <li class="brick">
+          <a href="https://codeforamerica.org/brigade/projects">
+            <h3 class="text-feature">{{ projects_total }}</h3>
+            <p class="text-whisper">Total Projects</p>
+          </a>
+        </li>
+
+        <li class="brick">
+          <a href="https://codeforamerica.org/brigade/projects">
+            <h3 class="text-feature">{{ brigade_projects_total }}</h3>
+            <p class="text-whisper">Total Brigade Projects</p>
+          </a>
+        </li>
+
+        <li class="brick">
+          <a href="https://codeforamerica.org/brigade/projects">
+            <h3 class="text-feature">{{ cfall_projects_total }}</h3>
+            <p class="text-whisper">Total Code for All Projects</p>
+          </a>
+        </li>
+
+        <li class="brick">
+          <a href="https://codeforamerica.org/brigade/projects">
+            <h3 class="text-feature">{{ gov_projects_total }}</h3>
+            <p class="text-whisper">Total Government Projects</p>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="layout-minim">
+
+      <ul class="bricks bricks-4">
+
+        <h2>Issues</h2>
+
+        <li class="brick">
+          <h3 class="text-feature">{{ issues_total }}</h3>
+          <p class="text-whisper">Total Issues</p>
+        </li>
+
+        <li class="brick">
+          <a href="https://codeforamerica.org/geeks/civicissues">
+            <h3 class="text-feature">{{ help_wanted_total }}</h3>
+            <p class="text-whisper">Total Help Wanted Issues</p>
+          </a>
+        </li>
+
+        <li class="brick">
+          <h3 class="text-feature">{{ bug_total }}</h3>
+          <p class="text-whisper">Total Bug Issues</p>
+        </li>
+
+        <li class="brick">
+          <h3 class="text-feature">{{ enhancement_total }}</h3>
+          <p class="text-whisper">Total Enhancement Issues</p>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
 
   </section>
 {% endblock %}
 
 {% block js %}
+  
+  <script>
+    $("#signupformdiv").hide();
+  </script>
+
 {% endblock %}

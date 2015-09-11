@@ -175,53 +175,10 @@ def numbers():
     got = got.json()
     government_total = got['total']
 
-    # Get total number of projects
-    got = get("https://www.codeforamerica.org/api/projects?per_page=1")
+    # Get number of meetup-members
+    got = get("http://codeforamerica.org/api/organizations/member_count")
     got = got.json()
-    projects = got['objects']
-    projects_total = got['total']
-
-    # Get total number of Brigade projects
-    got = get("https://www.codeforamerica.org/api/projects?organization_type=Brigade&per_page=1")
-    got = got.json()
-    projects = got['objects']
-    brigade_projects_total = got['total']
-
-    # Get total number of Code for All projects
-    got = get("https://www.codeforamerica.org/api/projects?organization_type=Code for All&per_page=1")
-    got = got.json()
-    projects = got['objects']
-    cfall_projects_total = got['total']
-
-    # Get total number of Government projects
-    got = get("https://www.codeforamerica.org/api/projects?organization_type=Government&per_page=1")
-    got = got.json()
-    projects = got['objects']
-    gov_projects_total = got['total']
-
-    # Get number of Issues
-    got = get("https://www.codeforamerica.org/api/issues?per_page=1")
-    got = got.json()
-    issues = got['objects']
-    issues_total = got['total']
-
-    # Get number of Help Wanted Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/help%20wanted?per_page=1")
-    got = got.json()
-    issues = got['objects']
-    help_wanted_total = got['total']
-
-    # Get number of Bug Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/bug?per_page=1")
-    got = got.json()
-    issues = got['objects']
-    bug_total = got['total']
-
-    # Get number of Enhancement Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/enhancement?per_page=1")
-    got = got.json()
-    issues = got['objects']
-    enhancement_total = got['total']
+    member_count = got['total']
 
     # Get number of RSVPs
     got = get("https://www.codeforamerica.org/api/events/rsvps")
@@ -233,14 +190,58 @@ def numbers():
     got = got.json()
     attendance = got['total']
 
-    # Get number of Meetup members
+    # Get total number of projects
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    projects_total = got['total']
+
+    # Get total number of Brigade projects
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Brigade&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    brigade_projects_total = got['total']
+
+    # Get total number of Code for All projects
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Code for All&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    cfall_projects_total = got['total']
+
+    # Get total number of Government projects
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Government&per_page=1")
+    got = got.json()
+    projects = got['objects']
+    gov_projects_total = got['total']
+
+    # Get number of Issues
+    got = get("https://www.codeforamerica.org/api/issues?per_page=1")
+    got = got.json()
+    issues_total = got['total']
+
+    # Get number of Help Wanted Issues
+    got = get("https://www.codeforamerica.org/api/issues/labels/help%20wanted?per_page=1")
+    got = got.json()
+    help_wanted_total = got['total']
+
+    # Get number of Bug Issues
+    got = get("https://www.codeforamerica.org/api/issues/labels/bug?per_page=1")
+    got = got.json()
+    bug_total = got['total']
+
+    # Get number of Enhancement Issues
+    got = get("https://www.codeforamerica.org/api/issues/labels/enhancement?per_page=1")
+    got = got.json()
+    enhancement_total = got['total']
+
 
     kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total,
                   cfall_total=cfall_total, government_total=government_total,
+                  member_count=member_count, rsvps=rsvps, attendance=attendance,
                   projects_total=projects_total, brigade_projects_total=brigade_projects_total,
                   cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total,
-                  issues_total=issues_total, help_wanted_total=help_wanted_total, bug_total=bug_total,
-                  enhancement_total=enhancement_total, rsvps=rsvps, attendance=attendance)
+                  issues_total=issues_total, help_wanted_total=help_wanted_total,
+                  bug_total=bug_total, enhancement_total=enhancement_total)
 
     return render_template("numbers.html", **kwargs )
 
