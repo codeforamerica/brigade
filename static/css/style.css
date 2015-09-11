@@ -144,7 +144,7 @@ h2 {
 }
 
 /* Project Monitor */
-#projects a:link, #projects a:visited, #projects a:hover, #projects a:focus, #projects a:active {
+#monitor a:link, #monitor a:visited, #monitor a:hover, #monitor a:focus, #monitor a:active {
   color: #5a5a5a;
 }
 

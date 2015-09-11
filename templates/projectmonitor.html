@@ -2,18 +2,20 @@
 
 {% block content %}
 
-  <div class="layout-semibreve layout-centered">
+<section class="slab-dark-blue">
+  <div id="monitor" class="layout-breve layout-centered">
 
-  {% if org_name %}
-  <h1>{{org_name}}'s Project Monitor</h1>
-  {% else %}
-  <h1>The Civic Tech Movement Project Monitor</h1>
-  {% endif %}
+    {% if org_name %}
+    <h1>{{org_name}}'s Project Monitor</h1>
+    {% else %}
+    <h1>The Civic Tech Movement Project Monitor</h1>
+    {% endif %}
 
-  <ul id="projects">
-  </ul>
+    <ul id="projects">
+    </ul>
 
-</div>
+  </div>
+</section>
 
 {% endblock %}
 
