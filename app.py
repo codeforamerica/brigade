@@ -379,9 +379,9 @@ def github_login():
     return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
 
-@app.route("/brigade/projects/<id>/add-civic-json")
-@app.route("/brigade/<brigadeid>/projects/<id>/add-civic-json")
-def civic_json(id, brigadeid=None):
+@app.route("/brigade/projects/<id>/add_civic_json")
+@app.route("/brigade/<brigadeid>/projects/<id>/add_civic_json")
+def add_civic_json(id, brigadeid=None):
     ''' Send a pull request to a project to add a civic.json file '''
     # Get the relevant project
     got = get("https://www.codeforamerica.org/api/projects/" + id)
@@ -392,12 +392,7 @@ def civic_json(id, brigadeid=None):
         if url.netloc == 'github.com':
             project["repo"] = url.path
 
-    user = None
-    if session.get("access_token"):
-        user = github.get("user")
-
-
-    return render_template("civic_json.html", project=project, user=user)
+    return render_template("add_civic_json.html", project=project)
 
 
 @app.route("/brigade/attendance")
