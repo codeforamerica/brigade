@@ -147,9 +147,6 @@ h2 {
   width: 200px;
 }
 
-.grid-item {
-  width: 100%;
-}
 
 #project-stage-buttons a {
   width : 230px;
@@ -173,4 +170,17 @@ h2 {
 
 #Experiment, .Experiment {
   background-color: #69579C !important;
+
+
+/* Project Monitor */
+#projects a:link, #projects a:visited, #projects a:hover, #projects a:focus, #projects a:active {
+  color: #5a5a5a;
+}
+
+.alert-success, .alert-failure {
+  border: 0px;
+}
+
+.project {
+  padding: 15px;
 }
