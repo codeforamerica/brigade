@@ -64,8 +64,17 @@
               <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
             {% endfor %} -->
 
-            <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+            <p>
+              <small>Last Updated: {{project.last_updated | timesince}}</small>
+              {% if project.code_url %}
+                {% if not project.status or project.tags %}
+                <a href="{{request.url}}{{project.id}}/add_civic_json" class="button button-s button-subtle">Add civic.json</a>
+                {% endif %}
+              {% endif %}
+            </p>
 
+            <hr />
+            <br />
           {% endfor %}
 
           <a href="{{next}}" class="button-inactive">More Projects</a>

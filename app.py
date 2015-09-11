@@ -3,6 +3,7 @@ import os
 import re
 from requests import get, post
 from operator import itemgetter
+from urlparse import urlparse
 
 from datetime import datetime
 from base64 import b64encode
@@ -354,6 +355,22 @@ def projects(brigadeid=None):
         projects = get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
+
+@app.route("/brigade/projects/<id>/add_civic_json")
+@app.route("/brigade/<brigadeid>/projects/<id>/add_civic_json")
+def add_civic_json(id, brigadeid=None):
+    ''' Send a pull request to a project to add a civic.json file '''
+    # Get the relevant project
+    got = get("https://www.codeforamerica.org/api/projects/" + id)
+    project = got.json()
+    project["repo"] = None
+    if project["code_url"]:
+        url = urlparse(project["code_url"])
+        if url.netloc == 'github.com':
+            project["repo"] = url.path
+
+    return render_template("add_civic_json.html", project=project)
+
 
 
 @app.route("/brigade/attendance")
