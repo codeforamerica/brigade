@@ -142,3 +142,20 @@ h2 {
   color: white;
   margin: 0px;
 }
+
+/* Project Monitor */
+#monitor {
+  min-height: 700px;
+}
+
+#monitor a:link, #monitor a:visited, #monitor a:hover, #monitor a:focus, #monitor a:active {
+  color: #5a5a5a;
+}
+
+.alert-success, .alert-failure {
+  border: 0px;
+}
+
+.project {
+  padding: 15px;
+}

@@ -3,6 +3,7 @@ import os
 import re
 from requests import get, post
 from operator import itemgetter
+from urlparse import urlparse
 
 from datetime import datetime
 from base64 import b64encode
@@ -59,6 +60,19 @@ def is_existing_organization(orgid):
     got = get("https://www.codeforamerica.org/api/organizations.geojson").json()
     orgids = [org["properties"]["id"] for org in got["features"]]
     return orgid in orgids
+
+
+# Load load projects from the cfapi
+def get_projects(projects, url, limit=10):
+    got = get(url)
+    new_projects = got.json()["objects"]
+    projects = projects + new_projects
+    if limit:
+        if len(projects) >= limit:
+            return projects
+    if "next" in got.json()["pages"]:
+        projects = get_projects(projects, got.json()["pages"]["next"], limit)
+    return projects
 
 
 # ROUTES
@@ -309,17 +323,6 @@ def projects(brigadeid=None):
             next = "/brigade/"+brigadeid+"/projects/?page=2"
         else:
             next = "/brigade/projects/?page=2"
-
-    def get_projects(projects, url, limit=10):
-        got = get(url)
-        new_projects = got.json()["objects"]
-        projects = projects + new_projects
-        if limit:
-            if len(projects) >= limit:
-                return projects
-        if "next" in got.json()["pages"]:
-            projects = get_projects(projects, got.json()["pages"]["next"], limit)
-        return projects
 
     if brigadeid:
         url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
@@ -600,6 +603,30 @@ def post_test_checkin(brigadeid=None):
 
     else:
         return make_response(json.dumps(test_checkin_data), 200)
+
+
+@app.route('/brigade/projects/monitor')
+@app.route('/brigade/<brigadeid>/projects/monitor')
+def project_monitor(brigadeid=None):
+    ''' Check for Brigade projects on Travis'''
+    limit = int(request.args.get('limit',50))
+    travis_projects = []
+    projects = []
+    if not brigadeid:
+        projects = get_projects(projects, "https://www.codeforamerica.org/api/projects", limit)
+    else:
+        projects = get_projects(projects, "https://www.codeforamerica.org/api/organizations/"+brigadeid+"/projects", limit)
+
+    # Loop through projects and get
+    for project in projects:
+        if project["code_url"]:
+            url = urlparse(project["code_url"])
+            if url.netloc == "github.com":
+                travis_url = "https://api.travis-ci.org/repositories"+url.path+"/builds"
+                project["travis_url"] = travis_url
+                travis_projects.append(project)
+
+    return render_template('projectmonitor.html', projects=travis_projects, org_name=brigadeid)
 
 
 if __name__ == '__main__':
