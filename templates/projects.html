@@ -36,7 +36,10 @@
 
         {% for project in projects %}
           <div>
-            <h3>{{project.name}}</h3>
+            <h3 style="display:inline;">{{project.name}}</h3>
+            {% if project.tags and "featured" in project.tags %}
+              <a href="?=featured" class="featured button-s">Featured</a>
+            {% endif %}
             {% if project.link_url %}
               <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
             {% endif %}
@@ -51,9 +54,18 @@
               <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
             {% endif %}
 
-            {% for contributor in project.github_details.contributors %}
-              <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-            {% endfor %}
+            {% if not brigade %}
+              <p>Used By: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+            {% endif %}
+
+            {% if project.github_details.contributors %}
+              <p>Built by: </p>
+              {% for contributor in project.github_details.contributors %}
+                <a href="{{ contributor.html_url }}">
+                  <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
+                </a>
+              {% endfor %}
+            {% endif %}
 
             <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
 
