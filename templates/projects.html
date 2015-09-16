@@ -23,19 +23,19 @@
 
         <h2>Project Stages</h2>
         <ul id="project-stage-buttons" class="list-no-bullets">
-          <li><button id="Featured">Featured</button></li>
-          <li><button id="Official">Official</button></li>
-          <li><button id="Beta">Beta</button></li>
-          <li><button id="Alpha">Alpha</button></li>
-          <li><button id="Experiment">Experiment</button></li>
+          <li><a href="?q=featured" id="Featured" class="button">Featured</a></li>
+          <li><a href="?q=Official" id="Official" class="button">Official</a></li>
+          <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
+          <li><a href="?=Alpha" id="Alpha" class="button">Alpha</a></li>
+          <li><a href="?=Experiment" id="Experiment" class="button">Experiment</a></li>
         </ul>
-        <!-- <a href="{{next}}" class="button-inactive">More Projects</a> -->
+
       </div>
 
-      <div id="projects" class="layout-major grid">
+      <div id="projects" class="layout-major">
 
         {% for project in projects %}
-          <div class="grid-item {{ project.status }} {{ project.tags }}">
+          <div>
             <h3>{{project.name}}</h3>
             {% if project.link_url %}
               <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
@@ -47,14 +47,23 @@
 
             <p>{{project.description}}</p>
 
-            <!-- {% for contributor in project.github_details.contributors %}
+            {% if project.status %}
+              <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
+            {% endif %}
+
+            {% for contributor in project.github_details.contributors %}
               <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-            {% endfor %} -->
+            {% endfor %}
 
             <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+
+            <hr />
+
           </div>
 
         {% endfor %}
+
+        <!-- <a href="{{next}}" class="button-inactive">More Projects</a> -->
 
       </div>
 
@@ -65,35 +74,5 @@
 {% endblock %}
 
 {% block js %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
 
-<script>
-  var $grid = $('.grid').isotope({
-    // options
-    itemSelector: '.grid-item',
-    layoutMode: 'fitRows'
-  });
-
-  // filters
-  $("#Featured").click(function(e){
-    $grid.isotope({ filter: '.featured' });
-  })
-
-  $("#Official").click(function(e){
-    $grid.isotope({ filter: '.Official' });
-  })
-
-  $("#Beta").click(function(e){
-    $grid.isotope({ filter: '.Beta' });
-  })
-
-  $("#Alpha").click(function(e){
-    $grid.isotope({ filter: '.Alpha' });
-  })
-
-  $("#Experiment").click(function(e){
-    $grid.isotope({ filter: '.Experiment' });
-  })
-
-  </script>
 {% endblock %}

@@ -284,8 +284,8 @@ def infrastructure():
     return render_template("infrastructure.html")
 
 
-@app.route("/brigade/projects/")
-@app.route("/brigade/<brigadeid>/projects/")
+@app.route("/brigade/projects")
+@app.route("/brigade/<brigadeid>/projects")
 def projects(brigadeid=None):
     ''' Display a list of projects '''
 

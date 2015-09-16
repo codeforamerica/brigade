@@ -151,26 +151,26 @@ h2 {
   width: 100%;
 }
 
-#project-stage-buttons button{
+#project-stage-buttons a {
   width : 230px;
 }
 
-#Featured {
-  background-color: #e87d2b;
+#Featured, .featured {
+  background-color: #e87d2b !important;
 }
 
-#Official {
-  background-color: #00a175;
+#Official, .Official {
+  background-color: #00a175 !important;
 }
 
-#Beta {
-  background-color: #004b6a;
+#Beta, .Beta {
+  background-color: #004b6a !important;
 }
 
-#Alpha {
-  background-color: #7ab5d6;
+#Alpha, .Alpha {
+  background-color: #7ab5d6 !important;
 }
 
-#Experiment {
-  background-color: #69579C;
+#Experiment, .Experiment {
+  background-color: #69579C !important;
 }
