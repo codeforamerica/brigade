@@ -4,51 +4,38 @@
 
   <section>
 
-    <div class="slab-dark-blue">
-      <div class="layout-semibreve">
+    <div class="layout-breve">
 
-        {% if brigade %}
-          <h1>{{brigade.name}}'s Projects</h1>
-        {% else %}
-          <h1>All Civic Tech Projects</h1>
-        {% endif %}
+      {% if brigade %}
+        <h1>{{brigade.name}}'s Projects</h1>
+      {% else %}
+        <h1>All Civic Tech Projects</h1>
+      {% endif %} 
 
+      <div class="layout-minor">
         <form action="{{ request.path }}" method="get">
-            {% if request.args.get('q') %}
-            <input type="search" name="q" value="{{ request.args.get('q') }}" width="100">
-            {% else %}
-            <input type="search" name="q" placeholder="Search for a project" width="100">
-            {% endif %}
-            <button>Search</button>
-            <a href="#" id="help"><small class="note">Help</small></a>
+          <p class="field">
+            <input id="project-search" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" /><button type="submit" class="button"><i class="icon-search"></i></button
+          </p>
         </form>
 
-        <div id="helptext" class="hidden">
-          <p>Search for projects on their name, their description, tags, or their status.</p>
-          <p>Common statuses inlcude:
-            <ul class="list-inline">
-              <li><a href="?q=Alpha&sort_by=last_updated">Alpha</a></li>
-              <li><a href="?q=Beta&sort_by=last_updated">Beta</a></li>
-              <li><a href="?q=Launched&sort_by=last_updated">Launched</a></li>
-            </ul>
-          </p>
-          <p>Common tags inlcude:
-            <ul class="list-inline">
-              <li><a href="?q=health&sort_by=last_updated">Health</a></li>
-              <li><a href="?q=justice&sort_by=last_updated">Justice</a></li>
-              <li><a href="?q=money&sort_by=last_updated">Money</a></li>
-            </ul>
-          </p>
-        </div>
+        <br />
 
+        <h2>Project Stages</h2>
+        <ul id="project-stage-buttons" class="list-no-bullets">
+          <li><button id="Featured">Featured</button></li>
+          <li><button id="Official">Official</button></li>
+          <li><button id="Beta">Beta</button></li>
+          <li><button id="Alpha">Alpha</button></li>
+          <li><button id="Experiment">Experiment</button></li>
+        </ul>
+        <!-- <a href="{{next}}" class="button-inactive">More Projects</a> -->
       </div>
-    </div>
 
-
-    <div id="projects" class="slab-white">
-      <div class='layout-semibreve'>
+      <div id="projects" class="layout-major grid">
 
         {% for project in projects %}
+          <div class="grid-item {{ project.status }} {{ project.tags }}">
             <h3>{{project.name}}</h3>
             {% if project.link_url %}
               <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
@@ -65,26 +52,48 @@
             {% endfor %} -->
 
             <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+          </div>
 
-          {% endfor %}
-
-          <a href="{{next}}" class="button-inactive">More Projects</a>
+        {% endfor %}
 
       </div>
+
     </div>
+
 
   </section>
 {% endblock %}
 
 {% block js %}
-  <script>
-  $( "#help" ).click(function( event ) {
-    event.preventDefault();
-    if ($( "#helptext" ).hasClass("hidden")){
-      $( "#helptext" ).removeClass("hidden");
-    } else {
-      $( "#helptext" ).addClass("hidden");
-    }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+
+<script>
+  var $grid = $('.grid').isotope({
+    // options
+    itemSelector: '.grid-item',
+    layoutMode: 'fitRows'
   });
+
+  // filters
+  $("#Featured").click(function(e){
+    $grid.isotope({ filter: '.featured' });
+  })
+
+  $("#Official").click(function(e){
+    $grid.isotope({ filter: '.Official' });
+  })
+
+  $("#Beta").click(function(e){
+    $grid.isotope({ filter: '.Beta' });
+  })
+
+  $("#Alpha").click(function(e){
+    $grid.isotope({ filter: '.Alpha' });
+  })
+
+  $("#Experiment").click(function(e){
+    $grid.isotope({ filter: '.Experiment' });
+  })
+
   </script>
 {% endblock %}
