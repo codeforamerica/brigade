@@ -26,8 +26,8 @@
           <li><a href="?q=featured" id="Featured" class="button">Featured</a></li>
           <li><a href="?q=Official" id="Official" class="button">Official</a></li>
           <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
-          <li><a href="?=Alpha" id="Alpha" class="button">Alpha</a></li>
-          <li><a href="?=Experiment" id="Experiment" class="button">Experiment</a></li>
+          <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
+          <li><a href="?q=Experiment" id="Experiment" class="button">Experiment</a></li>
         </ul>
 
       </div>
@@ -76,6 +76,10 @@
           </div>
 
         {% endfor %}
+
+        {% if not projects %}
+          <h2>Nothing here yet ... </h2>
+        {% endif %}
 
         <!-- <a href="{{next}}" class="button-inactive">More Projects</a> -->
 
