@@ -191,3 +191,9 @@ h2 {
 #more-projects {
   margin : 30px 0;
 }
+
+/* Civic Json Machine*/
+
+#civic-json-form label {
+  color: white;
+}
