@@ -384,8 +384,8 @@ def github_login():
     return github.authorize(scope="repo", redirect_uri=request.url)
 
 
-@app.route("/brigade/projects/<id>/civic_json", methods=["GET", "POST"])
-@app.route("/brigade/<brigadeid>/projects/<id>/civic_json", methods=["GET", "POST"])
+@app.route("/brigade/projects/<id>/add-civic-json", methods=["GET", "POST"])
+@app.route("/brigade/<brigadeid>/projects/<id>/add-civic-json", methods=["GET", "POST"])
 def civic_json(id, brigadeid=None):
     ''' Send a pull request to a project to add a civic.json file '''
     if request.method == "GET":

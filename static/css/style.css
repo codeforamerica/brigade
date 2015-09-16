@@ -188,3 +188,9 @@ h2 {
 .project {
   padding: 15px;
 }
+
+/* Civic Json Machine*/
+
+#civic-json-form label {
+  color: white;
+}
