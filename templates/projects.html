@@ -58,13 +58,15 @@
               <p>Used By: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
             {% endif %}
 
-            {% if project.github_details.contributors %}
+            {% if project.github_details %}
+              {% if project.github_details.contributors %}
               <p>Built by: </p>
-              {% for contributor in project.github_details.contributors %}
-                <a href="{{ contributor.html_url }}">
-                  <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-                </a>
-              {% endfor %}
+                {% for contributor in project.github_details.contributors %}
+                  <a href="{{ contributor.html_url }}">
+                    <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
+                  </a>
+                {% endfor %}
+              {% endif %}
             {% endif %}
 
             <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>

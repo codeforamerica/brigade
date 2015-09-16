@@ -33,6 +33,28 @@ class BrigadeTests(unittest.TestCase):
             return response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
         if url.geturl() == "https://www.codeforamerica.org/api/attendance":
             return response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
+        if url.geturl() == "https://www.codeforamerica.org/api/projects":
+            return response(200, '''{
+                  "objects": [
+                    {
+                      "code_url": "https://github.com/jmcelroy5/sf-in-progress",
+                      "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
+                      "link_url": "http://107.170.214.244/",
+                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
+                      "name": "SF in Progress",
+                      "github_details" : {},
+                      "organization": {
+                        "id": "Code-for-San-Francisco",
+                        "name": "Code for San Francisco"
+                      },
+                      "organization_name": "Code for San Francisco",
+                      "status": "Alpha",
+                      "tags": "housing, ndoch, active"
+                    }
+                  ],
+                  "total" : 1,
+                  "pages": {}
+                } ''')
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             if request.method == 'POST':
                 form = dict(parse_qsl(request.body))
@@ -199,6 +221,13 @@ class BrigadeTests(unittest.TestCase):
         from app import is_existing_organization
         self.assertTrue(is_existing_organization("Code-for-America"))
         self.assertFalse(is_existing_organization("TEST-TEST"))
+
+
+    def test_projects_page(self):
+        ''' Test that the prkject page loads and looks like what we want '''
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/projects")
+            self.assertTrue('<p>Status: <a href="?=Alpha" class="Alpha button-s">Alpha</a></p>' in response.data)
 
 
 

@@ -333,7 +333,10 @@ def projects(brigadeid=None):
             url += "&page=" + page
         got = get(url)
         projects = get_projects(projects, url)
-        brigade = projects[0]["organization"]
+        if projects:
+            brigade = projects[0]["organization"]
+        else:
+            brigade = { "name" : brigadeid.replace("-"," ")}
 
     else:
         url = "https://www.codeforamerica.org/api/projects"
