@@ -230,6 +230,13 @@ class BrigadeTests(unittest.TestCase):
             self.assertTrue('<p>Status: <a href="?=Alpha" class="Alpha button-s">Alpha</a></p>' in response.data)
 
 
+    def test_project_monitor(self):
+        ''' Test the project monitor page works as expected '''
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/projects/monitor")
+            self.assertTrue('"travis_url": "https://api.travis-ci.org/repositories/jmcelroy5/sf-in-progress/builds"' in response.data)
+
+
 
 if __name__ == '__main__':
     unittest.main()
