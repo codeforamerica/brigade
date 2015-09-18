@@ -111,7 +111,8 @@ $(document).ready(function(){
   $('input[name="group[10273][8192]"]').prop('checked',true);
 
   // Hide other groups
-  $("#email-signup-data-form ul").children().slice(4,7).hide();
+  $("#email-signup-data-form ul p").hide();
+  $("#email-signup-data-form ul #modal-checkboxes").hide();
   // Add Organize group
   $("#email-signup-data-form ul").append('<li id="organize-checkbox"><input type="checkbox" value="16777216" name="group[10273][16777216]" id="mce-group[10273]-10273-4" checked="checked" ><label for="mce-group[10273]-10273-4">I want to organize a Brigade</label></li>');
 
