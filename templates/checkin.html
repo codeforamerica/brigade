@@ -8,18 +8,18 @@
       {% for message in messages %}
         <div id="thanks" class="alert-success">
           <div class="layout-semibreve">
-            <img src="http://www.codeforamerica.org/media/images/logos/flag_tag.png" />
+            <img src="http://www.codeforamerica.org/media/images/logos/flag_tag.png" height="200px" />
             <h2 id="flash">{{ message }}</h2>
+            <button id="new-checkin">Another check in</button>
           </div>
         </div>
+
       {% endfor %}
       <script>
-        $(function() {
-          $("#checkin-page").hide();
-          setTimeout(function() {
-            $("#thanks").hide(1000);
-            $("#checkin-page").show();
-          }, 3500);
+        $("#checkin-page").hide();
+        $("#new-checkin").click( function() {
+          $("#thanks").hide();
+          $("#checkin-page").show();
         });
       </script>
     {% endif %}
@@ -110,7 +110,18 @@
 {% block js %}
   
   <script>
+
     $("#signupformdiv").hide();
+
+    // If thanks page
+    if ($("#thanks").length) {
+      $("#checkin-page").hide();
+      $("#new-checkin").click( function() {
+        $("#thanks").hide();
+        $("#checkin-page").show();
+      });
+    }
+
   </script>
 
 {% endblock %}

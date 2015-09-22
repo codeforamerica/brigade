@@ -69,7 +69,18 @@
               {% endif %}
             {% endif %}
 
-            <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+            {% if project.languages %}
+            <ul class="list-inline list-no-bullets">
+              Written in:
+              {% for lang in project.languages %}
+                <li><a href="projects?q={{ lang }}">{{ lang }}</a></li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if project.last_updated %}
+              <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+            {% endif %}
 
             <hr />
 
