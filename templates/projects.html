@@ -48,7 +48,9 @@
               <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
             {% endif %}
 
-            <p>{{project.description}}</p>
+            {% if project.description %}
+              <p>{{project.description}}</p>
+            {% endif %}
 
             {% if project.status %}
               <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
