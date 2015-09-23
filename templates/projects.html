@@ -90,9 +90,9 @@
 
         {% if not projects %}
           <h2>Nothing here yet ... </h2>
+        {% else %}
+          <a id="more-projects" href="{{next}}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a>
         {% endif %}
-
-        <!-- <a href="{{next}}" class="button-inactive">More Projects</a> -->
 
       </div>
 

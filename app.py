@@ -315,14 +315,14 @@ def projects(brigadeid=None):
 
     if page:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects/?page=" + str(int(page) + 1)
+            next = "/brigade/"+brigadeid+"/projects?page=" + str(int(page) + 1)
         else:
-            next = "/brigade/projects/?page=" + str(int(page) + 1)
+            next = "/brigade/projects?page=" + str(int(page) + 1)
     else:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects/?page=2"
+            next = "/brigade/"+brigadeid+"/projects?page=2"
         else:
-            next = "/brigade/projects/?page=2"
+            next = "/brigade/projects?page=2"
 
     if brigadeid:
         url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
