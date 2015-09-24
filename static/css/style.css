@@ -118,7 +118,7 @@ h2 {
   
   input[type="text"],input[type="email"],input[type="password"],input[type="search"] {
     width: 100%;
-    padding: 1px 26px;
+    /*padding: 1px 26px;*/
   }
 }
 
@@ -133,7 +133,7 @@ h2 {
 
   input[type="text"],input[type="email"],input[type="password"],input[type="search"]{
     min-width: 225px;
-    padding: 1px 26px;
+    /*padding: 1px 26px;*/
   }
 
 }
@@ -143,10 +143,9 @@ h2 {
   margin: 0px;
 }
 
-#project-search {
+#project-search input {
   width: 200px;
 }
-
 
 #project-stage-buttons a {
   width : 230px;
