@@ -89,10 +89,8 @@
             {% endif %}
             <p>
               <small>Last Updated: {{project.last_updated | timesince}}</small>
-              {% if project.code_url %}
-                {% if not project.status and not project.tags %}
-                <a href="{{request.url}}/{{project.id}}/add-civic-json" class="button button-s button-subtle">Add civic.json</a>
-                {% endif %}
+              {% if project.code_url and not project.status and not project.tags and "Government" not in project.organization.type and "Partner" not in project.organization.type %}
+                <a href="{{request.base_url}}/{{project.id}}/add-civic-json" class="icon-code"></a>
               {% endif %}
             </p>
 

@@ -363,14 +363,11 @@ def projects(brigadeid=None):
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
-
 @app.route('/brigade/github-callback')
 @github.authorized_handler
 def authorized(access_token):
-    next_url = request.args.get('next') or url_for('index')
     session['access_token'] = access_token
-    print session['access_token']
-    return redirect(next_url)
+    return redirect(request.args.get("redirect_uri"))
 
 @github.access_token_getter
 def token_getter():
@@ -378,29 +375,30 @@ def token_getter():
 
 @app.route("/brigade/gh-login")
 def github_login():
-    return github.authorize(scope="repo", redirect_uri=request.url)
+    redirect_uri = "http://localhost:4000/brigade/github-callback?redirect_uri=" + request.referrer
+    return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
 
-@app.route("/brigade/projects/<id>/add-civic-json", methods=["GET", "POST"])
-@app.route("/brigade/<brigadeid>/projects/<id>/add-civic-json", methods=["GET", "POST"])
+@app.route("/brigade/projects/<id>/add-civic-json")
+@app.route("/brigade/<brigadeid>/projects/<id>/add-civic-json")
 def civic_json(id, brigadeid=None):
     ''' Send a pull request to a project to add a civic.json file '''
-    if request.method == "GET":
-        # Get the relevant project
-        got = get("https://www.codeforamerica.org/api/projects/" + id)
-        project = got.json()
-        project["repo"] = None
-        if project["code_url"]:
-            url = urlparse(project["code_url"])
-            if url.netloc == 'github.com':
-                project["repo"] = url.path
+    # Get the relevant project
+    got = get("https://www.codeforamerica.org/api/projects/" + id)
+    project = got.json()
+    project["repo"] = None
+    if project["code_url"]:
+        url = urlparse(project["code_url"])
+        if url.netloc == 'github.com':
+            project["repo"] = url.path
 
-        return render_template("civic_json.html", project=project)
+    user = None
+    if session.get("access_token"):
+        user = github.get("user")
 
-    if request.method == "POST":
-        user = github.get('/user')
-        print user
-        return json.dumps(request.form)
+
+    return render_template("civic_json.html", project=project, user=user)
+
 
 
 @app.route('/brigade/github-callback')
