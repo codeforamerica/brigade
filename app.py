@@ -400,7 +400,6 @@ def civic_json(id, brigadeid=None):
     return render_template("civic_json.html", project=project, user=user)
 
 
-
 @app.route("/brigade/attendance")
 @app.route("/brigade/<brigadeid>/attendance")
 def attendance(brigadeid=None):
