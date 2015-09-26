@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <section>
+
+    <div class="slab-dark-blue">
+      <div class="layout-semibreve">
+        <h1>Add a civic.json to {{ project.name }}</h1>
+      </div>
+    </div>
+
+    <div class="layout-chimney-invert">
+    
+        <div class="layout-minim">
+
+            <p>Filling out this form will help add metadata about a project. Then will be much easier for people to search for and decide if they want to help build it or redeploy it in their city.</p>
+            
+            <ol>
+              {% if session.access_token %}
+                <p>Hi {{ user.login }} <img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/></p>
+              {% else %}
+                <li>You'll need to log in to Github. <a class="button icon-github2" href="/brigade/gh-login">Log In to Github</a></li>
+              {% endif %}
+              <li>Fill out the simple form about the project</li>
+              <li>Submit the pull request</li>
+            </ol>
+    
+        </div>
+            
+        <div class="layout-minim slab-medium-red chimney">
+                
+            <h3>{{ project.name }}</h3>
+
+            {% if project.link_url %}
+              <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
+            {% endif %}
+
+            {% if project.code_url %}
+              <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
+            {% endif %}
+
+            <form id="civic-json-form" method="POST">
+
+              <ul class="list-form">
+
+                <li class="form-field">
+                  <label for="status">Status</label>
+                  <select id="status" name="status">
+                    <option>Experiment</option>
+                    <option>Alpha</option>
+                    <option>Beta</option>
+                    <option>Official</option>
+                  </select>
+                </li>
+
+                <li class="form-field">
+                  <label for="tags">Tags, comma separated</label>
+                  <input id="tags" name="tags" class="input" type="text" />
+                </li>
+
+                <button type="submit">Send Pull Request</button>
+
+              </ul>
+
+          </form>
+
+        </div>
+
+    </div>
+
+  </section>
+{% endblock %}
+
+{% block js %}
+  <script>
+
+  </script>
+{% endblock %}
