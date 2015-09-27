@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import base64
 from requests import get, post
 from operator import itemgetter
 from urlparse import urlparse
@@ -379,12 +380,11 @@ def github_login():
     return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
 
-@app.route("/brigade/projects/<id>/add-civic-json")
-@app.route("/brigade/<brigadeid>/projects/<id>/add-civic-json")
-def civic_json(id, brigadeid=None):
+@app.route("/brigade/projects/<projectid>/add-civic-json", methods=["GET","POST"])
+def civic_json(projectid):
     ''' Send a pull request to a project to add a civic.json file '''
     # Get the relevant project
-    got = get("https://www.codeforamerica.org/api/projects/" + id)
+    got = get("https://www.codeforamerica.org/api/projects/" + projectid)
     project = got.json()
     project["repo"] = None
     if project["code_url"]:
@@ -392,12 +392,53 @@ def civic_json(id, brigadeid=None):
         if url.netloc == 'github.com':
             project["repo"] = url.path
 
-    user = None
-    if session.get("access_token"):
-        user = github.get("user")
+    if request.method == "GET":
+        user = None
+        if session.get("access_token"):
+            user = github.get("user")
+
+        return render_template("civic_json.html", project=project, user=user)
+
+    if request.method == "POST":
+
+        # Create a new civic.json
+        civic_json = {
+          "status" : request.form["status"],
+          "tags" : request.form["tags"]
+        }
+        civic_json = json.dumps(civic_json)
+
+        # Fork the repo
+        print "Making a fork at: " + "repos" + project["repo"] + "/forks"
+        response = github.post("repos" + project["repo"] + "/forks", data=None)
+        project_name = response["name"]
+        forked_repo = response["full_name"]
+        owner_login = response["owner"]["login"]
+
+        # Commit the civic.json file to our new fork
+        data = {
+          "message": "add civic.json file",
+          "content": base64.b64encode(civic_json)
+        }
+        print "Adding a civic.json file at: " + "repos/" + forked_repo + "/contents/" + project_name + "/civic.json"
+        response = github.request("PUT", "repos/" + forked_repo + "/contents/civic.json", data=json.dumps(data, indent=4))
 
 
-    return render_template("civic_json.html", project=project, user=user)
+        # Send a pull request
+        data = {
+          "title" : "Adds a civic.json file",
+          "body" :''' 
+                  Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere.
+                  You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages).
+        
+                  This pull request was sent by a real person %s through the tool at [https://www.codeforamerica.org/brigade/projects/%s/add-civic-json](https://www.codeforamerica.org/brigade/projects/%s/add-civic-json).
+                  ''',
+          "head" : owner_login+":master",
+          "base" : "master"
+        }
+        print "Creating a pull request for the new civic.json file"
+        response = github.post("repos" + project["repo"] + "/pulls", data=data)
+        return redirect(response["html"]["href"])
 
 
 @app.route("/brigade/attendance")
