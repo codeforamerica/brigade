@@ -2,6 +2,7 @@ import json
 import os
 import re
 import base64
+from time import sleep
 from requests import get, post
 from operator import itemgetter
 from urlparse import urlparse
@@ -382,6 +383,7 @@ def github_login():
     redirect_uri = "http://localhost:4000/brigade/github-callback?redirect_uri=" + request.referrer
     return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
+
 @app.route("/brigade/projects/<projectid>/add-civic-json", methods=["GET","POST"])
 @app.route("/brigade/<brigadeid>/projects/<projectid>/add-civic-json", methods=["GET","POST"])
 def civic_json(projectid, brigadeid=None):
@@ -414,6 +416,7 @@ def civic_json(projectid, brigadeid=None):
         # Fork the repo
         print "Making a fork at: " + "repos" + project["repo"] + "/forks"
         response = github.post("repos" + project["repo"] + "/forks", data=None)
+        sleep(3)
         project_name = response["name"]
         forked_repo = response["full_name"]
         owner_login = response["owner"]["login"]
@@ -426,17 +429,19 @@ def civic_json(projectid, brigadeid=None):
         }
         print "Adding a civic.json file at: " + "repos/" + forked_repo + "/contents/" + project_name + "/civic.json"
         response = github.request("PUT", "repos/" + forked_repo + "/contents/civic.json", data=json.dumps(data))
-
+        sleep(3)
 
         # Send a pull request
         data = {
           "title" : "Adds a civic.json file",
-          "body" :'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to ''',
+          "body" :'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. If you have questions about any of this just ping @ondrae.''',
           "head" : owner_login+":"+default_branch,
           "base" : default_branch
         }
         print "Creating a pull request for the new civic.json file"
         response = github.post("repos" + project["repo"] + "/pulls", data=data)
+        sleep(3)
+
         return redirect(response["html_url"])
 
 
