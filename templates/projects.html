@@ -9,30 +9,16 @@
       {% if brigade %}
         <h1>{{brigade.name}}'s Projects</h1>
       {% else %}
-        <h1>All Civic Tech Projects</h1>
+        <h1>Civic Tech Project Search</h1>
       {% endif %} 
 
-      <div class="layout-minor">
+      <div id="projects" class="layout-major">
+
         <form id="project-search" action="{{ request.path }}" method="get">
           <p class="field">
-            <input type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Alpha, javascript" /><button type="submit" class="button"><i class="icon-search"></i></button
+            <input type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button
           </p>
         </form>
-
-        <br />
-
-        <h2>Project Stages</h2>
-        <ul id="project-stage-buttons" class="list-no-bullets">
-          <li><a href="?q=featured" id="Featured" class="button">Featured</a></li>
-          <li><a href="?q=Official" id="Official" class="button">Official</a></li>
-          <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
-          <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
-          <li><a href="?q=Experiment" id="Experiment" class="button">Experiment</a></li>
-        </ul>
-
-      </div>
-
-      <div id="projects" class="layout-major">
 
         {% for project in projects %}
           <div>
@@ -98,7 +84,18 @@
 
       </div>
 
-    </div>
+      <div class="layout-minor">
+
+        <h2>Project Stages</h2>
+        <ul id="project-stage-buttons" class="list-no-bullets">
+          <li><a href="?q=featured" id="Featured" class="button">Featured</a></li>
+          <li><a href="?q=Official" id="Official" class="button">Official</a></li>
+          <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
+          <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
+          <li><a href="?q=Experiment" id="Experiment" class="button">Experiment</a></li>
+        </ul>
+
+      </div>
 
 
   </section>
