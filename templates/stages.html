@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+  .layout-semibreve {
+    margin-top: 50px;
+    padding-top: 0px;
+  }
+  .purple {color: #69579C !important;}
+  .light-blue {color: #7ab5d6 !important;}
+  .dark-blue {color: #004b6a !important;}
+  .teal {color: #00a175 !important;}
+</style>
 
 <div class="layout-semibreve">
 
@@ -16,8 +26,8 @@
 </div>
 
 <div class="stage layout-semibreve" id="experiment">
-  <h1>Experiment</h1>
-  <p>Experiments are explorations into a civic problem. They involve lots of research, lots of listening to local experts, and lots of throw-away code. Almost every project should start out as an experiment and most projects should stay as experiments.</p>
+  <h1><a href="#experiment" class="purple">Experiment</a></h1>
+  <p>Experiments are explorations into a civic problem. They involve lots of research, lots of listening to local experts, and lots of throw-away code. Almost every project should start out as an experiment and most projects should probably stay as experiments.</p>
 
   <div class="layout-minim">
 
@@ -47,14 +57,14 @@
       <h4>What the project team should be doing:</h4>
       <li>Listening to the community about civic problems</li>
       <li>Researching those problems</li>
-      <li>Lots of experiments</li>
+      <li>Making lots of things</li>
     </ul>
 
     <ul>
       <h4>What the Brigade should be doing:</h4>
       <li>Organizing hack nights</li>
       <li>Inviting community and government experts in</li>
-      <li>Make infrastructure and resources easily accessible</li>
+      <li>Make infrastructure and donated resources easily accessible</li>
       <li>Show off the other experiments</li>
     </ul>
 
@@ -70,9 +80,9 @@
 
 <div class="stage layout-semibreve" id="alpha">
 
-  <h1>Alpha</h1>
+  <h1><a href="#alpha" class="light-blue">Alpha</a></h1>
 
-  <p>Alpha projects have shown that with a little bit of work, they may be able to actually solve one persons problem. We've also got some recommendations that we've seen as helpful for volunteer built projects.</p>
+  <p>Alpha projects have shown that with a little bit of work, they may be able to actually solve one persons problem. We got some recommendations that are helpful for volunteer built projects as well as some cool infrastructure to get you help building your projects.</p>
 
   <div class="layout-minim">
 
@@ -130,9 +140,9 @@
 
 <div class="stage layout-semibreve" id="beta">
 
-  <h1>Beta</h1>
+  <h1><a href="#beta" class="dark-blue">Beta</a></h1>
 
-  <p>Beta projects blah blah blah</p>
+  <p>Beta projects are stable enough for a government partner to start putting their reputation behind it. A beta project should be useful for lots of people in your city with the beginnings of some proof of that usefulness. This proof will help get more users, get partners, and keep volunteers motivated to continue volunteering.</p>
 
   <div class="layout-minim">
 
@@ -161,19 +171,19 @@
       <li>Talking to users</li>
       <li>Agile development</li>
       <li>Get more users</li>
-      <li>Writing tests</li>
+      <li>Writing tests to increase stability</li>
     </ul>
 
     <ul>
       <h4>What the Brigade should be doing:</h4>
       <li>Formalize government or community partner</li>
-      <li>Help decide on metrics to measure for impact</li>
+      <li>Help pick out metrics to measure for impact</li>
 
     </ul>
 
     <ul>
       <h4>What Code for America should be doing:</h4>
-      <li><a href="http://www.codeforamerica.org/brigade/projects/monitor"Civic Tech Project Monitor</a></li>
+      <li><a href="http://www.codeforamerica.org/brigade/projects/monitor">Civic Tech Project Monitor</a></li>
       <li>Engineering office hours</li>
     </ul>
 
@@ -183,14 +193,14 @@
 
 <div class="stage layout-semibreve" id="official">
 
-  <h1>Official</h1>
+  <h1><a href="#official" class="teal">Official</a></h1>
 
-  <p>Official projects  blah blabb bblah</p>
+  <p>You did it! Official projects are what governments all across the country are going to be looking at. It should be polished up and ready for all those critical eyes. For real though, congratulations. Building impactful civic tech in your volunteer time is tough, lets party!</p>
 
   <div class="layout-minim">
 
     <ul>
-      <h4>Experiment Stage Theme:</h4>
+      <h4>Official Projects Theme:</h4>
       <li>Impact</li> 
     </ul>
 
@@ -218,7 +228,7 @@
 
     <ul>
       <h4>What the Brigade should be doing:</h4>
-      <li>Launch party</li>
+      <li>Throw a <a href="http://giphy.com/giphytv/dancing/">launch party</a></li>
       <li>Help spread project</li>
       <li>Metrics to measure impact</li>
 
@@ -228,7 +238,7 @@
       <h4>What Code for America should be doing:</h4>
       <li>Celebrate launched projects</li>
       <li>Marketing office hours</li>
-      <li>Analytics support</li>
+      <li><a href="https://github.com/codeforamerica/brigade/issues/345">Analytics support</a></li>
       <li>Metrics office hours</li>
     </ul>
 
