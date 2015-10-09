@@ -15,7 +15,7 @@
       <div class="layout-minor">
         <form id="project-search" action="{{ request.path }}" method="get">
           <p class="field">
-            <input type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" /><button type="submit" class="button"><i class="icon-search"></i></button
+            <input type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Alpha, javascript" /><button type="submit" class="button"><i class="icon-search"></i></button
           </p>
         </form>
 
