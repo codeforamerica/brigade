@@ -298,6 +298,12 @@ def infrastructure():
     return render_template("infrastructure.html")
 
 
+@app.route("/brigade/projects/stages")
+def stages():
+    ''' Describe the project stages '''
+    return render_template("stages.html")
+
+
 @app.route("/brigade/projects")
 @app.route("/brigade/<brigadeid>/projects")
 def projects(brigadeid=None):
