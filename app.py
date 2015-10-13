@@ -403,7 +403,9 @@ def civic_json(projectid, brigadeid=None):
 
         # Create a new civic.json
         status = request.form.get("status", None)
-        tags = [tag.strip() for tag in request.form["tags"].split(',')]
+        tags = request.form.get("tags", None)
+        if tags:
+            tags = [tag.strip() for tag in tags.split(',')]
 
         civic_json = {}
         if status:
