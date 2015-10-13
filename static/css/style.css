@@ -114,12 +114,10 @@ h2 {
   #brigadeListButton {
     display: none;
   }
+}
 
-  
-  input[type="text"],input[type="email"],input[type="password"],input[type="search"] {
-    width: 100%;
-    /*padding: 1px 26px;*/
-  }
+input[type="text"],input[type="email"],input[type="password"],input[type="search"] {
+  width: 85%;
 }
 
 /* Brigade page*/
@@ -128,23 +126,9 @@ h2 {
   padding: 0px;
 }
 
-
-@media (max-width: 40em) {
-
-  input[type="text"],input[type="email"],input[type="password"],input[type="search"]{
-    min-width: 225px;
-    /*padding: 1px 26px;*/
-  }
-
-}
-
 #title {
   color: white;
   margin: 0px;
-}
-
-#project-search input {
-  width: 200px;
 }
 
 #project-stage-buttons a {
