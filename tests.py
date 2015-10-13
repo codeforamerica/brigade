@@ -14,6 +14,8 @@ from app import app
 class BrigadeTests(unittest.TestCase):
 
     def setUp(self):
+        os.environ["GITHUB_CLIENT_ID"] = "WHAT"
+        os.environ["GITHUB_CLIENT_SECRET"] = "EVER"
         self.app = app.test_client()
 
     def tearDown(self):
@@ -55,6 +57,24 @@ class BrigadeTests(unittest.TestCase):
                   "total" : 1,
                   "pages": {}
                 } ''')
+        if url.geturl() == "https://www.codeforamerica.org/api/projects/1":
+            return response(200, '''
+                    {
+                      "code_url": "https://github.com/jmcelroy5/sf-in-progress",
+                      "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
+                      "link_url": "http://107.170.214.244/",
+                      "code_url": "https://github.com/testesttest/test",
+                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
+                      "name": "SF in Progress",
+                      "github_details" : {},
+                      "organization": {
+                        "id": "Code-for-San-Francisco",
+                        "name": "Code for San Francisco"
+                      },
+                      "organization_name": "Code for San Francisco",
+                      "status": "Alpha",
+                      "tags": "housing, ndoch, active"
+                    } ''')
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             if request.method == 'POST':
                 form = dict(parse_qsl(request.body))
@@ -89,7 +109,15 @@ class BrigadeTests(unittest.TestCase):
                 return response(401, 'Go away')
             
             raise NotImplementedError()
-        
+
+        if 'repos/testesttest/test/forks' in url.geturl():
+            return response(200, ''' {
+                    "name" : "TEST NAME",
+                    "full_name" : "TEST FULL NAME",
+                    "owner" : { "login" : "ondrae" },
+                    "default_branch" : "master"
+                    } ''')
+
         raise ValueError('Bad {} to "{}"'.format(request.method, url.geturl()))
 
 
@@ -236,6 +264,17 @@ class BrigadeTests(unittest.TestCase):
             response = self.app.get("/brigade/projects/monitor")
             self.assertTrue('"travis_url": "https://api.travis-ci.org/repositories/jmcelroy5/sf-in-progress/builds"' in response.data)
 
+    def test_civic_json_machine(self):
+        ''' Test that adding a civic json file works '''
+        with HTTMock(self.response_content):
+            # Test get
+            response = self.app.get("/brigade/projects/1/add-civic-json")
+            self.assertTrue('<a href="https://github.com/testesttest/test" class="icon-github2">' in response.data)
+
+            # Test PR
+            data = {"status" : "TEST", "tags" : "TEST,TEST2, TEST3"}
+            response = self.app.post("/brigade/projects/1/add-civic-json", data=data)
+            pass
 
 
 if __name__ == '__main__':
