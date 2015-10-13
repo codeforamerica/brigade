@@ -2,6 +2,7 @@ import json
 import os
 import re
 import base64
+from time import sleep
 from requests import get, post
 from operator import itemgetter
 from urlparse import urlparse
@@ -11,7 +12,7 @@ from base64 import b64encode
 
 from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session
 
-from flask.ext.github import GitHub
+from flask.ext.github import GitHub, GitHubError
 import filters
 
 app = Flask(__name__, static_url_path="/brigade/static")
@@ -417,7 +418,11 @@ def civic_json(projectid, brigadeid=None):
 
         # Fork the repo
         print "Making a fork at: " + "repos" + project["repo"] + "/forks"
-        response = github.post("repos" + project["repo"] + "/forks", data=None)
+        try:
+            response = github.post("repos" + project["repo"] + "/forks", data=None)
+        except GitHubError:
+            return render_template("civic_json.html", error=True, project=None, user=None)
+        sleep(3)
         project_name = response["name"]
         forked_repo = response["full_name"]
         owner_login = response["owner"]["login"]
@@ -429,8 +434,11 @@ def civic_json(projectid, brigadeid=None):
           "content": base64.b64encode(civic_json)
         }
         print "Adding a civic.json file at: " + "repos/" + forked_repo + "/contents/" + project_name + "/civic.json"
-        response = github.request("PUT", "repos/" + forked_repo + "/contents/civic.json", data=json.dumps(data))
-
+        try:
+            response = github.request("PUT", "repos/" + forked_repo + "/contents/civic.json", data=json.dumps(data))
+        except GitHubError:
+            return render_template("civic_json.html", error=True, project=None, user=None)
+        sleep(3)
 
         # Send a pull request
         data = {
@@ -440,7 +448,12 @@ def civic_json(projectid, brigadeid=None):
           "base" : default_branch
         }
         print "Creating a pull request for the new civic.json file"
-        response = github.post("repos" + project["repo"] + "/pulls", data=data)
+        try:
+            response = github.post("repos" + project["repo"] + "/pulls", data=data)
+        except GitHubError:
+            return render_template("civic_json.html", error=True, project=None, user=None)
+        sleep(3)
+
         return redirect(response["html_url"])
 
 

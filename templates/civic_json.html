@@ -12,26 +12,36 @@
     </div>
 
     <div class="layout-chimney-invert">
-    
+
+
         <div class="layout-minim">
 
-            <ol>
-              {% if not session.access_token %}
-                <p>You'll need to log in to Github. <a class="button icon-github2" href="/brigade/gh-login">Log In to Github</a></p>
-                
-              {% else %}
-              <p>Hi {{ user.login }} <img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> </p>
-                <hr />
+          {% if not error %}
 
-              {% endif %}
-              <li>Go research the project</li>
-              <li>Choose which stage the project is at. You can read more about each stage at <a href="https://www.codeforamerica.org/projects/stages">https://www.codeforamerica.org/projects/stages</a></li>
-              <li>Add some relevant tags for the project</li>
-              <li>Submit the pull request</li>
-            </ol>
-    
+          <ol>
+            {% if not session.access_token %}
+              <p>You'll need to log in to Github. <a class="button icon-github2" href="/brigade/gh-login">Log In to Github</a></p>
+
+            {% else %}
+            <p>Hi {{ user.login }} <img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> </p>
+              <hr />
+
+            {% endif %}
+            <li>Go research the project</li>
+            <li>Choose which stage the project is at. You can read more about each stage at <a href="https://www.codeforamerica.org/projects/stages">https://www.codeforamerica.org/projects/stages</a></li>
+            <li>Add some relevant tags for the project</li>
+            <li>Submit the pull request</li>
+          </ol>
+
+          {% else %}
+
+          <h2>There has been an error. Don't panic.</h2>
+          <p>Go send a pull request by hand.</p>
+          <p>An example <a href="https://github.com/codeforamerica/attendance/blob/gh-pages/civic.json">civic.json</a> file.</p>
+
+          {% endif %}
+
         </div>
-            
         <div class="layout-minim slab-medium-red chimney">
 
           <h1>{{ project.name }}</h1>
