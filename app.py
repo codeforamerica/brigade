@@ -402,10 +402,15 @@ def civic_json(projectid, brigadeid=None):
     if request.method == "POST":
 
         # Create a new civic.json
-        civic_json = {
-          "status" : request.form["status"],
-          "tags" : [tag.strip() for tag in request.form["tags"].split(',')]
-        }
+        status = request.form.get("status", None)
+        tags = [tag.strip() for tag in request.form["tags"].split(',')]
+
+        civic_json = {}
+        if status:
+            civic_json["status"] = status
+        if tags:
+            civic_json["tags"] = tags
+
         civic_json = json.dumps(civic_json, indent=4)
 
         # Fork the repo
