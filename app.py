@@ -318,16 +318,20 @@ def stages():
 def projects(brigadeid=None):
     ''' Display a list of projects '''
 
+    # is this an exisiting group
     if brigadeid:
         if not is_existing_organization(brigadeid):
             return render_template('404.html'), 404
 
+    # Get the params
     projects = []
     brigade = None
     search = request.args.get("q", None)
     sort_by = request.args.get("sort_by", None)
     page = request.args.get("page", None)
+    organization_type = request.args.get("organization_type",None)
 
+    # Set next
     if page:
         if brigadeid:
             next = "/brigade/"+brigadeid+"/projects?page=" + str(int(page) + 1)
@@ -339,35 +343,28 @@ def projects(brigadeid=None):
         else:
             next = "/brigade/projects?page=2"
 
+    # build the url
     if brigadeid:
         url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
-        if search or sort_by or page:
-            url += "?"
-        if search:
-            url += "&q=" + search
-        if sort_by:
-            url += "&sort_by" + sort_by
-        if page:
-            url += "&page=" + page
-        got = get(url)
-        projects = get_projects(projects, url)
+        # set the brigade name
         if projects:
             brigade = projects[0]["organization"]
         else:
             brigade = { "name" : brigadeid.replace("-"," ")}
-
     else:
         url = "https://www.codeforamerica.org/api/projects"
-        if search or sort_by or page:
-            url += "?"
-        if search:
-            url += "&q=" + search
-        if sort_by:
-            url += "&sort_by" + sort_by
-        if page:
-            url += "&page=" + page
-        got = get(url)
-        projects = get_projects(projects, url)
+    if search or sort_by or page or organization_type:
+        url += "?"
+    if search:
+        url += "&q=" + search
+    if sort_by:
+        url += "&sort_by" + sort_by
+    if page:
+        url += "&page=" + page
+    if organization_type:
+        url += "&organization_type=" + organization_type
+    got = get(url)
+    projects = get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 

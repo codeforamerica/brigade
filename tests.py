@@ -224,7 +224,7 @@ class BrigadeTests(unittest.TestCase):
 
 
     def test_projects_page(self):
-        ''' Test that the prkject page loads and looks like what we want '''
+        ''' Test that the project page loads and looks like what we want '''
         with HTTMock(self.response_content):
             response = self.app.get("/brigade/projects")
             self.assertTrue('<p>Status: <a href="?=Alpha" class="Alpha button-s">Alpha</a></p>' in response.data)
