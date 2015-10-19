@@ -14,6 +14,8 @@
 
       {% if brigade %}
         <h1>{{brigade.name}}'s Projects</h1>
+      {% elif request.args.get("organization_type", None) %}
+        <h1>{{ request.args["organization_type"] }} Projects</h1>
       {% else %}
         <h1>Civic Tech Project Search</h1>
       {% endif %} 
