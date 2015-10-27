@@ -9,6 +9,11 @@ blueprint = flask.Blueprint('filters', __name__)
 def split_hyphen(context, string):
     return string.replace("-", " ")
 
+@jinja2.contextfilter
+@blueprint.app_template_filter("pretty_spaces")
+def split_hyphen(context, string):
+    return string.replace(" ", "+")
+
 # http://flask.pocoo.org/snippets/33/
 # and
 # http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask
