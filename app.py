@@ -399,13 +399,12 @@ def github_login():
     return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
 
-@app.route("/brigade/projects/<projectid>/add-civic-json", methods=["GET","POST"])
-@app.route("/brigade/<brigadeid>/projects/<projectid>/add-civic-json", methods=["GET","POST"])
-def civic_json(projectid, brigadeid=None):
+@app.route("/brigade/<brigadeid>/projects/<project_name>/add-civic-json", methods=["GET","POST"])
+def civic_json(brigadeid, project_name):
     ''' Send a pull request to a project to add a civic.json file '''
     # Get the relevant project
-    got = get("https://www.codeforamerica.org/api/projects/" + projectid)
-    project = got.json()
+    got = get("https://www.codeforamerica.org/api/projects?name=" + project_name + "&organization_id=" + brigadeid)
+    project = got.json()["objects"][0] # In rare cases there may be more than one. Use the first matching project.
     project["repo"] = None
     if project["code_url"]:
         url = urlparse(project["code_url"])
