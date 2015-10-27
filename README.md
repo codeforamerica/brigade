@@ -23,6 +23,12 @@ V2 was powered by the CfAPI and worked great, yet was built quickly with PHP and
 
 V3, the current site, is meant to simplify the code and make it easier for Brigade members to get involved in building the Brigade site.
 
+## Attendance and Check Ins
+
+Attendance is one of the basic metrics that needs to be tracked in movement building. Its useful for tracking the impact of your outreach, the growth of your group over time, and individual participation tracking. Its also incredibly useful for fundraising, considering many grants will accept volunteer hours as their matching funding requirement.
+
+Read more at [Attendance-README.md](Attendance-README.md)
+
 ## Installation
 
 The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) and Python with a little bit of Javascript. The `app.py` file describes the routes. The `templates` have the html.

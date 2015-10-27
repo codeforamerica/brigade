@@ -29,6 +29,32 @@ class BrigadeTests(unittest.TestCase):
             return response(404, '{"status": "Resource Not Found"}')
         if url.geturl() == 'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco':
             return response(200, '{"city": "San Francisco, CA"}')
+        if url.geturl() == "https://www.codeforamerica.org/api/organizations.geojson":
+            return response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
+        if url.geturl() == "https://www.codeforamerica.org/api/attendance":
+            return response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
+        if url.geturl() == "https://www.codeforamerica.org/api/projects":
+            return response(200, '''{
+                  "objects": [
+                    {
+                      "code_url": "https://github.com/jmcelroy5/sf-in-progress",
+                      "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
+                      "link_url": "http://107.170.214.244/",
+                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
+                      "name": "SF in Progress",
+                      "github_details" : {},
+                      "organization": {
+                        "id": "Code-for-San-Francisco",
+                        "name": "Code for San Francisco"
+                      },
+                      "organization_name": "Code for San Francisco",
+                      "status": "Alpha",
+                      "tags": "housing, ndoch, active"
+                    }
+                  ],
+                  "total" : 1,
+                  "pages": {}
+                } ''')
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             if request.method == 'POST':
                 form = dict(parse_qsl(request.body))
@@ -46,10 +72,26 @@ class BrigadeTests(unittest.TestCase):
                     return response(200, 'Added to the peopledb')
             
                 return response(401, 'Go away')
+
+        if url.geturl() == 'https://people.codeforamerica.org/checkin':
+            if request.method == 'POST':
+                form = dict(parse_qsl(request.body))
+                username, password = None, None
+
+                if 'Authorization' in request.headers:
+                    method, encoded = request.headers['Authorization'].split(' ', 1)
+                    if method == 'Basic':
+                        username, password = b64decode(encoded).split(':', 1)
+
+                if (username, password) == (os.environ['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'):
+                    return response(200, 'Added checkin')
+
+                return response(401, 'Go away')
             
             raise NotImplementedError()
         
         raise ValueError('Bad {} to "{}"'.format(request.method, url.geturl()))
+
 
     def test_signup(self):
         ''' Test that main page signups work '''
@@ -83,8 +125,7 @@ class BrigadeTests(unittest.TestCase):
 
     def test_good_links(self):
         ''' Test that normal Brigade links are working '''
-        with HTTMock(self.response_content):
-            response = self.app.get("/brigade/Code-for-San-Francisco/")
+        response = self.app.get("/brigade/Code-for-San-Francisco/")
         self.assertTrue(response.status_code == 200)
 
 
@@ -93,6 +134,108 @@ class BrigadeTests(unittest.TestCase):
         with HTTMock(self.response_content):
             response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
+
+
+    def test_attendance(self):
+        ''' Test attendance endpoints '''
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/attendance")
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue('<p class="h1">100</p>' in response.data)
+
+
+    def test_checkin(self):
+        ''' Test checkin '''
+        checkin = {
+            "name" : "TEST NAME",
+            "email" : "test@testing.com",
+            "event" : "TEST EVENT",
+            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/TEST-ORG",
+            "question" : "TEST QUESTION",
+            "answer" : "TEST ANSWER"
+        }
+
+        with HTTMock(self.response_content):
+            response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
+            self.assertTrue(response.status_code == 200)
+
+        checkin["question"] = None
+        checkin["answer"] = None
+        with HTTMock(self.response_content):
+            response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
+            self.assertTrue(response.status_code == 200)
+
+        # test nonexistant Brigade
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/BLAH-BLAH"
+        response = self.app.post("/brigade/checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test http
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/Code-for-San-Francisco"
+        response = self.app.post("/brigade/checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test missing cfapi_url
+        checkin["cfapi_url"] = None
+        response = self.app.post("/brigade/checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+
+    def test_test_checkin(self):
+        ''' Test the test-checkin route '''
+        checkin = {
+            "name" : "TEST NAME",
+            "email" : "test@testing.com",
+            "event" : "TEST EVENT",
+            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
+            "question" : "TEST QUESTION",
+            "answer" : "TEST ANSWER"
+        }
+
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 200)
+
+        # test nonexistant Brigade
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/BLAH-BLAH"
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test http
+        checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/Code-for-San-Francisco"
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test bad url
+        checkin["cfapi_url"] = "https://codeforamerica.org/api/organizations/Code-for-San-Francisco"
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+        # test missing cfapi_url
+        checkin["cfapi_url"] = None
+        response = self.app.post("/brigade/test-checkin/", data=checkin)
+        self.assertTrue(response.status_code == 422)
+
+
+    def test_existing(self):
+        ''' Test that these org ids exist '''
+        from app import is_existing_organization
+        self.assertTrue(is_existing_organization("Code-for-America"))
+        self.assertFalse(is_existing_organization("TEST-TEST"))
+
+
+    def test_projects_page(self):
+        ''' Test that the project page loads and looks like what we want '''
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/projects")
+            self.assertTrue('<p>Status: <a href="?=Alpha" class="Alpha button-s">Alpha</a></p>' in response.data)
+
+
+    def test_project_monitor(self):
+        ''' Test the project monitor page works as expected '''
+        with HTTMock(self.response_content):
+            response = self.app.get("/brigade/projects/monitor")
+            self.assertTrue('"travis_url": "https://api.travis-ci.org/repositories/jmcelroy5/sf-in-progress/builds"' in response.data)
+
 
 
 if __name__ == '__main__':

@@ -2,54 +2,39 @@
 
 {% block content %}
 
+<div class="slab-red">
+  <div class="center">
+    <p>This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#alpha">Alpha</a>. You can help improve it by <a href="https://github.com/codeforamerica/brigade/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22Projects+Page%22">submitting or fixing an issue</a>.</p>
+  </div>
+</div>
+
   <section>
 
-    <div class="slab-dark-blue">
-      <div class="layout-semibreve">
+    <div class="layout-breve">
 
-        {% if brigade %}
-          <h1>{{brigade.name}}'s Projects</h1>
-        {% else %}
-          <h1>All Civic Tech Projects</h1>
-        {% endif %}
+      {% if brigade %}
+        <h1>{{brigade.name}}'s Projects</h1>
+      {% elif request.args.get("organization_type", None) %}
+        <h1>{{ request.args["organization_type"] }} Projects</h1>
+      {% else %}
+        <h1>Civic Tech Project Search</h1>
+      {% endif %} 
 
-        <form action="{{ request.path }}" method="get">
-            {% if request.args.get('q') %}
-            <input type="search" name="q" value="{{ request.args.get('q') }}" width="100">
-            {% else %}
-            <input type="search" name="q" placeholder="Search for a project" width="100">
-            {% endif %}
-            <button>Search</button>
-            <a href="#" id="help"><small class="note">Help</small></a>
+
+      <div id="projects" class="layout-major">
+
+        <form id="project-search" action="{{ request.path }}" method="get">
+          <p class="field">
+            <input type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button
+          </p>
         </form>
 
-        <div id="helptext" class="hidden">
-          <p>Search for projects on their name, their description, tags, or their status.</p>
-          <p>Common statuses inlcude:
-            <ul class="list-inline">
-              <li><a href="?q=Alpha&sort_by=last_updated">Alpha</a></li>
-              <li><a href="?q=Beta&sort_by=last_updated">Beta</a></li>
-              <li><a href="?q=Launched&sort_by=last_updated">Launched</a></li>
-            </ul>
-          </p>
-          <p>Common tags inlcude:
-            <ul class="list-inline">
-              <li><a href="?q=health&sort_by=last_updated">Health</a></li>
-              <li><a href="?q=justice&sort_by=last_updated">Justice</a></li>
-              <li><a href="?q=money&sort_by=last_updated">Money</a></li>
-            </ul>
-          </p>
-        </div>
-
-      </div>
-    </div>
-
-
-    <div id="projects" class="slab-white">
-      <div class='layout-semibreve'>
-
         {% for project in projects %}
-            <h3>{{project.name}}</h3>
+          <div>
+            <h3 style="display:inline;">{{project.name}}</h3>
+            {% if project.tags and "featured" in project.tags %}
+              <a href="?=featured" class="featured button-s icon-star">Featured</a>
+            {% endif %}
             {% if project.link_url %}
               <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
             {% endif %}
@@ -58,33 +43,81 @@
               <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
             {% endif %}
 
-            <p>{{project.description}}</p>
+            {% if project.description %}
+              <p>{{project.description}}</p>
+            {% endif %}
 
-            <!-- {% for contributor in project.github_details.contributors %}
-              <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-            {% endfor %} -->
+            {% if project.status %}
+              <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
+            {% endif %}
 
-            <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+            {% if not brigade %}
+              <p>Used By: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+            {% endif %}
 
-          {% endfor %}
+            {% if project.github_details %}
+              {% if project.github_details.contributors %}
+              <p>Built by: </p>
+                {% for contributor in project.github_details.contributors %}
+                  <a href="{{ contributor.html_url }}">
+                    <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
+                  </a>
+                {% endfor %}
+              {% endif %}
+            {% endif %}
 
-          <a href="{{next}}" class="button-inactive">More Projects</a>
+            {% if project.languages %}
+            <ul class="list-inline list-no-bullets">
+              Written in:
+              {% for lang in project.languages %}
+                <li><a href="projects?q={{ lang }}">{{ lang }}</a></li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if project.last_updated %}
+              <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+            {% endif %}
+
+            <hr />
+
+          </div>
+
+        {% endfor %}
+
+        {% if not projects %}
+          <h2>Nothing here yet ... </h2>
+        {% else %}
+          <a id="more-projects" href="{{next}}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a>
+        {% endif %}
 
       </div>
-    </div>
+
+      <div class="layout-minor">
+
+        <h2><a href="projects/stages">Project Stages</a></h2>
+        <ul id="project-stage-buttons" class="list-no-bullets">
+          <li><a href="?q=featured" id="Featured" class="button">Featured</a></li>
+          <li><a href="?q=Official" id="Official" class="button">Official</a></li>
+          <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
+          <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
+          <li><a href="?q=Experiment" id="Experiment" class="button">Experiment</a></li>
+        </ul>
+
+        <h2>Organizations</h2>
+        <ul id="project-stage-buttons" class="list-no-bullets">
+          <li><a href="/brigade/projects?organization_type=Brigade" id="Brigade" class="button">Brigades</a></li>
+          <li><a href="https://www.codeforamerica.org/brigade/Code-for-America/projects" id="Code-for-America" class="button">Code for America</a></li>
+          <li><a href="/brigade/projects?organization_type=Code+for+All" id="Code-for-All" class="button">Code for All</a></li>
+          <li><a href="/brigade/projects?organization_type=Government" id="Government" class="button">Governments</a></li>
+        </ul>
+
+      </div>
+
 
   </section>
 {% endblock %}
 
 {% block js %}
-  <script>
-  $( "#help" ).click(function( event ) {
-    event.preventDefault();
-    if ($( "#helptext" ).hasClass("hidden")){
-      $( "#helptext" ).removeClass("hidden");
-    } else {
-      $( "#helptext" ).addClass("hidden");
-    }
-  });
-  </script>
+
 {% endblock %}

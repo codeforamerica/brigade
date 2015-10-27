@@ -7,6 +7,15 @@ body {
 	padding-top:5px;
 }
 
+header, .layout-breve{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.data {
+  padding-top: 51px;
+}
+
 .global-header {
   margin-bottom : 0px;
 }
@@ -107,8 +116,100 @@ h2 {
   }
 }
 
+input[type="text"],input[type="email"],input[type="password"],input[type="search"] {
+  width: 85%;
+}
+
 /* Brigade page*/
 
 .no-padding {
   padding: 0px;
+}
+
+#title {
+  color: white;
+  margin: 0px;
+}
+
+#project-stage-buttons a {
+  width : 230px;
+}
+
+#Featured, .featured {
+  background-color: #e87d2b !important;
+}
+
+#Official, .Official {
+  background-color: #00a175 !important;
+}
+
+#Beta, .Beta {
+  background-color: #004b6a !important;
+}
+
+#Alpha, .Alpha {
+  background-color: #7ab5d6 !important;
+}
+
+#Experiment, .Experiment {
+  background-color: #69579C !important;
+}
+
+/* Project Monitor */
+#monitor {
+  min-height: 700px;
+}
+
+#monitor a:link, #monitor a:visited, #monitor a:hover, #monitor a:focus, #monitor a:active {
+  color: #5a5a5a;
+}
+
+.alert-success, .alert-failure {
+  border: 0px;
+}
+
+.project {
+  padding: 15px;
+}
+
+#more-projects {
+  margin : 30px 0;
+}
+
+.red {
+  color: #cf1b41;
+}
+
+table {
+  margin-top: 25px;
+}
+
+table .grey {
+  background-color: #e5e5e5;
+  border: 2px solid #e5e5e5;
+}
+
+thead th {
+  border-bottom: 2px solid #e5e5e5;
+}
+
+td {
+  text-align:center; 
+  vertical-align:middle;
+}
+
+table .icon-checkmark {
+  color: #cf1b41;
+}
+
+tbody th {
+  padding-left: 15px;
+}
+
+@media (max-width: 40em) {
+
+  table, thead th {
+    font-size: small;
+  }
+
 }

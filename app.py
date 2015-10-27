@@ -1,15 +1,21 @@
 import json
 import os
+import re
 from requests import get, post
-import datetime
+from operator import itemgetter
+from urlparse import urlparse
 
-from flask import Flask, render_template, request, redirect
+from datetime import datetime
+from base64 import b64encode
+
+from flask import Flask, render_template, request, redirect, url_for, make_response, flash
 import filters
 
 app = Flask(__name__, static_url_path="/brigade/static")
 app.register_blueprint(filters.blueprint)
 
 app.config['BRIGADE_SIGNUP_SECRET'] = os.environ['BRIGADE_SIGNUP_SECRET']
+app.secret_key = 'SECRET KEY'
 
 @app.context_processor
 def get_fragments():
@@ -47,6 +53,27 @@ def get_brigades():
 
     brigades = json.dumps(brigades)
     return brigades
+
+
+def is_existing_organization(orgid):
+    ''' tests that an organization exists on the cfapi'''
+    got = get("https://www.codeforamerica.org/api/organizations.geojson").json()
+    orgids = [org["properties"]["id"] for org in got["features"]]
+    return orgid in orgids
+
+
+# Load load projects from the cfapi
+def get_projects(projects, url, limit=10):
+    got = get(url)
+    new_projects = got.json()["objects"]
+    projects = projects + new_projects
+    if limit:
+        if len(projects) >= limit:
+            return projects
+    if "next" in got.json()["pages"]:
+        projects = get_projects(projects, got.json()["pages"]["next"], limit)
+    return projects
+
 
 # ROUTES
 @app.route('/brigade/list', methods=["GET"])
@@ -162,73 +189,67 @@ def numbers():
     got = got.json()
     government_total = got['total']
 
+    # Get number of meetup-members
+    got = get("http://codeforamerica.org/api/organizations/member_count")
+    got = got.json()
+    member_count = got['total']
+
+    # Get number of RSVPs
+    got = get("https://www.codeforamerica.org/api/events/rsvps")
+    got = got.json()
+    rsvps = got['total']
+
+    # Get number of Attendance
+    got = get("https://www.codeforamerica.org/api/attendance")
+    got = got.json()
+    attendance = got['total']
+
     # Get total number of projects
-    got = get("https://www.codeforamerica.org/api/projects?per_page=1")
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&per_page=1")
     got = got.json()
     projects = got['objects']
     projects_total = got['total']
 
     # Get total number of Brigade projects
-    got = get("https://www.codeforamerica.org/api/projects?organization_type=Brigade&per_page=1")
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Brigade&per_page=1")
     got = got.json()
     projects = got['objects']
     brigade_projects_total = got['total']
 
     # Get total number of Code for All projects
-    got = get("https://www.codeforamerica.org/api/projects?organization_type=Code for All&per_page=1")
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Code for All&per_page=1")
     got = got.json()
     projects = got['objects']
     cfall_projects_total = got['total']
 
     # Get total number of Government projects
-    got = get("https://www.codeforamerica.org/api/projects?organization_type=Government&per_page=1")
+    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Government&per_page=1")
     got = got.json()
     projects = got['objects']
     gov_projects_total = got['total']
 
-    # Get number of Health projects
-    got = get("https://www.codeforamerica.org/api/projects?q=health&per_page=1")
-    got = got.json()
-    projects = got['objects']
-    health_total = got['total']
-
-    # Get number of Money projects
-    got = get("https://www.codeforamerica.org/api/projects?q=money&per_page=1")
-    got = got.json()
-    projects = got['objects']
-    money_total = got['total']
-
-    # Get number of Justice projects
-    got = get("https://www.codeforamerica.org/api/projects?q=justice&per_page=1")
-    got = got.json()
-    projects = got['objects']
-    justice_total = got['total']
-
     # Get number of Issues
     got = get("https://www.codeforamerica.org/api/issues?per_page=1")
     got = got.json()
-    issues = got['objects']
     issues_total = got['total']
 
     # Get number of Help Wanted Issues
     got = get("https://www.codeforamerica.org/api/issues/labels/help%20wanted?per_page=1")
     got = got.json()
-    issues = got['objects']
     help_wanted_total = got['total']
 
-    # Get number of Bug Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/bug?per_page=1")
+    # Get number of civic issue finder clicks
+    got = get("https://www.codeforamerica.org/geeks/civicissues/analytics/total_clicks")
     got = got.json()
-    issues = got['objects']
-    bug_total = got['total']
+    total_issue_clicks = got['total_clicks']
 
-    # Get number of Enhancement Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/enhancement?per_page=1")
-    got = got.json()
-    issues = got['objects']
-    enhancement_total = got['total']
 
-    kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total, cfall_total=cfall_total, government_total=government_total, projects_total=projects_total, brigade_projects_total=brigade_projects_total, cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total, health_total=health_total, money_total=money_total, justice_total=justice_total, issues_total=issues_total, help_wanted_total=help_wanted_total, bug_total=bug_total, enhancement_total=enhancement_total)
+    kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total,
+                  cfall_total=cfall_total, government_total=government_total,
+                  member_count=member_count, rsvps=rsvps, attendance=attendance,
+                  projects_total=projects_total, brigade_projects_total=brigade_projects_total,
+                  cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total,
+                  issues_total=issues_total, help_wanted_total=help_wanted_total, total_issue_clicks=total_issue_clicks)
 
     return render_template("numbers.html", **kwargs )
 
@@ -272,71 +293,151 @@ def tools(page=None):
         return render_template("tools/index.html")
 
 
-@app.route("/brigade/experiments")
-def experiments():
-    return render_template("experiments.html")
+@app.route("/brigade/infrastructure")
+def infrastructure():
+    return render_template("infrastructure.html")
 
 
-@app.route("/brigade/projects/")
-@app.route("/brigade/<brigadeid>/projects/")
+@app.route("/brigade/projects/stages")
+def stages():
+    ''' Describe the project stages '''
+    # got = get("https://www.codeforamerica.org/api/projects?status=experiment")
+    # experiment_count = got.json()["total"]
+    # got = get("https://www.codeforamerica.org/api/projects?status=alpha")
+    # alpha_count = got.json()["total"]
+    # got = get("https://www.codeforamerica.org/api/projects?status=beta")
+    # beta_count = got.json()["total"]
+    # got = get("https://www.codeforamerica.org/api/projects?status=official")
+    # official_count = got.json()["total"]
+    return render_template("stages.html")
+        # , experiment_count=experiment_count,
+        # alpha_count=alpha_count, beta_count=beta_count, official_count=official_count)
+
+
+@app.route("/brigade/projects")
+@app.route("/brigade/<brigadeid>/projects")
 def projects(brigadeid=None):
     ''' Display a list of projects '''
+
+    # is this an exisiting group
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
+    # Get the params
     projects = []
     brigade = None
     search = request.args.get("q", None)
     sort_by = request.args.get("sort_by", None)
     page = request.args.get("page", None)
+    organization_type = request.args.get("organization_type",None)
 
+    # Set next
     if page:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects/?page=" + str(int(page) + 1)
+            next = "/brigade/"+brigadeid+"/projects?page=" + str(int(page) + 1)
         else:
-            next = "/brigade/projects/?page=" + str(int(page) + 1)
+            next = "/brigade/projects?page=" + str(int(page) + 1)
     else:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects/?page=2"
+            next = "/brigade/"+brigadeid+"/projects?page=2"
         else:
-            next = "/brigade/projects/?page=2"
+            next = "/brigade/projects?page=2"
 
-    def get_projects(projects, url, limit=10):
-        got = get(url)
-        new_projects = got.json()["objects"]
-        projects = projects + new_projects
-        if limit:
-            if len(projects) >= limit:
-                return projects
-        if "next" in got.json()["pages"]:
-            projects = get_projects(projects, got.json()["pages"]["next"], limit)
-        return projects
-
+    # build the url
     if brigadeid:
         url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
-        if search or sort_by or page:
-            url += "?"
-        if search:
-            url += "&q=" + search
-        if sort_by:
-            url += "&sort_by" + sort_by
-        if page:
-            url += "&page=" + page
-        got = get(url)
-        projects = get_projects(projects, url)
-        brigade = projects[0]["organization"]
-
+        # set the brigade name
+        if projects:
+            brigade = projects[0]["organization"]
+        else:
+            brigade = { "name" : brigadeid.replace("-"," ")}
     else:
         url = "https://www.codeforamerica.org/api/projects"
-        if search or sort_by or page:
-            url += "?"
-        if search:
-            url += "&q=" + search
-        if sort_by:
-            url += "&sort_by" + sort_by
-        if page:
-            url += "&page=" + page
-        got = get(url)
-        projects = get_projects(projects, url)
+    if search or sort_by or page or organization_type:
+        url += "?"
+    if search:
+        url += "&q=" + search
+    if sort_by:
+        url += "&sort_by" + sort_by
+    if page:
+        url += "&page=" + page
+    if organization_type:
+        url += "&organization_type=" + organization_type
+    got = get(url)
+    projects = get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
+
+
+@app.route("/brigade/attendance")
+@app.route("/brigade/<brigadeid>/attendance")
+def attendance(brigadeid=None):
+    ''' Show the Brigade attendance '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
+    if not brigadeid:
+        got = get("https://www.codeforamerica.org/api/attendance")
+    else:
+        got = get("https://www.codeforamerica.org/api/organizations/%s/attendance" % brigadeid)
+
+    attendance = got.json()
+
+    if attendance["weekly"]:
+
+        # GCharts wants a list of lists
+        attendance["weeks"] = []
+        for key, value in attendance["weekly"].iteritems():
+            week = [str(key), value]
+            attendance["weeks"].append(week)
+        attendance["weeks"] = sorted(attendance["weeks"], key=itemgetter(0))
+
+        attendance["this_week"] = 0
+        attendance["last_week"] = 0
+        if len(attendance["weeks"]) >= 1:
+            attendance["this_week"] = attendance["weeks"][-1][1]
+            if len(attendance["weeks"]) >= 2:
+                attendance["last_week"] = attendance["weeks"][-2][1]
+
+    return render_template("attendance.html", brigadeid=brigadeid, attendance=attendance)
+
+
+@app.route("/brigade/rsvps")
+@app.route("/brigade/<brigadeid>/rsvps")
+def rsvps(brigadeid=None):
+    ''' Show the Brigade rsvps '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
+    if not brigadeid:
+        got = get("https://www.codeforamerica.org/api/events/rsvps")
+    else:
+        got = get("https://www.codeforamerica.org/api/organizations/%s/events/rsvps" % brigadeid)
+
+    rsvps = got.json()
+
+    if rsvps["weekly"]:
+
+        # GCharts wants a list of lists
+        rsvps["weeks"] = []
+        for key, value in rsvps["weekly"].iteritems():
+            week = [str(key), value]
+            rsvps["weeks"].append(week)
+        rsvps["weeks"] = sorted(rsvps["weeks"], key=itemgetter(0))
+
+        rsvps["this_week"] = 0
+        rsvps["last_week"] = 0
+        if len(rsvps["weeks"]) >= 1:
+            rsvps["this_week"] = rsvps["weeks"][-1][1]
+            if len(rsvps["weeks"]) >= 2:
+                rsvps["last_week"] = rsvps["weeks"][-2][1]
+
+    return render_template("rsvps.html", brigadeid=brigadeid, rsvps=rsvps)
 
 
 @app.route('/brigade/index/<brigadeid>/')
@@ -346,16 +447,203 @@ def redirect_brigade(brigadeid):
 
 @app.route('/brigade/<brigadeid>/')
 def brigade(brigadeid):
-    # Get this Brigade's info
+    ''' Get this Brigade's info '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
     got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
     brigade = got.json()
-
-    if 'status' in brigade:
-        if brigade['status'] == 'Resource Not Found':
-            return render_template('404.html'), 404
 
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 
+@app.route("/brigade/checkin/", methods=["GET"])
+@app.route("/brigade/<brigadeid>/checkin/", methods=["GET"])
+def get_checkin(brigadeid=None):
+    ''' Checkin to a Brigade event '''
+
+    if brigadeid:
+        if not is_existing_organization(brigadeid):
+            return render_template('404.html'), 404
+
+    brigades = None
+    if not brigadeid:
+        # Get all of the organizations from the api
+        organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+        organizations = organizations.json()
+        brigades = []
+        # Org's names and ids
+        for org in organizations['features']:
+            if "Brigade" in org['properties']['type']:
+                brigades.append({
+                    "name": org['properties']['name'],
+                    "id": org['id']
+                    })
+
+        # Alphabetize names
+        brigades.sort(key=lambda x: x.values()[0])
+
+    # If we want to remember the event, question
+    event = request.args.get("event", None)
+    question = request.args.get("question", None)
+
+    return render_template("checkin.html", brigadeid=brigadeid,
+        event=event, brigades=brigades, question=question)
+
+
+@app.route("/brigade/checkin/", methods=["POST"])
+@app.route("/brigade/<brigadeid>/checkin/", methods=["POST"])
+def post_checkin(brigadeid=None):
+    ''' Prep the checkin for posting to the peopledb '''
+
+    # VALIDATE
+    cfapi_url = request.form.get('cfapi_url')
+    if not cfapi_url:
+        return make_response("Missing required cfapi_url", 422)
+
+    elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", cfapi_url):
+        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
+
+    brigadeid = request.form.get('cfapi_url').split("/")[-1]
+    if not is_existing_organization(brigadeid):
+        return make_response(brigadeid + "is not an existing brigade." , 422)
+
+    # MAILCHIMP SIGNUP
+    if request.form.get("mailinglist", None):
+        if request.form.get("email", None):
+
+            # Split first and last name
+            name = request.form.get('name', None)
+            if name:
+                if ' ' in request.form['name']:
+                    first_name, last_name = name.split(' ', 1)
+                else:
+                    first_name, last_name = name, ''
+            else:
+                first_name, last_name = None, None
+
+            mailchimp_data = {
+                'FNAME' : first_name,
+                'LNAME' : last_name,
+                'EMAIL' : request.form.get("email"),
+                'REFERRAL' : request.url,
+                'group[10273][8192]' : '8192', # I attend Brigade events
+                'group[10245][32]' : '32' # Brigade newsletter
+                }
+
+            cfa_mailchimp_url = "http://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
+            cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
+
+            if cfa_mailchimp_response.status_code != 200:
+                return cfa_mailchimp_response.content
+
+    # Prep PeopleDB post
+    # Q&A is stored as a json string
+    extras = {}
+    extras["question"] = request.form.get("question", None)
+    extras["answer"] = request.form.get("answer", None)
+    extras = json.dumps(extras)
+
+    peopledb_post = {
+        "name": request.form.get('name', None),
+        "email": request.form.get("email", None),
+        "event": request.form.get("event", None),
+        "date": request.form.get("date", datetime.now()),
+        "org_cfapi_url": request.form.get('cfapi_url'),
+        "extras" : extras
+    }
+
+    auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
+    headers = {'Authorization': 'Basic ' + b64encode(auth)}
+    peopleapp = "https://people.codeforamerica.org/checkin"
+
+    r = post(peopleapp, data=peopledb_post, headers=headers)
+
+    if r.status_code == 200:
+        # Remembering event name and brigadeid for later
+        event = request.form.get("event", None)
+        question = request.form.get("question", None)
+        brigadeid = request.form.get("cfapi_url").replace("https://www.codeforamerica.org/api/organizations/","")
+        flash("Thanks for volunteering")
+
+        if brigadeid:
+            url = "brigade/"+ brigadeid +"/checkin/"
+        else:
+            url = "brigade/checkin/"
+
+        if event or question:
+            url += "?"
+            if event:
+                event = event.replace(" ","+")
+                url += "event=" + event
+            if event and question:
+                url += "&"
+            if question:
+                question = question.replace(" ","+")
+                url += "question=" + question
+
+        return redirect(url)
+
+    # Pass any errors through
+    else:
+        return make_response(r.content, r.status_code)
+
+
+@app.route("/brigade/test-checkin/", methods=["POST"])
+@app.route("/brigade/<brigadeid>/test-checkin/", methods=["POST"])
+def post_test_checkin(brigadeid=None):
+    ''' Prep the checkin for posting to the peopledb '''
+
+    test_checkin_data = {
+        "name": request.form.get('name', None),
+        "email": request.form.get("email", None),
+        "event": request.form.get("event", None),
+        "date": request.form.get("date", str(datetime.now())),
+        "cfapi_url": request.form.get('cfapi_url'),
+        "question" : request.form.get("question", None),
+        "answer" : request.form.get("answer", None)
+    }
+
+    if not test_checkin_data["cfapi_url"]:
+        return make_response("Missing required cfapi_url", 422)
+
+    elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", test_checkin_data["cfapi_url"]):
+        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422) 
+
+
+    brigadeid = test_checkin_data["cfapi_url"].split("/")[-1]
+    if not is_existing_organization(brigadeid):
+        return make_response(brigadeid + "is not an existing brigade." , 422)
+
+    else:
+        return make_response(json.dumps(test_checkin_data), 200)
+
+
+@app.route('/brigade/projects/monitor')
+@app.route('/brigade/<brigadeid>/projects/monitor')
+def project_monitor(brigadeid=None):
+    ''' Check for Brigade projects on Travis'''
+    limit = int(request.args.get('limit',50))
+    travis_projects = []
+    projects = []
+    if not brigadeid:
+        projects = get_projects(projects, "https://www.codeforamerica.org/api/projects", limit)
+    else:
+        projects = get_projects(projects, "https://www.codeforamerica.org/api/organizations/"+brigadeid+"/projects", limit)
+
+    # Loop through projects and get
+    for project in projects:
+        if project["code_url"]:
+            url = urlparse(project["code_url"])
+            if url.netloc == "github.com":
+                travis_url = "https://api.travis-ci.org/repositories"+url.path+"/builds"
+                project["travis_url"] = travis_url
+                travis_projects.append(project)
+
+    return render_template('projectmonitor.html', projects=travis_projects, org_name=brigadeid)
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True)
+    app.run(host='0.0.0.0',debug=True, port=4000)

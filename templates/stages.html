@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  .purple {color: #69579C !important;}
+  .light-blue {color: #7ab5d6 !important;}
+  .dark-blue {color: #004b6a !important;}
+  .teal {color: #00a175 !important;}
+</style>
+
+<div class="slab-red">
+  <div class="center">
+    <p>This page is an <a href="stages#alpha">Alpha</a>. You can help improve it by <a href="https://github.com/codeforamerica/brigade/issues?q=is%3Aopen+is%3Aissue+milestone%3A%22Projects+Page%22">submitting or fixing an issue</a>.</p>
+  </div>
+</div>
+
+<div class="layout-semibreve">
+
+  <h2>Project stages for volunteer built civic technology</h2>
+
+  <ol>
+    <li><a href="#experiment">Experiment</a></li>
+    <li><a href="#alpha">Alpha</a></li>
+    <li><a href="#beta">Beta</a></li>
+    <li><a href="#official">Official</a></li>
+  </ol>
+
+  <!-- <ul class="bricks bricks-4">
+    <li class="brick">
+      <a href="#experiment">
+        <h3 class="text-feature">{{ experiment_count }}</h3>
+        <p>Experiment</p>
+      </a>
+    </li>
+    <li class="brick">
+      <a href="#alpha">
+        <h3 class="text-feature">{{ alpha_count }}</h3>
+        <p>Alpha</p>
+      </a>
+    </li>
+    <li class="brick">
+      <a href="#beta">
+        <h3 class="text-feature">{{ beta_count }}</h3>
+        <p>Beta</p>
+      </a>
+    </li>
+    <li class="brick">
+      <a href="#official">
+        <h3 class="text-feature">{{ official_count }}</h3>
+        <p>Official</p>
+      </a>
+    </li>
+  </ul> -->
+
+</div>
+
+<div class="stage layout-semibreve" id="experiment">
+  <h1><a href="#experiment" class="purple">Experiment</a></h1>
+  <a href="https://www.codeforamerica.org/brigade/projects?q=Experiment">Search for Experimental projects</a>
+  <p>Experiments are explorations into a civic problem. They involve lots of research, lots of listening to local experts, and lots of throw-away code. Almost every project should start out as an experiment and most projects should probably stay as experiments.</p>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>Experiment Stage Theme:</h4>
+      <li>
+        <a href="https://www.codeforamerica.org/brigade/static/images/Poster_make-many-things.png">Make many things!!1!</a>
+      </li> 
+    </ul>
+
+    <ul class="list-no-bullets">
+      <h4>Your project is an experiment if:</h4>
+      <li class="icon-checkmark">You haven't talked to users yet</li>
+      <li class="icon-checkmark">Your Brigade hasn't endorsed it yet</li> 
+    </ul>
+
+    <ul>
+      <h4>Requirements</h4>
+      <li>All Brigade projects should be respectful and be cool under the <a href="https://github.com/codeforamerica/codeofconduct">code of conduct</a>.</li>
+    </ul>
+
+  </div>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>What the project team should be doing:</h4>
+      <li>Listening to the community about civic problems</li>
+      <li>Researching those problems</li>
+      <li>Making lots of things</li>
+    </ul>
+
+    <ul>
+      <h4>What the Brigade should be doing:</h4>
+      <li>Organizing hack nights</li>
+      <li>Inviting community and government experts in</li>
+      <li>Make infrastructure and donated resources easily accessible</li>
+      <li>Show off the other experiments</li>
+    </ul>
+
+    <ul>
+      <h4>What Code for America should be doing:</h4>
+      <li>Getting <a href="http://www.codeforamerica.org/brigade/tools/">donated resources</a></li>
+      <li><a href="http://www.codeforamerica.org/blog/tag/civictech/">Show off experiments</a></li>
+    </ul>
+
+  </div>
+
+</div>
+
+<div class="stage layout-semibreve" id="alpha">
+
+  <h1><a href="#alpha" class="light-blue">Alpha</a></h1>
+  <a href="https://www.codeforamerica.org/brigade/projects?q=Alpha">Search for Alpha projects</a>
+  <p>Alpha projects have shown that with a little bit of work, they may be able to actually solve one persons problem. We also got some recommendations that are helpful for volunteer built projects as well as some cool infrastructure to get you help building your projects.</p>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>Alpha Stage Theme:</h4>
+      <li>Solve one person's problem</li> 
+    </ul>
+
+    <ul class="list-no-bullets">
+      <h4>Your project is an Alpha if:</h4>
+      <li class="icon-checkmark">Your Brigade has approved the project</li>
+      <li class="icon-checkmark">You've got a project owner</li>
+      <li class="icon-checkmark">You've got something online to share</li>
+    </ul>
+
+    <ul>
+      <h4>Requirements</h4>
+      <li>A project owner</li>
+      <li>The project is listed on the <a href="https://github.com/codeforamerica/cfapi#the-code-for-america-api">Code for America API</a></li>
+    </ul>
+
+  </div>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>What the project team should be doing:</h4>
+      <li>Choose a project owner</li>
+      <li>Write a clear <a href="https://github.com/codeforamerica/howto/blob/master/Good-READMEs.md">README</a></li>
+      <li>Make the project accessible for others who <a href="http://www.codeforamerica.org/geeks/civicissues">want to help</a></li>
+      <li>Start with agile development</li>
+      <li>Start <a href="http://forum.codeforamerica.org/t/free-usertesting-com-videos-for-brigades/161">user testing</a></li>
+    </ul>
+
+    <ul>
+      <h4>What the Brigade should be doing:</h4>
+      <li><a href="">Approve</a> the project</li>
+      <li>Add to their <a href="https://github.com/codeforamerica/cfapi#how-to-add-your-brigade-to-the-api">project list</a></li>
+      <li>Help with <a href="http://forum.codeforamerica.org/t/2015-august-12-how-to-start-a-civic-user-testing-group-cutgroup/248">user testing</a></li>
+    </ul>
+
+    <ul>
+      <h4>What Code for America should be doing:</h4>
+      <li>Promote with the <a href="http://www.codeforamerica.org/brigade/projects">Project Search</a> page</li>
+      <li>Get help for the project with the <a href="https://www.codeforamerica.org/geeks/civicissues">Civic Issue Finder</a></li>
+      <li>Produce examples and guides for how to write good issues</li>
+      <li>Produce agile and project management content</li>
+      <li>User testing resources and support</li>
+      <li>Project planning office hours</li>
+    </ul>
+
+  </div>
+
+</div>
+
+<div class="stage layout-semibreve" id="beta">
+
+  <h1><a href="#beta" class="dark-blue">Beta</a></h1>
+  <a href="https://www.codeforamerica.org/brigade/projects?q=Beta">Search for Beta projects</a>
+  <p>Beta projects are stable enough for a government partner to start putting their reputation behind it. A beta project should be useful for lots of people in your city with the beginnings of some proof of that usefulness. This proof will help get more users, get partners, and keep volunteers motivated to continue volunteering.</p>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>Beta Stage Theme:</h4>
+      <li>Moaaar users</li> 
+    </ul>
+
+    <ul class="list-no-bullets">
+      <h4>Your project is an beta if:</h4>
+      <li class="icon-checkmark">You've done user testing</li>
+      <li class="icon-checkmark">You've got a partner</li>
+    </ul>
+
+    <ul>
+      <h4>Requirements</h4>
+      <li>A government or community partner</li>
+    </ul>
+
+  </div>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>What the project team should be doing:</h4>
+      <li>Talking to users</li>
+      <li>Agile development</li>
+      <li>Get more users</li>
+      <li>Writing tests to increase stability</li>
+    </ul>
+
+    <ul>
+      <h4>What the Brigade should be doing:</h4>
+      <li>Formalize government or community partner</li>
+      <li>Help pick out metrics to measure for impact</li>
+
+    </ul>
+
+    <ul>
+      <h4>What Code for America should be doing:</h4>
+      <li><a href="http://www.codeforamerica.org/brigade/projects/monitor">Civic Tech Project Monitor</a></li>
+      <li>Engineering office hours</li>
+    </ul>
+
+  </div>
+
+</div>
+
+<div class="stage layout-semibreve" id="official">
+
+  <h1><a href="#official" class="teal">Official</a></h1>
+  <a href="https://www.codeforamerica.org/brigade/projects?q=Official">Search for Official projects</a>
+  <p>You did it! Official projects are what governments all across the country are going to be looking at. It should be polished up and ready for all those critical eyes. For real though, congratulations. Building impactful civic tech in your volunteer time is tough, lets party!</p>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>Official Projects Theme:</h4>
+      <li>Impact</li> 
+    </ul>
+
+    <ul class="list-no-bullets">
+      <h4>Your project is official if:</h4>
+      <li class="icon-checkmark">You can prove the impact</li>
+    </ul>
+
+    <ul>
+      <h4>Requirements</h4>
+      <li>A launch party</li>
+      <li>Published analytics and metrics</li>
+    </ul>
+
+  </div>
+
+  <div class="layout-minim">
+
+    <ul>
+      <h4>What the project team should be doing:</h4>
+      <li>Talking to users</li>
+      <li><a href="https://github.com/datamade/site-launch-checklist">Polish for launch</a></li>
+      <li>Analytics</li>
+      <li>Start thinking about <a href="https://github.com/open-austin/sporkability">spreading to other cities</a>.</li>
+    </ul>
+
+    <ul>
+      <h4>What the Brigade should be doing:</h4>
+      <li>Throw a <a href="http://giphy.com/giphytv/dancing/">launch party</a></li>
+      <li>Help spread project</li>
+      <li>Metrics to measure impact</li>
+
+    </ul>
+
+    <ul>
+      <h4>What Code for America should be doing:</h4>
+      <li>Celebrate launched projects</li>
+      <li>Marketing office hours</li>
+      <li><a href="https://github.com/codeforamerica/brigade/issues/345">Analytics support</a></li>
+      <li>Metrics office hours</li>
+    </ul>
+
+  </div>
+
+</div>
+
+{% endblock %}

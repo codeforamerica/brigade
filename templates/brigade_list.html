@@ -14,7 +14,7 @@
     <div class="layout-semibreve">
 
       {% for brigade in brigades %}
-        <a href="{{brigade.properties.website}}" class="billboard">
+        <a href="/brigade/{{brigade.properties.id}}" class="billboard">
             <strong class="billboard-label">{{ brigade.properties.name }}</strong>
             {{ brigade.properties.city }}
         </a>
