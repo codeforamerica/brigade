@@ -295,7 +295,7 @@ def tools(page=None):
 
 @app.route("/brigade/infrastructure")
 def infrastructure():
-    return render_template("infrastructure.html")
+    return redirect("brigade/tools/infrastructure")
 
 
 @app.route("/brigade/projects/stages")
