@@ -83,6 +83,10 @@ h2 {
     height: 691px;
     margin-bottom: 10px;
   }
+
+  section:first-of-type {
+    margin-top: 50px;
+  }
 }
 
 .center {
