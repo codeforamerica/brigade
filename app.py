@@ -260,28 +260,12 @@ def about():
 
 
 @app.route("/brigade/organize/")
-def organize():
-
-    got = get("http://www.codeforamerica.org/api/organizations.geojson")
-    geojson = got.json()
-    brigades = []
-
-    # Prepare the geojson for a map
-    for org in geojson["features"]:
-        # Grab only orgs with type Brigade
-        if "Brigade" in org["properties"]["type"]:
-            brigades.append(org)
-        elif "Code for All" in org["properties"]["type"]:
-            brigades.append(org)
-
-    brigades = json.dumps(brigades)
-
-    # Get universal sign up form
-    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
-    signup = r.content
-
-    return render_template("organize.html", brigades=brigades, signup=signup)
-
+@app.route("/brigade/organize/<page>/")
+def organize(page=None):
+    if page:
+        return render_template("organize/"+page+".html")
+    else:
+        return render_template("organize/index.html")
 
 
 @app.route("/brigade/tools/")
