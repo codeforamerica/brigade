@@ -1,3 +1,7 @@
+#checklist a {
+  text-decoration: underline;
+}
+
 .calendar-item {
   /*border-bottom: 1px #5a5a5a solid;*/
   padding: 5px;
@@ -11,11 +15,6 @@ body {
 #banner {
 	text-align: center;
 	padding-top:5px;
-}
-
-header, .layout-breve{
-  padding-top: 0px;
-  padding-bottom: 0px;
 }
 
 .data {
@@ -89,6 +88,7 @@ h2 {
     height: 691px;
     margin-bottom: 10px;
   }
+
 }
 
 .center {
@@ -180,4 +180,42 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 #more-projects {
   margin : 30px 0;
+}
+
+.red {
+  color: #cf1b41;
+}
+
+table {
+  margin-top: 25px;
+}
+
+table .grey {
+  background-color: #e5e5e5;
+  border: 2px solid #e5e5e5;
+}
+
+thead th {
+  border-bottom: 2px solid #e5e5e5;
+}
+
+td {
+  text-align:center; 
+  vertical-align:middle;
+}
+
+table .icon-checkmark {
+  color: #cf1b41;
+}
+
+tbody th {
+  padding-left: 15px;
+}
+
+@media (max-width: 40em) {
+
+  table, thead th {
+    font-size: small;
+  }
+
 }
