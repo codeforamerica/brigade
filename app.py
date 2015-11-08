@@ -416,45 +416,67 @@ def civic_json(brigadeid, project_name):
 
         civic_json = json.dumps(civic_json, indent=4)
 
-        # Fork the repo
+        # Fork the repo. Succeeds even if fork already exists.
         print "Making a fork at: " + "repos" + project["repo"] + "/forks"
         try:
             response = github.post("repos" + project["repo"] + "/forks", data=None)
         except GitHubError:
-            return render_template("civic_json.html", error=True, project=None, user=None)
-        sleep(3)
+            error = e.response.json()['message']
+            return render_template("civic_json.html", error=error, project=None, user=None)
+
         project_name = response["name"]
         forked_repo = response["full_name"]
         owner_login = response["owner"]["login"]
         default_branch = response["default_branch"]
+
+        # Check if a civic.json already exists
+        try:
+            response = github.get("repos/" + forked_repo + "/contents/civic.json")
+            sha = response["sha"]
+        except GitHubError as e:
+            sha = None
 
         # Commit the civic.json file to our new fork
         data = {
           "message": "add civic.json file",
           "content": base64.b64encode(civic_json)
         }
+        if sha:
+            data["sha"] = sha
+
         print "Adding a civic.json file at: " + "repos/" + forked_repo + "/contents/" + project_name + "/civic.json"
         try:
             response = github.request("PUT", "repos/" + forked_repo + "/contents/civic.json", data=json.dumps(data))
-        except GitHubError:
-            return render_template("civic_json.html", error=True, project=None, user=None)
-        sleep(3)
+        except GitHubError as e:
+            error = e.response.json()['message']
+            return render_template("civic_json.html", error=error, project=None, user=None)
+
+        #Check if Pull Request already exists
+        try:
+            response = github.get("repos" + project["repo"] + "/pulls")
+        except GitHubError as e:
+            error = e.response.json()['message']
+            return render_template("civic_json.html", error=error, project=None, user=None)
+
+        for pr in response:
+            if pr["title"] == "Adds a civic.json file":
+                return redirect(project["code_url"] + "/pulls")
 
         # Send a pull request
         data = {
           "title" : "Adds a civic.json file",
-          "body" :'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to ''',
+          "body" :'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
           "head" : owner_login+":"+default_branch,
           "base" : default_branch
         }
         print "Creating a pull request for the new civic.json file"
         try:
             response = github.post("repos" + project["repo"] + "/pulls", data=data)
-        except GitHubError:
-            return render_template("civic_json.html", error=True, project=None, user=None)
-        sleep(3)
+        except GitHubError as e:
+            error = e.response.json()['message']
+            return render_template("civic_json.html", error=error, project=None, user=None)
 
-        return redirect(response["html_url"])
+        return redirect(response["html_url"] + "/pulls")
 
 
 @app.route("/brigade/attendance")
