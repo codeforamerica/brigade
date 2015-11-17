@@ -15,9 +15,7 @@ def split_hyphen(context, string):
 # http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask
 @jinja2.contextfilter
 @blueprint.app_template_filter("timesince")
-def friendly_time(context, dt, past_="ago",
-    future_="from now",
-    default="just now"):
+def friendly_time(context, dt, past_="ago", future_="from now", default="just now"):
     """
     Returns string representing "time since"
     or "time until" e.g.
@@ -56,8 +54,6 @@ def friendly_time(context, dt, past_="ago",
     for period, singular, plural in periods:
 
         if period:
-            return "%d %s %s" % (period, \
-                singular if period == 1 else plural, \
-                past_ if dt_is_past else future_)
+            return "%d %s %s" % (period, singular if period == 1 else plural, past_ if dt_is_past else future_)
 
     return default

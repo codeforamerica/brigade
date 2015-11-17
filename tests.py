@@ -24,8 +24,7 @@ class BrigadeTests(unittest.TestCase):
     def response_content(self, url, request):
         if "list-manage.com/subscribe/post" in url.geturl():
             return response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
-        if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' \
-        or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
+        if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
             return response(200, '''<html>bunch of HTML</html>''')
         if url.geturl() == 'https://www.codeforamerica.org/api/organizations/404':
             return response(404, '{"status": "Resource Not Found"}')
@@ -79,18 +78,18 @@ class BrigadeTests(unittest.TestCase):
             if request.method == 'POST':
                 form = dict(parse_qsl(request.body))
                 username, password = None, None
-                
+
                 if 'Authorization' in request.headers:
                     method, encoded = request.headers['Authorization'].split(' ', 1)
                     if method == 'Basic':
                         username, password = b64decode(encoded).split(':', 1)
-                
+
                 if (username, password) == (os.environ['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'):
                     return response(200, 'Added to the peopledb')
-                
+
                 if form.get('BRIGADE_SIGNUP_SECRET') == os.environ['BRIGADE_SIGNUP_SECRET']:
                     return response(200, 'Added to the peopledb')
-            
+
                 return response(401, 'Go away')
 
         if url.geturl() == 'https://people.codeforamerica.org/checkin':
@@ -120,15 +119,14 @@ class BrigadeTests(unittest.TestCase):
 
         raise ValueError('Bad {} to "{}"'.format(request.method, url.geturl()))
 
-
     def test_signup(self):
         ''' Test that main page signups work '''
         signup = {
-            "FNAME" : "FIRST NAME",
-            "LNAME" : "LAST NAME",
-            "EMAIL" : "EMAIL",
-            "mailchimp_url" : None,
-            "brigade_id" : "FAKE-BRIGADE-ID"
+            "FNAME": "FIRST NAME",
+            "LNAME": "LAST NAME",
+            "EMAIL": "EMAIL",
+            "mailchimp_url": None,
+            "brigade_id": "FAKE-BRIGADE-ID"
         }
 
         # Test that our data is going through
@@ -143,26 +141,22 @@ class BrigadeTests(unittest.TestCase):
             response = json.loads(response.data)
             self.assertEqual(response['msg'], "Added to the peopledb")
 
-
     def test_old_brigade_links(self):
         ''' Test that the old brigade links are being redirected '''
         with HTTMock(self.response_content):
             response = self.app.get("/brigade/index/Code-for-San-Francisco/")
         self.assertTrue(response.status_code == 301)
 
-
     def test_good_links(self):
         ''' Test that normal Brigade links are working '''
         response = self.app.get("/brigade/Code-for-San-Francisco/")
         self.assertTrue(response.status_code == 200)
-
 
     def test_404(self):
         ''' Test for 404 links '''
         with HTTMock(self.response_content):
             response = self.app.get("/brigade/404/")
         self.assertTrue(response.status_code == 404)
-
 
     def test_attendance(self):
         ''' Test attendance endpoints '''
@@ -171,16 +165,15 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertTrue('<p class="h1">100</p>' in response.data)
 
-
     def test_checkin(self):
         ''' Test checkin '''
         checkin = {
-            "name" : "TEST NAME",
-            "email" : "test@testing.com",
-            "event" : "TEST EVENT",
-            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/TEST-ORG",
-            "question" : "TEST QUESTION",
-            "answer" : "TEST ANSWER"
+            "name": "TEST NAME",
+            "email": "test@testing.com",
+            "event": "TEST EVENT",
+            "cfapi_url": "https://www.codeforamerica.org/api/organizations/TEST-ORG",
+            "question": "TEST QUESTION",
+            "answer": "TEST ANSWER"
         }
 
         with HTTMock(self.response_content):
@@ -208,16 +201,15 @@ class BrigadeTests(unittest.TestCase):
         response = self.app.post("/brigade/checkin/", data=checkin)
         self.assertTrue(response.status_code == 422)
 
-
     def test_test_checkin(self):
         ''' Test the test-checkin route '''
         checkin = {
-            "name" : "TEST NAME",
-            "email" : "test@testing.com",
-            "event" : "TEST EVENT",
-            "cfapi_url" : "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
-            "question" : "TEST QUESTION",
-            "answer" : "TEST ANSWER"
+            "name": "TEST NAME",
+            "email": "test@testing.com",
+            "event": "TEST EVENT",
+            "cfapi_url": "https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco",
+            "question": "TEST QUESTION",
+            "answer": "TEST ANSWER"
         }
 
         response = self.app.post("/brigade/test-checkin/", data=checkin)
@@ -243,20 +235,17 @@ class BrigadeTests(unittest.TestCase):
         response = self.app.post("/brigade/test-checkin/", data=checkin)
         self.assertTrue(response.status_code == 422)
 
-
     def test_existing(self):
         ''' Test that these org ids exist '''
         from app import is_existing_organization
         self.assertTrue(is_existing_organization("Code-for-America"))
         self.assertFalse(is_existing_organization("TEST-TEST"))
 
-
     def test_projects_page(self):
         ''' Test that the project page loads and looks like what we want '''
         with HTTMock(self.response_content):
             response = self.app.get("/brigade/projects")
             self.assertTrue('<p>Status: <a href="?=Alpha" class="Alpha button-s">Alpha</a></p>' in response.data)
-
 
     def test_project_monitor(self):
         ''' Test the project monitor page works as expected '''
@@ -272,7 +261,7 @@ class BrigadeTests(unittest.TestCase):
             self.assertTrue('<a href="https://github.com/testesttest/test" class="icon-github2">' in response.data)
 
             # Test PR
-            data = {"status" : "TEST", "tags" : "TEST,TEST2, TEST3"}
+            data = {"status": "TEST", "tags": "TEST,TEST2, TEST3"}
             response = self.app.post("/brigade/projects/1/add-civic-json", data=data)
             pass
 
