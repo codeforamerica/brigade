@@ -2,7 +2,6 @@ import json
 import os
 import re
 import base64
-from time import sleep
 from requests import get, post
 from operator import itemgetter
 from urlparse import urlparse
@@ -10,7 +9,7 @@ from urlparse import urlparse
 from datetime import datetime
 from base64 import b64encode
 
-from flask import Flask, render_template, request, redirect, url_for, make_response, flash, session
+from flask import Flask, render_template, request, redirect, make_response, flash, session
 
 from flask.ext.github import GitHub, GitHubError
 import filters
@@ -93,13 +92,13 @@ def brigade_list():
     brigades = get_brigades()
     brigades = json.loads(brigades)
     brigades.sort(key=lambda x: x['properties']['city'])
-    return render_template("brigade_list.html", brigades=brigades )
+    return render_template("brigade_list.html", brigades=brigades)
 
 
 @app.route('/brigade/')
 def index():
     brigades = get_brigades()
-    return render_template("index.html", brigades=brigades )
+    return render_template("index.html", brigades=brigades)
 
 
 @app.route("/brigade/signup/", methods=["POST"])
@@ -129,12 +128,12 @@ def signup():
 
     # Always POST to PeopleDB
     peopledb_data = {
-        'first_name' : request.form.get("FNAME"),
-        'last_name' : request.form.get("LNAME"),
-        'email' : request.form.get("EMAIL"),
-        'brigade_id' : request.form.get("brigade_id", None)
-        }
-    
+        'first_name': request.form.get("FNAME"),
+        'last_name': request.form.get("LNAME"),
+        'email': request.form.get("EMAIL"),
+        'brigade_id': request.form.get("brigade_id", None)
+    }
+
     auth = app.config['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'
     url = 'https://people.codeforamerica.org/brigade/signup'
 
@@ -149,15 +148,15 @@ def signup():
 
     if peopledb_response:
         response = {
-            "status_code" : peopledb_response.status_code,
-            "msg" : peopledb_response.content
+            "status_code": peopledb_response.status_code,
+            "msg": peopledb_response.content
         }
         return json.dumps(response)
 
     else:
         response = {
-            "status_code" : 500,
-            "msg" : "Something went wrong. You were not added to any lists."
+            "status_code": 500,
+            "msg": "Something went wrong. You were not added to any lists."
         }
         return response
 
@@ -219,25 +218,21 @@ def numbers():
     # Get total number of projects
     got = get("https://www.codeforamerica.org/api/projects?only_ids&per_page=1")
     got = got.json()
-    projects = got['objects']
     projects_total = got['total']
 
     # Get total number of Brigade projects
     got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Brigade&per_page=1")
     got = got.json()
-    projects = got['objects']
     brigade_projects_total = got['total']
 
     # Get total number of Code for All projects
     got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Code for All&per_page=1")
     got = got.json()
-    projects = got['objects']
     cfall_projects_total = got['total']
 
     # Get total number of Government projects
     got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Government&per_page=1")
     got = got.json()
-    projects = got['objects']
     gov_projects_total = got['total']
 
     # Get number of Issues
@@ -255,7 +250,6 @@ def numbers():
     got = got.json()
     total_issue_clicks = got['total_clicks']
 
-
     kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total,
                   cfall_total=cfall_total, government_total=government_total,
                   member_count=member_count, rsvps=rsvps, attendance=attendance,
@@ -263,7 +257,7 @@ def numbers():
                   cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total,
                   issues_total=issues_total, help_wanted_total=help_wanted_total, total_issue_clicks=total_issue_clicks)
 
-    return render_template("numbers.html", **kwargs )
+    return render_template("numbers.html", **kwargs)
 
 
 @app.route("/brigade/about/")
@@ -295,12 +289,11 @@ def organize():
     return render_template("organize.html", brigades=brigades, signup=signup)
 
 
-
 @app.route("/brigade/tools/")
 @app.route("/brigade/tools/<page>/")
 def tools(page=None):
     if page:
-        return render_template("tools/"+page+".html")
+        return render_template("tools/" + page + ".html")
     else:
         return render_template("tools/index.html")
 
@@ -321,8 +314,7 @@ def stages():
     beta_count = got.json()["total"]
     got = get("https://www.codeforamerica.org/api/projects?status=official")
     official_count = got.json()["total"]
-    return render_template("stages.html", experiment_count=experiment_count,
-        alpha_count=alpha_count, beta_count=beta_count, official_count=official_count)
+    return render_template("stages.html", experiment_count=experiment_count, alpha_count=alpha_count, beta_count=beta_count, official_count=official_count)
 
 
 @app.route("/brigade/projects")
@@ -342,17 +334,17 @@ def projects(brigadeid=None):
 
     if page:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects?page=" + str(int(page) + 1)
+            next = "/brigade/" + brigadeid + "/projects?page=" + str(int(page) + 1)
         else:
             next = "/brigade/projects?page=" + str(int(page) + 1)
     else:
         if brigadeid:
-            next = "/brigade/"+brigadeid+"/projects?page=2"
+            next = "/brigade/" + brigadeid + "/projects?page=2"
         else:
             next = "/brigade/projects?page=2"
 
     if brigadeid:
-        url = "https://www.codeforamerica.org/api/organizations/"+ brigadeid +"/projects"
+        url = "https://www.codeforamerica.org/api/organizations/" + brigadeid + "/projects"
         if search or sort_by or page:
             url += "?"
         if search:
@@ -361,12 +353,12 @@ def projects(brigadeid=None):
             url += "&sort_by" + sort_by
         if page:
             url += "&page=" + page
-        got = get(url)
+
         projects = get_projects(projects, url)
         if projects:
             brigade = projects[0]["organization"]
         else:
-            brigade = { "name" : brigadeid.replace("-"," ")}
+            brigade = {"name": brigadeid.replace("-", " ")}
 
     else:
         url = "https://www.codeforamerica.org/api/projects"
@@ -378,7 +370,7 @@ def projects(brigadeid=None):
             url += "&sort_by" + sort_by
         if page:
             url += "&page=" + page
-        got = get(url)
+
         projects = get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
@@ -399,7 +391,7 @@ def github_login():
     return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
 
-@app.route("/brigade/<brigadeid>/projects/<project_name>/add-civic-json", methods=["GET","POST"])
+@app.route("/brigade/<brigadeid>/projects/<project_name>/add-civic-json", methods=["GET", "POST"])
 def civic_json(brigadeid, project_name):
     ''' Send a pull request to a project to add a civic.json file '''
     # Get the relevant project
@@ -438,7 +430,7 @@ def civic_json(brigadeid, project_name):
         print "Making a fork at: " + "repos" + project["repo"] + "/forks"
         try:
             response = github.post("repos" + project["repo"] + "/forks", data=None)
-        except GitHubError:
+        except GitHubError as e:
             error = e.response.json()['message']
             return render_template("civic_json.html", error=error, project=None, user=None)
 
@@ -456,8 +448,8 @@ def civic_json(brigadeid, project_name):
 
         # Commit the civic.json file to our new fork
         data = {
-          "message": "add civic.json file",
-          "content": base64.b64encode(civic_json)
+            "message": "add civic.json file",
+            "content": base64.b64encode(civic_json)
         }
         if sha:
             data["sha"] = sha
@@ -469,7 +461,7 @@ def civic_json(brigadeid, project_name):
             error = e.response.json()['message']
             return render_template("civic_json.html", error=error, project=None, user=None)
 
-        #Check if Pull Request already exists
+        # Check if Pull Request already exists
         try:
             response = github.get("repos" + project["repo"] + "/pulls")
         except GitHubError as e:
@@ -482,10 +474,10 @@ def civic_json(brigadeid, project_name):
 
         # Send a pull request
         data = {
-          "title" : "Adds a civic.json file",
-          "body" :'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
-          "head" : owner_login+":"+default_branch,
-          "base" : default_branch
+            "title": "Adds a civic.json file",
+            "body": '''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
+            "head": owner_login + ":" + default_branch,
+            "base": default_branch
         }
         print "Creating a pull request for the new civic.json file"
         try:
@@ -570,7 +562,7 @@ def rsvps(brigadeid=None):
 @app.route('/brigade/index/<brigadeid>/')
 def redirect_brigade(brigadeid):
     ''' Redirect old Brigade links to new Brigade links'''
-    return redirect("/brigade/"+brigadeid, code=301)
+    return redirect("/brigade/" + brigadeid, code=301)
 
 @app.route('/brigade/<brigadeid>/')
 def brigade(brigadeid):
@@ -607,7 +599,7 @@ def get_checkin(brigadeid=None):
                 brigades.append({
                     "name": org['properties']['name'],
                     "id": org['id']
-                    })
+                })
 
         # Alphabetize names
         brigades.sort(key=lambda x: x.values()[0])
@@ -616,8 +608,7 @@ def get_checkin(brigadeid=None):
     event = request.args.get("event", None)
     question = request.args.get("question", None)
 
-    return render_template("checkin.html", brigadeid=brigadeid,
-        event=event, brigades=brigades, question=question)
+    return render_template("checkin.html", brigadeid=brigadeid, event=event, brigades=brigades, question=question)
 
 
 @app.route("/brigade/checkin/", methods=["POST"])
@@ -635,7 +626,7 @@ def post_checkin(brigadeid=None):
 
     brigadeid = request.form.get('cfapi_url').split("/")[-1]
     if not is_existing_organization(brigadeid):
-        return make_response(brigadeid + "is not an existing brigade." , 422)
+        return make_response(brigadeid + "is not an existing brigade.", 422)
 
     # MAILCHIMP SIGNUP
     if request.form.get("mailinglist", None):
@@ -652,13 +643,13 @@ def post_checkin(brigadeid=None):
                 first_name, last_name = None, None
 
             mailchimp_data = {
-                'FNAME' : first_name,
-                'LNAME' : last_name,
-                'EMAIL' : request.form.get("email"),
-                'REFERRAL' : request.url,
-                'group[10273][8192]' : '8192', # I attend Brigade events
-                'group[10245][32]' : '32' # Brigade newsletter
-                }
+                'FNAME': first_name,
+                'LNAME': last_name,
+                'EMAIL': request.form.get("email"),
+                'REFERRAL': request.url,
+                'group[10273][8192]': '8192', # I attend Brigade events
+                'group[10245][32]': '32' # Brigade newsletter
+            }
 
             cfa_mailchimp_url = "http://codeforamerica.us2.list-manage.com/subscribe/post-json?u=d9acf2a4c694efbd76a48936f&amp;id=3ac3aef1a5"
             cfa_mailchimp_response = post(cfa_mailchimp_url, data=mailchimp_data)
@@ -679,7 +670,7 @@ def post_checkin(brigadeid=None):
         "event": request.form.get("event", None),
         "date": request.form.get("date", datetime.now()),
         "org_cfapi_url": request.form.get('cfapi_url'),
-        "extras" : extras
+        "extras": extras
     }
 
     auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
@@ -692,23 +683,23 @@ def post_checkin(brigadeid=None):
         # Remembering event name and brigadeid for later
         event = request.form.get("event", None)
         question = request.form.get("question", None)
-        brigadeid = request.form.get("cfapi_url").replace("https://www.codeforamerica.org/api/organizations/","")
+        brigadeid = request.form.get("cfapi_url").replace("https://www.codeforamerica.org/api/organizations/", "")
         flash("Thanks for volunteering")
 
         if brigadeid:
-            url = "brigade/"+ brigadeid +"/checkin/"
+            url = "brigade/" + brigadeid + "/checkin/"
         else:
             url = "brigade/checkin/"
 
         if event or question:
             url += "?"
             if event:
-                event = event.replace(" ","+")
+                event = event.replace(" ", "+")
                 url += "event=" + event
             if event and question:
                 url += "&"
             if question:
-                question = question.replace(" ","+")
+                question = question.replace(" ", "+")
                 url += "question=" + question
 
         return redirect(url)
@@ -729,20 +720,19 @@ def post_test_checkin(brigadeid=None):
         "event": request.form.get("event", None),
         "date": request.form.get("date", str(datetime.now())),
         "cfapi_url": request.form.get('cfapi_url'),
-        "question" : request.form.get("question", None),
-        "answer" : request.form.get("answer", None)
+        "question": request.form.get("question", None),
+        "answer": request.form.get("answer", None)
     }
 
     if not test_checkin_data["cfapi_url"]:
         return make_response("Missing required cfapi_url", 422)
 
     elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", test_checkin_data["cfapi_url"]):
-        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422) 
-
+        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
 
     brigadeid = test_checkin_data["cfapi_url"].split("/")[-1]
     if not is_existing_organization(brigadeid):
-        return make_response(brigadeid + "is not an existing brigade." , 422)
+        return make_response(brigadeid + "is not an existing brigade.", 422)
 
     else:
         return make_response(json.dumps(test_checkin_data), 200)
@@ -752,20 +742,20 @@ def post_test_checkin(brigadeid=None):
 @app.route('/brigade/<brigadeid>/projects/monitor')
 def project_monitor(brigadeid=None):
     ''' Check for Brigade projects on Travis'''
-    limit = int(request.args.get('limit',50))
+    limit = int(request.args.get('limit', 50))
     travis_projects = []
     projects = []
     if not brigadeid:
         projects = get_projects(projects, "https://www.codeforamerica.org/api/projects", limit)
     else:
-        projects = get_projects(projects, "https://www.codeforamerica.org/api/organizations/"+brigadeid+"/projects", limit)
+        projects = get_projects(projects, "https://www.codeforamerica.org/api/organizations/" + brigadeid + "/projects", limit)
 
     # Loop through projects and get
     for project in projects:
         if project["code_url"]:
             url = urlparse(project["code_url"])
             if url.netloc == "github.com":
-                travis_url = "https://api.travis-ci.org/repositories"+url.path+"/builds"
+                travis_url = "https://api.travis-ci.org/repositories" + url.path + "/builds"
                 project["travis_url"] = travis_url
                 travis_projects.append(project)
 
@@ -773,4 +763,4 @@ def project_monitor(brigadeid=None):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',debug=True, port=4000)
+    app.run(host='0.0.0.0', debug=True, port=4000)
