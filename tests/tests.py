@@ -3,23 +3,26 @@ from base64 import b64decode
 import unittest
 import json
 import os
-
 import flask
 from httmock import response, HTTMock
-
-os.environ['BRIGADE_SIGNUP_SECRET'] = 'muy bueno'
-
-from app import app
+from brigade import create_app
+from brigade.views import is_existing_organization
 
 class BrigadeTests(unittest.TestCase):
 
     def setUp(self):
+        os.environ['BRIGADE_SIGNUP_SECRET'] = 'muy bueno'
         os.environ["GITHUB_CLIENT_ID"] = "WHAT"
         os.environ["GITHUB_CLIENT_SECRET"] = "EVER"
-        self.app = app.test_client()
+
+        self.app = create_app(os.environ)
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+
+        self.client = self.app.test_client()
 
     def tearDown(self):
-        pass
+        self.app_context.pop()
 
     def response_content(self, url, request):
         if "list-manage.com/subscribe/post" in url.geturl():
@@ -106,7 +109,7 @@ class BrigadeTests(unittest.TestCase):
                     return response(200, 'Added checkin')
 
                 return response(401, 'Go away')
-            
+
             raise NotImplementedError()
 
         if 'repos/testesttest/test/forks' in url.geturl():
@@ -130,38 +133,38 @@ class BrigadeTests(unittest.TestCase):
         }
 
         # Test that our data is going through
-        with app.test_request_context("/brigade/signup/", method="POST", data=signup):
+        with self.app.test_request_context("/brigade/signup/", method="POST", data=signup):
             self.assertEqual(flask.request.form.get("FNAME"), "FIRST NAME")
             self.assertEqual(flask.request.form.get("LNAME"), "LAST NAME")
             self.assertEqual(flask.request.form.get("EMAIL"), "EMAIL")
 
         # Test that our responses are being packaged up the way we expect
         with HTTMock(self.response_content):
-            response = self.app.post('/brigade/signup/', data=signup)
+            response = self.client.post('/brigade/signup/', data=signup)
             response = json.loads(response.data)
             self.assertEqual(response['msg'], "Added to the peopledb")
 
     def test_old_brigade_links(self):
         ''' Test that the old brigade links are being redirected '''
         with HTTMock(self.response_content):
-            response = self.app.get("/brigade/index/Code-for-San-Francisco/")
-        self.assertTrue(response.status_code == 301)
+            response = self.client.get("/brigade/index/Code-for-San-Francisco/")
+            self.assertEqual(301, response.status_code)
 
     def test_good_links(self):
         ''' Test that normal Brigade links are working '''
-        response = self.app.get("/brigade/Code-for-San-Francisco/")
-        self.assertTrue(response.status_code == 200)
+        response = self.client.get("/brigade/Code-for-San-Francisco/")
+        self.assertEqual(200, response.status_code)
 
     def test_404(self):
         ''' Test for 404 links '''
         with HTTMock(self.response_content):
-            response = self.app.get("/brigade/404/")
-        self.assertTrue(response.status_code == 404)
+            response = self.client.get("/brigade/404/")
+            self.assertEqual(404, response.status_code)
 
     def test_attendance(self):
         ''' Test attendance endpoints '''
         with HTTMock(self.response_content):
-            response = self.app.get("/brigade/attendance")
+            response = self.client.get("/brigade/attendance")
             self.assertEqual(response.status_code, 200)
             self.assertTrue('<p class="h1">100</p>' in response.data)
 
@@ -177,29 +180,29 @@ class BrigadeTests(unittest.TestCase):
         }
 
         with HTTMock(self.response_content):
-            response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
-            self.assertTrue(response.status_code == 200)
+            response = self.client.post("/brigade/checkin/", data=checkin, follow_redirects=True)
+            self.assertEqual(200, response.status_code)
 
         checkin["question"] = None
         checkin["answer"] = None
         with HTTMock(self.response_content):
-            response = self.app.post("/brigade/checkin/", data=checkin, follow_redirects=True)
-            self.assertTrue(response.status_code == 200)
+            response = self.client.post("/brigade/checkin/", data=checkin, follow_redirects=True)
+            self.assertEqual(200, response.status_code)
 
         # test nonexistant Brigade
         checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/BLAH-BLAH"
-        response = self.app.post("/brigade/checkin/", data=checkin)
-        self.assertTrue(response.status_code == 422)
+        response = self.client.post("/brigade/checkin/", data=checkin)
+        self.assertEqual(422, response.status_code)
 
         # test http
         checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/Code-for-San-Francisco"
-        response = self.app.post("/brigade/checkin/", data=checkin)
-        self.assertTrue(response.status_code == 422)
+        response = self.client.post("/brigade/checkin/", data=checkin)
+        self.assertEqual(422, response.status_code)
 
         # test missing cfapi_url
         checkin["cfapi_url"] = None
-        response = self.app.post("/brigade/checkin/", data=checkin)
-        self.assertTrue(response.status_code == 422)
+        response = self.client.post("/brigade/checkin/", data=checkin)
+        self.assertEqual(422, response.status_code)
 
     def test_test_checkin(self):
         ''' Test the test-checkin route '''
@@ -212,57 +215,56 @@ class BrigadeTests(unittest.TestCase):
             "answer": "TEST ANSWER"
         }
 
-        response = self.app.post("/brigade/test-checkin/", data=checkin)
-        self.assertTrue(response.status_code == 200)
+        response = self.client.post("/brigade/test-checkin/", data=checkin)
+        self.assertEqual(200, response.status_code)
 
         # test nonexistant Brigade
         checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/BLAH-BLAH"
-        response = self.app.post("/brigade/test-checkin/", data=checkin)
-        self.assertTrue(response.status_code == 422)
+        response = self.client.post("/brigade/test-checkin/", data=checkin)
+        self.assertEqual(422, response.status_code)
 
         # test http
         checkin["cfapi_url"] = "http://www.codeforamerica.org/api/organizations/Code-for-San-Francisco"
-        response = self.app.post("/brigade/test-checkin/", data=checkin)
-        self.assertTrue(response.status_code == 422)
+        response = self.client.post("/brigade/test-checkin/", data=checkin)
+        self.assertEqual(422, response.status_code)
 
         # test bad url
         checkin["cfapi_url"] = "https://codeforamerica.org/api/organizations/Code-for-San-Francisco"
-        response = self.app.post("/brigade/test-checkin/", data=checkin)
-        self.assertTrue(response.status_code == 422)
+        response = self.client.post("/brigade/test-checkin/", data=checkin)
+        self.assertEqual(422, response.status_code)
 
         # test missing cfapi_url
         checkin["cfapi_url"] = None
-        response = self.app.post("/brigade/test-checkin/", data=checkin)
-        self.assertTrue(response.status_code == 422)
+        response = self.client.post("/brigade/test-checkin/", data=checkin)
+        self.assertEqual(422, response.status_code)
 
     def test_existing(self):
         ''' Test that these org ids exist '''
-        from app import is_existing_organization
         self.assertTrue(is_existing_organization("Code-for-America"))
         self.assertFalse(is_existing_organization("TEST-TEST"))
 
     def test_projects_page(self):
         ''' Test that the prkject page loads and looks like what we want '''
         with HTTMock(self.response_content):
-            response = self.app.get("/brigade/projects")
+            response = self.client.get("/brigade/projects")
             self.assertTrue('<p>Status: <a href="?=Alpha" class="Alpha button-s">Alpha</a></p>' in response.data)
 
     def test_project_monitor(self):
         ''' Test the project monitor page works as expected '''
         with HTTMock(self.response_content):
-            response = self.app.get("/brigade/projects/monitor")
+            response = self.client.get("/brigade/projects/monitor")
             self.assertTrue('"travis_url": "https://api.travis-ci.org/repositories/jmcelroy5/sf-in-progress/builds"' in response.data)
 
     def test_civic_json_machine(self):
         ''' Test that adding a civic json file works '''
         with HTTMock(self.response_content):
             # Test get
-            response = self.app.get("/brigade/projects/1/add-civic-json")
+            response = self.client.get("/brigade/projects/1/add-civic-json")
             self.assertTrue('<a href="https://github.com/testesttest/test" class="icon-github2">' in response.data)
 
             # Test PR
             data = {"status": "TEST", "tags": "TEST,TEST2, TEST3"}
-            response = self.app.post("/brigade/projects/1/add-civic-json", data=data)
+            response = self.client.post("/brigade/projects/1/add-civic-json", data=data)
             pass
 
 
