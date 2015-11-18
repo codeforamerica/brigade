@@ -31,20 +31,31 @@ Read more at [Attendance-README.md](Attendance-README.md)
 
 ## Installation
 
-The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) and Python with a little bit of Javascript. The `app.py` file describes the routes. The `templates` have the html.
+The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) and Python with a little bit of Javascript. The `brigade/views.py` file describes the routes. The `brigade/templates` files have the HTML templates.
 
-1. Set up a [Python virtual environment](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md).
-2. Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
+Set up a [Python virtual environment](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md).
 
-To run locally, ensure that the environment variable `BRIGADE_SIGNUP_SECRET`
-is present:
+Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
 
-    python app.py
+To run locally, copy `env.sample` to `.env` and edit it to ensure that the environment variable `BRIGADE_SIGNUP_SECRET` is present. Then run the server in debug mode:
+
+    python manage.py runserver
+
+The server will be available at `http://0.0.0.0:4000/brigade/`.
+
+or run it using [Honcho and the `Procfile`](https://github.com/codeforamerica/howto/blob/master/Procfile.md):
+
+    honcho start
+
+You can also run unit tests like this:
+
+    python manage.py runtests
 
 Contacts
 --------
 
 * Andrew Hyder ([ondrae](https://github.com/ondrae))
+* Tomas Apodaca ([tmaybe](https://github.com/tmaybe))
 
 Copyright
 ---------
