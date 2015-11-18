@@ -1,32 +1,15 @@
-import json
-import os
-import re
-import base64
-from requests import get, post
-from operator import itemgetter
-from urlparse import urlparse
-
+# -- coding: utf-8 --
+from flask import current_app, render_template, request, redirect, make_response, flash, session
+from . import brigade as app
+from . import github
 from datetime import datetime
-from base64 import b64encode
-
-from flask import Flask, render_template, request, redirect, make_response, flash, session
-
-from flask.ext.github import GitHub, GitHubError
-import filters
-
-app = Flask(__name__, static_url_path="/brigade/static")
-app.register_blueprint(filters.blueprint)
-
-app.config['BRIGADE_SIGNUP_SECRET'] = os.environ['BRIGADE_SIGNUP_SECRET']
-app.secret_key = 'SECRET KEY'
-
-# Set these values
-app.config["GITHUB_CLIENT_ID"] = os.environ["GITHUB_CLIENT_ID"]
-app.config["GITHUB_CLIENT_SECRET"] = os.environ["GITHUB_CLIENT_SECRET"]
-
-# setup github-flask
-github = GitHub(app)
-
+from flask.ext.github import GitHubError
+from operator import itemgetter
+from requests import get, post
+from urlparse import urlparse
+import base64
+import json
+import re
 
 @app.context_processor
 def get_fragments():
@@ -85,8 +68,10 @@ def get_projects(projects, url, limit=10):
         projects = get_projects(projects, got.json()["pages"]["next"], limit)
     return projects
 
-
+#
 # ROUTES
+#
+
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
     brigades = get_brigades()
@@ -134,7 +119,7 @@ def signup():
         'brigade_id': request.form.get("brigade_id", None)
     }
 
-    auth = app.config['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'
+    auth = current_app.config['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'
     url = 'https://people.codeforamerica.org/brigade/signup'
 
     peopledb_response = post(url, data=peopledb_data, auth=auth)
@@ -597,7 +582,6 @@ def get_checkin(brigadeid=None):
 @app.route("/brigade/<brigadeid>/checkin/", methods=["POST"])
 def post_checkin(brigadeid=None):
     ''' Prep the checkin for posting to the peopledb '''
-
     # VALIDATE
     cfapi_url = request.form.get('cfapi_url')
     if not cfapi_url:
@@ -655,8 +639,8 @@ def post_checkin(brigadeid=None):
         "extras": extras
     }
 
-    auth = app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
-    headers = {'Authorization': 'Basic ' + b64encode(auth)}
+    auth = current_app.config["BRIGADE_SIGNUP_SECRET"] + ':x-brigade-signup'
+    headers = {'Authorization': 'Basic ' + base64.b64encode(auth)}
     peopleapp = "https://people.codeforamerica.org/checkin"
 
     r = post(peopleapp, data=peopledb_post, headers=headers)
@@ -742,7 +726,3 @@ def project_monitor(brigadeid=None):
                 travis_projects.append(project)
 
     return render_template('projectmonitor.html', projects=travis_projects, org_name=brigadeid)
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=4000)
