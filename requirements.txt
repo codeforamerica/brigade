@@ -3,3 +3,4 @@ gunicorn
 requests
 httmock
 GitHub-Flask
+Flask-Script
