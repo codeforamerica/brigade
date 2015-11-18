@@ -1,26 +1,24 @@
-from datetime import datetime
-import jinja2
 import flask
+import jinja2
+from datetime import datetime
 
-blueprint = flask.Blueprint('filters', __name__)
+filters = flask.Blueprint('filters', __name__)
 
 @jinja2.contextfilter
-@blueprint.app_template_filter("split_hyphen")
+@filters.app_template_filter("split_hyphen")
 def split_hyphen(context, string):
+    ''' Replaces hyphens in the passed string with spaces
+    '''
     return string.replace("-", " ")
 
 
-# http://flask.pocoo.org/snippets/33/
-# and
-# http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask
+# see: http://flask.pocoo.org/snippets/33/
+# and: http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask
 @jinja2.contextfilter
-@blueprint.app_template_filter("timesince")
+@filters.app_template_filter("timesince")
 def friendly_time(context, dt, past_="ago", future_="from now", default="just now"):
-    """
-    Returns string representing "time since"
-    or "time until" e.g.
-    3 days ago, 5 hours from now etc.
-    """
+    ''' Returns string representing "time since" or "time until" e.g. 3 days ago, 5 hours from now etc.
+    '''
 
     now = datetime.utcnow()
     try:
