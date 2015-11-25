@@ -16,21 +16,26 @@ def split_hyphen(context, string):
 # and: http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask
 @jinja2.contextfilter
 @filters.app_template_filter("timesince")
-def friendly_time(context, dt, past_="ago", future_="from now", default="just now"):
+def friendly_time(context, dt, past_="ago", future_="from now", default="Just now"):
     ''' Returns string representing "time since" or "time until" e.g. 3 days ago, 5 hours from now etc.
     '''
 
     now = datetime.utcnow()
     try:
+        # 2015-02-26 03:45:21
         trimmed_time = dt[:19]
         dt = datetime.strptime(trimmed_time, "%Y-%m-%d %H:%M:%S")
     except:
         pass
+
     try:
         # Thu, 26 Feb 2015 03:45:21 GMT
         dt = datetime.strptime(dt, "%a, %d %b %Y %H:%M:%S %Z")
     except:
         pass
+
+    if type(dt) != datetime:
+        return default
 
     if now > dt:
         diff = now - dt
