@@ -420,9 +420,9 @@ def civic_json(brigadeid, project_name):
 
 
     # Fork the repo. Succeeds even if fork already exists.
-    print "Making a fork at: " + "repos" + project["repo"] + "/forks"
+    print "Making a fork at: repos{}/forks".format(project["repo"])
     try:
-        response = github.post("repos" + project["repo"] + "/forks", data=None)
+        response = github.post("repos{}/forks".format(project["repo"]), data=None)
     except GitHubError as e:
         error = e.response.json()['message']
         return render_template("civic_json.html", error=error, project=None, user=None)
@@ -434,7 +434,7 @@ def civic_json(brigadeid, project_name):
 
     # Check if a civic.json already exists
     try:
-        response = github.get("repos/" + forked_repo + "/contents/civic.json")
+        response = github.get("repos/{}/contents/civic.json".format(forked_repo))
         sha = response["sha"]
     except GitHubError as e:
         sha = None
@@ -447,39 +447,39 @@ def civic_json(brigadeid, project_name):
     if sha:
         data["sha"] = sha
 
-    print "Adding a civic.json file at: " + "repos/" + forked_repo + "/contents/" + project_name + "/civic.json"
+    print "Adding a civic.json file at: repos/{}/contents/civic.json".format(forked_repo)
     try:
-        response = github.request("PUT", "repos/" + forked_repo + "/contents/civic.json", data=json.dumps(data))
+        response = github.request("PUT", "repos/{}/contents/civic.json".format(forked_repo), data=json.dumps(data))
     except GitHubError as e:
         error = e.response.json()['message']
         return render_template("civic_json.html", error=error, project=None, user=None)
 
     # Check if Pull Request already exists
     try:
-        response = github.get("repos" + project["repo"] + "/pulls")
+        response = github.get("repos{}/pulls".format(project["repo"]))
     except GitHubError as e:
         error = e.response.json()['message']
         return render_template("civic_json.html", error=error, project=None, user=None)
 
     for pr in response:
         if pr["title"] == "Adds a civic.json file":
-            return redirect(project["code_url"] + "/pulls")
+            return redirect("{}/pulls".format(project["code_url"]))
 
     # Send a pull request
     data = {
         "title": "Adds a civic.json file",
         "body": '''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
-        "head": owner_login + ":" + default_branch,
+        "head": "{}:{}".format(owner_login, default_branch),
         "base": default_branch
     }
     print "Creating a pull request for the new civic.json file"
     try:
-        response = github.post("repos" + project["repo"] + "/pulls", data=data)
+        response = github.post("repos{}/pulls".format(project["repo"]), data=data)
     except GitHubError as e:
         error = e.response.json()['message']
         return render_template("civic_json.html", error=error, project=None, user=None)
 
-    return redirect(response["html_url"] + "/pulls")
+    return redirect("{}/pulls".format(response["html_url"]))
 
 
 @app.route("/brigade/attendance")
