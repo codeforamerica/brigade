@@ -41,7 +41,7 @@ To run locally, copy `env.sample` to `.env` and edit it to ensure that the envir
 
     python manage.py runserver
 
-The server will be available at `http://0.0.0.0:4000/brigade/`.
+The server will be available at `http://localhost:4000/brigade/`.
 
 or run it using [Honcho and the `Procfile`](https://github.com/codeforamerica/howto/blob/master/Procfile.md):
 

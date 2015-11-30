@@ -11,7 +11,7 @@ if path.exists('.env'):
 
 app = create_app(environ)
 manager = Manager(app)
-manager.add_command('runserver', Server(host='0.0.0.0', port='4000', use_debugger=True))
+manager.add_command('runserver', Server(host='localhost', port='4000', use_debugger=True))
 
 @manager.command
 def runtests():
