@@ -354,7 +354,8 @@ def token_getter():
 
 @app.route("/brigade/gh-login")
 def github_login():
-    redirect_uri = "http://localhost:4000/brigade/github-callback?redirect_uri=" + request.referrer
+    netloc = urlparse(request.base_url).netloc
+    redirect_uri = "{}/brigade/github-callback?redirect_uri={}".format(netloc, request.referrer)
     return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
 
