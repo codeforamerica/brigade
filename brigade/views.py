@@ -377,6 +377,14 @@ def github_login():
     redirect_uri = "http://{}/brigade/github-callback?redirect_uri={}".format(netloc, request.referrer)
     return github.authorize(scope="public_repo", redirect_uri=redirect_uri)
 
+@app.route("/brigade/gh-logout")
+def github_logout():
+    ''' Destroy the local GitHub access token and redirect
+    '''
+    if session.get("access_token"):
+        session.pop("access_token", None)
+    return redirect(urlparse(request.referrer).path)
+
 @app.route("/brigade/<brigadeid>/projects/<project_name>/add-civic-json", methods=["GET"])
 def show_civic_json_page(brigadeid, project_name):
     ''' Show the 'add civic json' page

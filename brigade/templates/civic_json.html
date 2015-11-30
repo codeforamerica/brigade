@@ -23,7 +23,7 @@
               <p>You'll need to log in to Github. <a class="button icon-github2" href="/brigade/gh-login">Log In to Github</a></p>
 
             {% else %}
-            <p>Hi {{ user.login }} <img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> </p>
+              <p><img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> Hi <strong>{{ user.login }}</strong>!<br/><a class="button-subtle button-s icon-github2" href="/brigade/gh-logout">Log Out of Github</a></p>
               <hr />
 
             {% endif %}
