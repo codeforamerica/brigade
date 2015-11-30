@@ -345,6 +345,10 @@ def projects(brigadeid=None):
 @app.route('/brigade/github-callback')
 @github.authorized_handler
 def authorized(access_token):
+    if 'error' in request.args:
+        error_message = request.args['error_description']
+        return render_template("civic_json.html", error=error_message, project=None, user=None)
+
     session['access_token'] = access_token
     return redirect(request.args.get("redirect_uri"))
 
