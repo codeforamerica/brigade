@@ -8,9 +8,9 @@
       <header class="layout-breve">
 
         {% if brigadeid %}
-          <h1>{{brigadeid}}'s RSVPs</h1>
+          <h1 id="rsvps">{{brigadeid}}'s RSVPs</h1>
         {% else %}
-          <h1>All RSVPs</h1>
+          <h1 id="rsvps">All RSVPs</h1>
         {% endif %}
 
       </header>
@@ -19,7 +19,7 @@
     <div class='layout-breve data'>
 
       <div style="width: 100%;">
-        <h2 id="rsvps">Weekly RSVPs</h2>
+        <h2>Weekly RSVPs</h2>
         <div id="rsvps-graph" style="height: 200px;">
         </div>
       </div>
