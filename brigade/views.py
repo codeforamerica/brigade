@@ -11,6 +11,7 @@ import base64
 import json
 import re
 import logging
+import time
 
 # Logging Setup
 logging.basicConfig(level=logging.INFO)
@@ -466,14 +467,41 @@ def civic_json(brigadeid, project_name):
         response = github.post("repos{}/forks".format(project["repo"]), data=None)
     except GitHubError as e:
         error_message = e.response.json()['message']
+        logging.error(u"GitHub error {} ({}) when making a fork at repos{}/forks.".format(e.response.status_code, error_message, project["repo"]))
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     forked_full_name = response["full_name"]
     forked_owner_login = response["owner"]["login"]
     forked_default_branch = response["default_branch"]
 
+    # don't continue until we verify that the fork exists
+    fork_exists = False
+    times_called = 0
+    times_limit = 10
+    while not fork_exists:
+        try:
+            times_called = times_called + 1
+            # timeout if it's been too long
+            if times_called > times_limit:
+                logging.error(u"Fork at repos/{} doesn't exist after {} seconds.".format(forked_full_name, times_limit))
+                error_message = u"Couldn't fork the repo on GitHub."
+                return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-    # Check if a civic.json already exists
+            response = github.get("repos/{}".format(forked_full_name))
+
+        except GitHubError as e:
+            # error if we got a status_code other than 404
+            if e.response.status_code != 404:
+                error_message = e.response.json()['message']
+                logging.error(u"GitHub error {} ({}) when checking for existence of repos/{}.".format(e.response.status_code, error_message, forked_full_name))
+                return render_template("civic_json.html", error=error_message, project=None, user=None)
+            # wait a second before trying again
+            time.sleep(1)
+
+        else:
+            fork_exists = True
+
+    # Check whether a civic.json already exists
     try:
         response = github.get("repos/{}/contents/civic.json".format(forked_full_name))
         sha = response["sha"]
@@ -492,6 +520,7 @@ def civic_json(brigadeid, project_name):
         response = github.request("PUT", "repos/{}/contents/civic.json".format(forked_full_name), data=json.dumps(data))
     except GitHubError as e:
         error_message = e.response.json()['message']
+        logging.error(u"GitHub error {} ({}) when adding civic.json file at repos/{}/contents/civic.json.".format(e.response.status_code, error_message, forked_full_name))
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     # Send a pull request
@@ -501,10 +530,12 @@ def civic_json(brigadeid, project_name):
         "head": u"{}:{}".format(forked_owner_login, forked_default_branch),
         "base": forked_default_branch
     }
+
     try:
         response = github.post("repos{}/pulls".format(project["repo"]), data=data)
     except GitHubError as e:
         error_message = e.response.json()['message']
+        logging.error(u"GitHub error {} ({}) when sending a pull request to repos{}/pulls.".format(e.response.status_code, error_message, project["repo"]))
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     return redirect("{}/pulls".format(response["html_url"]))
