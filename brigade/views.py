@@ -91,6 +91,16 @@ def get_project_for_civic_json(brigadeid, project_name):
 
     return project
 
+def get_github_user():
+    ''' Get GitHub user information from the GitHub API
+    '''
+    user = None
+    if session.get("access_token"):
+        user = github.get("user")
+
+    return user
+
+
 #
 # ROUTES
 #
@@ -397,11 +407,9 @@ def github_logout():
 def show_civic_json_page(brigadeid, project_name):
     ''' Show the 'add civic json' page
     '''
-    # Get the relevant project
+    # Get information about the relevant project from the cfapi
     project = get_project_for_civic_json(brigadeid, project_name)
-    user = None
-    if session.get("access_token"):
-        user = github.get("user")
+    user = get_github_user()
 
     return render_template("civic_json.html", project=project, user=user)
 
@@ -409,8 +417,9 @@ def show_civic_json_page(brigadeid, project_name):
 def civic_json(brigadeid, project_name):
     ''' Send a pull request to a project to add a civic.json file '''
 
-    # Get the relevant project
+    # Get information about the relevant project from the cfapi
     project = get_project_for_civic_json(brigadeid, project_name)
+    user = get_github_user()
 
     # Create a new civic.json
     status = request.form.get("status", None)
