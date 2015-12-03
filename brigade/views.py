@@ -415,17 +415,30 @@ def show_civic_json_page(brigadeid, project_name):
 
 @app.route("/brigade/<brigadeid>/projects/<project_name>/add-civic-json", methods=["POST"])
 def civic_json(brigadeid, project_name):
-    ''' Send a pull request to a project to add a civic.json file '''
+    ''' Send a pull request to a project to add a civic.json file
+    '''
 
     # Get information about the relevant project from the cfapi
     project = get_project_for_civic_json(brigadeid, project_name)
     user = get_github_user()
 
-    # Create a new civic.json
+    # Get status from the form
     status = request.form.get("status", None)
+    if status:
+        if len(status.strip()) == 0:
+            status = None
+
+    # Get tags from the form
     tags = request.form.get("tags", None)
     if tags:
-        tags = [tag.strip() for tag in tags.split(',')]
+        tags = [tag.strip() for tag in tags.split(',') if len(tag.strip()) != 0]
+        if not len(tags):
+            tags = None
+
+    # Error if there's no info to capture
+    if not status and not tags:
+        error_message = u'Please enter status and/or tags for the project!'
+        return render_template("civic_json.html", error=error_message, project=project, user=user)
 
     civic_json = {}
     if status:
