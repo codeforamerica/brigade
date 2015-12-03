@@ -468,14 +468,14 @@ def civic_json(brigadeid, project_name):
         error_message = e.response.json()['message']
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-    project_name = response["name"]
-    forked_repo = response["full_name"]
-    owner_login = response["owner"]["login"]
-    default_branch = response["default_branch"]
+    forked_full_name = response["full_name"]
+    forked_owner_login = response["owner"]["login"]
+    forked_default_branch = response["default_branch"]
+
 
     # Check if a civic.json already exists
     try:
-        response = github.get("repos/{}/contents/civic.json".format(forked_repo))
+        response = github.get("repos/{}/contents/civic.json".format(forked_full_name))
         sha = response["sha"]
     except GitHubError as e:
         sha = None
@@ -489,7 +489,7 @@ def civic_json(brigadeid, project_name):
         data["sha"] = sha
 
     try:
-        response = github.request("PUT", "repos/{}/contents/civic.json".format(forked_repo), data=json.dumps(data))
+        response = github.request("PUT", "repos/{}/contents/civic.json".format(forked_full_name), data=json.dumps(data))
     except GitHubError as e:
         error_message = e.response.json()['message']
         return render_template("civic_json.html", error=error_message, project=None, user=None)
@@ -498,8 +498,8 @@ def civic_json(brigadeid, project_name):
     data = {
         "title": CIVIC_JSON_PR_TITLE,
         "body": u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
-        "head": u"{}:{}".format(owner_login, default_branch),
-        "base": default_branch
+        "head": u"{}:{}".format(forked_owner_login, forked_default_branch),
+        "base": forked_default_branch
     }
     try:
         response = github.post("repos{}/pulls".format(project["repo"]), data=data)
