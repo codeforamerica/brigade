@@ -10,6 +10,13 @@ from urlparse import urlparse
 import base64
 import json
 import re
+import logging
+
+# Logging Setup
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+requests_logger = logging.getLogger("requests")
+requests_logger.setLevel(logging.WARNING)
 
 @app.context_processor
 def get_fragments():
