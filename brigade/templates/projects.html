@@ -70,6 +70,10 @@
                 {% endif %}
               {% endif %}
 
+              {% if project.github_details %}
+                <p>Open Issues: <a href="{{project.github_details.html_url}}/issues">{{ project.github_details.open_issues}}</a></p>
+              {% endif %}
+
               {% if project.languages %}
               <ul id="languages" class="list-inline list-no-bullets">
                 Written in:
