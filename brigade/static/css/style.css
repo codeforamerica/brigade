@@ -174,8 +174,28 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   border: 0px;
 }
 
-.project {
-  padding: 15px;
+#project-search {
+  margin-left: 5px;
+}
+
+.card {
+  height: auto !important;
+  padding: 0px !important;
+  margin: 25px 5px !important; 
+}
+
+.card-head {
+  /*width: 100%;*/
+  background-color: #4298bb;
+  padding: 10px;
+}
+
+.card-head h3{
+  color: white;
+}
+
+.card-body {
+  padding: 10px;
 }
 
 #more-projects {
