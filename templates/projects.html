@@ -29,61 +29,76 @@
           </p>
         </form>
 
+        <div id="projects">
         {% for project in projects %}
-          <div>
-            <h3 style="display:inline;">{{project.name}}</h3>
-            {% if project.tags and "featured" in project.tags %}
-              <a href="?=featured" class="featured button-s icon-star">Featured</a>
-            {% endif %}
-            {% if project.link_url %}
-              <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
-            {% endif %}
-
-            {% if project.code_url %}
-              <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
-            {% endif %}
-
-            {% if project.description %}
-              <p>{{project.description}}</p>
-            {% endif %}
-
-            {% if project.status %}
-              <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
-            {% endif %}
-
-            {% if not brigade %}
-              <p>Used By: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
-            {% endif %}
-
-            {% if project.github_details %}
-              {% if project.github_details.contributors %}
-              <p>Built by: </p>
-                {% for contributor in project.github_details.contributors %}
-                  <a href="{{ contributor.html_url }}">
-                    <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-                  </a>
-                {% endfor %}
+          <div class="project card" z-default='1' z-hover='3'>
+            <div class="card-head">
+              <h3 style="display:inline;">{{project.name}}</h3>
+              {% if project.tags and "featured" in project.tags %}
+                <a href="?=featured" class="featured button-s icon-star">Featured</a>
               {% endif %}
-            {% endif %}
+            </div>
+            <div class="card-body">
+              {% if project.link_url %}
+                <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
+              {% endif %}
 
-            {% if project.languages %}
-            <ul class="list-inline list-no-bullets">
-              Written in:
-              {% for lang in project.languages %}
-                <li><a href="projects?q={{ lang }}">{{ lang }}</a></li>
-              {% endfor %}
-            </ul>
-            {% endif %}
+              {% if project.code_url %}
+                <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
+              {% endif %}
 
-            {% if project.last_updated %}
-              <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
-            {% endif %}
+              {% if project.description %}
+                <p>{{project.description}}</p>
+              {% endif %}
 
-            <hr />
+              {% if project.status %}
+                <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
+              {% endif %}
+
+              {% if not brigade %}
+                <p>Used By: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+              {% endif %}
+
+              {% if project.github_details %}
+                {% if project.github_details.contributors %}
+                <p>Built by: </p>
+                  {% for contributor in project.github_details.contributors %}
+                    <a href="{{ contributor.html_url }}">
+                      <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
+                    </a>
+                  {% endfor %}
+                {% endif %}
+              {% endif %}
+
+              {% if project.languages %}
+              <ul id="languages" class="list-inline list-no-bullets">
+                Written in:
+                {% for lang in project.languages %}
+                  <li><a href="projects?q={{ lang }}">{{ lang }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+
+              {% if project.tags %}
+              <ul id="tags" class="list-inline list-no-bullets">
+                Tags:
+                {% for tag in project.tags %}
+                  <li><a href="projects?q={{ tag }}">{{ tag }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+
+              {% if project.last_updated %}
+                <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+              {% endif %}
+
+              </div>
 
           </div>
 
         {% endfor %}
+
+        </div>
 
         {% if not projects %}
           <h2>Nothing here yet ... </h2>
@@ -119,5 +134,7 @@
 {% endblock %}
 
 {% block js %}
+
+  <script src="{{ url_for('static', filename='js/card-depth.js') }}"></script>
 
 {% endblock %}
