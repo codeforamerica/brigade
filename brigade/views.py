@@ -454,8 +454,8 @@ def civic_json(brigadeid, project_name):
     try:
         response = github.get("repos{}/pulls".format(project["repo"]))
     except GitHubError as e:
-        error = e.response.json()['message']
-        return render_template("civic_json.html", error=error, project=project, user=user)
+        error_message = e.response.json()['message']
+        return render_template("civic_json.html", error=error_message, project=project, user=user)
 
     for pr in response:
         if pr["title"] == CIVIC_JSON_PR_TITLE and pr["user"]["login"] == user["login"]:
@@ -465,8 +465,8 @@ def civic_json(brigadeid, project_name):
     try:
         response = github.post("repos{}/forks".format(project["repo"]), data=None)
     except GitHubError as e:
-        error = e.response.json()['message']
-        return render_template("civic_json.html", error=error, project=None, user=None)
+        error_message = e.response.json()['message']
+        return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     project_name = response["name"]
     forked_repo = response["full_name"]
@@ -491,8 +491,8 @@ def civic_json(brigadeid, project_name):
     try:
         response = github.request("PUT", "repos/{}/contents/civic.json".format(forked_repo), data=json.dumps(data))
     except GitHubError as e:
-        error = e.response.json()['message']
-        return render_template("civic_json.html", error=error, project=None, user=None)
+        error_message = e.response.json()['message']
+        return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     # Send a pull request
     data = {
@@ -504,8 +504,8 @@ def civic_json(brigadeid, project_name):
     try:
         response = github.post("repos{}/pulls".format(project["repo"]), data=data)
     except GitHubError as e:
-        error = e.response.json()['message']
-        return render_template("civic_json.html", error=error, project=None, user=None)
+        error_message = e.response.json()['message']
+        return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     return redirect("{}/pulls".format(response["html_url"]))
 
