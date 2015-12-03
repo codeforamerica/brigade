@@ -67,8 +67,9 @@ def is_existing_organization(orgid):
     return orgid in orgids
 
 
-# Load load projects from the cfapi
 def get_projects(projects, url, limit=10):
+    ''' Load projects from the cfapi
+    '''
     got = get(url)
     new_projects = got.json()["objects"]
     projects = projects + new_projects
@@ -94,6 +95,7 @@ def get_project_for_civic_json(brigadeid, project_name):
 
     return project
 
+
 def get_github_user():
     ''' Get GitHub user information from the GitHub API
     '''
@@ -103,6 +105,24 @@ def get_github_user():
 
     return user
 
+
+def process_tags(tags):
+    ''' Take a string that's a comma-separated list of tags,
+        strip spaces, drop empties, dedupe, return as list.
+    '''
+    if not tags:
+        return None
+
+    # split and drop empties
+    tags = [tag.strip() for tag in tags.split(',') if len(tag.strip()) != 0]
+    if not len(tags):
+        return None
+
+    # dedupe and return
+    # source: http://stackoverflow.com/a/480227/958481
+    seen = set()
+    seen_add = seen.add
+    return [tag for tag in tags if not (tag in seen or seen_add(tag))]
 
 #
 # ROUTES
@@ -428,15 +448,11 @@ def civic_json(brigadeid, project_name):
     # Get status from the form
     status = request.form.get("status", None)
     if status:
-        if len(status.strip()) == 0:
+        if len(status.strip()) == 0 or status == u'Choose a status':
             status = None
 
     # Get tags from the form
-    tags = request.form.get("tags", None)
-    if tags:
-        tags = [tag.strip() for tag in tags.split(',') if len(tag.strip()) != 0]
-        if not len(tags):
-            tags = None
+    tags = process_tags(request.form.get("tags", None))
 
     # Error if there's no info to capture
     if not status and not tags:
@@ -505,7 +521,7 @@ def civic_json(brigadeid, project_name):
     try:
         response = github.get("repos/{}/contents/civic.json".format(forked_full_name))
         sha = response["sha"]
-    except GitHubError as e:
+    except GitHubError:
         sha = None
 
     # Commit the civic.json file to our new fork

@@ -6,7 +6,7 @@ import os
 import flask
 from httmock import response, HTTMock
 from brigade import create_app
-from brigade.views import is_existing_organization
+import brigade.views as view_functions
 
 class BrigadeTests(unittest.TestCase):
 
@@ -240,8 +240,8 @@ class BrigadeTests(unittest.TestCase):
 
     def test_existing(self):
         ''' Test that these org ids exist '''
-        self.assertTrue(is_existing_organization("Code-for-America"))
-        self.assertFalse(is_existing_organization("TEST-TEST"))
+        self.assertTrue(view_functions.is_existing_organization("Code-for-America"))
+        self.assertFalse(view_functions.is_existing_organization("TEST-TEST"))
 
     def test_projects_page(self):
         ''' Test that the project page loads and looks like what we want '''
@@ -254,6 +254,14 @@ class BrigadeTests(unittest.TestCase):
         with HTTMock(self.response_content):
             response = self.client.get("/brigade/projects/monitor")
             self.assertTrue('"travis_url": "https://api.travis-ci.org/repositories/jmcelroy5/sf-in-progress/builds"' in response.data)
+
+    def test_civic_tags_processed(self):
+        ''' Tag lists entered via the civic.json form will be processed as expected
+        '''
+        tags = u'blacktip,,,collared,grey nurse,   hound,lemon,lemon,nervous, silky,thresher ,nervous,'
+        expected_tags = [u'blacktip', u'collared', u'grey nurse', u'hound', u'lemon', u'nervous', u'silky', u'thresher']
+        processed_tags = view_functions.process_tags(tags)
+        self.assertEqual(processed_tags, expected_tags)
 
     def test_civic_json_machine(self):
         ''' Test that adding a civic json file works '''
