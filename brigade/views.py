@@ -462,7 +462,6 @@ def civic_json(brigadeid, project_name):
             return redirect("{}/pulls".format(project["code_url"]))
 
     # Fork the repo. Succeeds even if fork already exists.
-    print "Making a fork at: repos{}/forks".format(project["repo"])
     try:
         response = github.post("repos{}/forks".format(project["repo"]), data=None)
     except GitHubError as e:
@@ -489,7 +488,6 @@ def civic_json(brigadeid, project_name):
     if sha:
         data["sha"] = sha
 
-    print "Adding a civic.json file at: repos/{}/contents/civic.json".format(forked_repo)
     try:
         response = github.request("PUT", "repos/{}/contents/civic.json".format(forked_repo), data=json.dumps(data))
     except GitHubError as e:
@@ -503,7 +501,6 @@ def civic_json(brigadeid, project_name):
         "head": u"{}:{}".format(owner_login, default_branch),
         "base": default_branch
     }
-    print "Creating a pull request for the new civic.json file"
     try:
         response = github.post("repos{}/pulls".format(project["repo"]), data=data)
     except GitHubError as e:
