@@ -81,7 +81,8 @@ def get_project_for_civic_json(brigadeid, project_name):
     ''' Get and format a project object for use in the 'add-civic-json' routes.
     '''
     got = get("https://www.codeforamerica.org/api/projects?name={}&organization_id={}".format(project_name, brigadeid))
-    project = got.json()["objects"][0] # In rare cases there may be more than one. Use the first matching project.
+    # In rare cases there may be more than one. Use the first matching project.
+    project = got.json()["objects"][0]
     project["repo"] = None
     if project["code_url"]:
         url = urlparse(project["code_url"])
