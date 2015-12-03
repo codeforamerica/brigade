@@ -18,6 +18,8 @@ logger = logging.getLogger(__name__)
 requests_logger = logging.getLogger("requests")
 requests_logger.setLevel(logging.WARNING)
 
+CIVIC_JSON_PR_TITLE = u'Adds a civic.json file'
+
 @app.context_processor
 def get_fragments():
     ''' The base template includes the signup form and the footer
@@ -448,6 +450,16 @@ def civic_json(brigadeid, project_name):
 
     civic_json = json.dumps(civic_json, indent=4)
 
+    # Check if a pull request with this title and from this user already exists
+    try:
+        response = github.get("repos{}/pulls".format(project["repo"]))
+    except GitHubError as e:
+        error = e.response.json()['message']
+        return render_template("civic_json.html", error=error, project=project, user=user)
+
+    for pr in response:
+        if pr["title"] == CIVIC_JSON_PR_TITLE and pr["user"]["login"] == user["login"]:
+            return redirect("{}/pulls".format(project["code_url"]))
 
     # Fork the repo. Succeeds even if fork already exists.
     print "Making a fork at: repos{}/forks".format(project["repo"])
@@ -484,22 +496,11 @@ def civic_json(brigadeid, project_name):
         error = e.response.json()['message']
         return render_template("civic_json.html", error=error, project=None, user=None)
 
-    # Check if Pull Request already exists
-    try:
-        response = github.get("repos{}/pulls".format(project["repo"]))
-    except GitHubError as e:
-        error = e.response.json()['message']
-        return render_template("civic_json.html", error=error, project=None, user=None)
-
-    for pr in response:
-        if pr["title"] == "Adds a civic.json file":
-            return redirect("{}/pulls".format(project["code_url"]))
-
     # Send a pull request
     data = {
-        "title": "Adds a civic.json file",
-        "body": '''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
-        "head": "{}:{}".format(owner_login, default_branch),
+        "title": CIVIC_JSON_PR_TITLE,
+        "body": u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
+        "head": u"{}:{}".format(owner_login, default_branch),
         "base": default_branch
     }
     print "Creating a pull request for the new civic.json file"
