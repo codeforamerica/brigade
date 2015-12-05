@@ -20,6 +20,10 @@ class BrigadeTests(unittest.TestCase):
         self.app_context.push()
 
         self.client = self.app.test_client()
+        # set up a fake github access token for civic.json tests
+        with self.client as test_client:
+            with test_client.session_transaction() as test_session:
+                test_session['access_token'] = 'fake-github-access-token'
 
     def tearDown(self):
         self.app_context.pop()
