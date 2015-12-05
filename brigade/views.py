@@ -554,7 +554,7 @@ def civic_json(brigadeid, project_name):
         logging.error(u"GitHub error {} ({}) when sending a pull request to repos{}/pulls.".format(e.response.status_code, error_message, project["repo"]))
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-    return redirect("{}/pulls".format(response["html_url"]))
+    return redirect(response["html_url"])
 
 
 @app.route("/brigade/attendance")
