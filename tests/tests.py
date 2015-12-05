@@ -28,6 +28,124 @@ class BrigadeTests(unittest.TestCase):
     def tearDown(self):
         self.app_context.pop()
 
+    def civic_json_content(self, url, request):
+        if url.geturl() == 'https://www.codeforamerica.org/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
+            return response(200, '''
+                {
+                  "objects": [
+                    {
+                      "api_url": "http://www.codeforamerica.org/api/projects/30943",
+                      "categories": null,
+                      "code_url": "https://github.com/codeforamerica/add-civic-json-test",
+                      "description": "Use this project to test the automated creation of a pull request adding a civic.json file.",
+                      "github_details": {},
+                      "id": 30943,
+                      "issues": [],
+                      "languages": null,
+                      "last_updated": "Wed, 25 Nov 2015 21:07:35 GMT",
+                      "link_url": null,
+                      "name": "add-civic-json-test",
+                      "organization": {},
+                      "organization_name": "Code for America",
+                      "status": null,
+                      "tags": {},
+                      "type": null
+                    }
+                  ],
+                  "pages": {},
+                  "total": 1
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # Get a single GitHub user
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/users/#get-a-single-user
+        if url.geturl() == 'https://api.github.com/user' and request.method == 'GET':
+            return response(200, '''
+                {
+                  "login": "mhammy",
+                  "avatar_url": "https://avatars.githubusercontent.com/u/8171936?v=3"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # list pull requests
+        # https://developer.github.com/v3/pulls/#list-pull-requests
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/pulls' and request.method == 'GET':
+            return response(200, '''
+                [
+
+                ]''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # create a fork
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/repos/forks/#response-1
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/forks' and request.method == 'POST':
+            return response(202, '''
+                {
+                  "full_name" : "mhammy/add-civic-json-test",
+                  "owner" : {
+                      "login" : "mhammy"
+                    },
+                  "default_branch" : "master"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # get a repo
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/repos/#get
+        if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test' and request.method == 'GET':
+            return response(200, '''
+                {
+                  "id": 46887065,
+                  "name": "add-civic-json-test",
+                  "full_name": "mhammy/add-civic-json-test",
+                  "owner": {},
+                  "private": false,
+                  "html_url": "https://github.com/mhammy/add-civic-json-test",
+                  "description": "Use this project to test the automated creation of a pull request adding a civic.json file.",
+                  "fork": true,
+                  "url": "https://api.github.com/repos/mhammy/add-civic-json-test"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # check for existence of civic.json file
+        # https://developer.github.com/v3/repos/contents/#get-contents
+        if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test/contents/civic.json' and request.method == 'GET':
+            return response(404, '''
+                {
+                  "message": "Not Found",
+                  "documentation_url": "https://developer.github.com/v3"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # reponse from successful creation of a civic.json file
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/repos/contents/#create-a-file
+        if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test/contents/civic.json' and request.method == 'PUT':
+            return response(201, '''
+                {
+                  "commit": {
+                    "message": "add civic.json file",
+                    "sha": "88e7264c2f046d32fbdd15eda572c04663f7d216"
+                  },
+                  "content": {
+                    "html_url": "https://github.com/mhammy/add-civic-json-test/blob/master/civic.json",
+                    "name": "civic.json",
+                    "path": "civic.json",
+                    "sha": "70e1d3cb3b5cf1e510a9420eb9a56a78045def31",
+                    "size": 125,
+                    "type": "file",
+                    "url": "https://api.github.com/repos/mhammy/add-civic-json-test/contents/civic.json?ref=master"
+                  }
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # create a pull request
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/pulls/#create-a-pull-request
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/pulls' and request.method == 'POST':
+            return response(201, '''
+                {
+                  "id": 1,
+                  "html_url": "https://github.com/codeforamerica/add-civic-json-test/pull/1"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        raise ValueError('civic_json_content: bad {} to "{}"'.format(request.method, url.geturl()))
+
     def response_content(self, url, request):
         if "list-manage.com/subscribe/post" in url.geturl():
             return response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
@@ -124,7 +242,7 @@ class BrigadeTests(unittest.TestCase):
                     "default_branch" : "master"
                     } ''')
 
-        raise ValueError('Bad {} to "{}"'.format(request.method, url.geturl()))
+        raise ValueError('response_content: bad {} to "{}"'.format(request.method, url.geturl()))
 
     def test_signup(self):
         ''' Test that main page signups work '''
@@ -269,16 +387,14 @@ class BrigadeTests(unittest.TestCase):
 
     def test_civic_json_machine(self):
         ''' Test that adding a civic json file works '''
-        with HTTMock(self.response_content):
-            # Test get
-            response = self.client.get("/brigade/projects/1/add-civic-json")
-            self.assertTrue('<a href="https://github.com/testesttest/test" class="icon-github2">' in response.data)
-
+        with HTTMock(self.civic_json_content):
             # Test PR
-            data = {"status": "TEST", "tags": "TEST,TEST2, TEST3"}
-            response = self.client.post("/brigade/projects/1/add-civic-json", data=data)
+            data = {
+                "status": "Beta",
+                "tags": "glass,humboldt,bigfin,colossal,bush-club,grimaldi scaled,whiplash,market,japanese flying"
+            }
+            response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
             pass
-
 
 if __name__ == '__main__':
     unittest.main()
