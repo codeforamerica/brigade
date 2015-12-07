@@ -1,3 +1,4 @@
+# -- coding: utf-8 --
 from urlparse import parse_qsl
 from base64 import b64decode
 import unittest
@@ -388,13 +389,27 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(processed_tags, expected_tags)
 
     def test_successful_civic_json_submission(self):
-        ''' Adding a civic json file works
+        ''' Using the form to create a civic.json pull request works.
         '''
         with HTTMock(self.civic_json_content):
             # Test PR
             data = {
-                "status": "Beta",
-                "tags": "glass,humboldt,bigfin,colossal,bush-club,grimaldi scaled,whiplash,market,japanese flying"
+                "status": u"Beta",
+                "tags": u"glass,humboldt,bigfin,colossal,bush-club,grimaldi scaled,whiplash,market,japanese flying"
+            }
+            response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
+            # if the process was successful the response should be a redirect to the pull request on github
+            self.assertEqual(302, response.status_code)
+            self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
+
+    def test_civic_json_submission_with_non_latin_characters(self):
+        ''' Submitting non-latin characters through the civic.json form doesn't error.
+        '''
+        with HTTMock(self.civic_json_content):
+            # Test PR
+            data = {
+                "status": u"Beta",
+                "tags": u"玻璃,具体,焦油,沥青,碎石,铁"
             }
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
             # if the process was successful the response should be a redirect to the pull request on github
@@ -406,8 +421,8 @@ class BrigadeTests(unittest.TestCase):
         '''
         with HTTMock(self.civic_json_content):
             data = {
-                "status": "",
-                "tags": ""
+                "status": u"",
+                "tags": u""
             }
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
             self.assertEqual(200, response.status_code)
