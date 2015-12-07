@@ -7,6 +7,7 @@ import flask
 from httmock import response, HTTMock
 from brigade import create_app
 import brigade.views as view_functions
+from bs4 import BeautifulSoup
 
 class BrigadeTests(unittest.TestCase):
 
@@ -144,7 +145,8 @@ class BrigadeTests(unittest.TestCase):
                   "html_url": "https://github.com/codeforamerica/add-civic-json-test/pull/1"
                 }''', {'Content-Type': 'application/json; charset=utf-8'})
 
-        raise ValueError('civic_json_content: bad {} to "{}"'.format(request.method, url.geturl()))
+        else:
+            return self.response_content(url, request)
 
     def response_content(self, url, request):
         if "list-manage.com/subscribe/post" in url.geturl():
@@ -398,6 +400,19 @@ class BrigadeTests(unittest.TestCase):
             # if the process was successful the response should be a redirect to the pull request on github
             self.assertEqual(302, response.status_code)
             self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
+
+    def test_civic_json_submission_with_no_form_data(self):
+        ''' Trying to submit an empty form to create a civic.json file loads an error message.
+        '''
+        with HTTMock(self.civic_json_content):
+            data = {
+                "status": "",
+                "tags": ""
+            }
+            response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
+            self.assertEqual(200, response.status_code)
+            soup = BeautifulSoup(response.data, "html.parser")
+            self.assertEqual(u'Please enter status and/or tags for the project!', soup.find('p', {'data-test-id': 'error-message'}).text)
 
 if __name__ == '__main__':
     unittest.main()
