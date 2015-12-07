@@ -398,9 +398,33 @@ class BrigadeTests(unittest.TestCase):
                 "tags": u"glass,humboldt,bigfin,colossal,bush-club,grimaldi scaled,whiplash,market,japanese flying"
             }
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
-            # if the process was successful the response should be a redirect to the pull request on github
-            self.assertEqual(302, response.status_code)
-            self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
+
+        # if the process was successful the response should be a redirect to the pull request on github
+        self.assertEqual(302, response.status_code)
+        self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
+
+    def test_civic_json_submission_matches_form(self):
+        ''' The civic.json that's submitted to GitHub matches what was submitted in the form
+        '''
+        data = {
+            "status": u"Official",
+            "tags": u"allium, bachelor,camellia,  dahlia,foxglove,bachelor,gas  ,hardy,hardy,impatien,jupiter,kerria"
+        }
+
+        def test_civic_json_put(url, request):
+            if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test/contents/civic.json' and request.method == 'PUT':
+                submitted_civic_json = json.loads(b64decode(json.loads(request.body)['content']))
+                self.assertEqual(submitted_civic_json['status'], u'Official')
+                self.assertEqual(submitted_civic_json['tags'], [u'allium', u'bachelor', u'camellia', u'dahlia', u'foxglove', u'gas', u'hardy', u'impatien', u'jupiter', u'kerria'])
+
+            return self.civic_json_content(url, request)
+
+        with HTTMock(test_civic_json_put):
+            response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
+
+        # if the process was successful the response should be a redirect to the pull request on github
+        self.assertEqual(302, response.status_code)
+        self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
 
     def test_civic_json_submission_with_non_latin_characters(self):
         ''' Submitting non-latin characters through the civic.json form doesn't error.
@@ -412,9 +436,10 @@ class BrigadeTests(unittest.TestCase):
                 "tags": u"玻璃,具体,焦油,沥青,碎石,铁"
             }
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
-            # if the process was successful the response should be a redirect to the pull request on github
-            self.assertEqual(302, response.status_code)
-            self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
+
+        # if the process was successful the response should be a redirect to the pull request on github
+        self.assertEqual(302, response.status_code)
+        self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
 
     def test_civic_json_submission_with_no_form_data(self):
         ''' Trying to submit an empty form to create a civic.json file loads an error message.
@@ -425,9 +450,10 @@ class BrigadeTests(unittest.TestCase):
                 "tags": u""
             }
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
-            self.assertEqual(200, response.status_code)
-            soup = BeautifulSoup(response.data, "html.parser")
-            self.assertEqual(u'Please enter status and/or tags for the project!', soup.find('p', {'data-test-id': 'error-message'}).text)
+
+        self.assertEqual(200, response.status_code)
+        soup = BeautifulSoup(response.data, "html.parser")
+        self.assertEqual(u'Please enter status and/or tags for the project!', soup.find('p', {'data-test-id': 'error-message'}).text)
 
 if __name__ == '__main__':
     unittest.main()
