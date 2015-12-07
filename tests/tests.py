@@ -380,13 +380,14 @@ class BrigadeTests(unittest.TestCase):
     def test_civic_tags_processed(self):
         ''' Tag lists entered via the civic.json form will be processed as expected
         '''
-        tags = u'blacktip,,,collared,grey nurse,   hound,lemon,lemon,nervous, silky,thresher ,nervous,'
+        tags = u'blacktip,,,collared,grey nurse,   hound,lemon,lemon, nervous, silky,thresher ,nervous,'
         expected_tags = [u'blacktip', u'collared', u'grey nurse', u'hound', u'lemon', u'nervous', u'silky', u'thresher']
         processed_tags = view_functions.process_tags(tags)
         self.assertEqual(processed_tags, expected_tags)
 
-    def test_civic_json_machine(self):
-        ''' Test that adding a civic json file works '''
+    def test_successful_civic_json_submission(self):
+        ''' Adding a civic json file works
+        '''
         with HTTMock(self.civic_json_content):
             # Test PR
             data = {
@@ -394,7 +395,9 @@ class BrigadeTests(unittest.TestCase):
                 "tags": "glass,humboldt,bigfin,colossal,bush-club,grimaldi scaled,whiplash,market,japanese flying"
             }
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
-            pass
+            # if the process was successful the response should be a redirect to the pull request on github
+            self.assertEqual(302, response.status_code)
+            self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
 
 if __name__ == '__main__':
     unittest.main()
