@@ -166,7 +166,6 @@ def civic_json_pull_request_exists(project, user):
 def user_has_push_access(project, response=None):
     ''' Check whether the user has push access to this project.
     '''
-    return False
     if not response:
         try:
             response = github.get("repos/{}".format(project["repo"]))
