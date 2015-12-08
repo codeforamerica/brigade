@@ -76,6 +76,20 @@ class BrigadeTests(unittest.TestCase):
 
                 ]''', {'Content-Type': 'application/json; charset=utf-8'})
 
+        # get the target repo
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/repos/#get
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test' and request.method == 'GET':
+            return response(200, '''
+                {
+                  "name": "add-civic-json-test",
+                  "full_name": "codeforamerica/add-civic-json-test",
+                  "permissions": {
+                    "push": false
+                  },
+                  "default_branch": "master"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
         # create a fork
         # (stripped out unused parameters)
         # https://developer.github.com/v3/repos/forks/#response-1
@@ -89,7 +103,7 @@ class BrigadeTests(unittest.TestCase):
                   "default_branch" : "master"
                 }''', {'Content-Type': 'application/json; charset=utf-8'})
 
-        # get a repo
+        # get the forked repo
         # (stripped out unused parameters)
         # https://developer.github.com/v3/repos/#get
         if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test' and request.method == 'GET':

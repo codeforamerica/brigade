@@ -20,6 +20,7 @@ requests_logger = logging.getLogger("requests")
 requests_logger.setLevel(logging.WARNING)
 
 CIVIC_JSON_PR_TITLE = u'Adds a civic.json file'
+CIVIC_JSON_BRANCH_NAME = u'add-civic-json-file'
 
 @app.context_processor
 def get_fragments():
@@ -91,7 +92,7 @@ def get_project_for_civic_json(brigadeid, project_name):
     if project["code_url"]:
         url = urlparse(project["code_url"])
         if url.netloc == 'github.com':
-            project["repo"] = url.path
+            project["repo"] = url.path.lstrip("/")
 
     return project
 
@@ -123,6 +124,167 @@ def process_tags(tags):
     seen = set()
     seen_add = seen.add
     return [tag for tag in tags if not (tag in seen or seen_add(tag))]
+
+def make_civic_json():
+    ''' Take form data from the request context and return a json object.
+    '''
+    # Get status from the form
+    status = request.form.get("status", None)
+    if status:
+        if len(status.strip()) == 0 or status == u'Choose a status':
+            status = None
+
+    # Get tags from the form
+    tags = process_tags(request.form.get("tags", None))
+
+    # Return None if there's no info to capture
+    if not status and not tags:
+        return None
+
+    civic_json = {}
+    if status:
+        civic_json["status"] = status
+    if tags:
+        civic_json["tags"] = tags
+
+    return json.dumps(civic_json, indent=4)
+
+def civic_json_pull_request_exists(project, user):
+    ''' Check for an existing civic.json pull request.
+    '''
+    try:
+        response = github.get("repos/{}/pulls".format(project["repo"]))
+    except GitHubError:
+        raise
+
+    for pr in response:
+        if pr["title"] == CIVIC_JSON_PR_TITLE and pr["user"]["login"] == user["login"]:
+            return True
+
+    return False
+
+def user_has_push_access(project, response=None):
+    ''' Check whether the user has push access to this project.
+    '''
+    return False
+    if not response:
+        try:
+            response = github.get("repos/{}".format(project["repo"]))
+        except GitHubError:
+            return False
+
+    return 'permissions' in response and 'push' in response['permissions'] and response['permissions']['push']
+
+def get_repo_default_branch(project, response=None, default="master"):
+    ''' Get the name of the project's default branch.
+    '''
+    if not response:
+        try:
+            response = github.get("repos/{}".format(project["repo"]))
+        except GitHubError:
+            return default
+
+    if 'default_branch' in response:
+        return response['default_branch']
+    else:
+        return default
+
+def civic_json_branch_exists(project):
+    ''' The branch for adding a civic.json file exists on this project's repo.
+    '''
+    try:
+        github.get("repos/{}/git/refs/heads/{}".format(project["repo"], CIVIC_JSON_BRANCH_NAME))
+    except GitHubError:
+        return False
+
+    return True
+
+def create_civic_json_branch(project):
+    ''' Create a branch for adding a civic.json file to a project.
+    '''
+    # get the sha of the master branch
+    try:
+        response = github.get("repos/{}/git/refs/heads/master".format(project["repo"]))
+    except GitHubError:
+        raise
+    master_sha = response['object']['sha']
+
+    # create a new branch
+    try:
+        github.post("repos/{}/git/refs".format(project["repo"]), data=dict(ref="refs/heads/{}".format(CIVIC_JSON_BRANCH_NAME), sha=master_sha))
+    except GitHubError:
+        raise
+
+def create_civic_json_fork(project):
+    ''' Create a fork for adding a civic.json file to a project.
+    '''
+    # Fork the repo. Succeeds even if fork already exists.
+    try:
+        response = github.post("repos/{}/forks".format(project["repo"]), data=None)
+    except GitHubError:
+        raise
+
+    return response
+
+def verify_civic_json_fork(forked_repo_name, call_limit=10):
+    ''' Verify that the passed repo exists.
+    '''
+    repo_exists = False
+    times_called = 0
+    error_message = u"Couldn't verify the forked repo on GitHub."
+    while not repo_exists:
+        times_called = times_called + 1
+        # timeout if it's been too long
+        if times_called > call_limit:
+            logging.error(u"Fork at repos/{} doesn't exist after {} seconds.".format(forked_repo_name, call_limit))
+            return False, error_message
+
+        try:
+            github.get("repos/{}".format(forked_repo_name))
+
+        except GitHubError as e:
+            # error if we got a status_code other than 404
+            if e.response.status_code != 404:
+                logging.error(u"GitHub error {} ({}) when checking for existence of repos/{}.".format(e.response.status_code, e.response.json()['message'], forked_repo_name))
+                return False, error_message
+
+            # wait a second before trying again
+            time.sleep(1)
+
+        else:
+            repo_exists = True
+
+    return True, u""
+
+def get_civic_json_sha(repo_name, payload=None):
+    ''' Get the sha for a civic.json file in the passed repo.
+    '''
+    try:
+        response = github.get("repos/{}/contents/civic.json".format(repo_name), params=payload)
+        return response["sha"]
+    except GitHubError:
+        return None
+
+def commit_civic_json(civic_json, repo_name, ref_payload):
+    ''' Commit the civic.json file to the passed repo.
+    '''
+    # if there's already a civic.json, get its sha
+    civic_sha = get_civic_json_sha(repo_name, ref_payload)
+
+    # Build the commit data object
+    data = {
+        "message": "add civic.json file",
+        "content": base64.b64encode(civic_json)
+    }
+    if civic_sha:
+        data["sha"] = civic_sha
+    if ref_payload:
+        data["branch"] = ref_payload["ref"]
+
+    try:
+        github.request("PUT", "repos/{}/contents/civic.json".format(repo_name), data=json.dumps(data))
+    except GitHubError:
+        raise
 
 #
 # ROUTES
@@ -437,121 +599,91 @@ def show_civic_json_page(brigadeid, project_name):
     return render_template("civic_json.html", project=project, user=user)
 
 @app.route("/brigade/<brigadeid>/projects/<project_name>/add-civic-json", methods=["POST"])
-def civic_json(brigadeid, project_name):
-    ''' Send a pull request to a project to add a civic.json file
+def create_civic_json(brigadeid, project_name):
+    ''' Send a pull request to a project to add a civic.json file.
     '''
 
     # Get information about the relevant project from the cfapi
     project = get_project_for_civic_json(brigadeid, project_name)
     user = get_github_user()
 
-    # Get status from the form
-    status = request.form.get("status", None)
-    if status:
-        if len(status.strip()) == 0 or status == u'Choose a status':
-            status = None
-
-    # Get tags from the form
-    tags = process_tags(request.form.get("tags", None))
-
-    # Error if there's no info to capture
-    if not status and not tags:
+    # create a civic.json object
+    civic_json = make_civic_json()
+    if not civic_json:
         error_message = u'Please enter status and/or tags for the project!'
         return render_template("civic_json.html", error=error_message, project=project, user=user)
 
-    civic_json = {}
-    if status:
-        civic_json["status"] = status
-    if tags:
-        civic_json["tags"] = tags
-
-    civic_json = json.dumps(civic_json, indent=4)
-
-    # Check if a pull request with this title and from this user already exists
+    # Check whether a pull request with this title and from this user already exists
     try:
-        response = github.get("repos{}/pulls".format(project["repo"]))
+        pr_exists = civic_json_pull_request_exists(project, user)
     except GitHubError as e:
         error_message = e.response.json()['message']
         return render_template("civic_json.html", error=error_message, project=project, user=user)
+    # Redirect to the pull requests for the project if the pr exists
+    if pr_exists:
+        return redirect("{}/pulls".format(project["code_url"]))
 
-    for pr in response:
-        if pr["title"] == CIVIC_JSON_PR_TITLE and pr["user"]["login"] == user["login"]:
-            return redirect("{}/pulls".format(project["code_url"]))
-
-    # Fork the repo. Succeeds even if fork already exists.
+    # Branch if the user has push access to the repo
+    has_push_access = True
+    pull_base = None
     try:
-        response = github.post("repos{}/forks".format(project["repo"]), data=None)
-    except GitHubError as e:
-        error_message = e.response.json()['message']
-        logging.error(u"GitHub error {} ({}) when making a fork at repos{}/forks.".format(e.response.status_code, error_message, project["repo"]))
-        return render_template("civic_json.html", error=error_message, project=None, user=None)
-
-    forked_full_name = response["full_name"]
-    forked_owner_login = response["owner"]["login"]
-    forked_default_branch = response["default_branch"]
-
-    # don't continue until we verify that the fork exists
-    fork_exists = False
-    times_called = 0
-    times_limit = 10
-    while not fork_exists:
-        try:
-            times_called = times_called + 1
-            # timeout if it's been too long
-            if times_called > times_limit:
-                logging.error(u"Fork at repos/{} doesn't exist after {} seconds.".format(forked_full_name, times_limit))
-                error_message = u"Couldn't fork the repo on GitHub."
-                return render_template("civic_json.html", error=error_message, project=None, user=None)
-
-            response = github.get("repos/{}".format(forked_full_name))
-
-        except GitHubError as e:
-            # error if we got a status_code other than 404
-            if e.response.status_code != 404:
-                error_message = e.response.json()['message']
-                logging.error(u"GitHub error {} ({}) when checking for existence of repos/{}.".format(e.response.status_code, error_message, forked_full_name))
-                return render_template("civic_json.html", error=error_message, project=None, user=None)
-            # wait a second before trying again
-            time.sleep(1)
-
-        else:
-            fork_exists = True
-
-    # Check whether a civic.json already exists
-    try:
-        response = github.get("repos/{}/contents/civic.json".format(forked_full_name))
-        sha = response["sha"]
+        get_repo_response = github.get("repos/{}".format(project["repo"]))
     except GitHubError:
-        sha = None
+        has_push_access = False
+    else:
+        has_push_access = user_has_push_access(project, get_repo_response)
 
-    # Commit the civic.json file to our new fork
-    data = {
-        "message": "add civic.json file",
-        "content": base64.b64encode(civic_json)
-    }
-    if sha:
-        data["sha"] = sha
+    if has_push_access and not civic_json_branch_exists(project):
+        try:
+            create_civic_json_branch(project)
+        except GitHubError as e:
+            error_message = e.response.json()['message']
+            logging.error(u"GitHub error {} ({}) when trying to create a branch at repos/{}/git/refs/heads/{}.".format(e.response.status_code, error_message, project["repo"], CIVIC_JSON_BRANCH_NAME))
 
+        ref_payload = {u'ref': CIVIC_JSON_BRANCH_NAME}
+        repo_name = project["repo"]
+        pull_head = CIVIC_JSON_BRANCH_NAME
+        pull_base = get_repo_default_branch(project, get_repo_response)
+
+    # Otherwise, fork the repo.
+    else:
+        try:
+            response = create_civic_json_fork(project)
+        except GitHubError as e:
+            error_message = e.response.json()['message']
+            logging.error(u"GitHub error {} ({}) when making a fork at repos/{}/forks.".format(e.response.status_code, error_message, project["repo"]))
+            return render_template("civic_json.html", error=error_message, project=None, user=None)
+
+        fork_exists, error_message = verify_civic_json_fork(response["full_name"])
+        if not fork_exists:
+            return render_template("civic_json.html", error=error_message, project=None, user=None)
+
+        ref_payload = None
+        repo_name = response["full_name"]
+        pull_head = u"{}:{}".format(response["owner"]["login"], response["default_branch"])
+        pull_base = response["default_branch"]
+
+    # commit the civic.json to the branch or fork
     try:
-        response = github.request("PUT", "repos/{}/contents/civic.json".format(forked_full_name), data=json.dumps(data))
+        commit_civic_json(civic_json, repo_name, ref_payload)
     except GitHubError as e:
         error_message = e.response.json()['message']
-        logging.error(u"GitHub error {} ({}) when adding civic.json file at repos/{}/contents/civic.json.".format(e.response.status_code, error_message, forked_full_name))
+        logging.error(u"GitHub error {} ({}) when adding civic.json file at repos/{}/contents/civic.json.".format(e.response.status_code, error_message, repo_name))
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     # Send a pull request
     data = {
         "title": CIVIC_JSON_PR_TITLE,
         "body": u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
-        "head": u"{}:{}".format(forked_owner_login, forked_default_branch),
-        "base": forked_default_branch
+        "head": pull_head,
+        "base": pull_base
     }
 
     try:
-        response = github.post("repos{}/pulls".format(project["repo"]), data=data)
+        response = github.post("repos/{}/pulls".format(project["repo"]), data=data)
     except GitHubError as e:
         error_message = e.response.json()['message']
-        logging.error(u"GitHub error {} ({}) when sending a pull request to repos{}/pulls.".format(e.response.status_code, error_message, project["repo"]))
+        logging.error(u"GitHub error {} ({}) when sending a pull request to repos/{}/pulls.".format(e.response.status_code, error_message, project["repo"]))
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     return redirect(response["html_url"])
