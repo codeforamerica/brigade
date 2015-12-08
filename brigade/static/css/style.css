@@ -137,10 +137,6 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin: 0px;
 }
 
-#project-stage-buttons a {
-  width : 230px;
-}
-
 #Featured, .featured {
   background-color: #e87d2b !important;
   color: white;
@@ -179,6 +175,8 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   border: 0px;
 }
 
+/* PROJECT SEARCH */
+
 #project-search {
   margin-left: 5px;
 }
@@ -189,7 +187,8 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin: 25px 5px 5px 5px !important;
 }
 
-@media (min-width: 40em) {
+/* DESKTOP */
+@media (min-width: 1024px) {
   .card {
     width: calc(50% - 10px);
   }
