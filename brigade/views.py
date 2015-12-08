@@ -147,7 +147,7 @@ def make_civic_json():
     if tags:
         civic_json["tags"] = tags
 
-    return json.dumps(civic_json, indent=4)
+    return u'{}\n'.format(json.dumps(civic_json, indent=4, ensure_ascii=False)).encode('utf8')
 
 def civic_json_pull_request_exists(project, user):
     ''' Check for an existing civic.json pull request.
