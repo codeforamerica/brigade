@@ -6,7 +6,7 @@ from flask.ext.script import Manager, Server
 if path.exists('.env'):
     for line in open('.env'):
         var = line.strip().split('=')
-        if len(var) == 2:
+        if len(var) == 2 and not var[0].startswith('#'):
             environ[var[0]] = var[1]
 
 app = create_app(environ)
