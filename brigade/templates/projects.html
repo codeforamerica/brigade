@@ -21,7 +21,7 @@
       {% endif %} 
 
 
-      <div id="projects" class="layout-major">
+      <div class="layout-major">
 
         <form id="project-search" action="{{ request.path }}" method="get">
           <p class="field">
@@ -29,9 +29,9 @@
           </p>
         </form>
 
-        <div id="projects">
+        <ul id="projects">
         {% for project in projects %}
-          <div class="project card" z-default='1' z-hover='3'>
+          <li class="project card" z-default='1' z-hover='3'>
             <div class="card-head">
               <h3 style="display:inline;">{{project.name}}</h3>
               {% if project.tags and "featured" in project.tags %}
@@ -102,10 +102,12 @@
               </p>
 
             </div> <!-- card-body -->
-          </div> <!-- project-card -->
+
+          </li> <!-- project-card -->
+
         {% endfor %}
 
-        </div> <!-- projects -->
+        </ul> <!-- projects -->
 
         {% if not projects %}
           <h2>Nothing here yet ... </h2>

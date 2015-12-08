@@ -178,10 +178,18 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin-left: 5px;
 }
 
+.project {
+  display: block;
+  clear: none;
+  float: left;
+  width: calc(50% - 20px);
+}
+
+
 .card {
   height: auto !important;
   padding: 0px !important;
-  margin: 25px 5px !important; 
+  margin: 25px 5px !important;
 }
 
 .card-head {
