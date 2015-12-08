@@ -13,8 +13,8 @@ body {
 }
 
 #banner {
-	text-align: center;
-	padding-top:5px;
+  text-align: center;
+  padding-top:5px;
 }
 
 .data {
@@ -218,4 +218,8 @@ tbody th {
     font-size: small;
   }
 
+/* Civic Json Machine*/
+
+#civic-json-form label {
+  color: white;
 }

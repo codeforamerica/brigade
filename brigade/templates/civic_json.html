@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <section>
+
+    <div class="slab-dark-blue">
+      <div class="layout-semibreve">
+        <h2>Add a civic.json to {{ project.name }}</h2>
+        <p>Filling out this form will send a request to add a civic.json file to the project. The civic.json file will have the stage of the project and some tags to describe the project. With this extra info, it will be much easier for people to search for the project and decide if they want to help build it or redeploy it in their city.</p>
+      </div>
+    </div>
+
+    <div class="layout-chimney-invert">
+
+
+        <div class="layout-minim">
+
+          {% if not error %}
+
+          <ol>
+            {% if not session.access_token %}
+              <p>You'll need to log in to Github. <a class="button icon-github2" href="/brigade/gh-login">Log In to Github</a></p>
+
+            {% else %}
+              <p><img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> Hi <strong>{{ user.login }}</strong>!<br/><a class="button-subtle button-s icon-github2" href="/brigade/gh-logout">Log Out of Github</a></p>
+              <hr />
+
+            {% endif %}
+            <li>Go research the project</li>
+            <li>Choose which stage the project is at. You can read more about each stage at <a href="https://www.codeforamerica.org/projects/stages">https://www.codeforamerica.org/projects/stages</a></li>
+            <li>Add some relevant tags for the project</li>
+            <li>Submit the pull request</li>
+          </ol>
+
+          {% else %}
+
+          <h2>There has been an error. Don't panic.</h2>
+          <p>Go send a pull request by hand.</p>
+          <p>An example <a href="https://github.com/codeforamerica/attendance/blob/gh-pages/civic.json">civic.json</a> file.</p>
+
+          <p data-test-id="error-message">{{ error }}</p>
+
+          {% endif %}
+
+        </div>
+        <div class="layout-minim slab-medium-red chimney">
+
+          {% if project.link_url %}
+            <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
+          {% endif %}
+
+          {% if project.code_url %}
+            <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
+          {% endif %}
+
+          {% if session.access_token %}
+
+          <form id="civic-json-form" method="POST">
+
+            <ul class="list-form">
+
+              <li class="form-field">
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                  <option value="" disabled="disabled"  style="display:none" selected="selected">Choose a status</option>
+                  <option>Experiment</option>
+                  <option>Alpha</option>
+                  <option>Beta</option>
+                  <option>Official</option>
+                </select>
+              </li>
+
+              <li class="form-field">
+                <label for="tags">Tags, comma separated</label>
+                <input id="tags" name="tags" class="input" type="text" />
+              </li>
+
+              <button type="submit">Send Pull Request</button>
+
+            </ul>
+
+          </form>
+
+          {% endif %}
+
+        </div>
+
+    </div>
+
+  </section>
+{% endblock %}
+
+{% block js %}
+  <script>
+
+  </script>
+{% endblock %}
