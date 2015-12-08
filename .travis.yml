@@ -1,5 +1,5 @@
 language: python
 install: pip install -r requirements.txt
-script:  python manage.py runtests
+script:  python tests/tests.py
 notifications:
   webhooks: http://project-monitor.codeforamerica.org/projects/brigade-2015/status
