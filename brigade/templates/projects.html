@@ -29,39 +29,27 @@
           </p>
         </form>
 
-        <ul id="projects">
+        <ul id="projects" class="list-no-bullets">
         {% for project in projects %}
           <li class="project card" z-default='1' z-hover='3'>
-            <div class="card-head">
+            <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
               <h3 style="display:inline;">{{project.name}}</h3>
               {% if project.tags and "featured" in project.tags %}
                 <a href="?=featured" class="featured button-s icon-star">Featured</a>
               {% endif %}
             </div>
             <div class="card-body">
-              {% if project.link_url %}
-                <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
-              {% endif %}
-
-              {% if project.code_url %}
-                <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
-              {% endif %}
 
               {% if project.description %}
                 <p>{{project.description}}</p>
               {% endif %}
 
-              {% if project.status %}
-                <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
-              {% endif %}
-
               {% if not brigade %}
-                <p>Used By: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+                <p>Used by: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
               {% endif %}
 
               {% if project.github_details %}
                 {% if project.github_details.contributors %}
-                <p>Built by: </p>
                   {% for contributor in project.github_details.contributors %}
                     <a href="{{ contributor.html_url }}">
                       <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
@@ -70,9 +58,15 @@
                 {% endif %}
               {% endif %}
 
-              {% if project.github_details %}
-                <p>Open Issues: <a href="{{project.github_details.html_url}}/issues">{{ project.github_details.open_issues}}</a></p>
+              {% if project.link_url %}
+                <p><a href="{{project.link_url}}" class="button-bold">View the project</a></p>
               {% endif %}
+
+              {% if project.code_url %}
+                <p><a href="{{project.code_url}}" class="button-bold">Contribute on Github</a></p>
+              {% endif %}
+
+              <small>
 
               {% if project.languages %}
               <ul id="languages" class="list-inline list-no-bullets">
@@ -94,12 +88,14 @@
 
               <p>
               {% if project.last_updated %}
-                <small>Last Updated: {{project.last_updated | timesince}}</small>
+                Last Updated: {{project.last_updated | timesince}}
               {% endif %}
               {% if project.code_url and not project.status and not project.tags and ("Brigade" in project.organization.type or "Code for All" in project.organization.type) %}
                 <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add civic.json</a>
               {% endif %}
               </p>
+
+              </small>
 
             </div> <!-- card-body -->
 
@@ -143,6 +139,15 @@
 {% endblock %}
 
 {% block js %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+
+<script>
+$('#projects').masonry({
+  // options...
+  itemSelector: '.project'
+});
+</script>
 
   <script src="{{ url_for('static', filename='js/card-depth.js') }}"></script>
 

@@ -143,22 +143,27 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 #Featured, .featured {
   background-color: #e87d2b !important;
+  color: white;
 }
 
 #Official, .Official {
   background-color: #00a175 !important;
+  color: white;
 }
 
 #Beta, .Beta {
   background-color: #004b6a !important;
+  color: white;
 }
 
 #Alpha, .Alpha {
   background-color: #7ab5d6 !important;
+  color: white;
 }
 
 #Experiment, .Experiment {
   background-color: #69579C !important;
+  color: white;
 }
 
 /* Project Monitor */
@@ -178,31 +183,23 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin-left: 5px;
 }
 
-.project {
-  display: block;
-  clear: none;
-  float: left;
-  width: calc(50% - 20px);
-}
-
-
 .card {
   height: auto !important;
   padding: 0px !important;
-  margin: 25px 5px !important;
+  margin: 25px 5px 5px 5px !important;
+}
+
+@media (min-width: 40em) {
+  .card {
+    width: calc(50% - 10px);
+  }
 }
 
 .card-head {
-  /*width: 100%;*/
-  background-color: #4298bb;
-  padding: 10px;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.card-head h3{
-  color: white;
-}
-
-.card-body {
+.card-head, .card-body {
   padding: 10px;
 }
 
