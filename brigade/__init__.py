@@ -6,7 +6,7 @@ brigade = Blueprint('brigade', __name__)
 github = GitHub()
 
 def create_app(environ):
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static', static_url_path='/brigade/static')
     app.secret_key = "sangria wreath"
     app.config['BRIGADE_SIGNUP_SECRET'] = environ['BRIGADE_SIGNUP_SECRET']
     app.config['GITHUB_CLIENT_ID'] = environ['GITHUB_CLIENT_ID']
