@@ -30,6 +30,106 @@ class BrigadeTests(unittest.TestCase):
     def tearDown(self):
         self.app_context.pop()
 
+    def civic_json_branch_content(self, url, request):
+        ''' Mocking http responses when testing civic.json branches
+        '''
+        if url.geturl() == 'https://www.codeforamerica.org/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
+            return self.civic_json_fork_content(url, request)
+
+        if url.geturl() == 'https://api.github.com/user' and request.method == 'GET':
+            return self.civic_json_fork_content(url, request)
+
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/pulls' and request.method == 'GET':
+            return self.civic_json_fork_content(url, request)
+
+        # get the target repo
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/repos/#get
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test' and request.method == 'GET':
+            return response(200, '''
+                {
+                  "name": "add-civic-json-test",
+                  "full_name": "codeforamerica/add-civic-json-test",
+                  "permissions": {
+                    "push": true
+                  },
+                  "default_branch": "master"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # get a branch
+        # https://developer.github.com/v3/git/refs/#get-a-reference
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/add-civic-json-file' and request.method == 'GET':
+            return response(404, '''
+                {
+                  "message": "Not Found",
+                  "documentation_url": "https://developer.github.com/v3"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # get a branch
+        # https://developer.github.com/v3/git/refs/#get-a-reference
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/master' and request.method == 'GET':
+            return response(200, '''
+                {
+                  "ref": "refs/heads/master",
+                  "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/master",
+                    "object": {
+                      "sha": "571317b2562617aaf3c7e418a8bdf3caee4b32c7",
+                      "type": "commit",
+                      "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/commits/571317b2562617aaf3c7e418a8bdf3caee4b32c7"
+                  }
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # create a branch
+        # https://developer.github.com/v3/git/refs/#create-a-reference
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs' and request.method == 'POST':
+            return response(201, '''
+                {
+                  "ref": "refs/heads/add-civic-json-file",
+                  "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/add-civic-json-file",
+                  "object": {
+                    "type": "commit",
+                    "sha": "aa218f56b14c9653891f9e74264a383fa43fefbd",
+                    "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/commits/aa218f56b14c9653891f9e74264a383fa43fefbd"
+                  }
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # check for existence of civic.json file on a branch
+        # https://developer.github.com/v3/repos/contents/#get-contents
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/contents/civic.json?ref=add-civic-json-file' and request.method == 'GET':
+            return response(404, '''
+                {
+                  "message": "Not Found",
+                  "documentation_url": "https://developer.github.com/v3"
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # reponse from successful creation of a civic.json file
+        # (stripped out unused parameters)
+        # https://developer.github.com/v3/repos/contents/#create-a-file
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/contents/civic.json' and request.method == 'PUT':
+            return response(201, '''
+                {
+                  "commit": {
+                    "message": "add civic.json file",
+                    "sha": "d1fc79958a32d4cc102b0e725a5cab475ecc1dd1"
+                  },
+                  "content": {
+                    "html_url": "https://github.com/codeforamerica/add-civic-json-test/blob/add-civic-json-file/civic.json",
+                    "name": "civic.json",
+                    "path": "civic.json",
+                    "sha": "1224e749aeb4596b766ee4c6259f4bd1968c0488",
+                    "size": 101,
+                    "type": "file",
+                    "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/contents/civic.json?ref=add-civic-json-file"
+                  }
+                }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+        # create a pull request
+        # https://developer.github.com/v3/pulls/#create-a-pull-request
+        if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/pulls' and request.method == 'POST':
+            return self.civic_json_fork_content(url, request)
+
+        raise ValueError('response_content: bad {} to "{}"'.format(request.method, url.geturl()))
+
     def civic_json_fork_content(self, url, request):
         ''' Mocking http responses when testing civic.json forks
         '''
@@ -514,6 +614,21 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(200, response.status_code)
         soup = BeautifulSoup(response.data, "html.parser")
         self.assertEqual(u'Please enter status and/or tags for the project!', soup.find('p', {'data-test-id': 'error-message'}).text)
+
+    def test_successful_civic_json_branch_submission(self):
+        ''' Using the form to create a civic.json pull request with a branch works.
+        '''
+        with HTTMock(self.civic_json_branch_content):
+            # Test PR
+            data = {
+                "status": u"Beta",
+                "tags": u"glass,humboldt,bigfin,colossal,bush-club,grimaldi scaled,whiplash,market,japanese flying"
+            }
+            response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
+
+        # if the process was successful the response should be a redirect to the pull request on github
+        self.assertEqual(302, response.status_code)
+        self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
 
 if __name__ == '__main__':
     unittest.main()
