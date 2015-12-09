@@ -520,7 +520,6 @@ def projects(brigadeid=None):
     search = request.args.get("q", None)
     sort_by = request.args.get("sort_by", None)
     page = request.args.get("page", None)
-    organization_type = request.args.get("organization_type", None)
 
     # Set next
     if page:
@@ -544,16 +543,13 @@ def projects(brigadeid=None):
             brigade = {"name": brigadeid.replace("-", " ")}
     else:
         url = "https://www.codeforamerica.org/api/projects"
-    if search or sort_by or page or organization_type:
-        url += "?"
+        "?organization_url=Brigade"
     if search:
         url += "&q=" + search
     if sort_by:
         url += "&sort_by" + sort_by
     if page:
         url += "&page=" + page
-    if organization_type:
-        url += "&organization_type=" + organization_type
 
     projects = get_projects(projects, url)
 
