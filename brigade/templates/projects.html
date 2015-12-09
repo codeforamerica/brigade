@@ -42,7 +42,7 @@
           
           <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
             {% if project.status %}
-            <small>{{ project.status }}</small>
+            <small>{{ project.status | title }}</small>
             {% endif %}
           </div>
 
@@ -55,7 +55,7 @@
             {% endif %}
 
             {% if not brigade %}
-              <p>Used by: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+              <p><small>Used by </small><a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
             {% endif %}
 
             {% if project.github_details %}
@@ -69,48 +69,46 @@
                 {% endfor %}
 
                 {% if project.github_details.contributors | length > 3 %}
-                  <span> and {{ project.github_details.contributors | length }} others</span>
+                  <small> and {{ project.github_details.contributors | length }} others</small>
                 {% endif %}
 
               {% endif %}
             {% endif %}
 
+            <p>
             {% if project.link_url %}
-              <p><a href="{{project.link_url}}" class="button-bold">View the project</a></p>
+              <a href="{{project.link_url}}" class="button-bold">View the project</a>
             {% endif %}
-
             {% if project.code_url %}
-              <p><a href="{{project.code_url}}" class="button-bold">Contribute on Github</a></p>
+              <a href="{{project.code_url}}" class="button-bold">Contribute on Github</a>
             {% endif %}
+            </p>
 
             <small>
 
+            <p>
             {% if project.languages %}
-            <ul id="languages" class="list-inline list-no-bullets">
-              Written in:
-              {% for lang in project.languages %}
-                <li><a href="projects?q={{ lang }}">{{ lang }}</a></li>
-              {% endfor %}
-            </ul>
+            {% set comma = joiner(",") %}
+              Written in
+              {% for lang in project.languages %}{{ comma() }} <a href="projects?q={{ lang }}">{{ lang }}</a>{% endfor %}
+            </p>
             {% endif %}
 
             {% if project.tags %}
-            <ul id="tags" class="list-inline list-no-bullets">
-              Tags:
-              {% for tag in project.tags %}
-                <li><a href="projects?q={{ tag }}">{{ tag }}</a></li>
-              {% endfor %}
-            </ul>
-            {% endif %}
-
+            {% set comma = joiner(",") %}
             <p>
-            {% if project.last_updated %}
-              Last Updated: {{project.last_updated | timesince}}
-            {% endif %}
-            {% if project.code_url and not project.status and not project.tags and ("Brigade" in project.organization.type or "Code for All" in project.organization.type) %}
-              <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add civic.json</a>
+              Tagged with
+              {% for tag in project.tags %}{{ comma() }} <a href="projects?q={{ tag }}">{{ tag }}</a>{% endfor %}
             {% endif %}
             </p>
+
+            {% if project.code_url and not project.status and not project.tags and ("Brigade" in project.organization.type or "Code for All" in project.organization.type) %}
+              <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
+            {% endif %}
+
+            {% if project.last_updated %}
+              <p>Updated {{project.last_updated | timesince}}</p>
+            {% endif %}
 
             </small>
 

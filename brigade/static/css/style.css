@@ -206,13 +206,13 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 .card-head {
   color: white;
-  background-color: #e5e5e5;
+  background-color: #999595;
   min-height: 29px;
 }
 
 .card-body h3 {
   padding: 10px 0;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #999595;
 }
 
 .card-head, .card-body {
