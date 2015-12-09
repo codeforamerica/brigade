@@ -177,6 +177,14 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 /* PROJECT SEARCH */
 
+#project-search-section .layout-breve {
+  padding-top: 0px;
+}
+
+#project-search-bar {
+  width: calc(100% - 100px);
+}
+
 #project-search {
   margin-left: 5px;
 }
@@ -190,16 +198,24 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 /* DESKTOP */
 @media (min-width: 1024px) {
   .card {
-    width: calc(50% - 10px);
+    width: calc(33% - 15px);
+    max-width: 600px;
   }
 }
 
 .card-head {
+  color: white;
+  background-color: #e5e5e5;
+  min-height: 29px;
+}
+
+.card-body h3 {
+  padding: 10px 0;
   border-bottom: 1px solid #e5e5e5;
 }
 
 .card-head, .card-body {
-  padding: 10px;
+  padding: 0 10px;
 }
 
 #more-projects {
