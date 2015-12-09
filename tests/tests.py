@@ -386,7 +386,10 @@ class BrigadeTests(unittest.TestCase):
         ''' Test that the project page loads and looks like what we want '''
         with HTTMock(self.response_content):
             response = self.client.get("/brigade/projects")
-            self.assertTrue('<p>Status: <a href="?=Alpha" class="Alpha button-s">Alpha</a></p>' in response.data)
+            soup = BeautifulSoup(response.data, "html.parser")
+            card_head_div = soup.find('div', {'class': 'card-head Alpha'})
+            self.assertIsNotNone(card_head_div)
+            self.assertEqual(u'Alpha', card_head_div.text.strip())
 
     def test_project_monitor(self):
         ''' Test the project monitor page works as expected '''
