@@ -10,7 +10,7 @@
 
   <section id="project-search-section">
 
-    <div class="layout-breve">
+    <div class="layout-semibreve">
 
       {% if brigade %}
         <h1>{{brigade.name}}'s Projects</h1>
@@ -60,11 +60,18 @@
 
             {% if project.github_details %}
               {% if project.github_details.contributors %}
-                {% for contributor in project.github_details.contributors %}
-                  <a href="{{ contributor.html_url }}">
-                    <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-                  </a>
+                {% for i in range(5) %} 
+                  {% if project.github_details.contributors[i] %}
+                    <a href="{{ project.github_details.contributors[i].html_url }}">
+                      <img height="40" width="40" src="{{ project.github_details.contributors[i].avatar_url }}&s=40" style="border-radius: 5px;"/>
+                    </a>
+                  {% endif %}
                 {% endfor %}
+
+                {% if project.github_details.contributors | length > 3 %}
+                  <span> and {{ project.github_details.contributors | length }} others</span>
+                {% endif %}
+
               {% endif %}
             {% endif %}
 
@@ -132,7 +139,8 @@
 <script>
 $('#projects').masonry({
   // options...
-  itemSelector: '.project'
+  itemSelector: '.project',
+  "gutter" : 20
 });
 </script>
 

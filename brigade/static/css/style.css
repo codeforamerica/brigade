@@ -177,7 +177,7 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 /* PROJECT SEARCH */
 
-#project-search-section .layout-breve {
+#project-search-section .layout-semibreve {
   padding-top: 0px;
 }
 
@@ -193,13 +193,14 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   height: auto !important;
   padding: 0px !important;
   margin: 25px 5px 5px 5px !important;
+
+  width: calc(50% - 20px);
 }
 
-/* DESKTOP */
-@media (min-width: 1024px) {
+/* Phones */
+@media (max-width: 768px) {
   .card {
-    width: calc(33% - 15px);
-    max-width: 600px;
+    width: 95%;
   }
 }
 
