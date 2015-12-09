@@ -30,7 +30,9 @@ class BrigadeTests(unittest.TestCase):
     def tearDown(self):
         self.app_context.pop()
 
-    def civic_json_content(self, url, request):
+    def civic_json_fork_content(self, url, request):
+        ''' Mocking http responses when testing civic.json forks
+        '''
         if url.geturl() == 'https://www.codeforamerica.org/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
             return response(200, '''
                 {
@@ -446,10 +448,10 @@ class BrigadeTests(unittest.TestCase):
         processed_tags = view_functions.process_tags(tags)
         self.assertEqual(processed_tags, expected_tags)
 
-    def test_successful_civic_json_submission(self):
+    def test_successful_civic_json_fork_submission(self):
         ''' Using the form to create a civic.json pull request works.
         '''
-        with HTTMock(self.civic_json_content):
+        with HTTMock(self.civic_json_fork_content):
             # Test PR
             data = {
                 "status": u"Beta",
@@ -475,7 +477,7 @@ class BrigadeTests(unittest.TestCase):
                 self.assertEqual(submitted_civic_json['status'], u'Official')
                 self.assertEqual(submitted_civic_json['tags'], [u'allium', u'bachelor', u'camellia', u'dahlia', u'foxglove', u'gas', u'hardy', u'impatien', u'jupiter', u'kerria'])
 
-            return self.civic_json_content(url, request)
+            return self.civic_json_fork_content(url, request)
 
         with HTTMock(test_civic_json_put):
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
@@ -487,7 +489,7 @@ class BrigadeTests(unittest.TestCase):
     def test_civic_json_submission_with_non_latin_characters(self):
         ''' Submitting non-latin characters through the civic.json form doesn't error.
         '''
-        with HTTMock(self.civic_json_content):
+        with HTTMock(self.civic_json_fork_content):
             # Test PR
             data = {
                 "status": u"Beta",
@@ -502,7 +504,7 @@ class BrigadeTests(unittest.TestCase):
     def test_civic_json_submission_with_no_form_data(self):
         ''' Trying to submit an empty form to create a civic.json file loads an error message.
         '''
-        with HTTMock(self.civic_json_content):
+        with HTTMock(self.civic_json_fork_content):
             data = {
                 "status": u"",
                 "tags": u""
