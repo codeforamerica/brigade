@@ -673,7 +673,7 @@ def create_civic_json(brigadeid, project_name):
     # Send a pull request
     data = {
         "title": CIVIC_JSON_PR_TITLE,
-        "body": u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @ondrae. :raised_hands:''',
+        "body": u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @{}. :raised_hands:'''.format(user.login),
         "head": pull_head,
         "base": pull_base
     }
