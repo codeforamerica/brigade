@@ -21,6 +21,7 @@ requests_logger.setLevel(logging.WARNING)
 
 CIVIC_JSON_PR_TITLE = u'Adds a civic.json file'
 CIVIC_JSON_BRANCH_NAME = u'add-civic-json-file'
+CIVIC_JSON_COMMIT_MESSAGE_TEMPLATE = u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @{user_login}. :raised_hands:'''
 
 @app.context_processor
 def get_fragments():
@@ -594,8 +595,8 @@ def show_civic_json_page(brigadeid, project_name):
     # Get information about the relevant project from the cfapi
     project = get_project_for_civic_json(brigadeid, project_name)
     user = get_github_user()
-
-    return render_template("civic_json.html", project=project, user=user)
+    commit_message = CIVIC_JSON_COMMIT_MESSAGE_TEMPLATE.format(user_login=user['login']) if user and 'login' in user else u''
+    return render_template("civic_json.html", project=project, user=user, commit_message=commit_message)
 
 @app.route("/brigade/<brigadeid>/projects/<project_name>/add-civic-json", methods=["POST"])
 def create_civic_json(brigadeid, project_name):
@@ -671,9 +672,12 @@ def create_civic_json(brigadeid, project_name):
         return render_template("civic_json.html", error=error_message, project=None, user=None)
 
     # Send a pull request
+    commit_message = request.form.get("commit-message", None)
+    if not commit_message:
+        commit_message = CIVIC_JSON_COMMIT_MESSAGE_TEMPLATE.format(user_login=user['login'])
     data = {
         "title": CIVIC_JSON_PR_TITLE,
-        "body": u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @{}. :raised_hands:'''.format(user.login),
+        "body": commit_message,
         "head": pull_head,
         "base": pull_base
     }
