@@ -21,7 +21,7 @@ requests_logger.setLevel(logging.WARNING)
 
 CIVIC_JSON_PR_TITLE = u'Adds a civic.json file'
 CIVIC_JSON_BRANCH_NAME = u'add-civic-json-file'
-CIVIC_JSON_COMMIT_MESSAGE_TEMPLATE = u'''Merge this to add a civic.json file to your project. This little bit of metadata will make your project easier to search for at [https://www.codeforamerica.org/brigade/projects](https://www.codeforamerica.org/brigade/projects) and elsewhere. :mag: You can read more about the status attribute at [https://www.codeforamerica.org/brigade/projects/stages](https://www.codeforamerica.org/brigade/projects/stages). It takes about an hour to update. :watch: If you have questions about any of this just ping @{user_login}. :raised_hands:'''
+CIVIC_JSON_COMMIT_MESSAGE_TEMPLATE = u'''Hi! Merge this PR to add a civic.json file to your project. This little bit of metadata will make your project easier to find with [Code for America's project search](https://www.codeforamerica.org/brigade/projects) by adding **tags** and **status**. You can [read more about what the status means here](https://www.codeforamerica.org/brigade/projects/stages). If you have questions about any of this just ping me, @{user_login}. :raised_hands:'''
 
 @app.context_processor
 def get_fragments():
