@@ -137,28 +137,29 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin: 0px;
 }
 
-#project-stage-buttons a {
-  width : 230px;
-}
-
 #Featured, .featured {
   background-color: #e87d2b !important;
+  color: white;
 }
 
 #Official, .Official {
   background-color: #00a175 !important;
+  color: white;
 }
 
 #Beta, .Beta {
   background-color: #004b6a !important;
+  color: white;
 }
 
 #Alpha, .Alpha {
   background-color: #7ab5d6 !important;
+  color: white;
 }
 
 #Experiment, .Experiment {
   background-color: #69579C !important;
+  color: white;
 }
 
 /* Project Monitor */
@@ -174,8 +175,48 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   border: 0px;
 }
 
-.project {
-  padding: 15px;
+/* PROJECT SEARCH */
+
+#project-search-section .layout-semibreve {
+  padding-top: 0px;
+}
+
+#project-search-bar {
+  width: calc(100% - 100px);
+}
+
+#project-search {
+  margin-left: 5px;
+}
+
+.card {
+  height: auto !important;
+  padding: 0px !important;
+  margin: 25px 5px 5px 5px !important;
+
+  width: calc(50% - 20px);
+}
+
+/* Phones */
+@media (max-width: 768px) {
+  .card {
+    width: 95%;
+  }
+}
+
+.card-head {
+  color: white;
+  background-color: #999595;
+  min-height: 29px;
+}
+
+.card-body h3 {
+  padding: 10px 0;
+  border-bottom: 1px solid #999595;
+}
+
+.card-head, .card-body {
+  padding: 0 10px;
 }
 
 #more-projects {

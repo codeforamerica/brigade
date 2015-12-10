@@ -8,9 +8,9 @@
   </div>
 </div>
 
-  <section>
+  <section id="project-search-section">
 
-    <div class="layout-breve">
+    <div class="layout-semibreve">
 
       {% if brigade %}
         <h1>{{brigade.name}}'s Projects</h1>
@@ -18,118 +18,130 @@
         <h1>{{ request.args["organization_type"] }} Projects</h1>
       {% else %}
         <h1>Civic Tech Project Search</h1>
-      {% endif %} 
+      {% endif %}
 
+      <form id="project-search" action="{{ request.path }}" method="get">
+        <p class="field">
+          <input id="project-search-bar" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button
+        </p>
+      </form>
 
-      <div id="projects" class="layout-major">
+      <ul class="list-inline list-no-bullets">
+        <h3>Project Stages</h3>
+        <!-- <li><a href="?q=featured" id="Featured" class="button">Featured</a></li> -->
+        <li><a href="?q=Official" id="Official" class="button">Official</a></li>
+        <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
+        <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
+        <li><a href="?q=Experiment" id="Experiment" class="button">Experiment</a></li>
+        <li><small><a href="projects/stages">What are these?</a></small></li>
+      </ul>
 
-        <form id="project-search" action="{{ request.path }}" method="get">
-          <p class="field">
-            <input type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button
-          </p>
-        </form>
-
-        {% for project in projects %}
-          <div>
-            <h3 style="display:inline;">{{project.name}}</h3>
-            {% if project.tags and "featured" in project.tags %}
-              <a href="?=featured" class="featured button-s icon-star">Featured</a>
+      <ul id="projects" class="list-no-bullets">
+      {% for project in projects %}
+        <li class="project card" z-default='1' z-hover='3'>
+          
+          <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
+            {% if project.status %}
+            <small>{{ project.status | title }}</small>
             {% endif %}
-            {% if project.link_url %}
-              <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
-            {% endif %}
+          </div>
 
-            {% if project.code_url %}
-              <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
-            {% endif %}
+          <div class="card-body">
+
+            <h3>{{project.name}}</h3>
 
             {% if project.description %}
               <p>{{project.description}}</p>
             {% endif %}
 
-            {% if project.status %}
-              <p>Status: <a href="?={{ project.status }}" class="{{ project.status }} button-s">{{ project.status }}</a></p>
-            {% endif %}
-
             {% if not brigade %}
-              <p>Used By: <a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+              <p><small>Used by </small><a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
             {% endif %}
 
             {% if project.github_details %}
               {% if project.github_details.contributors %}
-              <p>Built by: </p>
-                {% for contributor in project.github_details.contributors %}
-                  <a href="{{ contributor.html_url }}">
-                    <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-                  </a>
+                {% for i in range(5) %} 
+                  {% if project.github_details.contributors[i] %}
+                    <a href="{{ project.github_details.contributors[i].html_url }}">
+                      <img height="40" width="40" src="{{ project.github_details.contributors[i].avatar_url }}&s=40" style="border-radius: 5px;"/>
+                    </a>
+                  {% endif %}
                 {% endfor %}
+
+                {% if project.github_details.contributors | length > 3 %}
+                  <small> and {{ project.github_details.contributors | length }} others</small>
+                {% endif %}
+
               {% endif %}
             {% endif %}
 
-            {% if project.languages %}
-            <ul class="list-inline list-no-bullets">
-              Written in:
-              {% for lang in project.languages %}
-                <li><a href="projects?q={{ lang }}">{{ lang }}</a></li>
-              {% endfor %}
-            </ul>
-            {% endif %}
-
-            {% if project.tags %}
-              <ul id="tags" class="list-inline list-no-bullets">
-                Tags:
-                {% for tag in project.tags %}
-                  <li><a href="projects?q={{ tag }}">{{ tag }}</a></li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-
             <p>
-            {% if project.last_updated %}
-              <small>Last Updated: {{project.last_updated | timesince}}</small>
+            {% if project.link_url %}
+              <a href="{{project.link_url}}" class="button-bold">View the project</a>
             {% endif %}
-            {% if project.code_url and not project.status and not project.tags and ("Brigade" in project.organization.type or "Code for All" in project.organization.type) %}
-              <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add civic.json</a>
+            {% if project.code_url %}
+              <a href="{{project.code_url}}" class="button-bold">Contribute on Github</a>
             {% endif %}
             </p>
 
-            <hr />
-          </div>
-        {% endfor %}
+            <small>
 
-        {% if not projects %}
-          <h2>Nothing here yet ... </h2>
-        {% else %}
-          <a id="more-projects" href="{{next}}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a>
-        {% endif %}
+            <p>
+            {% if project.languages %}
+            {% set comma = joiner(",") %}
+              Written in
+              {% for lang in project.languages %}{{ comma() }} <a href="projects?q={{ lang }}">{{ lang }}</a>{% endfor %}
+            </p>
+            {% endif %}
 
-      </div>
+            {% if project.tags %}
+            {% set comma = joiner(",") %}
+            <p>
+              Tagged with
+              {% for tag in project.tags %}{{ comma() }} <a href="projects?q={{ tag }}">{{ tag }}</a>{% endfor %}
+            {% endif %}
+            </p>
 
-      <div class="layout-minor">
+            {% if project.code_url and not project.status and not project.tags and ("Brigade" in project.organization.type or "Code for All" in project.organization.type) %}
+              <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
+            {% endif %}
 
-        <h2><a href="projects/stages">Project Stages</a></h2>
-        <ul id="project-stage-buttons" class="list-no-bullets">
-          <li><a href="?q=featured" id="Featured" class="button">Featured</a></li>
-          <li><a href="?q=Official" id="Official" class="button">Official</a></li>
-          <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
-          <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
-          <li><a href="?q=Experiment" id="Experiment" class="button">Experiment</a></li>
-        </ul>
+            {% if project.last_updated %}
+              <p>Updated {{project.last_updated | timesince}}</p>
+            {% endif %}
 
-        <h2>Organizations</h2>
-        <ul id="project-stage-buttons" class="list-no-bullets">
-          <li><a href="/brigade/projects?organization_type=Brigade" id="Brigade" class="button">Brigades</a></li>
-          <li><a href="https://www.codeforamerica.org/brigade/Code-for-America/projects" id="Code-for-America" class="button">Code for America</a></li>
-          <li><a href="/brigade/projects?organization_type=Code+for+All" id="Code-for-All" class="button">Code for All</a></li>
-          <li><a href="/brigade/projects?organization_type=Government" id="Government" class="button">Governments</a></li>
-        </ul>
+            </small>
 
-      </div>
+          </div> <!-- card-body -->
 
+        </li> <!-- project card -->
 
+      {% endfor %}
+
+      </ul> <!-- projects -->
+
+      {% if not projects %}
+        <h2>Nothing here yet ... </h2>
+      {% else %}
+        <p style="float:right;"><a id="more-projects" href="{{next}}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a></p>
+      {% endif %}
+
+    </div> <!-- layout-breve -->
   </section>
 {% endblock %}
 
 {% block js %}
+
+<script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
+
+<script>
+$('#projects').masonry({
+  // options...
+  itemSelector: '.project',
+  "gutter" : 20
+});
+</script>
+
+  <script src="{{ url_for('static', filename='js/card-depth.js') }}"></script>
 
 {% endblock %}
