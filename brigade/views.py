@@ -226,26 +226,26 @@ def create_civic_json_fork(project):
 
     return response
 
-def verify_civic_json_fork(forked_repo_name, call_limit=10):
+def verify_repo(repo_name, payload=None, call_limit=10):
     ''' Verify that the passed repo exists.
     '''
     repo_exists = False
     times_called = 0
-    error_message = u"Couldn't verify the forked repo on GitHub."
+    error_message = u"Couldn't verify the repo on GitHub."
     while not repo_exists:
         times_called = times_called + 1
         # timeout if it's been too long
         if times_called > call_limit:
-            logging.error(u"Fork at repos/{} doesn't exist after {} seconds.".format(forked_repo_name, call_limit))
+            logging.error(u"Repo at repos/{} doesn't exist after {} seconds.".format(repo_name, call_limit))
             return False, error_message
 
         try:
-            github.get("repos/{}".format(forked_repo_name))
+            github.get("repos/{}".format(repo_name), params=payload)
 
         except GitHubError as e:
             # error if we got a status_code other than 404
             if e.response.status_code != 404:
-                logging.error(u"GitHub error {} ({}) when checking for existence of repos/{}.".format(e.response.status_code, e.response.json()['message'], forked_repo_name))
+                logging.error(u"GitHub error {} ({}) when checking for existence of repos/{}.".format(e.response.status_code, e.response.json()['message'], repo_name))
                 return False, error_message
 
             # wait a second before trying again
@@ -651,7 +651,7 @@ def create_civic_json(brigadeid, project_name):
             logging.error(u"GitHub error {} ({}) when making a fork at repos/{}/forks.".format(e.response.status_code, error_message, project["repo"]))
             return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-        fork_exists, error_message = verify_civic_json_fork(response["full_name"])
+        fork_exists, error_message = verify_repo(response["full_name"])
         if not fork_exists:
             return render_template("civic_json.html", error=error_message, project=None, user=None)
 
