@@ -68,8 +68,9 @@
                   {% endif %}
                 {% endfor %}
 
-                {% if project.github_details.contributors | length > 3 %}
-                  <small> and {{ project.github_details.contributors | length }} others</small>
+                {% set contributors_count = project.github_details.contributors | length %}
+                {% if contributors_count > 5 %}
+                  <small> and {{ contributors_count - 5 }} more</small>
                 {% endif %}
 
               {% endif %}

@@ -27,8 +27,9 @@
               <hr />
 
             {% endif %}
+            <li>Open an issue asking whether the project maintainers want to add a civic.json file</li>
             <li>Go research the project</li>
-            <li>Choose which stage the project is at. You can read more about each stage at <a href="https://www.codeforamerica.org/projects/stages">https://www.codeforamerica.org/projects/stages</a></li>
+            <li>Choose which stage the project is at. You can <a href="https://www.codeforamerica.org/brigade/projects/stages">read more about each stage.</a></li>
             <li>Add some relevant tags for the project</li>
             <li>Submit the pull request</li>
           </ol>
@@ -74,6 +75,11 @@
               <li class="form-field">
                 <label for="tags">Tags, comma separated</label>
                 <input id="tags" name="tags" class="input" type="text" />
+              </li>
+
+              <li class="form-field">
+                <label for="pr-message">Pull Request message</label>
+                <textarea id="pr-message" name="pr-message" class="input">{{ pr_message }}</textarea>
               </li>
 
               <button type="submit">Send Pull Request</button>
