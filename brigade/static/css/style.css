@@ -177,9 +177,7 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 /* PROJECT SEARCH */
 
-.banner {
-  margin: 0;
-}
+
 
 #project-search-section .layout-semibreve {
   padding-top: 0px;
@@ -201,10 +199,18 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   width: calc(50% - 20px);
 }
 
+.banner {
+  margin: 0;
+}
+
 /* Phones */
 @media (max-width: 768px) {
   .card {
     width: 95%;
+  }
+  .banner {
+    padding-top: 15px;
+    margin: 0;
   }
 }
 
