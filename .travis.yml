@@ -2,6 +2,6 @@ language: python
 install: pip install -r requirements.txt
 script:  python manage.py runtests
 env:
-  - GITHUB_CLIENT_ID=fantastic GITHUB_CLIENT_SECRET=planet
+  - GITHUB_CLIENT_ID=fantastic GITHUB_CLIENT_SECRET=planet BRIGADE_SIGNUP_SECRET="muy bueno"
 notifications:
   webhooks: http://project-monitor.codeforamerica.org/projects/brigade-2015/status
