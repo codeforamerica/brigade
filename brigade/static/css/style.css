@@ -177,6 +177,10 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 /* PROJECT SEARCH */
 
+.banner {
+  margin: 0;
+}
+
 #project-search-section .layout-semibreve {
   padding-top: 0px;
 }
