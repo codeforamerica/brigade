@@ -144,4 +144,10 @@ $('#projects').masonry({
 
   <script src="{{ url_for('static', filename='js/card-depth.js') }}"></script>
 
+<script>
+  {% if request.args.get('q') %}
+  ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
+  {% endif %}
+</script>
+
 {% endblock %}
