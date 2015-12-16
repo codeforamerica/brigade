@@ -17,7 +17,7 @@ You can search against the project's:
 You can search by using the search bar or using the [q=bicycles](http://www.codeforamerica.org/brigade/projects?q=bicycles) parameter. You'll see the url of the site update to show your search. This is an exact match of the [cfapi search](http://www.codeforamerica.org/api/projects?q=bicycles).
 
 ### Org type
-You can filter the Project Search page to only show projects from certain types of organizations. This done by adding the parameter [org_type=Brigade](http://www.codeforamerica.org/brigade/projects?org_type=Brigade). Use the Organization Type buttons to see other examples
+You can filter the Project Search page to only show projects from certain types of organizations. This done by adding the parameter [org_type=Brigade](http://www.codeforamerica.org/brigade/projects?org_type=Brigade). The options are `Brigade`, `Code for All`, `Government`.
 
 ### Project Stages
 The majority of volunteer built civic tech projects are just experiments. They aren't much use to someone else. Showing a huge list of project with unknown impact isn't our goal. So we came up with Brigade [Project Stages](http://www.codeforamerica.org/brigade/projects/stages) to give some context to the big list of projects. The stages are very much in development and could [use your input](https://github.com/codeforamerica/brigade/milestones/project%20search).
