@@ -493,16 +493,15 @@ def infrastructure():
 @app.route("/brigade/projects/stages")
 def stages():
     ''' Describe the project stages '''
-    # got = get("https://www.codeforamerica.org/api/projects?status=experiment")
-    # experiment_count = got.json()["total"]
-    # got = get("https://www.codeforamerica.org/api/projects?status=alpha")
-    # alpha_count = got.json()["total"]
-    # got = get("https://www.codeforamerica.org/api/projects?status=beta")
-    # beta_count = got.json()["total"]
-    # got = get("https://www.codeforamerica.org/api/projects?status=official")
-    # official_count = got.json()["total"]
-    return render_template("stages.html")
-    # , experiment_count=experiment_count, alpha_count=alpha_count, beta_count=beta_count, official_count=official_count)
+    got = get("https://www.codeforamerica.org/api/projects?status=experiment")
+    experiment_count = got.json()["total"]
+    got = get("https://www.codeforamerica.org/api/projects?status=alpha")
+    alpha_count = got.json()["total"]
+    got = get("https://www.codeforamerica.org/api/projects?status=beta")
+    beta_count = got.json()["total"]
+    got = get("https://www.codeforamerica.org/api/projects?status=official")
+    official_count = got.json()["total"]
+    return render_template("stages.html", experiment_count=experiment_count, alpha_count=alpha_count, beta_count=beta_count, official_count=official_count)
 
 
 @app.route("/brigade/projects")
