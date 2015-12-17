@@ -5,18 +5,11 @@
 The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across [thousands](http://www.codeforamerica.org/brigade/numbers/) of civic technology projects. Go try it out, we think its pretty useful.
 
 #### How to search
-You can search against the project's:
-
-* name
-* description
-* status
-* tags
-* programming language
-* the organization name that built it - `Code for San Francisco`
-
 You can search by using the search bar or using the [q=bicycles](http://www.codeforamerica.org/brigade/projects?q=bicycles) parameter. You'll see the url of the site update to show your search. This is an exact match of the [cfapi search](http://www.codeforamerica.org/api/projects?q=bicycles).
 
-You can also filter types of organizations. This done by adding the parameter [org_type=Brigade](http://www.codeforamerica.org/brigade/projects?org_type=Brigade). The options are `Brigade`, `Code for All`, `Government`. Code for America's projects are included under Code for All.
+You can search against the project's `name`, `description`, `status`, `tags`, `languages`, and `organization_name` such as "Code for San Francisco".
+
+You can also filter types of organizations. This done by adding the parameter [organization_type=Brigade](http://www.codeforamerica.org/brigade/projects?organization_type=Brigade). The options are `Brigade`, `Code for All`, `Government`. Code for America's projects are included under Code for All.
 
 By default it returns projects in order of most recently updated.
 
