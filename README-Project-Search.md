@@ -47,6 +47,8 @@ Include the civic.json file at the top level of your project.
 #### Adding a civic.json to your project
 To add these important stages and tags to your project, you can use the form we built into the project search page. If your project doesn’t have civic.json file yet, you’ll see a button to add one.
 
+![add a civic.json file](http://i.imgur.com/lhQ7GIL.png)
+
 The url for the form follows the pattern of `http://www.codeforamerica.org/brigade/<Brigade-Name>/projects/<project-name>/add-civic-json`. An [example](http://www.codeforamerica.org/brigade/Code-for-America/projects/brigade/add-civic-json).
 
 You can always build your own civic.json and add it to the top level of your project.
