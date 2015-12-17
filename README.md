@@ -6,10 +6,11 @@ This repo is for the Brigade website [https://www.codeforamerica.org/brigade](ht
 
 ## Goals
 This website is meant to:
-* Get you to sign up for your local Brigade
 * Explain what the Brigade program is
+* Help people find their local Brigade
 * Show off the fine works of the Brigades
 * Provide tools that help Brigade work
+* Make it easy to start a new Brigade
 
 ## History
 
@@ -23,11 +24,16 @@ V2 was powered by the CfAPI and worked great, yet was built quickly with PHP and
 
 V3, the current site, is meant to simplify the code and make it easier for Brigade members to get involved in building the Brigade site.
 
+## Project Search and civic.json
+The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across thousands of civic technology projects. Go try it out, we think its pretty useful.
+
+Read more at [README-Project-Search.md](README-Project-Search.md)
+
 ## Attendance and Check Ins
 
 Attendance is one of the basic metrics that needs to be tracked in movement building. Its useful for tracking the impact of your outreach, the growth of your group over time, and individual participation tracking. Its also incredibly useful for fundraising, considering many grants will accept volunteer hours as their matching funding requirement.
 
-Read more at [Attendance-README.md](Attendance-README.md)
+Read more at [README-Attendance.md](README-Attendance.md)
 
 ## Installation
 
