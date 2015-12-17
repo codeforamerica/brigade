@@ -36,7 +36,6 @@ Include the civic.json file at the top level of your project.
     ]
 }
 ```
-
 #### Adding a civic.json to your project
 To add these important stages and tags to your project, you can use the form we built into the project search page. If your project doesn’t have civic.json file yet, you’ll see a button to add one.
 
@@ -44,13 +43,28 @@ To add these important stages and tags to your project, you can use the form we 
 
 The url for the form follows the pattern of `http://www.codeforamerica.org/brigade/<Brigade-Name>/projects/<project-name>/add-civic-json`. An [example](http://www.codeforamerica.org/brigade/Code-for-America/projects/brigade/add-civic-json).
 
-You can always build your own civic.json and add it to the top level of your project.
+You'll need to log into Github. Once you fill our the form, it will send a Pull Request from your Github account to the project for their approval or rejection.
+
+If you are having trouble, you can always build your own civic.json and add it to the top level of the project.
 
 ## Advice for Brigades
-We recommend that your Delivery Lead or Captain take time to once a month to review each of your group’s projects and update the metadata about it. The Project Search page is already really popular and is becoming the main way other Brigades find out about your group’s work. Its important to do this maintenance because:
+We recommend that your Delivery Lead or Captain take time to once a month to review each of your group’s projects and update the metadata about it. 
 
+#### Why?
+The Project Search page is already really popular and is becoming the main way other Brigades find out about your group’s work. Its important to do this maintenance because:
 * This is how civic hackers across the country will find projects to contribute to.
 * This is how city employees will find projects to solve problems in their cities.
 * Code for America will give different types of support to different project stages.
 * Your Brigade could offer different types of support to different project stages.
+
+#### How
+1. Go to your Brigade's list of projects. You can just search for your group like [http://www.codeforamerica.org/brigade/projects?q=Code+for+San+Francisco](http://www.codeforamerica.org/brigade/projects?q=Code+for+San+Francisco) or go to your Brigade's individual project page like [https://www.codeforamerica.org/brigade/Code-for-San-Francisco/projects](https://www.codeforamerica.org/brigade/Code-for-San-Francisco/projects).
+
+2. Review each project. Talk to the project team, check out their live examples, their README.
+
+3. Choose the appropriate [project stage](http://www.codeforamerica.org/brigade/projects/stages). 
+
+4. Choose the appropriate tags. Our initial list of what looks useful is search terms, city name, and tech stack.
+
+5. Make the civic.json file. You can [use our form](#adding-a-civicjson-to-your-project) or edit the civic.json file direct on Github.
 
