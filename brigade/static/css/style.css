@@ -191,7 +191,7 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin-left: 5px;
 }
 
-.card {
+#project-search-section .card {
   height: auto !important;
   padding: 0px !important;
   margin: 25px 5px 5px 5px !important;

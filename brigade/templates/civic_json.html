@@ -2,103 +2,169 @@
 
 {% block content %}
 
-  <section>
+<div class="slab-red">
+  <div class="center">
+    <p class="banner">This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#alpha">Alpha</a>. Help improve it by <a href="https://github.com/codeforamerica/brigade/milestones/project%20search">submitting an issue</a>.</p>
+  </div>
+</div>
 
-    <div class="slab-dark-blue">
-      <div class="layout-semibreve">
-        <h2>Add a civic.json to {{ project.name }}</h2>
-        <p>Filling out this form will send a request to add a civic.json file to the project. The civic.json file will have the stage of the project and some tags to describe the project. With this extra info, it will be much easier for people to search for the project and decide if they want to help build it or redeploy it in their city.</p>
+<div class="layout-semibreve">
+  <h2>Civic.json Builder</h2>
+  
+  <p>Filling out this form will send a request to add a civic.json file to the project. <a href="https://github.com/codeforamerica/brigade/blob/master/README-Project-Search.md">Read more here</a>.<br/><small>We recommend only sending PRs to your own Brigade's projects.</small></p>
+
+  <div class="layout-minim">
+
+    {% if not error %}
+
+    <ol>
+      {% if not session.access_token %}
+        <li><a class="button icon-github2" href="/brigade/gh-login">Log in to Github</a></li>
+
+      {% else %}
+        <p class="center"><img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> Hi <strong>{{ user.login }}</strong>!<br/><a class="button-subtle button-s icon-github2" href="/brigade/gh-logout">Log Out of Github</a></p>
+        <hr />
+
+      {% endif %}
+
+      <li>Research the project</li>
+      <li>Choose the <a href="https://www.codeforamerica.org/brigade/projects/stages">project stage</a></li>
+      <li>Add some tags</li>
+      <li>Add your favorite emoji to the commit message</li>
+      <li>Submit the pull request</li>
+    </ol>
+
+    {% else %}
+
+    <h2>There has been an error. Don't panic.</h2>
+    <p>Go send a pull request by hand.</p>
+    <p>An example <a href="https://github.com/codeforamerica/attendance/blob/gh-pages/civic.json">civic.json</a> file.</p>
+
+    <p data-test-id="error-message">{{ error }}</p>
+
+    {% endif %}
+
+    {% if session.access_token %}
+
+    <form id="civic-json-form" method="POST">
+
+      <ul class="list-form">
+
+        <li class="form-field">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="" disabled="disabled"  style="display:none" selected="selected">Choose a status</option>
+            <option>Experiment</option>
+            <option>Alpha</option>
+            <option>Beta</option>
+            <option>Official</option>
+          </select>
+        </li>
+
+        <li class="form-field">
+          <label for="tags">Tags, comma separated</label>
+          <input id="tags" name="tags" class="input" type="text" />
+        </li>
+
+        <li class="form-field">
+          <label for="pr-message">Pull Request message</label>
+          <textarea id="pr-message" name="pr-message" class="input">{{ pr_message }}</textarea>
+        </li>
+
+        <button type="submit">Send Pull Request</button>
+
+      </ul>
+
+    </form>
+
+    {% endif %}
+
+  </div>
+
+  <div class="layout-minim">
+    <div class="project card" z-default='1' z-hover='3'>
+
+      <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
+        {% if project.status %}
+        <small>{{ project.status | title }}</small>
+        {% endif %}
       </div>
-    </div>
 
-    <div class="layout-chimney-invert">
+      <div class="card-body">
 
+        <h3>{{project.name}}</h3>
 
-        <div class="layout-minim">
+        {% if project.description %}
+          <p>{{project.description}}</p>
+        {% endif %}
 
-          {% if not error %}
+        {% if not brigade %}
+          <p><small>Used by </small><a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+        {% endif %}
 
-          <ol>
-            {% if not session.access_token %}
-              <p>You'll need to log in to Github. <a class="button icon-github2" href="/brigade/gh-login">Log In to Github</a></p>
+        {% if project.github_details %}
+          {% if project.github_details.contributors %}
+            {% for i in range(5) %} 
+              {% if project.github_details.contributors[i] %}
+                <a href="{{ project.github_details.contributors[i].html_url }}">
+                  <img height="40" width="40" src="{{ project.github_details.contributors[i].avatar_url }}&s=40" style="border-radius: 5px;"/>
+                </a>
+              {% endif %}
+            {% endfor %}
 
-            {% else %}
-              <p><img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> Hi <strong>{{ user.login }}</strong>!<br/><a class="button-subtle button-s icon-github2" href="/brigade/gh-logout">Log Out of Github</a></p>
-              <hr />
-
+            {% set contributors_count = project.github_details.contributors | length %}
+            {% if contributors_count > 5 %}
+              <small> and {{ contributors_count - 5 }} more</small>
             {% endif %}
-            <li>Open an issue asking whether the project maintainers want to add a civic.json file</li>
-            <li>Go research the project</li>
-            <li>Choose which stage the project is at. You can <a href="https://www.codeforamerica.org/brigade/projects/stages">read more about each stage.</a></li>
-            <li>Add some relevant tags for the project</li>
-            <li>Submit the pull request</li>
-          </ol>
-
-          {% else %}
-
-          <h2>There has been an error. Don't panic.</h2>
-          <p>Go send a pull request by hand.</p>
-          <p>An example <a href="https://github.com/codeforamerica/attendance/blob/gh-pages/civic.json">civic.json</a> file.</p>
-
-          <p data-test-id="error-message">{{ error }}</p>
 
           {% endif %}
+        {% endif %}
 
-        </div>
-        <div class="layout-minim slab-medium-red chimney">
+        <p>
+        {% if project.link_url %}
+          <a href="{{project.link_url}}" class="button-bold">View the project</a>
+        {% endif %}
+        {% if project.code_url %}
+          <a href="{{project.code_url}}" class="button-bold">Contribute on Github</a>
+        {% endif %}
+        </p>
 
-          {% if project.link_url %}
-            <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
-          {% endif %}
+        <small>
 
-          {% if project.code_url %}
-            <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
-          {% endif %}
+        <p>
+        {% if project.languages %}
+        {% set comma = joiner(",") %}
+          Written in
+          {% for lang in project.languages %}{{ comma() }} <a href="/brigade/projects?q={{ lang }}">{{ lang }}</a>{% endfor %}
+        </p>
+        {% endif %}
 
-          {% if session.access_token %}
+        {% if project.tags %}
+        {% set comma = joiner(",") %}
+        <p>
+          Tagged with
+          {% for tag in project.tags %}{{ comma() }} <a href="/brigade/projects?q={{ tag }}">{{ tag }}</a>{% endfor %}
+        {% endif %}
+        </p>
 
-          <form id="civic-json-form" method="POST">
+        {% if project.last_updated %}
+          <p>Updated {{project.last_updated | timesince}}</p>
+        {% endif %}
 
-            <ul class="list-form">
+        </small>
 
-              <li class="form-field">
-                <label for="status">Status</label>
-                <select id="status" name="status">
-                  <option value="" disabled="disabled"  style="display:none" selected="selected">Choose a status</option>
-                  <option>Experiment</option>
-                  <option>Alpha</option>
-                  <option>Beta</option>
-                  <option>Official</option>
-                </select>
-              </li>
+      </div> <!-- card-body -->
 
-              <li class="form-field">
-                <label for="tags">Tags, comma separated</label>
-                <input id="tags" name="tags" class="input" type="text" />
-              </li>
+    </div> <!-- project card -->
+  </div>
 
-              <li class="form-field">
-                <label for="pr-message">Pull Request message</label>
-                <textarea id="pr-message" name="pr-message" class="input">{{ pr_message }}</textarea>
-              </li>
+</div>
 
-              <button type="submit">Send Pull Request</button>
-
-            </ul>
-
-          </form>
-
-          {% endif %}
-
-        </div>
-
-    </div>
-
-  </section>
 {% endblock %}
 
 {% block js %}
-  <script>
-
-  </script>
+<script>
+  $("#signupformdiv").hide();
+</script>
+<script src="{{ url_for('static', filename='js/card-depth.js') }}"></script>
 {% endblock %}
