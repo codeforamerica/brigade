@@ -1,5 +1,4 @@
-# A guide about Project Search and civic.json
-
+# A guide to Project Search and the civic.json
 
 ## Project Search
 The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across [thousands](http://www.codeforamerica.org/brigade/numbers/) of civic technology projects. Go try it out, we think its pretty useful.
@@ -7,14 +6,16 @@ The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a n
 #### How to search
 You can search by using the search bar or using the [q=bicycles](http://www.codeforamerica.org/brigade/projects?q=bicycles) parameter. You'll see the url of the site update to show your search. This is an exact match of the [cfapi search](http://www.codeforamerica.org/api/projects?q=bicycles).
 
-Your search will try and match against the project's `name`, `description`, `status`, `tags`, `languages`, and `organization_name` such as "Code for San Francisco".
+Your search will try and match against the project's `name`, `description`, `tags`, `languages`, and `organization_name` such as "Code for San Francisco".
 
-You can also filter types of organizations. This done by adding the parameter [organization_type=Brigade](http://www.codeforamerica.org/brigade/projects?organization_type=Brigade). The options are `Brigade`, `Code for All`, `Government`. Code for America's projects are included under Code for All.
+There are two types of filters. Status which is [explained below](#stages) and organization type. This done by adding the parameter [organization_type=Brigade](http://www.codeforamerica.org/brigade/projects?organization_type=Brigade). The options are `Brigade`, `Code for All`, `Government`. Code for America's projects are included under Code for All.
 
 By default, the returns projects in order of most recently updated. When searching, it returns in order of most relevant.
 
 #### Stages
-You’ll notice that many projects have a Project Stage. These stages are [explained in detail](http://www.codeforamerica.org/brigade/projects/stages) and are meant to give some context to this big pile of projects. If you are government employee looking for [a tool to help find preschools](http://www.codeforamerica.org/brigade/projects?q=official,%20preschool), you’ll probably only want to see finished `Official` projects. If you are a Brigade leader looking for [transit data projects](http://www.codeforamerica.org/brigade/projects?q=Experiment,%20transit%20data) for your volunteers to hack on, you’ll want to find `Alpha` and `Experiment` projects that still need contributors. Get it?
+You’ll notice that many projects have a Project Stage. These stages are [explained in detail](http://www.codeforamerica.org/brigade/projects/stages) and are meant to give some context to how complete the project is. If you are government employee looking for [a tool to help find preschools](http://www.codeforamerica.org/brigade/projects?status=Official&q=preschool), you’ll probably only want to see finished `status=Official` projects. If you are a Brigade leader looking for [transit data projects](http://www.codeforamerica.org/brigade/projects?status=Experimentq=transit%20data) for your volunteers to hack on, you’ll want to find `status=Alpha` and `status=Experiment` projects that still need contributors. Get it?
+
+We call them project stages but in the civic.json they are called status. Sorry if its confusing. The valid status that we are using are `Experiment`, `Alpha`, `Beta`, and `Official`.
 
 #### Tags
 The Project Search searches from a bunch of attributes about the project, yet sometimes the right term just isn’t in there. Thats where tags come in. Tags are a great catchall place to put metadata about the project. `transit, buses, open data, iOS, California` are examples of the random things people might want to search for and find for a specific project. We’ll keep watching what tags are being used and what people are searching for to produce a recommended list.
