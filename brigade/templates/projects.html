@@ -125,7 +125,7 @@
       {% if not projects %}
         <h2>Nothing here yet ... </h2>
       {% else %}
-        <p style="float:right;"><a id="more-projects" href="{{next}}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a></p>
+        <p style="float:right;"><a id="more-projects" href="{{next}}{% if request.args.get('status') %}&status={{ request.args.get('status') }}{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a></p>
       {% endif %}
 
     </div> <!-- layout-breve -->
