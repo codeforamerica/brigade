@@ -259,6 +259,29 @@ class BrigadeTests(unittest.TestCase):
                     "default_branch" : "master"
                     } ''')
 
+        if "q=TEST" in url.geturl() or "organization_type=Brigade" in url.geturl() or "status=Alpha" in url.geturl():
+            return response(200, '''{
+                  "objects": [
+                    {
+                      "code_url": "TEST URL",
+                      "description": "TEST DESCRIPTION",
+                      "link_url": "TEST URL",
+                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
+                      "name": "TEST PROJECT",
+                      "github_details" : {},
+                      "organization": {
+                        "id": "Code-for-San-Francisco",
+                        "name": "Code for San Francisco"
+                      },
+                      "organization_name": "Code for San Francisco",
+                      "status": "Alpha",
+                      "tags": "housing, ndoch, active"
+                    }
+                  ],
+                  "total" : 1,
+                  "pages": {}
+                } ''')
+
         raise ValueError('response_content: bad {} to "{}"'.format(request.method, url.geturl()))
 
     def test_signup(self):
@@ -390,6 +413,24 @@ class BrigadeTests(unittest.TestCase):
             card_head_div = soup.find('div', {'class': 'card-head Alpha'})
             self.assertIsNotNone(card_head_div)
             self.assertEqual(u'Alpha', card_head_div.text.strip())
+
+    def test_projects_searches(self):
+        ''' Test the different project searches '''
+        with HTTMock(self.response_content):
+            response = self.client.get("/brigade/projects?q=TEST")
+            soup = BeautifulSoup(response.data, "html.parser")
+            project_name = soup.find_all('h3')
+            self.assertEqual(u"TEST PROJECT", project_name[1].text.strip())
+
+            response = self.client.get("/brigade/projects?organization_type=Brigade")
+            soup = BeautifulSoup(response.data, "html.parser")
+            project_name = soup.find_all('h3')
+            self.assertEqual(u"TEST PROJECT", project_name[1].text.strip())
+
+            response = self.client.get("/brigade/projects?status=Alpha")
+            soup = BeautifulSoup(response.data, "html.parser")
+            project_name = soup.find_all('h3')
+            self.assertEqual(u"TEST PROJECT", project_name[1].text.strip())
 
     def test_project_monitor(self):
         ''' Test the project monitor page works as expected '''
