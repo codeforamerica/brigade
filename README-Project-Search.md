@@ -1,7 +1,7 @@
 # A guide to Project Search and the civic.json
 
 ## Project Search
-The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across [thousands](http://www.codeforamerica.org/brigade/numbers/) of civic technology projects. Go try it out, we think its pretty useful.
+The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across [thousands](http://www.codeforamerica.org/brigade/numbers/) of civic technology projects. Go try it out, we think it's pretty useful.
 
 #### How to search
 You can search by using the search bar or using the `q` parameter like so: [q=bicycles](http://www.codeforamerica.org/brigade/projects?q=bicycles). When you submit a query, you'll see the url of the site update to show your search. This is an exact match to the [cfapi search](http://www.codeforamerica.org/api/projects?q=bicycles).
@@ -18,12 +18,12 @@ You'll notice that many projects have a Project Stage. These stages are [explain
 We call them project stages but in the civic.json they are called status. Sorry if it's confusing. The valid statuses that we are using are `Experiment`, `Alpha`, `Beta`, and `Official`.
 
 #### Tags
-The Project Search queries a bunch of attributes about a project, yet sometimes the right term just isn't in there. Thats where tags come in. Tags are a great catchall place to put metadata about a project. `transit, buses, open data, iOS, California` are examples of the random things people might want to search for and find for a specific project. We'll keep watching what tags are being used and what people are searching for to produce a recommended list.
+The Project Search queries a bunch of attributes about a project, but sometimes the right term just isn't in there. That's where tags come in. Tags are a great catchall place to put metadata about a project. `transit, buses, open data, iOS, California` are examples of the random things people might want to search for and find for a specific project. We'll keep watching what tags are being used and what people are searching for to produce a recommended list.
 
 ## Civic.json
-To add this metadata about stages and tags to the project, we recommend including a civic.json file in each project's repo. The civic.json concept comes from [Beta.NYC](https://github.com/BetaNYC/civic.json) and [Chi Hack Night](https://github.com/open-city/civic-json-worker). In the Code for America implementation of the idea, we're only expecting to find two attributes: `status` and `tags`. You can include other data in the file, but you won't find it on the Project Search page yet.
+To add this metadata about stages and tags to the project, we recommend including a `civic.json` file in each project's repo. The civic.json concept comes from [Beta.NYC](https://github.com/BetaNYC/civic.json) and [Chi Hack Night](https://github.com/open-city/civic-json-worker). In the Code for America implementation of the idea, we're only expecting to find two attributes: `status` and `tags`. You can include other data in the file, but you won't see it displayed on the Project Search page.
 
-Include the civic.json file at the top level of your project.
+Include the civic.json file at the top level of your project's repo.
 
 #### Example
 ```
@@ -40,11 +40,11 @@ Include the civic.json file at the top level of your project.
 ```
 
 #### Adding a civic.json to your project
-To add these important stages and tags to your project, you can use the form that we've built into the project search page. If your project doesn't have a civic.json file yet, you'll see a button to add one.
+To add these important stages and tags to your project, you can use the form that we've built into the project search page. If your project doesn't have a civic.json file yet, you'll see a button like this:
 
 ![add a civic.json file](http://i.imgur.com/lhQ7GIL.png)
 
-The url for the form follows the pattern of `http://www.codeforamerica.org/brigade/<Brigade-Name>/projects/<project-name>/add-civic-json`. [For example](http://www.codeforamerica.org/brigade/Code-for-America/projects/brigade/add-civic-json).
+The url for the form follows the pattern of `http://www.codeforamerica.org/brigade/<Brigade-Name>/projects/<project-name>/add-civic-json`. For example: [http://www.codeforamerica.org/brigade/Code-for-America/projects/brigade/add-civic-json](http://www.codeforamerica.org/brigade/Code-for-America/projects/brigade/add-civic-json).
 
 You'll need to log into Github. When you fill out and submit the form, it will send a Pull Request from your Github account to the project for their approval or rejection.
 
