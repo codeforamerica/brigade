@@ -103,7 +103,7 @@
             {% endif %}
             </p>
 
-            {% if project.code_url and not project.status and not project.tags and ("Brigade" in project.organization.type or "Code for All" in project.organization.type) %}
+            {% if project.code_url and not project.status and not project.tags %}
               <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
             {% endif %}
 
