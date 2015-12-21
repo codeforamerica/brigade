@@ -519,11 +519,7 @@ def projects(brigadeid=None):
     brigade = None
     search = request.args.get("q", None)
     page = request.args.get("page", None)
-<<<<<<< HEAD
-=======
-    organization_type = request.args.get("organization_type", None)
     status = request.args.get("status", None)
->>>>>>> a63eaf9d7a2dc8c9c277aa5305ef7d1cbac2282d
 
     # Set next
     if page:
