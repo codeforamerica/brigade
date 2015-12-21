@@ -14,10 +14,9 @@
 
       {% if brigade %}
         <h1>{{brigade.name}}'s Projects</h1>
-      {% elif request.args.get("organization_type", None) %}
-        <h1>{{ request.args["organization_type"] }} Projects</h1>
       {% else %}
-        <h1>Civic Tech Project Search</h1>
+        <h1 id="project-search-h1">Civic Tech Project Search</h1>
+        <p>Search across thousands of Brigade and Code for All projects.</p>
       {% endif %}
 
       <form id="project-search" action="{{ request.path }}" method="get">
