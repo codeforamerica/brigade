@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
 <div class="slab-red">
   <div class="center">
     <p class="banner">This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#alpha">Alpha</a>. Help improve it by <a href="https://github.com/codeforamerica/brigade/milestones/project%20search">submitting an issue</a>.</p>
@@ -22,13 +23,12 @@
 
       <form id="project-search" action="{{ request.path }}" method="get">
         <p class="field">
-          <input id="project-search-bar" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button
+          <input id="project-search-bar" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button>
         </p>
       </form>
 
       <ul class="list-inline list-no-bullets">
         <h3>Project Stages</h3>
-        <!-- <li><a href="?q=featured" id="Featured" class="button">Featured</a></li> -->
         <li><a href="?q=Official" id="Official" class="button">Official</a></li>
         <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
         <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
@@ -36,90 +36,9 @@
         <small><a href="/brigade/projects/stages">What are these?</a></small>
       </ul>
 
+      <!-- PROJECTS HERE -->
       <ul id="projects" class="list-no-bullets">
-      {% for project in projects %}
-        <li class="project card" z-default='1' z-hover='3'>
-          
-          <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
-            {% if project.status %}
-            <small>{{ project.status | title }}</small>
-            {% endif %}
-          </div>
-
-          <div class="card-body">
-
-            <h3>{{project.name}}</h3>
-
-            {% if project.description %}
-              <p>{{project.description}}</p>
-            {% endif %}
-
-            {% if not brigade %}
-              <p><small>Used by </small><a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
-            {% endif %}
-
-            {% if project.github_details %}
-              {% if project.github_details.contributors %}
-                {% for i in range(5) %} 
-                  {% if project.github_details.contributors[i] %}
-                    <a href="{{ project.github_details.contributors[i].html_url }}">
-                      <img height="40" width="40" src="{{ project.github_details.contributors[i].avatar_url }}&s=40" style="border-radius: 5px;"/>
-                    </a>
-                  {% endif %}
-                {% endfor %}
-
-                {% set contributors_count = project.github_details.contributors | length %}
-                {% if contributors_count > 5 %}
-                  <small> and {{ contributors_count - 5 }} more</small>
-                {% endif %}
-
-              {% endif %}
-            {% endif %}
-
-            <p>
-            {% if project.link_url %}
-              <a href="{{project.link_url}}" class="button-bold">View the project</a>
-            {% endif %}
-            {% if project.code_url %}
-              <a href="{{project.code_url}}" class="button-bold">Contribute on Github</a>
-            {% endif %}
-            </p>
-
-            <small>
-
-            <p>
-            {% if project.languages %}
-            {% set comma = joiner(",") %}
-              Written in
-              {% for lang in project.languages %}{{ comma() }} <a href="projects?q={{ lang }}">{{ lang }}</a>{% endfor %}
-            </p>
-            {% endif %}
-
-            {% if project.tags %}
-            {% set comma = joiner(",") %}
-            <p>
-              Tagged with
-              {% for tag in project.tags %}{{ comma() }} <a href="projects?q={{ tag }}">{{ tag }}</a>{% endfor %}
-            {% endif %}
-            </p>
-
-            {% if project.code_url and not project.status and not project.tags and ("Brigade" in project.organization.type or "Code for All" in project.organization.type) %}
-              <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
-            {% endif %}
-
-            {% if project.last_updated %}
-              <p>Updated {{project.last_updated | timesince}}</p>
-            {% endif %}
-
-            </small>
-
-          </div> <!-- card-body -->
-
-        </li> <!-- project card -->
-
-      {% endfor %}
-
-      </ul> <!-- projects -->
+      </ul>
 
       {% if not projects %}
         <h2>Nothing here yet ... </h2>
@@ -132,18 +51,54 @@
 {% endblock %}
 
 {% block js %}
+<script type="text/babel">
 
-<script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
-
-<script>
-$('#projects').masonry({
-  // options...
-  itemSelector: '.project',
-  "gutter" : 20
+var Projects = React.createClass({
+  getInitialState: function(){
+    return {
+      projects : {{projects | safe}}
+    }
+  },
+  render: function() {
+    return (
+      <p>
+      {this.state.projects.map(function(project){
+        return <Project project={project} />;
+      })}
+      </p>
+    )
+  }
 });
-</script>
 
-  <script src="{{ url_for('static', filename='js/card-depth.js') }}"></script>
+var Project = React.createClass({
+  render: function() {
+    return(
+      <li className="project card">
+
+        <div className="card-head">
+        </div>
+
+        <div className="card-body">
+
+          <h3>{this.props.project.name}</h3>
+          <p>{this.props.project.description}</p>
+
+          <a href="{this.props.project.link_url}" className="button-bold">View the project</a>
+          <a href="{this.props.project.code_url}" className="button-bold">Contribute on Github</a>
+
+        </div>
+      </li>
+    );
+  }
+});
+
+// Do the thing
+ReactDOM.render(
+  <Projects source="https://www.codeforamerica.org/api/projects" />,
+  document.getElementById('projects')
+);
+
+</script>
 
 <script>
   {% if request.args.get('q') %}

@@ -286,6 +286,16 @@ def commit_civic_json(civic_json, repo_name, ref_payload):
     except GitHubError:
         raise
 
+def byteify(input):
+    if isinstance(input, dict):
+        return {byteify(key):byteify(value) for key,value in input.iteritems()}
+    elif isinstance(input, list):
+        return [byteify(element) for element in input]
+    elif isinstance(input, unicode):
+        return input.encode('utf-8')
+    else:
+        return input
+
 #
 # ROUTES
 #
@@ -556,7 +566,8 @@ def projects(brigadeid=None):
         url += "&organization_type=" + organization_type
 
     projects = get_projects(projects, url)
-
+    projects=json.dumps(projects)
+ 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
 @app.route('/brigade/github-callback')
