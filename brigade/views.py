@@ -240,7 +240,10 @@ def verify_repo(repo_name, payload=None, call_limit=10):
             return False, error_message
 
         try:
-            github.get("repos/{}".format(repo_name), params=payload)
+            if payload:
+                github.get("repos/{}/git/refs/heads/{}".format(repo_name, payload['ref']))
+            else:
+                github.get("repos/{}".format(repo_name))
 
         except GitHubError as e:
             # error if we got a status_code other than 404
@@ -637,7 +640,7 @@ def create_civic_json(brigadeid, project_name):
             error_message = e.response.json()['message']
             logging.error(u"GitHub error {} ({}) when trying to create a branch at repos/{}/git/refs/heads/{}.".format(e.response.status_code, error_message, project["repo"], CIVIC_JSON_BRANCH_NAME))
 
-        ref_payload = {u'ref': CIVIC_JSON_BRANCH_NAME}
+        ref_payload = {'ref': CIVIC_JSON_BRANCH_NAME}
         repo_name = project["repo"]
 
         # branch creation shouldn't be asynchronous, but we're getting some
