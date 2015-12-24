@@ -5,7 +5,7 @@ import unittest
 import json
 import os
 import flask
-from httmock import response, HTTMock
+import httmock
 from brigade import create_app
 import brigade.views as view_functions
 from bs4 import BeautifulSoup
@@ -32,7 +32,7 @@ class BrigadeTests(unittest.TestCase):
 
     def civic_json_content(self, url, request):
         if url.geturl() == 'https://www.codeforamerica.org/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
-            return response(200, '''
+            return httmock.response(200, '''
                 {
                   "objects": [
                     {
@@ -62,7 +62,7 @@ class BrigadeTests(unittest.TestCase):
         # (stripped out unused parameters)
         # https://developer.github.com/v3/users/#get-a-single-user
         if url.geturl() == 'https://api.github.com/user' and request.method == 'GET':
-            return response(200, '''
+            return httmock.response(200, '''
                 {
                   "login": "mhammy",
                   "avatar_url": "https://avatars.githubusercontent.com/u/8171936?v=3"
@@ -71,7 +71,7 @@ class BrigadeTests(unittest.TestCase):
         # list pull requests
         # https://developer.github.com/v3/pulls/#list-pull-requests
         if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/pulls' and request.method == 'GET':
-            return response(200, '''
+            return httmock.response(200, '''
                 [
 
                 ]''', {'Content-Type': 'application/json; charset=utf-8'})
@@ -80,7 +80,7 @@ class BrigadeTests(unittest.TestCase):
         # (stripped out unused parameters)
         # https://developer.github.com/v3/repos/#get
         if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test' and request.method == 'GET':
-            return response(200, '''
+            return httmock.response(200, '''
                 {
                   "name": "add-civic-json-test",
                   "full_name": "codeforamerica/add-civic-json-test",
@@ -94,7 +94,7 @@ class BrigadeTests(unittest.TestCase):
         # (stripped out unused parameters)
         # https://developer.github.com/v3/repos/forks/#response-1
         if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/forks' and request.method == 'POST':
-            return response(202, '''
+            return httmock.response(202, '''
                 {
                   "full_name" : "mhammy/add-civic-json-test",
                   "owner" : {
@@ -107,7 +107,7 @@ class BrigadeTests(unittest.TestCase):
         # (stripped out unused parameters)
         # https://developer.github.com/v3/repos/#get
         if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test' and request.method == 'GET':
-            return response(200, '''
+            return httmock.response(200, '''
                 {
                   "id": 46887065,
                   "name": "add-civic-json-test",
@@ -123,7 +123,7 @@ class BrigadeTests(unittest.TestCase):
         # check for existence of civic.json file
         # https://developer.github.com/v3/repos/contents/#get-contents
         if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test/contents/civic.json' and request.method == 'GET':
-            return response(404, '''
+            return httmock.response(404, '''
                 {
                   "message": "Not Found",
                   "documentation_url": "https://developer.github.com/v3"
@@ -133,7 +133,7 @@ class BrigadeTests(unittest.TestCase):
         # (stripped out unused parameters)
         # https://developer.github.com/v3/repos/contents/#create-a-file
         if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test/contents/civic.json' and request.method == 'PUT':
-            return response(201, '''
+            return httmock.response(201, '''
                 {
                   "commit": {
                     "message": "add civic.json file",
@@ -154,7 +154,7 @@ class BrigadeTests(unittest.TestCase):
         # (stripped out unused parameters)
         # https://developer.github.com/v3/pulls/#create-a-pull-request
         if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/pulls' and request.method == 'POST':
-            return response(201, '''
+            return httmock.response(201, '''
                 {
                   "id": 1,
                   "html_url": "https://github.com/codeforamerica/add-civic-json-test/pull/1"
@@ -165,19 +165,19 @@ class BrigadeTests(unittest.TestCase):
 
     def response_content(self, url, request):
         if "list-manage.com/subscribe/post" in url.geturl():
-            return response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
+            return httmock.response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
         if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
-            return response(200, '''<html>bunch of HTML</html>''')
+            return httmock.response(200, '''<html>bunch of HTML</html>''')
         if url.geturl() == 'https://www.codeforamerica.org/api/organizations/404':
-            return response(404, '{"status": "Resource Not Found"}')
+            return httmock.response(404, '{"status": "Resource Not Found"}')
         if url.geturl() == 'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco':
-            return response(200, '{"city": "San Francisco, CA"}')
+            return httmock.response(200, '{"city": "San Francisco, CA"}')
         if url.geturl() == "https://www.codeforamerica.org/api/organizations.geojson":
-            return response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
+            return httmock.response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
         if url.geturl() == "https://www.codeforamerica.org/api/attendance":
-            return response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
+            return httmock.response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
         if url.geturl() == "https://www.codeforamerica.org/api/projects":
-            return response(200, '''{
+            return httmock.response(200, '''{
                   "objects": [
                     {
                       "code_url": "https://github.com/jmcelroy5/sf-in-progress",
@@ -199,7 +199,7 @@ class BrigadeTests(unittest.TestCase):
                   "pages": {}
                 } ''')
         if url.geturl() == "https://www.codeforamerica.org/api/projects/1":
-            return response(200, '''
+            return httmock.response(200, '''
                     {
                       "code_url": "https://github.com/jmcelroy5/sf-in-progress",
                       "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
@@ -227,12 +227,12 @@ class BrigadeTests(unittest.TestCase):
                         username, password = b64decode(encoded).split(':', 1)
 
                 if (username, password) == (os.environ['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'):
-                    return response(200, 'Added to the peopledb')
+                    return httmock.response(200, 'Added to the peopledb')
 
                 if form.get('BRIGADE_SIGNUP_SECRET') == os.environ['BRIGADE_SIGNUP_SECRET']:
-                    return response(200, 'Added to the peopledb')
+                    return httmock.response(200, 'Added to the peopledb')
 
-                return response(401, 'Go away')
+                return httmock.response(401, 'Go away')
 
         if url.geturl() == 'https://people.codeforamerica.org/checkin':
             if request.method == 'POST':
@@ -245,14 +245,14 @@ class BrigadeTests(unittest.TestCase):
                         username, password = b64decode(encoded).split(':', 1)
 
                 if (username, password) == (os.environ['BRIGADE_SIGNUP_SECRET'], 'x-brigade-signup'):
-                    return response(200, 'Added checkin')
+                    return httmock.response(200, 'Added checkin')
 
-                return response(401, 'Go away')
+                return httmock.response(401, 'Go away')
 
             raise NotImplementedError()
 
         if 'repos/testesttest/test/forks' in url.geturl():
-            return response(200, ''' {
+            return httmock.response(200, ''' {
                     "name" : "TEST NAME",
                     "full_name" : "TEST FULL NAME",
                     "owner" : { "login" : "ondrae" },
@@ -260,7 +260,7 @@ class BrigadeTests(unittest.TestCase):
                     } ''')
 
         if "q=TEST" in url.geturl() or "organization_type=Brigade" in url.geturl() or "status=Alpha" in url.geturl():
-            return response(200, '''{
+            return httmock.response(200, '''{
                   "objects": [
                     {
                       "code_url": "TEST URL",
@@ -301,14 +301,14 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(flask.request.form.get("EMAIL"), "EMAIL")
 
         # Test that our responses are being packaged up the way we expect
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.post('/brigade/signup/', data=signup)
             response = json.loads(response.data)
             self.assertEqual(response['msg'], "Added to the peopledb")
 
     def test_old_brigade_links(self):
         ''' Test that the old brigade links are being redirected '''
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.get("/brigade/index/Code-for-San-Francisco/")
             self.assertEqual(301, response.status_code)
 
@@ -319,13 +319,13 @@ class BrigadeTests(unittest.TestCase):
 
     def test_404(self):
         ''' Test for 404 links '''
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.get("/brigade/404/")
             self.assertEqual(404, response.status_code)
 
     def test_attendance(self):
         ''' Test attendance endpoints '''
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.get("/brigade/attendance")
             self.assertEqual(response.status_code, 200)
             self.assertTrue('<p class="h1">100</p>' in response.data)
@@ -341,13 +341,13 @@ class BrigadeTests(unittest.TestCase):
             "answer": "TEST ANSWER"
         }
 
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.post("/brigade/checkin/", data=checkin, follow_redirects=True)
             self.assertEqual(200, response.status_code)
 
         checkin["question"] = None
         checkin["answer"] = None
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.post("/brigade/checkin/", data=checkin, follow_redirects=True)
             self.assertEqual(200, response.status_code)
 
@@ -407,7 +407,7 @@ class BrigadeTests(unittest.TestCase):
 
     def test_projects_page(self):
         ''' Test that the project page loads and looks like what we want '''
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.get("/brigade/projects")
             soup = BeautifulSoup(response.data, "html.parser")
             card_head_div = soup.find('div', {'class': 'card-head Alpha'})
@@ -416,7 +416,7 @@ class BrigadeTests(unittest.TestCase):
 
     def test_projects_searches(self):
         ''' Test the different project searches '''
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.get("/brigade/projects?q=TEST")
             soup = BeautifulSoup(response.data, "html.parser")
             project_name = soup.find_all('h3')
@@ -434,7 +434,7 @@ class BrigadeTests(unittest.TestCase):
 
     def test_project_monitor(self):
         ''' Test the project monitor page works as expected '''
-        with HTTMock(self.response_content):
+        with httmock.HTTMock(self.response_content):
             response = self.client.get("/brigade/projects/monitor")
             self.assertTrue('"travis_url": "https://api.travis-ci.org/repositories/jmcelroy5/sf-in-progress/builds"' in response.data)
 
@@ -449,7 +449,7 @@ class BrigadeTests(unittest.TestCase):
     def test_successful_civic_json_submission(self):
         ''' Using the form to create a civic.json pull request works.
         '''
-        with HTTMock(self.civic_json_content):
+        with httmock.HTTMock(self.civic_json_content):
             # Test PR
             data = {
                 "status": u"Beta",
@@ -477,7 +477,7 @@ class BrigadeTests(unittest.TestCase):
 
             return self.civic_json_content(url, request)
 
-        with HTTMock(test_civic_json_put):
+        with httmock.HTTMock(test_civic_json_put):
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
 
         # if the process was successful the response should be a redirect to the pull request on github
@@ -487,7 +487,7 @@ class BrigadeTests(unittest.TestCase):
     def test_civic_json_submission_with_non_latin_characters(self):
         ''' Submitting non-latin characters through the civic.json form doesn't error.
         '''
-        with HTTMock(self.civic_json_content):
+        with httmock.HTTMock(self.civic_json_content):
             # Test PR
             data = {
                 "status": u"Beta",
@@ -502,7 +502,7 @@ class BrigadeTests(unittest.TestCase):
     def test_civic_json_submission_with_no_form_data(self):
         ''' Trying to submit an empty form to create a civic.json file loads an error message.
         '''
-        with HTTMock(self.civic_json_content):
+        with httmock.HTTMock(self.civic_json_content):
             data = {
                 "status": u"",
                 "tags": u""
