@@ -59,10 +59,15 @@ class BrigadeTests(unittest.TestCase):
         # get a branch
         # https://developer.github.com/v3/git/refs/#get-a-reference
         if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/add-civic-json-file' and request.method == 'GET':
-            return httmock.response(404, '''
+            return httmock.response(200, '''
                 {
-                  "message": "Not Found",
-                  "documentation_url": "https://developer.github.com/v3"
+                  "ref": "refs/heads/add-civic-json-file",
+                  "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/add-civic-json-file",
+                  "object": {
+                    "sha": "d442f4ab6fd4043436c8c80a072cb798d8b467ce",
+                    "type": "commit",
+                    "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/commits/d442f4ab6fd4043436c8c80a072cb798d8b467ce"
+                  }
                 }''', {'Content-Type': 'application/json; charset=utf-8'})
 
         # get a branch
@@ -72,10 +77,10 @@ class BrigadeTests(unittest.TestCase):
                 {
                   "ref": "refs/heads/master",
                   "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/master",
-                    "object": {
-                      "sha": "571317b2562617aaf3c7e418a8bdf3caee4b32c7",
-                      "type": "commit",
-                      "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/commits/571317b2562617aaf3c7e418a8bdf3caee4b32c7"
+                  "object": {
+                    "sha": "571317b2562617aaf3c7e418a8bdf3caee4b32c7",
+                    "type": "commit",
+                    "url": "https://api.github.com/repos/codeforamerica/add-civic-json-test/git/commits/571317b2562617aaf3c7e418a8bdf3caee4b32c7"
                   }
                 }''', {'Content-Type': 'application/json; charset=utf-8'})
 
@@ -618,13 +623,33 @@ class BrigadeTests(unittest.TestCase):
     def test_successful_civic_json_branch_submission(self):
         ''' Using the form to create a civic.json pull request with a branch works.
         '''
-        with httmock.HTTMock(self.civic_json_branch_content):
+
+        reject_limit = [1]
+
+        # return a 404 the first time we check for a branch
+        def test_civic_json_no_branch_once(url, request):
+            if url.geturl() == 'https://api.github.com/repos/codeforamerica/add-civic-json-test/git/refs/heads/add-civic-json-file' and request.method == 'GET' and reject_limit[0] > 0:
+                reject_limit[0] = reject_limit[0] - 1
+                return httmock.response(404, '''
+                    {
+                      "message": "Not Found",
+                      "documentation_url": "https://developer.github.com/v3"
+                    }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+            # return the standard response to all requests that make it here
+            return self.civic_json_fork_content(url, request)
+
+        with httmock.HTTMock(test_civic_json_no_branch_once):
             # Test PR
             data = {
                 "status": u"Beta",
                 "tags": u"glass,humboldt,bigfin,colossal,bush-club,grimaldi scaled,whiplash,market,japanese flying"
             }
             response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
+
+        # if the process was successful the response should be a redirect to the pull request on github
+        self.assertEqual(302, response.status_code)
+        self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
 
     def test_civic_json_fork_exists_after_delay(self):
         ''' If we get a 404 from GitHub, the script keeps trying until it gets a 200.
