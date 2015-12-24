@@ -513,5 +513,38 @@ class BrigadeTests(unittest.TestCase):
         soup = BeautifulSoup(response.data, "html.parser")
         self.assertEqual(u'Please enter status and/or tags for the project!', soup.find('p', {'data-test-id': 'error-message'}).text)
 
+    def test_civic_json_fork_exists_after_delay(self):
+        ''' If we get a 404 from GitHub, the script keeps trying until it gets a 200.
+        '''
+        data = {
+            "status": u"Alpha",
+            "tags": u"aynte of tegea, cleobulina, consort ban, corinna, cornificia, elephantis, enheduanna, erinna"
+        }
+
+        # return a 404 for the fork URL this many times before saying that it's there
+        reject_limit = [2]
+
+        def test_civic_json_fork_delayed(url, request):
+            if url.geturl() == 'https://api.github.com/repos/mhammy/add-civic-json-test' and request.method == 'GET' and reject_limit[0] > 0:
+                reject_limit[0] = reject_limit[0] - 1
+                return httmock.response(404, '''
+                    {
+                      "message": "Not Found",
+                      "documentation_url": "https://developer.github.com/v3"
+                    }''', {'Content-Type': 'application/json; charset=utf-8'})
+
+            # return the standard response to all requests that make it here
+            return self.civic_json_content(url, request)
+
+        with httmock.HTTMock(test_civic_json_fork_delayed):
+            response = self.client.post("/brigade/Code-for-America/projects/add-civic-json-test/add-civic-json", data=data)
+
+        # verify that the reject limit was exhausted
+        self.assertTrue(reject_limit[0] <= 0)
+        # if the process was successful the response should be a redirect to the pull request on github
+        self.assertEqual(302, response.status_code)
+        self.assertEqual('https://github.com/codeforamerica/add-civic-json-test/pull/1', response.location)
+
+
 if __name__ == '__main__':
     unittest.main()
