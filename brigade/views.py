@@ -199,12 +199,12 @@ def civic_json_branch_exists(project):
 
     return True
 
-def create_civic_json_branch(project):
+def create_civic_json_branch(project, default_branch="master"):
     ''' Create a branch for adding a civic.json file to a project.
     '''
     # get the sha of the master branch
     try:
-        response = github.get("repos/{}/git/refs/heads/master".format(project["repo"]))
+        response = github.get("repos/{}/git/refs/heads/{}".format(project["repo"], default_branch))
     except GitHubError:
         raise
     master_sha = response['object']['sha']
@@ -632,7 +632,7 @@ def create_civic_json(brigadeid, project_name):
 
     if has_push_access and not civic_json_branch_exists(project):
         try:
-            create_civic_json_branch(project)
+            create_civic_json_branch(project, get_repo_default_branch(project, get_repo_response))
         except GitHubError as e:
             error_message = e.response.json()['message']
             logging.error(u"GitHub error {} ({}) when trying to create a branch at repos/{}/git/refs/heads/{}.".format(e.response.status_code, error_message, project["repo"], CIVIC_JSON_BRANCH_NAME))

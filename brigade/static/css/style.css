@@ -142,22 +142,22 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   color: white;
 }
 
-#Official, .Official {
+#Official, .Official, #official, .official {
   background-color: #00a175 !important;
   color: white;
 }
 
-#Beta, .Beta {
+#Beta, .Beta, #beta, .beta {
   background-color: #004b6a !important;
   color: white;
 }
 
-#Alpha, .Alpha {
+#Alpha, .Alpha, #alpha, .alpha {
   background-color: #7ab5d6 !important;
   color: white;
 }
 
-#Experiment, .Experiment {
+#Experiment, .Experiment, #experiment, .experiment {
   background-color: #69579C !important;
   color: white;
 }
