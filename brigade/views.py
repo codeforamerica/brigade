@@ -639,6 +639,13 @@ def create_civic_json(brigadeid, project_name):
 
         ref_payload = {u'ref': CIVIC_JSON_BRANCH_NAME}
         repo_name = project["repo"]
+
+        # branch creation shouldn't be asynchronous, but we're getting some
+        # 'branch not found' errors from GitHub, so make sure it exists
+        branch_exists, error_message = verify_repo(repo_name, ref_payload)
+        if not branch_exists:
+            return render_template("civic_json.html", error=error_message, project=None, user=None)
+
         pull_head = CIVIC_JSON_BRANCH_NAME
         pull_base = get_repo_default_branch(project, get_repo_response)
 
@@ -651,12 +658,14 @@ def create_civic_json(brigadeid, project_name):
             logging.error(u"GitHub error {} ({}) when making a fork at repos/{}/forks.".format(e.response.status_code, error_message, project["repo"]))
             return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-        fork_exists, error_message = verify_repo(response["full_name"])
+        ref_payload = None
+        repo_name = response["full_name"]
+
+        # fork creation is asynchronous, so wait until the fork exists
+        fork_exists, error_message = verify_repo(repo_name)
         if not fork_exists:
             return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-        ref_payload = None
-        repo_name = response["full_name"]
         pull_head = u"{}:{}".format(response["owner"]["login"], response["default_branch"])
         pull_base = response["default_branch"]
 
