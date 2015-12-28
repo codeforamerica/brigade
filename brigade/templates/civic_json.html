@@ -22,7 +22,7 @@
         <li><a class="button icon-github2" href="/brigade/gh-login">Log in to Github</a></li>
 
       {% else %}
-        <p class="center"><img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> Hi <strong>{{ user.login }}</strong>!<br/><a class="button-subtle button-s icon-github2" href="/brigade/gh-logout">Log Out of Github</a></p>
+        <p class="center"><img height="40" width="40" src="{{ user.avatar_url }}&s=40" style="border-radius: 5px;"/> Hi <strong>{{ user.login }}</strong>!<a class="button-subtle button-s icon-github2" href="/brigade/gh-logout" style="margin-left:10px">Log Out of Github</a></p>
         <hr />
 
       {% endif %}
@@ -51,9 +51,9 @@
       <ul class="list-form">
 
         <li class="form-field">
-          <label for="status">Status</label>
+          <label for="status">Stage</label>
           <select id="status" name="status">
-            <option value="" disabled="disabled"  style="display:none" selected="selected">Choose a status</option>
+            <option value="" disabled="disabled"  style="display:none" selected="selected">Choose a stage</option>
             <option>Experiment</option>
             <option>Alpha</option>
             <option>Beta</option>
