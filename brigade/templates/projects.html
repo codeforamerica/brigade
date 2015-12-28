@@ -37,8 +37,7 @@
       </ul>
 
       <!-- PROJECTS HERE -->
-      <ul id="projects" class="list-no-bullets">
-      </ul>
+      <div id="projects"></div>
 
       {% if not projects %}
         <h2>Nothing here yet ... </h2>
@@ -70,6 +69,7 @@ var Projects = React.createClass({
   }
 });
 
+
 var Project = React.createClass({
   render: function() {
     return(
@@ -83,8 +83,13 @@ var Project = React.createClass({
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
 
-          <a href="{this.props.project.link_url}" className="button-bold">View the project</a>
-          <a href="{this.props.project.code_url}" className="button-bold">Contribute on Github</a>
+          {this.props.project.link_url ? (
+              <a href={this.props.project.link_url} className="button-bold">View the project</a>
+            ) : null}
+
+          {this.props.project.code_url ? (
+              <a href={this.props.project.code_url} className="button-bold">Contribute on Github</a>
+            ) : null}
 
         </div>
       </li>
@@ -94,7 +99,7 @@ var Project = React.createClass({
 
 // Do the thing
 ReactDOM.render(
-  <Projects source="https://www.codeforamerica.org/api/projects" />,
+  <Projects />,
   document.getElementById('projects')
 );
 

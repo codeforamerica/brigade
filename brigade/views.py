@@ -565,10 +565,21 @@ def projects(brigadeid=None):
     if organization_type:
         url += "&organization_type=" + organization_type
 
-    projects = get_projects(projects, url)
-    projects=json.dumps(projects)
+    full_projects = get_projects(projects, url)
+    # The full projects response is to big
+    # It can include some bad html in the Issue body text
+    # Lets get just what we need
+    projects = []
+    for full_project in full_projects:
+        project = {
+            "name" : full_project["name"],
+            "description" : full_project["description"],
+            "link_url" : full_project["link_url"],
+            "code_url" : full_project["code_url"]
+        }
+        projects.append(project)
  
-    return render_template("projects.html", projects=projects, brigade=brigade, next=next)
+    return render_template("projects.html", projects=json.dumps(projects), brigade=brigade, next=next)
 
 @app.route('/brigade/github-callback')
 @github.authorized_handler
