@@ -29,10 +29,10 @@
 
       <ul class="list-inline list-no-bullets">
         <h3>Project Stages</h3>
-        <li><a href="?q=Official" id="Official" class="button search">Official</a></li>
-        <li><a href="?q=Beta" id="Beta" class="button search">Beta</a></li>
-        <li><a href="?q=Alpha" id="Alpha" class="button search">Alpha</a></li>
-        <li><a href="?q=Experiment" id="Experiment" class="button search">Experiment</a></li>
+        <li><a href="javascript:void(0)" id="Official" class="button search">Official</a></li>
+        <li><a href="javascript:void(0)" id="Beta" class="button search">Beta</a></li>
+        <li><a href="javascript:void(0)" id="Alpha" class="button search">Alpha</a></li>
+        <li><a href="javascript:void(0)" id="Experiment" class="button search">Experiment</a></li>
         <small><a href="/brigade/projects/stages">What are these?</a></small>
       </ul>
 
@@ -115,6 +115,23 @@ var Projects = React.createClass({
 var Project = React.createClass({
   render: function() {
     var stageClass = this.props.project.status + " card-head";
+    var langs = [];
+    if (!$.isEmptyObject(this.props.project.languages)) {
+      this.props.project.languages.map(function(lang){
+        langs.push(<a href="javascript:void(0)" id={lang} className="search">{lang}</a>);
+      })
+      langs = intersperse(langs,", ")
+    }
+    
+    var tags = [];
+    if (!$.isEmptyObject(this.props.project.tags)) {
+      this.props.project.tags.map(function(tag){
+        tags.push(<a href="?q={tag}">{tag}</a>);
+      })
+      tags = intersperse(tags,", ")
+    }
+
+    var last_updated = moment(new Date(this.props.project.last_updated)).fromNow();
     return(
       <li className="project card">
 
@@ -126,6 +143,7 @@ var Project = React.createClass({
 
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
+          <p>Used by <a href={this.props.project.organization.website}>{this.props.project.organization.name}</a></p>
 
           {this.props.project.link_url ? (
               <a href={this.props.project.link_url} className="button-bold">View the project</a>
@@ -135,6 +153,14 @@ var Project = React.createClass({
               <a href={this.props.project.code_url} className="button-bold">Contribute on Github</a>
             ) : null}
 
+          <small>
+
+            {langs.length ? ( <p>Written in {langs}</p> ) : null }
+
+            {tags.length ? ( <p>Tagged with {tags}</p> ) : null }
+
+            <p>Last updated {last_updated}</p>
+          </small>
         </div>
       </li>
     );
@@ -146,6 +172,18 @@ ReactDOM.render(
   <Projects />,
   document.getElementById('projects')
 );
+
+// Comma separated list of links
+// From http://stackoverflow.com/a/23619085/722860
+function intersperse(arr, sep) {
+    if (arr.length === 0) {
+        return [];
+    }
+
+    return arr.slice(1).reduce(function(xs, x, i) {
+        return xs.concat([sep, x]);
+    }, [arr[0]]);
+}
 
 </script>
 
