@@ -58,25 +58,35 @@ var Projects = React.createClass({
       projects : {{projects | safe}}
     }
   },
-  // searchProjects: function(response){
-  //   this.setState({ projects : response.objects })
-  // },
+  updateProjects: function(searchTerm){
+    var cfapi = "https://www.codeforamerica.org/api/projects?q="
+    $.getJSON(cfapi + searchTerm, function(response){
+      this.setState( { projects : response.objects});
+    }.bind(this));
+  },
   componentDidMount: function(){
     $('#projects').masonry({
       itemSelector: '.project',
       "gutter" : 20,
     });
+
     $('#project-search').submit(function(e){
       e.preventDefault();
-      var searchTerm = $("#project-search-bar").val();
-      var cfapi = "https://www.codeforamerica.org/api/projects?per_page=1&q="
-      
-      $.getJSON(cfapi + searchTerm, function(response){
-        console.log(response.objects);
-        console.log(this);
-        this.setState( { projects : response.objects});
-      }.bind(this));
+      var searchTerm = $("#project-search-bar").val()
+      this.updateProjects(searchTerm);
     }.bind(this));
+
+    $('.search').click(function(e){
+      e.preventDefault();
+      var searchTerm = $(e.currentTarget).attr("id")
+      this.updateProjects(searchTerm);
+    }.bind(this));
+  },
+  componentDidUpdate: function(){
+      $('#projects').masonry({
+        itemSelector: '.project',
+        "gutter" : 20,
+      }).masonry('reloadItems').masonry('layout');
   },
   render: function() {
     return (
