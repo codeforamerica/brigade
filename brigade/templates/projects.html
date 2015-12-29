@@ -38,7 +38,7 @@
 
       <ul id="projects" class="list-no-bullets">
       {% for project in projects %}
-        <li class="project card" z-default='1' z-hover='3'>
+        <li class="project card">
           
           <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
             {% if project.status %}
@@ -132,26 +132,22 @@
 {% endblock %}
 
 {% block js %}
+  <script>
+    {% if request.args.get('q') %}
+    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
+    {% endif %}
+    {% if request.args.get('status') %}
+    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('status') }}", 1 );
+    {% endif %}
+  </script>
 
-<script src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
 
-<script>
-$('#projects').masonry({
-  // options...
-  itemSelector: '.project',
-  "gutter" : 20
-});
-</script>
-
-  <script src="{{ url_for('static', filename='js/card-depth.js') }}"></script>
-
-<script>
-  {% if request.args.get('q') %}
-  ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
-  {% endif %}
-  {% if request.args.get('status') %}
-  ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('status') }}", 1 );
-  {% endif %}
-</script>
+  <script>
+    $('#projects').masonry({
+      itemSelector: '.project',
+      "gutter" : 20
+    });
+  </script>
 
 {% endblock %}
