@@ -29,10 +29,10 @@
 
       <ul class="list-inline list-no-bullets">
         <h3>Project Stages</h3>
-        <li><a href="?q=Official" id="Official" class="button">Official</a></li>
-        <li><a href="?q=Beta" id="Beta" class="button">Beta</a></li>
-        <li><a href="?q=Alpha" id="Alpha" class="button">Alpha</a></li>
-        <li><a href="?q=Experiment" id="Experiment" class="button">Experiment</a></li>
+        <li><a href="?q=Official" id="Official" class="button search">Official</a></li>
+        <li><a href="?q=Beta" id="Beta" class="button search">Beta</a></li>
+        <li><a href="?q=Alpha" id="Alpha" class="button search">Alpha</a></li>
+        <li><a href="?q=Experiment" id="Experiment" class="button search">Experiment</a></li>
         <small><a href="/brigade/projects/stages">What are these?</a></small>
       </ul>
 
@@ -74,12 +74,24 @@ var Projects = React.createClass({
       e.preventDefault();
       var searchTerm = $("#project-search-bar").val()
       this.updateProjects(searchTerm);
+      if (window.location.search) {
+        var url = window.location.href.replace(window.location.search,"");
+      } else {
+        var url = window.location.href;
+      }
+      history.pushState(null, null, url + "?q=" + searchTerm);
     }.bind(this));
 
     $('.search').click(function(e){
       e.preventDefault();
       var searchTerm = $(e.currentTarget).attr("id")
       this.updateProjects(searchTerm);
+      if (window.location.search) {
+        var url = window.location.href.replace(window.location.search,"");
+      } else {
+        var url = window.location.href;
+      }
+      history.pushState(null, null, url + "?q=" + searchTerm);
     }.bind(this));
   },
   componentDidUpdate: function(){
@@ -102,10 +114,12 @@ var Projects = React.createClass({
 
 var Project = React.createClass({
   render: function() {
+    var stageClass = this.props.project.status + " card-head";
     return(
       <li className="project card">
 
-        <div className="card-head">
+        <div className={stageClass}>
+        <small>{this.props.project.status}</small>
         </div>
 
         <div className="card-body">
