@@ -50,6 +50,10 @@
 {% endblock %}
 
 {% block js %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
 <script type="text/babel">
 
 var Projects = React.createClass({
@@ -187,13 +191,13 @@ function intersperse(arr, sep) {
 
 </script>
 
-<script>
-  {% if request.args.get('q') %}
-  ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
-  {% endif %}
-  {% if request.args.get('status') %}
-  ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('status') }}", 1 );
-  {% endif %}
-</script>
+  <script>
+    {% if request.args.get('q') %}
+    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
+    {% endif %}
+    {% if request.args.get('status') %}
+    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('status') }}", 1 );
+    {% endif %}
+  </script>
 
 {% endblock %}
