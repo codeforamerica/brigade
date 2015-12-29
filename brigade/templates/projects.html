@@ -58,11 +58,25 @@ var Projects = React.createClass({
       projects : {{projects | safe}}
     }
   },
+  // searchProjects: function(response){
+  //   this.setState({ projects : response.objects })
+  // },
   componentDidMount: function(){
     $('#projects').masonry({
       itemSelector: '.project',
       "gutter" : 20,
     });
+    $('#project-search').submit(function(e){
+      e.preventDefault();
+      var searchTerm = $("#project-search-bar").val();
+      var cfapi = "https://www.codeforamerica.org/api/projects?per_page=1&q="
+      
+      $.getJSON(cfapi + searchTerm, function(response){
+        console.log(response.objects);
+        console.log(this);
+        this.setState( { projects : response.objects});
+      }.bind(this));
+    }.bind(this));
   },
   render: function() {
     return (
