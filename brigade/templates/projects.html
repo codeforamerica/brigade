@@ -37,7 +37,7 @@
       </ul>
 
       <!-- PROJECTS HERE -->
-      <div id="projects"></div>
+      <ul id="projects" class="list-no-bullets"></ul>
 
       {% if not projects %}
         <h2>Nothing here yet ... </h2>
@@ -58,13 +58,19 @@ var Projects = React.createClass({
       projects : {{projects | safe}}
     }
   },
+  componentDidMount: function(){
+    $('#projects').masonry({
+      itemSelector: '.project',
+      "gutter" : 20,
+    });
+  },
   render: function() {
     return (
-      <p>
+      <span>
       {this.state.projects.map(function(project){
         return <Project project={project} />;
       })}
-      </p>
+      </span>
     )
   }
 });
