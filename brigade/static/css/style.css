@@ -243,6 +243,13 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   padding: 0 10px;
 }
 
+.github_avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
 #more-projects {
   margin : 30px 0;
 }

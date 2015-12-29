@@ -118,7 +118,30 @@ var Projects = React.createClass({
 
 var Project = React.createClass({
   render: function() {
+
+    // Have to combine classNames out here
     var stageClass = this.props.project.status + " card-head";
+
+    // Create the contributors array
+    var contributors = [];
+    var more_contributors;
+    if (!$.isEmptyObject(this.props.project.github_details.contributors)) {
+      // Show five avatars
+      for (var i = 0; i < 5; i++){
+        var contributor = this.props.project.github_details.contributors[i];
+        if (contributor) {
+          contributors.push(<a href={contributor.html_url}><img className="github_avatar" src={contributor.avatar_url} /></a>);
+        }
+      }
+
+      // How many others?
+      if (this.props.project.github_details.contributors.length > 5) {
+        var number = this.props.project.github_details.contributors.length - 5
+        more_contributors = " and " + number + " others";
+      }
+    }
+
+    // Build the languages array
     var langs = [];
     if (!$.isEmptyObject(this.props.project.languages)) {
       this.props.project.languages.map(function(lang){
@@ -126,7 +149,8 @@ var Project = React.createClass({
       })
       langs = intersperse(langs,", ")
     }
-    
+
+    // Build the tags array
     var tags = [];
     if (!$.isEmptyObject(this.props.project.tags)) {
       this.props.project.tags.map(function(tag){
@@ -134,7 +158,7 @@ var Project = React.createClass({
       })
       tags = intersperse(tags,", ")
     }
-
+    // Create readable last_updated
     var last_updated = moment(new Date(this.props.project.last_updated)).fromNow();
     return(
       <li className="project card">
@@ -147,7 +171,14 @@ var Project = React.createClass({
 
           <h3>{this.props.project.name}</h3>
           <p>{this.props.project.description}</p>
-          <p>Used by <a href={this.props.project.organization.website}>{this.props.project.organization.name}</a></p>
+
+          <small>
+
+            <p>Used by <a href={this.props.project.organization.website}>{this.props.project.organization.name}</a></p>
+
+            <p>{contributors}{more_contributors}</p>
+
+          </small>
 
           {this.props.project.link_url ? (
               <a href={this.props.project.link_url} className="button-bold">View the project</a>
@@ -164,6 +195,7 @@ var Project = React.createClass({
             {tags.length ? ( <p>Tagged with {tags}</p> ) : null }
 
             <p>Last updated {last_updated}</p>
+
           </small>
         </div>
       </li>
