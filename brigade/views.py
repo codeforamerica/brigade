@@ -199,12 +199,12 @@ def civic_json_branch_exists(project):
 
     return True
 
-def create_civic_json_branch(project):
+def create_civic_json_branch(project, default_branch="master"):
     ''' Create a branch for adding a civic.json file to a project.
     '''
     # get the sha of the master branch
     try:
-        response = github.get("repos/{}/git/refs/heads/master".format(project["repo"]))
+        response = github.get("repos/{}/git/refs/heads/{}".format(project["repo"], default_branch))
     except GitHubError:
         raise
     master_sha = response['object']['sha']
@@ -226,26 +226,29 @@ def create_civic_json_fork(project):
 
     return response
 
-def verify_civic_json_fork(forked_repo_name, call_limit=10):
+def verify_repo(repo_name, payload=None, call_limit=10):
     ''' Verify that the passed repo exists.
     '''
     repo_exists = False
     times_called = 0
-    error_message = u"Couldn't verify the forked repo on GitHub."
+    error_message = u"Couldn't verify the repo on GitHub."
     while not repo_exists:
         times_called = times_called + 1
         # timeout if it's been too long
         if times_called > call_limit:
-            logging.error(u"Fork at repos/{} doesn't exist after {} seconds.".format(forked_repo_name, call_limit))
+            logging.error(u"Repo at repos/{} doesn't exist after {} seconds.".format(repo_name, call_limit))
             return False, error_message
 
         try:
-            github.get("repos/{}".format(forked_repo_name))
+            if payload:
+                github.get("repos/{}/git/refs/heads/{}".format(repo_name, payload['ref']))
+            else:
+                github.get("repos/{}".format(repo_name))
 
         except GitHubError as e:
             # error if we got a status_code other than 404
             if e.response.status_code != 404:
-                logging.error(u"GitHub error {} ({}) when checking for existence of repos/{}.".format(e.response.status_code, e.response.json()['message'], forked_repo_name))
+                logging.error(u"GitHub error {} ({}) when checking for existence of repos/{}.".format(e.response.status_code, e.response.json()['message'], repo_name))
                 return False, error_message
 
             # wait a second before trying again
@@ -528,9 +531,8 @@ def projects(brigadeid=None):
     projects = []
     brigade = None
     search = request.args.get("q", None)
-    sort_by = request.args.get("sort_by", None)
     page = request.args.get("page", None)
-    organization_type = request.args.get("organization_type", None)
+    status = request.args.get("status", None)
 
     # Set next
     if page:
@@ -553,17 +555,16 @@ def projects(brigadeid=None):
         else:
             brigade = {"name": brigadeid.replace("-", " ")}
     else:
+        # build cfapi url
         url = "https://www.codeforamerica.org/api/projects"
-    if search or sort_by or page or organization_type:
-        url += "?"
+        url += "?organization_type=Brigade,Code+for+All"
+        url += "&sort_by=last_updated"
     if search:
         url += "&q=" + search
-    if sort_by:
-        url += "&sort_by" + sort_by
     if page:
         url += "&page=" + page
-    if organization_type:
-        url += "&organization_type=" + organization_type
+    if status:
+        url += "&status=" + status
 
     projects = get_projects(projects, url)
     # Can include some bad html in the Issue body text
@@ -647,13 +648,20 @@ def create_civic_json(brigadeid, project_name):
 
     if has_push_access and not civic_json_branch_exists(project):
         try:
-            create_civic_json_branch(project)
+            create_civic_json_branch(project, get_repo_default_branch(project, get_repo_response))
         except GitHubError as e:
             error_message = e.response.json()['message']
             logging.error(u"GitHub error {} ({}) when trying to create a branch at repos/{}/git/refs/heads/{}.".format(e.response.status_code, error_message, project["repo"], CIVIC_JSON_BRANCH_NAME))
 
-        ref_payload = {u'ref': CIVIC_JSON_BRANCH_NAME}
+        ref_payload = {'ref': CIVIC_JSON_BRANCH_NAME}
         repo_name = project["repo"]
+
+        # branch creation shouldn't be asynchronous, but we're getting some
+        # 'branch not found' errors from GitHub, so make sure it exists
+        branch_exists, error_message = verify_repo(repo_name, ref_payload)
+        if not branch_exists:
+            return render_template("civic_json.html", error=error_message, project=None, user=None)
+
         pull_head = CIVIC_JSON_BRANCH_NAME
         pull_base = get_repo_default_branch(project, get_repo_response)
 
@@ -666,12 +674,14 @@ def create_civic_json(brigadeid, project_name):
             logging.error(u"GitHub error {} ({}) when making a fork at repos/{}/forks.".format(e.response.status_code, error_message, project["repo"]))
             return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-        fork_exists, error_message = verify_civic_json_fork(response["full_name"])
+        ref_payload = None
+        repo_name = response["full_name"]
+
+        # fork creation is asynchronous, so wait until the fork exists
+        fork_exists, error_message = verify_repo(repo_name)
         if not fork_exists:
             return render_template("civic_json.html", error=error_message, project=None, user=None)
 
-        ref_payload = None
-        repo_name = response["full_name"]
         pull_head = u"{}:{}".format(response["owner"]["login"], response["default_branch"])
         pull_base = response["default_branch"]
 

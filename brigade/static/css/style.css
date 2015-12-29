@@ -137,29 +137,24 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin: 0px;
 }
 
-#Featured, .featured {
-  background-color: #e87d2b !important;
-  color: white;
-}
-
-#Official, .Official {
+.Official, .official {
   background-color: #00a175 !important;
   color: white;
 }
 
-#Beta, .Beta {
+.Beta, .beta {
   background-color: #004b6a !important;
   color: white;
 }
 
-#Alpha, .Alpha {
+.Alpha, .alpha {
   background-color: #7ab5d6 !important;
   color: white;
 }
 
-#Experiment, .Experiment {
+.Experiment, .experiment {
   background-color: #69579C !important;
-  color: white;
+  color: white
 }
 
 /* Project Monitor */
@@ -177,7 +172,9 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 /* PROJECT SEARCH */
 
-
+#project-search-h1 {
+  margin-bottom: 0px;
+}
 
 #project-search-section .layout-semibreve {
   padding-top: 0px;
