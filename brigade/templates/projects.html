@@ -27,7 +27,7 @@
 
       </form>
 
-      <ul class="list-inline list-no-bullets">
+      <ul id="project-stages-links" class="list-inline list-no-bullets">
         <h3>Project Stages</h3>
         <li><a href="?status=Official" id="Official" class="button search official status">Official</a></li>
         <li><a href="?status=Beta" id="Beta" class="button search beta status">Beta</a></li>
@@ -85,10 +85,9 @@ var Projects = React.createClass({
     }.bind(this));
   },
   searchClickListener: function(){
-    $('#projects').on("click",".search", function(e){
+    $('#projects, #project-stages-links').on("click",".search", function(e){
       e.preventDefault();
       var searchTerm = $(e.currentTarget).attr("href");
-      console.log(searchTerm);
       this.updateBrowserUrl(searchTerm)
       this.updateProjects(searchTerm);
     }.bind(this));
