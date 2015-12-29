@@ -62,49 +62,35 @@ var Projects = React.createClass({
       projects : {{projects | safe}}
     }
   },
-  updateProjects: function(param, searchTerm){
+  updateProjects: function(searchTerm){
     var cfapi = "https://www.codeforamerica.org/api/projects"
-    if (param == "q"){
-      cfapi += "?q=";
-    } else if (param == "status") {
-      cfapi += "?status=";
-    }
     $.getJSON(cfapi + searchTerm, function(response){
       this.setState( { projects : response.objects});
     }.bind(this));
   },
+  updateBrowserUrl: function(searchTerm){
+    if (window.location.search) {
+      var url = window.location.href.replace(window.location.search,"");
+    } else {
+      var url = window.location.href;
+    }
+    history.pushState(null, null, url + searchTerm);
+  },
   projectSearchListener: function(){
     $('#project-search').submit(function(e){
       e.preventDefault();
-      var searchTerm = $("#project-search-bar").val()
-      this.updateProjects("q", searchTerm);
-      if (window.location.search) {
-        var url = window.location.href.replace(window.location.search,"");
-      } else {
-        var url = window.location.href;
-      }
-      history.pushState(null, null, url + "?q=" + searchTerm);
+      var searchTerm = "?q=" + $("#project-search-bar").val();
+      this.updateBrowserUrl(searchTerm)
+      this.updateProjects(searchTerm);
     }.bind(this));
   },
   searchClickListener: function(){
-    $('.search').click(function(e){
+    $('#projects').on("click",".search", function(e){
       e.preventDefault();
-      var searchTerm = $(e.currentTarget).attr("id");
+      var searchTerm = $(e.currentTarget).attr("href");
       console.log(searchTerm);
-      if (window.location.search) {
-        var url = window.location.href.replace(window.location.search,"");
-      } else {
-        var url = window.location.href;
-      }
-      if ($(e.currentTarget).hasClass("status")) {
-        var param = "status";
-        history.pushState(null, null, url + "?status=" + searchTerm);
-      } else {
-        var param = "q";
-        history.pushState(null, null, url + "?q=" + searchTerm);
-      }
-
-      this.updateProjects(param, searchTerm);
+      this.updateBrowserUrl(searchTerm)
+      this.updateProjects(searchTerm);
     }.bind(this));
   },
   masonryUpdate: function() {
@@ -120,7 +106,6 @@ var Projects = React.createClass({
   },
   componentDidUpdate: function(){
     this.masonryUpdate();
-    this.searchClickListener();
   },
   render: function() {
     return (
@@ -143,19 +128,21 @@ var Project = React.createClass({
     // Create the contributors array
     var contributors = [];
     var more_contributors;
-    if (!$.isEmptyObject(this.props.project.github_details.contributors)) {
-      // Show five avatars
-      for (var i = 0; i < 5; i++){
-        var contributor = this.props.project.github_details.contributors[i];
-        if (contributor) {
-          contributors.push(<a href={contributor.html_url}><img className="github_avatar" src={contributor.avatar_url} /></a>);
+    if (!$.isEmptyObject(this.props.project.github_details)){
+      if (!$.isEmptyObject(this.props.project.github_details.contributors)) {
+        // Show five avatars
+        for (var i = 0; i < 5; i++){
+          var contributor = this.props.project.github_details.contributors[i];
+          if (contributor) {
+            contributors.push(<a href={contributor.html_url}><img className="github_avatar" src={contributor.avatar_url} /></a>);
+          }
         }
-      }
 
-      // How many others?
-      if (this.props.project.github_details.contributors.length > 5) {
-        var number = this.props.project.github_details.contributors.length - 5
-        more_contributors = " and " + number + " others";
+        // How many others?
+        if (this.props.project.github_details.contributors.length > 5) {
+          var number = this.props.project.github_details.contributors.length - 5
+          more_contributors = " and " + number + " others";
+        }
       }
     }
 
@@ -163,7 +150,7 @@ var Project = React.createClass({
     var langs = [];
     if (!$.isEmptyObject(this.props.project.languages)) {
       this.props.project.languages.map(function(lang){
-        langs.push(<a href="javascript:void(0)" id={lang} className="search">{lang}</a>);
+        langs.push(<a href={"?q=" + lang} className="search">{lang}</a>);
       })
       langs = intersperse(langs,", ")
     }
@@ -172,12 +159,14 @@ var Project = React.createClass({
     var tags = [];
     if (!$.isEmptyObject(this.props.project.tags)) {
       this.props.project.tags.map(function(tag){
-        tags.push(<a href="?q={tag}">{tag}</a>);
+        tags.push(<a href={"?q=" + tag} className="search">{tag}</a>);
       })
       tags = intersperse(tags,", ")
     }
+
     // Create readable last_updated
     var last_updated = moment(new Date(this.props.project.last_updated)).fromNow();
+
     return(
       <li className="project card">
 
