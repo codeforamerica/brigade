@@ -193,7 +193,7 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin-left: 5px;
 }
 
-.card {
+#project-search-section .card {
   height: auto !important;
   padding: 0px !important;
   margin: 25px 5px 5px 5px !important;
@@ -208,7 +208,8 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 /* Phones */
 @media (max-width: 768px) {
   .card {
-    width: 95%;
+    width: 95% !important;
+    margin: 0px !important;
   }
   .banner {
     padding-top: 15px;
@@ -271,8 +272,4 @@ tbody th {
     font-size: small;
   }
 
-/* Civic Json Machine*/
-
-#civic-json-form label {
-  color: white;
 }
