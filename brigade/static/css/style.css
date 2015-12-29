@@ -206,7 +206,8 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 /* Phones */
 @media (max-width: 768px) {
   .card {
-    width: 95%;
+    width: 95% !important;
+    margin: 0px !important;
   }
   .banner {
     padding-top: 15px;
