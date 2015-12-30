@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Code for America | Brigade | Projects | Embed</title>
+    <!-- Check the CfA Style Guide at https://style.codeforamerica.org/ -->
+    <link rel="stylesheet" href="https://style.codeforamerica.org/style/css/main.css">
+    <link rel="stylesheet" href="https://style.codeforamerica.org/style/css/layout.css" media="all and (min-width: 40em)">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://style.codeforamerica.org/1/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="https://style.codeforamerica.org/1/style/favicons/60x60/flag-red.png"/>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
+    <script src="https://fb.me/react-0.14.3.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+
+    <div class="js-container">
+
+      <section id="project-search-section">
+
+        <div class="layout-semibreve">
+
+          <form id="project-search">
+            <p class="field">
+              <input id="project-search-bar" type="search" name="q"role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button>
+            </p>
+
+          </form>
+
+          <ul id="project-stages-links" class="list-inline list-no-bullets">
+            <h3>Project Stages</h3>
+            <li><a href="?status=Official" id="Official" class="button search official status">Official</a></li>
+            <li><a href="?status=Beta" id="Beta" class="button search beta status">Beta</a></li>
+            <li><a href="?status=Alpha" id="Alpha" class="button search alpha status">Alpha</a></li>
+            <li><a href="?status=Experiment" id="Experiment" class="button search experiment status">Experiment</a></li>
+            <li><small><a href="https://www.codeforamerica.org/brigade/projects/stages" target="_blank">What are these?</a></small></li>
+            <li><img id="loading" src="{{ url_for('static', filename='images/ellipsis.gif') }}" style="vertical-align: middle; margin-left:100px; height:40px"/>
+          </ul>
+
+          <!-- PROJECTS HERE -->
+          <ul id="projects" class="list-no-bullets">
+          </ul>
+
+          <p style="float:right;"><a id="more-projects" href="" class="button">More Projects</a></p>
+
+        </div>
+      </section>
+    </div>
+  </body>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-20825280-1', 'auto');
+    ga('require', 'linkid', 'linkid.js');
+    ga('send', 'pageview');
+  </script>
+
+  <script>
+  // parseUri 1.2.2
+  // (c) Steven Levithan <stevenlevithan.com>
+  // MIT License
+
+  function parseUri (str) {
+    var o   = parseUri.options,
+      m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+      uri = {},
+      i   = 14;
+
+    while (i--) uri[o.key[i]] = m[i] || "";
+
+    uri[o.q.name] = {};
+    uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
+      if ($1) uri[o.q.name][$1] = $2;
+    });
+
+    return uri;
+  };
+
+  parseUri.options = {
+    strictMode: false,
+    key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],
+    q:   {
+      name:   "queryKey",
+      parser: /(?:^|&)([^&=]*)=?([^&]*)/g
+    },
+    parser: {
+      strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
+      loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
+    }
+  };
+  </script>
+  <script>
+    if (parseUri(window.location.href).queryKey.q) {
+      ga('send', 'event', 'Project Search', 'search', parseUri(window.location.href).queryKey.q, 1 );
+    }
+    if (parseUri(window.location.href).queryKey.status) {
+      ga('send', 'event', 'Project Search', 'search', parseUri(window.location.href).queryKey.status, 1 );
+    }
+  </script>
+
+  <script>
+    // Comma separated list of links
+    // From http://stackoverflow.com/a/23619085/722860
+    function intersperse(arr, sep) {
+        if (arr.length === 0) {
+            return [];
+        }
+
+        return arr.slice(1).reduce(function(xs, x, i) {
+            return xs.concat([sep, x]);
+        }, [arr[0]]);
+    }
+  </script>
+
+  <script type="text/babel">
+
+    var Projects = React.createClass({
+      getInitialState: function(){
+        return {
+          projects : this.updateProjects("")
+        }
+      },
+      updateProjects: function(searchTerm){
+        var cfapi = "https://www.codeforamerica.org/api/projects"
+        var loading = $("#loading");
+        loading.show();
+        $.getJSON(cfapi + searchTerm, function(response){
+          this.setState( { projects : response.objects});
+          loading.hide();
+        }.bind(this));
+      },
+      updateBrowserUrl: function(searchTerm){
+        
+        if (window.location.search) {
+          var url = window.location.href.replace(window.location.search,"");
+        } else {
+          var url = window.location.href;
+        }
+        history.pushState(null, null, url + searchTerm);
+      },
+      updateSearchField: function(searchTerm){
+        searchTerm = searchTerm.replace("?q=","").replace("?status=","")
+        $("#project-search-bar").val(searchTerm);
+      },
+      projectSearchListener: function(){
+        $('#project-search').submit(function(e){
+          e.preventDefault();
+          var searchTerm = "?q=" + $("#project-search-bar").val();
+          this.updateBrowserUrl(searchTerm);
+          this.updateProjects(searchTerm);
+        }.bind(this));
+      },
+      searchClickListener: function(){
+        $('#projects, #project-stages-links').on("click",".search", function(e){
+          e.preventDefault();
+          var searchTerm = $(e.currentTarget).attr("href");
+          this.updateBrowserUrl(searchTerm);
+          this.updateSearchField(searchTerm);
+          this.updateProjects(searchTerm);
+        }.bind(this));
+      },
+      masonryUpdate: function() {
+        $('#projects').masonry({
+          itemSelector: '.project',
+          "gutter" : 20,
+        }).masonry('reloadItems').masonry('layout');
+      },
+      componentDidMount: function(){
+        this.masonryUpdate();
+        this.projectSearchListener();
+        this.searchClickListener(); 
+      },
+      componentDidUpdate: function(){
+        this.masonryUpdate();
+      },
+      render: function() {
+        if (this.state.projects) {
+          var projects = this.state.projects.map(function(project){
+            return <Project project={project} />;
+          })
+        }
+        return (
+          <span>
+          {projects}
+          </span>
+        )
+      }
+    });
+
+    var Project = React.createClass({
+      render: function() {
+
+        // Have to combine classNames out here
+        var stageClass = this.props.project.status + " card-head";
+
+        // Create the contributors array
+        var contributors = [];
+        var more_contributors;
+        if (!$.isEmptyObject(this.props.project.github_details)){
+          if (!$.isEmptyObject(this.props.project.github_details.contributors)) {
+            // Show five avatars
+            for (var i = 0; i < 5; i++){
+              var contributor = this.props.project.github_details.contributors[i];
+              if (contributor) {
+                contributors.push(<a href={contributor.html_url}><img className="github_avatar" src={contributor.avatar_url} /></a>);
+              }
+            }
+
+            // How many others?
+            if (this.props.project.github_details.contributors.length > 5) {
+              var number = this.props.project.github_details.contributors.length - 5
+              more_contributors = " and " + number + " others";
+            }
+          }
+        }
+
+        // Build the languages array
+        var langs = [];
+        if (!$.isEmptyObject(this.props.project.languages)) {
+          this.props.project.languages.map(function(lang){
+            langs.push(<a href={"?q=" + lang} className="search">{lang}</a>);
+          })
+          langs = intersperse(langs,", ")
+        }
+
+        // Build the tags array
+        var tags = [];
+        if (!$.isEmptyObject(this.props.project.tags)) {
+          this.props.project.tags.map(function(tag){
+            tags.push(<a href={"?q=" + tag} className="search">{tag}</a>);
+          })
+          tags = intersperse(tags,", ")
+        }
+
+        // Create readable last_updated
+        var last_updated = moment(new Date(this.props.project.last_updated)).fromNow();
+
+        return(
+          <li className="project card">
+
+            <div className={stageClass}>
+            <small>{this.props.project.status}</small>
+            </div>
+
+            <div className="card-body">
+
+              <h3>{this.props.project.name}</h3>
+              <p>{this.props.project.description}</p>
+
+              <small>
+
+                <p>Used by <a href={this.props.project.organization.website} target="_blank">{this.props.project.organization.name}</a></p>
+
+                <p>{contributors}{more_contributors}</p>
+
+              </small>
+
+              {this.props.project.link_url ? (
+                  <a href={this.props.project.link_url} className="button-bold" target="_blank">View the project</a>
+                ) : null}
+
+              {this.props.project.code_url ? (
+                  <a href={this.props.project.code_url} className="button-bold" target="_blank">Contribute on Github</a>
+                ) : null}
+
+              <small>
+
+                {langs.length ? ( <p>Written in {langs}</p> ) : null }
+
+                {tags.length ? ( <p>Tagged with {tags}</p> ) : null }
+
+                <p>Last updated {last_updated}</p>
+
+              </small>
+            </div>
+          </li>
+        );
+      }
+    });
+
+    // Do the thing
+    ReactDOM.render(
+      <Projects />,
+      document.getElementById('projects')
+    );
+
+  </script>
+</html>

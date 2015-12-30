@@ -521,9 +521,17 @@ def stages():
 def projects():
     return render_template("projects.html")
 
+@app.route("/brigade/projects/search")
+def project_search():
+    return render_template("project_search.html")
+
 @app.route("/brigade/projects/embed")
 def projects_embed():
-    return render_template("projects_embed.html")
+    got = get("https://www.codeforamerica.org/api/organizations?per_page=1000")
+    got = got.json()
+    orgs = got["objects"]
+    orgs.sort(key=lambda x: x['name'])
+    return render_template("projects_embed.html", orgs=orgs)
 
 @app.route('/brigade/github-callback')
 @github.authorized_handler
