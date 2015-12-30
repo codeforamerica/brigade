@@ -133,22 +133,39 @@
         }
       },
       updateProjects: function(searchTerm){
-        var cfapi = "https://www.codeforamerica.org/api/projects"
+        // Show the loading gif
         var loading = $("#loading");
         loading.show();
-        $.getJSON(cfapi + searchTerm, function(response){
+
+        // Check out organization_id
+        if (parseUri(window.location.href).queryKey.organization_id) {
+          var org = "organization_id=" + parseUri(window.location.href).queryKey.organization_id;
+          if (searchTerm) {
+            org = "&" + org;
+          } else {
+            org = "?" + org
+          }
+        } else {
+          var org = ""
+        }
+
+        // Make the request
+        var cfapi = "https://www.codeforamerica.org/api/projects"
+        $.getJSON(cfapi + searchTerm + org, function(response){
+          console.log(cfapi + searchTerm + org);
           this.setState( { projects : response.objects});
+          // Hide the loader
           loading.hide();
         }.bind(this));
       },
       updateBrowserUrl: function(searchTerm){
-        
-        if (window.location.search) {
-          var url = window.location.href.replace(window.location.search,"");
-        } else {
-          var url = window.location.href;
-        }
-        history.pushState(null, null, url + searchTerm);
+        // This is difficult once org name were added
+        // if (window.location.search) {
+        //   var url = window.location.href.replace(window.location.search,"");
+        // } else {
+        //   var url = window.location.href;
+        // }
+        // history.pushState(null, null, url + searchTerm);
       },
       updateSearchField: function(searchTerm){
         searchTerm = searchTerm.replace("?q=","").replace("?status=","")
