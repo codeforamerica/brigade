@@ -2,240 +2,35 @@
 
 {% block content %}
 
-
 <div class="slab-red">
   <div class="center">
     <p class="banner">This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#alpha">Alpha</a>. Help improve it by <a href="https://github.com/codeforamerica/brigade/milestones/project%20search">submitting an issue</a>.</p>
   </div>
 </div>
 
-  <section id="project-search-section">
+  <div class="layout-semibreve">
 
-    <div class="layout-semibreve">
+    <h1 id="project-search-h1">Civic Tech Project Search</h1>
+    <p>Search across thousands of Brigade and Code for All projects.</p>
 
-      {% if brigade %}
-        <h1>{{brigade.name}}'s Projects</h1>
-      {% else %}
-        <h1 id="project-search-h1">Civic Tech Project Search</h1>
-        <p>Search across thousands of Brigade and Code for All projects.</p>
-      {% endif %}
+    <iframe id="widget" src="/brigade/projects/embed" height="3000px" width="100%" frameborder="0" onLoad="resize()"></iframe>
 
-      <form id="project-search" action="{{ request.path }}" method="get">
-        <p class="field">
-          <input id="project-search-bar" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button>
-        </p>
-
-      </form>
-
-      <ul id="project-stages-links" class="list-inline list-no-bullets">
-        <h3>Project Stages</h3>
-        <li><a href="?status=Official" id="Official" class="button search official status">Official</a></li>
-        <li><a href="?status=Beta" id="Beta" class="button search beta status">Beta</a></li>
-        <li><a href="?status=Alpha" id="Alpha" class="button search alpha status">Alpha</a></li>
-        <li><a href="?status=Experiment" id="Experiment" class="button search experiment status">Experiment</a></li>
-        <small><a href="/brigade/projects/stages">What are these?</a></small>
-      </ul>
-
-      <!-- PROJECTS HERE -->
-      <ul id="projects" class="list-no-bullets"></ul>
-
-      {% if not projects %}
-        <h2>Nothing here yet ... </h2>
-      {% else %}
-        <p style="float:right;"><a id="more-projects" href="{{next}}{% if request.args.get('status') %}&status={{ request.args.get('status') }}{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a></p>
-      {% endif %}
-
-    </div> <!-- layout-breve -->
+  </div>
   </section>
 {% endblock %}
 
 {% block js %}
+<script>
+    // Resize iframe to fit content
+    function resize()
+    {
+        var widget_iframe = document.getElementById('widget'),
+        issues_document = widget_iframe.contentWindow.document;
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-
-<script type="text/babel">
-
-var Projects = React.createClass({
-  getInitialState: function(){
-    return {
-      projects : {{projects | safe}}
-    }
-  },
-  updateProjects: function(searchTerm){
-    var cfapi = "https://www.codeforamerica.org/api/projects"
-    $.getJSON(cfapi + searchTerm, function(response){
-      this.setState( { projects : response.objects});
-    }.bind(this));
-  },
-  updateBrowserUrl: function(searchTerm){
-    if (window.location.search) {
-      var url = window.location.href.replace(window.location.search,"");
-    } else {
-      var url = window.location.href;
-    }
-    history.pushState(null, null, url + searchTerm);
-  },
-  projectSearchListener: function(){
-    $('#project-search').submit(function(e){
-      e.preventDefault();
-      var searchTerm = "?q=" + $("#project-search-bar").val();
-      this.updateBrowserUrl(searchTerm)
-      this.updateProjects(searchTerm);
-    }.bind(this));
-  },
-  searchClickListener: function(){
-    $('#projects, #project-stages-links').on("click",".search", function(e){
-      e.preventDefault();
-      var searchTerm = $(e.currentTarget).attr("href");
-      this.updateBrowserUrl(searchTerm)
-      this.updateProjects(searchTerm);
-    }.bind(this));
-  },
-  masonryUpdate: function() {
-    $('#projects').masonry({
-      itemSelector: '.project',
-      "gutter" : 20,
-    }).masonry('reloadItems').masonry('layout');
-  },
-  componentDidMount: function(){
-    this.masonryUpdate();
-    this.projectSearchListener();
-    this.searchClickListener();
-  },
-  componentDidUpdate: function(){
-    this.masonryUpdate();
-  },
-  render: function() {
-    return (
-      <span>
-      {this.state.projects.map(function(project){
-        return <Project project={project} />;
-      })}
-      </span>
-    )
-  }
-});
-
-
-var Project = React.createClass({
-  render: function() {
-
-    // Have to combine classNames out here
-    var stageClass = this.props.project.status + " card-head";
-
-    // Create the contributors array
-    var contributors = [];
-    var more_contributors;
-    if (!$.isEmptyObject(this.props.project.github_details)){
-      if (!$.isEmptyObject(this.props.project.github_details.contributors)) {
-        // Show five avatars
-        for (var i = 0; i < 5; i++){
-          var contributor = this.props.project.github_details.contributors[i];
-          if (contributor) {
-            contributors.push(<a href={contributor.html_url}><img className="github_avatar" src={contributor.avatar_url} /></a>);
-          }
+        if(issues_document)
+        {
+            widget_iframe.height = issues_document.body.scrollHeight + "px";
         }
-
-        // How many others?
-        if (this.props.project.github_details.contributors.length > 5) {
-          var number = this.props.project.github_details.contributors.length - 5
-          more_contributors = " and " + number + " others";
-        }
-      }
     }
-
-    // Build the languages array
-    var langs = [];
-    if (!$.isEmptyObject(this.props.project.languages)) {
-      this.props.project.languages.map(function(lang){
-        langs.push(<a href={"?q=" + lang} className="search">{lang}</a>);
-      })
-      langs = intersperse(langs,", ")
-    }
-
-    // Build the tags array
-    var tags = [];
-    if (!$.isEmptyObject(this.props.project.tags)) {
-      this.props.project.tags.map(function(tag){
-        tags.push(<a href={"?q=" + tag} className="search">{tag}</a>);
-      })
-      tags = intersperse(tags,", ")
-    }
-
-    // Create readable last_updated
-    var last_updated = moment(new Date(this.props.project.last_updated)).fromNow();
-
-    return(
-      <li className="project card">
-
-        <div className={stageClass}>
-        <small>{this.props.project.status}</small>
-        </div>
-
-        <div className="card-body">
-
-          <h3>{this.props.project.name}</h3>
-          <p>{this.props.project.description}</p>
-
-          <small>
-
-            <p>Used by <a href={this.props.project.organization.website}>{this.props.project.organization.name}</a></p>
-
-            <p>{contributors}{more_contributors}</p>
-
-          </small>
-
-          {this.props.project.link_url ? (
-              <a href={this.props.project.link_url} className="button-bold">View the project</a>
-            ) : null}
-
-          {this.props.project.code_url ? (
-              <a href={this.props.project.code_url} className="button-bold">Contribute on Github</a>
-            ) : null}
-
-          <small>
-
-            {langs.length ? ( <p>Written in {langs}</p> ) : null }
-
-            {tags.length ? ( <p>Tagged with {tags}</p> ) : null }
-
-            <p>Last updated {last_updated}</p>
-
-          </small>
-        </div>
-      </li>
-    );
-  }
-});
-
-// Do the thing
-ReactDOM.render(
-  <Projects />,
-  document.getElementById('projects')
-);
-
-// Comma separated list of links
-// From http://stackoverflow.com/a/23619085/722860
-function intersperse(arr, sep) {
-    if (arr.length === 0) {
-        return [];
-    }
-
-    return arr.slice(1).reduce(function(xs, x, i) {
-        return xs.concat([sep, x]);
-    }, [arr[0]]);
-}
-
 </script>
-
-  <script>
-    {% if request.args.get('q') %}
-    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
-    {% endif %}
-    {% if request.args.get('status') %}
-    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('status') }}", 1 );
-    {% endif %}
-  </script>
-
 {% endblock %}

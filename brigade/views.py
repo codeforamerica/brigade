@@ -518,60 +518,12 @@ def stages():
 
 
 @app.route("/brigade/projects")
-@app.route("/brigade/<brigadeid>/projects")
-def projects(brigadeid=None):
-    ''' Display a list of projects '''
+def projects():
+    return render_template("projects.html")
 
-    # is this an exisiting group
-    if brigadeid:
-        if not is_existing_organization(brigadeid):
-            return render_template('404.html'), 404
-
-    # Get the params
-    projects = []
-    brigade = None
-    search = request.args.get("q", None)
-    page = request.args.get("page", None)
-    status = request.args.get("status", None)
-
-    # Set next
-    if page:
-        if brigadeid:
-            next = "/brigade/" + brigadeid + "/projects?page=" + str(int(page) + 1)
-        else:
-            next = "/brigade/projects?page=" + str(int(page) + 1)
-    else:
-        if brigadeid:
-            next = "/brigade/" + brigadeid + "/projects?page=2"
-        else:
-            next = "/brigade/projects?page=2"
-
-    # build the url
-    if brigadeid:
-        url = "https://www.codeforamerica.org/api/organizations/" + brigadeid + "/projects"
-        # set the brigade name
-        if projects:
-            brigade = projects[0]["organization"]
-        else:
-            brigade = {"name": brigadeid.replace("-", " ")}
-    else:
-        # build cfapi url
-        url = "https://www.codeforamerica.org/api/projects"
-        url += "?organization_type=Brigade,Code+for+All"
-        url += "&sort_by=last_updated"
-    if search:
-        url += "&q=" + search
-    if page:
-        url += "&page=" + page
-    if status:
-        url += "&status=" + status
-
-    projects = get_projects(projects, url)
-    # Can include some bad html in the Issue body text
-    for project in projects:
-        del project["issues"]
- 
-    return render_template("projects.html", projects=json.dumps(projects), brigade=brigade, next=next)
+@app.route("/brigade/projects/embed")
+def projects_embed():
+    return render_template("projects_embed.html")
 
 @app.route('/brigade/github-callback')
 @github.authorized_handler
