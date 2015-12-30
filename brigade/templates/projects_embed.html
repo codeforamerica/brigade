@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="slab-red">
+  <div class="center">
+    <p class="banner">This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#alpha">Alpha</a>. Help improve it by <a href="https://github.com/codeforamerica/brigade/milestones/project%20search">submitting an issue</a>.</p>
+  </div>
+</div>
+
+<section>
+  <div class="layout-semibreve">
+
+    <div class="badge-heading badge-red">
+      <h1 style="margin:0px;">Civic Tech Project Search</h1>
+      <p>Use the form below to embed project search tool into your own website.</p>
+    </div>
+
+    <div class="spotlight">
+      <ul class="list-form">
+        <li class="form-field">
+            <label>Choose your group</label>
+            <select name="brigade" id="brigade">
+              <option value="">---</option>
+              {% for brigade in brigades %}
+                <option value="{{ brigade.properties.id }}">{{ brigade.properties.name }}</option>
+              {% endfor %}
+            </select>
+            <small class="note">Leave blank to search across the whole network</small>
+          </li>
+        <li class="form-field">
+          <label>Embed the following code into your website</label>
+          <textarea id="embed" rows='1'>&lt;iframe src="https://www.codeforamerica.org/brigade/projects/search" width="100%" height="3000px" frameBorder="0" &gt; &lt;&#47;iframe&gt;</textarea>
+        </li>
+      </ul>
+      <label>Iframe embedded below ------------------------- </label>
+    </div>
+    <iframe id="widget" src="/brigade/projects/search" width="100%" height="3000px" frameBorder="0"></iframe>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script>
+function updateSnippet () {
+  var org = $('#brigade').val();
+  var code = $('#embed');
+  var widget = $('#widget');
+
+  var embedString = '/brigade/projects/search';
+  if (org){
+    embedString += '?';
+    embedString += 'organization_id=' + org;
+  }
+
+  console.log(embedString);
+
+  // Reload the iframe
+  widget.attr("src", embedString);
+
+  // Finish the embedString for the form
+  embedString = '<iframe src="' + embedString + '" width="100%" height="3000" frameBorder="0"></iframe>';
+  code.html(embedString);
+}
+
+window.onload = function() {
+  var brigade = $('#brigade');
+  brigade.on('change', updateSnippet);
+}
+</script>
+{% endblock %}

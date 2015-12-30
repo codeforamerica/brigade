@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Code for America | Brigade | Projects | Embed</title>
+    <!-- Check the CfA Style Guide at https://style.codeforamerica.org/ -->
+    <link rel="stylesheet" href="https://style.codeforamerica.org/style/css/main.css">
+    <link rel="stylesheet" href="https://style.codeforamerica.org/style/css/layout.css" media="all and (min-width: 40em)">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://style.codeforamerica.org/1/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" href="https://style.codeforamerica.org/1/style/favicons/60x60/flag-red.png"/>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
+    <script src="https://fb.me/react-0.14.3.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  </head>
+  <body>
+
+    <div class="js-container">
+
+      <section id="project-search-section">
+
+        <div class="layout-semibreve">
+
+          <form id="project-search" action="{{ request.path }}" method="get">
+            <p class="field">
+              <input id="project-search-bar" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button>
+            </p>
+
+          </form>
+
+          <ul class="list-inline list-no-bullets">
+            <h3>Project Stages</h3>
+            <!-- <li><a href="?q=featured" id="Featured" class="button">Featured</a></li> -->
+            <li><a href="/brigade/projects/search?status=Official" class="Official button">Official</a></li>
+            <li><a href="/brigade/projects/search?status=Beta" class="Beta button">Beta</a></li>
+            <li><a href="/brigade/projects/search?status=Alpha" class="Alpha button">Alpha</a></li>
+            <li><a href="/brigade/projects/search?status=Experiment" class="Experiment button">Experiment</a></li>
+            <small><a href="/brigade/projects/stages">What are these?</a></small>
+          </ul>
+
+          <ul id="projects" class="list-no-bullets">
+          {% for project in projects %}
+            <li class="project card">
+              
+              <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
+                {% if project.status %}
+                <small>{{ project.status | title }}</small>
+                {% endif %}
+              </div>
+
+              <div class="card-body">
+
+                <h3>{{project.name}}</h3>
+
+                {% if project.description %}
+                  <p>{{project.description}}</p>
+                {% endif %}
+
+                <p><small>Used by </small><a href="/brigade/projects/search?organization_name={{project.organization.id}}">{{ project.organization.name }}</a></p>
+
+                {% if project.github_details %}
+                  {% if project.github_details.contributors %}
+                    {% for i in range(5) %} 
+                      {% if project.github_details.contributors[i] %}
+                        <a href="{{ project.github_details.contributors[i].html_url }}">
+                          <img height="40" width="40" src="{{ project.github_details.contributors[i].avatar_url }}&s=40" style="border-radius: 5px;"/>
+                        </a>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% set contributors_count = project.github_details.contributors | length %}
+                    {% if contributors_count > 5 %}
+                      <small> and {{ contributors_count - 5 }} more</small>
+                    {% endif %}
+
+                  {% endif %}
+                {% endif %}
+
+                <p>
+                {% if project.link_url %}
+                  <a href="{{project.link_url}}" class="button-bold">View the project</a>
+                {% endif %}
+                {% if project.code_url %}
+                  <a href="{{project.code_url}}" class="button-bold">Contribute on Github</a>
+                {% endif %}
+                </p>
+
+                <small>
+
+                <p>
+                {% if project.languages %}
+                {% set comma = joiner(",") %}
+                  Written in
+                  {% for lang in project.languages %}{{ comma() }} <a href="/brigade/projects/search?q={{ lang }}">{{ lang }}</a>{% endfor %}
+                </p>
+                {% endif %}
+
+                {% if project.tags %}
+                {% set comma = joiner(",") %}
+                <p>
+                  Tagged with
+                  {% for tag in project.tags %}{{ comma() }} <a href="/brigade/projects/search?q={{ tag }}">{{ tag }}</a>{% endfor %}
+                {% endif %}
+                </p>
+
+                {% if project.code_url and not project.status and not project.tags %}
+                  <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
+                {% endif %}
+
+                {% if project.last_updated %}
+                  <p>Updated {{project.last_updated | timesince}}</p>
+                {% endif %}
+
+                </small>
+
+              </div> <!-- card-body -->
+
+            </li> <!-- project card -->
+
+          {% endfor %}
+
+          </ul> <!-- projects -->
+
+          {% if not projects %}
+            <h2>Nothing here yet ... </h2>
+          {% else %}
+            <p style="float:right;"><a id="more-projects" href="{{next}}{% if request.args.get('status') %}&status={{ request.args.get('status') }}{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a></p>
+          {% endif %}
+
+        </div>
+      </section>
+    </div>
+  </body>
+  <script>
+
+    $('#projects').masonry({
+      itemSelector: '.project',
+      "gutter" : 20
+    });
+
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-20825280-1', 'auto');
+    ga('require', 'linkid', 'linkid.js');
+    ga('send', 'pageview');
+
+    {% if request.args.get('q') %}
+    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
+    {% endif %}
+    {% if request.args.get('status') %}
+    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('status') }}", 1 );
+    {% endif %}
+  </script>
+</html>
