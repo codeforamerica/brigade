@@ -68,9 +68,8 @@
       <div class="layout-semibreve">
 
         {% if brigade.current_events %}
-        <div class="layout-minim">
+        <div id="events" class="layout-minim">
             <h2>Current Events</h2>
-            <a id="events"></a>
             <ul class="list-no-bullets list-icons">
               {% for event in brigade.current_events %}
                 <li class="icon-calendar">
@@ -84,13 +83,12 @@
             </ul>
 
             <a href="{{brigade.events_url}}" class="button">More Events</a>
-        </div>
+        </div><!-- #events -->
         {% endif %}
 
         {% if brigade.current_stories %}
-        <div class="layout-minim">
+        <div id="stories" class="layout-minim">
             <h2>Current Stories</h2>
-            <a id="stories"></a>
             <ul class="list-no-bullets list-icons">
               {% for story in brigade.current_stories %}
                 <li class="icon-bullhorn">
@@ -100,18 +98,17 @@
               {% endfor %}
               <a href="{{brigade.rss}}" class="button">More Stories</a>
             </ul>
-        </div>
+        </div><!-- #stories -->
         {% endif %}
 
       </div>
     </div>
 
-    <div class="layout-semibreve">
-      <a id="issues"></a>
+    <div id="issues" class="layout-breve">
       <h2>Open Github Issues</h2>
       <p>Powered by the <a href="http://www.codeforamerica.org/geeks/civicissues">Civic Tech Issue Finder</a>.</p>
       <iframe src="https://www.codeforamerica.org/geeks/civicissues/widget?organization_name={{brigadeid}}&number=3" width="100%" height="600px" frameBorder="0"></iframe>
-    </div>
+    </div><!-- #issues -->
 
     <!-- <div class="layout-minor-invert">
           <h2>People</h2>
