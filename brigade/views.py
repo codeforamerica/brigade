@@ -970,4 +970,4 @@ def project_monitor(brigadeid=None):
                 project["travis_url"] = travis_url
                 travis_projects.append(project)
 
-    return render_template('projectmonitor.html', projects=travis_projects, org_name=brigadeid)
+    return render_template('projectmonitor.html', projects=travis_projects, org_name=brigadeid, access_token=current_app.config['ACCESS_TOKEN'])

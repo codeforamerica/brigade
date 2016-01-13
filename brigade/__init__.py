@@ -11,6 +11,7 @@ def create_app(environ):
     app.config['BRIGADE_SIGNUP_SECRET'] = environ['BRIGADE_SIGNUP_SECRET']
     app.config['GITHUB_CLIENT_ID'] = environ['GITHUB_CLIENT_ID']
     app.config['GITHUB_CLIENT_SECRET'] = environ['GITHUB_CLIENT_SECRET']
+    app.config['ACCESS_TOKEN'] = environ['ACCESS_TOKEN']
 
     # github.app = app
     github.init_app(app)

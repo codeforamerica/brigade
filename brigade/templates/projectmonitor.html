@@ -32,16 +32,22 @@ $( document ).ready(function() {
 
       if (project.code_url.indexOf('github.com') > -1) {
 
-        repo = project.code_url.replace("https://github.com/","");
+        repo = project.code_url.replace("https://github.com/","").replace("http://github.com/","");
 
         status_url = 'https://api.github.com/repos/' + repo + '/commits/master/statuses'
 
-        $.getJSON(status_url+'?access_token=68b446f19e9b2faa79e6307697d0983426786aa0', function(response){
+        $.getJSON(status_url+'?access_token={{access_token}}', function(response){
+
             if (response[0]) {
+              status = response[0].state
+              if (response[0].target_url) {
+                project.travis_url = response[0].target_url
+              } else {
+                project.travis_url = null
+              }
 
               project.when = moment(new Date(project.last_updated)).fromNow()
 
-              status = response[0].state
               if (status === 'success'){
                 project.state = "alert-success"
               } else if (status === 'failure') {
@@ -50,21 +56,22 @@ $( document ).ready(function() {
                 project.state = "alert-failure"
               }
 
-              repo = project.code_url.replace("https://github.com/","");
-              project.travis_url = response[0].target_url
-
               html = '<li class="'+project.state+' layout-centered layout-crotchet"> \
                 <div class="project"> \
                   <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
-                  <hr /> \
-                  <a class="icon-tools" href="'+project.travis_url+'"> Built '+project.when+' ago </a> \
-                </div> \
-              </li>'
+                  <hr />'
+              if (project.travis_url) {
+                html += '<a class="icon-tools" href="'+project.travis_url+'"> Built '+project.when+'</a>'
+              }
+              html += '</div> \
+                    </li>'
 
               $("#projects").append(html);
 
             }
 
+        }).fail(function(){
+          console.log("No tests found for " + project.name);
         });
 
       }
