@@ -2,14 +2,22 @@
 
 {% block content %}
 
+<div class="slab-red">
+  <div class="center">
+    <p class="banner">This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#experiment">Experiment</a>. Help improve it by <a href="https://github.com/codeforamerica/brigade/">submitting an issue</a>.</p>
+  </div>
+</div>
+
 <section>
-  <div id="monitor" class="layout-breve layout-centered">
+  <div id="monitor" name="monitor" class="layout-breve layout-centered">
 
     {% if org_name %}
     <h1>{{org_name}}'s Project Monitor</h1>
     {% else %}
     <h1>The Civic Tech Movement Project Monitor</h1>
     {% endif %}
+
+    <p>Using shame to encourage volunteers write passing tests. Put this up on a big screen during your hack nights.</p>
 
     <ul id="projects">
     </ul>

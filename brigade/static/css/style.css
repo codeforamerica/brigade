@@ -159,7 +159,12 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 /* Project Monitor */
 #monitor {
+  padding-top: 0px;
   min-height: 700px;
+}
+
+#monitor .project {
+  padding: 10px;
 }
 
 #monitor a:link, #monitor a:visited, #monitor a:hover, #monitor a:focus, #monitor a:active {
@@ -168,6 +173,10 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 
 .alert-success, .alert-failure {
   border: 0px;
+}
+
+#monitor h1 {
+  margin-bottom: 0px;
 }
 
 /* PROJECT SEARCH */
