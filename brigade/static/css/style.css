@@ -176,6 +176,7 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 .project {
   display: table-cell;
   float: none;
+  padding-bottom: 8px;
 }
 
 .project h2 {
