@@ -166,6 +166,17 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   color: #5a5a5a;
 }
 
+.row {
+  display: table;
+  border-spacing: 15px 5px;
+  width: 100%;
+}
+
+.project {
+  display: table-cell;
+  float: none;
+}
+
 .alert-success, .alert-failure {
   border: 0px;
 }
@@ -257,7 +268,7 @@ thead th {
 }
 
 td {
-  text-align:center; 
+  text-align:center;
   vertical-align:middle;
 }
 

@@ -37,7 +37,6 @@ $( document ).ready(function() {
         travis_url = 'https://api.travis-ci.org/repositories/' + repo + '/builds'
 
         $.getJSON(travis_url, function(response){
-
           if (response[0]) {
 
             project.when = moment(new Date(project.last_updated)).fromNow()
@@ -50,19 +49,21 @@ $( document ).ready(function() {
 
             repo = project.code_url.replace("https://github.com/","");
             project.travis = 'https://travis-ci.org/' + repo + '/builds/' + response[0].id
+            var projectsLength = $('#projects').find('.row').children('.project').length;
+            console.log(projectsLength);
+            if (projectsLength === 0 || projectsLength % 3 === 0){
+              $('#projects').append('<div class="row"><div>');
+              console.log('adding Row')
+            }
 
-            html = '<li class="'+project.state+' layout-centered layout-crotchet"> \
-              <div class="project"> \
-                <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
-                <hr /> \
-                <a class="icon-tools" href="'+project.travis+'"> Built '+project.when+' ago </a> \
-              </div> \
-            </li>'
+            var singleProject = '<li class="'+project.state+' layout-centered layout-crotchet project"> \
+                                    <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
+                                  <hr /> \
+                                    <a class="icon-tools" href="'+project.travis+'"> Built '+project.when+'</a> \
+                                  </li>'
 
-            $("#projects").append(html);
-
+            $('.row').last().append(singleProject);
           }
-
         });
 
       }
@@ -73,7 +74,6 @@ $( document ).ready(function() {
 
 
   var projects = {{ projects | tojson }};
-
   $.each(projects, function(i, project){
 
     getProject(project);
