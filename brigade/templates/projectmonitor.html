@@ -49,9 +49,9 @@ $( document ).ready(function() {
             if (response[0]) {
               status = response[0].state
               if (response[0].target_url) {
-                project.travis_url = response[0].target_url
+                project.ci_url = response[0].target_url
               } else {
-                project.travis_url = null
+                project.ci_url = null
               }
 
               project.when = moment(new Date(project.last_updated)).fromNow()
@@ -68,8 +68,8 @@ $( document ).ready(function() {
                 <div class="project"> \
                   <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
                   <hr />'
-              if (project.travis_url) {
-                html += '<a class="icon-tools" href="'+project.travis_url+'"> Built '+project.when+'</a>'
+              if (project.ci_url) {
+                html += '<a class="icon-tools" href="'+project.ci_url+'"> Built '+project.when+'</a>'
               }
               html += '</div> \
                     </li>'
