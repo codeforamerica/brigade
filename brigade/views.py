@@ -952,22 +952,12 @@ def post_test_checkin(brigadeid=None):
 @app.route('/brigade/projects/monitor')
 @app.route('/brigade/<brigadeid>/projects/monitor')
 def project_monitor(brigadeid=None):
-    ''' Check for Brigade projects on Travis'''
+    ''' Check for project testing status'''
     limit = int(request.args.get('limit', 50))
-    travis_projects = []
     projects = []
     if not brigadeid:
         projects = get_projects(projects, "https://www.codeforamerica.org/api/projects", limit)
     else:
         projects = get_projects(projects, "https://www.codeforamerica.org/api/organizations/" + brigadeid + "/projects", limit)
 
-    # Loop through projects and get
-    for project in projects:
-        if project["code_url"]:
-            url = urlparse(project["code_url"])
-            if url.netloc == "github.com":
-                travis_url = "https://api.travis-ci.org/repositories" + url.path + "/builds"
-                project["travis_url"] = travis_url
-                travis_projects.append(project)
-
-    return render_template('projectmonitor.html', projects=travis_projects, org_name=brigadeid, access_token=current_app.config['ACCESS_TOKEN'])
+    return render_template('projectmonitor.html', projects=projects, org_name=brigadeid, access_token=current_app.config['ACCESS_TOKEN'])
