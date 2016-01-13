@@ -523,6 +523,7 @@ def projects(brigadeid=None):
     search = request.args.get("q", None)
     page = request.args.get("page", None)
     status = request.args.get("status", None)
+    organization_type = request.args.get("organization_type", None)
 
     # Set next
     if page:
@@ -547,14 +548,15 @@ def projects(brigadeid=None):
     else:
         # build cfapi url
         url = "https://www.codeforamerica.org/api/projects"
-        url += "?organization_type=Brigade,Code+for+All"
-        url += "&sort_by=last_updated"
+        url += "?sort_by=last_updated"
     if search:
         url += "&q=" + search
     if page:
         url += "&page=" + page
     if status:
         url += "&status=" + status
+    if organization_type:
+        url += "&organization_type=" + organization_type
 
     projects = get_projects(projects, url)
 
