@@ -2,14 +2,22 @@
 
 {% block content %}
 
+<div class="slab-red">
+  <div class="center">
+    <p class="banner">This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#experiment">Experiment</a>. Help improve it by <a href="https://github.com/codeforamerica/brigade/">submitting an issue</a>.</p>
+  </div>
+</div>
+
 <section>
-  <div id="monitor" class="layout-breve layout-centered">
+  <div id="monitor" name="monitor" class="layout-breve layout-centered">
 
     {% if org_name %}
     <h1>{{org_name}}'s Project Monitor</h1>
     {% else %}
     <h1>The Civic Tech Movement Project Monitor</h1>
     {% endif %}
+
+    <p>Using shame to encourage volunteers to write passing tests. Put this up on a big screen during your hack nights.</p>
 
     <ul id="projects">
     </ul>
@@ -32,37 +40,46 @@ $( document ).ready(function() {
 
       if (project.code_url.indexOf('github.com') > -1) {
 
-        repo = project.code_url.replace("https://github.com/","");
+        repo = project.code_url.replace("https://github.com/","").replace("http://github.com/","");
 
-        travis_url = 'https://api.travis-ci.org/repositories/' + repo + '/builds'
+        status_url = 'https://api.github.com/repos/' + repo + '/commits/master/statuses'
 
-        $.getJSON(travis_url, function(response){
+        $.getJSON(status_url+'?access_token={{access_token}}', function(response){
 
-          if (response[0]) {
+            if (response[0]) {
+              status = response[0].state
+              if (response[0].target_url) {
+                project.ci_url = response[0].target_url
+              } else {
+                project.ci_url = null
+              }
 
-            project.when = moment(new Date(project.last_updated)).fromNow()
+              project.when = moment(new Date(project.last_updated)).fromNow()
 
-            if (response[0].result == 0){
-              project.state = "alert-success"
-            } else {
-              project.state = "alert-failure"
+              if (status === 'success'){
+                project.state = "alert-success"
+              } else if (status === 'failure') {
+                project.state = "alert-failure"
+              } else {
+                project.state = "alert-failure"
+              }
+
+              html = '<li class="'+project.state+' layout-centered layout-crotchet"> \
+                <div class="project"> \
+                  <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
+                  <hr />'
+              if (project.ci_url) {
+                html += '<a class="icon-tools" href="'+project.ci_url+'"> Built '+project.when+'</a>'
+              }
+              html += '</div> \
+                    </li>'
+
+              $("#projects").append(html);
+
             }
 
-            repo = project.code_url.replace("https://github.com/","");
-            project.travis = 'https://travis-ci.org/' + repo + '/builds/' + response[0].id
-
-            html = '<li class="'+project.state+' layout-centered layout-crotchet"> \
-              <div class="project"> \
-                <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
-                <hr /> \
-                <a class="icon-tools" href="'+project.travis+'"> Built '+project.when+' ago </a> \
-              </div> \
-            </li>'
-
-            $("#projects").append(html);
-
-          }
-
+        }).fail(function(){
+          console.log("No tests found for " + project.name);
         });
 
       }
