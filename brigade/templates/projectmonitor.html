@@ -49,20 +49,23 @@ $( document ).ready(function() {
 
             repo = project.code_url.replace("https://github.com/","");
             project.travis = 'https://travis-ci.org/' + repo + '/builds/' + response[0].id
+
             var projectsLength = $('#projects').find('.row').children('.project').length;
-            console.log(projectsLength);
-            if (projectsLength === 0 || projectsLength % 3 === 0){
-              $('#projects').append('<div class="row"><div>');
-              console.log('adding Row')
+
+            if (projectsLength === 0 || projectsLength % 3 === 0) {
+              $('#projects').append('<div class="row"></div>');
             }
 
             var singleProject = '<li class="'+project.state+' layout-centered layout-crotchet project"> \
-                                    <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
-                                  <hr /> \
-                                    <a class="icon-tools" href="'+project.travis+'"> Built '+project.when+'</a> \
-                                  </li>'
+                                  <h2> <a href="'+project.code_url+'">'+project.name+'</a> </h2> \
+                                <hr /> \
+                                  <a class="icon-tools" href="'+project.travis+'"> Built '+project.when+'</a> \
+                                </li>'
 
             $('.row').last().append(singleProject);
+            if (projectsLength % 3) {
+              $('.row').last().fadeIn(400).css('display','flex');
+            }
           }
         });
 

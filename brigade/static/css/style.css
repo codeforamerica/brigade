@@ -170,11 +170,18 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   display: table;
   border-spacing: 15px 5px;
   width: 100%;
+  display: none;
 }
 
 .project {
   display: table-cell;
   float: none;
+}
+
+.project h2 {
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 .alert-success, .alert-failure {
