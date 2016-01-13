@@ -36,12 +36,7 @@ $( document ).ready(function() {
 
         status_url = 'https://api.github.com/repos/' + repo + '/commits/master/statuses'
 
-        $.ajax({
-          type: 'GET',
-          datatype: 'json',
-          username: 'codeforamerica',
-          url: status_url,
-          success: function(response){
+        $.getJSON(status_url+'?access_token=68b446f19e9b2faa79e6307697d0983426786aa0', function(response){
             if (response[0]) {
 
               project.when = moment(new Date(project.last_updated)).fromNow()
