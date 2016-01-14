@@ -166,6 +166,25 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   color: #5a5a5a;
 }
 
+.row {
+  display: table;
+  border-spacing: 15px 5px;
+  width: 100%;
+  display: none;
+}
+
+.project {
+  display: table-cell;
+  float: none;
+  padding-bottom: 8px;
+}
+
+.project h2 {
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
 .alert-success, .alert-failure {
   border: 0px;
 }
@@ -257,7 +276,7 @@ thead th {
 }
 
 td {
-  text-align:center; 
+  text-align:center;
   vertical-align:middle;
 }
 
