@@ -16,7 +16,7 @@
         <h1>{{brigade.name}}'s Projects</h1>
       {% else %}
         <h1 id="project-search-h1">Civic Tech Project Search</h1>
-        <p>Search across thousands of Brigade and Code for All projects.</p>
+        <p>Search across thousands of civic technology projects.</p>
       {% endif %}
 
       <form id="project-search" action="{{ request.path }}" method="get">
@@ -104,7 +104,9 @@
             </p>
 
             {% if project.code_url and not project.status and not project.tags %}
-              <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
+              {% if "Government" not in project.organization.type %}
+                <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
+              {% endif %}
             {% endif %}
 
             {% if project.last_updated %}
