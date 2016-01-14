@@ -47,13 +47,15 @@ function updateSnippet () {
   var code = $('#embed');
   var widget = $('#widget');
 
-  var embedString = 'https://www.codeforamerica.org/brigade/projects/search';
+  // Get the correct url host, even on local dev
+  var parser = document.createElement('a');
+  parser.href = window.location.href;
+
+  var embedString = parser.protocol + '//' + parser.host + '/brigade/projects/search';
   if (org){
     embedString += '?';
     embedString += 'organization_id=' + org;
   }
-
-  console.log(embedString);
 
   // Reload the iframe
   widget.attr("src", embedString);
