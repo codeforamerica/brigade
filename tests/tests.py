@@ -283,7 +283,49 @@ class BrigadeTests(unittest.TestCase):
             return httmock.response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
         if url.geturl() == "https://www.codeforamerica.org/api/attendance":
             return httmock.response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
-        if url.geturl() == "https://www.codeforamerica.org/api/projects":
+        if url.geturl() == "https://www.codeforamerica.org/api/projects/1":
+            return httmock.response(200, '''
+                    {
+                      "code_url": "https://github.com/jmcelroy5/sf-in-progress",
+                      "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
+                      "link_url": "http://107.170.214.244/",
+                      "code_url": "https://github.com/testesttest/test",
+                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
+                      "name": "SF in Progress",
+                      "github_details" : {},
+                      "organization": {
+                        "id": "Code-for-San-Francisco",
+                        "name": "Code for San Francisco"
+                      },
+                      "organization_name": "Code for San Francisco",
+                      "status": "Alpha",
+                      "tags": "housing, ndoch, active"
+                    } ''')
+
+        if "q=TEST" in url.geturl() or "organization_type=Brigade" in url.geturl() or "status=Alpha" in url.geturl():
+            return httmock.response(200, '''{
+                  "objects": [
+                    {
+                      "code_url": "TEST URL",
+                      "description": "TEST DESCRIPTION",
+                      "link_url": "TEST URL",
+                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
+                      "name": "TEST PROJECT",
+                      "github_details" : {},
+                      "organization": {
+                        "id": "Code-for-San-Francisco",
+                        "name": "Code for San Francisco"
+                      },
+                      "organization_name": "Code for San Francisco",
+                      "status": "Alpha",
+                      "tags": "housing, ndoch, active"
+                    }
+                  ],
+                  "total" : 1,
+                  "pages": {}
+                } ''')
+
+        if "https://www.codeforamerica.org/api/projects" in url.geturl():
             return httmock.response(200, '''{
                   "objects": [
                     {
@@ -305,24 +347,7 @@ class BrigadeTests(unittest.TestCase):
                   "total" : 1,
                   "pages": {}
                 } ''')
-        if url.geturl() == "https://www.codeforamerica.org/api/projects/1":
-            return httmock.response(200, '''
-                    {
-                      "code_url": "https://github.com/jmcelroy5/sf-in-progress",
-                      "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
-                      "link_url": "http://107.170.214.244/",
-                      "code_url": "https://github.com/testesttest/test",
-                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
-                      "name": "SF in Progress",
-                      "github_details" : {},
-                      "organization": {
-                        "id": "Code-for-San-Francisco",
-                        "name": "Code for San Francisco"
-                      },
-                      "organization_name": "Code for San Francisco",
-                      "status": "Alpha",
-                      "tags": "housing, ndoch, active"
-                    } ''')
+
         if url.geturl() == 'https://people.codeforamerica.org/brigade/signup':
             if request.method == 'POST':
                 form = dict(parse_qsl(request.body))
@@ -365,29 +390,6 @@ class BrigadeTests(unittest.TestCase):
                     "owner" : { "login" : "ondrae" },
                     "default_branch" : "master"
                     } ''')
-
-        if "q=TEST" in url.geturl() or "organization_type=Brigade" in url.geturl() or "status=Alpha" in url.geturl():
-            return httmock.response(200, '''{
-                  "objects": [
-                    {
-                      "code_url": "TEST URL",
-                      "description": "TEST DESCRIPTION",
-                      "link_url": "TEST URL",
-                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
-                      "name": "TEST PROJECT",
-                      "github_details" : {},
-                      "organization": {
-                        "id": "Code-for-San-Francisco",
-                        "name": "Code for San Francisco"
-                      },
-                      "organization_name": "Code for San Francisco",
-                      "status": "Alpha",
-                      "tags": "housing, ndoch, active"
-                    }
-                  ],
-                  "total" : 1,
-                  "pages": {}
-                } ''')
 
         raise ValueError('response_content: bad {} to "{}"'.format(request.method, url.geturl()))
 
