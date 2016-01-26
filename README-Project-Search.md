@@ -50,6 +50,9 @@ You'll need to log into Github. When you fill out and submit the form, it will s
 
 If you are having trouble with the form, you can always create your own civic.json file and add it to the top level of the project repo.
 
+#### Alternative
+Recently, Code for DC also made a [civic.json builder](http://codefordc.org/resources/builder.html). They use a much more detailed specification. One note is that they don't include the `tags` attribute that we use.
+
 ## Advice for Brigades
 We recommend that your Delivery Lead or Captain take time to once a month to review each of your group's projects and update the metadata about it.
 
