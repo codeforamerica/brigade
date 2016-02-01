@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+  <div id="monitor" class="layout-breve layout-centered">
+
+    {% if org_name %}
+    <h1>{{org_name}}'s Project Monitor</h1>
+    {% else %}
+    <h1>The Civic Tech Movement Project Monitor</h1>
+    {% endif %}
+
+    <ul id="projects">
+      {% for project_row in projects | batch(3, '&nbsp;') %}
+        <div class="row" style="display:flex;">
+        {% for project in project_row %}
+          <li class="alert-{{project.commit_status}} layout-centered layout-crotchet project">
+            <h2> <a href="{{ project.code_url }}">{{ project.name }}</a> </h2>
+            <hr />
+            <span class="icon-tools"> Built {{ project.last_updated | timesince }}</span>
+          </li>
+        {% endfor %}
+        </div>
+      {% endfor %}
+    </ul>
+
+  </div>
+</section>
+
+{% endblock %}

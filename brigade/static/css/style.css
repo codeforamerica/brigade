@@ -185,8 +185,13 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   padding-right: 14px;
 }
 
-.alert-success, .alert-failure {
+.alert-success, .alert-failure, .alert-pending {
   border: 0px;
+}
+
+.alert-pending {
+  background-color: #e5e5e5;
+  margin: 0 0 16px 0;
 }
 
 /* PROJECT SEARCH */
