@@ -67,7 +67,7 @@
             {% if brigadeid %}
             <p style="display:none">
               <select name="cfapi_url">
-                <option value="https://www.cfapi-staging.herokuapp.com/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
+                <option value="https://cfapi-staging.herokuapp.com/api/organizations/{{brigadeid}}"> {{brigadeid}} </option>
               </select>
             </p>
             {% else %}
@@ -75,7 +75,7 @@
               <label for="select">Brigade</label>
               <select name="cfapi_url">
                 {% for brigade in brigades %}
-                <option value="https://www.cfapi-staging.herokuapp.com/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
+                <option value="https://cfapi-staging.herokuapp.com/api/organizations/{{brigade["id"]}}"> {{brigade["name"]}} </option>
                 {% endfor %}
               </select>
             </p>

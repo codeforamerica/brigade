@@ -31,9 +31,9 @@ To get access talk to Hannah or Andrew
 
 Attendance data can be pulled from the Code for America API.
 
-* https://www.cfapi-staging.herokuapp.com/api/attendance
-* https://www.cfapi-staging.herokuapp.com/api/organizations/attendance
-* http://www.cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco/attendance
+* https://cfapi-staging.herokuapp.com/api/attendance
+* https://cfapi-staging.herokuapp.com/api/organizations/attendance
+* http://cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco/attendance
 
 Checkins can be posted
 
@@ -47,7 +47,7 @@ name - string - None - Yes - `Margaret Hamilton`
 email - string - None - Yes - `apollo@nasa.gov`
 event - string - None - Yes - `Moon Landing`
 date - datetime - datetime.now() - Yes - `1969-07-20`
-cfapi_url - string - None - No - `https://www.cfapi-staging.herokuapp.com/api/organizations/Code-for-Houston`
+cfapi_url - string - None - No - `https://cfapi-staging.herokuapp.com/api/organizations/Code-for-Houston`
 question - string - None - Yes - "What did you do today?"
 answer - string - None - Yes - "I invented software engineering and sent the first people to the moon."
 ```

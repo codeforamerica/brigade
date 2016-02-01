@@ -40,6 +40,6 @@ var Project = React.createClass({
 
 // Do the thing
 ReactDOM.render(
-  <Projects source="https://www.cfapi-staging.herokuapp.com/api/projects" />,
+  <Projects source="https://cfapi-staging.herokuapp.com/api/projects" />,
   document.getElementById('projects')
 );

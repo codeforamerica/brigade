@@ -33,7 +33,7 @@ class BrigadeTests(unittest.TestCase):
     def civic_json_branch_content(self, url, request):
         ''' Mocking http responses when testing civic.json branches
         '''
-        if url.geturl() == 'https://www.cfapi-staging.herokuapp.com/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
+        if url.geturl() == 'https://cfapi-staging.herokuapp.com/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
             return self.civic_json_fork_content(url, request)
 
         if url.geturl() == 'https://api.github.com/user' and request.method == 'GET':
@@ -138,12 +138,12 @@ class BrigadeTests(unittest.TestCase):
     def civic_json_fork_content(self, url, request):
         ''' Mocking http responses when testing civic.json forks
         '''
-        if url.geturl() == 'https://www.cfapi-staging.herokuapp.com/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
+        if url.geturl() == 'https://cfapi-staging.herokuapp.com/api/projects?name=add-civic-json-test&organization_id=Code-for-America' and request.method == 'GET':
             return httmock.response(200, '''
                 {
                   "objects": [
                     {
-                      "api_url": "http://www.cfapi-staging.herokuapp.com/api/projects/30943",
+                      "api_url": "http://cfapi-staging.herokuapp.com/api/projects/30943",
                       "categories": null,
                       "code_url": "https://github.com/codeforamerica/add-civic-json-test",
                       "description": "Use this project to test the automated creation of a pull request adding a civic.json file.",
@@ -275,15 +275,15 @@ class BrigadeTests(unittest.TestCase):
             return httmock.response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
         if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
             return httmock.response(200, '''<html>bunch of HTML</html>''')
-        if url.geturl() == 'https://www.cfapi-staging.herokuapp.com/api/organizations/404':
+        if url.geturl() == 'https://cfapi-staging.herokuapp.com/api/organizations/404':
             return httmock.response(404, '{"status": "Resource Not Found"}')
-        if url.geturl() == 'https://www.cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco':
+        if url.geturl() == 'https://cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco':
             return httmock.response(200, '{"city": "San Francisco, CA"}')
-        if url.geturl() == "https://www.cfapi-staging.herokuapp.com/api/organizations.geojson":
+        if url.geturl() == "https://cfapi-staging.herokuapp.com/api/organizations.geojson":
             return httmock.response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
-        if url.geturl() == "https://www.cfapi-staging.herokuapp.com/api/attendance":
+        if url.geturl() == "https://cfapi-staging.herokuapp.com/api/attendance":
             return httmock.response(200, '{"total": 100, "weekly" : {"1999" : "100"}}')
-        if url.geturl() == "https://www.cfapi-staging.herokuapp.com/api/projects/1":
+        if url.geturl() == "https://cfapi-staging.herokuapp.com/api/projects/1":
             return httmock.response(200, '''
                     {
                       "code_url": "https://github.com/jmcelroy5/sf-in-progress",
@@ -325,7 +325,7 @@ class BrigadeTests(unittest.TestCase):
                   "pages": {}
                 } ''')
 
-        if "https://www.cfapi-staging.herokuapp.com/api/projects" in url.geturl():
+        if "https://cfapi-staging.herokuapp.com/api/projects" in url.geturl():
             return httmock.response(200, '''{
                   "objects": [
                     {
@@ -445,7 +445,7 @@ class BrigadeTests(unittest.TestCase):
             "name": "TEST NAME",
             "email": "test@testing.com",
             "event": "TEST EVENT",
-            "cfapi_url": "https://www.cfapi-staging.herokuapp.com/api/organizations/TEST-ORG",
+            "cfapi_url": "https://cfapi-staging.herokuapp.com/api/organizations/TEST-ORG",
             "question": "TEST QUESTION",
             "answer": "TEST ANSWER"
         }
@@ -461,12 +461,12 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(200, response.status_code)
 
         # test nonexistant Brigade
-        checkin["cfapi_url"] = "http://www.cfapi-staging.herokuapp.com/api/organizations/BLAH-BLAH"
+        checkin["cfapi_url"] = "http://cfapi-staging.herokuapp.com/api/organizations/BLAH-BLAH"
         response = self.client.post("/brigade/checkin/", data=checkin)
         self.assertEqual(422, response.status_code)
 
         # test http
-        checkin["cfapi_url"] = "http://www.cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco"
+        checkin["cfapi_url"] = "http://cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco"
         response = self.client.post("/brigade/checkin/", data=checkin)
         self.assertEqual(422, response.status_code)
 
@@ -481,7 +481,7 @@ class BrigadeTests(unittest.TestCase):
             "name": "TEST NAME",
             "email": "test@testing.com",
             "event": "TEST EVENT",
-            "cfapi_url": "https://www.cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco",
+            "cfapi_url": "https://cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco",
             "question": "TEST QUESTION",
             "answer": "TEST ANSWER"
         }
@@ -490,12 +490,12 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(200, response.status_code)
 
         # test nonexistant Brigade
-        checkin["cfapi_url"] = "http://www.cfapi-staging.herokuapp.com/api/organizations/BLAH-BLAH"
+        checkin["cfapi_url"] = "http://cfapi-staging.herokuapp.com/api/organizations/BLAH-BLAH"
         response = self.client.post("/brigade/test-checkin/", data=checkin)
         self.assertEqual(422, response.status_code)
 
         # test http
-        checkin["cfapi_url"] = "http://www.cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco"
+        checkin["cfapi_url"] = "http://cfapi-staging.herokuapp.com/api/organizations/Code-for-San-Francisco"
         response = self.client.post("/brigade/test-checkin/", data=checkin)
         self.assertEqual(422, response.status_code)
 
