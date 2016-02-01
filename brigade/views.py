@@ -40,7 +40,7 @@ def get_fragments():
 
 def get_brigades():
     # Get location of all civic tech orgs
-    got = get("https://www.codeforamerica.org/api/organizations.geojson")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/organizations.geojson")
     geojson = got.json()
     brigades = []
 
@@ -64,7 +64,7 @@ def get_brigades():
 
 def is_existing_organization(orgid):
     ''' tests that an organization exists on the cfapi'''
-    got = get("https://www.codeforamerica.org/api/organizations.geojson").json()
+    got = get("https://www.cfapi-staging.herokuapp.com/api/organizations.geojson").json()
     orgids = [org["properties"]["id"] for org in got["features"]]
     return orgid in orgids
 
@@ -86,7 +86,7 @@ def get_projects(projects, url, limit=10):
 def get_project_for_civic_json(brigadeid, project_name):
     ''' Get and format a project object for use in the 'add-civic-json' routes.
     '''
-    got = get("https://www.codeforamerica.org/api/projects?name={}&organization_id={}".format(project_name, brigadeid))
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?name={}&organization_id={}".format(project_name, brigadeid))
     # In rare cases there may be more than one. Use the first matching project.
     project = got.json()["objects"][0]
     project["repo"] = None
@@ -370,7 +370,7 @@ def signup():
 @app.route("/brigade/signup/", methods=["GET"])
 def signup_form():
     # Get all of the organizations from the api
-    organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+    organizations = get('https://www.cfapi-staging.herokuapp.com/api/organizations.geojson')
     organizations = organizations.json()
 
     # Filter out just the organization names
@@ -387,67 +387,67 @@ def signup_form():
 @app.route("/brigade/numbers/")
 def numbers():
     # Get the total number of Brigades
-    got = get("https://www.codeforamerica.org/api/organizations?type=Brigade&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/organizations?type=Brigade&per_page=1")
     got = got.json()
     brigades_total = got['total']
 
     # Get the official Brigades
-    got = get("https://www.codeforamerica.org/api/organizations?type=Official&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/organizations?type=Official&per_page=1")
     got = got.json()
     official_brigades_total = got['total']
 
     # Get the total number of Code for All Groups
-    got = get("https://www.codeforamerica.org/api/organizations?type=Code for All&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/organizations?type=Code for All&per_page=1")
     got = got.json()
     cfall_total = got['total']
 
     # Get the total number of Government Groups
-    got = get("https://www.codeforamerica.org/api/organizations?type=Government&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/organizations?type=Government&per_page=1")
     got = got.json()
     government_total = got['total']
 
     # Get number of meetup-members
-    got = get("http://codeforamerica.org/api/organizations/member_count")
+    got = get("http://cfapi-staging.herokuapp.com/api/organizations/member_count")
     got = got.json()
     member_count = got['total']
 
     # Get number of RSVPs
-    got = get("https://www.codeforamerica.org/api/events/rsvps")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/events/rsvps")
     got = got.json()
     rsvps = got['total']
 
     # Get number of Attendance
-    got = get("https://www.codeforamerica.org/api/attendance")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/attendance")
     got = got.json()
     attendance = got['total']
 
     # Get total number of projects
-    got = get("https://www.codeforamerica.org/api/projects?only_ids&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?only_ids&per_page=1")
     got = got.json()
     projects_total = got['total']
 
     # Get total number of Brigade projects
-    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Brigade&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?only_ids&organization_type=Brigade&per_page=1")
     got = got.json()
     brigade_projects_total = got['total']
 
     # Get total number of Code for All projects
-    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Code for All&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?only_ids&organization_type=Code for All&per_page=1")
     got = got.json()
     cfall_projects_total = got['total']
 
     # Get total number of Government projects
-    got = get("https://www.codeforamerica.org/api/projects?only_ids&organization_type=Government&per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?only_ids&organization_type=Government&per_page=1")
     got = got.json()
     gov_projects_total = got['total']
 
     # Get number of Issues
-    got = get("https://www.codeforamerica.org/api/issues?per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/issues?per_page=1")
     got = got.json()
     issues_total = got['total']
 
     # Get number of Help Wanted Issues
-    got = get("https://www.codeforamerica.org/api/issues/labels/help%20wanted?per_page=1")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/issues/labels/help%20wanted?per_page=1")
     got = got.json()
     help_wanted_total = got['total']
 
@@ -496,13 +496,13 @@ def infrastructure():
 @app.route("/brigade/projects/stages")
 def stages():
     ''' Describe the project stages '''
-    got = get("https://www.codeforamerica.org/api/projects?status=experiment")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?status=experiment")
     experiment_count = got.json()["total"]
-    got = get("https://www.codeforamerica.org/api/projects?status=alpha")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?status=alpha")
     alpha_count = got.json()["total"]
-    got = get("https://www.codeforamerica.org/api/projects?status=beta")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?status=beta")
     beta_count = got.json()["total"]
-    got = get("https://www.codeforamerica.org/api/projects?status=official")
+    got = get("https://www.cfapi-staging.herokuapp.com/api/projects?status=official")
     official_count = got.json()["total"]
     return render_template("stages.html", experiment_count=experiment_count, alpha_count=alpha_count, beta_count=beta_count, official_count=official_count)
 
@@ -539,7 +539,7 @@ def projects(brigadeid=None):
 
     # build the url
     if brigadeid:
-        url = "https://www.codeforamerica.org/api/organizations/" + brigadeid + "/projects"
+        url = "https://www.cfapi-staging.herokuapp.com/api/organizations/" + brigadeid + "/projects"
         # set the brigade name
         if projects:
             brigade = projects[0]["organization"]
@@ -547,7 +547,7 @@ def projects(brigadeid=None):
             brigade = {"name": brigadeid.replace("-", " ")}
     else:
         # build cfapi url
-        url = "https://www.codeforamerica.org/api/projects"
+        url = "https://www.cfapi-staging.herokuapp.com/api/projects"
         url += "?sort_by=last_updated"
     if search:
         url += "&q=" + search
@@ -713,9 +713,9 @@ def attendance(brigadeid=None):
             return render_template('404.html'), 404
 
     if not brigadeid:
-        got = get("https://www.codeforamerica.org/api/attendance")
+        got = get("https://www.cfapi-staging.herokuapp.com/api/attendance")
     else:
-        got = get("https://www.codeforamerica.org/api/organizations/%s/attendance" % brigadeid)
+        got = get("https://www.cfapi-staging.herokuapp.com/api/organizations/%s/attendance" % brigadeid)
 
     attendance = got.json()
 
@@ -748,9 +748,9 @@ def rsvps(brigadeid=None):
             return render_template('404.html'), 404
 
     if not brigadeid:
-        got = get("https://www.codeforamerica.org/api/events/rsvps")
+        got = get("https://www.cfapi-staging.herokuapp.com/api/events/rsvps")
     else:
-        got = get("https://www.codeforamerica.org/api/organizations/%s/events/rsvps" % brigadeid)
+        got = get("https://www.cfapi-staging.herokuapp.com/api/organizations/%s/events/rsvps" % brigadeid)
 
     rsvps = got.json()
 
@@ -786,7 +786,7 @@ def brigade(brigadeid):
         if not is_existing_organization(brigadeid):
             return render_template('404.html'), 404
 
-    got = get("https://www.codeforamerica.org/api/organizations/" + brigadeid)
+    got = get("https://www.cfapi-staging.herokuapp.com/api/organizations/" + brigadeid)
     brigade = got.json()
 
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
@@ -804,7 +804,7 @@ def get_checkin(brigadeid=None):
     brigades = None
     if not brigadeid:
         # Get all of the organizations from the api
-        organizations = get('https://www.codeforamerica.org/api/organizations.geojson')
+        organizations = get('https://www.cfapi-staging.herokuapp.com/api/organizations.geojson')
         organizations = organizations.json()
         brigades = []
         # Org's names and ids
@@ -835,7 +835,7 @@ def post_checkin(brigadeid=None):
         return make_response("Missing required cfapi_url", 422)
 
     elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", cfapi_url):
-        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
+        return make_response("cfapi_url needs to like https://www.cfapi-staging.herokuapp.com/api/organizations/Brigade-ID", 422)
 
     brigadeid = request.form.get('cfapi_url').split("/")[-1]
     if not is_existing_organization(brigadeid):
@@ -896,7 +896,7 @@ def post_checkin(brigadeid=None):
         # Remembering event name and brigadeid for later
         event = request.form.get("event", None)
         question = request.form.get("question", None)
-        brigadeid = request.form.get("cfapi_url").replace("https://www.codeforamerica.org/api/organizations/", "")
+        brigadeid = request.form.get("cfapi_url").replace("https://www.cfapi-staging.herokuapp.com/api/organizations/", "")
         flash("Thanks for volunteering")
 
         if brigadeid:
@@ -941,7 +941,7 @@ def post_test_checkin(brigadeid=None):
         return make_response("Missing required cfapi_url", 422)
 
     elif not re.match("https:\/\/www\.codeforamerica\.org\/api\/organizations\/[A-Za-z-]*", test_checkin_data["cfapi_url"]):
-        return make_response("cfapi_url needs to like https://www.codeforamerica.org/api/organizations/Brigade-ID", 422)
+        return make_response("cfapi_url needs to like https://www.cfapi-staging.herokuapp.com/api/organizations/Brigade-ID", 422)
 
     brigadeid = test_checkin_data["cfapi_url"].split("/")[-1]
     if not is_existing_organization(brigadeid):
@@ -959,9 +959,9 @@ def project_monitor(brigadeid=None):
     travis_projects = []
     projects = []
     if not brigadeid:
-        projects = get_projects(projects, "https://www.codeforamerica.org/api/projects", limit)
+        projects = get_projects(projects, "https://www.cfapi-staging.herokuapp.com/api/projects", limit)
     else:
-        projects = get_projects(projects, "https://www.codeforamerica.org/api/organizations/" + brigadeid + "/projects", limit)
+        projects = get_projects(projects, "https://www.cfapi-staging.herokuapp.com/api/organizations/" + brigadeid + "/projects", limit)
 
     # Loop through projects and get
     for project in projects:
