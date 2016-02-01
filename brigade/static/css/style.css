@@ -162,6 +162,10 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   min-height: 700px;
 }
 
+#monitor h1 {
+  margin-top: 0px;
+}
+
 #monitor a:link, #monitor a:visited, #monitor a:hover, #monitor a:focus, #monitor a:active {
   color: #5a5a5a;
 }
