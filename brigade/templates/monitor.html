@@ -18,7 +18,12 @@
           <li class="alert-{{project.commit_status}} layout-centered layout-crotchet project">
             <h2> <a href="{{ project.code_url }}">{{ project.name }}</a> </h2>
             <hr />
-            <span class="icon-tools"> Built {{ project.last_updated | timesince }}</span>
+            {% if project.commit_status == "success" %}
+              <span class="icon-thumbs-up">
+            {% else %}
+              <span class="icon-thumbs-down">
+            {% endif %}
+               Built {{ project.last_updated | timesince }}</span>
           </li>
         {% endfor %}
         </div>

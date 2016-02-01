@@ -185,11 +185,11 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   padding-right: 14px;
 }
 
-.alert-success, .alert-failure, .alert-pending {
+.alert-success, .alert-failure, .alert-pending, .alert-None {
   border: 0px;
 }
 
-.alert-pending {
+.alert-pending, .alert-None {
   background-color: #e5e5e5;
   margin: 0 0 16px 0;
 }
