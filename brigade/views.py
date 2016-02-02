@@ -956,10 +956,15 @@ def post_test_checkin(brigadeid=None):
 def project_monitor(brigadeid=None):
     ''' Are the Brigade projects test passing or not '''
     projects = []
-    limit = int(request.args.get('limit', 18))
+    projects_with_tests = []
+    limit = int(request.args.get('limit', 50))
     if not brigadeid:
         projects = get_projects(projects, "https://www.codeforamerica.org/api/projects", limit)
     else:
         projects = get_projects(projects, "https://www.codeforamerica.org/api/organizations/" + brigadeid + "/projects", limit)
 
-    return render_template('monitor.html', projects=projects, org_name=brigadeid)
+    for project in projects:
+        if project["commit_status"] in ["success", "failure"]:
+            projects_with_tests.append(project)
+
+    return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
