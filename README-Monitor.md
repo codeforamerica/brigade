@@ -12,8 +12,8 @@ Reliability becomes super important once you do have government or community par
 
 #### Links
 
-https://www.codeforamerica.org/brigade/projects/monitor
-https://www.codeforamerica.org/brigade/Code-for-San-Francisco/projects/monitor
+* https://www.codeforamerica.org/brigade/projects/monitor
+* https://www.codeforamerica.org/brigade/Code-for-San-Francisco/projects/monitor
 
 #### How
 
