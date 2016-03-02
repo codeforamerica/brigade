@@ -401,11 +401,6 @@ def numbers():
     got = got.json()
     cfall_total = got['total']
 
-    # Get the total number of Government Groups
-    got = get("https://www.codeforamerica.org/api/organizations?type=Government&per_page=1")
-    got = got.json()
-    government_total = got['total']
-
     # Get number of meetup-members
     got = get("http://codeforamerica.org/api/organizations/member_count")
     got = got.json()
