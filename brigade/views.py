@@ -452,8 +452,7 @@ def numbers():
     total_issue_clicks = got['total_clicks']
 
     kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total,
-                  cfall_total=cfall_total, government_total=government_total,
-                  member_count=member_count, rsvps=rsvps, attendance=attendance,
+                  cfall_total=cfall_total, member_count=member_count, rsvps=rsvps, attendance=attendance,
                   projects_total=projects_total, brigade_projects_total=brigade_projects_total,
                   cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total,
                   issues_total=issues_total, help_wanted_total=help_wanted_total, total_issue_clicks=total_issue_clicks)
