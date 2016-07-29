@@ -28,14 +28,11 @@ def get_fragments():
     ''' The base template includes the signup form and the footer
         pulled from our main site.
     '''
-    # Get universal sign up form
-    r = get("http://www.codeforamerica.org/fragments/email-signup.html")
-    signup = r.content
 
     # Get footer html
     r = get("http://www.codeforamerica.org/fragments/global-footer.html")
     footer = r.content
-    return dict(signup=signup, footer=footer)
+    return dict(footer=footer)
 
 
 def get_brigades():
