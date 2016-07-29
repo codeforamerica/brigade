@@ -14,7 +14,7 @@ This website is meant to:
 
 ## History
 
-The Brigade program started in 2012 as an experiment, largely copying the success of [Open Gov Hack Night](http://opengovhacknight.org/). 
+The Brigade program started in 2012 as an experiment, largely copying the success of [Open Gov Hack Night](http://opengovhacknight.org/).
 
 This website is on its third version. V1 Was a Rails site with many contributors. It served the Brigade well as it was growing. As Code for America became better at supporting the volunteer groups, we needed something different.
 
@@ -24,16 +24,10 @@ V2 was powered by the CfAPI and worked great, yet was built quickly with PHP and
 
 V3, the current site, is meant to simplify the code and make it easier for Brigade members to get involved in building the Brigade site.
 
-## Project Search and civic.json
+## Project Search
 The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across thousands of civic technology projects. Go try it out, we think its pretty useful.
 
 Read more at [README-Project-Search.md](README-Project-Search.md)
-
-## Attendance and Check Ins
-
-Attendance is one of the basic metrics that needs to be tracked in movement building. Its useful for tracking the impact of your outreach, the growth of your group over time, and individual participation tracking. Its also incredibly useful for fundraising, considering many grants will accept volunteer hours as their matching funding requirement.
-
-Read more at [README-Attendance.md](README-Attendance.md)
 
 ## Installation
 
@@ -43,7 +37,7 @@ Set up a [Python virtual environment](https://github.com/codeforamerica/howto/bl
 
 Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
 
-To run locally, copy `env.sample` to `.env` and edit it to ensure that the environment variable `BRIGADE_SIGNUP_SECRET` is present. Then run the server in debug mode:
+Then run the server in debug mode:
 
     python manage.py runserver
 

@@ -2,12 +2,6 @@
 
 {% block content %}
 
-<div class="slab-red">
-  <div class="center">
-    <p class="banner">This page is an <a href="https://www.codeforamerica.org/brigade/projects/stages#alpha">Alpha</a>. Help improve it by <a href="https://github.com/codeforamerica/brigade/milestones/project%20search">submitting an issue</a>.</p>
-  </div>
-</div>
-
   <section id="project-search-section">
 
     <div class="layout-semibreve">
@@ -26,24 +20,11 @@
 
       </form>
 
-      <ul class="list-inline list-no-bullets">
-        <h3>Project Stages</h3>
-        <!-- <li><a href="?q=featured" id="Featured" class="button">Featured</a></li> -->
-        <li><a href="?status=Official" class="Official button">Official</a></li>
-        <li><a href="?status=Beta" class="Beta button">Beta</a></li>
-        <li><a href="?status=Alpha" class="Alpha button">Alpha</a></li>
-        <li><a href="?status=Experiment" class="Experiment button">Experiment</a></li>
-        <small><a href="/brigade/projects/stages">What are these?</a></small>
-      </ul>
-
       <ul id="projects" class="list-no-bullets">
       {% for project in projects %}
         <li class="project card">
-          
-          <div class="card-head {% if project.status %}{{ project.status }}{% endif %}">
-            {% if project.status %}
-            <small>{{ project.status | title }}</small>
-            {% endif %}
+
+          <div class="card-head">
           </div>
 
           <div class="card-body">
@@ -60,7 +41,7 @@
 
             {% if project.github_details %}
               {% if project.github_details.contributors %}
-                {% for i in range(5) %} 
+                {% for i in range(5) %}
                   {% if project.github_details.contributors[i] %}
                     <a href="{{ project.github_details.contributors[i].html_url }}">
                       <img height="40" width="40" src="{{ project.github_details.contributors[i].avatar_url }}&s=40" style="border-radius: 5px;"/>
@@ -102,12 +83,6 @@
               {% for tag in project.tags %}{{ comma() }} <a href="projects?q={{ tag }}">{{ tag }}</a>{% endfor %}
             {% endif %}
             </p>
-
-            {% if project.code_url and not project.status and not project.tags %}
-              {% if "Government" not in project.organization.type %}
-                <a href="{{request.url_root}}brigade/{{project.organization.id}}/projects/{{project.name}}/add-civic-json" class="button-subtle button-s">Add more information</a>
-              {% endif %}
-            {% endif %}
 
             {% if project.last_updated %}
               <p>Updated {{project.last_updated | timesince}}</p>

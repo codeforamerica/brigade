@@ -1,1 +1,1 @@
-web: gunicorn brigade.wsgi:app --log-level=Debug
+web: gunicorn brigade.wsgi:app
