@@ -30,7 +30,6 @@
         <a href="/brigade" class="global-header-logo">
             <img src="{{ url_for('static', filename='images/new_logo.png') }}" />
         </a>
-        <p class="skip-to-nav"><a href="#global-footer">Menu</a></p>
 
         <nav class="nav-global-secondary">
           <ul>
@@ -38,7 +37,7 @@
             <li><a href="/brigade/organize">Organize</a></li>
             <li><a href="/brigade/projects">Projects</a></li>
             <li><a href="/brigade/tools">Tools</a></li>
-            <li><a href="http://www.codeforamerica.org/blog/tag/civictech/">Wins</a></li>
+            <li><a href="http://c4a.me/thisweekincivictech">Wins</a></li>
             <li><a href="http://forum.codeforamerica.org">Forum</a></li>
             <li><a id="donate-link" href="https://secure.codeforamerica.org/page/contribute/default?source_codes=Brigade-page" class="button">Donate</a></li>
           </ul>
@@ -50,10 +49,6 @@
         {% block content %}{% endblock %}
 
       </main>
-
-      <div id="signupformdiv">{{ signup | safe }}</div>
-
-      <div>{{ footer | safe }}</div>
 
     </div>
 

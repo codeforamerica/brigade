@@ -2,6 +2,5 @@ Flask
 gunicorn
 requests
 httmock
-GitHub-Flask
 Flask-Script
 beautifulsoup4
