@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 requests_logger = logging.getLogger("requests")
 requests_logger.setLevel(logging.WARNING)
 
-CFAPI = "https://www.codeforamerica.org/api"
+CFAPI = "https://codeforamerica-api.herokuapp.com/api"
 
 def get_brigades():
     # Get location of all civic tech orgs
