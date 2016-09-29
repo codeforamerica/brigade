@@ -100,7 +100,7 @@ def numbers():
     cfall_total = got['total']
 
     # Get number of meetup-members
-    got = get("http://codeforamerica.org/api/organizations/member_count")
+    got = get(CFAPI + "/organizations/member_count")
     got = got.json()
     member_count = got['total']
 
