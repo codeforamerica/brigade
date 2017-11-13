@@ -122,15 +122,6 @@ class BrigadeTests(unittest.TestCase):
             response = self.client.get("/brigade/404/")
             self.assertEqual(404, response.status_code)
 
-    def test_projects_page(self):
-        ''' Test that the project page loads and looks like what we want '''
-        with httmock.HTTMock(self.response_content):
-            response = self.client.get("/brigade/projects")
-            soup = BeautifulSoup(response.data, "html.parser")
-            card_head_div = soup.find('div', {'class': 'card-head Alpha'})
-            self.assertIsNotNone(card_head_div)
-            self.assertEqual(u'Alpha', card_head_div.text.strip())
-
     def test_projects_searches(self):
         ''' Test the different project searches '''
         with httmock.HTTMock(self.response_content):
@@ -148,12 +139,6 @@ class BrigadeTests(unittest.TestCase):
             soup = BeautifulSoup(response.data, "html.parser")
             project_name = soup.find_all('h3')
             self.assertEqual(u"TEST PROJECT", project_name[0].text.strip())
-
-    def test_project_monitor(self):
-        ''' Test the project monitor page works as expected '''
-        with httmock.HTTMock(self.response_content):
-            response = self.client.get("/brigade/projects/monitor")
-            self.assertTrue('"travis_url": "https://api.travis-ci.org/repositories/jmcelroy5/sf-in-progress/builds"' in response.data)
 
 if __name__ == '__main__':
     unittest.main()
