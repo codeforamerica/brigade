@@ -140,5 +140,10 @@ class BrigadeTests(unittest.TestCase):
             project_name = soup.find_all('h3')
             self.assertEqual(u"TEST PROJECT", project_name[0].text.strip())
 
+    def test_homepage_redirect(self):
+        response = self.client.get("/")
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(flask.url_for('.index', _external=True), response.location)
+
 if __name__ == '__main__':
     unittest.main()

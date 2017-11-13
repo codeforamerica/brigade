@@ -1,5 +1,5 @@
 # -- coding: utf-8 --
-from flask import current_app, render_template, request, redirect, make_response, flash, session
+from flask import current_app, render_template, request, redirect, make_response, flash, session, url_for
 from . import brigade as app
 from datetime import datetime
 from operator import itemgetter
@@ -67,6 +67,10 @@ def get_projects(projects, url, limit=10):
 #
 # ROUTES
 #
+
+@app.route('/', methods=['GET'])
+def redirect_to_index():
+    return redirect(url_for('.index'))
 
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
