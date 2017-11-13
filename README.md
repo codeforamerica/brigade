@@ -54,6 +54,7 @@ You can also run unit tests like this:
 Contacts
 --------
 
+* Tom Dooner ([tdooner](https://github.com/tdooner))
 * Andrew Hyder ([ondrae](https://github.com/ondrae))
 * Tomas Apodaca ([tmaybe](https://github.com/tmaybe))
 
