@@ -1,0 +1,36 @@
+{
+  "name": "brigade",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "ACCESS_TOKEN": {
+      "required": true
+    },
+    "BRIGADE_SIGNUP_SECRET": {
+      "required": true
+    },
+    "ERROR_PAGE_URL": {
+      "required": true
+    },
+    "GITHUB_CLIENT_ID": {
+      "required": true
+    },
+    "GITHUB_CLIENT_SECRET": {
+      "required": true
+    },
+    "PAPERTRAIL_API_TOKEN": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "papertrail"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
