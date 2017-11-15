@@ -18,16 +18,11 @@
     },
     "GITHUB_CLIENT_SECRET": {
       "required": true
-    },
-    "PAPERTRAIL_API_TOKEN": {
-      "required": true
     }
   },
   "formation": {
   },
-  "addons": [
-    "papertrail"
-  ],
+  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/python"
