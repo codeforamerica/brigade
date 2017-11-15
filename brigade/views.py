@@ -86,6 +86,12 @@ def index():
     return render_template("index.html", brigades=brigades)
 
 
+@app.route('/brigade/map')
+def map():
+    brigades = get_brigades()
+    return render_template("map.html", brigades=brigades)
+
+
 @app.route("/brigade/numbers/")
 def numbers():
     # Get the total number of Brigades
