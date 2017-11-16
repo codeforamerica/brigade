@@ -3,7 +3,7 @@ from filters import filters
 
 brigade = Blueprint('brigade', __name__)
 
-def create_app(environ):
+def create_app():
     app = Flask(__name__, static_url_path='/brigade/static')
     app.config['SECRET_KEY'] = 'sekrit!'
 
