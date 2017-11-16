@@ -1,6 +1,7 @@
 # -- coding: utf-8 --
 from flask import current_app, render_template, request, redirect, make_response, flash, session, url_for
 from . import brigade as app
+import cfapi
 from datetime import datetime
 from operator import itemgetter
 from requests import get, post
@@ -17,52 +18,6 @@ logger = logging.getLogger(__name__)
 requests_logger = logging.getLogger("requests")
 requests_logger.setLevel(logging.WARNING)
 
-CFAPI = "https://codeforamerica-api.herokuapp.com/api"
-
-def get_brigades():
-    # Get location of all civic tech orgs
-    got = get(CFAPI + "/organizations.geojson")
-    geojson = got.json()
-    brigades = []
-
-    # Prepare the geojson for a map
-    for org in geojson["features"]:
-        # Add icon info for the map
-        org["properties"]["marker-symbol"] = "town-hall"
-        # Official Brigades get to be red
-        if "Official" in org["properties"]["type"]:
-            org["properties"]["marker-color"] = "#aa1c3a"
-        else:
-            # Other Brigades are grey
-            org["properties"]["marker-color"] = "#6D6E71"
-        # Grab only orgs with type Brigade
-        if "Brigade" in org["properties"]["type"]:
-            print org
-            brigades.append(org)
-
-    brigades = json.dumps(brigades)
-    return brigades
-
-
-def is_existing_organization(orgid):
-    ''' tests that an organization exists on the cfapi'''
-    got = get("https://www.codeforamerica.org/api/organizations.geojson").json()
-    orgids = [org["properties"]["id"] for org in got["features"]]
-    return orgid in orgids
-
-
-def get_projects(projects, url, limit=10):
-    ''' Load projects from the cfapi
-    '''
-    got = get(url)
-    new_projects = got.json()["objects"]
-    projects = projects + new_projects
-    if limit:
-        if len(projects) >= limit:
-            return projects
-    if "next" in got.json()["pages"]:
-        projects = get_projects(projects, got.json()["pages"]["next"], limit)
-    return projects
 
 #
 # ROUTES
@@ -74,7 +29,7 @@ def redirect_to_index():
 
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
-    brigades = get_brigades()
+    brigades = cfapi.get_brigades()
     brigades = json.loads(brigades)
     brigades.sort(key=lambda x: x['properties']['city'])
     return render_template("brigade_list.html", brigades=brigades)
@@ -82,7 +37,7 @@ def brigade_list():
 
 @app.route('/brigade/')
 def index():
-    brigades = get_brigades()
+    brigades = cfapi.get_brigades()
     return render_template("index.html", brigades=brigades)
 
 
@@ -95,57 +50,57 @@ def map():
 @app.route("/brigade/numbers/")
 def numbers():
     # Get the total number of Brigades
-    got = get(CFAPI + "/organizations?type=Brigade&per_page=1")
+    got = get(cfapi.BASE_URL + "/organizations?type=Brigade&per_page=1")
     got = got.json()
     brigades_total = got['total']
 
     # Get the official Brigades
-    got = get(CFAPI + "/organizations?type=Official&per_page=1")
+    got = get(cfapi.BASE_URL + "/organizations?type=Official&per_page=1")
     got = got.json()
     official_brigades_total = got['total']
 
     # Get the total number of Code for All Groups
-    got = get(CFAPI + "/organizations?type=Code for All&per_page=1")
+    got = get(cfapi.BASE_URL + "/organizations?type=Code for All&per_page=1")
     got = got.json()
     cfall_total = got['total']
 
     # Get number of meetup-members
-    got = get(CFAPI + "/organizations/member_count")
+    got = get(cfapi.BASE_URL + "/organizations/member_count")
     got = got.json()
     member_count = got['total']
 
     # Get number of RSVPs
-    got = get(CFAPI + "/events/rsvps")
+    got = get(cfapi.BASE_URL + "/events/rsvps")
     got = got.json()
     rsvps = got['total']
 
     # Get total number of projects
-    got = get(CFAPI + "/projects?only_ids&per_page=1")
+    got = get(cfapi.BASE_URL + "/projects?only_ids&per_page=1")
     got = got.json()
     projects_total = got['total']
 
     # Get total number of Brigade projects
-    got = get(CFAPI + "/projects?only_ids&organization_type=Brigade&per_page=1")
+    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Brigade&per_page=1")
     got = got.json()
     brigade_projects_total = got['total']
 
     # Get total number of Code for All projects
-    got = get(CFAPI + "/projects?only_ids&organization_type=Code for All&per_page=1")
+    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Code for All&per_page=1")
     got = got.json()
     cfall_projects_total = got['total']
 
     # Get total number of Government projects
-    got = get(CFAPI + "/projects?only_ids&organization_type=Government&per_page=1")
+    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Government&per_page=1")
     got = got.json()
     gov_projects_total = got['total']
 
     # Get number of Issues
-    got = get(CFAPI + "/issues?per_page=1")
+    got = get(cfapi.BASE_URL + "/issues?per_page=1")
     got = got.json()
     issues_total = got['total']
 
     # Get number of Help Wanted Issues
-    got = get(CFAPI + "/issues/labels/help%20wanted?per_page=1")
+    got = get(cfapi.BASE_URL + "/issues/labels/help%20wanted?per_page=1")
     got = got.json()
     help_wanted_total = got['total']
 
@@ -187,7 +142,7 @@ def projects(brigadeid=None):
 
     # is this an exisiting group
     if brigadeid:
-        if not is_existing_organization(brigadeid):
+        if not cfapi.is_existing_organization(brigadeid):
             return render_template('404.html'), 404
 
     # Get the params
@@ -212,7 +167,7 @@ def projects(brigadeid=None):
 
     # build the url
     if brigadeid:
-        url = CFAPI + "/organizations/" + brigadeid + "/projects"
+        url = cfapi.BASE_URL + "/organizations/" + brigadeid + "/projects"
         # set the brigade name
         if projects:
             brigade = projects[0]["organization"]
@@ -220,7 +175,7 @@ def projects(brigadeid=None):
             brigade = {"name": brigadeid.replace("-", " ")}
     else:
         # build cfapi url
-        url = CFAPI + "/projects"
+        url = cfapi.BASE_URL + "/projects"
         url += "?sort_by=last_updated"
     if search:
         url += "&q=" + search
@@ -231,7 +186,7 @@ def projects(brigadeid=None):
     if organization_type:
         url += "&organization_type=" + organization_type
 
-    projects = get_projects(projects, url)
+    projects = cfapi.get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
@@ -242,13 +197,13 @@ def rsvps(brigadeid=None):
     ''' Show the Brigade rsvps '''
 
     if brigadeid:
-        if not is_existing_organization(brigadeid):
+        if not cfapi.is_existing_organization(brigadeid):
             return render_template('404.html'), 404
 
     if not brigadeid:
-        got = get(CFAPI + "/events/rsvps")
+        got = get(cfapi.BASE_URL + "/events/rsvps")
     else:
-        got = get(CFAPI + "/organizations/%s/events/rsvps" % brigadeid)
+        got = get(cfapi.BASE_URL + "/organizations/%s/events/rsvps" % brigadeid)
 
     rsvps = got.json()
 
@@ -282,10 +237,10 @@ def brigade(brigadeid):
     ''' Get this Brigade's info '''
 
     if brigadeid:
-        if not is_existing_organization(brigadeid):
+        if not cfapi.is_existing_organization(brigadeid):
             return render_template('404.html'), 404
 
-    got = get(CFAPI + "/organizations/" + brigadeid)
+    got = get(cfapi.BASE_URL + "/organizations/" + brigadeid)
     brigade = got.json()
 
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
@@ -299,9 +254,9 @@ def project_monitor(brigadeid=None):
     projects_with_tests = []
     limit = int(request.args.get('limit', 50))
     if not brigadeid:
-        projects = get_projects(projects, CFAPI + "/projects", limit)
+        projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/projects", limit)
     else:
-        projects = get_projects(projects, CFAPI + "/organizations/" + brigadeid + "/projects", limit)
+        projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/organizations/" + brigadeid + "/projects", limit)
 
     for project in projects:
         if project["commit_status"] in ["success", "failure"]:
