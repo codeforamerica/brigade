@@ -9,7 +9,7 @@ if path.exists('.env'):
         if len(var) == 2 and not var[0].startswith('#'):
             environ[var[0]] = var[1]
 
-app = create_app(environ)
+app = create_app()
 manager = Manager(app)
 manager.add_command('runserver', Server(host='localhost', port='4000', use_debugger=True))
 

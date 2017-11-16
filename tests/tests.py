@@ -6,6 +6,7 @@ import os
 import flask
 import httmock
 import re
+import cfapi
 from brigade import create_app
 import brigade.views as view_functions
 from bs4 import BeautifulSoup
@@ -13,7 +14,7 @@ from bs4 import BeautifulSoup
 class BrigadeTests(unittest.TestCase):
 
     def setUp(self):
-        self.app = create_app(os.environ)
+        self.app = create_app()
         self.app_context = self.app.app_context()
         self.app_context.push()
 
@@ -31,13 +32,13 @@ class BrigadeTests(unittest.TestCase):
             return httmock.response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
         if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
             return httmock.response(200, '''<html>bunch of HTML</html>''')
-        if url.geturl() == 'https://www.codeforamerica.org/api/organizations/404':
+        if url.geturl() == cfapi.BASE_URL + '/organizations/404':
             return httmock.response(404, '{"status": "Resource Not Found"}')
-        if url.geturl() == 'https://www.codeforamerica.org/api/organizations/Code-for-San-Francisco':
+        if url.geturl() == cfapi.BASE_URL + '/organizations/TEST-ORG':
             return httmock.response(200, '{"city": "San Francisco, CA"}')
-        if url.geturl() == "https://www.codeforamerica.org/api/organizations.geojson":
+        if url.geturl() == cfapi.BASE_URL + "/organizations.geojson":
             return httmock.response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
-        if url.geturl() == "https://www.codeforamerica.org/api/projects/1":
+        if url.geturl() == cfapi.BASE_URL + "/projects/1":
             return httmock.response(200, '''
                     {
                       "code_url": "https://github.com/jmcelroy5/sf-in-progress",
@@ -113,8 +114,9 @@ class BrigadeTests(unittest.TestCase):
 
     def test_good_links(self):
         ''' Test that normal Brigade links are working '''
-        response = self.client.get("/brigade/Code-for-San-Francisco/")
-        self.assertEqual(200, response.status_code)
+        with httmock.HTTMock(self.response_content):
+            response = self.client.get("/brigade/TEST-ORG/")
+            self.assertEqual(200, response.status_code)
 
     def test_404(self):
         ''' Test for 404 links '''
