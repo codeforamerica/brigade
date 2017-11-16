@@ -1,5 +1,5 @@
 # -- coding: utf-8 --
-from flask import current_app, render_template, request, redirect, make_response, flash, session, url_for
+from flask import current_app, render_template, request, redirect, make_response, flash, session, url_for, send_from_directory
 from . import brigade as app
 import cfapi
 from datetime import datetime
@@ -22,10 +22,6 @@ requests_logger.setLevel(logging.WARNING)
 #
 # ROUTES
 #
-
-@app.route('/', methods=['GET'])
-def redirect_to_index():
-    return redirect(url_for('.index'))
 
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
@@ -263,3 +259,11 @@ def project_monitor(brigadeid=None):
             projects_with_tests.append(project)
 
     return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
+
+@app.route('/robots.txt')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
+
+@app.route('/', methods=['GET'])
+def redirect_to_index():
+    return redirect(url_for('.index'))

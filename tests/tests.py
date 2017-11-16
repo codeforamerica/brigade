@@ -37,7 +37,7 @@ class BrigadeTests(unittest.TestCase):
         if url.geturl() == cfapi.BASE_URL + '/organizations/TEST-ORG':
             return httmock.response(200, '{"city": "San Francisco, CA"}')
         if url.geturl() == cfapi.BASE_URL + "/organizations.geojson":
-            return httmock.response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
+            return httmock.response(200, '{"features" : [{ "id": "TEST-ORG", "properties" : { "id" : "TEST-ORG", "type" : "Brigade", "last_updated": 1510874211 } } ] }')
         if url.geturl() == cfapi.BASE_URL + "/projects/1":
             return httmock.response(200, '''
                     {
@@ -146,6 +146,12 @@ class BrigadeTests(unittest.TestCase):
         response = self.client.get("/")
         self.assertEqual(302, response.status_code)
         self.assertEqual(flask.url_for('.index', _external=True), response.location)
+
+    def test_sitemap(self):
+        with httmock.HTTMock(self.response_content):
+            response = self.client.get('/sitemap.xml')
+            self.assertEqual(200, response.status_code)
+            self.assertIn('<loc>http://localhost/brigade/TEST-ORG/</loc>', response.data)
 
 if __name__ == '__main__':
     unittest.main()
