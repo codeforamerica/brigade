@@ -48,7 +48,7 @@
 
       map.featureLayer.on('click', function(e) {
         var brigadeId = e.layer.feature.properties.name.replace(/\s+/g, '-');
-        window.open(brigadeId, "_self");
+        window.open(brigadeId, "_blank");
       });
 
 
