@@ -126,13 +126,10 @@ def organize(page=None):
     else:
         return render_template("organize/index.html")
 
-@app.route("/brigade/tools/")
-@app.route("/brigade/tools/<page>/")
-def tools(page=None):
-    if page:
-        return render_template("tools/" + page + ".html")
-    else:
-        return render_template("tools/index.html")
+
+@app.route("/brigade/tools")
+def tools():
+    return render_template("tools.html")
 
 
 @app.route("/brigade/projects")

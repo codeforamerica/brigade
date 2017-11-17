@@ -147,5 +147,9 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(302, response.status_code)
         self.assertEqual(flask.url_for('.index', _external=True), response.location)
 
+    def test_tools(self):
+        response = self.client.get("/brigade/tools")
+        self.assertEqual(200, response.status_code)
+
 if __name__ == '__main__':
     unittest.main()
