@@ -3,6 +3,7 @@ import json
 
 BASE_URL = "http://api.codeforamerica.org/api"
 
+
 def get_brigades():
     # Get location of all civic tech orgs
     got = get(BASE_URL + "/organizations.geojson")
@@ -27,6 +28,7 @@ def get_brigades():
     brigades = json.dumps(brigades)
     return brigades
 
+
 # TODO: make a get_organization_projects wrapper so the URL doesn't need to be
 # passed in here.
 def get_projects(projects, url, limit=10):
@@ -41,6 +43,7 @@ def get_projects(projects, url, limit=10):
     if "next" in got.json()["pages"]:
         projects = get_projects(projects, got.json()["pages"]["next"], limit)
     return projects
+
 
 def is_existing_organization(orgid):
     ''' tests that an organization exists on the cfapi'''

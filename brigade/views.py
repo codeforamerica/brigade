@@ -1,16 +1,11 @@
 # -- coding: utf-8 --
-from flask import current_app, render_template, request, redirect, make_response, flash, session, url_for, send_from_directory
+from flask import render_template, request, redirect, url_for, send_from_directory
 from . import brigade as app
 import cfapi
-from datetime import datetime
 from operator import itemgetter
-from requests import get, post
-from urlparse import urlparse
-import base64
+from requests import get
 import json
-import re
 import logging
-import time
 
 # Logging Setup
 logging.basicConfig(level=logging.INFO)
@@ -22,7 +17,6 @@ requests_logger.setLevel(logging.WARNING)
 #
 # ROUTES
 #
-
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
     brigades = cfapi.get_brigades()
@@ -39,7 +33,7 @@ def index():
 
 @app.route('/brigade/map')
 def map():
-    brigades = get_brigades()
+    brigades = cfapi.get_brigades()
     return render_template("map.html", brigades=brigades)
 
 
@@ -122,13 +116,10 @@ def organize(page=None):
     else:
         return render_template("organize/index.html")
 
-@app.route("/brigade/tools/")
-@app.route("/brigade/tools/<page>/")
-def tools(page=None):
-    if page:
-        return render_template("tools/" + page + ".html")
-    else:
-        return render_template("tools/index.html")
+
+@app.route("/brigade/tools")
+def tools():
+    return render_template("tools.html")
 
 
 @app.route("/brigade/projects")
@@ -252,7 +243,10 @@ def project_monitor(brigadeid=None):
     if not brigadeid:
         projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/projects", limit)
     else:
-        projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/organizations/" + brigadeid + "/projects", limit)
+        projects = cfapi.get_projects(
+            projects,
+            cfapi.BASE_URL + "/organizations/" + brigadeid + "/projects", limit
+        )
 
     for project in projects:
         if project["commit_status"] in ["success", "failure"]:
@@ -260,9 +254,11 @@ def project_monitor(brigadeid=None):
 
     return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
 
+
 @app.route('/robots.txt')
 def static_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
+
 
 @app.route('/', methods=['GET'])
 def redirect_to_index():

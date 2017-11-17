@@ -5,6 +5,7 @@ from sitemap import sitemap_blueprint
 
 brigade = Blueprint('brigade', __name__, static_folder='static')
 
+
 def create_app():
     app = Flask(__name__, static_url_path='/brigade/static')
     app.config['SECRET_KEY'] = 'sekrit!'
@@ -14,4 +15,5 @@ def create_app():
     app.register_blueprint(sitemap_blueprint)
     return app
 
-from . import views
+
+from . import views # noqa:E402

@@ -13,11 +13,13 @@ app = create_app()
 manager = Manager(app)
 manager.add_command('runserver', Server(host='localhost', port='4000', use_debugger=True))
 
+
 @manager.command
 def runtests():
     import unittest
     tests = unittest.TestLoader().discover('tests')
     unittest.TextTestRunner(verbosity=1).run(tests)
+
 
 if __name__ == '__main__':
     manager.run()
