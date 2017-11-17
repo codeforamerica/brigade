@@ -1,15 +1,11 @@
 # -- coding: utf-8 --
-from urlparse import parse_qsl
 import unittest
-import json
-import os
 import flask
 import httmock
-import re
 import cfapi
 from brigade import create_app
-import brigade.views as view_functions
 from bs4 import BeautifulSoup
+
 
 class BrigadeTests(unittest.TestCase):
 
@@ -29,35 +25,36 @@ class BrigadeTests(unittest.TestCase):
 
     def response_content(self, url, request):
         if "list-manage.com/subscribe/post" in url.geturl():
-            return httmock.response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}')
-        if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html':
+            return httmock.response(200, '{ "status_code" : 200, "msg" : "Almost finished... We need to confirm your email address. To complete the subscription process, please click the link in the email we just sent you."}') # noqa
+        if url.geturl() == 'http://www.codeforamerica.org/fragments/email-signup.html' or url.geturl() == 'http://www.codeforamerica.org/fragments/global-footer.html': # noqa
             return httmock.response(200, '''<html>bunch of HTML</html>''')
         if url.geturl() == cfapi.BASE_URL + '/organizations/404':
             return httmock.response(404, '{"status": "Resource Not Found"}')
         if url.geturl() == cfapi.BASE_URL + '/organizations/TEST-ORG':
             return httmock.response(200, '{"city": "San Francisco, CA"}')
         if url.geturl() == cfapi.BASE_URL + "/organizations.geojson":
-            return httmock.response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }')
+            return httmock.response(200, '{"features" : [{ "properties" : { "id" : "TEST-ORG", "type" : "Brigade" } } ] }') # noqa
         if url.geturl() == cfapi.BASE_URL + "/projects/1":
             return httmock.response(200, '''
-                    {
-                      "code_url": "https://github.com/jmcelroy5/sf-in-progress",
-                      "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
-                      "link_url": "http://107.170.214.244/",
-                      "code_url": "https://github.com/testesttest/test",
-                      "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
-                      "name": "SF in Progress",
-                      "github_details" : {},
-                      "organization": {
-                        "id": "Code-for-San-Francisco",
-                        "name": "Code for San Francisco"
-                      },
-                      "organization_name": "Code for San Francisco",
-                      "status": "Alpha",
-                      "tags": "housing, ndoch, active"
-                    } ''')
+                {
+                    "code_url": "https://github.com/jmcelroy5/sf-in-progress",
+                    "description": "Engaging San Francisco Citizens in the housing development
+                        process through data and technology.",
+                    "link_url": "http://107.170.214.244/",
+                    "code_url": "https://github.com/testesttest/test",
+                    "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
+                    "name": "SF in Progress",
+                    "github_details" : {},
+                    "organization": {
+                    "id": "Code-for-San-Francisco",
+                    "name": "Code for San Francisco"
+                    },
+                    "organization_name": "Code for San Francisco",
+                    "status": "Alpha",
+                    "tags": "housing, ndoch, active"
+                } ''')
 
-        if "q=TEST" in url.geturl() or "organization_type=Brigade" in url.geturl() or "status=Alpha" in url.geturl():
+        if "q=TEST" in url.geturl() or "organization_type=Brigade" in url.geturl() or "status=Alpha" in url.geturl(): # noqa
             return httmock.response(200, '''{
                   "objects": [
                     {
@@ -85,7 +82,8 @@ class BrigadeTests(unittest.TestCase):
                   "objects": [
                     {
                       "code_url": "https://github.com/jmcelroy5/sf-in-progress",
-                      "description": "Engaging San Francisco Citizens in the housing development process through data and technology.",
+                      "description": "Engaging San Francisco Citizens in the housing development
+                          process through data and technology.",
                       "commit_status": "success",
                       "link_url": "http://107.170.214.244/",
                       "last_updated": "Mon, 10 Aug 2015 23:22:40 GMT",
@@ -150,6 +148,7 @@ class BrigadeTests(unittest.TestCase):
     def test_tools(self):
         response = self.client.get("/brigade/tools")
         self.assertEqual(200, response.status_code)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,16 +1,11 @@
 # -- coding: utf-8 --
-from flask import current_app, render_template, request, redirect, make_response, flash, session, url_for
+from flask import render_template, request, redirect, url_for
 from . import brigade as app
 import cfapi
-from datetime import datetime
 from operator import itemgetter
-from requests import get, post
-from urlparse import urlparse
-import base64
+from requests import get
 import json
-import re
 import logging
-import time
 
 # Logging Setup
 logging.basicConfig(level=logging.INFO)
@@ -26,6 +21,7 @@ requests_logger.setLevel(logging.WARNING)
 @app.route('/', methods=['GET'])
 def redirect_to_index():
     return redirect(url_for('.index'))
+
 
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
@@ -43,7 +39,7 @@ def index():
 
 @app.route('/brigade/map')
 def map():
-    brigades = get_brigades()
+    brigades = cfapi.get_brigades()
     return render_template("map.html", brigades=brigades)
 
 
@@ -253,7 +249,10 @@ def project_monitor(brigadeid=None):
     if not brigadeid:
         projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/projects", limit)
     else:
-        projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/organizations/" + brigadeid + "/projects", limit)
+        projects = cfapi.get_projects(
+            projects,
+            cfapi.BASE_URL + "/organizations/" + brigadeid + "/projects", limit
+        )
 
     for project in projects:
         if project["commit_status"] in ["success", "failure"]:

@@ -3,6 +3,7 @@ from filters import filters
 
 brigade = Blueprint('brigade', __name__)
 
+
 def create_app():
     app = Flask(__name__, static_url_path='/brigade/static')
     app.config['SECRET_KEY'] = 'sekrit!'
@@ -11,4 +12,5 @@ def create_app():
     app.register_blueprint(filters)
     return app
 
-from . import views
+
+from . import views # noqa:E402
