@@ -4,3 +4,4 @@ requests
 httmock
 Flask-Script
 beautifulsoup4
+flask-sitemap

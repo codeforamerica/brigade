@@ -18,6 +18,9 @@
     },
     "GITHUB_CLIENT_SECRET": {
       "required": true
+    },
+    "SITEMAP_URL_SCHEME": {
+      "required": true
     }
   },
   "formation": {
