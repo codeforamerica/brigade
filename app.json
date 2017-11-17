@@ -7,9 +7,6 @@
     "ACCESS_TOKEN": {
       "required": true
     },
-    "BRIGADE_SIGNUP_SECRET": {
-      "required": true
-    },
     "ERROR_PAGE_URL": {
       "required": true
     },
