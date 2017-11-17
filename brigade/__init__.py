@@ -13,6 +13,8 @@ def create_app():
 
     if 'SERVER_NAME' in os.environ:
         app.config['SERVER_NAME'] = os.environ['SERVER_NAME']
+    if 'SITEMAP_URL_SCHEME' in os.environ:
+        app.config['SITEMAP_URL_SCHEME'] = os.environ['SITEMAP_URL_SCHEME']
 
     app.register_blueprint(brigade)
     app.register_blueprint(filters)
