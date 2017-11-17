@@ -1,3 +1,4 @@
+import sys
 from os import environ, path
 from brigade import create_app
 from flask.ext.script import Manager, Server
@@ -18,7 +19,10 @@ manager.add_command('runserver', Server(host='localhost', port='4000', use_debug
 def runtests():
     import unittest
     tests = unittest.TestLoader().discover('tests')
-    unittest.TextTestRunner(verbosity=1).run(tests)
+    runner = unittest.TextTestRunner(verbosity=1).run(tests)
+
+    if len(runner.errors) or len(runner.failures):
+        sys.exit(1)
 
 
 if __name__ == '__main__':
