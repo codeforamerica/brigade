@@ -22,6 +22,8 @@ class SitemapBlueprint(Blueprint):
         'brigade.projects',
     ]
 
+    # NOTE: This is configured to output https URLs via the SITEMAP_URL_SCHEME
+    # environment variable.
     def register(self, app, options, first_registration=False):
         sitemap = Sitemap(app=app)
 

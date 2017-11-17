@@ -22,7 +22,6 @@ def get_brigades():
             org["properties"]["marker-color"] = "#6D6E71"
         # Grab only orgs with type Brigade
         if "Brigade" in org["properties"]["type"]:
-            print org
             brigades.append(org)
 
     brigades = json.dumps(brigades)
