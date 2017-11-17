@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{brigade.name}}{% endblock %}
+{% block description %}{{ brigade | brigade_description }}{% endblock %}
 
 {% block content %}
 
