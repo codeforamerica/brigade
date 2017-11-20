@@ -35,7 +35,7 @@
             <li><a href="/brigade/organize">Organize a Brigade</a></li>
             <li><a href="/brigade/projects">Project Finder</a></li>
             <li><a href="/brigade/about">About Us</a></li>
-            <li><a id="donate-link" href="https://secure.codeforamerica.org/page/contribute/default?source_codes=Brigade-page" class="button">Donate</a></li>
+            <li><a id="donate-link" href="https://secure.codeforamerica.org/page/contribute/default?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="button">Donate</a></li>
           </ul>
         </nav>
       </div>

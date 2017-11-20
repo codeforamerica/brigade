@@ -126,14 +126,3 @@
 
   </section>
 {% endblock %}
-
-{% block js %}
-<script>
-
-  $(document).ready(function(){
-    // Donate param
-    $("#donate-link").attr("href", $("#donate-link").attr("href") + "&brigade={{ brigade.name }}");
-  });
-
-</script>
-{% endblock %}
