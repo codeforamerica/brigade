@@ -98,6 +98,10 @@ h2 {
 /* MOBILE VIEW*/
 @media (max-width: 40em) {
 
+  .global-header {
+    position: static;
+  }
+
   main {
     margin-top: 50px;
   }
