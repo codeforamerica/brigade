@@ -69,8 +69,6 @@ window.Brigade.init = function() {
     const targetCategory = el.target.dataset.analyticsCategory;
     const isExternal = !targetHref.startsWith(window.location.origin);
 
-    debugger
-
     ga('send', 'event', {
       eventCategory: targetCategory || (isExternal ? 'External Link Click' : 'Link Click'),
       eventAction: 'click',
