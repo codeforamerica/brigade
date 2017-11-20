@@ -131,18 +131,6 @@
 <script>
 
   $(document).ready(function(){
-
-    // SIGN UP FORM
-    $('input[name="group[10273][8192]"]').prop('checked',true);
-    $('input[name=REFERRAL]').val("/brigade/{{brigadeid}}");
-    $("#email-signup-data-form").append('<input type="hidden" name="brigade_id" value="{{brigadeid}}" />');
-    $("#email-signup-data-form").on( "submit", function( event ) {
-      event.preventDefault();
-      $.post("/brigade/signup/", $( this ).serialize(), function(response){
-        console.log(response);
-      }, "json");
-    });
-
     // Donate param
     $("#donate-link").attr("href", $("#donate-link").attr("href") + "&brigade={{ brigade.name }}");
   });
