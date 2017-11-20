@@ -118,22 +118,12 @@
 {% endblock %}
 
 {% block js %}
-  <script>
-    {% if request.args.get('q') %}
-    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('q') }}", 1 );
-    {% endif %}
-    {% if request.args.get('status') %}
-    ga('send', 'event', 'Project Search', 'search', "{{ request.args.get('status') }}", 1 );
-    {% endif %}
-  </script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
 
   <script>
-    $('#projects').masonry({
-      itemSelector: '.project',
-      "gutter" : 20
-    });
+    window.Brigade.initializeProjects('#projects',
+      {{ request.args.get('q') | tojson }},
+      {{ request.args.get('status') | tojson }}
+    );
   </script>
-
 {% endblock %}
