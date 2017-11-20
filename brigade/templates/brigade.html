@@ -126,35 +126,3 @@
 
   </section>
 {% endblock %}
-
-{% block js %}
-<script>
-
-  $(document).ready(function(){
-
-    // Resize iframe to fit content
-    function resize(){
-      var widget_iframe = document.getElementById('widget');
-      issues_document = widget_iframe.contentWindow.document;
-      if(issues_document){
-        widget_iframe.height = issues_document.body.scrollHeight + "px";
-      }
-    }
-
-    // SIGN UP FORM
-    $('input[name="group[10273][8192]"]').prop('checked',true);
-    $('input[name=REFERRAL]').val("/brigade/{{brigadeid}}");
-    $("#email-signup-data-form").append('<input type="hidden" name="brigade_id" value="{{brigadeid}}" />');
-    $("#email-signup-data-form").on( "submit", function( event ) {
-      event.preventDefault();
-      $.post("/brigade/signup/", $( this ).serialize(), function(response){
-        console.log(response);
-      }, "json");
-    });
-
-    // Donate param
-    $("#donate-link").attr("href", $("#donate-link").attr("href") + "&brigade={{ brigade.name }}");
-  });
-
-</script>
-{% endblock %}
