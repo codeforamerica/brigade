@@ -117,7 +117,6 @@ def organize(page=None):
         return render_template("organize/index.html")
 
 
-@app.route("/brigade/tools")
 @app.route("/brigade/tools/")
 def tools():
     return render_template("tools.html")

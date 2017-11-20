@@ -143,6 +143,8 @@ class BrigadeTests(unittest.TestCase):
 
     def test_tools(self):
         response = self.client.get("/brigade/tools")
+        self.assertEqual(301, response.status_code)
+        response = self.client.get("/brigade/tools/")
         self.assertEqual(200, response.status_code)
 
     def test_sitemap(self):
