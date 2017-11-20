@@ -17,7 +17,19 @@ window.Brigade.initializeMap = function(geoJSON) {
   map.featureLayer.setGeoJSON(geoJSON);
 
   map.featureLayer.on('click', function(e) {
-    var brigadeId = e.layer.feature.properties.name.replace(/\s+/g, '-');
+    var brigadeName = e.layer.feature.properties.name;
+
+    ga('send', 'event', {
+      eventCategory: 'Map Click',
+      eventAction: 'click',
+      eventLabel: brigadeName,
+
+      // see: https://developers.google.com/analytics/devguides/collection/analyticsjs/events
+      // Supported in modern non-Safari browsers.
+      transport: 'beacon'
+    });
+
+    var brigadeId = brigadeName.replace(/\s+/g, '-');
     window.open(brigadeId, "_self");
   });
 };
@@ -43,6 +55,30 @@ window.Brigade.init = function() {
     $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
     $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
   }
+
+  // Track all link clicks as explicit events.
+  //
+  // The event's label will be given by either the <a title> attribute or the
+  // link URL.
+  //
+  // Override the event's category with `data-target-category`, e.g.:
+  //   <a data-target-category="Some Other Event Category">
+  $(document).on('click', 'a', function(el) {
+    const targetHref = el.target.href;
+    const targetTitle = el.target.title;
+    const targetCategory = el.target.dataset.analyticsCategory;
+    const isExternal = !targetHref.startsWith(window.location.origin);
+
+    ga('send', 'event', {
+      eventCategory: targetCategory || (isExternal ? 'External Link Click' : 'Link Click'),
+      eventAction: 'click',
+      eventLabel: targetTitle || targetHref,
+
+      // see: https://developers.google.com/analytics/devguides/collection/analyticsjs/events
+      // Supported in modern non-Safari browsers.
+      transport: 'beacon'
+    })
+  });
 };
 
 document.addEventListener('DOMContentLoaded', window.Brigade.init);

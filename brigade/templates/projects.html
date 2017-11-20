@@ -45,14 +45,14 @@
             {% endif %}
 
             {% if not brigade %}
-              <p><small>Used by </small><a href="/brigade/{{ project.organization.id }}/projects">{{ project.organization.name }}</a></p>
+              <p><small>Used by </small><a href="/brigade/{{ project.organization.id }}/projects" data-analytics-category="Project Finder Click">{{ project.organization.name }}</a></p>
             {% endif %}
 
             {% if project.github_details %}
               {% if project.github_details.contributors %}
                 {% for i in range(5) %}
                   {% if project.github_details.contributors[i] %}
-                    <a href="{{ project.github_details.contributors[i].html_url }}">
+                    <a href="{{ project.github_details.contributors[i].html_url }}" data-analytics-category="Project Finder Click">
                       <img height="40" width="40" src="{{ project.github_details.contributors[i].avatar_url }}&s=40" style="border-radius: 5px;"/>
                     </a>
                   {% endif %}
@@ -68,10 +68,10 @@
 
             <p>
             {% if project.link_url %}
-              <a href="{{project.link_url}}" class="button-bold">View the project</a>
+              <a href="{{project.link_url}}" class="button-bold" data-analytics-category="Project Finder Click">View the project</a>
             {% endif %}
             {% if project.code_url %}
-              <a href="{{project.code_url}}" class="button-bold">Contribute on Github</a>
+              <a href="{{project.code_url}}" class="button-bold" data-anayltics-category="Project Finder Click">Contribute on Github</a>
             {% endif %}
             </p>
 
@@ -81,7 +81,7 @@
             {% if project.languages %}
             {% set comma = joiner(",") %}
               Written in
-              {% for lang in project.languages %}{{ comma() }} <a href="projects?q={{ lang }}">{{ lang }}</a>{% endfor %}
+              {% for lang in project.languages %}{{ comma() }} <a href="projects?q={{ lang }}" data-analytics-category="Project Finder Click" title="Projects in {{ lang }}">{{ lang }}</a>{% endfor %}
             </p>
             {% endif %}
 
@@ -89,7 +89,7 @@
             {% set comma = joiner(",") %}
             <p>
               Tagged with
-              {% for tag in project.tags %}{{ comma() }} <a href="projects?q={{ tag }}">{{ tag }}</a>{% endfor %}
+              {% for tag in project.tags %}{{ comma() }} <a href="projects?q={{ tag }}" data-analytics-category="Project Finder Click" title="Projects tagged {{ tag }}">{{ tag }}</a>{% endfor %}
             {% endif %}
             </p>
 
