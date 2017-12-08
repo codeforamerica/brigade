@@ -34,6 +34,9 @@ body {
   cursor: pointer !important;
 }
 
+#map input {
+  min-height: 0;
+}
 
 #brigadeList a {
   margin-left: 20px;
