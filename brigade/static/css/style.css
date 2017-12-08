@@ -34,6 +34,9 @@ body {
   cursor: pointer !important;
 }
 
+#map .leaflet-popup-close-button {
+  display: none;
+}
 
 #brigadeList a {
   margin-left: 20px;
