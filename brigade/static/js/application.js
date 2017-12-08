@@ -32,6 +32,18 @@ window.Brigade.initializeMap = function(geoJSON) {
     var brigadeId = brigadeName.replace(/\s+/g, '-');
     window.open(brigadeId, "_self");
   });
+
+  // Add hover tooltips with Brigade name to map markers
+  map.featureLayer.eachLayer(function(layer) {
+    layer.bindPopup(layer.feature.properties.name);
+  });
+  map.featureLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+  });
+  map.featureLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+  });
+
 };
 
 window.Brigade.initializeProjects = function(id, query, status) {
