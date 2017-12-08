@@ -7,7 +7,7 @@ window.Brigade.initializeMap = function(geoJSON) {
   // Create a map in the div #map
   var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj');
 
-  map.legendControl.setPosition('topright');
+  map.legendControl.setPosition('bottomright');
   map.legendControl.addLegend('<img src="https://www.codeforamerica.org/brigade/static/images/red-marker.png" style="vertical-align: middle;"><strong>Official Brigade</strong>');
   map.zoomControl.setPosition('topright');
 
