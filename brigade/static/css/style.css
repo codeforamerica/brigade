@@ -107,7 +107,8 @@ h2 {
   }
 
   #map {
-    display: none;
+    width: 100%;
+    height: 300px;
   }
 
   #overlay p {
