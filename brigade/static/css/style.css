@@ -25,8 +25,23 @@ body {
   margin-bottom : 0px;
 }
 
-#logo {
-  margin-top: 25px;
+#intro {
+  float: left;
+  background-color: rgba(204,39,62,0.85);
+  width: 30%;
+  overflow: auto;
+  height: 691px;
+  padding: 20px;
+  /* Prevent element padding from adding to its width */
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+#map {
+  float: left;
+  width: 70%;
+  height: 691px;
 }
 
 #map .leaflet-marker-icon
@@ -75,29 +90,6 @@ h2 {
   display: inline-block;
 }
 
-/* Desktop view*/
-@media (min-width: 40em) {
-
-  #map {
-    width: 100%;
-    height: 691px;
-  }
-
-  #overlay{
-    background-color:rgba(204,39,62,0.85);
-    position:absolute;
-    top:90px;
-    left:0;
-    width:30%;
-    min-width: 333px;
-    padding: 0 25px;
-    overflow: auto;
-    height: 691px;
-    margin-bottom: 10px;
-  }
-
-}
-
 .center {
   text-align: center;
 }
@@ -113,16 +105,16 @@ h2 {
     margin-top: 50px;
   }
 
+  #intro {
+    float: none;
+    width: auto;
+    height: initial;
+  }
+
   #map {
-    display: none;
-  }
-
-  #overlay p {
-    padding: 5px 10px;
-  }
-
-  #overlay {
-    margin-bottom: 25px;
+    float: none;
+    width: initial;
+    height: 400px;
   }
 
 }

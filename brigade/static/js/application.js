@@ -70,7 +70,7 @@ window.Brigade.init = function() {
   // Generate list of brigades
   if ($(window).width() > 480){
     $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
-    $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
+    $('#intro').css("height", ($(window).height() - $(".global-header").height()));
   }
 
   // Track all link clicks as explicit events.

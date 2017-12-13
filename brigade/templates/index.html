@@ -2,26 +2,15 @@
 {% block description %}The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities.{% endblock %}
 
 {% block content %}
-
-  <div id="map"></div>
-
-  <!-- Not sure if you want to keep the overlay or not for the brigade list page -->
-  <div id="overlay" class="slab-red">
-
-    <img id="logo" src="{{ url_for('static', filename='images/the_brigade.png') }}" />
-    <p>The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help. 
-
-</p>
-
-    <!--<center>
-      <button id='geolocate'>Find your local Brigade</button>
-      <button id='brigadeListButton'><a href="/brigade/list">List All Brigades</a></button>
-    </center>
-
-    <div class="alert-success" style="display:none;">No one has organized a Brigade near you yet. Click <a href="/organize" class="button">Organize</a> to learn more about how you can.</div>-->
-
-  </div>
-
+  
+  <section>
+    <div id="intro" class="slab-red">
+      <img id="logo" src="{{ url_for('static', filename='images/the_brigade.png') }}" />
+      <p>The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help.</p>
+    </div>
+    <div id="map"></div>
+  </section>
+  
   <div id="sponsors" class="layout-centered">
     <h4>Funders</h4>
     <p><a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/CAlogo.png') }}" height="100px"></a></p>
