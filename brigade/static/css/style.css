@@ -38,6 +38,10 @@ body {
   min-height: 0;
 }
 
+#map .leaflet-popup-close-button {
+  display: none;
+}
+
 #brigadeList a {
   margin-left: 20px;
 }
