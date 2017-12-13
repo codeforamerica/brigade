@@ -20,9 +20,10 @@ def get_brigades():
         else:
             # Other Brigades are grey
             org["properties"]["marker-color"] = "#6D6E71"
-        # Grab only orgs with type Brigade
-        if "Brigade" in org["properties"]["type"]:
-            brigades.append(org)
+        # Grab only orgs with type 'Brigade' and with the tag 'Code for America'
+        if "Brigade" in org["properties"]["type"] and org["properties"]["tags"] is not None:
+            if "Code for America" in org["properties"]["tags"]:
+                brigades.append(org)
 
     brigades = json.dumps(brigades)
     return brigades
