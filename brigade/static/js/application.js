@@ -16,7 +16,7 @@ window.Brigade.initializeMap = function(geoJSON) {
   map.legendControl.addLegend('<img src="https://www.codeforamerica.org/brigade/static/images/red-marker.png" style="vertical-align: middle;"><strong>Official Brigade</strong>');
   map.zoomControl.setPosition('topright');
 
-  var latlon = [27, -85], zoom = 2;
+  var latlon = [44, -98], zoom = 3;
 
   map.setView(latlon, zoom);
   map.featureLayer.setGeoJSON(geoJSON);
