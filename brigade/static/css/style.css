@@ -2,12 +2,6 @@
   text-decoration: underline;
 }
 
-.calendar-item {
-  /*border-bottom: 1px #5a5a5a solid;*/
-  padding: 5px;
-  min-height: 450px;
-}
-
 body {
   color: #5a5a5a;
 }
