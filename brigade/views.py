@@ -27,7 +27,7 @@ def brigade_list():
 
 @app.route('/brigade/')
 def index():
-    brigades = cfapi.get_brigades()
+    brigades = cfapi.get_brigades(cfa_brigades_only=True)
     return render_template("index.html", brigades=brigades)
 
 
