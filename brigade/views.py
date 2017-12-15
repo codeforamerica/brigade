@@ -119,7 +119,12 @@ def organize(page=None):
 
 @app.route("/brigade/tools/")
 def tools():
-    return render_template("tools.html")
+    return redirect('/brigade/free-software', code=302)
+
+
+@app.route("/brigade/free-software/")
+def free_software():
+    return render_template("free_software.html")
 
 
 @app.route("/brigade/projects")
