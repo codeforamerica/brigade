@@ -12,8 +12,6 @@ window.Brigade.initializeMap = function(geoJSON) {
     $('.leaflet-control-mapbox-geocoder-form input').attr("placeholder","Search map");
   });
 
-  map.legendControl.setPosition('bottomright');
-  map.legendControl.addLegend('<img src="https://www.codeforamerica.org/brigade/static/images/red-marker.png" style="vertical-align: middle;"><strong>Official Brigade</strong>');
   map.zoomControl.setPosition('topright');
 
   var latlon = [44, -98], zoom = 3;
