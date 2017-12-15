@@ -7,7 +7,13 @@ window.Brigade.initializeMap = function(geoJSON) {
   // Create a map in the div #map
   var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj');
 
-  map.addControl(L.mapbox.geocoderControl('mapbox.places', { keepOpen: true, autocomplete : true }).setPosition('topright'));
+  map.addControl(L.mapbox.geocoderControl('mapbox.places', { 
+    keepOpen: true, 
+    autocomplete : true,
+    queryOptions: {
+      country: "us"
+    }
+  }).setPosition('topright'));
   map.addEventListener('ready', function () {
     $('.leaflet-control-mapbox-geocoder-form input').attr("placeholder","Search map");
   });
