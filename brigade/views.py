@@ -1,11 +1,14 @@
 # -- coding: utf-8 --
 from flask import render_template, request, redirect, url_for, send_from_directory
+from flask.helpers import safe_join
 from . import brigade as app
 import cfapi
 from operator import itemgetter
 from requests import get
+
 import json
 import logging
+
 
 # Logging Setup
 logging.basicConfig(level=logging.INFO)
@@ -123,8 +126,14 @@ def tools():
 
 
 @app.route("/brigade/free-software/")
-def free_software():
+def free_software_index():
     return render_template("free_software.html")
+
+
+@app.route("/brigade/free-software/<software>")
+def free_software_show(software):
+    template_path = safe_join("free_software/", software + ".html")
+    return render_template(template_path)
 
 
 @app.route("/brigade/projects")
