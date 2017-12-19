@@ -333,6 +333,15 @@ a.inkind-card:hover {
   cursor: pointer;
 }
 
+a.inkind-card:hover .button {
+  background-color: #cf1b41;
+}
+
+.inkind-card .button {
+  width: auto;
+  text-transform: uppercase;
+}
+
 .inkind-card__logo {
   /* Vertically align the logo in a 230px block */
   align-items: center;
@@ -346,7 +355,7 @@ a.inkind-card:hover {
     flex-direction: column;
   }
 
-  .inkind-card {
+  a.inkind-card {
     width: auto;
   }
 
