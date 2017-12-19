@@ -142,9 +142,21 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(flask.url_for('.index', _external=True), response.location)
 
     def test_tools(self):
-        response = self.client.get("/brigade/tools")
-        self.assertEqual(301, response.status_code)
+        # legacy test, can remove at some point
         response = self.client.get("/brigade/tools/")
+        self.assertEqual(302, response.status_code)
+
+    def test_free_software(self):
+        response = self.client.get("/brigade/free-software/")
+        self.assertEqual(200, response.status_code)
+
+    def test_free_software_show(self):
+        ''' test a couple common free software pages to make sure they render '''
+        response = self.client.get("/brigade/free-software/aws")
+        self.assertEqual(200, response.status_code)
+        response = self.client.get("/brigade/free-software/heroku")
+        self.assertEqual(200, response.status_code)
+        response = self.client.get("/brigade/free-software/gsuite")
         self.assertEqual(200, response.status_code)
 
     def test_sitemap(self):
