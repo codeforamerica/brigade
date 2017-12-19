@@ -1,15 +1,20 @@
 import os
 
 from flask import Blueprint, Flask
+from flask_webpack import Webpack
 from filters import filters
 from sitemap import sitemap_blueprint
 
-brigade = Blueprint('brigade', __name__, static_folder='static')
+brigade = Blueprint('brigade', __name__)
 
 
 def create_app():
-    app = Flask(__name__, static_url_path='/brigade/static')
+    app = Flask(__name__, static_folder='build/public/', static_url_path='/assets')
     app.config['SECRET_KEY'] = 'sekrit!'
+
+    app.config['WEBPACK_MANIFEST_PATH'] = os.path.abspath('./brigade/build/manifest.json')
+    webpack = Webpack()
+    webpack.init_app(app)
 
     if 'SERVER_NAME' in os.environ:
         app.config['SERVER_NAME'] = os.environ['SERVER_NAME']
