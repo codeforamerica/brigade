@@ -33,7 +33,7 @@ def index():
 
 @app.route('/brigade/map')
 def map():
-    brigades = cfapi.get_brigades()
+    brigades = cfapi.get_brigades(official_brigades_only=True)
     return render_template("map.html", brigades=brigades)
 
 
