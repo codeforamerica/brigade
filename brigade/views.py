@@ -125,12 +125,12 @@ def tools():
     return redirect(url_for('.free_software_index'), code=302)
 
 
-@app.route("/free-software/")
+@app.route("/software/")
 def free_software_index():
     return render_template("free_software.html")
 
 
-@app.route("/free-software/<software>")
+@app.route("/software/<software>")
 def free_software_show(software):
     template_path = safe_join("free_software/", software + ".html")
     return render_template(template_path)
