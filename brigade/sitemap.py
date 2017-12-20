@@ -6,6 +6,7 @@ from flask import Blueprint
 
 from cfapi import get_brigades
 
+
 class SitemapBlueprint(Blueprint):
     '''
     Contain all the logic for generating a sitemap.xml
@@ -14,12 +15,20 @@ class SitemapBlueprint(Blueprint):
         'brigade.index',
         'brigade.about',
         'brigade.organize',
-        'brigade.tools',
+        'brigade.free_software_index',
     ]
 
     PER_BRIGADE_ROUTES = [
         'brigade.brigade',
         'brigade.projects',
+    ]
+
+    OTHER_ROUTES = [
+        ('brigade.free_software_show', {"software": "bizspark"}),
+        ('brigade.free_software_show', {"software": "twilio"}),
+        ('brigade.free_software_show', {"software": "slack"}),
+        ('brigade.free_software_show', {"software": "carto"}),
+        ('brigade.free_software_show', {"software": "github"}),
     ]
 
     # NOTE: This is configured to output https URLs via the SITEMAP_URL_SCHEME
