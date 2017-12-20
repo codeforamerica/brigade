@@ -147,16 +147,16 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(302, response.status_code)
 
     def test_free_software(self):
-        response = self.client.get("/brigade/free-software/")
+        response = self.client.get("/free-software/")
         self.assertEqual(200, response.status_code)
 
     def test_free_software_show(self):
         ''' test a couple common free software pages to make sure they render '''
-        response = self.client.get("/brigade/free-software/aws")
+        response = self.client.get("/free-software/aws")
         self.assertEqual(200, response.status_code)
-        response = self.client.get("/brigade/free-software/heroku")
+        response = self.client.get("/free-software/heroku")
         self.assertEqual(200, response.status_code)
-        response = self.client.get("/brigade/free-software/gsuite")
+        response = self.client.get("/free-software/gsuite")
         self.assertEqual(200, response.status_code)
 
     def test_sitemap(self):

@@ -122,15 +122,15 @@ def organize(page=None):
 
 @app.route("/brigade/tools/")
 def tools():
-    return redirect('/brigade/free-software', code=302)
+    return redirect(url_for('.free_software_index'), code=302)
 
 
-@app.route("/brigade/free-software/")
+@app.route("/free-software/")
 def free_software_index():
     return render_template("free_software.html")
 
 
-@app.route("/brigade/free-software/<software>")
+@app.route("/free-software/<software>")
 def free_software_show(software):
     template_path = safe_join("free_software/", software + ".html")
     return render_template(template_path)

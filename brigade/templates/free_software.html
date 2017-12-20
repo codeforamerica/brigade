@@ -5,7 +5,7 @@
 <section>
   <div class="layout-semibreve">
     {% if self.software() %}
-      <a href="/brigade/free-software">&larr; Back to Free Software</a>
+      <a href="{{ url_for('.free_software_index') }}">&larr; Back to Free Software</a>
 
       <div class="free-software__logo">
       {% block logo %}{% endblock %}
@@ -28,7 +28,7 @@
     <h2>Cloud Hosting</h2>
 
     <div class="inkind-card-list">
-      <a class="inkind-card" href="/brigade/free-software/heroku">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="heroku") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_heroku.png" width="102px" />
         </div>
@@ -36,7 +36,7 @@
         <div class="button">Learn more</div>
       </a>
 
-      <a class="inkind-card" href="/brigade/free-software/aws">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="aws") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_aws.png" width="192px" />
         </div>
@@ -44,7 +44,7 @@
         <div class="button">Learn more</div>
       </a>
 
-      <a class="inkind-card" href="/brigade/free-software/bizspark">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="bizspark") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_bizspark.jpg" width="200px" />
         </div>
@@ -52,7 +52,7 @@
         <div class="button">Learn more</div>
       </a>
 
-      <a class="inkind-card" href="/brigade/free-software/twilio">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="twilio") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_twilio.png" width="200px" />
         </div>
@@ -65,7 +65,7 @@
     <h2>Communications</h2>
 
     <div class="inkind-card-list">
-      <a class="inkind-card" href="/brigade/free-software/gsuite">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="gsuite") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_gsuite.svg" width="200px" />
         </div>
@@ -73,7 +73,7 @@
         <div class="button">Learn more</div>
       </a>
 
-      <a class="inkind-card" href="/brigade/free-software/slack">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="slack") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_slack.png" width="200px" />
         </div>
@@ -85,7 +85,7 @@
     <h2>Mapping Software</h2>
 
     <div class="inkind-card-list">
-      <a class="inkind-card" href="/brigade/free-software/carto">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="carto") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_carto.png" width="200px" />
         </div>
@@ -98,7 +98,7 @@
     <h2>Other</h2>
 
     <div class="inkind-card-list">
-      <a class="inkind-card" href="/brigade/free-software/github">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="github") }}">
         <div class="inkind-card__logo">
           <img src="/static/images/software_github.png" width="200px" />
         </div>
