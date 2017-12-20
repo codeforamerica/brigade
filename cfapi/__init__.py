@@ -4,7 +4,7 @@ import json
 BASE_URL = "http://api.codeforamerica.org/api"
 
 
-def get_brigades(cfa_brigades_only=False):
+def get_brigades(official_brigades_only=False):
     # Get location of all civic tech orgs
     got = get(BASE_URL + "/organizations.geojson")
     geojson = got.json()
@@ -14,20 +14,16 @@ def get_brigades(cfa_brigades_only=False):
     for org in geojson["features"]:
         # Add icon info for the map
         org["properties"]["marker-symbol"] = "town-hall"
-        # Official Brigades get to be red
-        if "Official" in org["properties"]["type"]:
-            org["properties"]["marker-color"] = "#aa1c3a"
-        else:
-            # Other Brigades are grey
-            org["properties"]["marker-color"] = "#6D6E71"
+        # All Brigades on the map have a red marker
+        org["properties"]["marker-color"] = "#aa1c3a"
         # Grab only orgs with type Brigade
         if "Brigade" in org["properties"]["type"]:
             
-            # If cfa_brigades_only=True, only return CfA Brigades
-            if cfa_brigades_only == True:
+            # If cfa_brigades_only=True, only return Official Brigades
+            if official_brigades_only == True:
                 if ("tags" in org["properties"] and 
                     "Brigade" in org["properties"]["tags"] and 
-                    "Code for America" in org["properties"]["tags"]):
+                    "Official" in org["properties"]["tags"]):
                         brigades.append(org)
             else:
                 brigades.append(org)
