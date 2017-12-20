@@ -18,6 +18,10 @@ window.Brigade.initializeMap = function(geoJSON) {
     $('.leaflet-control-mapbox-geocoder-form input').attr("placeholder","Search map");
   });
 
+  // Add map legend message with link to Code for All
+  map.legendControl.setPosition('bottomright');
+  map.legendControl.addLegend('Looking for an organization outside the US? <br><a href="https://codeforall.org/" target="_blank">Check out the <strong>Code for All</strong> Network</a>');
+
   map.zoomControl.setPosition('topright');
 
   var latlon = [44, -98], zoom = 3;
