@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section>
+  <div class="layout-semibreve">
+    {% if self.software() %}
+      <a href="{{ url_for('.free_software_index') }}">&larr; Back to Free Software</a>
+
+      <div class="free-software__logo">
+      {% block logo %}{% endblock %}
+      </div>
+
+      {% block software %}{% endblock %}
+    {% else %}
+    <h1>Free Software for Brigades</h1>
+
+    <h2>What CfA Offers and how you can access</h2>
+
+    <p>Together, we are more than the sum of our parts. By joining forces with leading tech companies, we can build products with our communities faster, cheaper, and better.</p>
+
+    <p>Code for America is excited to offer the software linked below to help with project development and brigade management.</p>
+
+    <p>Whether it’s getting a quick prototype up for your first user test or releasing an application to thousands of residents, we hope that these tools will help you build better products. If you have any questions, reach out to <a href="mailto:inkinds@codeforamerica.org">inkinds@codeforamerica.org</a>.</p>
+
+    <p>Thanks for everything you do - happy building!</p>
+
+    <h2>Cloud Hosting</h2>
+
+    <div class="inkind-card-list">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="heroku") }}">
+        <div class="inkind-card__logo">
+          <img src="/static/images/software_heroku.png" width="102px" />
+        </div>
+        <p>Heroku is a simple, easy-to-use cloud hosting service which is perfect for small to medium projects.</p>
+        <div class="button">Learn more</div>
+      </a>
+
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="bizspark") }}">
+        <div class="inkind-card__logo">
+          <img src="/static/images/software_bizspark.jpg" width="200px" />
+        </div>
+        <p>Microsoft's Bizspark program offers free Microsoft software and credits for their cloud platform, Azure.</p>
+        <div class="button">Learn more</div>
+      </a>
+
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="twilio") }}">
+        <div class="inkind-card__logo">
+          <img src="/static/images/software_twilio.png" width="200px" />
+        </div>
+        <p>Twilio is the easiest way to send SMS messages or handle phone calls for your project.</p>
+        <div class="button">Learn more</div>
+      </a>
+    </div>
+
+
+    <h2>Communications</h2>
+
+    <div class="inkind-card-list">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="slack") }}">
+        <div class="inkind-card__logo">
+          <img src="/static/images/software_slack.png" width="200px" />
+        </div>
+        <p>Slack is a group communication tool built around chat.</p>
+        <div class="button">Learn more</div>
+      </a>
+    </div>
+
+    <h2>Mapping Software</h2>
+
+    <div class="inkind-card-list">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="carto") }}">
+        <div class="inkind-card__logo">
+          <img src="/static/images/software_carto.png" width="200px" />
+        </div>
+        <p>CARTO helps you easily work with and visualize geospatial data.</p>
+        <div class="button">Learn more</div>
+      </a>
+    </div>
+
+
+    <h2>Other</h2>
+
+    <div class="inkind-card-list">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="github") }}">
+        <div class="inkind-card__logo">
+          <img src="/static/images/software_github.png" width="200px" />
+        </div>
+        <p>GitHub offers code hosting and project management tools for open source projects.</p>
+        <div class="button">Learn more</div>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
