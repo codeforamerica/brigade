@@ -7,15 +7,31 @@ window.Brigade.initializeMap = function(geoJSON) {
   // Create a map in the div #map
   var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj');
 
-  map.addControl(L.mapbox.geocoderControl('mapbox.places', { 
+  var geocoderControl = L.mapbox.geocoderControl('mapbox.places', { 
     keepOpen: true, 
     autocomplete : true,
     queryOptions: {
       country: "us"
     }
-  }).setPosition('topright'));
-  map.addEventListener('ready', function () {
+  });
+  geocoderControl.setPosition('topright');
+  geocoderControl.addTo(map);
+
+  map.addEventListener('ready', function() {
+    
     $('.leaflet-control-mapbox-geocoder-form input').attr("placeholder","Search map");
+
+    // After selecting a geocoder result, replace the search text with the place name and hide the geocoder results
+    geocoderControl.on('select', function(result){
+      $('#map input').val(result.feature.place_name);
+      $('#map .leaflet-control-mapbox-geocoder-results').hide();
+    });
+    
+    // Make sure the geocoder results are showing when input is entered into geocoder search
+    $('#map input').keyup(function(){
+      $('#map .leaflet-control-mapbox-geocoder-results').show();
+    });
+
   });
 
   map.zoomControl.setPosition('topright');
