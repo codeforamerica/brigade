@@ -18,7 +18,7 @@ window.Brigade.initializeMap = function(geoJSON) {
   geocoderControl.addTo(map);
 
   map.addEventListener('ready', function() {
-    
+
     $('.leaflet-control-mapbox-geocoder-form input').attr("placeholder","Search map");
 
     // After selecting a geocoder result, replace the search text with the place name and hide the geocoder results
@@ -30,6 +30,11 @@ window.Brigade.initializeMap = function(geoJSON) {
     // Make sure the geocoder results are showing when input is entered into geocoder search
     $('#map input').keyup(function(){
       $('#map .leaflet-control-mapbox-geocoder-results').show();
+    });
+
+    // Prevent the page from jumping to the top when clicking on the geocoder 'searchglass' icon
+    $('a.leaflet-control-mapbox-geocoder-toggle').on('click', function(event){
+      event.preventDefault();
     });
 
   });
