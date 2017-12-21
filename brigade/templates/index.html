@@ -25,10 +25,14 @@ communities.{% endblock %}
     </div>
   </section>
   
-  <div id="sponsors" class="layout-centered">
-    <h4>Funders</h4>
-    <p><a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/CAlogo.png') }}" height="100px"></a></p>
-  </div>
+  <section id="sponsors">
+    <div class="panel">
+      <div class="panel__body text-center">
+        <h4>Funders</h4>
+        <a href="https://www.rallydev.com/about/rally-for-impact"><img src="{{ url_for('static', filename='images/CAlogo.png') }}" height="60px"></a>
+      </div>
+    </div>    
+  </section>
 
 {% endblock %}
 
