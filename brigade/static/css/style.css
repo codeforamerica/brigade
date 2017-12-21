@@ -82,7 +82,7 @@ body#home #map {
   min-height: 80vh;
 }
 
-@media all and (min-width: 640px) {
+@media all and (min-width: 736px) {
   
   body#home #overview {
     height: 691px;
