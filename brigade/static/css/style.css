@@ -25,25 +25,6 @@ body {
   margin-bottom : 0px;
 }
 
-#intro {
-  float: left;
-  background-color: rgba(204,39,62,0.85);
-  width: 30%;
-  overflow: auto;
-  height: 691px;
-  padding: 20px;
-  /* Prevent element padding from adding to its width */
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;         /* Opera/IE 8+ */
-}
-
-#map {
-  float: left;
-  width: 70%;
-  height: 691px;
-}
-
 #map .leaflet-marker-icon
 {
   cursor: pointer !important;
@@ -76,6 +57,82 @@ h2 {
   padding-bottom: 25px;
 }
 
+/* HOME PAGE */
+
+/* Home page: Overview section */
+body#home #overview {
+  
+}
+
+body#home #intro-panel {
+  min-height: 300px;
+}
+
+body#home #map-panel {
+  
+}
+
+body#home #map-panel .panel__body {
+  padding: 0;
+}
+
+body#home #map {
+  height: 100%;
+  min-height: 300px;
+  min-height: 80vh;
+}
+
+@media all and (min-width: 640px) {
+  
+  body#home #overview {
+    height: 691px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  body#home #intro-panel {
+    flex: 1;
+  }
+
+  body#home #map-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body#home #map-panel .panel__body {
+    flex: 1;
+  }
+
+  body#home #map-panel .panel__footer {
+    flex: 0;
+    text-align: right;
+  }
+
+}
+
+/* Component: Panel */
+
+.panel__body {
+  padding: 15px;
+}
+
+.panel__header {
+  padding: 15px;
+  text-align: center;
+}
+
+.panel__footer {
+  padding: 15px;
+  font-size: small;
+  line-height: 1.4;
+}
+
+.panel--red {
+  background-color: rgba(204,39,62,0.85);
+  color: #fff;
+}
+
 /* SIGN UP FORM*/
 #signup {
   margin: 30px 0;
@@ -103,18 +160,6 @@ h2 {
 
   main {
     margin-top: 50px;
-  }
-
-  #intro {
-    float: none;
-    width: auto;
-    height: initial;
-  }
-
-  #map {
-    float: none;
-    width: initial;
-    height: 400px;
   }
 
 }
@@ -307,3 +352,17 @@ tbody th {
   }
 
 }
+
+/* HELPER CLASSES */
+
+/* Keep the element on one line: prevent the element breaking up over two lines unnecessarily */
+.one-line {
+  display: inline-block;
+}
+
+/* Padding */
+.padding-none { padding: 0; }
+.padding-top-none { padding-top: 0; }
+.padding-right-none { padding-right: 0; }
+.padding-bottom-none { padding-bottom: 0; }
+.padding-left-none { padding-left: 0; }

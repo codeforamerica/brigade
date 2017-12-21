@@ -6,12 +6,23 @@ communities.{% endblock %}
 
 {% block content %}
   
-  <section>
-    <div id="intro" class="slab-red">
-      <img id="logo" src="{{ url_for('static', filename='images/the_brigade.png') }}" />
-      <p>The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help.</p>
+  <section id="overview">
+    <div class="panel panel--red" id="intro-panel">
+      <div class="panel__header">
+        <img id="logo" src="{{ url_for('static', filename='images/the_brigade.png') }}" />
+      </div>
+      <div class="panel__body padding-top-none">
+        The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help.
+      </div>
     </div>
-    <div id="map"></div>
+    <div class="panel" id="map-panel">
+      <div class="panel__body">
+        <div id="map"></div>
+      </div>
+      <div class="panel__footer">
+        Looking for an organization outside the US? <a href="https://codeforall.org/" target="_blank" class="one-line">Check out the <strong>Code for All</strong> Network</a>
+      </div>
+    </div>
   </section>
   
   <div id="sponsors" class="layout-centered">
