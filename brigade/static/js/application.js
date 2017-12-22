@@ -7,11 +7,41 @@ window.Brigade.initializeMap = function(geoJSON) {
   // Create a map in the div #map
   var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj');
 
-  map.legendControl.setPosition('topright');
-  map.legendControl.addLegend('<img src="https://www.codeforamerica.org/brigade/static/images/red-marker.png" style="vertical-align: middle;"><strong>Official Brigade</strong>');
+  var geocoderControl = L.mapbox.geocoderControl('mapbox.places', { 
+    keepOpen: true, 
+    autocomplete : true,
+    queryOptions: {
+      country: "us"
+    }
+  });
+  geocoderControl.setPosition('topright');
+  geocoderControl.addTo(map);
+
+  map.addEventListener('ready', function() {
+
+    $('.leaflet-control-mapbox-geocoder-form input').attr("placeholder","Search map");
+
+    // After selecting a geocoder result, replace the search text with the place name and hide the geocoder results
+    geocoderControl.on('select', function(result){
+      $('#map input').val(result.feature.place_name);
+      $('#map .leaflet-control-mapbox-geocoder-results').hide();
+    });
+    
+    // Make sure the geocoder results are showing when input is entered into geocoder search
+    $('#map input').keyup(function(){
+      $('#map .leaflet-control-mapbox-geocoder-results').show();
+    });
+
+    // Prevent the page from jumping to the top when clicking on the geocoder 'searchglass' icon
+    $('a.leaflet-control-mapbox-geocoder-toggle').on('click', function(event){
+      event.preventDefault();
+    });
+
+  });
+
   map.zoomControl.setPosition('topright');
 
-  var latlon = [27, -85], zoom = 2;
+  var latlon = [44, -98], zoom = 3;
 
   map.setView(latlon, zoom);
   map.featureLayer.setGeoJSON(geoJSON);
@@ -32,6 +62,18 @@ window.Brigade.initializeMap = function(geoJSON) {
     var brigadeId = brigadeName.replace(/\s+/g, '-');
     window.open(brigadeId, "_self");
   });
+
+  // Add hover tooltips with Brigade name to map markers
+  map.featureLayer.eachLayer(function(layer) {
+    layer.bindPopup(layer.feature.properties.name);
+  });
+  map.featureLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+  });
+  map.featureLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+  });
+
 };
 
 window.Brigade.initializeProjects = function(id, query, status) {
@@ -52,8 +94,7 @@ window.Brigade.initializeProjects = function(id, query, status) {
 window.Brigade.init = function() {
   // Generate list of brigades
   if ($(window).width() > 480){
-    $('#map').css("height", $(window).height() - $(".global-header").height() - 1);
-    $('#overlay').css("height", ($(window).height() - $(".global-header").height()));
+    $('body#home #overview').css("height", ($(window).height() - $(".global-header").height()));
   }
 
   // Track all link clicks as explicit events.

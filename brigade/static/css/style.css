@@ -19,15 +19,18 @@ body {
   margin-bottom : 0px;
 }
 
-#logo {
-  margin-top: 25px;
-}
-
 #map .leaflet-marker-icon
 {
   cursor: pointer !important;
 }
 
+#map input {
+  min-height: 0;
+}
+
+#map .leaflet-popup-close-button {
+  display: none;
+}
 
 #brigadeList a {
   margin-left: 20px;
@@ -48,6 +51,82 @@ h2 {
   padding-bottom: 25px;
 }
 
+/* HOME PAGE */
+
+/* Home page: Overview section */
+body#home #overview {
+  
+}
+
+body#home #intro-panel {
+  min-height: 300px;
+}
+
+body#home #map-panel {
+  border-bottom: solid 1px #ccc;  
+}
+
+body#home #map-panel .panel__body {
+  padding: 0;
+}
+
+body#home #map {
+  height: 100%;
+  min-height: 300px;
+  min-height: 80vh;
+}
+
+@media all and (min-width: 736px) {
+  
+  body#home #overview {
+    height: 691px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  body#home #intro-panel {
+    flex: 1;
+  }
+
+  body#home #map-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body#home #map-panel .panel__body {
+    flex: 1;
+  }
+
+  body#home #map-panel .panel__footer {
+    flex: 0;
+    text-align: right;
+  }
+
+}
+
+/* Component: Panel */
+
+.panel__body {
+  padding: 15px;
+}
+
+.panel__header {
+  padding: 15px;
+  text-align: center;
+}
+
+.panel__footer {
+  padding: 15px;
+  font-size: small;
+  line-height: 1.4;
+}
+
+.panel--red {
+  background-color: rgba(204,39,62,0.85);
+  color: #fff;
+}
+
 /* SIGN UP FORM*/
 #signup {
   margin: 30px 0;
@@ -60,29 +139,6 @@ h2 {
 
 .inline {
   display: inline-block;
-}
-
-/* Desktop view*/
-@media (min-width: 40em) {
-
-  #map {
-    width: 100%;
-    height: 691px;
-  }
-
-  #overlay{
-    background-color:rgba(204,39,62,0.85);
-    position:absolute;
-    top:90px;
-    left:0;
-    width:30%;
-    min-width: 333px;
-    padding: 0 25px;
-    overflow: auto;
-    height: 691px;
-    margin-bottom: 10px;
-  }
-
 }
 
 .center {
@@ -98,18 +154,6 @@ h2 {
 
   main {
     margin-top: 50px;
-  }
-
-  #map {
-    display: none;
-  }
-
-  #overlay p {
-    padding: 5px 10px;
-  }
-
-  #overlay {
-    margin-bottom: 25px;
   }
 
 }
@@ -364,3 +408,17 @@ a.inkind-card:hover .button {
     min-height: 0;
   }
 }
+
+/* HELPER CLASSES */
+
+/* Keep the element on one line: prevent the element breaking up over two lines unnecessarily */
+.one-line {
+  display: inline-block;
+}
+
+/* Padding */
+.padding-none { padding: 0; }
+.padding-top-none { padding-top: 0; }
+.padding-right-none { padding-right: 0; }
+.padding-bottom-none { padding-bottom: 0; }
+.padding-left-none { padding-left: 0; }
