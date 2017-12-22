@@ -127,6 +127,18 @@ body#home #map {
   color: #fff;
 }
 
+/* Component: List */
+
+.list--inline {
+  list-style-type: none;
+}
+
+.list--inline li {
+  display: inline;
+  /* The current bullet is a background image. Remove it for inline lists. */
+  background-image: none; 
+}
+
 /* SIGN UP FORM*/
 #signup {
   margin: 30px 0;
