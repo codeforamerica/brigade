@@ -20,7 +20,7 @@
     "webpack-sass-loaders": "^1.0.0"
   },
   "scripts": {
-    "postinstall": "webpack -p --bail"
+    "heroku-postbuild": "webpack -p --bail"
   }
 
 }
