@@ -19,6 +19,9 @@
   "addons": [],
   "buildpacks": [
     {
+      "url": "heroku/nodejs"
+    },
+    {
       "url": "heroku/python"
     }
   ]
