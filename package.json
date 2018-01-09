@@ -18,5 +18,9 @@
     "sync-exec": "^0.6.2",
     "webpack": "^3.10.0",
     "webpack-sass-loaders": "^1.0.0"
+  },
+  "scripts": {
+    "postinstall": "webpack -p --bail"
   }
+
 }
