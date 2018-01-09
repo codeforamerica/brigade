@@ -9,7 +9,7 @@ communities.{% endblock %}
   <section id="overview">
     <div class="panel panel--red" id="intro-panel">
       <div class="panel__header">
-        <img id="logo" src="{{ url_for('static', filename='images/the_brigade.png') }}" />
+        <img id="logo" src="{{ asset_url_for('images/the_brigade.png') }}" />
       </div>
       <div class="panel__body padding-top-none">
         The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help.
@@ -30,9 +30,9 @@ communities.{% endblock %}
       <div class="panel__body layout-centered">
         <h4>Funders</h4>
         <ul class="list list--inline">
-          <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ url_for('static', filename='images/CAlogo.png') }}" height="60px"></a></li>
-          <li><a href="https://www.esri.com/" target="_blank"><img src="{{ url_for('static', filename='images/logo_esri.png') }}" height="60px"></a></li>
-          <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ url_for('static', filename='images/logo_knightfoundation.png') }}" height="60px"></a></li>
+          <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60px"></a></li>
+          <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60px"></a></li>
+          <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60px"></a></li>
         </ul>
       </div>
     </div>    

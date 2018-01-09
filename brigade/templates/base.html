@@ -10,7 +10,7 @@
     <link type="text/css" rel="stylesheet" href="https://style.codeforamerica.org/style/css/main.css">
     <link type="text/css" rel="stylesheet" href="https://style.codeforamerica.org/style/css/layout.css" media="all and (min-width: 40em)">
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset_url_for('style.css') }}">
 
     <link rel="shortcut icon" type="image/x-icon" href="https://style.codeforamerica.org/1/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="https://style.codeforamerica.org/1/style/favicons/60x60/flag-red.png"/>
@@ -25,7 +25,7 @@
 
       <div class="global-header">
         <a href="/brigade" class="global-header-logo">
-            <img src="{{ url_for('static', filename='images/new_logo.png') }}" />
+            <img src="{{ asset_url_for('images/new_logo.png') }}" />
         </a>
 
         <nav class="nav-global-secondary">
@@ -61,7 +61,7 @@
     {% endblock %}
     {% block js %}
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="{{ url_for('static', filename='js/application.js') }}"></script>
+    <script src="{{ asset_url_for('application.js') }}"></script>
     {% endblock %}
   </body>
 </html>

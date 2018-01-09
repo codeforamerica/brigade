@@ -2,3 +2,5 @@
 .env
 venv*
 .venv*
+brigade/build
+node_modules

@@ -1,7 +1,7 @@
 {% extends "free_software.html" %}
 
 {% block logo %}
-<img src="/static/images/software_aws.png" width="200px" />
+<img src="{{ asset_url_for('images/software_aws.png') }}" width="200px" />
 {% endblock %}
 
 {% block software %}
@@ -19,7 +19,7 @@
 
 <p>If you have an existing account, make sure the Account Name is the name of your brigade.</p>
 
-<img src="/static/images/software_aws_account.png" />
+<img src="{{ asset_url_for('images/software_aws_account.png') }}" />
 
 <p>This is what the account details should look like. Finally, send the Account ID number to <a href="mailto:inkinds@codeforamerica.org">inkinds@codeforamerica.org</a> along with the following information:</p>
 
