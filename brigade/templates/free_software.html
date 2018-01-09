@@ -30,7 +30,7 @@
     <div class="inkind-card-list">
       <a class="inkind-card" href="{{ url_for(".free_software_show", software="heroku") }}">
         <div class="inkind-card__logo">
-          <img src="/static/images/software_heroku.png" width="102px" />
+          <img src="{{ asset_url_for('images/software_heroku.png') }}" width="102px" />
         </div>
         <p>Heroku is a simple, easy-to-use cloud hosting service which is perfect for small to medium projects.</p>
         <div class="button">Learn more</div>
@@ -38,7 +38,7 @@
 
       <a class="inkind-card" href="{{ url_for(".free_software_show", software="bizspark") }}">
         <div class="inkind-card__logo">
-          <img src="/static/images/software_bizspark.jpg" width="200px" />
+          <img src="{{ asset_url_for('images/software_bizspark.jpg') }}" width="200px" />
         </div>
         <p>Microsoft's Bizspark program offers free Microsoft software and credits for their cloud platform, Azure.</p>
         <div class="button">Learn more</div>
@@ -46,7 +46,7 @@
 
       <a class="inkind-card" href="{{ url_for(".free_software_show", software="twilio") }}">
         <div class="inkind-card__logo">
-          <img src="/static/images/software_twilio.png" width="200px" />
+          <img src="{{ asset_url_for('images/software_twilio.png') }}" width="200px" />
         </div>
         <p>Twilio is the easiest way to send SMS messages or handle phone calls for your project.</p>
         <div class="button">Learn more</div>
@@ -59,7 +59,7 @@
     <div class="inkind-card-list">
       <a class="inkind-card" href="{{ url_for(".free_software_show", software="slack") }}">
         <div class="inkind-card__logo">
-          <img src="/static/images/software_slack.png" width="200px" />
+          <img src="{{ asset_url_for('images/software_slack.png') }}" width="200px" />
         </div>
         <p>Slack is a group communication tool built around chat.</p>
         <div class="button">Learn more</div>
@@ -71,7 +71,7 @@
     <div class="inkind-card-list">
       <a class="inkind-card" href="{{ url_for(".free_software_show", software="carto") }}">
         <div class="inkind-card__logo">
-          <img src="/static/images/software_carto.png" width="200px" />
+          <img src="{{ asset_url_for('images/software_carto.png') }}" width="200px" />
         </div>
         <p>CARTO helps you easily work with and visualize geospatial data.</p>
         <div class="button">Learn more</div>
@@ -84,7 +84,7 @@
     <div class="inkind-card-list">
       <a class="inkind-card" href="{{ url_for(".free_software_show", software="github") }}">
         <div class="inkind-card__logo">
-          <img src="/static/images/software_github.png" width="200px" />
+          <img src="{{ asset_url_for('images/software_github.png') }}" width="200px" />
         </div>
         <p>GitHub offers code hosting and project management tools for open source projects.</p>
         <div class="button">Learn more</div>
