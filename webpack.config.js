@@ -40,6 +40,12 @@ module.exports = {
           // 'image-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       },
+      {
+        test: /\.pdf$/i,
+        loaders: [
+          'file-loader?context=' + rootAssetPath + '&name=[path][name].[ext]',
+        ]
+      }
     ]
   },
 
@@ -47,7 +53,6 @@ module.exports = {
     new ExtractTextPlugin('[name].[chunkhash].css'),
     new ManifestRevisionPlugin(path.join('brigade', 'build', 'manifest.json'), {
       rootAssetPath: rootAssetPath,
-      ignorePaths: ['pdf/'],
       extensionsRegex: /\.js/,
     })
   ]
