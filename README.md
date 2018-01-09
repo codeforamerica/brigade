@@ -37,6 +37,15 @@ Set up a [Python virtual environment](https://github.com/codeforamerica/howto/bl
 
 Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
 
+### Install Node, Yarn and Webpack
+
+    brew install node yarn
+    yarn install
+
+During development, run webpack.
+
+    ./node_modules/.bin/webpack --watch
+
 Then run the server in debug mode:
 
     python manage.py runserver
