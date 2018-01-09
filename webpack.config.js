@@ -5,6 +5,8 @@ var ManifestRevisionPlugin = require('manifest-revision-webpack-plugin');
 
 var rootAssetPath = './brigade/static';
 
+var publicPath = process.env.ASSET_PATH || '/assets/';
+
 module.exports = {
   entry: {
     application: rootAssetPath + '/js/application.js',
@@ -13,9 +15,9 @@ module.exports = {
 
   output: {
     path: path.resolve('./brigade/build/public'),
-    publicPath: 'http://localhost:5000/assets/',
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[id].[chunkhash].js'
+    chunkFilename: '[id].[chunkhash].js',
+    publicPath: publicPath
   },
 
   resolve: {
