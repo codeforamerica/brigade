@@ -10,7 +10,7 @@ var publicPath = process.env.ASSET_PATH || '/assets/';
 module.exports = {
   entry: {
     application: rootAssetPath + '/js/application.js',
-    style: rootAssetPath + '/css/style.css',
+    style: rootAssetPath + '/scss/style.scss',
   },
 
   output: {
@@ -32,8 +32,8 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/i,
-        use: ExtractTextPlugin.extract({ use: 'css-loader' }),
+        test: /\.scss$/i,
+        use: ExtractTextPlugin.extract({ use: ['css-loader','sass-loader'] }),
       },
       {
         test: /\.(jpe?g|png|gif|txt|svg([\?]?.*))$/i,
