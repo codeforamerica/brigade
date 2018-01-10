@@ -7,19 +7,16 @@
 @import 'core/base';
 
 // Atoms
-@import 'atoms/alert';
-@import 'atoms/card';
 @import 'atoms/list';
-@import 'atoms/panel';
 @import 'atoms/table';
 
 // Molecules
-
-
+@import 'molecules/alert';
+@import 'molecules/card';
+@import 'molecules/panel';
 
 // Organisms
 @import 'organisms/global-header';
-
 
 // Templates
 
