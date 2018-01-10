@@ -1,0 +1,18 @@
+@import '../core/variables';
+
+//
+// Global Header
+//
+
+.global-header {
+  margin-bottom : 0px;
+}
+
+@media (max-width: 40em) {
+
+  .global-header {
+    position: static;
+  }
+
+}
+

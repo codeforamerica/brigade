@@ -1,0 +1,25 @@
+@import '../core/variables';
+
+//
+// Panel
+//
+
+.panel__body {
+  padding: 15px;
+}
+
+.panel__header {
+  padding: 15px;
+  text-align: center;
+}
+
+.panel__footer {
+  padding: 15px;
+  font-size: small;
+  line-height: 1.4;
+}
+
+.panel--primary {
+  background-color: $color-primary;
+  color: #fff;
+}

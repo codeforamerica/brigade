@@ -1,0 +1,15 @@
+@import '../core/variables';
+
+//
+// List
+//
+
+.list--inline {
+  list-style-type: none;
+}
+
+.list--inline li {
+  display: inline;
+  /* The current bullet is a background image. Remove it for inline lists. */
+  background-image: none; 
+}

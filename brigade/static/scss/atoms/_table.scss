@@ -1,0 +1,40 @@
+@import '../core/variables';
+
+//
+// Table
+//
+
+table {
+  margin-top: 25px;
+}
+
+table .grey {
+  background-color: $color-gray-light;
+  border: solid $color-gray-light 2px;
+}
+
+thead th {
+  border-bottom: 2px solid $color-gray-light;
+}
+
+td {
+  text-align:center;
+  vertical-align:middle;
+}
+
+table .icon-checkmark {
+  color: $color-primary;
+}
+
+tbody th {
+  padding-left: 15px;
+}
+
+@media (max-width: 40em) {
+
+  table, 
+  thead th {
+    font-size: small;
+  }
+
+}

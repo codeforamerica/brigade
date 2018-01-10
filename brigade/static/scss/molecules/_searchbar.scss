@@ -1,0 +1,13 @@
+@import '../core/variables';
+
+//
+// Searchbar
+//
+
+.searchbar {
+  margin-left: 5px;
+}
+
+.searchbar .searchbar__input {
+  width: calc(100% - 100px);
+}

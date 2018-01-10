@@ -1,0 +1,36 @@
+@import '../core/variables';
+
+//
+// Card
+//
+
+.card {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-head {
+  color: $color-text-light;
+  background-color: $color-gray;
+  min-height: 29px;
+}
+
+.card-body h3 {
+  padding: 10px 0;
+  border-bottom: 1px solid $color-border-dark;
+}
+
+.card-head, 
+.card-body {
+  padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 95% !important;
+    margin: 0px !important;
+  }
+}
