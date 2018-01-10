@@ -29,7 +29,7 @@ class BrigadeTests(unittest.TestCase):
         if url.geturl() == cfapi.BASE_URL + '/organizations/TEST-ORG':
             return httmock.response(200, '{"city": "San Francisco, CA", "type": "Brigade", "name": "Code for San Francisco"}') # noqa
         if url.geturl() == cfapi.BASE_URL + "/organizations.geojson":
-            return httmock.response(200, '{"features" : [{ "id": "TEST-ORG", "properties" : { "id" : "TEST-ORG", "type" : "Brigade", "last_updated": 1510874211 } } ] }') # noqa
+            return httmock.response(200, '{"features" : [{ "id": "TEST-ORG", "properties" : { "id" : "TEST-ORG", "tags" : ["Brigade"], "last_updated": 1510874211 } } ] }') # noqa
         if url.geturl() == cfapi.BASE_URL + "/projects/1":
             return httmock.response(200, '''
                 {
