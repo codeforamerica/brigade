@@ -7,9 +7,9 @@
     {% if self.software() %}
       <a href="{{ url_for('.free_software_index') }}">&larr; Back to Free Software</a>
 
-      <div class="free-software__logo">
+      <p>
       {% block logo %}{% endblock %}
-      </div>
+      </p>
 
       {% block software %}{% endblock %}
     {% else %}

@@ -22,12 +22,14 @@
         <p>Search across thousands of civic technology projects.</p>
       {% endif %}
 
-      <form id="project-search" action="{{ request.path }}" method="get">
-        <p class="field">
-          <input id="project-search-bar" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button>
-        </p>
-
-      </form>
+      
+      <div class="searchbar">
+        <form id="project-search" action="{{ request.path }}" method="get">
+          <p class="field">
+            <input class="searchbar__input" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button>
+          </p>
+        </form>
+      </div>
 
       <ul id="projects" class="list-no-bullets">
       {% for project in projects %}

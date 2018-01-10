@@ -27,3 +27,10 @@
 .card-body {
   padding: 0 10px;
 }
+
+@media (max-width: 768px) {
+  .card {
+    width: 95% !important;
+    margin: 0px !important;
+  }
+}

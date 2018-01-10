@@ -1,0 +1,25 @@
+@import '../core/variables';
+
+//
+// Page: Projects
+//
+
+.project {
+  display: table-cell;
+  float: none;
+  padding-bottom: 8px;
+}
+
+.project h2 {
+  padding-top: 14px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+#project-search-section .card {
+  height: auto !important;
+  padding: 0px !important;
+  margin: 25px 5px 5px 5px !important;
+
+  width: calc(50% - 20px);
+}
