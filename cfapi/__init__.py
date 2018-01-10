@@ -21,9 +21,8 @@ def get_brigades(official_brigades_only=False):
             
             # If cfa_brigades_only=True, only return Official Brigades
             if official_brigades_only == True:
-                if ("Brigade" in org["properties"]["tags"] and 
-                    "Official" in org["properties"]["tags"]):
-                        brigades.append(org)
+                if "Official" in org["properties"]["tags"]:
+                    brigades.append(org)
             else:
                 brigades.append(org)
 
