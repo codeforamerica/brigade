@@ -104,22 +104,26 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin: 0px;
 }
 
-.Official, .official {
+.Official, 
+.official {
   background-color: #00a175 !important;
   color: white;
 }
 
-.Beta, .beta {
+.Beta, 
+.beta {
   background-color: #004b6a !important;
   color: white;
 }
 
-.Alpha, .alpha {
+.Alpha, 
+.alpha {
   background-color: #7ab5d6 !important;
   color: white;
 }
 
-.Experiment, .experiment {
+.Experiment, 
+.experiment {
   background-color: #69579C !important;
   color: white
 }
@@ -133,7 +137,11 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   margin-top: 0px;
 }
 
-#monitor a:link, #monitor a:visited, #monitor a:hover, #monitor a:focus, #monitor a:active {
+#monitor a:link, 
+#monitor a:visited, 
+#monitor a:hover, 
+#monitor a:focus, 
+#monitor a:active {
   color: #5a5a5a;
 }
 
