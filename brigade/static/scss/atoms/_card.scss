@@ -11,14 +11,14 @@
 }
 
 .card-head {
-  color: white;
-  background-color: #999595;
+  color: $color-text-light;
+  background-color: $color-gray;
   min-height: 29px;
 }
 
 .card-body h3 {
   padding: 10px 0;
-  border-bottom: 1px solid #999595;
+  border-bottom: 1px solid $color-border-dark;
 }
 
 .card-head, .card-body {

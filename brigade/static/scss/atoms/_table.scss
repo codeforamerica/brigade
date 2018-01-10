@@ -7,12 +7,12 @@ table {
 }
 
 table .grey {
-  background-color: #e5e5e5;
-  border: 2px solid #e5e5e5;
+  background-color: $color-gray-light;
+  border: solid $color-gray-light 2px;
 }
 
 thead th {
-  border-bottom: 2px solid #e5e5e5;
+  border-bottom: 2px solid $color-gray-light;
 }
 
 td {
@@ -21,7 +21,7 @@ td {
 }
 
 table .icon-checkmark {
-  color: #cf1b41;
+  color: $color-primary;
 }
 
 tbody th {

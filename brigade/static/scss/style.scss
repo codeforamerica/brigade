@@ -233,14 +233,14 @@ a.inkind-card {
 }
 
 a.inkind-card:hover {
-  border-color: #cf1b41;
+  border-color: $color-primary;
   border-bottom-width: 3px; /* override default hover style */
   color: #5a5a5a; /* TODO: extract this as a text color variable */
   cursor: pointer;
 }
 
 a.inkind-card:hover .button {
-  background-color: #cf1b41;
+  background-color: $color-primary;
 }
 
 .inkind-card .button {
