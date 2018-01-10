@@ -1,0 +1,26 @@
+//
+// Card
+//
+
+.card {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-head {
+  color: white;
+  background-color: #999595;
+  min-height: 29px;
+}
+
+.card-body h3 {
+  padding: 10px 0;
+  border-bottom: 1px solid #999595;
+}
+
+.card-head, .card-body {
+  padding: 0 10px;
+}

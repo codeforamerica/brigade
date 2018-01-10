@@ -1,9 +1,35 @@
+
+// Core
+@import 'core/variables';
+@import 'core/mixins';
+@import 'core/utilities';
+@import 'core/type';
+@import 'core/base';
+
+// Atoms
+@import 'atoms/alert';
+@import 'atoms/card';
+@import 'atoms/list';
+@import 'atoms/panel';
+@import 'atoms/table';
+
+// Molecules
+
+
+
+// Organisms
+@import 'organisms/global-header';
+
+
+// Templates
+
+
+// Pages
+@import 'pages/home';
+
+
 #checklist a {
   text-decoration: underline;
-}
-
-body {
-  color: #5a5a5a;
 }
 
 #banner {
@@ -13,10 +39,6 @@ body {
 
 .data {
   padding-top: 51px;
-}
-
-.global-header {
-  margin-bottom : 0px;
 }
 
 #map .leaflet-marker-icon
@@ -43,100 +65,8 @@ body {
   margin-left: 14px;
 }
 
-h2 {
-  font-weight: bold;
-}
-
 #current-projects {
   padding-bottom: 25px;
-}
-
-/* HOME PAGE */
-
-/* Home page: Overview section */
-body#home #overview {
-  
-}
-
-body#home #intro-panel {
-  min-height: 300px;
-}
-
-body#home #map-panel {
-  border-bottom: solid 1px #ccc;  
-}
-
-body#home #map-panel .panel__body {
-  padding: 0;
-}
-
-body#home #map {
-  height: 100%;
-  min-height: 300px;
-  min-height: 80vh;
-}
-
-@media all and (min-width: 736px) {
-  
-  body#home #overview {
-    height: 691px;
-    display: flex;
-    flex-direction: row;
-  }
-
-  body#home #intro-panel {
-    flex: 1;
-  }
-
-  body#home #map-panel {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-  }
-
-  body#home #map-panel .panel__body {
-    flex: 1;
-  }
-
-  body#home #map-panel .panel__footer {
-    flex: 0;
-    text-align: right;
-  }
-
-}
-
-/* Component: Panel */
-
-.panel__body {
-  padding: 15px;
-}
-
-.panel__header {
-  padding: 15px;
-  text-align: center;
-}
-
-.panel__footer {
-  padding: 15px;
-  font-size: small;
-  line-height: 1.4;
-}
-
-.panel--red {
-  background-color: rgba(204,39,62,0.85);
-  color: #fff;
-}
-
-/* Component: List */
-
-.list--inline {
-  list-style-type: none;
-}
-
-.list--inline li {
-  display: inline;
-  /* The current bullet is a background image. Remove it for inline lists. */
-  background-image: none; 
 }
 
 /* SIGN UP FORM*/
@@ -149,20 +79,10 @@ body#home #map {
   display: none;
 }
 
-.inline {
-  display: inline-block;
-}
 
-.center {
-  text-align: center;
-}
 
 /* MOBILE VIEW*/
 @media (max-width: 40em) {
-
-  .global-header {
-    position: static;
-  }
 
   main {
     margin-top: 50px;
@@ -181,10 +101,6 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
 }
 
 /* Brigade page*/
-
-.no-padding {
-  padding: 0px;
-}
 
 #title {
   color: white;
@@ -243,14 +159,7 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   padding-right: 14px;
 }
 
-.alert-success, .alert-failure, .alert-pending, .alert-None {
-  border: 0px;
-}
 
-.alert-pending, .alert-None {
-  background-color: #e5e5e5;
-  margin: 0 0 16px 0;
-}
 
 /* PROJECT SEARCH */
 
@@ -294,70 +203,11 @@ input[type="text"],input[type="email"],input[type="password"],input[type="search
   }
 }
 
-.card {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-}
-
-.card:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-.card-head {
-  color: white;
-  background-color: #999595;
-  min-height: 29px;
-}
-
-.card-body h3 {
-  padding: 10px 0;
-  border-bottom: 1px solid #999595;
-}
-
-.card-head, .card-body {
-  padding: 0 10px;
-}
-
 #more-projects {
   margin : 30px 0;
 }
 
-.red {
-  color: #cf1b41;
-}
 
-table {
-  margin-top: 25px;
-}
-
-table .grey {
-  background-color: #e5e5e5;
-  border: 2px solid #e5e5e5;
-}
-
-thead th {
-  border-bottom: 2px solid #e5e5e5;
-}
-
-td {
-  text-align:center;
-  vertical-align:middle;
-}
-
-table .icon-checkmark {
-  color: #cf1b41;
-}
-
-tbody th {
-  padding-left: 15px;
-}
-
-@media (max-width: 40em) {
-
-  table, thead th {
-    font-size: small;
-  }
-
-}
 
 .free-software__logo {
   margin: 40px 0;
@@ -420,17 +270,3 @@ a.inkind-card:hover .button {
     min-height: 0;
   }
 }
-
-/* HELPER CLASSES */
-
-/* Keep the element on one line: prevent the element breaking up over two lines unnecessarily */
-.one-line {
-  display: inline-block;
-}
-
-/* Padding */
-.padding-none { padding: 0; }
-.padding-top-none { padding-top: 0; }
-.padding-right-none { padding-right: 0; }
-.padding-bottom-none { padding-bottom: 0; }
-.padding-left-none { padding-left: 0; }

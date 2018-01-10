@@ -1,0 +1,23 @@
+//
+// Panel
+//
+
+.panel__body {
+  padding: 15px;
+}
+
+.panel__header {
+  padding: 15px;
+  text-align: center;
+}
+
+.panel__footer {
+  padding: 15px;
+  font-size: small;
+  line-height: 1.4;
+}
+
+.panel--red {
+  background-color: rgba(204,39,62,0.85);
+  color: #fff;
+}
