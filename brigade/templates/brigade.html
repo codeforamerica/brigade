@@ -74,7 +74,7 @@
               {% for event in brigade.current_events %}
                 <li class="icon-calendar">
                   <a href="{{event.event_url}}">{{event.name}}</a>
-                  {% if brigade.location %}
+                  {% if event.location %}
                     <p>{{event.location}}</p>
                   {% endif %}
                   <p>{{event.start_time | timesince}}</p>
