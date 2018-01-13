@@ -77,7 +77,7 @@
                   {% if event.location %}
                     <p>{{event.location}}</p>
                   {% endif %}
-                  <p>{{event.start_time | timesince}}</p>
+                  <p>{{event.start_time | format_time}}</p>
                 </li>
               {% endfor %}
             </ul>

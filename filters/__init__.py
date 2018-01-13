@@ -1,6 +1,10 @@
+import dateutil.parser
 import flask
 import jinja2
+
+
 from datetime import datetime
+
 
 filters = flask.Blueprint('filters', __name__)
 
@@ -92,3 +96,9 @@ def friendly_time(context, dt, past_="ago", future_="from now", default="Just no
             )
 
     return default
+
+
+@jinja2.contextfilter
+@filters.app_template_filter("format_time")
+def format_time(context, datetime_str):
+    return dateutil.parser.parse(datetime_str).strftime("%A, %b %d, %Y @ %I:%M %p")
