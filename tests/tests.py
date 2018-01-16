@@ -165,6 +165,12 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(200, response.status_code)
             self.assertIn('<loc>http://localhost/brigade/TEST-ORG/</loc>', response.data)
 
+    def test_filter_datetime(self):
+        from filters import format_time
+        test_time = "2018-12-25 18:30:00 -0800"
+        formatted_time = format_time(None, test_time)
+        self.assertEqual(formatted_time, "Tuesday, Dec 25, 2018 @ 6:30 PM")
+
 
 if __name__ == '__main__':
     unittest.main()
