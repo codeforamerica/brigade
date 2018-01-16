@@ -1,6 +1,5 @@
 import dateutil.parser
 import flask
-import jinja2
 
 
 from datetime import datetime
@@ -9,9 +8,8 @@ from datetime import datetime
 filters = flask.Blueprint('filters', __name__)
 
 
-@jinja2.evalcontextfilter
 @filters.app_template_filter("join_list")
-def join_list(eval_ctx, value):
+def join_list(value):
     values = list(value)
     if len(values) == 0:
         return ""
@@ -23,9 +21,8 @@ def join_list(eval_ctx, value):
         return ", ".join(values[0:-1]) + ', and ' + values[-1]
 
 
-@jinja2.contextfilter
 @filters.app_template_filter("brigade_description")
-def brigade_description(context, brigade):
+def brigade_description(brigade):
     if "Official" in brigade['type'] and "Brigade" in brigade['type']:
         return "{0} is a group of volunteers in {1} working on projects with government and " \
                "community partners to improve peoples' lives.".format(
@@ -36,9 +33,8 @@ def brigade_description(context, brigade):
                     brigade['name'], brigade['city'])
 
 
-@jinja2.contextfilter
 @filters.app_template_filter("split_hyphen")
-def split_hyphen(context, string):
+def split_hyphen(string):
     ''' Replaces hyphens in the passed string with spaces
     '''
     return string.replace("-", " ")
@@ -46,9 +42,8 @@ def split_hyphen(context, string):
 
 # see: http://flask.pocoo.org/snippets/33/
 # and: http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask # noqa
-@jinja2.contextfilter
 @filters.app_template_filter("timesince")
-def friendly_time(context, dt, past_="ago", future_="from now", default="Just now"):
+def friendly_time(dt, past_="ago", future_="from now", default="Just now"):
     ''' Returns string representing "time since" or "time until" e.g. 3 days ago, 5 hours from now etc.
     '''
 
@@ -98,7 +93,6 @@ def friendly_time(context, dt, past_="ago", future_="from now", default="Just no
     return default
 
 
-@jinja2.contextfilter
 @filters.app_template_filter("format_time")
-def format_time(context, datetime_str):
+def format_time(datetime_str):
     return dateutil.parser.parse(datetime_str).strftime("%A, %b %d, %Y @ %-I:%M %p")
