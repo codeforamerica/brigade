@@ -6,6 +6,7 @@
 @import 'core/base';
 
 // Atoms
+@import 'atoms/button';
 @import 'atoms/input';
 @import 'atoms/list';
 @import 'atoms/table';
@@ -19,6 +20,7 @@
 
 // Organisms
 @import 'organisms/global-header';
+@import 'organisms/component-grid';
 
 // Templates
 @import 'templates/brigade-profile';
