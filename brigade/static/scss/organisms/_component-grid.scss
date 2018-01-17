@@ -1,0 +1,22 @@
+@import '../core/variables';
+
+//
+// Grid
+//
+
+/* On wider screens, the grid component uses flexbox to create a row of evenly distributed items that take up the full width of the screen */
+
+@media (min-width: 40em) { 
+  .grid {
+    display: flex;
+    flex-direction: row;
+  }
+  .grid > .card {
+    margin-right: 15px; // TODO: Set up some standard spacing variables
+    flex: 1;
+    display: flex;
+  }
+  .grid:last-child.card {
+    margin-right: 0;
+  }
+}
