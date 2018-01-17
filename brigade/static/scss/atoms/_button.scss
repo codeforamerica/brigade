@@ -1,0 +1,9 @@
+@import '../core/variables';
+
+//
+// Button
+//
+
+.button {
+  box-sizing: border-box !important; // TODO: Get rid of !important (the old CfA stylesheet we're using right now overides the button box-sizing)
+}
