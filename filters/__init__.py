@@ -1,8 +1,13 @@
 import dateutil.parser
 import flask
+from jinja2 import evalcontextfilter, Markup, escape
 
 
 from datetime import datetime
+import re
+
+
+PARAGRAPH_RE = re.compile(r'(?:\r\n|\r|\n){2,}')
 
 
 filters = flask.Blueprint('filters', __name__)
@@ -96,3 +101,14 @@ def friendly_time(dt, past_="ago", future_="from now", default="Just now"):
 @filters.app_template_filter("format_time")
 def format_time(datetime_str):
     return dateutil.parser.parse(datetime_str).strftime("%A, %b %d, %Y @ %-I:%M %p")
+
+
+# copied from: http://flask.pocoo.org/snippets/28/ (in public domain)
+@filters.app_template_filter("nl2br")
+@evalcontextfilter
+def nl2br(eval_ctx, value):
+    result = u'\n\n'.join(u'<p>%s</p>' % p.replace('\n', Markup('<br>\n'))
+                          for p in PARAGRAPH_RE.split(escape(value)))
+    if eval_ctx.autoescape:
+        result = Markup(result)
+    return result

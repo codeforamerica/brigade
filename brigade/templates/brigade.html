@@ -75,7 +75,7 @@
                 <li class="icon-calendar">
                   <a href="{{event.event_url}}">{{event.name}}</a>
                   {% if event.location %}
-                    <p>{{event.location}}</p>
+                    <p>{{event.location | nl2br}}</p>
                   {% endif %}
                   <p>{{event.start_time | format_time}}</p>
                 </li>
