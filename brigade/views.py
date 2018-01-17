@@ -136,6 +136,11 @@ def free_software_show(software):
     return render_template(template_path)
 
 
+@app.route("/styleguide/")
+def styleguide():
+    return render_template("styleguide.html")
+
+
 @app.route("/brigade/projects")
 @app.route("/brigade/<brigadeid>/projects")
 def projects(brigadeid=None):

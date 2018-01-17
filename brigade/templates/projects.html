@@ -35,12 +35,9 @@
       {% for project in projects %}
         <li class="project card">
 
-          <div class="card-head">
-          </div>
+          <div class="card__body">
 
-          <div class="card-body">
-
-            <h3>{{project.name}}</h3>
+            <h3 class="card__title">{{project.name}}</h3>
 
             {% if project.description %}
               <p>{{project.description}}</p>
@@ -77,10 +74,11 @@
             {% endif %}
             </p>
 
-            <small>
+          </div> <!-- card-body -->
 
-            <p>
+          <div class="card__footer">
             {% if project.languages %}
+            <p>
             {% set comma = joiner(",") %}
               Written in
               {% for lang in project.languages %}{{ comma() }} <a href="projects?q={{ lang }}" data-analytics-category="Project Finder Click" title="Projects in {{ lang }}">{{ lang }}</a>{% endfor %}
@@ -92,16 +90,13 @@
             <p>
               Tagged with
               {% for tag in project.tags %}{{ comma() }} <a href="projects?q={{ tag }}" data-analytics-category="Project Finder Click" title="Projects tagged {{ tag }}">{{ tag }}</a>{% endfor %}
-            {% endif %}
             </p>
+            {% endif %}
 
             {% if project.last_updated %}
               <p>Updated {{project.last_updated | timesince}}</p>
             {% endif %}
-
-            </small>
-
-          </div> <!-- card-body -->
+          </div>
 
         </li> <!-- project card -->
 
