@@ -3,19 +3,95 @@
 
 {% block content %}
 <section>
+
   <div class="layout-semibreve">
 
-    <h2>Organizing a Brigade? We've got you covered.</h2>
-
+    <h1 class="title">Resources</h1>
+    <p class="subtitle">Organizing a Brigade? We've got you covered.</p>
     <p>Over the past four years, we’ve learned a lot about what works when organizing a Brigade. We’re excited to help you build a sustainable, civic hacking group in your community.</p>
-
     <p>Here are some resources to help you get started:</p>
-    <p><a href="checklist/">Brigade Organizer's Checklist</a>: Learn how Code for America supports civic hack nights and Official Brigades.</p>
-    <p><a href="playbook/">Brigade Organizer’s Playbook</a>: Deep dive into three areas key to running a sustainable Brigade.</p>
-    <p><a href="{{ url_for('.free_software_index') }}">Free Software Available to Brigades</a>: Learn about the software that vendors have donated for Brigades to use.</p>
 
-    <p><a href="https://cfa.typeform.com/to/uxPQH6" class="button button-l" target="_blank"  title="New-to-organizing form">New to organizing?</a> Tell us a little bit about yourself so we can help you get started.</p>
+    <div class="card-row">
+
+      <a href="https://docs.google.com/document/d/19bN5RWK5nQTpz0mHUViHrzHiommBUAMSztwNRzUcxYo/" class="card card--horizontal" target="_blank">
+        <div class="card__aside">
+          <div class="card__icon"><img src="{{ asset_url_for('images/icon_playbook.png') }}"></div>
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">Organizer’s Playbook</h2>
+          <p>The Playbook gives practical advice and real examples on running a sustainable Brigade.</p>
+          <p><small>It includes: guidance on hosting events, building a core team, and practicing user-centered design.</small></p>
+          <div class="card__action">
+            <div class="button">View Playbook <i class="fas fa-external-link-alt"></i></div>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://docs.google.com/document/d/16CL9TdmWV0hDY6c85PwtzUcu1VjeSeiDFD2CbtLKf7s/edit?usp=sharing" class="card card--horizontal" target="_blank">
+        <div class="card__aside">
+          <div class="card__icon">
+            <i class="fas fa-book"></i>
+          </div>
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">Organizer’s Handbook</h2>
+          <p>The Handbook points to the resources that CfA offers Brigades and how to take advantage of them.</p>
+          <p><small>It includes: how to use Expensify, information about the NAC and BATs, and how to get set up on Meetup.</small></p>
+          <div class="card__action">
+            <div class="button">View Handbook <i class="fas fa-external-link-alt"></i></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="card-row">
+
+      <a href="{{ url_for('.free_software_index') }}" class="card">
+        <div class="card__icon">
+          <i class="fas fa-laptop"></i>
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">Software Available to Brigades</h2>
+          <p>Learn about the software that vendors have donated for Brigades to use.</p>
+          <div class="card__action">
+            <div class="button">Explore Software</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="http://c4a.me/brigades" class="card" target="_blank">
+        <div class="card__icon">
+          <i class="fas fa-address-book"></i>
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">Brigade Contact Directory</h2>
+          <p>Want to reach out to a Brigade? Look them up in the up-to-date contact directory.</p>
+          <div class="card__action">
+            <div class="button">Use the Directory <i class="fas fa-external-link-alt"></i></div>
+          </div>
+        </div>
+      </a>
+      
+      <a href="https://docs.google.com/document/d/1c9Jbtdj_wKP2dDwxslXhBQoobzpTwsxkrSjAlLQdkI0/edit#heading=h.c8bc7axfomwl" class="card" target="_blank">
+        <div class="card__icon">
+          <i class="far fa-money-bill-alt"></i>
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">Fundraising Handbook</h2>
+          <p>Need help raising funds for your Brigade? Check out the Fundraising Handbook.</p>
+          <div class="card__action">
+            <div class="button">Read about Fundraising <i class="fas fa-external-link-alt"></i></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
   </div>
+
+</div>
+
 </section>
 
 {% endblock %}
