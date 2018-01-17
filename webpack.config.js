@@ -52,7 +52,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].[chunkhash].css'),
+    new ExtractTextPlugin('[name].[contenthash].css'),
     new ManifestRevisionPlugin(path.join('brigade', 'build', 'manifest.json'), {
       rootAssetPath: rootAssetPath,
       extensionsRegex: /\.js/,
