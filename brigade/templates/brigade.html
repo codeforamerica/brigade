@@ -70,14 +70,14 @@
         {% if brigade.current_events %}
         <div id="events" class="layout-minim">
             <h2>Current Events</h2>
-            <ul class="list-no-bullets list-icons">
+            <ul class="list--with-icons">
               {% for event in brigade.current_events %}
                 <li class="icon-calendar">
                   <a href="{{event.event_url}}">{{event.name}}</a>
-                  {% if brigade.location %}
-                    <p>{{event.location}}</p>
+                  {% if event.location %}
+                    <p>{{event.location | nl2br}}</p>
                   {% endif %}
-                  <p>{{event.start_time | timesince}}</p>
+                  <p>{{event.start_time | format_time}}</p>
                 </li>
               {% endfor %}
             </ul>
@@ -89,7 +89,7 @@
         {% if brigade.current_stories %}
         <div id="stories" class="layout-minim">
             <h2>Current Stories</h2>
-            <ul class="list-no-bullets list-icons">
+            <ul class="list--with-icons">
               {% for story in brigade.current_stories %}
                 <li class="icon-bullhorn">
                   <a href="{{story.link}}">{{story.title}}</a>

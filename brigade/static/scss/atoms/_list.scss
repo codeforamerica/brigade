@@ -13,3 +13,25 @@
   /* The current bullet is a background image. Remove it for inline lists. */
   background-image: none; 
 }
+
+.list--with-icons {
+  list-style: none;
+
+  li {
+    background-image: none;
+    padding-left: 60px;
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+
+    &::before {
+      font-size: 30px;
+      opacity: .7;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
