@@ -1,0 +1,19 @@
+@import '../core/variables';
+
+//
+// Card Row
+//
+
+@media (min-width: 40em) { 
+  .card-row {
+    display: flex;
+    flex-direction: row;
+    .card {
+      margin-right: 15px; // TODO: Set up some standard spacing variables
+      flex: 1;
+      display: flex;
+    }
+    /* Remove the right-margin from the last card in a row */
+    &:last-child.card { margin-right: 0; }
+  }  
+}
