@@ -34,6 +34,10 @@
   & > * > :last-child {
     margin-bottom: 0;
   }
+
+  /* Temporary fix to make paragraph margins less agressive in cards */
+  p { margin: 0 0 10px 0; } // TODO: Address paragraph margins globally
+
 }
 
 a.card {
