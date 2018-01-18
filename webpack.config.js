@@ -11,6 +11,8 @@ module.exports = {
   entry: {
     application: rootAssetPath + '/js/application.js',
     style: rootAssetPath + '/scss/style.scss',
+    cfaV3Style: rootAssetPath + '/scss/vendor/cfa-v3-style.css',
+    cfaV3Layout: rootAssetPath + '/scss/vendor/cfa-v3-layout.css',
   },
 
   output: {
@@ -32,11 +34,11 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.scss$/i,
+        test: /\.s?css$/i,
         use: ExtractTextPlugin.extract({ use: ['css-loader','sass-loader'] }),
       },
       {
-        test: /\.(jpe?g|png|gif|txt|svg([\?]?.*))$/i,
+        test: /\.(jpe?g|png|gif|txt|ico|eot|woff|ttf|otf|svg([\?]?.*))$/i,
         loaders: [
           'file-loader?context=' + rootAssetPath + '&name=[path][name].[hash].[ext]',
           // 'image-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
