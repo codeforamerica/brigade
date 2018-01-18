@@ -1,0 +1,31 @@
+{% extends "free_software.html" %}
+
+{% block logo %}
+<img src="{{ asset_url_for('images/software_meetup.png') }}" height="120" />
+{% endblock %}
+
+{% block software %}
+<h5>What is Meetup Pro?</h5>
+<p>As opposed to normal Meetup, Meetup Pro gives you a bunch of new cool data,
+options, and, most importantly, makes it possible for us to pay for your Meetup
+bill.</p>
+
+<p>You will still retain full control over your Meetup page as a co-organizer.</p>
+
+<h5>What do you get?</h5>
+<p>Code for America will pay for your Meetup out of the Brigade operating budget, saving you $180 a year.</p>
+<p>You'll be able to host as many events as you want, and we will be able to share with you some better statistics such as average RSVP and historical membership counts.</p>
+
+<h5>How do you get access?</h5>
+<ul>
+  <li>Opt in by telling us your Meetup url at: <a href="http://goo.gl/forms/eG5cRZcEPS" target="_blank">http://goo.gl/forms/eG5cRZcEPS</a></li>
+  <li>We’ll then join your group with our brigade-info@codeforamerica.org account.</li>
+  <li>You’ll promote us to be the main Organizer, while you remain a co-Organizer.</li>
+  <li>We’ll click some buttons on our end and then you’ll show up at http://www.meetup.com/pro/brigade/ and your bill will start to be paid by us.</li>
+</ul>
+
+<h5>How will CfA interact with your Meetup?</h5>
+<p>We’d like to use the messaging ability to send the occasional messages to your membership. These will be limited to things like “Announcing National Day of Civic Hacking” and a once a quarter reminder about signing up for the Code for America email list to get the latest updates.</p>
+
+<p>Oh, also, Meetup Pro costs us per-group, so we can only add Official Brigades. If you have already paid for your Meetup, then you’ve already paid... we can’t get you a refund. Sorry!</p>
+{% endblock %}
