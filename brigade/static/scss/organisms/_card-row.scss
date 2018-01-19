@@ -4,16 +4,22 @@
 // Card Row
 //
 
-@media (min-width: 40em) { 
-  .card-row {
+.card-row {
+
+  /* Only display cards in a row on wider screens */
+  @media (min-width: 40em) { 
     display: flex;
     flex-direction: row;
+
     .card {
-      margin-right: 15px; // TODO: Set up some standard spacing variables
       flex: 1;
-      display: flex;
+      margin-right: 15px; // TODO: Set up some standard spacing variables
     }
+
     /* Remove the right-margin from the last card in a row */
-    &:last-child.card { margin-right: 0; }
-  }  
+    &:last-child.card { 
+      margin-right: 0; 
+    }
+  }
+
 }
