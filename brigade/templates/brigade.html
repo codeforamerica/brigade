@@ -4,125 +4,104 @@
 
 {% block content %}
 
-  <section>
+<section>
 
-    <div class="slab-dark-blue">
-      <div class="layout-semibreve">
-        <h1>{{brigade.name}}</h1>
-        <p><a href="{{brigade.website}}">{{brigade.website}}</a> :: {{brigade.city}}</p>
-
-        {% if brigade.current_projects %}
-          <a href="./projects" class="button">Projects</a>
-          <!-- <a href="./projects/monitor" class="button">Project Monitor</a> -->
-        {% endif %}
-        <!-- <a href="./people" class="button">People</a> -->
-        {% if brigade.current_events %}
-          <a href=".#events" class="button">Events</a>
-        {% endif %}
-        {% if brigade.current_stories %}
-          <a href=".#stories" class="button">Stories</a>
-        {% endif %}
-          <a href=".#issues" class="button">Open Issues</a>
-      </div>
+  <div class="slab-dark-blue">
+    <div class="layout-semibreve">
+      <h1>{{brigade.name}}</h1>
+      <p><a href="{{brigade.website}}">{{brigade.website}}</a> :: {{brigade.city}}</p>
+      {% if brigade.current_events %}
+      <a href=".#events" class="button">Events</a>
+      {% endif %}
+      {% if brigade.current_projects %}
+      <a href="./projects" class="button">Projects</a>
+      {% endif %}
+      {% if brigade.current_stories %}
+      <a href=".#stories" class="button">Stories</a>
+      {% endif %}
+      <a href=".#issues" class="button">Open Issues</a>
     </div>
+  </div>
 
-    <div id="current-projects" class="slab-white">
-      <div class='layout-semibreve'>
-        <div class="layout-major-invert">
-
-          {% if brigade.current_projects %}
-            <h2 name="projects">Current Projects</h2>
-            {% for project in brigade.current_projects %}
-
-              <h3>{{project.name}}</h3>
-              {% if project.link_url %}
-                <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
-              {% endif %}
-
-              {% if project.code_url %}
-                <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
-              {% endif %}
-
-              <p>{{project.description}}</p>
-
-              <!-- {% for contributor in project.github_details.contributors %}
-                <img height="40" width="40" src="{{ contributor.avatar_url }}&s=40" style="border-radius: 5px;"/>
-              {% endfor %} -->
-
-              {% if project.last_updated %}
-                <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
-              {% endif %}
-
-              <hr />
-
-            {% endfor %}
-
-          {% endif %}
-
-        </div>
-
-      </div>
+  {% if brigade.current_events %}
+  <div class="slab-white">
+    <div class='layout-semibreve'>
+      <div id="events" class="layout-minim">
+        <h2>Upcoming Events</h2>
+        <ul class="list--with-icons">
+          {% for event in brigade.current_events %}
+          <li class="icon-calendar">
+            <a href="{{event.event_url}}">{{event.name}}</a>
+            {% if event.location %}
+            <p>{{event.location | nl2br}}</p>
+            {% endif %}
+            <p>{{event.start_time | format_time}}</p>
+          </li>
+          {% endfor %}
+        </ul>
+        <a href="{{brigade.events_url}}" class="button">More Events</a>
+      </div><!-- #events -->
     </div>
+  </div>
+  {% endif %}
 
-    <div class="slab-red">
-      <div class="layout-semibreve">
+  {% if brigade.current_projects %}
+  <div id="current-projects" class="slab-white">
+    <div class='layout-semibreve'>
+      <div class="layout-major-invert">
+        <h2 name="projects">Current Projects</h2>
 
-        {% if brigade.current_events %}
-        <div id="events" class="layout-minim">
-            <h2>Current Events</h2>
-            <ul class="list--with-icons">
-              {% for event in brigade.current_events %}
-                <li class="icon-calendar">
-                  <a href="{{event.event_url}}">{{event.name}}</a>
-                  {% if event.location %}
-                    <p>{{event.location | nl2br}}</p>
-                  {% endif %}
-                  <p>{{event.start_time | format_time}}</p>
-                </li>
-              {% endfor %}
-            </ul>
+        {% for project in brigade.current_projects %}
 
-            <a href="{{brigade.events_url}}" class="button">More Events</a>
-        </div><!-- #events -->
+        <h3>{{project.name}}</h3>
+        {% if project.link_url %}
+        <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
         {% endif %}
 
-        {% if brigade.current_stories %}
-        <div id="stories" class="layout-minim">
-            <h2>Current Stories</h2>
-            <ul class="list--with-icons">
-              {% for story in brigade.current_stories %}
-                <li class="icon-bullhorn">
-                  <a href="{{story.link}}">{{story.title}}</a>
-                  <p><br/></p>
-                </li>
-              {% endfor %}
-              <a href="{{brigade.rss}}" class="button">More Stories</a>
-            </ul>
-        </div><!-- #stories -->
+        {% if project.code_url %}
+        <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
         {% endif %}
+
+        <p>{{project.description}}</p>
+
+        {% if project.last_updated %}
+        <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
+        {% endif %}
+
+        <hr />
+
+        {% endfor %}        
 
       </div>
+
     </div>
+  </div>
+  {% endif %}
 
-    <div id="issues" class="layout-semibreve">
-      <h2>Open Github Issues</h2>
-      <p>Powered by the <a href="http://www.codeforamerica.org/geeks/civicissues">Civic Tech Issue Finder</a>.</p>
-      <iframe src="https://www.codeforamerica.org/geeks/civicissues/widget?organization_name={{brigadeid}}&number=3" width="100%" height="600px" frameBorder="0"></iframe>
-    </div><!-- #issues -->
+  {% if brigade.current_stories %}
+  <div class="slab-red">
+    <div class="layout-semibreve">
+      <div id="stories" class="layout-minim">
+        <h2>Current Stories</h2>
+        <ul class="list--with-icons">
+          {% for story in brigade.current_stories %}
+          <li class="icon-bullhorn">
+            <a href="{{story.link}}">{{story.title}}</a>
+            <p><br/></p>
+          </li>
+          {% endfor %}
+          <a href="{{brigade.rss}}" class="button">More Stories</a>
+        </ul>
+      </div><!-- #stories -->
+    </div>
+  </div>
+  {% endif %}
 
-    <!-- <div class="layout-minor-invert">
-          <h2>People</h2>
-          <h3>Captain</h3>
-          <ul>
-            <li>Persons Name</li>
-          </ul>
-          <h3>Core Team</h3>
-          <ul>
-            <li>Community Organizer</li>
-            <li>Story Teller</li>
-            <li>Delivery Lead</li>
-          </ul>
-        </div> -->
+  <div id="issues" class="layout-semibreve">
+    <h2>Open Github Issues</h2>
+    <p>Powered by the <a href="http://www.codeforamerica.org/geeks/civicissues">Civic Tech Issue Finder</a>.</p>
+    <iframe src="https://www.codeforamerica.org/geeks/civicissues/widget?organization_name={{brigadeid}}&number=3" width="100%" height="600px" frameBorder="0"></iframe>
+  </div><!-- #issues -->
 
-  </section>
+</section>
 {% endblock %}
