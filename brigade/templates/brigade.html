@@ -8,8 +8,26 @@
 
   <div class="slab-dark-blue">
     <div class="layout-semibreve">
-      <h1>{{brigade.name}}</h1>
-      <p><a href="{{brigade.website}}">{{brigade.website}}</a> :: {{brigade.city}}</p>
+      <h1>{{ brigade.name }}</h1>
+      <small>
+      <ul class="list--no-bullets">
+        {% if brigade.city %}
+        <li><i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}</li>
+        {% endif %}
+        {% if brigade.website %}
+        <li><i class="fas fa-fw fa-external-link-alt"></i> <a href="{{brigade.website}}" target="_blank">{{ brigade.website }}</a></li>
+        {% endif %}
+        {% if brigade.social_profiles.twitter %}
+        <li><i class="fab fa-fw fa-twitter"></i> <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" target="_blank">{{ brigade.social_profiles.twitter }}</a></li>
+        {% endif %}
+        {% if brigade.social_profiles.facebook %}
+        <li><i class="fab fa-fw fa-facebook"></i> <a href="{{ brigade.social_profiles.facebook }}" target="_blank">Facebook Page</a></li>
+        {% endif %}
+        {% if brigade.projects_list_url %}
+        <li><i class="fab fa-fw fa-github"></i> <a href="{{ brigade.projects_list_url }}" target="_blank">Github Profile</a></li>
+        {% endif %}
+      </ul>
+      </small>
       {% if brigade.current_events %}
       <a href=".#events" class="button">Events</a>
       {% endif %}
