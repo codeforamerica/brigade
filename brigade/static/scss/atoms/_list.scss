@@ -9,10 +9,10 @@
 }
 
 .list--inline li {
-  display: inline;
   /* The current bullet is a background image. Remove it for inline lists. */
-  background-image: none; 
-}
+  background-image: none;        
+  display: inline;
+  }
 
 .list--with-icons {
   list-style: none;
@@ -28,10 +28,18 @@
 
     &::before {
       font-size: 30px;
+      left: 0;
       opacity: .7;
       position: absolute;
       top: 0;
-      left: 0;
     }
+  }
+}
+
+.list--no-bullets {
+  list-style-type: none;
+  li {
+    background-image: none;
+    padding: 0;
   }
 }
