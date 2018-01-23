@@ -19,7 +19,6 @@
       {% if brigade.current_stories %}
       <a href=".#stories" class="button">Stories</a>
       {% endif %}
-      <a href=".#issues" class="button">Open Issues</a>
     </div>
   </div>
 
@@ -96,12 +95,6 @@
     </div>
   </div>
   {% endif %}
-
-  <div id="issues" class="layout-semibreve">
-    <h2>Open Github Issues</h2>
-    <p>Powered by the <a href="http://www.codeforamerica.org/geeks/civicissues">Civic Tech Issue Finder</a>.</p>
-    <iframe src="https://www.codeforamerica.org/geeks/civicissues/widget?organization_name={{brigadeid}}&number=3" width="100%" height="600px" frameBorder="0"></iframe>
-  </div><!-- #issues -->
 
 </section>
 {% endblock %}
