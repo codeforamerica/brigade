@@ -10,23 +10,23 @@
     <div class="layout-semibreve">
       <h1>{{ brigade.name }}</h1>
       <small>
-      <ul class="list--no-bullets">
-        {% if brigade.city %}
-        <li><i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}</li>
-        {% endif %}
-        {% if brigade.website %}
-        <li><i class="fas fa-fw fa-external-link-alt"></i> <a href="{{brigade.website}}" target="_blank">{{ brigade.website }}</a></li>
-        {% endif %}
-        {% if brigade.social_profiles.twitter %}
-        <li><i class="fab fa-fw fa-twitter"></i> <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" target="_blank">{{ brigade.social_profiles.twitter }}</a></li>
-        {% endif %}
-        {% if brigade.social_profiles.facebook %}
-        <li><i class="fab fa-fw fa-facebook"></i> <a href="{{ brigade.social_profiles.facebook }}" target="_blank">Facebook Page</a></li>
-        {% endif %}
-        {% if brigade.projects_list_url %}
-        <li><i class="fab fa-fw fa-github"></i> <a href="{{ brigade.projects_list_url }}" target="_blank">Github Profile</a></li>
-        {% endif %}
-      </ul>
+        <ul class="list--no-bullets">
+          {% if brigade.city %}
+          <li><i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}</li>
+          {% endif %}
+          {% if brigade.website %}
+          <li><i class="fas fa-fw fa-external-link-alt"></i> <a href="{{brigade.website}}" target="_blank">{{ brigade.website }}</a></li>
+          {% endif %}
+          {% if brigade.social_profiles.twitter %}
+          <li><i class="fab fa-fw fa-twitter"></i> <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" target="_blank">{{ brigade.social_profiles.twitter }}</a></li>
+          {% endif %}
+          {% if brigade.social_profiles.facebook %}
+          <li><i class="fab fa-fw fa-facebook"></i> <a href="{{ brigade.social_profiles.facebook }}" target="_blank">Facebook Page</a></li>
+          {% endif %}
+          {% if brigade.projects_list_url %}
+          <li><i class="fab fa-fw fa-github"></i> <a href="{{ brigade.projects_list_url }}" target="_blank">Github Profile</a></li>
+          {% endif %}
+        </ul>
       </small>
       {% if brigade.current_events %}
       <a href=".#events" class="button">Events</a>
@@ -66,31 +66,36 @@
   <div id="current-projects" class="slab-white">
     <div class='layout-semibreve'>
       <div class="layout-major-invert">
-        <h2 name="projects">Current Projects</h2>
+        <h2 id="projects">Current Projects</h2>
 
         {% for project in brigade.current_projects %}
+        <div class="card">
+          <div class="card__body">
+            <h3 class="card__title">{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <p>
 
-        <h3>{{project.name}}</h3>
-        {% if project.link_url %}
-        <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
-        {% endif %}
+              {% if project.code_url %}
+              <a href="{{ project.code_url }}" target="_blank"><i class="fab fa-github"></i> View on Github</a>
+              {% endif %}
 
-        {% if project.code_url %}
-        <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
-        {% endif %}
+              {% if project.link_url %}
+              <a href="{{ project.link_url }}" class="button" target="_blank">Visit Project <i class="fas fa-external-link-alt"></i></a>
+              {% endif %}
 
-        <p>{{project.description}}</p>
+            </p>
+          </div>
 
-        {% if project.last_updated %}
-        <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
-        {% endif %}
+          {% if project.last_updated %}
+          <div class="card__footer">
+            Last updated: {{project.last_updated | timesince}}
+          </div>
+          {% endif %}
 
-        <hr />
-
-        {% endfor %}        
+        </div>
+        {% endfor %}
 
       </div>
-
     </div>
   </div>
   {% endif %}
