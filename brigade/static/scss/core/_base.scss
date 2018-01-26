@@ -7,3 +7,8 @@
 body {
   color: $color-text-dark;
 }
+
+main {
+  box-sizing: content-box;
+  padding: 0 $site-margins;
+}
