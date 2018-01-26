@@ -3,19 +3,67 @@
 
 {% block content %}
 <section>
+
   <div class="layout-semibreve">
 
-    <h2>Organizing a Brigade? We've got you covered.</h2>
-
-    <p>Over the past four years, we’ve learned a lot about what works when organizing a Brigade. We’re excited to help you build a sustainable, civic hacking group in your community.</p>
-
+    <h1 class="title">Resources</h1>
+    <p class="subtitle">Organizing a Brigade? We've got you covered.</p>
+    <p>Over the past five years, our community has learned a lot about what works when organizing a Brigade. We’re excited to help you build a sustainable, civic hacking group in your community.</p>
     <p>Here are some resources to help you get started:</p>
-    <p><a href="checklist/">Brigade Organizer's Checklist</a>: Learn how Code for America supports civic hack nights and Official Brigades.</p>
-    <p><a href="playbook/">Brigade Organizer’s Playbook</a>: Deep dive into three areas key to running a sustainable Brigade.</p>
-    <p><a href="{{ url_for('.free_software_index') }}">Free Software Available to Brigades</a>: Learn about the software that vendors have donated for Brigades to use.</p>
 
-    <p><a href="https://cfa.typeform.com/to/uxPQH6" class="button button-l" target="_blank"  title="New-to-organizing form">New to organizing?</a> Tell us a little bit about yourself so we can help you get started.</p>
+    <div class="card-row">
+
+      <a href="https://docs.google.com/document/d/19bN5RWK5nQTpz0mHUViHrzHiommBUAMSztwNRzUcxYo/" class="card" target="_blank" title="Playbook Google Doc view">
+        <div class="card__icon">
+          <i class="fas fa-tasks"></i>
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">Organizer’s Playbook</h2>
+          <p>The Playbook gives practical advice and real examples on starting and running a sustainable Brigade.</p>
+          <p><small>It includes: guidance on hosting hack nights, building a core team, and practicing user-centered design.</small></p>
+        </div>
+        <div class="card__action">
+          <div class="button">View Playbook <i class="fas fa-external-link-alt"></i></div>
+        </div>
+      </a>
+
+      <a href="https://docs.google.com/document/d/16CL9TdmWV0hDY6c85PwtzUcu1VjeSeiDFD2CbtLKf7s/edit?usp=sharing" class="card" target="_blank" title="Handbook Google Doc view">
+
+        <div class="card__icon">
+          <i class="fas fa-book"></i>
+        </div>
+
+        <div class="card__body">
+          <h2 class="card__title">Organizer’s Handbook</h2>
+          <p>The Handbook points to the resources that CfA offers Brigades and how to take advantage of them.</p>
+          <p><small>It includes: how to get set up on Meetup, how to use Expensify, and information about the National Advisory Council (NAC).</small></p>
+        </div>
+        <div class="card__action">
+          <div class="button">View Handbook <i class="fas fa-external-link-alt"></i></div>
+        </div>
+      </a>
+
+      <a href="{{ url_for('.free_software_index') }}" class="card">
+        <div class="card__icon">
+          <i class="fas fa-laptop"></i>
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">Software Available to Brigades</h2>
+          <p>Learn about the software that vendors have donated for Brigades to use.</p>
+          <p><small>It includes: cloud hosting, communication, mapping, and other software.</small></p>
+        </div>
+        <div class="card__action">
+          <div class="button">Explore Software</div>
+        </div>
+      </a>
+
+    </div>
+
+    <p>Notice a resource that's missing? Let us know at <a href="maitlo:brigade-info@codeforamerica.org">brigade-info@codeforamerica.org</a></p>
+    <p>New to organizing? <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank" title="New-to-organizing form">Tell us about yourself</a> and we'll get in touch to help you get started.</p>
+    
   </div>
+
 </section>
 
 {% endblock %}
