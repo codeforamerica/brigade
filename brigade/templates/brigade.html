@@ -4,55 +4,56 @@
 
 {% block content %}
 
-  <section id="overview" class="slab slab-dark-blue">
-    <div class="grid-box">
-      <h1 class="slab__title">{{ brigade.name }}</h1>
-      <small>
-        <ul class="list--no-bullets">
-          {% if brigade.city %}
-          <li><i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}</li>
-          {% endif %}
-          {% if brigade.website %}
-          <li><i class="fas fa-fw fa-external-link-alt"></i> <a href="{{brigade.website}}" target="_blank">{{ brigade.website }}</a></li>
-          {% endif %}
-          {% if brigade.social_profiles.twitter %}
-          <li><i class="fab fa-fw fa-twitter"></i> <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" target="_blank">{{ brigade.social_profiles.twitter }}</a></li>
-          {% endif %}
-          {% if brigade.social_profiles.facebook %}
-          <li><i class="fab fa-fw fa-facebook"></i> <a href="{{ brigade.social_profiles.facebook }}" target="_blank">Facebook Page</a></li>
-          {% endif %}
-          {% if brigade.projects_list_url %}
-          <li><i class="fab fa-fw fa-github"></i> <a href="{{ brigade.projects_list_url }}" target="_blank">Github Profile</a></li>
-          {% endif %}
-        </ul>
-      </small>
+<header id="intro" class="slab slab-dark-blue">
+  <div class="grid-box">
+    <h1 class="slab__title">{{ brigade.name }}</h1>
+    <small>
+      <ul class="list--no-bullets">
+        {% if brigade.city %}
+        <li><i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}</li>
+        {% endif %}
+        {% if brigade.website %}
+        <li><i class="fas fa-fw fa-external-link-alt"></i> <a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a></li>
+        {% endif %}
+        {% if brigade.social_profiles.twitter %}
+        <li><i class="fab fa-fw fa-twitter"></i> <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" target="_blank">{{ brigade.social_profiles.twitter }}</a></li>
+        {% endif %}
+        {% if brigade.social_profiles.facebook %}
+        <li><i class="fab fa-fw fa-facebook"></i> <a href="{{ brigade.social_profiles.facebook }}" target="_blank">Facebook Page</a></li>
+        {% endif %}
+        {% if brigade.projects_list_url %}
+        <li><i class="fab fa-fw fa-github"></i> <a href="{{ brigade.projects_list_url }}" target="_blank">Github Profile</a></li>
+        {% endif %}
+      </ul>
+    </small>
+    <nav>
       {% if brigade.current_events %}
       <a href=".#events" class="button">Events</a>
       {% endif %}
       {% if brigade.current_projects %}
-      <a href="./projects" class="button">Projects</a>
+      <a href=".#projects" class="button">Projects</a>
       {% endif %}
       {% if brigade.current_stories %}
       <a href=".#stories" class="button">Stories</a>
       {% endif %}
-    </div>
-  </section>
+    </nav>
+  </div>
+</header>
 
-  <div class="grid-box">
+<div class="grid-box">
 
-    <div class="width-three-fourths">
+  <div class="width-three-fourths">
 
-      {% if brigade.current_events %}
-      <section id="events" class="slab slab-white" >
-        <div class="grid-box">
-          <h2>Events</h2>
-          
-          {% set event = brigade.current_events[0] %}
-          <div class="card card--horizontal">
-            <div class="card__header">
+    {% if brigade.current_events %}
+    <section id="events" class="slab slab-white" >
+      <div class="grid-box">
+        <h2>Events</h2>
+
+        {% set event = brigade.current_events[0] %}
+        <div class="card card--horizontal">
+          <div class="card__body">
+            <div class="card__content">
               <label>Next event</label>
-            </div>
-            <div class="card__body">
               <h3 class="card__title"><a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a></h3>
               <ul class="list--no-bullets">
                 {% if event.location %}
@@ -60,13 +61,19 @@
                 {% endif %}
                 <li><i class="far fa-fw fa-calendar"></i> {{ event.start_time | format_time }}</li>
               </ul>
-              <a href="{{ event.event_url }}" target="_blank" class="button">RSVP on Meetup <i class="fas fa-external-link-alt"></i></a>
+              <div class="card__action">
+                <a href="{{ event.event_url }}" target="_blank" class="button">RSVP on Meetup <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="card__aside">
+              <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ event.location }}&zoom=14&size=400x300&maptype=roadmap&markers=color:red|{{ event.location }}&key=AIzaSyBHX1yIpSXDiAFbfkxphY1G5NQykdJ_MRs">
             </div>
           </div>
+        </div>
 
-          {% if brigade.current_events[1] %}
-          {% set event = brigade.current_events[1] %}
-          <h5>Other upcoming events</h3>
+        {% if brigade.current_events[1] %}
+        {% set event = brigade.current_events[1] %}
+        <h5>Other upcoming events</h3>
           <ul>
             <li><strong><a href="{{ event.url }}" target="_blank">{{ event.name }}</a></strong> ({{event.start_time | format_time}})</li>
           </ul>
@@ -79,60 +86,68 @@
       {% if brigade.current_projects %}
       <section id="projects" class="slab slab-white">
         <div class="grid-box">
-          <div class="layout-major-invert">
-            <h2 id="projects">Current Projects</h2>
+
+          <h2 id="projects">Current Projects</h2>
+
+          <div class="grid-box">
 
             {% for project in brigade.current_projects %}
-            <div class="card">
-              <div class="card__body">
-                <h3 class="card__title">{{ project.name }}</h3>
-                <p>{{ project.description }}</p>
-                <p>
+            <div class="width-one-half">
+              <div class="card">
+                <div class="card__body">
+                  <h3 class="card__title">{{ project.name }}</h3>
+                  <p>{{ project.description }}</p>
+                  <p>
 
-                  {% if project.code_url %}
-                  <a href="{{ project.code_url }}" target="_blank"><i class="fab fa-github"></i> View on Github</a>
-                  {% endif %}
+                    {% if project.code_url %}
+                    <a href="{{ project.code_url }}" target="_blank"><i class="fab fa-github"></i> View on Github</a>
+                    {% endif %}
 
-                  {% if project.link_url %}
-                  <a href="{{ project.link_url }}" class="button" target="_blank">Visit Project <i class="fas fa-external-link-alt"></i></a>
-                  {% endif %}
+                    {% if project.link_url %}
+                    <a href="{{ project.link_url }}" class="button" target="_blank">Visit Project <i class="fas fa-external-link-alt"></i></a>
+                    {% endif %}
 
-                </p>
+                  </p>
+                </div>
+
+                {% if project.last_updated %}
+                <div class="card__footer">
+                  Last updated: {{project.last_updated | timesince}}
+                </div>
+                {% endif %}
+
               </div>
-
-              {% if project.last_updated %}
-              <div class="card__footer">
-                Last updated: {{project.last_updated | timesince}}
-              </div>
-              {% endif %}
-
             </div>
+
+            {%- if loop.index is even %}
+          </div><div class="grid-box">
+            {% endif %}
+
             {% endfor %}
 
           </div>
+
+          
         </div>
       </section>
       {% endif %}
 
       {% if brigade.current_stories %}
-      <section id="stories" class="slab slab-red">
+      <section id="stories" class="slab">
         <div class="grid-box">
-          <div id="stories" class="layout-minim">
-            <h2>Current Stories</h2>
-            <ul class="list--with-icons">
-              {% for story in brigade.current_stories %}
-              <li class="icon-bullhorn">
-                <a href="{{story.link}}">{{story.title}}</a>
-                <p><br/></p>
-              </li>
-              {% endfor %}
-              <a href="{{brigade.rss}}" class="button">More Stories</a>
-            </ul>
-          </div><!-- #stories -->
+          <h2>Current Stories</h2>
+          <ul class="list--with-icons">
+            {% for story in brigade.current_stories %}
+            <li class="icon-bullhorn">
+              <a href="{{ story.link }}">{{story.title}}</a>
+              <p><br/></p>
+            </li>
+            {% endfor %}
+            <a href="{{ brigade.rss }}" class="button">More Stories</a>
+          </ul>
         </div>
       </section>
       {% endif %}
-
     </div>
     
     <div class="width-one-fourth">
@@ -140,4 +155,4 @@
 
   </div>
 
-{% endblock %}
+  {% endblock %}
