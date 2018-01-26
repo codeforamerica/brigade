@@ -28,7 +28,7 @@ def join_list(value):
 
 @filters.app_template_filter("brigade_description")
 def brigade_description(brigade):
-    if "Official" in brigade['type'] and "Brigade" in brigade['type']:
+    if "tags" in brigade and "Brigade" in brigade["tags"]:
         return "{0} is a group of volunteers in {1} working on projects with government and " \
                "community partners to improve peoples' lives.".format(
                     brigade['name'], brigade['city'])
