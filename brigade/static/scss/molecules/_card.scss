@@ -7,9 +7,15 @@
 .card {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   font-weight: inherit;
   margin: 15px 0;
+
+  /* Make the parts of each card full-width by default */
+  & > * {
+    flex: 100% 1;
+  }
 
   &:hover {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -69,6 +75,24 @@ a.card {
   }
 }
 
+.card__aside {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 150px;
+  position: relative;
+  text-align: center;
+
+  img {
+    height: 100%;
+    left: 0;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
 .card__footer {
   border-top: solid $color-border-light 1px;
   font-size: small;
@@ -88,40 +112,26 @@ a.card {
 
 .card--horizontal {
 
+  .card__body {
+    padding: 0;
+  }
+  .card__content {
+    padding: 15px;
+  }
+
   @media (min-width: 40em) {
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    .card__header {
-      flex: 100%;
-    }
-
-    .card__aside {
-      align-items: center;
-      border-right: solid $color-border-light 1px;
-      display: flex;
-      flex: 1 auto;
-      justify-content: center;
-      text-align: center;
-    }
-
     .card__body {
-      flex: 3 0;
+      display: flex;
+      flex-direction: row;
     }
-
+    .card__content {
+      flex: 3;
+    }
+    .card__aside {
+      flex: 2;
+      flex-shrink: 0;
     .card__title {
       text-align: left;
     }
-
-    .card__action {
-      border-top: solid $color-border-light 1px;
-      flex: 100%;
-      padding: 15px;
-    }
-
-    .card__footer {
-      flex: 100%;
-    }
   }
-  
 }
