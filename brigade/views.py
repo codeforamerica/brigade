@@ -31,6 +31,11 @@ def index():
 
 
 @app.route('/brigade/map')
+def brigade_map():
+    return redirect(url_for('.map'), code=301)
+
+
+@app.route('/map')
 def map():
     brigades = cfapi.get_brigades(official_brigades_only=True)
     return render_template("map.html", brigades=brigades)
