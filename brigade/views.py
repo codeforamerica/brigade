@@ -6,7 +6,6 @@ import cfapi
 from operator import itemgetter
 from requests import get
 
-import json
 import logging
 
 
@@ -22,10 +21,7 @@ requests_logger.setLevel(logging.WARNING)
 #
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
-    brigades = cfapi.get_brigades()
-    brigades = json.loads(brigades)
-    brigades.sort(key=lambda x: x['properties']['city'])
-    return render_template("brigade_list.html", brigades=brigades)
+    return redirect(url_for('.index'), code=301)
 
 
 @app.route('/brigade/')
