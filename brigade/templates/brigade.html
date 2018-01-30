@@ -73,86 +73,64 @@
 
         {% if brigade.current_events[1] %}
         {% set event = brigade.current_events[1] %}
-        <h5>Other upcoming events</h3>
-          <ul>
-            <li><strong><a href="{{ event.url }}" target="_blank">{{ event.name }}</a></strong> ({{event.start_time | format_time}})</li>
-          </ul>
-          {% endif %}
+        <h5>Other upcoming events</h5>
+        <ul>
+          <li><strong><a href="{{ event.url }}" target="_blank">{{ event.name }}</a></strong> ({{event.start_time | format_time}})</li>
+        </ul>
+        {% endif %}
+      </div>
+    </section>
+    {% endif %}
 
-        </div>
-      </section>
+    {% if brigade.current_projects %}
+    <section id="projects" class="slab slab-white">
+
+      <h2>Current Projects</h2>
+
+      {% for project in brigade.current_projects %}
+
+      <h3>{{project.name}}</h3>
+
+      {% if project.link_url %}
+      <p><a href="{{project.link_url}}" class="icon-rocket">{{project.link_url}}</a></p>
       {% endif %}
 
-      {% if brigade.current_projects %}
-      <section id="projects" class="slab slab-white">
-        <div class="grid-box">
-
-          <h2 id="projects">Current Projects</h2>
-
-          <div class="grid-box">
-
-            {% for project in brigade.current_projects %}
-            <div class="width-one-half">
-              <div class="card">
-                <div class="card__body">
-                  <h3 class="card__title">{{ project.name }}</h3>
-                  <p>{{ project.description }}</p>
-                  <p>
-
-                    {% if project.code_url %}
-                    <a href="{{ project.code_url }}" target="_blank"><i class="fab fa-github"></i> View on Github</a>
-                    {% endif %}
-
-                    {% if project.link_url %}
-                    <a href="{{ project.link_url }}" class="button" target="_blank">Visit Project <i class="fas fa-external-link-alt"></i></a>
-                    {% endif %}
-
-                  </p>
-                </div>
-
-                {% if project.last_updated %}
-                <div class="card__footer">
-                  Last updated: {{project.last_updated | timesince}}
-                </div>
-                {% endif %}
-
-              </div>
-            </div>
-
-            {%- if loop.index is even %}
-          </div><div class="grid-box">
-            {% endif %}
-
-            {% endfor %}
-
-          </div>
-
-          
-        </div>
-      </section>
+      {% if project.code_url %}
+      <p><a href="{{project.code_url}}" class="icon-github2">{{project.code_url}}</a></p>
       {% endif %}
 
-      {% if brigade.current_stories %}
-      <section id="stories" class="slab">
-        <div class="grid-box">
-          <h2>Current Stories</h2>
-          <ul class="list--with-icons">
-            {% for story in brigade.current_stories %}
-            <li class="icon-bullhorn">
-              <a href="{{ story.link }}">{{story.title}}</a>
-              <p><br/></p>
-            </li>
-            {% endfor %}
-            <a href="{{ brigade.rss }}" class="button">More Stories</a>
-          </ul>
-        </div>
-      </section>
+      <p>{{project.description}}</p>
+
+      {% if project.last_updated %}
+      <p><small>Last Updated: {{project.last_updated | timesince}}</small></p>
       {% endif %}
-    </div>
-    
-    <div class="width-one-fourth">
-    </div>
+
+      <hr />
+
+      {% endfor %}        
+
+    </section>
+    {% endif %}
+
+    {% if brigade.current_stories %}
+    <section id="stories" class="slab">
+      <div class="grid-box">
+        <h2>Current Stories</h2>
+        <ul class="list--with-icons">
+          {% for story in brigade.current_stories %}
+          <li class="icon-bullhorn">
+            <a href="{{ story.link }}">{{story.title}}</a>
+            <p><br/></p>
+          </li>
+          {% endfor %}
+          <a href="{{ brigade.rss }}" class="button">More Stories</a>
+        </ul>
+      </div>
+    </section>
+    {% endif %}
 
   </div>
 
-  {% endblock %}
+</div>
+
+{% endblock %}
