@@ -7,25 +7,36 @@
 <header id="intro" class="slab slab-dark-blue">
   <div class="grid-box">
     <h1 class="slab__title">{{ brigade.name }}</h1>
-    <small>
-      <ul class="list--no-bullets">
+      <p>
         {% if brigade.city %}
-        <li><i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}</li>
+        <i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}<br>
         {% endif %}
         {% if brigade.website %}
-        <li><i class="fas fa-fw fa-external-link-alt"></i> <a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a></li>
+        <i class="fas fa-fw fa-globe"></i> <a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a>
         {% endif %}
-        {% if brigade.social_profiles.twitter %}
-        <li><i class="fab fa-fw fa-twitter"></i> <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" target="_blank">{{ brigade.social_profiles.twitter }}</a></li>
+      </p>
+      <p>
+        {% if brigade.events_url and 'meetup.com' in brigade.events_url %}
+        <a href="{{ brigade.events_url }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-meetup"></i> Meetup
+        </a>
         {% endif %}
-        {% if brigade.social_profiles.facebook %}
-        <li><i class="fab fa-fw fa-facebook"></i> <a href="{{ brigade.social_profiles.facebook }}" target="_blank">Facebook Page</a></li>
+        {% if brigade.social_profiles and brigade.social_profiles.twitter %}
+        <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-twitter"></i> {{ brigade.social_profiles.twitter }}
+        </a>
         {% endif %}
-        {% if brigade.projects_list_url %}
-        <li><i class="fab fa-fw fa-github"></i> <a href="{{ brigade.projects_list_url }}" target="_blank">Github Profile</a></li>
+        {% if brigade.social_profiles and brigade.social_profiles.facebook %}
+        <a href="{{ brigade.social_profiles.facebook }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-facebook"></i> Facebook
+        </a>
         {% endif %}
-      </ul>
-    </small>
+        {% if brigade.projects_list_url and 'github.com' in brigade_projects_list_url %}
+        <a href="{{ brigade.projects_list_url }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-github"></i> Github
+        </a>
+        {% endif %}
+      </p>
   </div>
 </header>
 
