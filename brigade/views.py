@@ -124,12 +124,12 @@ def brigade_about():
 
 @app.route("/brigade/organize/<page>")
 def organize_page(page=None):
-    return redirect(url_for('.organize'), code=301)
+    return redirect(url_for('.resources'), code=301)
 
 
-@app.route("/brigade/organize/")
-def organize():
-    return render_template("organize.html")
+@app.route("/resources")
+def resources():
+    return render_template("resources.html")
 
 
 @app.route("/brigade/tools/")
