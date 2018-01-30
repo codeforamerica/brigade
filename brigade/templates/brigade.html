@@ -50,35 +50,44 @@
         <h2>Events</h2>
 
         {% set event = brigade.current_events[0] %}
-        <div class="card card--horizontal">
-          <div class="card__body">
-            <div class="card__content">
-              <label>Next event</label>
-              <h3 class="card__title"><a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a></h3>
-              <ul class="list--no-bullets">
-                {% if event.location %}
-                <li><i class="fas fa-fw fa-map-marker"></i> {{ event.location }}</li>
-                {% endif %}
-                <li><i class="far fa-fw fa-calendar"></i> {{ event.start_time | format_time }}</li>
-              </ul>
-              <div class="card__action">
-                <a href="{{ event.event_url }}" target="_blank" class="button">RSVP on Meetup <i class="fas fa-external-link-alt"></i></a>
+
+        {# If a map will be drawn, show the card full-width, otherwise only two-thirds width #}
+        <div class="{% if event.lat and event.lon %}width-one-whole{% else %}width-two-thirds{% endif %}">
+
+          <div class="card card--horizontal">
+            <div class="card__body">
+              <div class="card__content">
+                <label>Next event</label>
+                <h3 class="card__title"><a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a></h3>
+                <ul class="list--no-bullets">
+                  {% if event.location %}
+                  <li><i class="fas fa-fw fa-map-marker"></i> {{ event.location }}</li>
+                  {% endif %}
+                  <li><i class="far fa-fw fa-calendar"></i> {{ event.start_time | format_time }}</li>
+                </ul>
+                <div class="card__action">
+                  <a href="{{ event.event_url }}" target="_blank" class="button"><i class="fab fa-fw fa-meetup"></i> View event on Meetup</a>
+                </div>
               </div>
-            </div>
-            <div class="card__aside">
-              <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ event.location }}&zoom=14&size=400x300&maptype=roadmap&markers=color:red|{{ event.location }}&key=AIzaSyBHX1yIpSXDiAFbfkxphY1G5NQykdJ_MRs">
+              
+              {% if event.lat and event.lon %}
+              <div class="card__aside">
+                <img src='https://maps.googleapis.com/maps/api/staticmap?center="{{ event.lat }},{{ event.lon }}"&zoom=14&size=400x300&maptype=roadmap&markers=color:red|"{{ event.lat }},{{ event.lon }}"&key=AIzaSyBHX1yIpSXDiAFbfkxphY1G5NQykdJ_MRs'>
+              </div>
+              {% endif %}
             </div>
           </div>
-        </div>
 
-        {% if brigade.current_events[1] %}
-        {% set event = brigade.current_events[1] %}
-        <h5>Other upcoming events</h5>
-        <ul>
-          <li><strong><a href="{{ event.url }}" target="_blank">{{ event.name }}</a></strong> ({{event.start_time | format_time}})</li>
-        </ul>
-        {% endif %}
+        </div>
       </div>
+
+      {% if brigade.current_events[1] %}
+      {% set event = brigade.current_events[1] %}
+      <div class="grid-box">
+        <strong>Other events:</strong> <a href="{{ event.url }}" target="_blank">{{ event.name }}</a> ({{event.start_time | format_time}})
+      </div>
+      {% endif %}
+
     </section>
     {% endif %}
 
