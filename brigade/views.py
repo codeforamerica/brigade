@@ -112,9 +112,14 @@ def numbers():
     return render_template("numbers.html", **kwargs)
 
 
-@app.route("/brigade/about/")
+@app.route("/about")
 def about():
     return render_template("about.html")
+
+
+@app.route("/brigade/about/")
+def brigade_about():
+    return redirect(url_for('.about'), code=301)
 
 
 @app.route("/brigade/organize/")
