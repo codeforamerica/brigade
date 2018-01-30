@@ -121,17 +121,17 @@ class BrigadeTests(unittest.TestCase):
     def test_projects_searches(self):
         ''' Test the different project searches '''
         with httmock.HTTMock(self.response_content):
-            response = self.client.get("/brigade/projects?q=TEST")
+            response = self.client.get("/projects?q=TEST")
             soup = BeautifulSoup(response.data, "html.parser")
             project_name = soup.find_all('h3')
             self.assertEqual(u"TEST PROJECT", project_name[0].text.strip())
 
-            response = self.client.get("/brigade/projects?organization_type=Brigade")
+            response = self.client.get("/projects?organization_type=Brigade")
             soup = BeautifulSoup(response.data, "html.parser")
             project_name = soup.find_all('h3')
             self.assertEqual(u"TEST PROJECT", project_name[0].text.strip())
 
-            response = self.client.get("/brigade/projects?status=Alpha")
+            response = self.client.get("/projects?status=Alpha")
             soup = BeautifulSoup(response.data, "html.parser")
             project_name = soup.find_all('h3')
             self.assertEqual(u"TEST PROJECT", project_name[0].text.strip())

@@ -154,6 +154,11 @@ def styleguide():
 
 
 @app.route("/brigade/projects")
+def brigade_projects():
+    return redirect(url_for('.projects'), code=301)
+
+
+@app.route("/projects")
 @app.route("/brigade/<brigadeid>/projects")
 def projects(brigadeid=None):
     ''' Display a list of projects '''
@@ -210,6 +215,11 @@ def projects(brigadeid=None):
 
 
 @app.route("/brigade/rsvps")
+def brigade_rsvps():
+    return redirect(url_for('.rsvps'), code=301)
+
+
+@app.route("/rsvps")
 @app.route("/brigade/<brigadeid>/rsvps")
 def rsvps(brigadeid=None):
     ''' Show the Brigade rsvps '''
