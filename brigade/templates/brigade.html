@@ -26,19 +26,22 @@
         {% endif %}
       </ul>
     </small>
-    <nav>
-      {% if brigade.current_events %}
-      <a href=".#events" class="button">Events</a>
-      {% endif %}
-      {% if brigade.current_projects %}
-      <a href=".#projects" class="button">Projects</a>
-      {% endif %}
-      {% if brigade.current_stories %}
-      <a href=".#stories" class="button">Stories</a>
-      {% endif %}
-    </nav>
   </div>
 </header>
+
+<nav class="slab slab--compact slab-gray">
+  <div class="grid-box">
+    {% if brigade.current_events %}
+    <a href=".#events" class="button">Events</a>
+    {% endif %}
+    {% if brigade.current_projects %}
+    <a href=".#projects" class="button">Projects</a>
+    {% endif %}
+    {% if brigade.current_stories %}
+    <a href=".#stories" class="button">Stories</a>
+    {% endif %}
+  </div>
+</nav>
 
 <div class="grid-box">
 

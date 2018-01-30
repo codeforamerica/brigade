@@ -10,6 +10,7 @@
   margin-left: -$site-margins;
   margin-right: -$site-margins;
   padding: 1em $site-margins;
+  
   @include media($tablet-up) {
     padding: 2em $site-margins;
   }
@@ -21,4 +22,8 @@
 
 .slab--no-padding {
   padding: 0;
+}
+
+.slab--compact {
+  padding: 1em $site-margins;
 }
