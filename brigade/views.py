@@ -41,7 +41,12 @@ def map():
     return render_template("map.html", brigades=brigades)
 
 
-@app.route("/brigade/numbers/")
+@app.route("/brigade/numbers")
+def brigade_numbers():
+    return redirect(url_for('.numbers'), code=301)
+
+
+@app.route("/numbers")
 def numbers():
     # Get the total number of Brigades
     got = get(cfapi.BASE_URL + "/organizations?type=Brigade&per_page=1")
