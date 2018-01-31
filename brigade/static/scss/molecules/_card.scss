@@ -1,4 +1,5 @@
 @import '../core/variables';
+@import '../core/mixins';
 
 //
 // Card
@@ -39,7 +40,7 @@
 
 a.card {
   color: inherit;
-
+  
   /* Remove any hover border if the card is a link */
   &:hover {
     border: 0;
@@ -115,21 +116,26 @@ a.card {
   .card__body {
     padding: 0;
   }
+
   .card__content {
     padding: 15px;
   }
 
-  @media (min-width: 40em) {
+  @include media($tablet-up) {
     .card__body {
       display: flex;
       flex-direction: row;
     }
+
     .card__content {
-      flex: 3;
-    }
-    .card__aside {
       flex: 2;
+    }
+
+    .card__aside {
+      flex: 1;
       flex-shrink: 0;
+    }
+
     .card__title {
       text-align: left;
     }
