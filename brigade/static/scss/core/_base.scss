@@ -12,3 +12,9 @@ main {
   box-sizing: content-box;
   padding: 0 $site-margins;
 }
+
+section {
+  clear: none;
+  float: none;
+  width: auto;
+}
