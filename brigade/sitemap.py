@@ -14,7 +14,7 @@ class SitemapBlueprint(Blueprint):
     STATIC_ROUTES = [
         'brigade.index',
         'brigade.about',
-        'brigade.organize',
+        'brigade.resources',
         'brigade.free_software_index',
     ]
 

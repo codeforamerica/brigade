@@ -6,7 +6,6 @@ import cfapi
 from operator import itemgetter
 from requests import get
 
-import json
 import logging
 
 
@@ -22,10 +21,7 @@ requests_logger.setLevel(logging.WARNING)
 #
 @app.route('/brigade/list', methods=["GET"])
 def brigade_list():
-    brigades = cfapi.get_brigades()
-    brigades = json.loads(brigades)
-    brigades.sort(key=lambda x: x['properties']['city'])
-    return render_template("brigade_list.html", brigades=brigades)
+    return redirect(url_for('.index'), code=301)
 
 
 @app.route('/brigade/')
@@ -35,12 +31,22 @@ def index():
 
 
 @app.route('/brigade/map')
+def brigade_map():
+    return redirect(url_for('.map'), code=301)
+
+
+@app.route('/map')
 def map():
     brigades = cfapi.get_brigades(official_brigades_only=True)
     return render_template("map.html", brigades=brigades)
 
 
-@app.route("/brigade/numbers/")
+@app.route("/brigade/numbers")
+def brigade_numbers():
+    return redirect(url_for('.numbers'), code=301)
+
+
+@app.route("/numbers")
 def numbers():
     # Get the total number of Brigades
     got = get(cfapi.BASE_URL + "/organizations?type=Brigade&per_page=1")
@@ -106,18 +112,24 @@ def numbers():
     return render_template("numbers.html", **kwargs)
 
 
-@app.route("/brigade/about/")
+@app.route("/about")
 def about():
     return render_template("about.html")
 
 
-@app.route("/brigade/organize/")
-@app.route("/brigade/organize/<page>/")
-def organize(page=None):
-    if page:
-        return render_template("organize/" + page + ".html")
-    else:
-        return render_template("organize/index.html")
+@app.route("/brigade/about/")
+def brigade_about():
+    return redirect(url_for('.about'), code=301)
+
+
+@app.route("/brigade/organize/<page>")
+def organize_page(page=None):
+    return redirect(url_for('.resources'), code=301)
+
+
+@app.route("/resources")
+def resources():
+    return render_template("resources.html")
 
 
 @app.route("/brigade/tools/")
@@ -142,6 +154,11 @@ def styleguide():
 
 
 @app.route("/brigade/projects")
+def brigade_projects():
+    return redirect(url_for('.projects'), code=301)
+
+
+@app.route("/projects")
 @app.route("/brigade/<brigadeid>/projects")
 def projects(brigadeid=None):
     ''' Display a list of projects '''
@@ -198,6 +215,11 @@ def projects(brigadeid=None):
 
 
 @app.route("/brigade/rsvps")
+def brigade_rsvps():
+    return redirect(url_for('.rsvps'), code=301)
+
+
+@app.route("/rsvps")
 @app.route("/brigade/<brigadeid>/rsvps")
 def rsvps(brigadeid=None):
     ''' Show the Brigade rsvps '''
