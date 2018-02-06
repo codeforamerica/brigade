@@ -258,20 +258,16 @@
 
 {% if brigade.current_stories %}
 <section id="stories" class="slab">
-
   <div class="grid-box">
-    <h2>Current Stories</h2>
-    <ul class="list--with-icons">
-      {% for story in brigade.current_stories %}
-      <li class="icon-bullhorn">
-        <a href="{{ story.link }}">{{story.title}}</a>
-        <p><br/></p>
-      </li>
-      {% endfor %}
-      <a href="{{ brigade.rss }}" class="button">More Stories</a>
-    </ul>
+    <div class="width-one-half">
+      <h2 class="slab__title">Stories</h2>
+      <ul>
+        {% for story in brigade.current_stories %}
+        <li><a href="{{ story.link }}">{{ story.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
-  
 </section>
 {% endif %}
 
