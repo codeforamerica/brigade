@@ -11,11 +11,11 @@
   float: none;
   margin-left: -$site-margins;
   margin-right: -$site-margins;
-  padding: 1em $site-margins;
+  padding: 2em $site-margins;
   width: auto;
   
   @include media($tablet-up) {
-    padding: 2em $site-margins;
+    padding: 3em $site-margins;
   }
 }
 
