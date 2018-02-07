@@ -12,27 +12,22 @@
   /* The current bullet is a background image. Remove it for inline lists. */
   background-image: none;        
   display: inline;
-  }
+}
 
+/* List with Font Awesome icons */
+/* The first icon <i> element will be used as the bullet image. */
 .list--with-icons {
   list-style: none;
-
+  
   li {
     background-image: none;
-    padding-left: 60px;
-    position: relative;
+    padding-left: 1.5em;
+    text-indent: -1em;
+  }
 
-    &:not(:last-child) {
-      margin-bottom: 40px;
-    }
-
-    &::before {
-      font-size: 30px;
-      left: 0;
-      opacity: .7;
-      position: absolute;
-      top: 0;
-    }
+  li > i {
+    text-align: center;
+    width: 0.75em; 
   }
 }
 

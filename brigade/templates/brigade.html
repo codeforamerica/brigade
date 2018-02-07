@@ -81,11 +81,11 @@
             <div class="card__content">
               <small>Next event:</small>
               <h3 class="card__title"><a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a></h3>
-              <ul class="list--no-bullets">
+              <ul class="list--with-icons">
                 {% if event.location %}
-                <li><i class="fas fa-fw fa-map-marker"></i> {{ event.location }}</li>
+                <li><i class="fas fa-map-marker"></i> {{ event.location }}</li>
                 {% endif %}
-                <li><i class="far fa-fw fa-calendar"></i> {{ event.start_time | format_time }}</li>
+                <li><i class="far fa-calendar"></i> {{ event.start_time | format_time }}</li>
               </ul>
               <div class="card__action">
                 <a href="{{ event.event_url }}" target="_blank" class="button button-bold"><i class="fab fa-fw fa-meetup"></i> View event on Meetup</a>
