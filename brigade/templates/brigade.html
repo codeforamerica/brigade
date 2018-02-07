@@ -230,7 +230,7 @@
     <div class="width-one-fourth">
       <div class="card">
         <div class="card__body">
-          <h3 class="card__title">{{ project.name }}</h3>
+          <h3 class="card__title">{{ project.name | split_underscores }}</h3>
           {% if project.description %}
           <p>{{ project.description }}</p>
           {% endif %}

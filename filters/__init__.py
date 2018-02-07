@@ -45,6 +45,13 @@ def split_hyphen(string):
     return string.replace("-", " ")
 
 
+@filters.app_template_filter("split_underscores")
+def split_underscores(string):
+    ''' Replaces underscores in the passed string with spaces
+    '''
+    return string.replace("_", " ")
+
+
 # see: http://flask.pocoo.org/snippets/33/
 # and: http://stackoverflow.com/questions/12288454/how-to-import-custom-jinja2-filters-from-another-file-and-using-flask # noqa
 @filters.app_template_filter("timesince")
