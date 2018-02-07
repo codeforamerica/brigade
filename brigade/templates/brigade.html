@@ -6,37 +6,42 @@
 
 <header id="intro" class="slab slab-dark-blue">
   <div class="grid-box">
-    <h1 class="title slab__title">{{ brigade.name }}</h1>
-    <p>
-      {% if brigade.city %}
-      <i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}<br>
-      {% endif %}
-      {% if brigade.website %}
-      <i class="fas fa-fw fa-globe"></i> <a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a>
-      {% endif %}
-    </p>
-    <p>
-      {% if brigade.events_url and 'meetup.com' in brigade.events_url %}
-      <a href="{{ brigade.events_url }}" class="button button-s button-invert" target="_blank">
-        <i class="fab fa-lg fa-meetup"></i> Meetup
-      </a>
-      {% endif %}
-      {% if brigade.social_profiles and brigade.social_profiles.twitter %}
-      <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" class="button button-s button-invert" target="_blank">
-        <i class="fab fa-lg fa-twitter"></i> {{ brigade.social_profiles.twitter }}
-      </a>
-      {% endif %}
-      {% if brigade.social_profiles and brigade.social_profiles.facebook %}
-      <a href="{{ brigade.social_profiles.facebook }}" class="button button-s button-invert" target="_blank">
-        <i class="fab fa-lg fa-facebook"></i> Facebook
-      </a>
-      {% endif %}
-      {% if brigade.projects_list_url and 'github.com' in brigade.projects_list_url %}
-      <a href="{{ brigade.projects_list_url }}" class="button button-s button-invert" target="_blank">
-        <i class="fab fa-lg fa-github"></i> Github
-      </a>
-      {% endif %}
-    </p>
+    <div class="width-three-fourths">
+      <h1 class="title slab__title">{{ brigade.name }}</h1>
+      <p>
+        {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve peoples' lives.
+      </p>
+      <p>
+        {% if brigade.city %}
+        <i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}<br>
+        {% endif %}
+        {% if brigade.website %}
+        <i class="fas fa-fw fa-globe"></i> <a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a>
+        {% endif %}
+      </p>
+      <p>
+        {% if brigade.events_url and 'meetup.com' in brigade.events_url %}
+        <a href="{{ brigade.events_url }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-meetup"></i> Meetup
+        </a>
+        {% endif %}
+        {% if brigade.social_profiles and brigade.social_profiles.twitter %}
+        <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-twitter"></i> {{ brigade.social_profiles.twitter }}
+        </a>
+        {% endif %}
+        {% if brigade.social_profiles and brigade.social_profiles.facebook %}
+        <a href="{{ brigade.social_profiles.facebook }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-facebook"></i> Facebook
+        </a>
+        {% endif %}
+        {% if brigade.projects_list_url and 'github.com' in brigade.projects_list_url %}
+        <a href="{{ brigade.projects_list_url }}" class="button button-s button-invert" target="_blank">
+          <i class="fab fa-lg fa-github"></i> Github
+        </a>
+        {% endif %}
+      </p>
+    </div>
   </div>
 </header>
 
