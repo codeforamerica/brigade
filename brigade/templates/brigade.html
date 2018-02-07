@@ -31,7 +31,7 @@
         <i class="fab fa-lg fa-facebook"></i> Facebook
       </a>
       {% endif %}
-      {% if brigade.projects_list_url and 'github.com' in brigade_projects_list_url %}
+      {% if brigade.projects_list_url and 'github.com' in brigade.projects_list_url %}
       <a href="{{ brigade.projects_list_url }}" class="button button-s button-invert" target="_blank">
         <i class="fab fa-lg fa-github"></i> Github
       </a>
@@ -237,10 +237,10 @@
         </div>
         <div class="card__action">
           {% if project.code_url %}
-          <p><a href="{{ project.code_url }}"><i class="fab fa-fw fa-github"></i> View on Github</a></p>
+          <p><a href="{{ project.code_url }}" target="_blank"><i class="fab fa-fw fa-github"></i> View on Github</a></p>
           {% endif %}
           {% if project.link_url %}
-          <p><a href="{{ project.link_url }}"><i class="fas fa-fw fa-rocket"></i> Visit project</a></p>
+          <p><a href="{{ project.link_url }}" target="_blank"><i class="fas fa-fw fa-rocket"></i> Visit project</a></p>
           {% endif %}
         </div>
         <div class="card__footer">
