@@ -105,7 +105,7 @@
       {% if brigade.current_events[1] %}
       {% set event = brigade.current_events[1] %}
       <div class="grid-box">
-        <strong>Other events:</strong> <a href="{{ event.url }}" target="_blank">{{ event.name }}</a> ({{event.start_time | format_time}})
+        <strong>Other events:</strong> <a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a> ({{event.start_time | format_time}})
       </div>
       {% endif %}
 
