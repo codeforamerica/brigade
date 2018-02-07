@@ -51,7 +51,7 @@ a.card {
 
 /* This is an area for a main card action, like a button or a link */
 .card__action {
-  padding-top: 15px;
+  padding: 0 15px 15px 15px;
   text-align: center;
 
   /* Make card action buttons full-width */
@@ -104,6 +104,10 @@ a.card {
 
   .card__content {
     padding: 15px;
+  }
+
+  .card__content .card__action {
+    padding: 5px 0 0 0;
   }
 
   @include media($tablet-up) {
