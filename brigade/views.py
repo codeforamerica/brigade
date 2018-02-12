@@ -1,5 +1,5 @@
 # -- coding: utf-8 --
-from flask import render_template, request, redirect, url_for, send_from_directory
+from flask import render_template, request, redirect, url_for
 from flask.helpers import safe_join
 from . import brigade as app
 import cfapi
@@ -294,11 +294,6 @@ def project_monitor(brigadeid=None):
             projects_with_tests.append(project)
 
     return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
-
-
-@app.route('/robots.txt')
-def static_from_root():
-    return send_from_directory(app.static_folder, request.path[1:])
 
 
 @app.route('/', methods=['GET'])
