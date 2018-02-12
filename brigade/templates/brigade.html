@@ -84,7 +84,9 @@
         <div class="card card--horizontal">
           <div class="card__body">
             <div class="card__content">
-              <small>Next event:</small>
+              <small>
+                {% if event.is_today %}<strong>Event today:</strong>{% else %}Next event:{% endif %}
+              </small>
               <h3 class="card__title"><a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a></h3>
               <ul class="list--with-icons">
                 {% if event.location %}
