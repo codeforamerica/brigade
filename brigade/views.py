@@ -41,7 +41,7 @@ def map():
     return render_template("map.html", brigades=brigades)
 
 
-@app.route("/brigade/numbers")
+@app.route("/brigade/numbers/")
 def brigade_numbers():
     return redirect(url_for('.numbers'), code=301)
 
@@ -153,7 +153,7 @@ def styleguide():
     return render_template("styleguide.html")
 
 
-@app.route("/brigade/projects")
+@app.route("/brigade/projects/")
 def brigade_projects():
     return redirect(url_for('.projects'), code=301)
 
@@ -214,7 +214,7 @@ def projects(brigadeid=None):
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
 
-@app.route("/brigade/rsvps")
+@app.route("/brigade/rsvps/")
 def brigade_rsvps():
     return redirect(url_for('.rsvps'), code=301)
 
