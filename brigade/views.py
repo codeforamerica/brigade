@@ -133,16 +133,22 @@ def resources():
 
 
 @app.route("/brigade/tools/")
+@app.route("/software/")
 def tools():
     return redirect(url_for('.free_software_index'), code=302)
 
 
-@app.route("/software/")
+@app.route("/resources/software")
 def free_software_index():
     return render_template("free_software.html")
 
 
-@app.route("/software/<software>")
+@app.route("/software/<software>/")
+def free_software_show_redirect(software):
+    return redirect(url_for('.free_software_show', software=software), code=302)
+
+
+@app.route("/resources/software/<software>")
 def free_software_show(software):
     template_path = safe_join("free_software/", software + ".html")
     return render_template(template_path)
