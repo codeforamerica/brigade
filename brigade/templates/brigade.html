@@ -47,7 +47,9 @@
 
 <nav class="slab slab--compact slab-gray">
   <div class="grid-box">
+    {% if 'Brigade' in brigade.tags %}
     <a href=".#events" class="button">Events</a>
+    {% endif %}
     {% if brigade.current_projects %}
     <a href=".#projects" class="button">Projects</a>
     {% endif %}
@@ -57,6 +59,7 @@
   </div>
 </nav>
 
+{% if 'Brigade' in brigade.tags %}
 <section id="events" class="slab slab-white">
 
   <div class="grid-box">
@@ -211,6 +214,7 @@
   </div>
 
 </section>
+{% endif %}
 
 {% if brigade.current_projects %}
 <section id="projects" class="slab slab-gray">
