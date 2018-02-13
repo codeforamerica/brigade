@@ -109,13 +109,13 @@ class BrigadeTests(unittest.TestCase):
     def test_good_links(self):
         ''' Test that normal Brigade links are working '''
         with httmock.HTTMock(self.response_content):
-            response = self.client.get("/brigade/TEST-ORG/")
+            response = self.client.get("/brigades/TEST-ORG/")
             self.assertEqual(200, response.status_code)
 
     def test_404(self):
         ''' Test for 404 links '''
         with httmock.HTTMock(self.response_content):
-            response = self.client.get("/brigade/404/")
+            response = self.client.get("/brigades/404/")
             self.assertEqual(404, response.status_code)
 
     def test_projects_searches(self):
@@ -137,8 +137,8 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(u"TEST PROJECT", project_name[0].text.strip())
 
     def test_homepage_redirect(self):
-        response = self.client.get("/")
-        self.assertEqual(302, response.status_code)
+        response = self.client.get("/brigade/")
+        self.assertEqual(301, response.status_code)
         self.assertEqual(flask.url_for('.index', _external=True), response.location)
 
     def test_tools(self):
@@ -147,23 +147,23 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(302, response.status_code)
 
     def test_software(self):
-        response = self.client.get("/software/")
+        response = self.client.get("/resources/software")
         self.assertEqual(200, response.status_code)
 
     def test_software_show(self):
         ''' test a couple common free software pages to make sure they render '''
-        response = self.client.get("/software/aws")
+        response = self.client.get("/resources/software/aws")
         self.assertEqual(200, response.status_code)
-        response = self.client.get("/software/heroku")
+        response = self.client.get("/resources/software/heroku")
         self.assertEqual(200, response.status_code)
-        response = self.client.get("/software/gsuite")
+        response = self.client.get("/resources/software/gsuite")
         self.assertEqual(200, response.status_code)
 
     def test_sitemap(self):
         with httmock.HTTMock(self.response_content):
             response = self.client.get('/sitemap.xml')
             self.assertEqual(200, response.status_code)
-            self.assertIn('<loc>http://localhost/brigade/TEST-ORG/</loc>', response.data)
+            self.assertIn('<loc>http://localhost/brigades/TEST-ORG/</loc>', response.data)
 
     def test_filter_datetime(self):
         from filters import format_time

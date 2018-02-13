@@ -24,12 +24,6 @@ def brigade_list():
     return redirect(url_for('.index'), code=301)
 
 
-@app.route('/brigade/')
-def index():
-    brigades = cfapi.get_brigades(official_brigades_only=True)
-    return render_template("index.html", brigades=brigades)
-
-
 @app.route('/brigade/map')
 def brigade_map():
     return redirect(url_for('.map'), code=301)
@@ -161,12 +155,13 @@ def styleguide():
 
 
 @app.route("/brigade/projects/")
-def brigade_projects():
-    return redirect(url_for('.projects'), code=301)
+@app.route("/brigade/<brigadeid>/projects")
+def brigade_projects(brigadeid=None):
+    return redirect(url_for('.projects', brigadeid=brigadeid), code=301)
 
 
 @app.route("/projects")
-@app.route("/brigade/<brigadeid>/projects")
+@app.route("/brigades/<brigadeid>/projects")
 def projects(brigadeid=None):
     ''' Display a list of projects '''
 
@@ -222,12 +217,13 @@ def projects(brigadeid=None):
 
 
 @app.route("/brigade/rsvps/")
-def brigade_rsvps():
-    return redirect(url_for('.rsvps'), code=301)
+@app.route("/brigade/<brigadeid>/rsvps")
+def brigade_rsvps(brigadeid=None):
+    return redirect(url_for('.rsvps', brigadeid=brigadeid), code=301)
 
 
 @app.route("/rsvps")
-@app.route("/brigade/<brigadeid>/rsvps")
+@app.route("/brigades/<brigadeid>/rsvps")
 def rsvps(brigadeid=None):
     ''' Show the Brigade rsvps '''
 
@@ -262,12 +258,13 @@ def rsvps(brigadeid=None):
 
 
 @app.route('/brigade/index/<brigadeid>/')
+@app.route('/brigade/<brigadeid>/')
 def redirect_brigade(brigadeid):
     ''' Redirect old Brigade links to new Brigade links'''
-    return redirect("/brigade/" + brigadeid, code=301)
+    return redirect(url_for('.brigade', brigadeid=brigadeid), code=301)
 
 
-@app.route('/brigade/<brigadeid>/')
+@app.route('/brigades/<brigadeid>/')
 def brigade(brigadeid):
     ''' Get this Brigade's info '''
 
@@ -283,6 +280,12 @@ def brigade(brigadeid):
 
 @app.route('/brigade/projects/monitor')
 @app.route('/brigade/<brigadeid>/projects/monitor')
+def project_monitor_redirect(brigadeid=None):
+    return redirect(url_for('.project_monitor', brigadeid=brigadeid), code=301)
+
+
+@app.route('/projects/monitor')
+@app.route('/brigades/<brigadeid>/projects/monitor')
 def project_monitor(brigadeid=None):
     ''' Are the Brigade projects test passing or not '''
     projects = []
@@ -303,6 +306,13 @@ def project_monitor(brigadeid=None):
     return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
 
 
+
+@app.route('/brigade/', methods=['GET'])
+def index_redirect():
+    return redirect(url_for('.index'), code=301)
+
+
 @app.route('/', methods=['GET'])
-def redirect_to_index():
-    return redirect(url_for('.index'))
+def index():
+    brigades = cfapi.get_brigades(official_brigades_only=True)
+    return render_template("index.html", brigades=brigades)
