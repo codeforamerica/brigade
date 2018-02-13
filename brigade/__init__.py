@@ -1,6 +1,6 @@
 import os
 
-from flask import Blueprint, Flask
+from flask import Blueprint, Flask, render_template
 from flask_webpack import Webpack
 from filters import filters
 from sitemap import sitemap_blueprint
@@ -24,6 +24,11 @@ def create_app():
     app.register_blueprint(brigade)
     app.register_blueprint(filters)
     app.register_blueprint(sitemap_blueprint)
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
+
     return app
 
 

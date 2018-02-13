@@ -64,8 +64,8 @@ window.Brigade.initializeMap = function(geoJSON) {
       transport: 'beacon'
     });
 
-    var brigadeId = brigadeName.replace(/\s+/g, '-');
-    window.open(brigadeId, "_self");
+    var brigadeSlug = brigadeName.replace(/\s+/g, '-');
+    window.open('/brigades/' + brigadeSlug, "_self");
   });
 
   // Add hover tooltips with Brigade name to map markers
