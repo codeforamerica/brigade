@@ -6,8 +6,12 @@
 
 <header id="intro" class="page-header slab slab-dark-blue">
   <div class="grid-box">
-    <div class="width-three-fourths">
+    <div class="width-three-fourts">
       <h1 class="title slab__title">{{ brigade.name }}</h1>
+    </div>
+  </div>
+  <div class="grid-box">
+    <div class="width-one-half">
       <p>
         {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve peoples' lives.
       </p>
@@ -19,6 +23,10 @@
         <i class="fas fa-fw fa-globe"></i> <a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a>
         {% endif %}
       </p>
+    </div>
+  </div>
+  <div class="grid-box">
+    <div class="width-three-fourths">
       <p>
         {% if brigade.events_url and 'meetup.com' in brigade.events_url %}
         <a href="{{ brigade.events_url }}" class="button button-s button-invert" target="_blank">
