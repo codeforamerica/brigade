@@ -2,6 +2,7 @@ var path = require('path');
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ManifestRevisionPlugin = require('manifest-revision-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var rootAssetPath = './brigade/static';
 
@@ -55,6 +56,9 @@ module.exports = {
 
   plugins: [
     new ExtractTextPlugin('[name].[contenthash].css'),
+    new CopyWebpackPlugin([
+      'brigade/static/robots.txt'
+    ]),
     new ManifestRevisionPlugin(path.join('brigade', 'build', 'manifest.json'), {
       rootAssetPath: rootAssetPath,
       extensionsRegex: /\.js/,

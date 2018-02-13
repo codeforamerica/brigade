@@ -2,7 +2,7 @@ from datetime import datetime
 import json
 
 from flask_sitemap import Sitemap
-from flask import Blueprint
+from flask import Blueprint, send_from_directory, request
 
 from cfapi import get_brigades
 
@@ -35,6 +35,10 @@ class SitemapBlueprint(Blueprint):
     # environment variable.
     def register(self, app, options, first_registration=False):
         sitemap = Sitemap(app=app)
+
+        @app.route('/robots.txt')
+        def static_from_root():
+            return send_from_directory(app.static_folder, request.path[1:])
 
         @sitemap.register_generator
         def index():
