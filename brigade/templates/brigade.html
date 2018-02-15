@@ -13,7 +13,19 @@
   <div class="grid-box">
     <div class="width-one-half">
       <p>
-        {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve peoples' lives.
+        {% if brigade.tags %}
+
+        {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
+        {{ brigade.name }} is an official Code for America Brigade in {{ brigade.city }} working on projects with government and community partners to improve people’s lives.
+        
+        {% elif 'Brigade' in brigade.tags and not 'Official' in brigade.tags %}
+        {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve people's lives. 
+
+        {% elif 'Government' in brigade.tags %}
+        {{ brigade.name }} is a government organization in {{ brigade.city }}.
+        {% endif %}
+
+        {% endif %}
       </p>
       <p>
         {% if brigade.city %}
