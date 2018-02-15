@@ -105,6 +105,15 @@ def friendly_time(dt, past_="ago", future_="from now", default="Just now"):
     return default
 
 
+@filters.app_template_filter("friendly_url")
+def friendly_url(url):
+    url = url.lstrip("http://")
+    url = url.lstrip("https://")
+    # Strip trailing forward slash
+    url = url.rstrip('\/')
+    return url
+
+
 @filters.app_template_filter("format_time")
 def format_time(datetime_str):
     return dateutil.parser.parse(datetime_str).strftime("%A, %b %d, %Y @ %-I:%M %p")

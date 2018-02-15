@@ -34,7 +34,7 @@
           {% endif %}
         
           {% if brigade.website %}
-          <li><span class="fa-li"><i class="fas fa-globe"></i></span><a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a>
+          <li><span class="fa-li"><i class="fas fa-globe"></i></span><a href="{{ brigade.website }}" target="_blank">{{ brigade.website | friendly_url }}</a>
           {% endif %}
         </ul>
       </p>
