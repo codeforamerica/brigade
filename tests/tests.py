@@ -144,7 +144,7 @@ class BrigadeTests(unittest.TestCase):
     def test_tools(self):
         # legacy test, can remove at some point
         response = self.client.get("/brigade/tools/")
-        self.assertEqual(302, response.status_code)
+        self.assertEqual(301, response.status_code)
 
     def test_software(self):
         response = self.client.get("/resources/software")
