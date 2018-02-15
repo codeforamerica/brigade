@@ -45,8 +45,10 @@ a.card {
 
 .card__title {
   font-size: 28px;
+  hyphens: auto;
   line-height: 1.2;
   text-align: center;
+  word-wrap: break-word;
 }
 
 /* This is an area for a main card action, like a button or a link */
