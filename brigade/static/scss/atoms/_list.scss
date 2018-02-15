@@ -14,27 +14,10 @@
   display: inline;
 }
 
-/* List with Font Awesome icons */
-/* The first icon <i> element will be used as the bullet image. */
-.list--with-icons {
-  list-style: none;
-  
+/* Font Awesome lists (.fa-ul) */
+.fa-ul {
   li {
-    background-image: none;
-    padding-left: 1.5em;
-    text-indent: -1em;
-  }
-
-  li > i {
-    text-align: center;
-    width: 0.75em; 
-  }
-}
-
-.list--no-bullets {
-  list-style-type: none;
-  li {
-    background-image: none;
-    padding: 0;
+    list-style-type: none;
+    background-image: none;  
   }
 }

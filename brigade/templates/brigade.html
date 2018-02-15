@@ -28,12 +28,15 @@
         {% endif %}
       </p>
       <p>
-        {% if brigade.city %}
-        <i class="fas fa-fw fa-map-marker"></i> {{ brigade.city }}<br>
-        {% endif %}
-        {% if brigade.website %}
-        <i class="fas fa-fw fa-globe"></i> <a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a>
-        {% endif %}
+        <ul class="fa-ul">
+          {% if brigade.city %}
+          <li><span class="fa-li"><i class="fas fa-map-marker"></i></span>{{ brigade.city }}<br>
+          {% endif %}
+        
+          {% if brigade.website %}
+          <li><span class="fa-li"><i class="fas fa-globe"></i></span><a href="{{ brigade.website }}" target="_blank">{{ brigade.website }}</a>
+          {% endif %}
+        </ul>
       </p>
     </div>
   </div>
@@ -111,11 +114,11 @@
                 {% if event.is_today %}<strong>Event today:</strong>{% else %}Next event:{% endif %}
               </small>
               <h3 class="card__title"><a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a></h3>
-              <ul class="list--with-icons">
+              <ul class="fa-ul">
                 {% if event.location %}
-                <li><i class="fas fa-map-marker"></i> {{ event.location }}</li>
+                <li><span class="fa-li"><i class="fas fa-map-marker"></i></span> {{ event.location }}</li>
                 {% endif %}
-                <li><i class="far fa-calendar"></i> {{ event.start_time | format_time }}</li>
+                <li><span class="fa-li"><i class="far fa-calendar"></i></span> {{ event.start_time | format_time }}</li>
               </ul>
               <div class="card__action">
                 <a href="{{ event.event_url }}" target="_blank" class="button button-bold"><i class="fab fa-fw fa-meetup"></i> View event on Meetup</a>
