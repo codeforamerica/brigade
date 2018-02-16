@@ -1,0 +1,32 @@
+@import '../core/variables';
+@import '../core/mixins';
+
+//
+// Slab
+//
+
+.slab {
+  clear: none;
+  display: block;
+  float: none;
+  margin-left: -$site-margins;
+  margin-right: -$site-margins;
+  padding: 2em $site-margins;
+  width: auto;
+  
+  @include media($tablet-up) {
+    padding: 3em $site-margins;
+  }
+}
+
+.slab__title {
+  margin-top: 0;
+}
+
+.slab--no-padding {
+  padding: 0;
+}
+
+.slab--compact {
+  padding: 1em $site-margins;
+}

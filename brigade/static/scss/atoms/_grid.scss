@@ -1,0 +1,175 @@
+@import '~bourbon-neat/app/assets/stylesheets/neat';
+@import '../core/variables';
+
+//
+// Grid
+//
+/* This is copied from the CfA v4 Stylesheet */
+
+.grid-box {
+  @include outer-container();
+  max-width: $site-max-width;
+
+  @include media($tablet-up) {
+    // Defines width of element
+    .width-one-whole {
+      @include span-columns(12);
+    }
+    .width-one-half {
+      @include span-columns(6);
+    }
+    .width-one-third {
+      @include span-columns(4);
+    }
+    .width-two-thirds {
+      @include span-columns(8);
+    }
+    .width-one-fourth {
+      @include span-columns(3);
+    }
+    .width-three-fourths {
+      @include span-columns(9);
+    }
+    .width-one-sixth {
+      @include span-columns(2);
+    }
+    .width-five-sixths {
+      @include span-columns(10);
+    }
+    .width-one-twelfth {
+      @include span-columns(1);
+    }
+    .width-five-twelfths {
+      @include span-columns(5);
+    }
+    .width-seven-twelfths {
+      @include span-columns(7);
+    }
+    .width-eleven-twelfths {
+      @include span-columns(11);
+    }
+
+    // Different notation
+    .span-one {
+      @include span-columns(1);
+    }
+    .span-two {
+      @include span-columns(2);
+    }
+    .span-three {
+      @include span-columns(3);
+    }
+    .span-four {
+      @include span-columns(4);
+    }
+    .span-five {
+      @include span-columns(5);
+    }
+    .span-six {
+      @include span-columns(6);
+    }
+    .span-seven {
+      @include span-columns(7);
+    }
+    .span-eight {
+      @include span-columns(8);
+    }
+    .span-nine {
+      @include span-columns(9);
+    }
+    .span-ten {
+      @include span-columns(10);
+    }
+    .span-elevent {
+      @include span-columns(11);
+    }
+    .span-twelve {
+      @include span-columns(12);
+    }
+
+    // Shift Classes (adds white space to the left of grid item)
+    .shift-one-half {
+      @include shift(6);
+    }
+    .shift-one-third {
+      @include shift(4);
+    }
+    .shift-two-thirds {
+      @include shift(8);
+    }
+    .shift-one-fourth {
+      @include shift(3);
+    }
+    .shift-three-fourths {
+      @include shift(9);
+    }
+    .shift-one-sixth {
+      @include shift(2);
+    }
+    .shift-five-sixths {
+      @include shift(10);
+    }
+    .shift-one-twelfth {
+      @include shift(1);
+    }
+    .shift-five-twelfths {
+      @include shift(5);
+    }
+    .shift-seven-twelfths {
+      @include shift(7);
+    }
+    .shift-eleven-twelfths {
+      @include shift(11);
+    }
+
+    // Different notation
+    .shift-one {
+      @include shift(1);
+    }
+    .shift-two {
+      @include shift(2);
+    }
+    .shift-three {
+      @include shift(3);
+    }
+    .shift-four {
+      @include shift(4);
+    }
+    .shift-five {
+      @include shift(5);
+    }
+    .shift-six {
+      @include shift(6);
+    }
+    .shift-seven {
+      @include shift(7);
+    }
+    .shift-eight {
+      @include shift(8);
+    }
+    .shift-nine {
+      @include shift(9);
+    }
+    .shift-ten {
+      @include shift(10);
+    }
+    .shift-elevent {
+      @include shift(11);
+    }
+    .shift-twelve {
+      @include shift(12);
+    }
+
+    // Specificies end of a row.
+    // Required if grid-box contains multiple rows.
+    // Required if browser does not support :last-child
+    .end-row {
+      @include omega();
+    }
+
+    // Fixes grid alignment when grid-items have varying heights.
+    .end-row + .grid-item {
+      clear: left;
+    }
+  }
+}

@@ -267,6 +267,12 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bourbon-neat@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/bourbon-neat/-/bourbon-neat-1.9.0.tgz#fa38ea0ccbd857f0232030f5efd3b8a225b2a424"
+  dependencies:
+    node-sass "^4.1.1"
+
 brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -2134,7 +2140,7 @@ node-pre-gyp@^0.6.39:
     tar "^2.2.1"
     tar-pack "^3.4.0"
 
-node-sass@^4.5.2:
+node-sass@^4.1.1, node-sass@^4.5.2:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/node-sass/-/node-sass-4.7.2.tgz#9366778ba1469eb01438a9e8592f4262bcb6794e"
   dependencies:

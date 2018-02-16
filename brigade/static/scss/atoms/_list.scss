@@ -9,29 +9,15 @@
 }
 
 .list--inline li {
-  display: inline;
   /* The current bullet is a background image. Remove it for inline lists. */
-  background-image: none; 
+  background-image: none;        
+  display: inline;
 }
 
-.list--with-icons {
-  list-style: none;
-
+/* Font Awesome lists (.fa-ul) */
+.fa-ul {
   li {
-    background-image: none;
-    padding-left: 60px;
-    position: relative;
-
-    &:not(:last-child) {
-      margin-bottom: 40px;
-    }
-
-    &::before {
-      font-size: 30px;
-      opacity: .7;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+    list-style-type: none;
+    background-image: none;  
   }
 }

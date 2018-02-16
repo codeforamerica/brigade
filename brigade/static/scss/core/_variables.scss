@@ -3,7 +3,6 @@
 //
 
 // Colors
-
 $color-black: #5a5a5a;
 $color-white: #fff;
 
@@ -23,3 +22,13 @@ $color-text-light: $color-white;
 
 $color-border-dark: $color-gray;
 $color-border-light: $color-gray-light;
+
+// Breakpoints
+$mobile-up:     481px;
+$tablet-up:     768px;
+$midscreen-up:  960px;
+$widescreen-up: 1201px;
+
+// Magic numbers
+$site-margins: 20px;
+$site-max-width: 1140px;

@@ -5,6 +5,8 @@ from . import brigade as app
 import cfapi
 from operator import itemgetter
 from requests import get
+from datetime import datetime
+import dateutil.parser
 
 import logging
 
@@ -274,6 +276,13 @@ def brigade(brigadeid):
 
     got = get(cfapi.BASE_URL + "/organizations/" + brigadeid)
     brigade = got.json()
+
+    ''' If Brigade has upcoming events, check if the next event is happening today '''
+    if 'current_events' in brigade and len(brigade['current_events']) > 0:
+        event_date = dateutil.parser.parse(brigade['current_events'][0]['start_time']).strftime('%Y-%m-%d')
+        todays_date = datetime.now().strftime('%Y-%m-%d')
+        if event_date == todays_date:
+            brigade['current_events'][0]['is_today'] = True
 
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
