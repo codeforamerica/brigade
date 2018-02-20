@@ -19,30 +19,30 @@ requests_logger = logging.getLogger("requests")
 requests_logger.setLevel(logging.WARNING)
 
 
+def redirect_from(*urls):
+    def decorator(f):
+        def view_func(**kwargs):
+            route_name = ".".join([app.name, f.func_name])
+            return redirect(url_for(route_name, **kwargs), code=301)
+
+        for url in urls:
+            app.add_url_rule(url, 'redirect_' + f.func_name, view_func)
+
+        return f
+    return decorator
+
+
 #
 # ROUTES
 #
-@app.route('/brigade/list', methods=["GET"])
-def brigade_list():
-    return redirect(url_for('.index'), code=301)
-
-
-@app.route('/brigade/map')
-def brigade_map():
-    return redirect(url_for('.map'), code=301)
-
-
+@redirect_from('/brigade/map/')
 @app.route('/map')
 def map():
     brigades = cfapi.get_brigades(official_brigades_only=True)
     return render_template("map.html", brigades=brigades)
 
 
-@app.route("/brigade/numbers/")
-def brigade_numbers():
-    return redirect(url_for('.numbers'), code=301)
-
-
+@redirect_from("/brigade/numbers/")
 @app.route("/numbers")
 def numbers():
     # Get the total number of Brigades
@@ -109,43 +109,25 @@ def numbers():
     return render_template("numbers.html", **kwargs)
 
 
+@redirect_from("/brigade/about/")
 @app.route("/about")
 def about():
     return render_template("about.html")
 
 
-@app.route("/brigade/about/")
-def brigade_about():
-    return redirect(url_for('.about'), code=301)
-
-
-@app.route("/brigade/organize/")
-@app.route("/brigade/organize/<page>")
-def organize_page(page=None):
-    return redirect(url_for('.resources'), code=301)
-
-
+@redirect_from("/brigade/organize/", "/brigade/organize/<page>")
 @app.route("/resources")
 def resources():
     return render_template("resources.html")
 
 
-@app.route("/brigade/tools/")
-@app.route("/software/")
-def tools():
-    return redirect(url_for('.free_software_index'), code=302)
-
-
+@redirect_from("/brigade/tools/", "/software/")
 @app.route("/resources/software")
 def free_software_index():
     return render_template("free_software.html")
 
 
-@app.route("/software/<software>/")
-def free_software_show_redirect(software):
-    return redirect(url_for('.free_software_show', software=software), code=302)
-
-
+@redirect_from("/software/<software>/")
 @app.route("/resources/software/<software>")
 def free_software_show(software):
     template_path = safe_join("free_software/", software + ".html")
@@ -157,12 +139,11 @@ def styleguide():
     return render_template("styleguide.html")
 
 
-@app.route("/brigade/projects/")
-@app.route("/brigade/<brigadeid>/projects")
 def brigade_projects(brigadeid=None):
     return redirect(url_for('.projects', brigadeid=brigadeid), code=301)
 
 
+@redirect_from("/brigade/projects/", "/brigade/<brigadeid>/projects")
 @app.route("/projects")
 @app.route("/brigades/<brigadeid>/projects")
 def projects(brigadeid=None):
@@ -310,12 +291,7 @@ def project_monitor(brigadeid=None):
     return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
 
 
-
-@app.route('/brigade/', methods=['GET'])
-def index_redirect():
-    return redirect(url_for('.index'), code=301)
-
-
+@redirect_from('/brigade/', '/brigade/list')
 @app.route('/', methods=['GET'])
 def index():
     brigades = cfapi.get_brigades(official_brigades_only=True)
