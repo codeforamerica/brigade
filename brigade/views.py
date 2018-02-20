@@ -9,6 +9,7 @@ from datetime import datetime
 import dateutil.parser
 
 import logging
+import urllib
 
 
 # Logging Setup
@@ -176,44 +177,38 @@ def projects(brigadeid=None):
     projects = []
     brigade = None
     search = request.args.get("q", None)
-    page = request.args.get("page", None)
+    page = request.args.get("page", 1, int)
     status = request.args.get("status", None)
     organization_type = request.args.get("organization_type", None)
 
     # Set next
-    if page:
-        if brigadeid:
-            next = "/brigade/" + brigadeid + "/projects?page=" + str(int(page) + 1)
-        else:
-            next = "/brigade/projects?page=" + str(int(page) + 1)
-    else:
-        if brigadeid:
-            next = "/brigade/" + brigadeid + "/projects?page=2"
-        else:
-            next = "/brigade/projects?page=2"
+    next = url_for('.projects', brigadeid=brigadeid, page=page + 1)
 
     # build the url
     if brigadeid:
         url = cfapi.BASE_URL + "/organizations/" + brigadeid + "/projects"
-        # set the brigade name
-        if projects:
+    else:
+        url = cfapi.BASE_URL + "/projects"
+
+    query = {"sort_by": "last_updated"}
+    if search:
+        query.update({"q": search})
+    if page:
+        query.update({"page": page})
+    if status:
+        query.update({"status": status})
+    if organization_type:
+        query.update({"organization_type": organization_type})
+    url += '?' + urllib.urlencode(query)
+
+    projects = cfapi.get_projects(projects, url)
+
+    # set the brigade name
+    if brigadeid:
+        if len(projects):
             brigade = projects[0]["organization"]
         else:
             brigade = {"name": brigadeid.replace("-", " ")}
-    else:
-        # build cfapi url
-        url = cfapi.BASE_URL + "/projects"
-        url += "?sort_by=last_updated"
-    if search:
-        url += "&q=" + search
-    if page:
-        url += "&page=" + page
-    if status:
-        url += "&status=" + status
-    if organization_type:
-        url += "&organization_type=" + organization_type
-
-    projects = cfapi.get_projects(projects, url)
 
     return render_template("projects.html", projects=projects, brigade=brigade, next=next)
 
