@@ -6,12 +6,25 @@
 
 .list--inline {
   list-style-type: none;
+  li {
+    background-image: none;        
+    display: inline;
+  }
 }
 
-.list--inline li {
-  /* The current bullet is a background image. Remove it for inline lists. */
-  background-image: none;        
-  display: inline;
+.list--no-bullets {
+  list-style-type: none;
+  li {
+    background-image: none;
+    padding-left: 0;
+  }
+}
+
+.list--expanded {
+  li {
+    margin-top: 3em;
+    margin-bottom: 3em;
+  }
 }
 
 /* Font Awesome lists (.fa-ul) */
