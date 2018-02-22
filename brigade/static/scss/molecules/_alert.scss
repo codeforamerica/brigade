@@ -4,11 +4,16 @@
 // Alert
 //
 
+.alert {
+  background-color: $color-gray-light;
+}
+
+.alert,
 .alert-success, 
 .alert-failure, 
 .alert-pending, 
 .alert-None {
-  border: 0px;
+  border: 0;
 }
 
 .alert-pending, 
