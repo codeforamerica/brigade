@@ -1,0 +1,14 @@
+@import '../core/variables';
+@import '../core/mixins';
+
+//
+// Nav
+//
+
+.nav-global-secondary {
+  text-transform: none;
+
+  li a { 
+    margin: 0 10px; 
+  }  
+}
