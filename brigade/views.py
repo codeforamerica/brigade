@@ -1,16 +1,15 @@
 # -- coding: utf-8 --
-from flask import render_template, request, redirect, url_for
-from flask.helpers import safe_join
-from . import brigade as app
 import cfapi
-from operator import itemgetter
-from requests import get
-from datetime import datetime
 import dateutil.parser
-
+import json
 import logging
 import urllib
-
+from . import brigade as app
+from datetime import datetime
+from flask import render_template, request, redirect, url_for
+from flask.helpers import safe_join
+from operator import itemgetter
+from requests import get
 
 # Logging Setup
 logging.basicConfig(level=logging.INFO)
@@ -39,6 +38,7 @@ def redirect_from(*urls):
 @app.route('/map')
 def map():
     brigades = cfapi.get_brigades(official_brigades_only=True)
+    brigades = json.dumps(brigades)
     return render_template("map.html", brigades=brigades)
 
 
@@ -300,4 +300,5 @@ def project_monitor(brigadeid=None):
 @app.route('/', methods=['GET'])
 def index():
     brigades = cfapi.get_brigades(official_brigades_only=True)
+    brigades = json.dumps(brigades)
     return render_template("index.html", brigades=brigades)

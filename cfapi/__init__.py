@@ -26,7 +26,6 @@ def get_brigades(official_brigades_only=False):
             else:
                 brigades.append(org)
 
-    brigades = json.dumps(brigades)
     return brigades
 
 
