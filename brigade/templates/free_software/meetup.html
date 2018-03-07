@@ -13,8 +13,8 @@ bill.</p>
 <p>You will still retain full control over your Meetup page as a co-organizer.</p>
 
 <h5>What do you get?</h5>
-<p>Code for America will pay for your Meetup out of the Brigade operating budget, saving you $180 a year.</p>
-<p>You'll be able to host as many events as you want, and we will be able to share with you some better statistics such as average RSVP and historical membership counts.</p>
+<p>Code for America will pay for your Meetup, saving you $180 a year.</p>
+<p>You'll be able to host as many events as you want, and we will be able to share with you information about the attendees of your Meetup events.</p>
 
 <h5>How do you get access?</h5>
 <p>To transfer your Meetup group to Code for America, you will need to add Code for America as the "Organizer" and then we will re-add you as a "Co-Organizer".</p>
@@ -29,8 +29,14 @@ bill.</p>
 
 <b>Important:</b> After the transfer, make sure to cancel your Meetup subscription. <b>Your subscription <em>will not</em> automatically cancel.</b>
 
+<h5>What will look different for your attendees?</h5>
+
+<p>Attendees will see a dialog like this when they RSVP to your event for the first time.</p>
+
+<img src="{{ asset_url_for('images/meetup_rsvp.png') }}" alt="RSVP Screen" width="600" />
+
+<p>Users who click the "Confirm" button will opt-in to sharing their email address with your brigade and Code for America. Users clicking the "x" instead will opt them out, and you will not receive their email.</p>
+
 <h5>How will CfA interact with your Meetup?</h5>
 <p>Users can opt-in to sharing their email address when they attend your Meetup. We’ll use addresses for those who opt-in to send occasional messages about network-wide activities. These will be limited to things like “Announcing National Day of Civic Hacking” and a once a quarter reminder about signing up for the Code for America email list to get the latest updates. We can provide you the list as well.</p>
-
-<p>Oh, also, Meetup Pro costs us per-group, so we can only add Official Brigades. If you have already paid for your Meetup, then you’ve already paid... we can’t get you a refund. Sorry!</p>
 {% endblock %}
