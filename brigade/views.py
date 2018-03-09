@@ -3,6 +3,7 @@ import cfapi
 import dateutil.parser
 import json
 import logging
+import re
 import urllib
 from . import brigade as app
 from datetime import datetime
@@ -76,17 +77,20 @@ def numbers():
     projects_total = got['total']
 
     # Get total number of Brigade projects
-    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Brigade&per_page=1")
+    got = get(cfapi.BASE_URL +
+              "/projects?only_ids&organization_type=Brigade&per_page=1")
     got = got.json()
     brigade_projects_total = got['total']
 
     # Get total number of Code for All projects
-    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Code for All&per_page=1")
+    got = get(cfapi.BASE_URL +
+              "/projects?only_ids&organization_type=Code for All&per_page=1")
     got = got.json()
     cfall_projects_total = got['total']
 
     # Get total number of Government projects
-    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Government&per_page=1")
+    got = get(cfapi.BASE_URL +
+              "/projects?only_ids&organization_type=Government&per_page=1")
     got = got.json()
     gov_projects_total = got['total']
 
@@ -217,7 +221,8 @@ def rsvps(brigadeid=None):
     if not brigadeid:
         got = get(cfapi.BASE_URL + "/events/rsvps")
     else:
-        got = get(cfapi.BASE_URL + "/organizations/%s/events/rsvps" % brigadeid)
+        got = get(cfapi.BASE_URL + "/organizations/%s/events/rsvps" %
+                  brigadeid)
 
     rsvps = got.json()
 
@@ -260,7 +265,8 @@ def brigade(brigadeid):
 
     ''' If Brigade has upcoming events, check if the next event is happening today '''
     if 'current_events' in brigade and len(brigade['current_events']) > 0:
-        event_date = dateutil.parser.parse(brigade['current_events'][0]['start_time']).strftime('%Y-%m-%d')
+        event_date = dateutil.parser.parse(
+            brigade['current_events'][0]['start_time']).strftime('%Y-%m-%d')
         todays_date = datetime.now().strftime('%Y-%m-%d')
         if event_date == todays_date:
             brigade['current_events'][0]['is_today'] = True
@@ -282,7 +288,8 @@ def project_monitor(brigadeid=None):
     projects_with_tests = []
     limit = int(request.args.get('limit', 50))
     if not brigadeid:
-        projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/projects", limit)
+        projects = cfapi.get_projects(
+            projects, cfapi.BASE_URL + "/projects", limit)
     else:
         projects = cfapi.get_projects(
             projects,
@@ -296,7 +303,89 @@ def project_monitor(brigadeid=None):
     return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
 
 
-@redirect_from('/brigade/', '/brigade/list')
+@redirect_from('/brigade/list', '/brigades/')
+@app.route('/brigades')
+def brigade_list():
+    state_names = {
+        'AK': 'Alaska',
+        'AL': 'Alabama',
+        'AR': 'Arkansas',
+        'AS': 'American Samoa',
+        'AZ': 'Arizona',
+        'CA': 'California',
+        'CO': 'Colorado',
+        'CT': 'Connecticut',
+        'DC': 'District of Columbia',
+        'DE': 'Delaware',
+        'FL': 'Florida',
+        'GA': 'Georgia',
+        'GU': 'Guam',
+        'HI': 'Hawaii',
+        'IA': 'Iowa',
+        'ID': 'Idaho',
+        'IL': 'Illinois',
+        'IN': 'Indiana',
+        'KS': 'Kansas',
+        'KY': 'Kentucky',
+        'LA': 'Louisiana',
+        'MA': 'Massachusetts',
+        'MD': 'Maryland',
+        'ME': 'Maine',
+        'MI': 'Michigan',
+        'MN': 'Minnesota',
+        'MO': 'Missouri',
+        'MP': 'Northern Mariana Islands',
+        'MS': 'Mississippi',
+        'MT': 'Montana',
+        'NA': 'National',
+        'NC': 'North Carolina',
+        'ND': 'North Dakota',
+        'NE': 'Nebraska',
+        'NH': 'New Hampshire',
+        'NJ': 'New Jersey',
+        'NM': 'New Mexico',
+        'NV': 'Nevada',
+        'NY': 'New York',
+        'OH': 'Ohio',
+        'OK': 'Oklahoma',
+        'OR': 'Oregon',
+        'PA': 'Pennsylvania',
+        'PR': 'Puerto Rico',
+        'RI': 'Rhode Island',
+        'SC': 'South Carolina',
+        'SD': 'South Dakota',
+        'TN': 'Tennessee',
+        'TX': 'Texas',
+        'UT': 'Utah',
+        'VA': 'Virginia',
+        'VI': 'Virgin Islands',
+        'VT': 'Vermont',
+        'WA': 'Washington',
+        'WI': 'Wisconsin',
+        'WV': 'West Virginia',
+        'WY': 'Wyoming'
+    }
+    states = {}
+    brigades = cfapi.get_brigades(official_brigades_only=True)
+    brigades_total = len(brigades)
+    # Find all two-letter state abbreviations in the brigade's city, and add brigade to those states
+    for brigade in brigades:
+        brigade_name = brigade['properties']['name']
+        brigade_properties = {
+            'id': brigade['properties']['id'],
+            'city': brigade['properties']['city']
+        }
+        brigade_states = re.findall(
+            r'\b([A-Z]{2})\b', brigade['properties']['city'])
+        for state in brigade_states:
+            state_fullname = state_names[state]
+            if state_fullname not in states:
+                states[state_fullname] = {}
+            states[state_fullname][brigade_name] = brigade_properties
+    return render_template("brigade_list.html", brigades_total=brigades_total, states=states)
+
+
+@redirect_from('/brigade/', '/brigade')
 @app.route('/', methods=['GET'])
 def index():
     brigades = cfapi.get_brigades(official_brigades_only=True)
