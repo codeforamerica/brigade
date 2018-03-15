@@ -127,7 +127,7 @@
 
             {% if event.lat and event.lon %}
             <div class="card__aside">
-              <img src='https://maps.googleapis.com/maps/api/staticmap?center="{{ event.lat }},{{ event.lon }}"&zoom=14&size=400x300&maptype=roadmap&markers=color:red|"{{ event.lat }},{{ event.lon }}"&key=AIzaSyBHX1yIpSXDiAFbfkxphY1G5NQykdJ_MRs' alt="Map showing location of next {{ brigade.name }} event ">
+              <img src="https://api.mapbox.com/styles/v1/mapbox/bright-v8/static/pin-s+aa1c3a({{ event.lon }},{{ event.lat }})/{{ event.lon }},{{ event.lat }},15,0.00,0.00/273x263@2x?access_token=pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiY2pldDMwMzlnMHF3ZjMzbzUyMzNpdms4MSJ9.ZN9PlYN-2GGF_HQtY0zWWw" alt="Map showing location of next {{ brigade.name }} event ">
             </div>
             {% endif %}
           </div>
