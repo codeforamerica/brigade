@@ -31,10 +31,10 @@ Explore the {{ brigades_total }} official Code for America brigades across the U
 </div>
 
 {% for state in brigades_by_state|sort %}
-<section id="{{ brigades_by_state[state]['name'] }}" class="slab slab--compact">
+<section id="{{ brigades_by_state[state]['name'] }}" class="brigade-list slab slab--compact">
   <div class="grid-box">
     <div class="width-one-fourth">
-      <h3 class="slab__heading text-right-tablet-up">{{ state }}</h3>
+      <h3 class="brigade-list__state slab__heading">{{ state }}</h3>
     </div>
     <div class="width-one-half">
       <ul class="list">
