@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+
 {% block description %}
-communities.{% endblock %}
+Explore the {{ brigades_total }} official Code for America brigades across the US.
+{% endblock %}
 
 {% block page_id %}brigade-list{% endblock %}
 
@@ -28,18 +30,18 @@ communities.{% endblock %}
   </div>
 </div>
 
-{% for state in states|sort %}
-<section id="{{ states[state]['name'] }}" class="slab slab--compact">
+{% for state in brigades_by_state|sort %}
+<section id="{{ brigades_by_state[state]['name'] }}" class="slab slab--compact">
   <div class="grid-box">
     <div class="width-one-fourth">
       <h3 class="slab__heading text-right-tablet-up">{{ state }}</h3>
     </div>
     <div class="width-one-half">
       <ul class="list">
-      {% for brigade in states[state]|sort %}
+      {% for brigade in brigades_by_state[state] %}
         <li>
-          <a href="/brigades/{{ states[state][brigade]['id'] }}">{{ brigade }}</a><br>
-          <small>{{ states[state][brigade]['city'] }}</small>
+          <a href="{{ url_for('brigade.brigade', brigadeid=brigade['id']) }}">{{ brigade['name'] }}</a><br>
+          <small>{{ brigade['city'] }}</small>
         </li>
       {% endfor %}
       </ul>
