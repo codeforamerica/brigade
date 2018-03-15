@@ -80,7 +80,9 @@
     <a href="#stories" class="button">Stories</a>
     {% endif %}
     {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
-    <a href="#donate" class="button">Donate</a>
+    <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="button" target="_blank">
+      Donate <i class="fas fa-external-link-alt"></i>
+    </a>
     {% endif %}
   </div>
 </nav>
@@ -302,18 +304,4 @@
   </div>
 </section>
 {% endif %}
-
-{% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
-<section id="donate" class="slab slab-white">
-  <div class="grid-box">
-    <div class="width-one-half">
-      <h2 class="slab__title">Donate to {{ brigade.name }}</h2>
-
-      <p>{{ brigade.name }} is an official Code for America Brigade.</p>
-      <p>Click here to make a donation to Code for America directed for {{ brigade.name }}:</p>
-      <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="button button-bold" target="_blank">Donate Now <i class="fas fa-external-link-alt"></i></a>
-    </div>
-</section>
-{% endif %}
-
 {% endblock %}
