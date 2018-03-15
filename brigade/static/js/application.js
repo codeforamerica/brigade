@@ -2,7 +2,7 @@ window.Brigade = window.Brigade || {};
 
 window.Brigade.initializeMap = function(geoJSON) {
   // Provide your access token
-  L.mapbox.accessToken = 'pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiSTZlTTZTcyJ9.3aSlHLNzvsTwK-CYfZsG_Q';
+  L.mapbox.accessToken = 'pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiY2pldDMwMzlnMHF3ZjMzbzUyMzNpdms4MSJ9.ZN9PlYN-2GGF_HQtY0zWWw';
 
   // Create a map in the div #map
   var map = L.mapbox.map('map', 'codeforamerica.map-hhckoiuj', {
