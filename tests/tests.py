@@ -29,7 +29,29 @@ class BrigadeTests(unittest.TestCase):
         if url.geturl() == cfapi.BASE_URL + '/organizations/TEST-ORG':
             return httmock.response(200, '{"city": "San Francisco, CA", "type": "Brigade", "name": "Code for San Francisco"}') # noqa
         if url.geturl() == cfapi.BASE_URL + "/organizations.geojson":
-            return httmock.response(200, '{"features" : [{ "id": "TEST-ORG", "properties" : { "id" : "TEST-ORG", "tags" : ["Brigade"], "last_updated": 1510874211 } } ] }') # noqa
+            return httmock.response(200, '''
+                {
+                    "features" : [{ 
+                        "id": "TEST-ORG", 
+                        "properties" : { 
+                            "id": "TEST-ORG", 
+                            "name": "Test Org",
+                            "tags": ["Brigade", "Official", "Code for America"], 
+                            "last_updated": 1510874211,
+                            "city": "Oakland, CA"
+                        } 
+                    },
+                    { 
+                        "id": "Code-for-Atlantis",
+                        "properties" : { 
+                            "id": "Code-for-Atlantis", 
+                            "name": "Code for Atlantis",
+                            "tags": ["Brigade", "Official", "Code for America"], 
+                            "last_updated": 1510874211,
+                            "city": "Atlantis, GA"
+                        } 
+                    }]
+                }''') # noqa
         if url.geturl() == cfapi.BASE_URL + "/projects/1":
             return httmock.response(200, '''
                 {
@@ -170,6 +192,14 @@ class BrigadeTests(unittest.TestCase):
         test_time = "2018-12-25 18:30:00 -0800"
         formatted_time = format_time(test_time)
         self.assertEqual(formatted_time, "Tuesday, Dec 25, 2018 @ 6:30 PM")
+
+    def test_get_official_brigades_by_state(self):
+        with httmock.HTTMock(self.response_content):
+            from cfapi import get_official_brigades_by_state
+            brigades = get_official_brigades_by_state()
+            self.assertEqual(len(brigades), 2)
+            self.assertIn("Georgia", brigades)
+            self.assertEquals(brigades["Georgia"][0]['id'], "Code-for-Atlantis")
 
 
 if __name__ == '__main__':

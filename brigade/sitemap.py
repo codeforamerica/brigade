@@ -47,7 +47,7 @@ class SitemapBlueprint(Blueprint):
                 yield (route, {}, None, 'monthly', '0.5')
 
             brigades = get_brigades()
-            for brigade in json.loads(brigades):
+            for brigade in brigades:
                 last_updated = datetime.fromtimestamp(brigade['properties']['last_updated'])
 
                 for route in self.PER_BRIGADE_ROUTES:

@@ -1,0 +1,15 @@
+@import '../core/variables';
+@import '../core/mixins';
+
+//
+// Page: Brigade list
+//
+
+body#brigade-list {
+  /* On wide screens, right-align the state name */
+  @include media($tablet-up) {
+    .brigade-list__state {
+      text-align: right;      
+    }
+  }
+}

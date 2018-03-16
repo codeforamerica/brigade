@@ -1,16 +1,15 @@
 # -- coding: utf-8 --
-from flask import render_template, request, redirect, url_for
-from flask.helpers import safe_join
-from . import brigade as app
 import cfapi
-from operator import itemgetter
-from requests import get
-from datetime import datetime
 import dateutil.parser
-
+import json
 import logging
 import urllib
-
+from . import brigade as app
+from datetime import datetime
+from flask import render_template, request, redirect, url_for
+from flask.helpers import safe_join
+from operator import itemgetter
+from requests import get
 
 # Logging Setup
 logging.basicConfig(level=logging.INFO)
@@ -39,6 +38,7 @@ def redirect_from(*urls):
 @app.route('/map')
 def map():
     brigades = cfapi.get_brigades(official_brigades_only=True)
+    brigades = json.dumps(brigades)
     return render_template("map.html", brigades=brigades)
 
 
@@ -76,17 +76,20 @@ def numbers():
     projects_total = got['total']
 
     # Get total number of Brigade projects
-    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Brigade&per_page=1")
+    got = get(cfapi.BASE_URL +
+              "/projects?only_ids&organization_type=Brigade&per_page=1")
     got = got.json()
     brigade_projects_total = got['total']
 
     # Get total number of Code for All projects
-    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Code for All&per_page=1")
+    got = get(cfapi.BASE_URL +
+              "/projects?only_ids&organization_type=Code for All&per_page=1")
     got = got.json()
     cfall_projects_total = got['total']
 
     # Get total number of Government projects
-    got = get(cfapi.BASE_URL + "/projects?only_ids&organization_type=Government&per_page=1")
+    got = get(cfapi.BASE_URL +
+              "/projects?only_ids&organization_type=Government&per_page=1")
     got = got.json()
     gov_projects_total = got['total']
 
@@ -217,7 +220,8 @@ def rsvps(brigadeid=None):
     if not brigadeid:
         got = get(cfapi.BASE_URL + "/events/rsvps")
     else:
-        got = get(cfapi.BASE_URL + "/organizations/%s/events/rsvps" % brigadeid)
+        got = get(cfapi.BASE_URL + "/organizations/%s/events/rsvps" %
+                  brigadeid)
 
     rsvps = got.json()
 
@@ -260,7 +264,8 @@ def brigade(brigadeid):
 
     ''' If Brigade has upcoming events, check if the next event is happening today '''
     if 'current_events' in brigade and len(brigade['current_events']) > 0:
-        event_date = dateutil.parser.parse(brigade['current_events'][0]['start_time']).strftime('%Y-%m-%d')
+        event_date = dateutil.parser.parse(
+            brigade['current_events'][0]['start_time']).strftime('%Y-%m-%d')
         todays_date = datetime.now().strftime('%Y-%m-%d')
         if event_date == todays_date:
             brigade['current_events'][0]['is_today'] = True
@@ -282,7 +287,8 @@ def project_monitor(brigadeid=None):
     projects_with_tests = []
     limit = int(request.args.get('limit', 50))
     if not brigadeid:
-        projects = cfapi.get_projects(projects, cfapi.BASE_URL + "/projects", limit)
+        projects = cfapi.get_projects(
+            projects, cfapi.BASE_URL + "/projects", limit)
     else:
         projects = cfapi.get_projects(
             projects,
@@ -296,8 +302,21 @@ def project_monitor(brigadeid=None):
     return render_template('monitor.html', projects=projects_with_tests, org_name=brigadeid)
 
 
-@redirect_from('/brigade/', '/brigade/list')
+@redirect_from('/brigade/list', '/brigades')
+@app.route('/brigades')
+def brigade_list():
+    brigades_by_state = cfapi.get_official_brigades_by_state()
+    brigades = cfapi.get_brigades(official_brigades_only=True)
+    brigades_total = len(brigades)
+    return render_template(
+        "brigade_list.html",
+        brigades_total=brigades_total,
+        brigades_by_state=brigades_by_state)
+
+
+@redirect_from('/brigade/')
 @app.route('/', methods=['GET'])
 def index():
     brigades = cfapi.get_brigades(official_brigades_only=True)
+    brigades = json.dumps(brigades)
     return render_template("index.html", brigades=brigades)

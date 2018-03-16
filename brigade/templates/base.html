@@ -26,12 +26,13 @@
       </nav>
 
       <div class="global-header">
-        <a href="/brigade" class="global-header-logo">
+        <a href="/" class="global-header-logo">
             <img src="{{ asset_url_for('images/new_logo.png') }}" />
         </a>
 
         <nav class="nav-global-secondary">
           <ul>
+            <li><a href="{{url_for('brigade.brigade_list')}}">Find a Brigade</a></li>
             <li><a href="{{url_for('brigade.resources')}}">Resources</a></li>
             <li><a href="{{url_for('brigade.events')}}">Events</a></li>
             <li><a href="{{url_for('brigade.projects')}}">Project Finder</a></li>
