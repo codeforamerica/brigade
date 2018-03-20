@@ -85,6 +85,14 @@
     <h2>Mapping Software</h2>
 
     <div class="inkind-card-list">
+      <a class="inkind-card" href="{{ url_for(".free_software_show", software="mapbox") }}">
+        <div class="inkind-card__logo">
+          <img src="{{ asset_url_for('images/software_mapbox.png') }}" width="200px" />
+        </div>
+        <p>Mapbox provides easy-to-use, powerful, and customizable mapping products.</p>
+        <div class="button">Learn more</div>
+      </a>
+
       <a class="inkind-card" href="{{ url_for(".free_software_show", software="carto") }}">
         <div class="inkind-card__logo">
           <img src="{{ asset_url_for('images/software_carto.png') }}" width="200px" />
