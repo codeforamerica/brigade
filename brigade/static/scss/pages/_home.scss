@@ -1,4 +1,5 @@
 @import '../core/variables';
+@import '../core/mixins';
 
 //
 // Page: Home
@@ -6,63 +7,51 @@
 
 body#home {
 
-  #intro-panel {
+  .home-hero {
     min-height: 300px;
   }
 
-   #map-panel {
-    border-bottom: solid 1px $color-border-dark;  
+  .home-hero__content {
+    padding: 20px;
   }
 
-  #map-panel .panel__body {
-    padding: 0;
+  .home-hero__map {
+    border-bottom: solid 1px $color-border-dark;
+    .panel__body { padding: 0; }
   }
 
   #map {
     height: 100%;
     min-height: 300px;
     min-height: 80vh;
+
+    input { min-height: 0; }
+
+    .leaflet-marker-icon { cursor: pointer !important; }
+
+    .leaflet-popup-close-button { display: none; }
   }
 
-  #map .leaflet-marker-icon {
-    cursor: pointer !important;
-  }
-
-  #map input {
-    min-height: 0;
-  }
-
-  #map .leaflet-popup-close-button {
-    display: none;
-  }
-
-  @media all and (min-width: 736px) {
-    
-    #overview {
-      height: 691px;
+  // Styling for wider screens
+  @include media($tablet-up) {
+    .home-hero {
       display: flex;
       flex-direction: row;
     }
 
-    #intro-panel {
-      flex: 1;
-    }
+    .home-hero__content { flex: 1; }
 
-    #map-panel {
-      flex: 2;
+    .home-hero__map {
       display: flex;
+      flex: 2;
       flex-direction: column;
-    }
 
-    #map-panel .panel__body {
-      flex: 1;
-    }
+      .panel__body { flex: 1; }
 
-    #map-panel .panel__footer {
-      flex: 0;
-      text-align: right;
+      .panel__footer {
+        flex: 0;
+        text-align: right;
+      }
     }
-
   }
-
 }
