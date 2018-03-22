@@ -5,47 +5,45 @@ communities.{% endblock %}
 {% block page_id %}home{% endblock %}
 
 {% block content %}
-  
-  <section id="overview" class="slab slab--no-padding">
-    <div class="panel panel--primary" id="intro-panel">
-      <div class="panel__header">
-        <img id="logo" src="{{ asset_url_for('images/the_brigade.png') }}" />
+
+<section id="overview" class="home-hero slab slab--no-padding">
+  <div class="home-hero__content panel panel--primary">
+    <img id="logo" src="{{ asset_url_for('images/the_brigade.png') }}" />
+    <p>
+      The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help.
+    </p>
+    <div class="alert">
+      <div class="alert__icon">
+        <i class="fas fa-star"></i>
       </div>
-      <div class="panel__body padding-top-none">
-        <p>The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help.</p>
-        <div class="alert">
-          <div class="alert__icon">
-            <i class="fas fa-star"></i>
-          </div>
-          <div class="alert__content">
-            No brigade near you? <strong>Start a new brigade!</strong><br>
-            <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
-          </div>
-        </div>
+      <div class="alert__content">
+        No brigade near you? <strong>Start a new brigade!</strong><br>
+        <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
       </div>
     </div>
-    <div class="panel" id="map-panel">
-      <div class="panel__body">
-        <div id="map"></div>
-      </div>
-      <div class="panel__footer">
-        Looking for an organization outside the US? <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
-      </div>
+  </div>
+  <div class="home-hero__map panel">
+    <div class="panel__body">
+      <div id="map"></div>
     </div>
-  </section>
-  
-  <section id="sponsors">
-    <div class="panel">
-      <div class="panel__body layout-centered">
-        <h4>Funders</h4>
-        <ul class="list list--inline">
-          <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60px"></a></li>
-          <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60px"></a></li>
-          <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60px"></a></li>
-        </ul>
-      </div>
-    </div>    
-  </section>
+    <div class="panel__footer">
+      Looking for an organization outside the US? <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
+    </div>
+  </div>
+</section>
+
+<section id="sponsors">
+  <div class="panel">
+    <div class="panel__body layout-centered">
+      <h4>Funders</h4>
+      <ul class="list list--inline">
+        <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60"></a></li>
+        <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60"></a></li>
+        <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60"></a></li>
+      </ul>
+    </div>
+  </div>    
+</section>
 
 {% endblock %}
 

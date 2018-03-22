@@ -96,11 +96,6 @@ window.Brigade.initializeProjects = function(id, query, status) {
 };
 
 window.Brigade.init = function() {
-  // Generate list of brigades
-  if ($(window).width() > 480){
-    $('body#home #overview').css("height", ($(window).height() - $(".global-header").height()));
-  }
-
   // Track all link clicks as explicit events.
   //
   // The event's label will be given by either the <a title> attribute or the
