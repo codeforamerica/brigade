@@ -17,7 +17,7 @@
 
         {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
         {{ brigade.name }} is an official Code for America Brigade in {{ brigade.city }} working on projects with government and community partners to improve people’s lives.
-        
+
         {% elif 'Brigade' in brigade.tags and not 'Official' in brigade.tags %}
         {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve people's lives. 
 
@@ -32,7 +32,7 @@
           {% if brigade.city %}
           <li><span class="fa-li"><i class="fas fa-map-marker"></i></span>{{ brigade.city }}<br>
           {% endif %}
-        
+
           {% if brigade.website %}
           <li><span class="fa-li"><i class="fas fa-globe"></i></span><a href="{{ brigade.website }}" target="_blank" title="Brigade: website">{{ brigade.website | friendly_url }}</a>
           {% endif %}
@@ -71,13 +71,18 @@
 <nav class="slab slab--compact slab-gray">
   <div class="grid-box">
     {% if 'Brigade' in brigade.tags %}
-    <a href=".#events" class="button">Events</a>
+    <a href="#events" class="button">Events</a>
     {% endif %}
     {% if brigade.current_projects %}
-    <a href=".#projects" class="button">Projects</a>
+    <a href="#projects" class="button">Projects</a>
     {% endif %}
     {% if brigade.current_stories %}
-    <a href=".#stories" class="button">Stories</a>
+    <a href="#stories" class="button">Stories</a>
+    {% endif %}
+    {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
+    <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="button" target="_blank">
+      Donate <i class="fas fa-external-link-alt"></i>
+    </a>
     {% endif %}
   </div>
 </nav>
@@ -232,7 +237,7 @@
         </div>
       </div>
       {% endif %}
-      
+
     </div>
   </div>
 
@@ -299,6 +304,4 @@
   </div>
 </section>
 {% endif %}
-
-
 {% endblock %}
