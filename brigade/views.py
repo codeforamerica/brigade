@@ -42,76 +42,6 @@ def map():
     return render_template("map.html", brigades=brigades)
 
 
-@redirect_from("/brigade/numbers/")
-@app.route("/numbers")
-def numbers():
-    # Get the total number of Brigades
-    got = get(cfapi.BASE_URL + "/organizations?type=Brigade&per_page=1")
-    got = got.json()
-    brigades_total = got['total']
-
-    # Get the official Brigades
-    got = get(cfapi.BASE_URL + "/organizations?type=Official&per_page=1")
-    got = got.json()
-    official_brigades_total = got['total']
-
-    # Get the total number of Code for All Groups
-    got = get(cfapi.BASE_URL + "/organizations?type=Code for All&per_page=1")
-    got = got.json()
-    cfall_total = got['total']
-
-    # Get number of meetup-members
-    got = get(cfapi.BASE_URL + "/organizations/member_count")
-    got = got.json()
-    member_count = got['total']
-
-    # Get number of RSVPs
-    got = get(cfapi.BASE_URL + "/events/rsvps")
-    got = got.json()
-    rsvps = got['total']
-
-    # Get total number of projects
-    got = get(cfapi.BASE_URL + "/projects?only_ids&per_page=1")
-    got = got.json()
-    projects_total = got['total']
-
-    # Get total number of Brigade projects
-    got = get(cfapi.BASE_URL +
-              "/projects?only_ids&organization_type=Brigade&per_page=1")
-    got = got.json()
-    brigade_projects_total = got['total']
-
-    # Get total number of Code for All projects
-    got = get(cfapi.BASE_URL +
-              "/projects?only_ids&organization_type=Code for All&per_page=1")
-    got = got.json()
-    cfall_projects_total = got['total']
-
-    # Get total number of Government projects
-    got = get(cfapi.BASE_URL +
-              "/projects?only_ids&organization_type=Government&per_page=1")
-    got = got.json()
-    gov_projects_total = got['total']
-
-    # Get number of Issues
-    got = get(cfapi.BASE_URL + "/issues?per_page=1")
-    got = got.json()
-    issues_total = got['total']
-
-    # Get number of Help Wanted Issues
-    got = get(cfapi.BASE_URL + "/issues/labels/help%20wanted?per_page=1")
-    got = got.json()
-    help_wanted_total = got['total']
-
-    kwargs = dict(brigades_total=brigades_total, official_brigades_total=official_brigades_total,
-                  cfall_total=cfall_total, member_count=member_count, rsvps=rsvps,
-                  projects_total=projects_total, brigade_projects_total=brigade_projects_total,
-                  cfall_projects_total=cfall_projects_total, gov_projects_total=gov_projects_total,
-                  issues_total=issues_total, help_wanted_total=help_wanted_total,)
-
-    return render_template("numbers.html", **kwargs)
-
-
 @redirect_from("/brigade/about/")
 @app.route("/about")
 def about():
@@ -314,7 +244,7 @@ def brigade_list():
         brigades_by_state=brigades_by_state)
 
 
-@redirect_from('/brigade/')
+@redirect_from('/brigade/', '/brigade/numbers/')
 @app.route('/', methods=['GET'])
 def index():
     brigades = cfapi.get_brigades(official_brigades_only=True)

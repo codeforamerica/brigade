@@ -1,7 +1,7 @@
 # A guide to Project Search and the civic.json
 
 ## Project Search
-The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across [thousands](http://www.codeforamerica.org/brigade/numbers/) of civic technology projects. Go try it out, we think it's pretty useful.
+The [Project Search](http://www.codeforamerica.org/brigade/projects) page is a new service we built to search across thousands of civic technology projects. Go try it out, we think it's pretty useful.
 
 #### How to search
 You can search by using the search bar or using the `q` parameter like so: [q=bicycles](http://www.codeforamerica.org/brigade/projects?q=bicycles). When you submit a query, you'll see the url of the site update to show your search. This is an exact match to the [cfapi search](http://www.codeforamerica.org/api/projects?q=bicycles).
