@@ -1,7 +1,7 @@
 import sys
 from os import environ, path
 from brigade import create_app
-from flask.ext.script import Manager, Server
+from flask_script import Manager, Server
 
 # grab environment variables from the .env file if it exists
 if path.exists('.env'):
