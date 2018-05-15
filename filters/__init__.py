@@ -138,3 +138,11 @@ YOUTUBE_EMBED_URL = "https://www.youtube-nocookie.com/embed/{id}?start={start}"
 def youtube_link(id, start=None, embed=False):
     link = YOUTUBE_EMBED_URL if embed else YOUTUBE_URL
     return link.format(id=id, start=start or 0)
+
+
+@filters.app_template_filter("link_to_video_topic")
+def link_to_video_topic(topic):
+    return Markup("<a href='{url}'>{text}</a>".format(
+        url=flask.url_for('.resources_videos', topic=escape(topic)),
+        text=escape(topic)
+    ))

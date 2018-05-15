@@ -67,6 +67,17 @@ def free_software_show(software):
     return render_template(template_path)
 
 
+VIDEO_RESOURCES = [
+        { "id": "jvVZHmMmq9I", "title": "Food Security Workshop", "date": "April 10, 2018", "description": "Civic Data Alliance, Code for Philly, Hack for LA, and Code for America discuss food security projects from the network. The Food Security workshop was an opportunity to ask questions, share work and stories, and collaborate on ways to address food security challenges in Brigades and their communities.", "start": "134", "topics": ["workshops", "project ideas"] },
+        { "id": "3wNntmydohc", "title": "How to Host a Demo Day Workshop", "date": "March 8, 2018", "description": "Watch Code for Boston, Open Oakland, and Code for San Francisco talk about successful practices to host a Demo Day! Learn some tips, strategic approaches, and successful tactics from Brigades, and how you may be able to implement new ideas for your Brigades' demo days!", "topics": ["workshops", "organizer tips"] },
+        { "id": "8wzqe0OUwLc", "title": "Brigade Fundraising Workshop", "date": "February 22, 2018", "description": "Watch Code for Atlanta, Code for Raleigh, Code for San Francisco, Code for San Jose, and Code for America talk about successful practices in fundraising for your brigade! Learn some tips, strategic approaches, and successful tactics from Brigades, and how you may be able to implement various fundraising approaches!", "topics": ["workshops", "fundraising"] }
+    ]
+@app.route("/resources/videos")
+@app.route("/resources/videos/<topic>")
+def resources_videos(topic=None):
+    return render_template("resources_videos.html", videos=VIDEO_RESOURCES)
+
+
 @app.route("/events")
 def events():
     return render_template("events.html")
