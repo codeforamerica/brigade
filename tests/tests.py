@@ -202,6 +202,14 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(youtube_link(video_id, start=123, embed=True),
                 'https://www.youtube-nocookie.com/embed/jvVZHmMmq9I?start=123')
 
+    def test_join_list(self):
+        from filters import join_list
+
+        self.assertEqual(join_list([]), "")
+        self.assertEqual(join_list(["thing"]), "thing")
+        self.assertEqual(join_list(["thing", "other thing"]), "thing and other thing")
+        self.assertEqual(join_list(["thing", "other thing", "last thing"]), "thing, other thing, and last thing")
+
     def test_get_official_brigades_by_state(self):
         with httmock.HTTMock(self.response_content):
             from cfapi import get_official_brigades_by_state
