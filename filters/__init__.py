@@ -21,9 +21,10 @@ def join_list(value):
     elif len(values) == 1:
         return values[0]
     elif len(values) == 2:
-        return "{0} and {1}".format(values[0], values[1])
+        return Markup("{0} and {1}").format(values[0],
+                values[1])
     elif len(values) > 2:
-        return ", ".join(values[0:-1]) + ', and ' + values[-1]
+        return Markup(", ").join(values[0:-1]) + ', and ' + values[-1]
 
 
 @filters.app_template_filter("brigade_description")

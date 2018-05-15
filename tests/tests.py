@@ -1,10 +1,13 @@
 # -- coding: utf-8 --
-import unittest
 import flask
 import httmock
-import cfapi
-from brigade import create_app
+import unittest
 from bs4 import BeautifulSoup
+from jinja2 import Markup
+
+
+from brigade import create_app
+import cfapi
 
 
 class BrigadeTests(unittest.TestCase):
@@ -209,6 +212,26 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(join_list(["thing"]), "thing")
         self.assertEqual(join_list(["thing", "other thing"]), "thing and other thing")
         self.assertEqual(join_list(["thing", "other thing", "last thing"]), "thing, other thing, and last thing")
+
+        # test that it escapes html normally
+        self.assertEqual(
+            join_list(["<p>html</p>", "foo"]),
+            "&lt;p&gt;html&lt;/p&gt; and foo"
+        )
+        self.assertEqual(
+            join_list(["<p>html</p>", "foo", "bar"]),
+            "&lt;p&gt;html&lt;/p&gt;, foo, and bar"
+        )
+
+        # test that it does not escape html in Markup objects
+        self.assertEqual(
+            join_list([Markup("<p>html</p>"), "foo"]),
+            "<p>html</p> and foo"
+        )
+        self.assertEqual(
+            join_list([Markup("<p>html</p>"), "foo", "bar"]),
+            "<p>html</p>, foo, and bar"
+        )
 
     def test_get_official_brigades_by_state(self):
         with httmock.HTTMock(self.response_content):
