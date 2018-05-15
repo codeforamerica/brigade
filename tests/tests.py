@@ -193,6 +193,15 @@ class BrigadeTests(unittest.TestCase):
         formatted_time = format_time(test_time)
         self.assertEqual(formatted_time, "Tuesday, Dec 25, 2018 @ 6:30 PM")
 
+    def test_filter_youtube_link(self):
+        from filters import youtube_link
+        video_id = 'jvVZHmMmq9I'
+
+        self.assertEqual(youtube_link(video_id), 'https://www.youtube.com/watch?v=jvVZHmMmq9I&start=0')
+        self.assertEqual(youtube_link(video_id, start=123), 'https://www.youtube.com/watch?v=jvVZHmMmq9I&start=123')
+        self.assertEqual(youtube_link(video_id, start=123, embed=True),
+                'https://www.youtube-nocookie.com/embed/jvVZHmMmq9I?start=123')
+
     def test_get_official_brigades_by_state(self):
         with httmock.HTTMock(self.response_content):
             from cfapi import get_official_brigades_by_state

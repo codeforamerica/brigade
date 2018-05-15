@@ -128,3 +128,12 @@ def nl2br(eval_ctx, value):
     if eval_ctx.autoescape:
         result = Markup(result)
     return result
+
+
+YOUTUBE_URL = "https://www.youtube.com/watch?v={id}&start={start}"
+YOUTUBE_EMBED_URL = "https://www.youtube-nocookie.com/embed/{id}?start={start}"
+
+@filters.app_template_filter("youtube_link")
+def youtube_link(id, start=None, embed=False):
+    link = YOUTUBE_EMBED_URL if embed else YOUTUBE_URL
+    return link.format(id=id, start=start or 0)
