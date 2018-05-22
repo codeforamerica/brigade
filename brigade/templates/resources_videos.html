@@ -2,8 +2,13 @@
 {% block title %}Videos{% endblock %}
 {% block description %}Recordings from events within the Brigade Network{% endblock %}
 {% block page_id %}videos{% endblock %}
-{% block content %}
 
+{# Conditionals based on what type of page is rendering #}
+{% if topic %}
+{% else %}
+{% endif %}
+
+{% block content %}
 <header id="intro" class="page-header slab slab-dark-blue">
   <div class="grid-box">
     <h1 class="title">Videos</h1>
@@ -29,12 +34,27 @@
 
 <section class="slab slab--compact">
   <div class="grid-box">
-    <h2 class="slab__title">Latest Videos</h2>
+    {% if topic %}
+    <p><a href="{{ url_for('.resources_videos') }}">&larr; Back to all videos</a></p>
+    {% endif %}
+
+    <h2 class="slab__title">
+      {% if topic %}
+      Latest Videos Tagged "{{ topic }}"
+      {% else %}
+      Latest Videos
+      {% endif %}
+    </h2>
   </div>
 
   <div class="grid-box">
     <div class="width-one-half">
-      <p class="slab__subtitle">Looking for a recording of an event or gathering in the Brigade network? You've come to the right place.</p>
+      <p class="slab__subtitle">
+        {% if topic %}
+        {% else %}
+        Looking for a recording of an event or gathering in the Brigade network? You've come to the right place.
+        {% endif %}
+      </p>
     </div>
   </div>
 
@@ -67,7 +87,7 @@
 
 <section class="slab">
   <div class="grid-box">
-    <a href="https://www.youtube.com/user/CodeforAmerica/videos" target="_blank" class="button button-primary">View all on YouTube</a>
+    <a href="{{ more_url }}" target="_blank" class="button button-primary">View more on YouTube</a>
   </div>
 </div>
 

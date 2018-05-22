@@ -78,10 +78,21 @@ VIDEO_RESOURCES = [
         { "id": "ENIkpMJnsic", "title": "Workforce Dev Workshop", "date": "December 13, 2017", "description": "Join Open Savannah, Civic Data Alliance, Code for Boston and MAPC, and Code for America to talk about ongoing projects in the workforce development space, how they got started, what they've learned, and what you can do to get started!", "topics": ["workshops", "project ideas"] },
         { "id": "lpnyGcwTCkU", "title": "Safety & Justice Workshop", "date": "December 4, 2017", "description": "Join Code for America Brigades for a workshop on Safety and Justice work throughout our network.", "topics": ["workshops", "project ideas"] },
     ]
+PLAYLIST_URLS = {
+        'workshops': 'https://www.youtube.com/playlist?list=PL65XgbSILalVt7-keqNs83uNhq0-usIJe'
+    }
+CFA_YOUTUBE_URL = 'https://www.youtube.com/user/CodeforAmerica/videos'
 @app.route("/resources/videos")
 @app.route("/resources/videos/<topic>")
 def resources_videos(topic=None):
-    return render_template("resources_videos.html", videos=VIDEO_RESOURCES)
+    if topic:
+        videos = filter(lambda v: topic in v['topics'], VIDEO_RESOURCES)
+        more_url = PLAYLIST_URLS.get(topic, CFA_YOUTUBE_URL)
+    else:
+        videos = VIDEO_RESOURCES[0:3]
+        more_url = CFA_YOUTUBE_URL
+
+    return render_template("resources_videos.html", videos=videos, topic=topic, more_url=more_url)
 
 
 @app.route("/events")
