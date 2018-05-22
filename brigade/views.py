@@ -67,11 +67,16 @@ def free_software_show(software):
     return render_template(template_path)
 
 
+# Note: This array should be sorted in reverse chronological order, so the most
+# recent video is at the top.
 VIDEO_RESOURCES = [
         { "id": "_6Qt3n7Zxys", "title": "Free Tools for Your Brigade", "date": "May 14, 2018", "description": "Brigade members lead presentations about free tools for Brigades, showcasing how their Brigades built products using software that's donated for Brigades to use for free!", "topics": ["workshops", "tools"] },
         { "id": "jvVZHmMmq9I", "title": "Food Security Workshop", "date": "April 10, 2018", "description": "Civic Data Alliance, Code for Philly, Hack for LA, and Code for America discuss food security projects from the network. The Food Security workshop was an opportunity to ask questions, share work and stories, and collaborate on ways to address food security challenges in Brigades and their communities.", "start": "134", "topics": ["workshops", "project ideas"] },
         { "id": "3wNntmydohc", "title": "How to Host a Demo Day Workshop", "date": "March 8, 2018", "description": "Watch Code for Boston, Open Oakland, and Code for San Francisco talk about successful practices to host a Demo Day! Learn some tips, strategic approaches, and successful tactics from Brigades, and how you may be able to implement new ideas for your Brigades' demo days!", "topics": ["workshops", "organizer tips"] },
-        { "id": "8wzqe0OUwLc", "title": "Brigade Fundraising Workshop", "date": "February 22, 2018", "description": "Watch Code for Atlanta, Code for Raleigh, Code for San Francisco, Code for San Jose, and Code for America talk about successful practices in fundraising for your brigade! Learn some tips, strategic approaches, and successful tactics from Brigades, and how you may be able to implement various fundraising approaches!", "topics": ["workshops", "fundraising"] }
+        { "id": "8wzqe0OUwLc", "title": "Brigade Fundraising Workshop", "date": "February 22, 2018", "description": "Watch Code for Atlanta, Code for Raleigh, Code for San Francisco, Code for San Jose, and Code for America talk about successful practices in fundraising for your brigade! Learn some tips, strategic approaches, and successful tactics from Brigades, and how you may be able to implement various fundraising approaches!", "topics": ["workshops", "fundraising"] },
+        { "id": "b2mfggZsEGA", "title": "Open Data Day Planning Workshop", "date": "February 17, 2018", "description": "Jill Bjers of Code for Charlotte led a workshop with tips on how to prepare your Brigade for Open Data Day. Watch as she and other Brigades discuss practices they've used and the different experiences they've had.", "topics": ["workshops", "organizer tips"] },
+        { "id": "ENIkpMJnsic", "title": "Workforce Dev Workshop", "date": "December 13, 2017", "description": "Join Open Savannah, Civic Data Alliance, Code for Boston and MAPC, and Code for America to talk about ongoing projects in the workforce development space, how they got started, what they've learned, and what you can do to get started!", "topics": ["workshops", "project ideas"] },
+        { "id": "lpnyGcwTCkU", "title": "Safety & Justice Workshop", "date": "December 4, 2017", "description": "Join Code for America Brigades for a workshop on Safety and Justice work throughout our network.", "topics": ["workshops", "project ideas"] },
     ]
 @app.route("/resources/videos")
 @app.route("/resources/videos/<topic>")
