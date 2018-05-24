@@ -190,6 +190,14 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(200, response.status_code)
             self.assertIn('<loc>http://localhost/brigades/TEST-ORG/</loc>', response.data)
 
+    def test_videos_page(self):
+        response = self.client.get("/resources/videos")
+        self.assertEqual(200, response.status_code)
+
+    def test_videos_page_with_tag(self):
+        response = self.client.get("/resources/videos/workshops")
+        self.assertEqual(200, response.status_code)
+
     def test_filter_datetime(self):
         from filters import format_time
         test_time = "2018-12-25 18:30:00 -0800"
