@@ -21,11 +21,17 @@ This molecule is a button inside something that looks like an <hr />
 .button-page-separator__button-container {
   background-color: #fff;
   display: inline-block;
-  padding: 0 10px;
   position: relative;
+  width: 100%;
   z-index: 2;
 
   > .button:link {
     margin: 0;
+    width: 100%;
+  }
+
+  @include media($tablet-up) {
+    padding: 0 10px;
+    width: auto;
   }
 }
