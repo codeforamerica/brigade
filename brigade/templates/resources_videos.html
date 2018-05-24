@@ -49,14 +49,11 @@
   </div>
 
   <div class="grid-box">
-    <div class="width-one-half">
-      <p class="slab__subtitle">
-        {% if topic %}
-        {% else %}
-        Looking for a recording of an event or gathering in the Brigade network? You've come to the right place.
-        {% endif %}
-      </p>
-    </div>
+    <p class="slab__subtitle">
+      {% if not topic %}
+      Looking for a recording of an event or gathering in the Brigade network? You've come to the right place.
+      {% endif %}
+    </p>
   </div>
 
   <div class="grid-box">
