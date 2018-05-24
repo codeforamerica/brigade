@@ -8,6 +8,12 @@
   position: relative;
   text-align: center;
 
+  // Override style guide's invasive selector:
+  //   [class*="button"][class*="button"]:hover
+  &:hover {
+    background-color: $color-white !important;
+  }
+
   &::before {
     background-color: $color-gray-light;
     content: ' ';
@@ -27,6 +33,12 @@
   position: relative;
   width: 100%;
   z-index: 2;
+
+  // Override style guide's invasive selector:
+  //   [class*="button"][class*="button"]:hover
+  &:hover {
+    background-color: $color-white !important;
+  }
 
   > .button:link {
     margin: 0;
