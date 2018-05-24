@@ -1,0 +1,31 @@
+/*
+This molecule is a button inside something that looks like an <hr />
+*/
+.button-page-separator {
+  position: relative;
+  text-align: center;
+
+  &::before {
+    background-color: #ccc;
+    content: ' ';
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+.button-page-separator__button-container {
+  background-color: #fff;
+  display: inline-block;
+  padding: 0 10px;
+  position: relative;
+  z-index: 2;
+
+  > .button:link {
+    margin: 0;
+  }
+}
