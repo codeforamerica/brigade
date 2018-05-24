@@ -1,12 +1,15 @@
+@import '../core/variables';
+@import '../core/mixins';
+
 /*
-This molecule is a button inside something that looks like an <hr />
-*/
+ * This molecule is a button inside something that looks like an <hr />
+ */
 .button-page-separator {
   position: relative;
   text-align: center;
 
   &::before {
-    background-color: #ccc;
+    background-color: $color-gray-light;
     content: ' ';
     display: block;
     height: 2px;
@@ -19,7 +22,7 @@ This molecule is a button inside something that looks like an <hr />
 }
 
 .button-page-separator__button-container {
-  background-color: #fff;
+  background-color: $color-white;
   display: inline-block;
   position: relative;
   width: 100%;
