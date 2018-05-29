@@ -132,3 +132,20 @@ a.card {
     }
   }
 }
+
+/* Multimedia cards prominently feature a picture or video above the title */
+.card--multimedia__title {
+  @extend .card__title;
+
+  margin-top: 14px;
+  text-align: left;
+}
+
+.card--multimedia__metadata {
+  font-size: 14px;
+
+  // if the metadata follows the title, eat up the margin of the title
+  .card--multimedia__title ~ & {
+    margin: -14px 0 18px;
+  }
+}

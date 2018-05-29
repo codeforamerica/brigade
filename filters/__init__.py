@@ -19,11 +19,12 @@ def join_list(value):
     if len(values) == 0:
         return ""
     elif len(values) == 1:
-        return values[1]
+        return values[0]
     elif len(values) == 2:
-        return "{0} and {1}".format(values[0], values[1])
+        return Markup("{0} and {1}").format(values[0],
+                values[1])
     elif len(values) > 2:
-        return ", ".join(values[0:-1]) + ', and ' + values[-1]
+        return Markup(", ").join(values[0:-1]) + ', and ' + values[-1]
 
 
 @filters.app_template_filter("brigade_description")
@@ -128,3 +129,20 @@ def nl2br(eval_ctx, value):
     if eval_ctx.autoescape:
         result = Markup(result)
     return result
+
+
+YOUTUBE_URL = "https://www.youtube.com/watch?v={id}&start={start}"
+YOUTUBE_EMBED_URL = "https://www.youtube-nocookie.com/embed/{id}?start={start}"
+
+@filters.app_template_filter("youtube_link")
+def youtube_link(id, start=None, embed=False):
+    link = YOUTUBE_EMBED_URL if embed else YOUTUBE_URL
+    return link.format(id=id, start=start or 0)
+
+
+@filters.app_template_filter("link_to_video_topic")
+def link_to_video_topic(topic):
+    return Markup("<a href='{url}'>{text}</a>".format(
+        url=flask.url_for('.resources_videos', topic=escape(topic)),
+        text=escape(topic)
+    ))

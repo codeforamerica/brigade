@@ -1,10 +1,13 @@
 # -- coding: utf-8 --
-import unittest
 import flask
 import httmock
-import cfapi
-from brigade import create_app
+import unittest
 from bs4 import BeautifulSoup
+from jinja2 import Markup
+
+
+from brigade import create_app
+import cfapi
 
 
 class BrigadeTests(unittest.TestCase):
@@ -187,11 +190,56 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(200, response.status_code)
             self.assertIn('<loc>http://localhost/brigades/TEST-ORG/</loc>', response.data)
 
+    def test_videos_page(self):
+        response = self.client.get("/resources/videos")
+        self.assertEqual(200, response.status_code)
+
+    def test_videos_page_with_tag(self):
+        response = self.client.get("/resources/videos/workshops")
+        self.assertEqual(200, response.status_code)
+
     def test_filter_datetime(self):
         from filters import format_time
         test_time = "2018-12-25 18:30:00 -0800"
         formatted_time = format_time(test_time)
         self.assertEqual(formatted_time, "Tuesday, Dec 25, 2018 @ 6:30 PM")
+
+    def test_filter_youtube_link(self):
+        from filters import youtube_link
+        video_id = 'jvVZHmMmq9I'
+
+        self.assertEqual(youtube_link(video_id), 'https://www.youtube.com/watch?v=jvVZHmMmq9I&start=0')
+        self.assertEqual(youtube_link(video_id, start=123), 'https://www.youtube.com/watch?v=jvVZHmMmq9I&start=123')
+        self.assertEqual(youtube_link(video_id, start=123, embed=True),
+                'https://www.youtube-nocookie.com/embed/jvVZHmMmq9I?start=123')
+
+    def test_join_list(self):
+        from filters import join_list
+
+        self.assertEqual(join_list([]), "")
+        self.assertEqual(join_list(["thing"]), "thing")
+        self.assertEqual(join_list(["thing", "other thing"]), "thing and other thing")
+        self.assertEqual(join_list(["thing", "other thing", "last thing"]), "thing, other thing, and last thing")
+
+        # test that it escapes html normally
+        self.assertEqual(
+            join_list(["<p>html</p>", "foo"]),
+            "&lt;p&gt;html&lt;/p&gt; and foo"
+        )
+        self.assertEqual(
+            join_list(["<p>html</p>", "foo", "bar"]),
+            "&lt;p&gt;html&lt;/p&gt;, foo, and bar"
+        )
+
+        # test that it does not escape html in Markup objects
+        self.assertEqual(
+            join_list([Markup("<p>html</p>"), "foo"]),
+            "<p>html</p> and foo"
+        )
+        self.assertEqual(
+            join_list([Markup("<p>html</p>"), "foo", "bar"]),
+            "<p>html</p>, foo, and bar"
+        )
 
     def test_get_official_brigades_by_state(self):
         with httmock.HTTMock(self.response_content):

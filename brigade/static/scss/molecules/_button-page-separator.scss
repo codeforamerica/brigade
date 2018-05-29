@@ -1,0 +1,52 @@
+@import '../core/variables';
+@import '../core/mixins';
+
+/*
+ * This molecule is a button inside something that looks like an <hr />
+ */
+.button-page-separator {
+  position: relative;
+  text-align: center;
+
+  // Override style guide's invasive selector:
+  //   [class*="button"][class*="button"]:hover
+  &:hover {
+    background-color: $color-white !important;
+  }
+
+  &::before {
+    background-color: $color-gray-light;
+    content: ' ';
+    display: block;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+.button-page-separator__button-container {
+  background-color: $color-white;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+
+  // Override style guide's invasive selector:
+  //   [class*="button"][class*="button"]:hover
+  &:hover {
+    background-color: $color-white !important;
+  }
+
+  > .button:link {
+    margin: 0;
+    width: 100%;
+  }
+
+  @include media($tablet-up) {
+    padding: 0 10px;
+    width: auto;
+  }
+}
