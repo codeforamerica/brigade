@@ -14,7 +14,7 @@ This website is meant to:
 
 ## History
 
-The Brigade program started in 2012 as an experiment, largely copying the success of [Open Gov Hack Night](http://opengovhacknight.org/).
+The Brigade program started in 2012 as an experiment, largely copying the success of [Chi Hack Night](https://chihacknight.org/) (known at the time as [Open Gov Hack Night](https://web.archive.org/web/20150504114341/http://www.opengovhacknight.org/)).
 
 This website is on its third version. V1 Was a Rails site with many contributors. It served the Brigade well as it was growing. As Code for America became better at supporting the volunteer groups, we needed something different.
 
