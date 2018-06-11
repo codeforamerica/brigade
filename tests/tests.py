@@ -1,11 +1,11 @@
 # -- coding: utf-8 --
+import unittest
+
+
 import flask
 import httmock
-import unittest
 from bs4 import BeautifulSoup
 from jinja2 import Markup
-
-
 from mock import patch, Mock
 
 
