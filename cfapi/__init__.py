@@ -77,7 +77,7 @@ def get_brigades(official_brigades_only=False):
         # All Brigades on the map have a red marker
         org["properties"]["marker-color"] = "#aa1c3a"
         # Grab only orgs with type Brigade
-        if ("tags" in org["properties"] and "Brigade" in org["properties"]["tags"]):
+        if (org["properties"]["tags"] and "Brigade" in org["properties"]["tags"]):
 
             # If cfa_brigades_only=True, only return Official Brigades
             if official_brigades_only:
