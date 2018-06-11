@@ -1,3 +1,9 @@
+// Import the variables first, so they can be customized.
+@import '~@codeforamerica/style/_sass/core/_variables.scss';
+
+// Override style guide variables
+$hero-color: $color-red;
+
 // Vendor
 @import '~bourbon-neat/app/assets/stylesheets/neat';
 @import '~@codeforamerica/style/_sass/main.scss';
@@ -21,7 +27,6 @@
 @import 'molecules/button-page-separator';
 @import 'molecules/card';
 @import 'molecules/inkind-card';
-@import 'molecules/nav';
 @import 'molecules/panel';
 @import 'molecules/searchbar';
 @import 'molecules/slab';
