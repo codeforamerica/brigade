@@ -37,11 +37,11 @@
 
             <div class="width-one-whole global-header-navigation">
               <nav class="bar-menu global-header-menu align-left">
-                <a href="{{url_for('brigade.brigade_list')}}" class="active-menu-item menu-item">Find a Brigade</a>
-                <a href="{{url_for('brigade.resources')}}" class="menu-item">Resources</a>
-                <a href="{{url_for('brigade.events')}}" class="menu-item">Events</a>
-                <a href="{{url_for('brigade.projects')}}" class="menu-item">Project Finder</a>
-                <a href="{{url_for('brigade.about')}}" class="menu-item">About Us</a>
+                {{ nav_link('brigade.brigade_list', 'Find a Brigade', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.resources', 'Resources', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.events', 'Events', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.projects', 'Project Finder', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.about', 'About Us', class_name='menu-item', active_class_name='active-menu-item') }}
               </nav>
               <nav class="bar-menu global-header-menu align-right">
                 <a href="http://slack.codeforamerica.org" target="_blank" title="Slack sign-up form" class="menu-item">Join us on Slack</a>
