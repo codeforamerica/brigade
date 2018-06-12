@@ -146,3 +146,30 @@ def link_to_video_topic(topic):
         url=flask.url_for('.resources_videos', topic=escape(topic)),
         text=escape(topic)
     ))
+
+
+@filters.app_template_global("nav_link")
+def nav_link(page, text, **kwargs):
+    if 'class_name' in kwargs:
+        classes = kwargs['class_name']
+        del kwargs['class_name']
+    else:
+        classes = ""
+
+    if 'active_class_name' in kwargs:
+        active_class = kwargs['active_class_name']
+        del kwargs['active_class_name']
+    else:
+        active_class = ""
+
+    url = flask.url_for(page, **kwargs)
+
+    if flask.request.path == url and len(active_class):
+        classes += " "
+        classes += active_class
+
+    return Markup("<a href='{url}'{classes}>{text}</a>").format(
+        url=url,
+        classes=Markup(" class='{}'").format(classes) if len(classes) else "",
+        text=text
+    )

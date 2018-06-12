@@ -6,8 +6,6 @@
     <title>{% block title %}The Code for America Brigade Network{% endblock %} | Code for America Brigade</title>
     <meta name="description" content="{% block description %}{% endblock %}" />
 
-    <link rel="stylesheet" type="text/css" href="{{ asset_url_for('cfaV3Style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset_url_for('cfaV3Layout.css') }}" media="all and (min-width: 40em)">
     <link rel="stylesheet" type="text/css" href="{{ asset_url_for('style.css') }}">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset_url_for("images/favicon.ico") }}">
@@ -16,39 +14,58 @@
     <!-- FontAwesome Icons -->
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
 
+    <!-- Font Vendor Stylesheets -->
+    <script src="https://use.typekit.net/lkd6vsz.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
 
   <body id="{% block page_id %}{% endblock %}">
 
     <div class="js-container">
+      <section class="hero">
+        <header class="global-header reverse-global-header hero-header" role="banner">
+          <div class="grid-box">
+            <div class="width-one-whole">
+              <div class="align-left">
+                <div class="global-header-logo">
+                  <a href="/" class="global-header-logo">
+                    <img class="header-icon" src="{{ asset_url_for('images/new_logo.png') }}" alt="Logo for Code for America" />
+                  </a>
+                </div>
+              </div>
+            </div>
 
-      <nav class="nav-global-primary">
-      </nav>
+            <div class="width-one-whole global-header-navigation">
+              <nav class="bar-menu global-header-menu align-left">
+                {{ nav_link('brigade.brigade_list', 'Find a Brigade', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.resources', 'Resources', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.events', 'Events', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.projects', 'Project Finder', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.about', 'About Us', class_name='menu-item', active_class_name='active-menu-item') }}
+              </nav>
+              <nav class="bar-menu global-header-menu align-right">
+                <a href="http://slack.codeforamerica.org" target="_blank" title="Slack sign-up form" class="menu-item">Join us on Slack</a>
+              </nav>
+            </div>
+          </div>
+        </header>
 
-      <div class="global-header">
-        <a href="/" class="global-header-logo">
-            <img src="{{ asset_url_for('images/new_logo.png') }}" />
-        </a>
-
-        <nav class="nav-global-secondary">
-          <ul>
-            <li><a href="{{url_for('brigade.brigade_list')}}">Find a Brigade</a></li>
-            <li><a href="{{url_for('brigade.resources')}}">Resources</a></li>
-            <li><a href="{{url_for('brigade.events')}}">Events</a></li>
-            <li><a href="{{url_for('brigade.projects')}}">Project Finder</a></li>
-            <li><a href="{{url_for('brigade.about')}}">About Us</a></li>
-            <li><a href="http://slack.codeforamerica.org" target="_blank" title="Slack sign-up form">Join us on Slack</a></li>
-          </ul>
-        </nav>
-
-      </div>
+        <div class="hero-content">
+          <div class="grid-box">
+            <div class="width-seven-twelfths">
+              <p class="hero-lead-in">
+                We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <main role="main">
 
-        {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
 
       </main>
-
     </div>
 
     {% block analytics %}

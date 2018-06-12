@@ -12,8 +12,6 @@ module.exports = {
   entry: {
     application: rootAssetPath + '/js/application.js',
     style: rootAssetPath + '/scss/style.scss',
-    cfaV3Style: rootAssetPath + '/scss/vendor/cfa-v3-style.css',
-    cfaV3Layout: rootAssetPath + '/scss/vendor/cfa-v3-layout.css',
   },
 
   output: {
