@@ -106,6 +106,11 @@ def styleguide():
     return render_template("styleguide.html")
 
 
+@app.route("/showcase")
+def project_showcase():
+    return render_template("project_showcase.html")
+
+
 def brigade_projects(brigadeid=None):
     return redirect(url_for('.projects', brigadeid=brigadeid), code=301)
 
