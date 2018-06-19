@@ -1,0 +1,45 @@
+@import '../core/variables';
+@import '../core/mixins';
+@import '../atoms/button';
+
+//
+// List Group
+//
+
+.list-group {
+  font-size: 0.9em;
+  line-height: 1.4;
+  text-align: center;
+
+  @include media($tablet-up) {
+    line-height: 30px;
+    text-align: left;
+  }
+}
+
+.list-group__list-item {
+  background-color: $color-gray-light;
+  margin-bottom: 10px;
+  overflow: auto;
+  padding: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.list-group .list-item__actions {
+  margin-top: 10px;
+
+  a.button:link {
+    margin: 0;
+    height: auto;
+    line-height: 30px;
+    padding: 0 15px;
+  }
+
+  @include media($tablet-up) {
+    float: right;
+    margin-top: 0;
+  }
+}
