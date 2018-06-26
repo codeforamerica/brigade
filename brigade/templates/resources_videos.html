@@ -4,10 +4,6 @@
 {% block page_id %}videos{% endblock %}
 
 {# Conditionals based on what type of page is rendering #}
-{% if topic %}
-{% else %}
-{% endif %}
-
 {% block content %}
 <header id="intro" class="page-header slab slab-dark-blue">
   <div class="grid-box">
@@ -59,23 +55,23 @@
   <div class="grid-box">
     {% for video in videos[0:3] %}
     <div class="width-one-third">
-      <div class="card card--multimedia">
-        <div class="card__body">
+      <div class="card">
+        <div class="card-content">
           <iframe width="100%" height="240" src="{{ video["id"] | youtube_link(start=video.get("start"), embed=True) }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-          <h2 class="card--multimedia__title">
+          <h2>
             <a href="{{ video["id"] | youtube_link(start=video.get("start")) }}">
               {{ video["title"] }}
             </a>
           </h2>
-          <p class="card--multimedia__metadata">{{ video["date"] }}</p>
+          <p>{{ video["date"] }}</p>
 
           <p>{{ video["description"] }}</p>
-        </div>
 
-        <div class="card__footer">
-          <i class="fas fa-tags"></i>
-          Posted in {{ video["topics"] | map('link_to_video_topic') | join_list }}
+          <p>
+            <i class="fas fa-tags"></i>
+            Posted in {{ video["topics"] | map('link_to_video_topic') | join_list }}
+          </p>
         </div>
       </div>
     </div>
