@@ -271,6 +271,11 @@ class BrigadeTests(unittest.TestCase):
         self.assertEqual(nav_link('brigade.events', 'Events', class_name="foo", active_class_name="foo-active"),
                 "<a href='/events' class='foo foo-active'>Events</a>")
 
+        # when on a sub-page of a link
+        flask.request.path = '/events/some-event'
+        self.assertEqual(nav_link('brigade.events', 'Events', class_name="foo", active_class_name="foo-active"),
+                "<a href='/events' class='foo foo-active'>Events</a>")
+
 
 if __name__ == '__main__':
     unittest.main()
