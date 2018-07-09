@@ -5,147 +5,15 @@
 // Card
 //
 
-.card {
-  background-color: $color-white;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  display: flex;
-  flex-direction: column;
-  font-weight: inherit;
-  margin: 15px 0;
-
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  }
-
-  /* Temporary fix to make paragraph margins less agressive in cards */
-  p {
-    margin: 0 0 10px 0; // TODO: Address paragraph margins globally
-  } 
-}
-
-a.card {
-  color: inherit;
-  
-  /* Remove any hover border if the card is a link */
-  &:hover {
-    border: 0;
-  }
-}
-
-.card__header {
-  border-bottom: solid $color-border-light 1px;
-  font-size: small;
-  padding: 10px;
-}
-
-.card__body {
-  flex: 100%;
-  padding: 15px;
-}
-
-.card__title {
-  font-size: 28px;
-  hyphens: auto;
-  line-height: 1.2;
+// TODO: upstream this into the v4 style guide
+.card-image--icon {
+  color: $color-black;
+  font-size: 44px;
+  line-height: 100px;
   text-align: center;
-  word-wrap: break-word;
 }
 
-/* This is an area for a main card action, like a button or a link */
-.card__action {
-  padding: 0 15px 15px 15px;
+.card-image-container {
+  margin: 1rem auto 0;
   text-align: center;
-
-  /* Make card action buttons full-width */
-  .button,
-  .button:link {
-    width: 100%;
-  }
-}
-
-.card__aside {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  min-height: 150px;
-  position: relative;
-  text-align: center;
-
-  img {
-    height: 100%;
-    left: 0;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-}
-
-.card__footer {
-  border-top: solid $color-border-light 1px;
-  font-size: small;
-  line-height: 1.2;
-  padding: 15px;
-}
-
-.card__icon {
-  font-size: 52px;
-  padding: 15px;
-  text-align: center;
-
-  img {
-    max-height: 52px;
-  }
-}
-
-.card--horizontal {
-
-  .card__body {
-    padding: 0;
-  }
-
-  .card__content {
-    padding: 15px;
-  }
-
-  .card__content .card__action {
-    padding: 5px 0 0 0;
-  }
-
-  @include media($tablet-up) {
-    .card__body {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .card__content {
-      flex: 2;
-    }
-
-    .card__aside {
-      flex: 1;
-      flex-shrink: 0;
-    }
-
-    .card__title {
-      text-align: left;
-    }
-  }
-}
-
-/* Multimedia cards prominently feature a picture or video above the title */
-.card--multimedia__title {
-  @extend .card__title;
-
-  margin-top: 14px;
-  text-align: left;
-}
-
-.card--multimedia__metadata {
-  font-size: 14px;
-
-  // if the metadata follows the title, eat up the margin of the title
-  .card--multimedia__title ~ & {
-    margin: -14px 0 18px;
-  }
 }

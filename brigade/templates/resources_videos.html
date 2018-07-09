@@ -4,10 +4,6 @@
 {% block page_id %}videos{% endblock %}
 
 {# Conditionals based on what type of page is rendering #}
-{% if topic %}
-{% else %}
-{% endif %}
-
 {% block content %}
 <header id="intro" class="page-header slab slab-dark-blue">
   <div class="grid-box">
@@ -20,11 +16,11 @@
 <section class="slab slab--compact">
   <div class="grid-box">
     <div class="width-two-thirds">
-      <div class="alert">
-        <div class="alert__icon">
+      <div class="alert-info">
+        <div class="alert-info__icon">
           <i class="fas fa-info-circle"></i>
         </div>
-        <div class="alert__content">
+        <div class="alert-info__content">
           Check out <a href="https://www.youtube.com/user/CodeforAmerica/videos" target="_blank">Code for America's YouTube</a> for more videos.
         </div>
       </div>
@@ -59,23 +55,23 @@
   <div class="grid-box">
     {% for video in videos[0:3] %}
     <div class="width-one-third">
-      <div class="card card--multimedia">
-        <div class="card__body">
+      <div class="card">
+        <div class="card-content">
           <iframe width="100%" height="240" src="{{ video["id"] | youtube_link(start=video.get("start"), embed=True) }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-          <h2 class="card--multimedia__title">
+          <h2>
             <a href="{{ video["id"] | youtube_link(start=video.get("start")) }}">
               {{ video["title"] }}
             </a>
           </h2>
-          <p class="card--multimedia__metadata">{{ video["date"] }}</p>
+          <p>{{ video["date"] }}</p>
 
           <p>{{ video["description"] }}</p>
-        </div>
 
-        <div class="card__footer">
-          <i class="fas fa-tags"></i>
-          Posted in {{ video["topics"] | map('link_to_video_topic') | join_list }}
+          <p>
+            <i class="fas fa-tags"></i>
+            Posted in {{ video["topics"] | map('link_to_video_topic') | join_list }}
+          </p>
         </div>
       </div>
     </div>

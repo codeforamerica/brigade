@@ -164,7 +164,7 @@ def nav_link(page, text, **kwargs):
 
     url = flask.url_for(page, **kwargs)
 
-    if flask.request.path == url and len(active_class):
+    if flask.request.path.find(url) == 0 and len(active_class):
         classes += " "
         classes += active_class
 
