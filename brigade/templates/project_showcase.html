@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% block title %}Project Showcase{% endblock %}
+{% block description %}Explore some of the amazing work done by Brigades and find inspiration for your next project{% endblock %}
+
+{% block page_id %}events{% endblock %}
+
+{% block content %}
+
+<header id="intro" class="page-header slab slab-dark-blue">
+  <div class="grid-box">
+    <div class="width-two-thirds">
+      <h1 class="title">Project Showcase</h1>
+      <div class="subtitle">Explore amazing Brigade projects and adapt them for your local community.</div>
+    </div>
+    <div class="width-one-third">
+      <div class="alert alert--reverse">
+        <div class="alert__icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="alert__content">
+          <strong>Know an amazing Brigade project that should be on this page?</strong><br> 
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScYO3puRDGeE0728WrlQtgr8d1AoryytTGYBcahVgfHHhCX4w/viewform?usp=sf_link" target="_blank">Let us know!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="overview" class="slab slab--compact slab-gray">
+  <div class="grid-box">
+    <div class="width-two-thirds">
+      <p>
+        Showcase projects <strong>serve the public good</strong>, have clear goals that are <strong>aligned with the values of the Network</strong>, and are <strong>redeployable</strong>, with clean code and good documentation.
+      </p>
+      <div class="alert">
+        <div class="alert__icon">
+          <i class="fab fa-github"></i>
+        </div>
+        <div class="alert__content">
+          <strong>Looking for the Civic Tech Github Project Search?</strong> 
+          <a href="{{url_for('brigade.projects')}}">Find it here!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="slab slab--compact">
+  <div class="grid-box">
+    <h4>Explore by category:</h4>
+    <a href="#safety-and-justice" class="button-s">Safety and Justice</a>
+    <a href="#food-security" class="button-s">Food Security</a>
+    <a href="#transportation" class="button-s">Transportation</a>
+    <a href="#public-works" class="button-s">Public Works</a>
+  </div>
+</nav>
+
+<section class="slab slab-gray border-bottom border-bottom">
+  <div class="grid-box" id="safety-and-justice">
+    <div class="width-two-thirds">
+      <h2>Safety and Justice</h2>
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">Courtbot</h3>
+          <p>Court Bot gives residents easy-to-understand information about resolving citations and timely reminders about upcoming court dates.</p>
+          <div class="list-group">
+            <div class="list-group__list-item">
+              <strong>CourtBot</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-Tulsa') }}">Code for Tulsa</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/codefortulsa/courtbot" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+            <div class="list-group__list-item">
+              <strong>CourtBot</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-Atlanta') }}">Code for Atlanta</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/codeforatlanta/courtbot" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">Reentry Resources Hub</h3>
+          <p>The Buncombe County ReEntry Resources Hub is a website providing high-quality information and resources to residents reentering society after a period of incarceration, as well as those dealing with the consequences of a previous conviction.</p>
+          <div class="list-group">
+            <div class="list-group__list-item">
+              <strong>Buncombe County ReEntry Resources</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-Greensboro') }}">Code for Greensboro</a></span>
+              <div class="list-item__actions">
+                <a href="http://www.buncombereentryhub.org/" class="button" target="_blank">Visit project <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-box"><hr></div>
+  <div class="grid-box" id="food-security">
+    <h2>Food Security</h2>
+    <div class="width-two-thirds">
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">Food for Thought (Summer Meals)</h3>
+          <p>Food for Thought is a searchable map and directory of where you can find no-cost summer meals for kids in Oklahoma.</p>
+          <div class="list-group">
+            <div class="list-group__list-item">
+              <strong>Food for Thought</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-Tulsa') }}">Code for Tulsa</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/codefortulsa/food4thought" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+                <a href="https://summer-meals.herokuapp.com/" class="button" target="_blank">Visit project <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">Food Oasis</h3>
+          <p>Food Oasis LA (FOLA) shows you places to find healthy food in Los Angeles, whether you are looking to buy, grow, or need access to free food.</p>
+          <div class="list-group">
+            <div class="list-group__list-item">
+              <strong>Food Oasis LA</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Hack-for-LA') }}">Hack for LA</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/foodoasisla" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+                <a href="https://foodoasis.la" class="button" target="_blank">Visit project <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">NearGreen</h3>
+          <p>Near Green is a web application that aims to make healthy food accessible to the city of Philadelphia.</p>
+          <div class="list-group">
+            <div class="list-group__list-item">
+              <strong>NearGreen</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-Philly') }}">Code for Philly</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/CodeForPhilly/neargreen" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+                <a href="https://codeforphilly.github.io/neargreen/" class="button" target="_blank">Visit project <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="width-one-third">
+      <div class="alert">
+        <div class="alert__icon">
+          <i class="fab fa-youtube"></i>
+        </div>
+        <div class="alert__content">
+          <strong>Want to learn more about food security projects in the Network?</strong><br> 
+          <a href="https://www.youtube.com/watch?v=jvVZHmMmq9I">Watch the Brigade Food Security Workshop video!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-box"><hr></div>
+  <div class="grid-box" id="transportation">
+    <div class="width-two-thirds">
+      <h2>Transportation</h2>
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">CyclePhilly</h3>
+          <p>CyclePhilly is a smartphone app for recording your bicycle trips. Data from the app can be used by regional transportation planners in the Philadelphia area to make Philly a better place to ride.</p>
+          <div class="list-group">
+            <div class="list-group__list-item">
+              <strong>CyclePhilly</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-Philly') }}">Code for Philly</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/CodeForPhilly/cyclephilly" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+                <a href="http://www.cyclephilly.org/" class="button" target="_blank">Visit project <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-box"><hr></div>
+  <div class="grid-box" id="public-works">
+    <div class="width-two-thirds">
+      <h2>Public Works</h2>
+      <div class="card">
+        <div class="card__body">
+          <h3 class="card__title">Adopt a Drain</h3>
+          <p>Adopt a Drain Program enables residents to “adopt” a storm drain in their city or town, keeping it free of debris. While helping to reduce localized flooding, the program also fosters community engagement by encouraging residents to take an active role in improving their neighborhood.</p>
+          <div class="list-group">
+            <div class="list-group__list-item">
+              <strong>Adopt a Drain SF</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-San-Francisco') }}">Code for San Francisco</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/sfbrigade/adopt-a-drain" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+                <a href="https://adoptadrain.sfwater.org/" class="button" target="_blank">Visit project <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+            <div class="list-group__list-item">
+              <strong>Norfolk Drains</strong> <span class="no-wrap">by <a href="{{ url_for('brigade.brigade', brigadeid='Code-for-Hampton-Roads') }}">Code for Hampton Roads</a></span>
+              <div class="list-item__actions">
+                <a href="https://github.com/Code4HR/adopt-a-drain" class="button" target="_blank">View code <i class="fab fa-github"></i></a>
+                <a href="https://norfolkdrains.herokuapp.com/" class="button" target="_blank">Visit project <i class="fas fa-external-link-alt"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

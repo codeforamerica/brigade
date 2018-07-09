@@ -254,6 +254,20 @@
   </div>
 
   <div class="grid-box">
+    <div class="width-three-fourths">
+      <div class="alert">
+        <div class="alert__icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="alert__content">
+          <strong>Looking for project inspiration?</strong> 
+          <a href="{{url_for('brigade.project_showcase')}}">Check out the Brigade Project Showcase!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-box">
     {% for project in brigade.current_projects %}
     <div class="width-one-fourth">
       <div class="card">
