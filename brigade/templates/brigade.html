@@ -1,31 +1,29 @@
 {% extends "base.html" %}
 {% block title %}{{brigade.name}}{% endblock %}
 {% block description %}{{ brigade | brigade_description }}{% endblock %}
+{% block hero_title %}{{ brigade.name }}{% endblock %}
+{% block hero_description %}
+  {% if brigade.tags %}
+
+  {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
+  {{ brigade.name }} is an official Code for America Brigade in {{ brigade.city }} working on projects with government and community partners to improve people’s lives.
+
+  {% elif 'Brigade' in brigade.tags and not 'Official' in brigade.tags %}
+  {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve people's lives.
+
+  {% elif 'Government' in brigade.tags %}
+  {{ brigade.name }} is a government organization in {{ brigade.city }}.
+  {% endif %}
+
+  {% endif %}
+{% endblock %}
 
 {% block content %}
 
 <header id="intro" class="page-header slab slab-dark-blue">
   <div class="grid-box">
-    <div class="width-three-fourts">
-      <h1 class="title slab__title">{{ brigade.name }}</h1>
-    </div>
-  </div>
-  <div class="grid-box">
     <div class="width-one-half">
       <p>
-        {% if brigade.tags %}
-
-        {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
-        {{ brigade.name }} is an official Code for America Brigade in {{ brigade.city }} working on projects with government and community partners to improve people’s lives.
-
-        {% elif 'Brigade' in brigade.tags and not 'Official' in brigade.tags %}
-        {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve people's lives. 
-
-        {% elif 'Government' in brigade.tags %}
-        {{ brigade.name }} is a government organization in {{ brigade.city }}.
-        {% endif %}
-
-        {% endif %}
       </p>
       <p>
         <ul class="fa-ul">

@@ -2,16 +2,11 @@
 {% block title %}Videos{% endblock %}
 {% block description %}Recordings from events within the Brigade Network{% endblock %}
 {% block page_id %}videos{% endblock %}
+{% block hero_title %}Videos{% endblock %}
+{% block hero_description %}Recordings from events within the Brigade Network{% endblock %}
 
 {# Conditionals based on what type of page is rendering #}
 {% block content %}
-<header id="intro" class="page-header slab slab-dark-blue">
-  <div class="grid-box">
-    <h1 class="title">Videos</h1>
-    <div class="subtitle">Recordings from events within the Brigade Network</div>
-  </div>
-</header>
-
 {% if not topic %}
 <section class="slab slab--compact">
   <div class="grid-box">

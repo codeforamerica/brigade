@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Page Not Found{% endblock %}
 {% block content %}
-<div class="layout-semibreve">
-  <h1 class="text-center">Page Not Found</h1>
-</div>
+<section class="slab">
+  <div class="grid-box">
+    <h1>Error: Page Not Found</h1>
+    <p>We weren't able to find that page.</p>
+    <a href="{{ url_for('.index') }}"> &larr; Return to Home</a>
+  </div>
+</section>
 {% endblock %}

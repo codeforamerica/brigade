@@ -51,8 +51,9 @@
         <div class="hero-content">
           <div class="grid-box">
             <div class="width-seven-twelfths">
+              <h1 class="hero-title">{% block hero_title %}{% endblock %}</h1>
               <p class="hero-lead-in">
-                We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.
+                {% block hero_description %}{% endblock %}
               </p>
             </div>
           </div>

@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block hero_title %}Find your local Brigade{% endblock %}
+{% block hero_description %}
+Explore the {{ brigades_total }} official Code for America brigades across the US.
+{% endblock %}
 {% block description %}
 Explore the {{ brigades_total }} official Code for America brigades across the US.
 {% endblock %}
@@ -7,13 +11,6 @@ Explore the {{ brigades_total }} official Code for America brigades across the U
 {% block page_id %}brigade-list{% endblock %}
 
 {% block content %}
-
-<header class="page-header slab slab-dark-blue">
-  <div class="grid-box">
-    <h1 class="title">Find your local brigade</h1>
-    <div class="subtitle">Explore the {{ brigades_total }} official Code for America brigades across the US</div>
-  </div>
-</header>
 <div class="slab slab--compact">
   <div class="grid-box">
     <div class="width-two-thirds">
