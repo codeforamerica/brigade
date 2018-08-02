@@ -30,11 +30,11 @@ def join_list(value):
 @filters.app_template_filter("brigade_description")
 def brigade_description(brigade):
     if "tags" in brigade and "Brigade" in brigade["tags"]:
-        return "{0} is a group of volunteers in {1} working on projects with government and " \
+        return u"{0} is a group of volunteers in {1} working on projects with government and " \
                "community partners to improve peoples' lives.".format(
                     brigade['name'], brigade['city'])
     else:
-        return "{0} is a group of civic technologists working to build a better " \
+        return u"{0} is a group of civic technologists working to build a better " \
             "government. They're based in {1}.".format(
                     brigade['name'], brigade['city'])
 

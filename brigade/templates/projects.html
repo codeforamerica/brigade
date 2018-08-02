@@ -7,22 +7,24 @@
     The Code for America Brigade network is currently working on {{ projects | length }} projects.
   {% endif %}
 {% endblock %}
+{% block hero_title %}
+  {% if brigade %}
+    <h1>{{brigade.name}}'s Projects</h1>
+  {% else %}
+    <h1 id="project-search-h1">Civic Tech Project Search</h1>
+  {% endif %}
+{% endblock %}
+{% block hero_description %}
+  {% if brigade %}
+  {% else %}
+    Search across thousands of civic technology projects.
+  {% endif %}
+{% endblock %}
 
 
 {% block content %}
-
   <section id="project-search-section">
-
     <div class="layout-semibreve">
-
-      {% if brigade %}
-        <h1>{{brigade.name}}'s Projects</h1>
-      {% else %}
-        <h1 id="project-search-h1">Civic Tech Project Search</h1>
-        <p>Search across thousands of civic technology projects.</p>
-      {% endif %}
-
-      
       <div class="searchbar">
         <form id="project-search" action="{{ request.path }}" method="get">
           <p class="field">

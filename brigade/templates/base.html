@@ -27,11 +27,9 @@
           <div class="grid-box">
             <div class="width-one-whole">
               <div class="align-left">
-                <div class="global-header-logo">
-                  <a href="/" class="global-header-logo">
-                    <img class="header-icon" src="{{ asset_url_for('images/new_logo.png') }}" alt="Logo for Code for America" />
-                  </a>
-                </div>
+                <a href="/" class="global-header-logo">
+                  <img width="150" class="header-icon" src="{{ asset_url_for('images/brigade-logo-white.svg') }}" alt="Logo for Code for America" />
+                </a>
               </div>
             </div>
 
@@ -40,7 +38,7 @@
                 {{ nav_link('brigade.brigade_list', 'Find a Brigade', class_name='menu-item', active_class_name='active-menu-item') }}
                 {{ nav_link('brigade.resources', 'Resources', class_name='menu-item', active_class_name='active-menu-item') }}
                 {{ nav_link('brigade.events', 'Events', class_name='menu-item', active_class_name='active-menu-item') }}
-                {{ nav_link('brigade.projects', 'Project Finder', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.project_showcase', 'Project Showcase', class_name='menu-item', active_class_name='active-menu-item') }}
                 {{ nav_link('brigade.about', 'About Us', class_name='menu-item', active_class_name='active-menu-item') }}
               </nav>
               <nav class="bar-menu global-header-menu align-right">
@@ -53,8 +51,9 @@
         <div class="hero-content">
           <div class="grid-box">
             <div class="width-seven-twelfths">
+              <h1 class="hero-title">{% block hero_title %}{% endblock %}</h1>
               <p class="hero-lead-in">
-                We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.
+                {% block hero_description %}{% endblock %}
               </p>
             </div>
           </div>
@@ -62,9 +61,7 @@
       </section>
 
       <main role="main" class="page-content">
-
       {% block content %}{% endblock %}
-
       </main>
     </div>
 
