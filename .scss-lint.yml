@@ -1,0 +1,9 @@
+linters:
+  HexLength:
+    style: long
+  LeadingZero:
+    style: include_zero
+  SelectorFormat:
+    convention: hyphenated_BEM
+  StringQuotes:
+    enabled: false
