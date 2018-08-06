@@ -6,15 +6,13 @@
 
 .message {
   background-color: $color-white;
-  border: solid $color-gray-light 1px;
+  border: 1px solid $color-gray-light;
   display: flex;
   flex-direction: row;
   font-size: .9em;
   line-height: 1.5em;
-  margin: {
-    bottom: 1rem;
-    top: 1rem;
-  }
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   padding: .75em;
 
   a {
