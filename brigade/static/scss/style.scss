@@ -1,15 +1,11 @@
 // Import the variables first, so they can be customized.
-@import '~@codeforamerica/style/_sass/core/_variables.scss';
-
-// Override style guide variables
-$hero-color: $color-red;
+@import 'core/variables';
 
 // Vendor
 @import '~bourbon-neat/app/assets/stylesheets/neat';
 @import '~@codeforamerica/style/_sass/main.scss';
 
 // Core
-@import 'core/variables';
 @import 'core/mixins';
 @import 'core/utilities';
 @import 'core/type';

@@ -1,3 +1,5 @@
+@import '~@codeforamerica/style/_sass/core/_variables.scss';
+
 // 
 // Variables
 //
@@ -6,13 +8,6 @@
 $color-black: #000;
 $color-gray-dark: #5a5a5a;
 $color-white: #fff;
-
-$color-red: #cd1f42;
-$color-light-red: #d5405e;
-$color-dark-red: #bd1b3c;
-$color-blue: #399ed2;
-$color-light-blue: #57acd9;
-$color-dark-blue: #3591c0;
 
 $color-gray: #999;
 $color-gray-light: #e5e5e5;
@@ -30,6 +25,9 @@ $color-text-light: $color-white;
 
 $color-border-dark: $color-gray;
 $color-border-light: $color-gray-light;
+
+// Hero
+$hero-color: $color-red;
 
 // Breakpoints
 $mobile-up:     481px;
