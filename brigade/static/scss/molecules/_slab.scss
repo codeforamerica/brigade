@@ -5,20 +5,6 @@
 // Slab
 //
 
-.slab {
-  clear: none;
-  display: block;
-  float: none;
-  margin-left: -$site-margins;
-  margin-right: -$site-margins;
-  padding: 2em $site-margins;
-  width: auto;
-  
-  @include media($tablet-up) {
-    padding: 3em $site-margins;
-  }
-}
-
 .slab__title {
   margin-top: 0;
 }

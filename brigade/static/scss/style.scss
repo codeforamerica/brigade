@@ -8,12 +8,10 @@
 // Core
 @import 'core/mixins';
 @import 'core/utilities';
-@import 'core/type';
 @import 'core/base';
 
 // Atoms
 @import 'atoms/button';
-@import 'atoms/grid';
 @import 'atoms/input';
 @import 'atoms/list';
 @import 'atoms/table';
@@ -21,6 +19,7 @@
 // Molecules
 @import 'molecules/button-page-separator';
 @import 'molecules/card';
+@import 'molecules/in-page-nav';
 @import 'molecules/list-group';
 @import 'molecules/message';
 @import 'molecules/panel';
@@ -29,7 +28,6 @@
 
 // Organisms
 @import 'organisms/card-row';
-@import 'organisms/global-header';
 @import 'organisms/page-header';
 
 // Templates
