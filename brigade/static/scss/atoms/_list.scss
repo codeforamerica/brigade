@@ -6,16 +6,18 @@
 
 .list--inline {
   list-style-type: none;
+  padding: 0;
+
   li {
-    background-image: none;        
-    display: inline;
+    display: inline-block;
+    margin: .625rem 3rem .625rem 0;
   }
 }
 
 .list--no-bullets {
   list-style-type: none;
+
   li {
-    background-image: none;
     padding-left: 0;
   }
 }
@@ -31,6 +33,5 @@
 .fa-ul {
   li {
     list-style-type: none;
-    background-image: none;  
   }
 }
