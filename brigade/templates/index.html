@@ -7,50 +7,56 @@ The Brigade Network
 {% block hero_description %}
 We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.
 {% endblock %}
+{% block hero_right %}
+<div class="message">
+  <div class="message__icon">
+    <i class="fas fa-star"></i>
+  </div>
+  <div class="message__content">
+    No Brigade near you? <strong>Start a new Brigade!</strong> <br>
+    <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
+  </div>
+</div>
+{% endblock %}
 
 {% block page_id %}home{% endblock %}
 
 {% block content %}
 
-<section id="overview" class="slab">
+<section class="slab slab--compact slab--full-bleed">
   <div class="grid-box">
-    <div class="width-seven-twelfths">
+    <div class="width-one-half">
+      <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
+    </div>
+  </div>
+  <div id="map"></div>
+  <div class="grid-box">
+    <div class="width-one-half shift-one-fourth">
       <div class="message">
         <div class="message__icon">
-          <i class="fas fa-star"></i>
+          <i class="fas fa-globe-africa"></i>
         </div>
         <div class="message__content">
-          No brigade near you? <strong>Start a new brigade!</strong><br>
-          <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
+          Looking for an organization outside the US? 
+          <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slab">
-  <div class="grid-box">
-    <div class="width-one-whole">
-      <div id="map"></div>
-      <p>
-        Looking for an organization outside the US? <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
-      </p>
-    </div>
-  </div>
-</section>
+{% endblock %}
 
-<section id="sponsors" class="slab">
-  <div class="grid-box">
-    <div class="width-one-whole">
-      <h4>Funders</h4>
-      <ul class="list list--inline">
-        <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60"></a></li>
-        <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60"></a></li>
-        <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60"></a></li>
-      </ul>
-    </div>
-  </div>    
-</section>
+{% block footer %}
+
+<div id="sponsors" class="grid-box">
+  <h3>Funders</h3>
+  <ul class="list list--inline">
+    <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60"></a></li>
+    <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60"></a></li>
+    <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60"></a></li>
+  </ul>
+</div>
 
 {% endblock %}
 

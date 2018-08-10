@@ -7,3 +7,11 @@
 .button {
   box-sizing: border-box !important; // TODO: Get rid of !important (the old CfA stylesheet we're using right now overides the button box-sizing)
 }
+
+// Override the font name used in button icons
+// TODO: Upgrade the style guide to Font Awesome 5.
+.button-download::after,
+.button-linkout::after {
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 700 !important;
+}

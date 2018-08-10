@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ asset_url_for("images/flag-red.png") }}"/>
 
     <!-- FontAwesome Icons -->
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet">
 
     <!-- Font Vendor Stylesheets -->
     <script src="https://use.typekit.net/lkd6vsz.js"></script>
@@ -66,6 +66,11 @@
       <main role="main" class="page-content">
       {% block content %}{% endblock %}
       </main>
+
+      <footer class="global-footer">
+      {% block footer %}{% endblock %}
+      </footer>
+
     </div>
 
     {% block analytics %}
