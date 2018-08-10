@@ -1,11 +1,24 @@
 @import '../core/variables';
 @import '../core/mixins';
 
+$card-gutter: 1rem;
 //
 // Card
 //
 
 // TODO: upstream this into the v4 style guide
+// TODO: Remove <a> selectors from all these cards
+a.card--horizontal {
+  align-items: center;
+  display: flex;
+
+  .card-image-container {
+    margin-bottom: $card-gutter;
+    margin-right: $card-gutter;
+    flex-shrink: 0;
+  }
+}
+
 .card-image--icon {
   color: $color-black;
   font-size: 44px;
@@ -14,6 +27,6 @@
 }
 
 .card-image-container {
-  margin: 1rem auto 0;
+  margin: $card-gutter auto 0;
   text-align: center;
 }
