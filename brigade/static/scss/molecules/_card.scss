@@ -11,11 +11,23 @@ $card-gutter: 1rem;
 a.card--horizontal {
   align-items: center;
   display: flex;
+  flex-direction: column;
+
+  @include media($mobile-up) {
+    flex-direction: row;
+  }
+
+  .card-content {
+    // long enough to not break the text of the "View event on Meetup" button:
+    min-width: 270px;
+  }
 
   .card-image-container {
     margin-bottom: $card-gutter;
-    margin-right: $card-gutter;
-    flex-shrink: 0;
+
+    @include media($mobile-up) {
+      margin-right: $card-gutter;
+    }
   }
 }
 
@@ -29,4 +41,8 @@ a.card--horizontal {
 .card-image-container {
   margin: $card-gutter auto 0;
   text-align: center;
+
+  img {
+    object-fit: cover;
+  }
 }
