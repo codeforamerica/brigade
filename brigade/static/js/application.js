@@ -119,6 +119,13 @@ window.Brigade.init = function() {
       transport: 'beacon'
     })
   });
+
+
+  // Handle toggling the mobile nav. Copied from the v4 style guide.
+  $(document).on('click', '.global-header a.js-toggle-mobile-navigation', function(e) {
+    e.preventDefault();
+    $('body').toggleClass('mobile-navigation-is-active');
+  });
 };
 
 // Enable smooth scrolling for on-page links
