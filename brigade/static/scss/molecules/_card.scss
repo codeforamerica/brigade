@@ -20,13 +20,17 @@ a.card--horizontal {
   .card-content {
     // long enough to not break the text of the "View event on Meetup" button:
     min-width: 270px;
+    width: 100%;
   }
 
   .card-image-container {
-    margin-bottom: $card-gutter;
-
     @include media($mobile-up) {
+      margin-bottom: $card-gutter;
       margin-right: $card-gutter;
+    }
+
+    img {
+      width: 100%;
     }
   }
 }
