@@ -1,0 +1,12 @@
+@import '../core/variables';
+@import '../core/mixins';
+
+.brigade-social-icons {
+  margin: 1rem 0 1rem 15px;
+
+  a {
+    color: $color-gray-dark;
+    margin-right: 1.5rem;
+    text-decoration: none;
+  }
+}

@@ -53,14 +53,22 @@
             </div>
           </div>
         </header>
+      </section>
 
-        <div class="hero-content">
+      {% if self.in_page_nav() %}
+      <div class="slab slab--compact gray-bg-slab">
+        <div class="grid-box">
+          {% block in_page_nav %}{% endblock %}
+        </div>
+      </div>
+      {% endif %}
+
+      <section class="subhero">
+        <div class="slab">
           <div class="grid-box">
             <div class="width-seven-twelfths">
-              <h1 class="hero-title">{% block hero_title %}{% endblock %}</h1>
-              <p class="hero-lead-in">
-                {% block hero_description %}{% endblock %}
-              </p>
+              <h1>{% block subhero_title %}{% endblock %}</h1>
+              {% block subhero_description %}{% endblock %}
             </div>
             <div class="width-one-third shift-one-twelfth">
               {% block hero_right %}{% endblock %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block description %}The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local 
 communities.{% endblock %}
-{% block hero_title %}
+{% block subhero_title %}
 The Brigade Network
 {% endblock %}
-{% block hero_description %}
-We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.
+{% block subhero_description %}
+<p>We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.</p>
 {% endblock %}
 {% block hero_right %}
 <div class="message">
@@ -25,8 +25,10 @@ We're a national alliance of community organizers, developers, and designers tha
 
 <section class="slab slab--compact slab--full-bleed">
   <div class="grid-box">
-    <div class="width-one-half">
-      <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
+    <div class="slab slab--compact">
+      <div class="width-one-half">
+        <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
+      </div>
     </div>
   </div>
   <div id="map"></div>
