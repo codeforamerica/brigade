@@ -23,29 +23,31 @@ The Brigade Network
 
 {% block content %}
 
+<div class="grid-box">
+  <div class="slab slab--compact">
+    <div class="width-one-half">
+      <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
+    </div>
+  </div>
+</div>
+
 <section class="slab slab--compact slab--full-bleed">
-  <div class="grid-box">
-    <div class="slab slab--compact">
-      <div class="width-one-half">
-        <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
-      </div>
-    </div>
-  </div>
   <div id="map"></div>
-  <div class="grid-box">
-    <div class="width-one-half shift-one-fourth">
-      <div class="message">
-        <div class="message__icon">
-          <i class="fas fa-globe-africa"></i>
-        </div>
-        <div class="message__content">
-          Looking for an organization outside the US? 
-          <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
-        </div>
+</section>
+
+<div class="grid-box">
+  <div class="width-one-half shift-one-fourth">
+    <div class="message">
+      <div class="message__icon">
+        <i class="fas fa-globe-africa"></i>
+      </div>
+      <div class="message__content">
+        Looking for an organization outside the US?
+        <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {% endblock %}
 
