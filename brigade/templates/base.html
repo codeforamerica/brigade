@@ -56,9 +56,11 @@
       </section>
 
       {% if self.in_page_nav() %}
-      <div class="slab slab--compact gray-bg-slab">
-        <div class="grid-box">
-          {% block in_page_nav %}{% endblock %}
+      <div class="in-page-nav">
+        <div class="slab slab--compact gray-bg-slab">
+          <div class="grid-box">
+            {% block in_page_nav %}{% endblock %}
+          </div>
         </div>
       </div>
       {% endif %}
