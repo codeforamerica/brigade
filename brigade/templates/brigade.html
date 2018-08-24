@@ -218,22 +218,20 @@
   <div class="grid-box">
     {% for project in brigade.current_projects %}
     <div class="width-one-fourth">
-      <div class="card">
-        <div class="card__body">
-          <h3 class="card__title">{{ project.name | split_underscores }}</h3>
+      <div class="card link-card card--white">
+        <div class="card-content">
+          <h4>{{ project.name | split_underscores }}</h4>
           {% if project.description %}
           <p>{{ project.description | truncate(120) }}</p>
           {% endif %}
-        </div>
-        <div class="card__action">
+
           {% if project.code_url %}
           <p><a href="{{ project.code_url }}" target="_blank" title="Brigade project: Github"><i class="fab fa-fw fa-github"></i> View on Github</a></p>
           {% endif %}
           {% if project.link_url %}
           <p><a href="{{ project.link_url }}" target="_blank" title="Brigade project: website"><i class="fas fa-fw fa-rocket"></i> Visit project</a></p>
           {% endif %}
-        </div>
-        <div class="card__footer">
+
           {% if project.last_updated %}
           Last Updated: {{ project.last_updated | timesince }}
           {% endif %}
@@ -245,7 +243,7 @@
 
   <div class="grid-box">
     <div class="width-three-fourths text-center">
-      <a href="./projects" class="button button-bold"><i class="fas fa-fw fa-rocket"></i> See more {{ brigade.name }} projects</a>
+      <a href="./projects" class="button button-outline button-linkout">See more {{ brigade.name }} projects</a>
     </div>
   </div>
 
