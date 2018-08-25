@@ -103,18 +103,26 @@
         </div>
       </div>
     {% endfor %}
+
+    {% if not projects %}
+      <h2>Nothing here yet...</h2>
+      <p>Your search returned no project results.</p>
+
+      <div class="message">
+        <div class="message__icon"><i class="fa fa-star"></i></div>
+        <div class="message__content">
+          Looking for a project? <strong>Check out the <a href="{{ url_for('brigade.project_showcase') }}">Project Showcase</a>.</strong>
+        </div>
+      </div>
+    {% else %}
+      <p>
+        <a id="more-projects" href="{{next}}{% if request.args.get('status') %}&status={{ request.args.get('status') }}{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">
+          More Projects
+        </a>
+      </p>
+    {% endif %}
+
   </div>
-
-  {% if not projects %}
-    <h2>Nothing here yet ... </h2>
-  {% else %}
-    <p>
-      <a id="more-projects" href="{{next}}{% if request.args.get('status') %}&status={{ request.args.get('status') }}{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">
-        More Projects
-      </a>
-    </p>
-  {% endif %}
-
 </section>
 {% endblock %}
 
