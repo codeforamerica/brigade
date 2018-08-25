@@ -4,10 +4,6 @@
 // Searchbar
 //
 
-.searchbar {
-  margin-left: 5px;
-}
-
-.searchbar .searchbar__input {
-  width: calc(100% - 100px);
+.searchbar__input {
+  width: 100% !important;
 }
