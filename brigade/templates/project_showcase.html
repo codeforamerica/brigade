@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Project Showcase{% endblock %}
 {% block description %}Explore some of the amazing work done by Brigades and find inspiration for your next project{% endblock %}
-{% block hero_title %}Project Showcase{% endblock %}
-{% block hero_description %}Explore some of the amazing work done by Brigades and find inspiration for your next project{% endblock %}
+{% block subhero_title %}Project Showcase{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">
+Showcase projects <strong>serve the public good</strong>, have clear goals that are <strong>aligned with the values of the Network</strong>, and are <strong>redeployable</strong>, with clean code and good documentation.
+</p>
+{% endblock %}
 {% block hero_right %}
 <div class="message">
   <div class="message__icon">
@@ -13,44 +17,30 @@
     <a href="https://docs.google.com/forms/d/e/1FAIpQLScYO3puRDGeE0728WrlQtgr8d1AoryytTGYBcahVgfHHhCX4w/viewform?usp=sf_link" target="_blank">Let us know!</a>
   </div>
 </div>
+<div class="message">
+  <div class="message__icon">
+    <i class="fab fa-github"></i>
+  </div>
+  <div class="message__content">
+    <strong>Looking for the Civic Tech Github Project Search?</strong>
+    <a href="{{url_for('brigade.projects')}}">Find it here!</a>
+  </div>
+</div>
+{% endblock %}
+{% block in_page_nav %}
+<nav>
+  <strong>Explore by category:</strong>
+  <a href="#safety-and-justice" class="in-page-nav__link">Safety and Justice</a>
+  <a href="#housing" class="in-page-nav__link">Housing</a>
+  <a href="#food-security" class="in-page-nav__link">Food Security</a>
+  <a href="#transportation" class="in-page-nav__link">Transportation</a>
+  <a href="#public-works" class="in-page-nav__link">Public Works</a>
+</nav>
 {% endblock %}
 
 {% block page_id %}events{% endblock %}
 
 {% block content %}
-<div class="slab gray-bg-slab slab--compact">
-  <div class="grid-box">
-    <nav class="in-page-nav">
-      <strong>Explore by category:</strong>
-      <a href="#safety-and-justice" class="in-page-nav__link">Safety and Justice</a>
-      <a href="#housing" class="in-page-nav__link">Housing</a>
-      <a href="#food-security" class="in-page-nav__link">Food Security</a>
-      <a href="#transportation" class="in-page-nav__link">Transportation</a>
-      <a href="#public-works" class="in-page-nav__link">Public Works</a>
-    </nav>
-  </div>
-</div>
-
-
-<section id="overview" class="slab">
-  <div class="grid-box">
-    <div class="width-seven-twelfths">
-      <p class="lead-in-text">
-        Showcase projects <strong>serve the public good</strong>, have clear goals that are <strong>aligned with the values of the Network</strong>, and are <strong>redeployable</strong>, with clean code and good documentation.
-      </p>
-      <div class="message">
-        <div class="message__icon">
-          <i class="fab fa-github"></i>
-        </div>
-        <div class="message__content">
-          <strong>Looking for the Civic Tech Github Project Search?</strong>
-          <a href="{{url_for('brigade.projects')}}">Find it here!</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="slab" id="safety-and-justice">
   <div class="grid-box">
     <div class="width-seven-twelfths">

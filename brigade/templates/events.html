@@ -1,43 +1,37 @@
 {% extends "base.html" %}
 {% block title %}Events Calendar{% endblock %}
 {% block description %}Events happening across the Code for America Brigade Network{% endblock %}
-{% block hero_title %}Events{% endblock %}
-{% block hero_description %}Events happening across the Code for America Brigade Network{% endblock %}
+{% block subhero_title %}Events{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">Events happening across the Code for America Brigade Network</p>
 
-{% block page_id %}events{% endblock %}
-
-{% block content %}
-
-<div class="slab slab--compact gray-bg-slab">
-  <div class="grid-box">
-    <nav class="in-page-nav">
-      <strong>On this page:</strong>
-      <a href="#key-dates" class="in-page-nav__link">Key Dates</a>
-      <a href="#workshops-and-meetings" class="in-page-nav__link">Workshops and Meetings</a>
-    </nav>
+<div class="message">
+  <div class="message__icon">
+    <i class="fas fa-info-circle"></i>
+  </div>
+  <div class="message__content">
+    <strong>Looking for a brigade event?</strong> <a href="/">Use the map</a> to find your local brigade.
   </div>
 </div>
+{% endblock %}
+{% block page_id %}events{% endblock %}
+{% block in_page_nav %}
+<nav>
+  <strong>On this page:</strong>
+  <a href="#key-dates" class="in-page-nav__link">Key Dates</a>
+  <a href="#workshops-and-meetings" class="in-page-nav__link">Workshops and Meetings</a>
+</nav>
+{% endblock %}
 
-<section class="slab slab--compact">
-  <div class="grid-box">
-    <div class="width-one-half">
-      <div class="message">
-        <div class="message__icon">
-          <i class="fas fa-info-circle"></i>
-        </div>
-        <div class="message__content">
-          <strong>Looking for a brigade event?</strong> <a href="/">Use the map</a> to find your local brigade.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+{% block content %}
 <section id="key-dates" class="slab slab--compact">
   <div class="grid-box">
     <div class="width-one-half">
+
       <h2 class="slab__title">Key Dates</h2>
+
       <p class="slab__subtitle">Brigades have an opportunity to participate in days of action and to come together at shared events. Check out the upcoming events and mark your calendar!</p>
+
       <ul class="list list--no-bullets list--expanded">
         <li>
           <h3>

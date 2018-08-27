@@ -21,7 +21,6 @@
 @import 'molecules/card';
 @import 'molecules/in-page-nav';
 @import 'molecules/list-group';
-@import 'molecules/message';
 @import 'molecules/panel';
 @import 'molecules/searchbar';
 @import 'molecules/slab';
@@ -29,11 +28,13 @@
 // Organisms
 @import 'organisms/card-row';
 @import 'organisms/page-header';
+@import 'organisms/subhero';
 
 // Templates
 @import 'templates/brigade-profile';
 
 // Pages
 @import 'pages/brigade-list';
+@import 'pages/brigade';
 @import 'pages/home';
 @import 'pages/projects';

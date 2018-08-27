@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block description %}The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local 
 communities.{% endblock %}
-{% block hero_title %}
+{% block subhero_title %}
 The Brigade Network
 {% endblock %}
-{% block hero_description %}
-We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.
+{% block subhero_description %}
+<p class="lead-in-text">We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.</p>
 {% endblock %}
 {% block hero_right %}
 <div class="message">
@@ -23,27 +23,31 @@ We're a national alliance of community organizers, developers, and designers tha
 
 {% block content %}
 
-<section class="slab slab--compact slab--full-bleed">
-  <div class="grid-box">
+<div class="grid-box">
+  <div class="slab slab--compact">
     <div class="width-one-half">
       <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
     </div>
   </div>
+</div>
+
+<section class="slab slab--compact slab--full-bleed">
   <div id="map"></div>
-  <div class="grid-box">
-    <div class="width-one-half shift-one-fourth">
-      <div class="message">
-        <div class="message__icon">
-          <i class="fas fa-globe-africa"></i>
-        </div>
-        <div class="message__content">
-          Looking for an organization outside the US? 
-          <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
-        </div>
+</section>
+
+<div class="grid-box">
+  <div class="width-one-half shift-one-fourth">
+    <div class="message">
+      <div class="message__icon">
+        <i class="fas fa-globe-africa"></i>
+      </div>
+      <div class="message__content">
+        Looking for an organization outside the US?
+        <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {% endblock %}
 
