@@ -15,31 +15,35 @@
   {% endif %}
 {% endblock %}
 {% block subhero_description %}
+<p class="lead-in-text">
   {% if brigade %}
+    {{ brigade.name }} is currently working on {{ projects | length }} projects.
   {% else %}
     Search across thousands of civic technology projects.
   {% endif %}
+</p>
 {% endblock %}
 
-
 {% block content %}
-  <section id="project-search-section">
-    <div class="layout-semibreve">
-      <div class="searchbar">
-        <form id="project-search" action="{{ request.path }}" method="get">
-          <p class="field">
-            <input class="searchbar__input" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Schools javascript" /><button type="submit" class="button"><i class="icon-search"></i></button>
-          </p>
-        </form>
+<form id="project-search" action="{{ request.path }}" method="get">
+  <section class="slab slab--compact">
+    <div class="grid-box">
+      <div class="width-seven-twelfths">
+        <input class="searchbar__input" type="search" name="q" {% if request.args.get('q') %} value="{{ request.args.get('q') }}" {% endif %} role="search" placeholder="Keywords (e.g. Schools, javascript)" />
       </div>
+      <div class="width-one-third">
+        <button type="submit" class="button button-primary button-small"><i class="fas fa-search"></i> Search Projects</button>
+      </div>
+  </section>
+</form>
 
-      <ul id="projects" class="list-no-bullets">
-      {% for project in projects %}
-        <li class="project card">
-
-          <div class="card__body">
-
-            <h3 class="card__title">{{project.name}}</h3>
+<section class="slab">
+  <div class="grid-box">
+    {% for project in projects %}
+      <div class="grid-item span-four {% if loop.index % 3 == 0 %}end-row{% endif %}">
+        <div class="card link-card">
+          <div class="card-content">
+            <h3>{{project.name}}</h3>
 
             {% if project.description %}
               <p>{{project.description}}</p>
@@ -69,16 +73,13 @@
 
             <p>
             {% if project.link_url %}
-              <a href="{{project.link_url}}" class="button-bold" data-analytics-category="Project Finder Click">View the project</a>
+              <a href="{{project.link_url}}" class="button button-primary button-linkout" data-analytics-category="Project Finder Click" target="_blank">View the project</a>
             {% endif %}
             {% if project.code_url %}
-              <a href="{{project.code_url}}" class="button-bold" data-anayltics-category="Project Finder Click">Contribute on Github</a>
+              <a href="{{project.code_url}}" class="button button-outline button-linkout" data-anayltics-category="Project Finder Click" target="_blank">Contribute on Github</a>
             {% endif %}
             </p>
 
-          </div> <!-- card-body -->
-
-          <div class="card__footer">
             {% if project.languages %}
             <p>
             {% set comma = joiner(",") %}
@@ -99,21 +100,30 @@
               <p>Updated {{project.last_updated | timesince}}</p>
             {% endif %}
           </div>
+        </div>
+      </div>
+    {% endfor %}
 
-        </li> <!-- project card -->
+    {% if not projects %}
+      <h2>Nothing here yet...</h2>
+      <p>Your search returned no project results.</p>
 
-      {% endfor %}
+      <div class="message">
+        <div class="message__icon"><i class="fa fa-star"></i></div>
+        <div class="message__content">
+          Looking for a project? <strong>Check out the <a href="{{ url_for('brigade.project_showcase') }}">Project Showcase</a>.</strong>
+        </div>
+      </div>
+    {% else %}
+      <p>
+        <a id="more-projects" href="{{next}}{% if request.args.get('status') %}&status={{ request.args.get('status') }}{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">
+          More Projects
+        </a>
+      </p>
+    {% endif %}
 
-      </ul> <!-- projects -->
-
-      {% if not projects %}
-        <h2>Nothing here yet ... </h2>
-      {% else %}
-        <p style="float:right;"><a id="more-projects" href="{{next}}{% if request.args.get('status') %}&status={{ request.args.get('status') }}{% endif %}{% if request.args.get('q') %}&q={{ request.args.get('q') }}{% endif %}" class="button">More Projects</a></p>
-      {% endif %}
-
-    </div> <!-- layout-breve -->
-  </section>
+  </div>
+</section>
 {% endblock %}
 
 {% block js %}
