@@ -1,28 +1,26 @@
 {% extends "free_software.html" %}
 
-{% block logo %}
-<img src="{{ asset_url_for('images/software_mapbox.png') }}" width="200px" alt="Mapbox Logo" />
-{% endblock %}
+{% block logo %}{% endblock %}
 
 {% block software %}
+<h2>Mapbox</h2>
+
 <img src="{{ asset_url_for('images/mapbox_coupon.png') }}" alt="Mapbox coupon describing free access" />
 
-<h4>Mapbox</h4>
-
-<h5>What is Mapbox?</h5>
+<h3>What is Mapbox?</h3>
 <p>Mapbox helps you build custom maps and data visualizations easily. They offer many products, including
 <a href="https://www.mapbox.com/maps/">Maps</a>, <a href="https://www.mapbox.com/geocoding/">Geocoding</a>, and <a href="https://www.mapbox.com/mapbox-studio/">Mapbox Studio</a> (for custom maps).</p>
 
 <p>Mapbox has generously offered brigades access to these products to get products off the ground!</p>
 
-<h5>What do you get?</h5>
+<h3>What do you get?</h3>
 <p>To start with, we'll grant you an API token which can be used with their Maps or Geocoding service.</p>
 
 <p>This API token will support unlimited usage, though you should be respectful of Mapbox rate limits.</p>
 
-<h5>How do you get access?</h5>
+<h3>How do you get access?</h3>
 <p>Email <a href="mailto:inkinds@codeforamerica.org">inkinds@codeforamerica.org</a> with "Mapbox Request" in the subject line and we will send you an access token. We'd also love to learn a little bit about the project you're hoping to use Mapbox for!</p>
 
-<h5>What are the expectations?</h5>
+<h3>What are the expectations?</h3>
 <p>Mapbox has generously donated their services to get your brigade project off the ground. We will ask that if your project ends up being adopted by a city, or begins to earn money, to migrate off of Code for America's mapbox account onto your own. Email <a href="mailto:community@mapbox.com">community@mapbox.com</a> if you find yourself in this situation.</p>
 {% endblock %}
