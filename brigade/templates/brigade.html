@@ -4,6 +4,7 @@
 {% block subhero_title %}{{ brigade.name }}{% endblock %}
 {% block subhero_description %}
   {% if brigade.tags %}
+  <p class="lead-in-text">
     {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
     {{ brigade.name }} is an official Code for America Brigade in {{ brigade.city }} working on projects with government and community partners to improve people’s lives.
 
@@ -13,6 +14,7 @@
     {% elif 'Government' in brigade.tags %}
     {{ brigade.name }} is a government organization in {{ brigade.city }}.
     {% endif %}
+  </p>
   {% endif %}
 {% endblock %}
 
