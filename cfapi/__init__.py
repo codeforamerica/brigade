@@ -92,8 +92,9 @@ def get_brigades(official_brigades_only=False):
 def get_official_brigades_by_state():
     brigades = get_brigades(official_brigades_only=True)
     states = {}
-    # Find all two-letter state abbreviations in the brigade's city, and add brigade to those states
     for brigade in brigades:
+        # Find all two-letter state abbreviations in the brigade's city (e.g.
+        # "Kansas City, MO & KS"), and add the brigade to those states
         brigade_states = re.findall(
             r'\b([A-Z]{2})\b', brigade['properties']['city'])
         for state in brigade_states:
@@ -101,6 +102,14 @@ def get_official_brigades_by_state():
             if state_fullname not in states:
                 states[state_fullname] = []
             states[state_fullname].append(brigade['properties'])
+
+        # Handle statewide collaborations like "North Carolina" or "California"
+        if brigade['properties']['city'] in STATE_NAMES.values():
+            state_fullname = brigade['properties']['city']
+            if state_fullname not in states:
+                states[state_fullname] = []
+            states[state_fullname].append(brigade['properties'])
+
     for brigades in states.values():
         brigades.sort(key=lambda b: b['name'])
     return states
