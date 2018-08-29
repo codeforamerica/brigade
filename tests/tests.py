@@ -53,6 +53,16 @@ class BrigadeTests(unittest.TestCase):
                             "last_updated": 1510874211,
                             "city": "Atlantis, GA"
                         } 
+                    },
+                    {
+                        "id": "Code-for-Georgians",
+                        "properties" : {
+                            "id": "Code-for-Georgians",
+                            "name": "Code for Georgians",
+                            "tags": ["Brigade", "Official", "Code for America"],
+                            "last_updated": 1510874211,
+                            "city": "Georgia"
+                        }
                     }]
                 }''') # noqa
         if url.geturl() == cfapi.BASE_URL + "/projects/1":
@@ -248,6 +258,7 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(len(brigades), 2)
             self.assertIn("Georgia", brigades)
             self.assertEquals(brigades["Georgia"][0]['id'], "Code-for-Atlantis")
+            self.assertEquals(brigades["Georgia"][1]['id'], "Code-for-Georgians")
 
 
 if __name__ == '__main__':
