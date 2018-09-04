@@ -4,15 +4,6 @@
 {% block subhero_title %}Events{% endblock %}
 {% block subhero_description %}
 <p class="lead-in-text">Events happening across the Code for America Brigade Network</p>
-
-<div class="message">
-  <div class="message__icon">
-    <i class="fas fa-info-circle"></i>
-  </div>
-  <div class="message__content">
-    <strong>Looking for a brigade event?</strong> <a href="/">Use the map</a> to find your local brigade.
-  </div>
-</div>
 {% endblock %}
 {% block page_id %}events{% endblock %}
 {% block in_page_nav %}
@@ -21,6 +12,16 @@
   <a href="#key-dates" class="in-page-nav__link">Key Dates</a>
   <a href="#workshops-and-meetings" class="in-page-nav__link">Workshops and Meetings</a>
 </nav>
+{% endblock %}
+{% block hero_right %}
+<div class="message">
+  <div class="message__icon">
+    <i class="fas fa-info-circle"></i>
+  </div>
+  <div class="message__content">
+    <strong>Looking for a brigade event?</strong> <a href="/">Use the map</a> to find your local brigade.
+  </div>
+</div>
 {% endblock %}
 
 {% block content %}

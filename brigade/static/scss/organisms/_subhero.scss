@@ -1,6 +1,5 @@
 @import '../core/variables';
 
 .subhero {
-  padding-left: $site-margins;
-  padding-right: $site-margins;
+  padding: 4rem $site-margins 0;
 }
