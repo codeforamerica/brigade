@@ -14,12 +14,12 @@ Code for America is excited to offer the software linked below to help with proj
 {% if self.software() %}
   <div class="grid-box">
     <div class="width-seven-twelfths">
-      <p><a href="{{ url_for('.free_software_index') }}">&larr; Back to Free Software</a></p>
-
       {% block software %}{% endblock %}
     </div>
 
     <div class="width-one-third">
+      <p><a href="{{ url_for('.free_software_index') }}">&larr; Back to Free Software</a></p>
+
       {% block logo %}{% endblock %}
     </div>
   </div>
