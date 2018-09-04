@@ -41,7 +41,6 @@ window.Brigade.initializeMap = function(geoJSON) {
     $('a.leaflet-control-mapbox-geocoder-toggle').on('click', function(event){
       event.preventDefault();
     });
-
   });
 
   map.zoomControl.setPosition('topright');

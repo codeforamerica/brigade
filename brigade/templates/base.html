@@ -66,15 +66,13 @@
       {% endif %}
 
       <section class="subhero">
-        <div class="slab">
-          <div class="grid-box">
-            <div class="width-seven-twelfths">
-              <h1>{% block subhero_title %}{% endblock %}</h1>
-              {% block subhero_description %}{% endblock %}
-            </div>
-            <div class="width-one-third shift-one-twelfth">
-              {% block hero_right %}{% endblock %}
-            </div>
+        <div class="grid-box">
+          <div class="width-seven-twelfths">
+            <h1>{% block subhero_title %}{% endblock %}</h1>
+            {% block subhero_description %}{% endblock %}
+          </div>
+          <div class="width-one-third shift-one-twelfth">
+            {% block hero_right %}{% endblock %}
           </div>
         </div>
       </section>
