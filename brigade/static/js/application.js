@@ -22,8 +22,19 @@ window.Brigade.initializeMap = function(geoJSON) {
   geocoderControl.setPosition('topright');
   geocoderControl.addTo(map);
 
-  map.addEventListener('ready', function() {
+  /*
+   * Disable scrolling until the user moves the mouse over the map for the
+   * first time. This should hopefully result in users scrolling past the map
+   * when using a scroll wheel if they don't move the mouse.
+   */
+  map.scrollWheelZoom.disable();
+  map.addEventListener('mousemove', function() {
+    if (!map.scrollWheelZoom.enabled()) {
+      map.scrollWheelZoom.enable();
+    }
+  });
 
+  map.addEventListener('ready', function() {
     $('.leaflet-control-mapbox-geocoder-form input').attr("placeholder","Search map");
 
     // After selecting a geocoder result, replace the search text with the place name and hide the geocoder results
