@@ -1,5 +1,9 @@
 @import '../core/variables';
 
 .subhero {
-  padding: 4rem $site-margins 0;
+  padding: 2rem $site-margins 0;
+
+  @include media($tablet-up) {
+    padding-top: 3rem;
+  }
 }
