@@ -38,7 +38,10 @@ $tablet-up:     768px;
 $midscreen-up:  960px;
 $widescreen-up: 1201px;
 
-// Magic numbers
+// Style guide variable overrides / Magic numbers
+$alert-background-color: darken($hero-color, 8%);
+$alert-text-color: $color-white;
+$alert-border: none;
 $site-margins: 20px;
 $site-max-width: 1140px;
 $global-header-logo-width: 200px;
