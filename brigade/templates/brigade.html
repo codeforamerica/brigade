@@ -97,9 +97,7 @@
 
         <a href="{{ event.event_url }}" target="_blank" class="card link-card card--horizontal" title="Brigade: Meetup event">
           <div class="card-content">
-            <small>
-              {% if event.is_today %}<strong>Event today:</strong>{% else %}Next event:{% endif %}
-            </small>
+            {% if event.is_today %}<strong>Event today:</strong>{% else %}Next event:{% endif %}
             <h3>{{ event.name }}</h3>
             <ul class="fa-ul">
               {% if event.location %}
