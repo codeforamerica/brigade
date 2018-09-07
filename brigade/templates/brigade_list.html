@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block subhero_title %}Find your local Brigade{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">Explore the {{ brigades_total }} official Code for America brigades across the US.</p>
+{% endblock %}
 {% block description %}
 Explore the {{ brigades_total }} official Code for America brigades across the US.
 {% endblock %}
@@ -7,21 +11,14 @@ Explore the {{ brigades_total }} official Code for America brigades across the U
 {% block page_id %}brigade-list{% endblock %}
 
 {% block content %}
-
-<header class="page-header slab slab-dark-blue">
-  <div class="grid-box">
-    <h1 class="title">Find your local brigade</h1>
-    <div class="subtitle">Explore the {{ brigades_total }} official Code for America brigades across the US</div>
-  </div>
-</header>
 <div class="slab slab--compact">
   <div class="grid-box">
     <div class="width-two-thirds">
-      <div class="alert">
-        <div class="alert__icon">
+      <div class="message">
+        <div class="message__icon">
           <i class="fas fa-star"></i>
         </div>
-        <div class="alert__content">
+        <div class="message__content">
           No brigade near you? <strong>Start a new brigade!</strong><br>
           <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
         </div>

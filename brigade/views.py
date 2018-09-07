@@ -284,5 +284,6 @@ def brigade_list():
 @app.route('/', methods=['GET'])
 def index():
     brigades = cfapi.get_brigades(official_brigades_only=True)
+    brigades_total = len(brigades)
     brigades = json.dumps(brigades)
-    return render_template("index.html", brigades=brigades)
+    return render_template("index.html", brigades=brigades, brigades_total=brigades_total)

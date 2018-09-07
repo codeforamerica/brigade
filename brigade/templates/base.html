@@ -6,57 +6,94 @@
     <title>{% block title %}The Code for America Brigade Network{% endblock %} | Code for America Brigade</title>
     <meta name="description" content="{% block description %}{% endblock %}" />
 
-    <link rel="stylesheet" type="text/css" href="{{ asset_url_for('cfaV3Style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset_url_for('cfaV3Layout.css') }}" media="all and (min-width: 40em)">
     <link rel="stylesheet" type="text/css" href="{{ asset_url_for('style.css') }}">
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset_url_for("images/favicon.ico") }}">
     <link rel="apple-touch-icon-precomposed" href="{{ asset_url_for("images/flag-red.png") }}"/>
 
     <!-- FontAwesome Icons -->
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" rel="stylesheet">
 
+    <!-- Font Vendor Stylesheets -->
+    <script src="https://use.typekit.net/lkd6vsz.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
   </head>
 
   <body id="{% block page_id %}{% endblock %}">
 
     <div class="js-container">
-      <div class="global-header global-header--above">
+      <div class="alert">
         <a href="https://www.codeforamerica.org/brigade-congress" target="_blank">
-          Attend a unique knowledge sharing and training event for Brigade leaders.
-          <span class="global-header__above-underline">
-            Get your ticket to Brigade Congress today.
-          </span>
+          <p class="alert-text">
+            Attend a unique knowledge sharing and training event for Brigade leaders.
+            <span class="alert-link">Get your ticket to Brigade Congress today.</span>
+          </p>
         </a>
       </div>
 
+      <section class="hero">
+        <header class="global-header reverse-global-header hero-header" role="banner">
+          <div class="grid-box">
+            <div class="width-one-whole">
+              <div class="align-left">
+                <a href="/" class="global-header-logo">
+                  <img width="200" class="header-icon" src="{{ asset_url_for('images/brigade-logo-white.svg') }}" alt="Logo for Code for America" />
+                </a>
+              </div>
+              <div class="button-menu global-header-buttons align-right">
+                <a class="menu-item button button-small js-menu-button js-toggle-mobile-navigation" href="#" title="Open menu"><span class="fa fa-bars"></span> Menu</a>
+              </div>
+            </div>
 
-      <nav class="nav-global-primary">
-      </nav>
+            <div class="width-one-whole global-header-navigation mobile-navigation">
+              <div class="mobile-navigation-button">
+                <a class="button button-small button-reverse js-toggle-mobile-navigation" href="#"><span class="fa fa-times"></span> Close Menu</a>
+              </div>
+              <nav class="bar-menu global-header-menu align-left" role="navigation">
+                {{ nav_link('brigade.brigade_list', 'Find a Brigade', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.resources', 'Resources', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.events', 'Events', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.project_showcase', 'Project Showcase', class_name='menu-item', active_class_name='active-menu-item') }}
+                {{ nav_link('brigade.about', 'About Us', class_name='menu-item', active_class_name='active-menu-item') }}
+              </nav>
+              <div class="bar-menu global-header-menu align-right" role="navigation">
+                <a href="http://slack.codeforamerica.org" target="_blank" title="Slack sign-up form" class="menu-item">Join us on Slack</a>
+                <a href="https://www.codeforamerica.org/" target="_blank" title="Code for America Home" class="menu-item">Learn about Code for America</a>
+              </div>
+            </div>
+          </div>
+        </header>
+      </section>
 
-      <div class="global-header">
-        <a href="/" class="global-header-logo">
-            <img src="{{ asset_url_for('images/new_logo.png') }}" />
-        </a>
-
-        <nav class="nav-global-secondary">
-          <ul>
-            <li><a href="{{url_for('brigade.brigade_list')}}">Find a Brigade</a></li>
-            <li><a href="{{url_for('brigade.resources')}}">Resources</a></li>
-            <li><a href="{{url_for('brigade.events')}}">Events</a></li>
-            <li><a href="{{url_for('brigade.project_showcase')}}">Project Showcase</a></li>
-            <li><a href="{{url_for('brigade.about')}}">About Us</a></li>
-            <li><a href="http://slack.codeforamerica.org" target="_blank" title="Slack sign-up form">Join us on Slack</a></li>
-          </ul>
-        </nav>
-
+      {% if self.in_page_nav() %}
+      <div class="in-page-nav">
+        <div class="slab slab--compact gray-bg-slab">
+          <div class="grid-box">
+            {% block in_page_nav %}{% endblock %}
+          </div>
+        </div>
       </div>
+      {% endif %}
 
-      <main role="main">
+      <section class="subhero">
+        <div class="grid-box">
+          <div class="width-seven-twelfths">
+            <h1>{% block subhero_title %}{% endblock %}</h1>
+            {% block subhero_description %}{% endblock %}
+          </div>
+          <div class="width-one-third shift-one-twelfth">
+            {% block hero_right %}{% endblock %}
+          </div>
+        </div>
+      </section>
 
-        {% block content %}{% endblock %}
-
+      <main role="main" class="page-content">
+      {% block content %}{% endblock %}
       </main>
+
+      <footer class="global-footer">
+      {% block footer %}{% endblock %}
+      </footer>
 
     </div>
 

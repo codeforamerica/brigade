@@ -1,40 +1,40 @@
+// Import the variables first, so they can be customized.
+@import 'core/variables';
+
 // Vendor
 @import '~bourbon-neat/app/assets/stylesheets/neat';
+@import '~@codeforamerica/style/_sass/main.scss';
 
 // Core
-@import 'core/variables';
 @import 'core/mixins';
 @import 'core/utilities';
-@import 'core/type';
 @import 'core/base';
 
 // Atoms
 @import 'atoms/button';
-@import 'atoms/grid';
 @import 'atoms/input';
 @import 'atoms/list';
 @import 'atoms/table';
 
 // Molecules
-@import 'molecules/alert';
 @import 'molecules/button-page-separator';
 @import 'molecules/card';
-@import 'molecules/inkind-card';
+@import 'molecules/in-page-nav';
 @import 'molecules/list-group';
-@import 'molecules/nav';
 @import 'molecules/panel';
 @import 'molecules/searchbar';
 @import 'molecules/slab';
 
 // Organisms
 @import 'organisms/card-row';
-@import 'organisms/global-header';
 @import 'organisms/page-header';
+@import 'organisms/subhero';
 
 // Templates
 @import 'templates/brigade-profile';
 
 // Pages
 @import 'pages/brigade-list';
+@import 'pages/brigade';
 @import 'pages/home';
 @import 'pages/projects';

@@ -1,9 +1,12 @@
 # -- coding: utf-8 --
+import unittest
+
+
 import flask
 import httmock
-import unittest
 from bs4 import BeautifulSoup
 from jinja2 import Markup
+from mock import patch, Mock
 
 
 from brigade import create_app
@@ -259,6 +262,30 @@ class BrigadeTests(unittest.TestCase):
             self.assertIn("Georgia", brigades)
             self.assertEquals(brigades["Georgia"][0]['id'], "Code-for-Atlantis")
             self.assertEquals(brigades["Georgia"][1]['id'], "Code-for-Georgians")
+
+    def test_nav_link(self):
+        from filters import nav_link
+
+        self.assertEqual(nav_link('brigade.events', 'Events'),
+            "<a href='/events'>Events</a>")
+
+        self.assertEqual(nav_link('brigade.events', 'Events', class_name="foo"),
+            "<a href='/events' class='foo'>Events</a>")
+
+        # when not on the active page
+        self.assertEqual(nav_link('brigade.events', 'Events', class_name="foo", active_class_name="foo-active"),
+            "<a href='/events' class='foo'>Events</a>")
+
+    def test_nav_link_on_active_page(self):
+        from filters import nav_link
+        flask.request.path = '/events'
+        self.assertEqual(nav_link('brigade.events', 'Events', class_name="foo", active_class_name="foo-active"),
+                "<a href='/events' class='foo foo-active'>Events</a>")
+
+        # when on a sub-page of a link
+        flask.request.path = '/events/some-event'
+        self.assertEqual(nav_link('brigade.events', 'Events', class_name="foo", active_class_name="foo-active"),
+                "<a href='/events' class='foo foo-active'>Events</a>")
 
 
 if __name__ == '__main__':

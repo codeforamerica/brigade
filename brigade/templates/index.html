@@ -1,49 +1,66 @@
 {% extends "base.html" %}
 {% block description %}The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local 
 communities.{% endblock %}
+{% block subhero_title %}
+The Brigade Network
+{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.</p>
+{% endblock %}
+{% block hero_right %}
+<div class="message">
+  <div class="message__icon">
+    <i class="fas fa-star"></i>
+  </div>
+  <div class="message__content">
+    No Brigade near you? <strong>Start a new Brigade!</strong> <br>
+    <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
+  </div>
+</div>
+{% endblock %}
 
 {% block page_id %}home{% endblock %}
 
 {% block content %}
 
-<section id="overview" class="home-hero slab slab--no-padding">
-  <div class="home-hero__content panel panel--primary">
-    <img id="logo" src="{{ asset_url_for('images/the_brigade.png') }}" />
-    <p>
-      The Code for America Brigade Network is a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the 21st century, if we all help.
-    </p>
-    <div class="alert">
-      <div class="alert__icon">
-        <i class="fas fa-star"></i>
-      </div>
-      <div class="alert__content">
-        No brigade near you? <strong>Start a new brigade!</strong><br>
-        <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
-      </div>
+<div class="grid-box">
+  <div class="slab slab--compact">
+    <div class="width-one-half">
+      <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
     </div>
   </div>
-  <div class="home-hero__map panel">
-    <div class="panel__body">
-      <div id="map"></div>
-    </div>
-    <div class="panel__footer">
-      Looking for an organization outside the US? <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
-    </div>
-  </div>
+</div>
+
+<section class="slab slab--compact slab--full-bleed">
+  <div id="map"></div>
 </section>
 
-<section id="sponsors">
-  <div class="panel">
-    <div class="panel__body layout-centered">
-      <h4>Funders</h4>
-      <ul class="list list--inline">
-        <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60"></a></li>
-        <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60"></a></li>
-        <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60"></a></li>
-      </ul>
+<div class="grid-box">
+  <div class="width-one-half shift-one-fourth">
+    <div class="message">
+      <div class="message__icon">
+        <i class="fas fa-globe-africa"></i>
+      </div>
+      <div class="message__content">
+        Looking for an organization outside the US?
+        <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
+      </div>
     </div>
-  </div>    
-</section>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+<div id="sponsors" class="grid-box">
+  <h3>Funders</h3>
+  <ul class="list list--inline">
+    <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60"></a></li>
+    <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60"></a></li>
+    <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60"></a></li>
+  </ul>
+</div>
 
 {% endblock %}
 

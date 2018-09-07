@@ -1,47 +1,51 @@
 {% extends "base.html" %}
 {% block title %}About the Brigades{% endblock %}
 {% block description %}Code for America Brigades are volunteer groups that collaborate with local government and community partners to build new tools that help with local civic issues.{% endblock %}
+{% block subhero_title %}About the Brigade Network{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">
+Code for America Brigades are volunteer groups that collaborate with local government and community partners to build new tools that help with local civic&nbsp;issues.
+</p>
+{% endblock %}
 
 {% block content %}
 
 <section class="slab">
   <div class="grid-box">
-    <h2>What are Brigades?</h2>
-  </div>
-  <div class="grid-box">
     <div class="width-one-half">
+      <h2>What are Brigades?</h2>
       <p>We’re a national network of community organizers and technologists who are putting technology to work for the benefit of our local communities.</p>
       <p>Our Brigades meet regularly to build, share and learn about tools to create, support, and serve the public good.</p>
       <p>We're thousands of designers, academic researchers, data journalists, activists, policy wonks, web developers and curious citizens who want to make our city more just, equitable, transparent and delightful to live in through data, design and technology.</p>
       <p>Come join us!</p>
     </div>
     <div class="width-one-half">
-      <iframe width="560" height="315" src="//www.youtube.com/embed/mYzMl_HnEZU" frameborder="0" allowfullscreen></iframe>
+      <iframe width="100%" height="315" src="//www.youtube.com/embed/mYzMl_HnEZU" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
-<section class="slab slab-gray">
+<section class="slab border-top-slab">
   <div class="grid-box">
     <div class="width-one-half">
     <h2>Code of Conduct</h2>
     <p>Code for America has a Code of Conduct that applies to our activities, events, and digital forums. We do not tolerate discrimiation or harrassment of any kind.</p>
-    <a href="https://github.com/codeforamerica/codeofconduct" class="button button-bold" title="Code of Conduct on Github">Check out our full Code of Conduct</a>
+    <a href="https://github.com/codeforamerica/codeofconduct" class="button button-outline button-linkout" title="Code of Conduct on Github" target="_blank">Check out our full Code of Conduct</a>
   </div>
   </div>
 </section>
 
-<section class="slab" id="sponsors">
-  <div class="panel">
-    <div class="panel__body layout-centered">
-      <h4>Funders</h4>
-      <ul class="list list--inline">
-        <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60px"></a></li>
-        <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60px"></a></li>
-        <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60px"></a></li>
-      </ul>
-    </div>
-  </div>    
-</section>
+{% endblock %}
+
+{% block footer %}
+
+<div id="sponsors" class="grid-box">
+  <h3>Funders</h3>
+  <ul class="list list--inline">
+    <li><a href="https://www.rallydev.com/about/rally-for-impact" target="_blank"><img src="{{ asset_url_for('images/CAlogo.png') }}" height="60"></a></li>
+    <li><a href="https://www.esri.com/" target="_blank"><img src="{{ asset_url_for('images/logo_esri.png') }}" height="60"></a></li>
+    <li><a href="https://knightfoundation.org/" target="_blank"><img src="{{ asset_url_for('images/logo_knightfoundation.png') }}" height="60"></a></li>
+  </ul>
+</div>
 
 {% endblock %}

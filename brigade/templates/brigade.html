@@ -1,92 +1,75 @@
 {% extends "base.html" %}
 {% block title %}{{brigade.name}}{% endblock %}
 {% block description %}{{ brigade | brigade_description }}{% endblock %}
+{% block subhero_title %}{{ brigade.name }}{% endblock %}
+{% block subhero_description %}
+  {% if brigade.tags %}
+  <p class="lead-in-text">
+    {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
+    {{ brigade.name }} is an official Code for America Brigade in {{ brigade.city }} working on projects with government and community partners to improve people’s lives.
+
+    {% elif 'Brigade' in brigade.tags and not 'Official' in brigade.tags %}
+    {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve people's lives.
+
+    {% elif 'Government' in brigade.tags %}
+    {{ brigade.name }} is a government organization in {{ brigade.city }}.
+    {% endif %}
+  </p>
+  {% endif %}
+{% endblock %}
+
+{% block hero_right %}
+<ul class="fa-ul">
+  {% if brigade.city %}
+  <li><p><span class="fa-li"><i class="fas fa-map-marker"></i></span>{{ brigade.city }}</p></li>
+  {% endif %}
+
+  {% if brigade.website %}
+  <li><p><span class="fa-li"><i class="fas fa-globe"></i></span><a href="{{ brigade.website }}" target="_blank" title="Brigade: website">{{ brigade.website | friendly_url }}</a></p></li>
+  {% endif %}
+</ul>
+
+<div class="brigade-social-icons">
+{% if brigade.events_url %}
+<a href="{{ brigade.events_url }}" target="_blank" title="Brigade social: Meetup">
+  <i class="fab fa-lg fa-meetup"></i>
+</a>
+{% endif %}
+{% if brigade.social_profiles and brigade.social_profiles.twitter %}
+<a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" target="_blank" title="Brigade social: Twitter">
+  <i class="fab fa-lg fa-twitter"></i>
+</a>
+{% endif %}
+{% if brigade.social_profiles and brigade.social_profiles.facebook %}
+<a href="{{ brigade.social_profiles.facebook }}" target="_blank" title="Brigade social: Facebook">
+  <i class="fab fa-lg fa-facebook"></i>
+</a>
+{% endif %}
+{% if brigade.projects_list_url and 'github.com' in brigade.social_profiles.projects_list_url %}
+<a href="{{ brigade.projects_list_url }}" target="_blank" title="Brigade social: Github">
+  <i class="fab fa-lg fa-github"></i>
+</a>
+{% endif %}
+</div>
+{% endblock %}
+
+{% block in_page_nav %}
+<nav>
+  <strong>On this page:</strong>
+  {% if 'Brigade' in brigade.tags %}
+  <a href="#events" class="in-page-nav__link">Events</a>
+  {% endif %}
+  {% if brigade.current_projects %}
+  <a href="#projects" class="in-page-nav__link">Projects</a>
+  {% endif %}
+  {% if brigade.current_stories %}
+  <a href="#stories" class="in-page-nav__link">Stories</a>
+  {% endif %}
+  <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="in-page-nav__link" target="_blank"> Donate <i class="fas fa-xs fa-external-link-alt"></i></a>
+</nav>
+{% endblock %}
 
 {% block content %}
-
-<header id="intro" class="page-header slab slab-dark-blue">
-  <div class="grid-box">
-    <div class="width-three-fourts">
-      <h1 class="title slab__title">{{ brigade.name }}</h1>
-    </div>
-  </div>
-  <div class="grid-box">
-    <div class="width-one-half">
-      <p>
-        {% if brigade.tags %}
-
-        {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
-        {{ brigade.name }} is an official Code for America Brigade in {{ brigade.city }} working on projects with government and community partners to improve people’s lives.
-
-        {% elif 'Brigade' in brigade.tags and not 'Official' in brigade.tags %}
-        {{ brigade.name }} is a group of volunteers in {{ brigade.city }} working on projects with government and community partners to improve people's lives. 
-
-        {% elif 'Government' in brigade.tags %}
-        {{ brigade.name }} is a government organization in {{ brigade.city }}.
-        {% endif %}
-
-        {% endif %}
-      </p>
-      <p>
-        <ul class="fa-ul">
-          {% if brigade.city %}
-          <li><span class="fa-li"><i class="fas fa-map-marker"></i></span>{{ brigade.city }}<br>
-          {% endif %}
-
-          {% if brigade.website %}
-          <li><span class="fa-li"><i class="fas fa-globe"></i></span><a href="{{ brigade.website }}" target="_blank" title="Brigade: website">{{ brigade.website | friendly_url }}</a>
-          {% endif %}
-        </ul>
-      </p>
-    </div>
-  </div>
-  <div class="grid-box">
-    <div class="width-three-fourths">
-      <p>
-        {% if brigade.events_url and 'meetup.com' in brigade.events_url %}
-        <a href="{{ brigade.events_url }}" class="button button-s button-invert" target="_blank" title="Brigade social: Meetup">
-          <i class="fab fa-lg fa-meetup"></i> Meetup
-        </a>
-        {% endif %}
-        {% if brigade.social_profiles and brigade.social_profiles.twitter %}
-        <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" class="button button-s button-invert" target="_blank" title="Brigade social: Twitter">
-          <i class="fab fa-lg fa-twitter"></i> {{ brigade.social_profiles.twitter }}
-        </a>
-        {% endif %}
-        {% if brigade.social_profiles and brigade.social_profiles.facebook %}
-        <a href="{{ brigade.social_profiles.facebook }}" class="button button-s button-invert" target="_blank" title="Brigade social: Facebook">
-          <i class="fab fa-lg fa-facebook"></i> Facebook
-        </a>
-        {% endif %}
-        {% if brigade.projects_list_url and 'github.com' in brigade.projects_list_url %}
-        <a href="{{ brigade.projects_list_url }}" class="button button-s button-invert" target="_blank" title="Brigade social: Github">
-          <i class="fab fa-lg fa-github"></i> Github
-        </a>
-        {% endif %}
-      </p>
-    </div>
-  </div>
-</header>
-
-<nav class="slab slab--compact slab-gray">
-  <div class="grid-box">
-    {% if 'Brigade' in brigade.tags %}
-    <a href="#events" class="button">Events</a>
-    {% endif %}
-    {% if brigade.current_projects %}
-    <a href="#projects" class="button">Projects</a>
-    {% endif %}
-    {% if brigade.current_stories %}
-    <a href="#stories" class="button">Stories</a>
-    {% endif %}
-    {% if 'Brigade' in brigade.tags and 'Official' in brigade.tags %}
-    <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="button" target="_blank">
-      Donate <i class="fas fa-external-link-alt"></i>
-    </a>
-    {% endif %}
-  </div>
-</nav>
-
 {% if 'Brigade' in brigade.tags %}
 <section id="events" class="slab slab-white">
 
@@ -112,33 +95,27 @@
       {# If event has location coordinates, show the card full-width (to fit the map), otherwise only two-thirds width #}
       <div class="{% if event.lat and event.lon %}width-one-whole{% else %}width-two-thirds{% endif %}">
 
-        <div class="card card--horizontal">
-          <div class="card__body">
-            <div class="card__content">
-              <small>
-                {% if event.is_today %}<strong>Event today:</strong>{% else %}Next event:{% endif %}
-              </small>
-              <h3 class="card__title"><a href="{{ event.event_url }}" target="_blank">{{ event.name }}</a></h3>
-              <ul class="fa-ul">
-                {% if event.location %}
-                <li><span class="fa-li"><i class="fas fa-map-marker"></i></span> {{ event.location }}</li>
-                {% endif %}
-                <li><span class="fa-li"><i class="far fa-calendar"></i></span> {{ event.start_time | format_time }}</li>
-              </ul>
-              <div class="card__action">
-                <a href="{{ event.event_url }}" target="_blank" class="button button-bold" title="Brigade: Meetup event"><i class="fab fa-fw fa-meetup"></i> View event on Meetup</a>
-              </div>
-            </div>
+        <a href="{{ event.event_url }}" target="_blank" class="card link-card card--horizontal" title="Brigade: Meetup event">
+          <div class="card-content">
+            {% if event.is_today %}<strong>Event today:</strong>{% else %}Next event:{% endif %}
+            <h3>{{ event.name }}</h3>
+            <ul class="fa-ul">
+              {% if event.location %}
+              <li><span class="fa-li"><i class="fas fa-map-marker"></i></span> {{ event.location }}</li>
+              {% endif %}
+              <li><span class="fa-li"><i class="far fa-calendar"></i></span> {{ event.start_time | format_time }}</li>
+            </ul>
 
-            {% if event.lat and event.lon %}
-            <div class="card__aside">
-              <img src="https://api.mapbox.com/styles/v1/mapbox/bright-v8/static/pin-s+aa1c3a({{ event.lon }},{{ event.lat }})/{{ event.lon }},{{ event.lat }},15,0.00,0.00/273x263@2x?access_token=pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiY2pldDMwMzlnMHF3ZjMzbzUyMzNpdms4MSJ9.ZN9PlYN-2GGF_HQtY0zWWw" alt="Map showing location of next {{ brigade.name }} event ">
-            </div>
-            {% endif %}
+            <span class="button button-primary button-linkout"><i class="fab fa-fw fa-meetup"></i> View event on Meetup</span>
           </div>
-        </div>
 
-      </div>
+          {% if event.lat and event.lon %}
+          <div class="card-image-container">
+            <img src="https://api.mapbox.com/styles/v1/mapbox/bright-v8/static/pin-s+aa1c3a({{ event.lon }},{{ event.lat }})/{{ event.lon }},{{ event.lat }},15,0.00,0.00/280x230@2x?access_token=pk.eyJ1IjoiY29kZWZvcmFtZXJpY2EiLCJhIjoiY2pldDMwMzlnMHF3ZjMzbzUyMzNpdms4MSJ9.ZN9PlYN-2GGF_HQtY0zWWw" alt="Map showing location of next {{ brigade.name }} event " width="280" height="230">
+          </div>
+          {% endif %}
+        </div>
+      </a>
 
       {% if brigade.current_events[1] %}
       {% set event = brigade.current_events[1] %}
@@ -151,90 +128,61 @@
       {# Brigade has no upcoming events #}
       {% else %}
       <div class="width-two-thirds">
-        <div class="card">
-          <div class="card__body">
-            <p>Interested in attending an event with {{ brigade.name }}?</p>
-          </div>
-          <div class="card__action">
+        {# If the brigade has a Meetup, send the user there. #}
+        {% if brigade.events_url and 'meetup.com' in brigade.events_url %}
+          <a href="{{ brigade.events_url }}" class="card link-card" target="_blank" title="Brigade social: Meetup">
+            <div class="card-content">
+              <p>Interested in attending an event with {{ brigade.name }}?</p>
 
-            {# If Brigade has Meetup #}
-            {% if brigade.events_url and 'meetup.com' in brigade.events_url %}
-            <a href="{{ brigade.events_url }}" class="button button-bold" target="_blank" title="Brigade social: Meetup">
-              <i class="fab fa-lg fa-fw fa-meetup"></i>Join them on Meetup
-            </a>
-
-            {# Else: if Brigade has a website and Twitter #}
-            {% elif brigade.website and brigade.social_profiles and brigade.social_profiles.twitter %}
-            <div class="grid-box">
-              <div class="width-one-half">
-                <a href="{{ brigade.website }}" class="button button-bold" target="_blank" title="Brigade: website">
-                  <i class="fas fa-lg fa-fw fa-globe"></i>Visit their website
-                </a>  
-              </div>
-              <div class="width-one-half">
-                <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" class="button button-subtle" target="_blank" title="Brigade social: Twitter">
-                  <i class="fab fa-lg fa-fw fa-twitter"></i>Connect on Twitter
-                </a>
-              </div>
+              {# If Brigade has Meetup #}
+              <span class="button button-primary button-linkout">
+                <i class="fab fa-lg fa-fw fa-meetup"></i> Join them on Meetup
+              </span>
             </div>
+          </a>
 
-            {# Else: if Brigade has a website and Facebook #}
-            {% elif brigade.website and brigade.social_profiles and brigade.social_profiles.facebook %}
-            <div class="grid-box">
-              <div class="width-one-half">
-                <a href="{{ brigade.website }}" class="button button-bold" target="_blank" title="Brigade: website">
-                  <i class="fas fa-lg fa-fw fa-globe"></i>Visit their website
-                </a>  
-              </div>
-              <div class="width-one-half">
-                <a href="{{ brigade.social_profiles.facebook }}" class="button button-subtle" target="_blank" title="Brigade social: Facebook">
-                  <i class="fab fa-lg fa-fw fa-facebook"></i>Connect on Facebook
-                </a>
-              </div>
+        {# Else: if Brigade has a website and Twitter #}
+        {% elif brigade.website %}
+          <a href="{{ brigade.website }}" class="card link-card" target="_blank" title="Brigade: website">
+            <div class="card-content">
+              <p>Interested in attending an event with {{ brigade.name }}?</p>
+
+              <span class="button button-primary button-linkout">
+                <i class="fas fa-sm fa-fw fa-globe"></i> Visit their website
+              </span>
             </div>
+          </a>
 
-            {# Else: if Brigade has Twitter and Facebook #}
-            {% elif brigade.social_profiles and brigade.social_profiles.twitter and brigade.social_profiles.facebook  %}
-            <div class="grid-box">
-              <div class="width-one-half">
-                <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" class="button button-bold" target="_blank" title="Brigade social: Twitter">
-                  <i class="fab fa-lg fa-fw fa-twitter"></i> Connect on Twitter
-                </a>
-              </div>
-              <div class="width-one-half">
-                <a href="{{ brigade.social_profiles.facebook }}" class="button button-subtle" target="_blank" title="Brigade social: Facebook">
-                  <i class="fab fa-lg fa-fw fa-facebook"></i> Connect on Facebook
-                </a>
-              </div>
+        {# Else: if Brigade has a Facebook #}
+        {% elif brigade.social_profiles and brigade.social_profiles.facebook %}
+          <a href="{{ brigade.social_profiles.facebook }}" class="card link-card" target="_blank" title="Brigade social: Facebook">
+            <div class="card-content">
+              <p>Interested in attending an event with {{ brigade.name }}?</p>
+
+              <span class="button button-primary button-linkout">
+                <i class="fab fa-sm fa-fw fa-facebook"></i>Connect on Facebook
+              </span>
             </div>
+          </a>
 
-            {# Else: if Brigade has a website #}
-            {% elif brigade.website %}
-            <a href="{{ brigade.website }}" class="button button-bold" target="_blank" title="Brigade: website">
-              <i class="fab fa-lg fa-fw fa-globe"></i> Visit their website
-            </a>
+        {# Else: if Brigade has Twitter #}
+        {% elif brigade.social_profiles.twitter %}
+          <a href="{{ brigade.social_profiles.twitter }}" class="card link-card" target="_blank" title="Brigade social: Twitter">
+            <div class="card-content">
+              <p>Interested in attending an event with {{ brigade.name }}?</p>
 
-            {# Else: if Brigade has Twitter #}
-            {% elif brigade.social_profiles and brigade.social_profiles.twitter %}
-            <a href="https://twitter.com/{{ brigade.social_profiles.twitter }}" class="button button-bold" target="_blank" title="Brigade social: Twitter">
-              <i class="fab fa-lg fa-fw fa-twitter"></i> Connect on Twitter
-            </a>
+              <span class="button button-primary button-linkout">
+                <i class="fab fa-sm fa-fw fa-twitter"></i> Connect on Twitter
+              </span>
+            </div>
+          </a>
 
-            {# Else: if Brigade has Facebook #}
-            {% elif brigade.social_profiles and brigade.social_profiles.facebook %}
-            <a href="{{ brigade.social_profiles.facebook }}" class="button button-bold" target="_blank" title="Brigade social: Facebook">
-              <i class="fab fa-lg fa-fw fa-facebook"></i> Connect on Facebook
-            </a>
-
-            {# Else: show a link to the Brigade Contact directory #}
-            {% else %}
-            <a href="http://c4a.me/brigades" class="button button-bold" target="_blank">
-              <i class="far fa-lg fa-fw fa-address-book"></i> Look them up in the Brigade Contact Directory
-            </a>
-            {% endif %}
-
-          </div>
-        </div>
+        {# Else: show a link to the Brigade Contact directory #}
+        {% else %}
+          <a href="http://c4a.me/brigades" class="button button-bold" target="_blank">
+            <i class="far fa-sm fa-fw fa-address-book"></i> Look them up in the Brigade Contact Directory
+          </a>
+        {% endif %}
       </div>
       {% endif %}
 
@@ -245,7 +193,7 @@
 {% endif %}
 
 {% if brigade.current_projects %}
-<section id="projects" class="slab slab-gray">
+<section id="projects" class="slab gray-bg-slab">
 
   <div class="grid-box">
     <div class="width-one-half">
@@ -255,12 +203,12 @@
 
   <div class="grid-box">
     <div class="width-three-fourths">
-      <div class="alert">
-        <div class="alert__icon">
+      <div class="message">
+        <div class="message__icon">
           <i class="fas fa-star"></i>
         </div>
-        <div class="alert__content">
-          <strong>Looking for project inspiration?</strong> 
+        <div class="message__content">
+          <strong>Looking for project inspiration?</strong>
           <a href="{{url_for('brigade.project_showcase')}}">Check out the Brigade Project Showcase!</a>
         </div>
       </div>
@@ -270,22 +218,20 @@
   <div class="grid-box">
     {% for project in brigade.current_projects %}
     <div class="width-one-fourth">
-      <div class="card">
-        <div class="card__body">
-          <h3 class="card__title">{{ project.name | split_underscores }}</h3>
+      <div class="card link-card card--white">
+        <div class="card-content">
+          <h4>{{ project.name | split_underscores }}</h4>
           {% if project.description %}
           <p>{{ project.description | truncate(120) }}</p>
           {% endif %}
-        </div>
-        <div class="card__action">
+
           {% if project.code_url %}
           <p><a href="{{ project.code_url }}" target="_blank" title="Brigade project: Github"><i class="fab fa-fw fa-github"></i> View on Github</a></p>
           {% endif %}
           {% if project.link_url %}
           <p><a href="{{ project.link_url }}" target="_blank" title="Brigade project: website"><i class="fas fa-fw fa-rocket"></i> Visit project</a></p>
           {% endif %}
-        </div>
-        <div class="card__footer">
+
           {% if project.last_updated %}
           Last Updated: {{ project.last_updated | timesince }}
           {% endif %}
@@ -297,7 +243,7 @@
 
   <div class="grid-box">
     <div class="width-three-fourths text-center">
-      <a href="./projects" class="button button-bold"><i class="fas fa-fw fa-rocket"></i> See more {{ brigade.name }} projects</a>
+      <a href="./projects" class="button button-outline button-linkout">See more {{ brigade.name }} projects</a>
     </div>
   </div>
 

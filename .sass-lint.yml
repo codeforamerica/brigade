@@ -1,0 +1,21 @@
+files:
+  include: '**/*.s+(a|c)ss'
+options:
+  formatter: stylish
+rules:
+  class-name-format:
+    - 1
+    - convention: hyphenatedbem
+  hex-length:
+    - 1
+    - style: long
+  id-name-format:
+    - 1
+    - convention: hyphenatedbem
+  leading-zero:
+    - 1
+    - include: true
+  placeholder-name-format:
+    - 1
+    - convention: hyphenatedbem
+  quotes: 0
