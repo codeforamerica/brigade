@@ -3,8 +3,8 @@
 
 
 "@codeforamerica/style@^4.0.0":
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/@codeforamerica/style/-/style-4.0.7.tgz#9c799a917384c38addad65bd268dc1f8ce88b574"
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/@codeforamerica/style/-/style-4.0.8.tgz#bc31e1ed100109f973eb5ffb482b3797c4ff588c"
 
 abbrev@1:
   version "1.1.1"
