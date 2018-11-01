@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block subhero_title %}
+National Advisory Council
+{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">
+The National Advisory Council is an elected group of Brigade members that represents the Brigade network and advocates for the ideals of our community.
+</p>
+{% endblock %}
+
+{% block content %}
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-one-third">
+      <img src="{{ asset_url_for('images/nac_2018.jpg') }}" alt="Picture of 2018 NAC members being very serious." />
+    </div>
+
+    <div class="width-seven-twelfths shift-one-twelfth">
+      <h2>About the National Advisory Council</h2>
+
+      <p>The National Advisory Council (NAC) serves the Brigade community by connecting Code for America staff to the needs of the Brigade community, matchmaking Brigades to one another to share learnings and ideas, supporting and cultivating community leaders, and leveraging the diverse talent brigades contain that brigades offer.</p>
+
+      <p>In addition to its advisory role, the National Advisory Council helps Brigade network members build the skills they need to be successful community leaders. Members of the NAC have an expansive network and foster relationships around the country to build the civic tech movement and engage their local communities to improve government.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slab border-top-slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h2>The current National Advisory Council</h2>
+
+      <p>There are nine NAC members (5 at-large and 4 regional), each are elected to serve a two year term with elections alternating each year.</p>
+
+      <p>They are:</p>
+
+      <ul>
+        <li>Jill Bjers, Chair (At-Large, Open Charlotte Brigade)</li>
+        <li>Jason Hibbets (At-Large, Open Raleigh Brigade)</li>
+        <li>Chris Alfano (At-Large, Code for Philly)</li>
+        <li>Nina Kin (At-Large, Hack for LA)</li>
+        <li>Emma Burnett (At-Large, Code for Maine)</li>
+        <li>Janet Michaelis (Midwest Region, Code for Dayton)</li>
+        <li>Laura Biediger (South Region, Code for Durham)</li>
+        <li>Ramy Kim (West Region, OpenOakland)</li>
+        <li>Dawn McDougall (Northeast Region, Code for Philly)</li>
+      </ul>
+
+      <p>You can reach the NAC by emailing <a href="mailto:NAC@codeforamerica.org">NAC@codeforamerica.org</a>.</p>
+
+    </div>
+
+    <div class="width-one-third shift-one-twelfth">
+      <img src="{{ asset_url_for('images/brigade-regions-2018.svg') }}" alt="Map of Brigade Regions" />
+
+      <p></p>
+
+      <div class="message">
+        <div class="message__icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="message__content">
+          <strong>Not sure which region your Brigade is in?</strong>
+          <a href="http://c4a.me/brigades" target="_blank">Check the Brigade Contact Directory</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slab gray-bg-slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h2>National Advisory Council meetings</h2>
+
+      <p>
+      The National Advisory Council meets monthly to discuss their current work, upcoming events and Brigade network needs. The agenda is maintained and facilitated by the Chair and time is split between NAC members and CfA staff.</p>
+      <p>All agendas and notes are posted on <a href="https://discourse.codeforamerica.org" target="_blank">the Code for America Discourse</a> after the meeting.
+      </p>
+
+      <a href="https://discourse.codeforamerica.org/tags/c/from-nac/agenda" target="_blank" class="button button-outline button-linkout">View Meeting Agendas</a>
+
+      <p>Additionally, the NAC has two in-person meetings a year -- once at Summit and also at Brigade Congress.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h2>Previous National Advisory Councils</h2>
+
+      <h3>2016-2017</h3>
+
+      <ul>
+        <li>Jill Bjers, Open Charlotte Brigade</li>
+        <li>Jason Hibbets, Open Raleigh Brigade</li>
+        <li>Chris Alfano, Code for Philly</li>
+        <li>Neil Planchon, Open Oakland</li>
+        <li>Noel Hidalgo, BetaNYC</li>
+        <li>Harlan Weber, Code for Boston</li>
+        <li>Vyki Englert, Hack for LA</li>
+        <li>Luigi Ray-Montanez, Code for Atlanta</li>
+        <li>Andrew Kozlik, Code for Orlando</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
