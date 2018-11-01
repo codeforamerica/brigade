@@ -4,9 +4,6 @@
   "scripts": {
   },
   "env": {
-    "ACCESS_TOKEN": {
-      "required": true
-    },
     "ERROR_PAGE_URL": {
       "required": true
     },
