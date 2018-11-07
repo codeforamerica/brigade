@@ -14,7 +14,7 @@
       <div class="span-four grid-item">
         <a href="https://docs.google.com/document/d/1G_v53fGyHqdZNmXkDxqhqkzT7q2TBZ9Xmh9JkWtFQ8Y/edit" class="card link-card" target="_blank" title="Playbook Google Doc view">
           <div class="card-image--icon">
-            <i class="fas fa-tasks"></i>
+            <i class="fas fa-book"></i>
           </div>
           <div class="card-content">
             <h4>Organizer’s Playbook</h4>
@@ -27,15 +27,28 @@
       </div>
 
       <div class="span-four grid-item">
-        <a href="https://docs.google.com/document/d/16CL9TdmWV0hDY6c85PwtzUcu1VjeSeiDFD2CbtLKf7s/edit?usp=sharing" class="card link-card" target="_blank" title="Handbook Google Doc view">
+        <a href="{{ url_for('.code_of_conduct') }}" class="card link-card">
           <div class="card-image--icon">
-            <i class="fas fa-book"></i>
+            <i class="fas fa-users"></i>
           </div>
           <div class="card-content">
-            <h4>Organizer’s Handbook</h4>
-            <p>The Handbook points to the resources that CfA offers Brigades and how to take advantage of them.</p>
-            <p>It includes: how to get set up on Meetup, how to use Expensify, and information about the National Advisory Council (NAC).</p>
-            <div class="card-link">View Handbook <i class="fas fa-xs fa-external-link-alt"></i></div>
+            <h4>Code of Conduct</h4>
+            <p>Lay the foundation to create a safe space at your Brigade event.</p>
+            <div class="card-link">Adapt our Code of Conduct</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="span-four grid-item">
+        {# TODO: Replace this with the new Financial Guidance page #}
+        <a href="https://docs.google.com/document/d/1rlBlOBLzzUm3wr9asZ5OEnnC8EhvDnMSwUaMAh-J83E/edit" target="_blank" class="card link-card">
+          <div class="card-image--icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div class="card-content">
+            <h4>Financial Guidance</h4>
+            <p>If you're looking to raise money, spend it, or sign a contract, look here for step-by-step instructions.</p>
+            <div class="card-link">View Financial Guidance</div>
           </div>
         </a>
       </div>
