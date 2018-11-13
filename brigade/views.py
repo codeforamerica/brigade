@@ -217,7 +217,7 @@ def redirect_brigade(brigadeid):
     return redirect(url_for('.brigade', brigadeid=brigadeid), code=301)
 
 
-@app.route('/code-of-conduct')
+@app.route('/about/code-of-conduct')
 def code_of_conduct():
     return render_template("code_of_conduct.html")
 
