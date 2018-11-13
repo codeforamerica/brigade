@@ -48,6 +48,11 @@ def about():
     return render_template("about.html")
 
 
+@app.route('/about/national-advisory-council')
+def national_advisory_council():
+    return render_template("national_advisory_council.html")
+
+
 @redirect_from("/brigade/organize/", "/brigade/organize/<page>")
 @app.route("/resources")
 def resources():
