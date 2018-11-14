@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% block subhero_title %}
+Financial Administration
+{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">
+Code for America supports Brigades by providing the infrastructure to fundraise, spend money, and enter into contracts.
+</p>
+{% endblock %}
+{% block in_page_nav %}
+<nav>
+  <strong>On this page:</strong>
+  <a href="#fundraising" class="in-page-nav__link">Fundraising</a>
+  <a href="#fiscal-sponsorship" class="in-page-nav__link">Local Fiscal Sponsors</a>
+  <a href="#partner-brigades" class="in-page-nav__link">Partner Brigades</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h3>About Financial Administration</h3>
+
+      <p>One way that Code for America supports the Brigade Network is by handling financial administration for Brigades. This support allows Brigades to fundraise and spend money for their Brigades, without having to worry about financial administration.</p>
+
+      <p>Here are some commonly-requested resources related to Code for America financial administration:</p>
+    </div>
+
+    <div class="grid-box">
+      <div class="width-one-whole">
+        <div class="span-four grid-item">
+          <a href="https://docs.google.com/spreadsheets/d/1H4-cLKeBFBxoOTO35dXsi_hxvOzfnIfUoS-qVDq4vig/edit#gid=0" class="card link-card" target="_blank" title="Brigade Finances Spreadsheet">
+            <div class="card-image--icon">
+              <i class="fas fa-table"></i>
+            </div>
+            <div class="card-content">
+              <h4>2018 Finance Spreadsheet</h4>
+              <p>Need to check your Brigade's cash balance? This spreadsheet is updated once-a-month.</p>
+
+              <div class="card-link">View Balances <i class="fas fa-xs fa-external-link-alt"></i></div>
+            </div>
+          </a>
+        </div>
+        <div class="span-four grid-item">
+          <a href="https://docs.google.com/document/d/1fqFR08x5F6BraREuiSGbyZQ5isNDc5dM2FnmHRd9J_c/edit" class="card link-card" target="_blank" title="Financial Guidance for Brigades">
+            <div class="card-image--icon">
+              <i class="fas fa-question"></i>
+            </div>
+            <div class="card-content">
+              <h4>Financial Guidance Document</h4>
+              <p>Find answers to advanced topics and frequently asked questions here.</p>
+
+              <div class="card-link">View Financial Guidance <i class="fas fa-xs fa-external-link-alt"></i></div>
+            </div>
+          </a>
+        </div>
+        <div class="span-four grid-item">
+          <a href="https://docs.google.com/document/d/1dD1hcMO5XbiHRQfMS-3rw1PLO0H8MAoOu1p_khLGdeQ/edit" class="card link-card" target="_blank" title="Submitting Reimbursements">
+            <div class="card-image--icon">
+              <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="card-content">
+              <h4>Submitting Reimbursements</h4>
+              <p>Need a reimbursement? Follow this step-by-step guide to getting your money back through Expensify.</p>
+
+              <div class="card-link">View Guide <i class="fas fa-xs fa-external-link-alt"></i></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="width-seven-twelfths">
+      <p>Although having Code for America provide full financial administration is the easiest way for Brigade leaders,  it is also possible to have a separate <a href="https://en.wikipedia.org/wiki/Fiscal_sponsorship" target="_blank">Fiscal Sponsor</a> or separate 501(c)3 status.</p>
+      <p>Brigades with full Code for America Financial administration, as well as those with a fiscal sponsor, can receive tax-deductible donations through Code for America, and are provided with a Relationship Letter establishing this.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h3 id="fundraising">Fundraising for your Brigade</h3>
+      <p>Brigades can fundraise online or by receiving checks. Donations are tax-deductible and cannot have business benefits for the donor (giving) company. Code for America will send a formal thank you letter to the donor and issue them a tax-deductible receipt. However, Code for America does not issue tax-deductible receipts for sponsorships, event tickets, or merchandise sales.
+      </p>
+
+      <p>For donations under $1,000, the full amount will be available for you to spend immediately. If you plan to receive a donation over $1,000, please first reach out to the Network Team (<a href="mailto:brigade-info@codeforamerica.org">brigade-info@codefoamerica.org</a>) to confirm how this will be spent and receive approval in advance. Funds will be added to your Brigade account to spend against.
+      </p>
+
+      <p>You can access funds by submitting expenses against the funds in Expensify <a href="https://docs.google.com/document/d/1dD1hcMO5XbiHRQfMS-3rw1PLO0H8MAoOu1p_khLGdeQ/edit" target="_blank">using this process</a>.</p>
+
+      <p>Donations from a foundation or a government will need accompanying documentation from the Brigade. Foundations and governments don’t write checks without some degree of paperwork - even if it’s a series of emails. The reason we ask for accompanying documentation is that when we go through an audit, auditors will ask for this accompanying documentation.
+      </p>
+    </div>
+
+    <div class="width-one-third shift-one-twelfth">
+      <div class="message">
+        <div class="message__icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+
+        <div class="message__content">
+          <strong>If your Brigade has a Fiscal Sponsor, check with them for information on how to fundraise.</strong>
+          <a href="#fiscal-sponsorship">Read about what Fiscal Sponsorship means for your Brigade.</a>.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h4 id="fundraising-online">Online Donations</h4>
+
+      <p>Each Brigade has their own unique donation page (e.g. <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page&brigade=Code%20for%20Atlanta" target="_blank">Code for Atlanta</a>) that is linked to on <a href="{{ url_for('brigade.brigade_list') }}">your Brigade’s page on this site</a>. Leaders can share that donation page link for fundraising purposes, and donations will automatically go to your Brigade account.</p>
+
+      <p>Please note: The credit card processing fee for online donations is 2.2% + $0.30 of each donation.</p>
+    </div>
+
+    <div class="width-one-third shift-one-twelfth">
+      <div class="message">
+        <div class="message__icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+
+        <div class="message__content">
+          <strong>Many Brigades raise money through ticket sales on Eventbrite. </strong>
+          <a href="https://docs.google.com/document/d/1bc_UauRnWTQycz7YHYqrRD7dZpirq8l_2ulvn0LKXfY/edit#" target="_blank">Learn how to send money from Eventbrite</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h4 id="fundraising-checks">Checks</h4>
+      <p>Checks should be made payable to "Code for America Labs"  Please include "for X Brigade" in the memo.</p>
+
+      <p>The mailing address for Code for America until December 17, 2018 is:
+        <strong>
+        155 9th Street, San Francisco, CA 94103 (Attn: Vishal Sood)
+        </strong></p>
+
+      <p>
+        If you are looking to fundraise for your Brigade, please ensure you read the
+        <a href="https://docs.google.com/document/d/1fqFR08x5F6BraREuiSGbyZQ5isNDc5dM2FnmHRd9J_c/edit" target="_blank">
+          2018 Financial Guidance for Brigades Document
+        </a>.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h3 id="fiscal-sponsorship">Brigades with local fiscal sponsors</h3>
+
+      <p>As a Brigade, having a <a href="https://en.wikipedia.org/wiki/Fiscal_sponsorship" target="_blank">Fiscal Sponsor</a> means that an outside organization, usually a local one, handles the administration of the Brigade’s finances. All of the Brigades finances will go through the fiscal sponsor, and will not be associated with Code for America. If a Brigade receives a donation through the Code for America donation page, it will be immediately transferred to the fiscal sponsor.</p>
+
+      <p>This also means that all reimbursements for Brigade members will go through the fiscal sponsor. Fiscal sponsors can seek reimbursement for their Brigade members for travel reimbursements to Summit and Brigade Congress through Code for America, but Brigade members will not be reimbursed via the Expensify process, and will need to go through their fiscal sponsor for any finance related issues.</p>
+
+      <p>If you are looking to have a fiscal sponsor for your Brigade, please contact the Network team as certain guidelines must be met to make this switch, such as a verification of the proposed fiscal sponsor’s financial stability.</p>
+    </div>
+
+    <div class="width-one-third shift-one-twelfth">
+    </div>
+  </div>
+</section>
+
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h3 id="partner-brigades">Brigades as their own 501<small>(c)</small>3 Organizations</h3>
+
+      <p>A small number of Brigades have chosen to seek their own non-profit status for their Brigades. This means that they must follow all the rules and regulations of a non-profit, and as a result they have no financial association with Code for America. </p>
+
+      <p>Although there is no financial association, in order to be official, these Brigades still sign an MOU that designates them as Partner Brigades. This document recognizes that there is still alignment between their organization and Code for America.</p>
+
+
+      <p>As a consequence of being separate organizations, Partner Brigades, have limited access to the free software provided to Brigades. </p>
+
+    </div>
+
+    <div class="width-one-third shift-one-twelfth">
+      <div class="message">
+        <div class="message__icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+
+        <div class="message__content">
+          <strong>If a Partner Brigade receives a donation through Code for America, it will be immediately forwarded to the Brigade.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
