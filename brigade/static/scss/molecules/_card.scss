@@ -35,6 +35,12 @@ a.card--horizontal {
   }
 }
 
+.link-card .card-icon {
+  display: block;
+  margin: 1rem auto 2rem;
+  height: 70px;
+}
+
 .card-image--icon {
   color: $color-black;
   font-size: 44px;
