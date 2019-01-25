@@ -72,6 +72,11 @@ def free_software_show(software):
     return render_template(template_path)
 
 
+@app.route("/resources/financial-administration")
+def financial_administration():
+    return render_template("financial_administration.html")
+
+
 # Note: This array should be sorted in reverse chronological order, so the most
 # recent video is at the top.
 # Keys: id, title, date, description, topics, start
