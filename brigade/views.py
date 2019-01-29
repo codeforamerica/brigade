@@ -250,6 +250,11 @@ def brigade(brigadeid):
         if event_date == todays_date:
             brigade['current_events'][0]['is_today'] = True
 
+    ''' If Brigade is fiscally sponsored or a partner Brigade, it can't be donated '''
+    brigade['can_donate_through_cfa'] = \
+        not 'Code for America Fiscally Sponsored Brigade' in brigade['tags'] \
+        and not 'Code for America Partner Brigade' in brigade['tags']
+
     return render_template("brigade.html", brigade=brigade, brigadeid=brigadeid)
 
 

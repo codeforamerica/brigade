@@ -65,7 +65,9 @@
   {% if brigade.current_stories %}
   <a href="#stories" class="in-page-nav__link">Stories</a>
   {% endif %}
+  {% if brigade.can_donate_through_cfa %}
   <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="in-page-nav__link" target="_blank"> Donate <i class="fas fa-xs fa-external-link-alt"></i></a>
+  {% endif %}
 </nav>
 {% endblock %}
 
