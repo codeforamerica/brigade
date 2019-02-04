@@ -4,6 +4,8 @@ import dateutil.parser
 import json
 import logging
 import urllib
+import csv # TODO: remove
+import codecs # TODO: remove
 from . import brigade as app
 from datetime import datetime
 from flask import render_template, request, redirect, url_for
@@ -51,6 +53,12 @@ def about():
 @app.route('/about/national-advisory-council')
 def national_advisory_council():
     return render_template("national_advisory_council.html")
+
+
+@app.route('/about/national-advisory-council/candidates')
+def national_advisory_council_candidates():
+    # candidates = csv.DictReader(codecs.open('/path/to/candidates.csv', 'r', encoding='utf-8').readlines())
+    return render_template('national_advisory_council/2019_candidates.html')
 
 
 @redirect_from("/brigade/organize/", "/brigade/organize/<page>")
