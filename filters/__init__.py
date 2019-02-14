@@ -131,23 +131,6 @@ def nl2br(eval_ctx, value):
     return result
 
 
-YOUTUBE_URL = "https://www.youtube.com/watch?v={id}&start={start}"
-YOUTUBE_EMBED_URL = "https://www.youtube-nocookie.com/embed/{id}?start={start}"
-
-@filters.app_template_filter("youtube_link")
-def youtube_link(id, start=None, embed=False):
-    link = YOUTUBE_EMBED_URL if embed else YOUTUBE_URL
-    return link.format(id=id, start=start or 0)
-
-
-@filters.app_template_filter("link_to_video_topic")
-def link_to_video_topic(topic):
-    return Markup("<a href='{url}'>{text}</a>".format(
-        url=flask.url_for('.resources_videos', topic=escape(topic)),
-        text=escape(topic)
-    ))
-
-
 @filters.app_template_global("nav_link")
 def nav_link(page, text, **kwargs):
     if 'class_name' in kwargs:
