@@ -203,28 +203,11 @@ class BrigadeTests(unittest.TestCase):
             self.assertEqual(200, response.status_code)
             self.assertIn('<loc>http://localhost/brigades/TEST-ORG/</loc>', response.data)
 
-    def test_videos_page(self):
-        response = self.client.get("/resources/videos")
-        self.assertEqual(200, response.status_code)
-
-    def test_videos_page_with_tag(self):
-        response = self.client.get("/resources/videos/workshops")
-        self.assertEqual(200, response.status_code)
-
     def test_filter_datetime(self):
         from filters import format_time
         test_time = "2018-12-25 18:30:00 -0800"
         formatted_time = format_time(test_time)
         self.assertEqual(formatted_time, "Tuesday, Dec 25, 2018 @ 6:30 PM")
-
-    def test_filter_youtube_link(self):
-        from filters import youtube_link
-        video_id = 'jvVZHmMmq9I'
-
-        self.assertEqual(youtube_link(video_id), 'https://www.youtube.com/watch?v=jvVZHmMmq9I&start=0')
-        self.assertEqual(youtube_link(video_id, start=123), 'https://www.youtube.com/watch?v=jvVZHmMmq9I&start=123')
-        self.assertEqual(youtube_link(video_id, start=123, embed=True),
-                'https://www.youtube-nocookie.com/embed/jvVZHmMmq9I?start=123')
 
     def test_join_list(self):
         from filters import join_list
