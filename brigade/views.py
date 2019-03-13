@@ -24,7 +24,7 @@ def redirect_from(*urls):
     def decorator(f):
         def view_func(**kwargs):
             route_name = ".".join([app.name, f.func_name])
-            return redirect(url_for(route_name, **kwargs), code=301)
+            return redirect(url_for(route_name, **kwargs), code=302)
 
         for url in urls:
             app.add_url_rule(url, 'redirect_' + f.func_name, view_func)
@@ -55,9 +55,9 @@ def national_advisory_council():
     return render_template("national_advisory_council.html")
 
 
-@app.route('/about/national-advisory-council/candidates')
+@redirect_from("/about/national-advisory-council/candidates")
+@app.route('/about/national-advisory-council/2019-candidates')
 def national_advisory_council_candidates():
-    # candidates = csv.DictReader(codecs.open('/path/to/candidates.csv', 'r', encoding='utf-8').readlines())
     return render_template('national_advisory_council/2019_candidates.html')
 
 
