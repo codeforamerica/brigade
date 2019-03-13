@@ -155,6 +155,8 @@ class BrigadeTests(unittest.TestCase):
         with httmock.HTTMock(self.response_content):
             response = self.client.get("/brigades/404/")
             self.assertEqual(404, response.status_code)
+            response = self.client.get("/broken-link/")
+            self.assertEqual(404, response.status_code)
 
     def test_projects_searches(self):
         ''' Test the different project searches '''
