@@ -34,7 +34,19 @@ module.exports = {
       },
       {
         test: /\.s?css$/i,
-        use: ExtractTextPlugin.extract({ use: ['css-loader','sass-loader'] }),
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                includePaths: require("bourbon-neat").includePaths
+              }
+            }
+          ]
+        }),
       },
       {
         test: /\.(jpe?g|png|gif|txt|ico|eot|woff|ttf|otf|svg([\?]?.*))$/i,
