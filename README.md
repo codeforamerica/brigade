@@ -37,10 +37,10 @@ Set up a [Python virtual environment](https://github.com/codeforamerica/howto/bl
 
 Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
 
-### Install Node, Yarn and Webpack
+### Install Node and frontend dependencies with npm
 
-    brew install node yarn
-    yarn install
+    brew install node
+    npm install
 
 During development, run webpack.
 
