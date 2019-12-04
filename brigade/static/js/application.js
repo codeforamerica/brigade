@@ -23,12 +23,14 @@ window.Brigade.initializeMap = function(geoJSON) {
   geocoderControl.addTo(map);
 
   /*
-   * Disable scrolling until the user moves the mouse over the map for the
-   * first time. This should hopefully result in users scrolling past the map
-   * when using a scroll wheel if they don't move the mouse.
+   * Disable scroll wheel zoom until the user is directly interacting with the
+   * map. This should hopefully result in users scrolling past the map when
+   * using a scroll wheel if they don't move the mouse.
    */
-  map.scrollWheelZoom.disable();
-  map.addEventListener('mousemove', function() {
+  map.addEventListener('load mouseout', function(e) {
+    map.scrollWheelZoom.disable();
+  });
+  map.addEventListener('mousemove', function(e) {
     if (!map.scrollWheelZoom.enabled()) {
       map.scrollWheelZoom.enable();
     }
