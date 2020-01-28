@@ -55,10 +55,14 @@ def national_advisory_council():
     return render_template("national_advisory_council.html")
 
 
-@redirect_from("/about/national-advisory-council/candidates")
 @app.route('/about/national-advisory-council/2019-candidates')
-def national_advisory_council_candidates():
+def national_advisory_council_candidates_2019():
     return render_template('national_advisory_council/2019_candidates.html')
+
+
+@app.route('/about/national-advisory-council/candidates')
+def national_advisory_council_candidates():
+    return render_template('national_advisory_council/2020_candidates.html')
 
 
 @redirect_from("/brigade/organize/", "/brigade/organize/<page>")
