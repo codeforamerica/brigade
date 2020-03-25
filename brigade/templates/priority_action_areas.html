@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block title %}Priority Action Areas{% endblock %}
+{% block description %}The Brigade Network's Priority Action Areas are areas where we feel we can have outsized impact in 2020 and beyond.{% endblock %}
+{% block subhero_title %}Priority Action Areas{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">
+Brigades across the country will work collectively in these areas to build shared projects, create common resources, and support each other.
+</p>
+{% endblock %}
+{% block hero_right %}
+<div class="message">
+  <div class="message__icon">
+    <i class="fab fa-github"></i>
+  </div>
+  <div class="message__content">
+    <strong>Looking for the Civic Tech Github Project Search?</strong>
+    <a href="{{url_for('brigade.projects')}}">Find it here!</a>
+  </div>
+</div>
+{% endblock %}
+{% block in_page_nav %}
+<nav>
+  <strong>Jump To:</strong>
+  <a href="#court-notifications" class="in-page-nav__link">Court Notifications</a>
+  <a href="#rapid-response" class="in-page-nav__link">Rapid Response</a>
+  <a href="#voting-rights" class="in-page-nav__link">Voting Rights</a>
+  <a href="#creating-pathways-to-record-clearance" class="in-page-nav__link">Creating Pathways to Record Clearance</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>What are Priority Action Areas?</h2>
+    </div>
+
+    <div class="width-one-half">
+      <p>Priority Action Areas are four project areas where the Network feels we can have outsized impact in 2020. It is where we will focus shared projects and resources via our distributed Brigades across the country, making it possible for projects to impact several places at once. Resources like toolkits, workshops, and project management assistance will be provided to Brigades by the Network Team to support collective work in these four prioritized areas.</p>
+    </div>
+
+    <div class="width-one-half" style="text-align:center">
+      <p>
+        <img src="{{ asset_url_for('images/icon_priority_action_areas.png') }}" style="width: 80px; margin-bottom: 10px;">
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="slab gray-bg-slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths shift-one-third">
+      <h2>How were the Priority Action Areas selected?</h2>
+    </div>
+
+    <div class="width-one-third" style="text-align:center">
+      <p>
+        <img src="{{ asset_url_for('images/icon_priority_action_area_decisionmaking.png') }}" style="width: 200px; margin-bottom: 10px;">
+      </p>
+    </div>
+
+    <div class="width-seven-twelfths">
+      <p>Priority Action Areas were created in response to Brigade members and leaders asking for more project support, ideas and tools for projects that have impact, and more cross-brigade collaboration on projects. They were chosen in a process where the Network voiced their feedback on what areas they were most excited to tackle in 2020 via surveys, Discourse, workshops, and conversations. The National Advisory Council then narrowed down this feedback into the top three most popular, and viable topics. After finalizing our selections, the NAC then decided to add Rapid Response as a Priority Action Area to meet the needs of the COVID-19 pandemic and the evident energy around that topic within the Network.</p>
+
+      <p>
+        <a href="https://docs.google.com/document/d/1DaJdssXA-rhICRnVDI9K58WGdlnjqQn45PeIYSnwB6U/edit#" target="_blank">
+        Through this collaborative process</a>, the four Priority Action Areas that we chose are: Voting Rights, Creating Pathways to Record Clearance, and Court Notifications.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h2>The Priority Action Areas</h2>
+    </div>
+  </div>
+
+  <div class="grid-box grid-box--paa">
+    <div class="width-seven-twelfths">
+      <h3 id="court-notifications">Court Notifications</h3>
+      <p>
+        Court Notification projects, like Courtbot, have been very effective projects in communities across the country; from Tulsa, OK to Anchorage, AK These projects transform the local criminal justice ecosystem by enabling text court notifications and updating the systems in which people can pay fines.
+      </p>
+
+      <p>Are you working on (or looking to work on) a project in the Court Notifications area? Let Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
+      <a href="https://discourse.codeforamerica.org/t/priority-action-area-rapid-response/730"
+        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
+    </div>
+
+    <div class="width-one-third">
+      <img src="{{ asset_url_for("images/icon_paa_court_notifications.png") }}" style="height: 100px; margin: auto; display: block;">
+    </div>
+  </div>
+
+  <div class="grid-box grid-box--paa">
+    <div class="width-seven-twelfths">
+      <h3 id="rapid-response">Rapid Response</h3>
+      <p>
+        Brigade members have been at the front lines for rapid response initiatives such as Hurricane Harvey, Maria, and more. In the year of the largest pandemic of decades, Brigades are again pooling their knowledge, resources, and know-how to help people in moments of crisis.
+      </p>
+
+      <p>Are you working on (or looking to work on) a project in the Rapid Response area? Let other Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
+      <a href="https://discourse.codeforamerica.org/t/priority-action-area-rapid-response/730"
+        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
+    </div>
+
+    <div class="width-one-third">
+      <img src="{{ asset_url_for("images/icon_paa_rapid_response.png") }}" style="height: 100px; margin: auto; display: block;">
+    </div>
+  </div>
+
+  <div class="grid-box grid-box--paa">
+    <div class="width-seven-twelfths">
+      <h3 id="voting-rights">Voting Rights</h3>
+      <p>
+        It’s 2020 and the year of a major presidential election. There is a lot of energy around making sure that people feel safe and secure in the voting process, and who they are voting for. The Network has prioritized Voting Rights as a Priority Action Area to ensure that people have easy and safe access to exercise their right to vote?
+      </p>
+
+      <p>Are you working on (or looking to work on) a project in the Voting Rights area? Let other Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
+      <a href="https://discourse.codeforamerica.org/t/priority-action-area-voting-rights/728"
+        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
+    </div>
+
+    <div class="width-one-third">
+      <img src="{{ asset_url_for("images/icon_paa_voting.png") }}" style="height: 100px; margin: auto; display: block;">
+    </div>
+  </div>
+
+  <div class="grid-box grid-box--paa">
+    <div class="width-seven-twelfths">
+      <h3 id="creating-pathways-to-record-clearance">Creating Pathways to Record Clearance</h3>
+      <p>
+        Brigades have launched many projects to help people in their communities with the process of getting their records cleared. We want to continue to make an impact in this space where we can make a unique impact, whether it is in the area of fines and fees or helping local government identify records that are eligible for clearance.
+
+      <p>Are you working on (or looking to work on) a project in this area? Let other Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
+      <a href="https://discourse.codeforamerica.org/t/priority-action-area-creating-pathways-to-record-clearance/729"
+        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
+      </p>
+    </div>
+
+    <div class="width-one-third">
+      <img src="{{ asset_url_for("images/icon_paa_record_clearance.png") }}" style="height: 100px; margin: auto; display: block;">
+    </div>
+  </div>
+</section>
+{% endblock %}
