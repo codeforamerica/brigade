@@ -6,36 +6,36 @@ The Brigade Network
 {% block subhero_description %}
 <p class="lead-in-text">We're a national alliance of community organizers, developers, and designers that are putting technology to work in service of our local communities. We believe that government can work, for the people, by the people, in the digital age, if we all help.</p>
 {% endblock %}
-{% block hero_right %}
-<div class="message">
-  <div class="message__icon">
-    <i class="fas fa-star"></i>
-  </div>
-  <div class="message__content">
-    No Brigade near you? <strong>Start a new Brigade!</strong> <br>
-    <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
-  </div>
-</div>
-{% endblock %}
 
 {% block page_id %}home{% endblock %}
 
 {% block content %}
 
-<div class="grid-box">
-  <div class="slab slab--compact">
+<div class="slab slab--compact">
+  <div class="grid-box">
     <div class="width-one-half">
       <h2>Explore the <strong>{{ brigades_total }} Brigades</strong> across the US</h2>
     </div>
   </div>
 </div>
 
-<section class="slab slab--compact slab--full-bleed">
-  <div id="map"></div>
+<section class="slab slab--compact">
+  <div class="grid-box">
+    <div id="map"></div>
+  </div>
 </section>
 
 <div class="grid-box">
   <div class="width-one-half shift-one-fourth">
+    <div class="message">
+      <div class="message__icon">
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="message__content">
+        No Brigade near you? <strong>Start a new Brigade!</strong> <br>
+        <a href="https://cfa.typeform.com/to/uxPQH6" target="_blank">Tell us about yourself and we'll help you get started.</a>
+      </div>
+    </div>
     <div class="message">
       <div class="message__icon">
         <i class="fas fa-globe-africa"></i>
@@ -44,6 +44,37 @@ The Brigade Network
         Looking for an organization outside the US?
         <a href="https://codeforall.org/" target="_blank" class="no-wrap">Check out the <strong>Code for All</strong> Network</a>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="slab">
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2 id="join-the-movement">Join the movement</h2>
+    </div>
+
+    <div class="card-row width-one-third">
+      <a href="http://slack.codeforamerica.org" class="card link-card" target="_blank">
+        <div class="card-content">
+          <img src="{{ asset_url_for('images/icon_slack.png') }}" alt="" class="card-icon" />
+          <h4>Join us on Slack</h4>
+          <p>Become a member of one of the largest online communities dedicated to civic technology.</p>
+          <span class="button button-primary button-small">Request an Invitation</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="card-row width-one-third">
+      <a href="{{ url_for('.priority_action_areas') }}" class="card link-card">
+        <div class="card-content">
+          <img src="{{ asset_url_for('images/icon_priority_action_areas.png') }}" alt="" class="card-icon" />
+          <h4>Find a project</h4>
+          <p>Brigade members work on projects to improve their local communities. In particular, the Network's Priority Action Areas are the best opportunities to engage.</p>
+          <span class="button button-primary button-small">View Priority Action Areas</span>
+        </div>
+      </a>
     </div>
   </div>
 </div>

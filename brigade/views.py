@@ -100,9 +100,10 @@ def styleguide():
     return render_template("styleguide.html")
 
 
-@app.route("/showcase")
-def project_showcase():
-    return render_template("project_showcase.html")
+@redirect_from("/showcase")
+@app.route("/priority-action-areas")
+def priority_action_areas():
+    return render_template("priority_action_areas.html")
 
 
 def brigade_projects(brigadeid=None):
