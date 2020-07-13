@@ -65,7 +65,7 @@
   {% if brigade.current_stories %}
   <a href="#stories" class="in-page-nav__link">Stories</a>
   {% endif %}
-  <a href="https://secure.codeforamerica.org/page/contribute/donate-to-a-brigade-today?source_codes=Brigade-page{% if brigade %}&brigade={{ brigade.name }}{% endif %}" class="in-page-nav__link" target="_blank"> Donate <i class="fas fa-xs fa-external-link-alt"></i></a>
+  <a href="https://www.codeforamerica.org/donate-to-a-brigade?utm_campaign={{ brigade.name | urlencode }}&utm_source=Brigade%20site" class="in-page-nav__link" target="_blank"> Donate <i class="fas fa-xs fa-external-link-alt"></i></a>
 </nav>
 {% endblock %}
 
