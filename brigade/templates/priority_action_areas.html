@@ -18,15 +18,6 @@ Brigades across the country will work collectively in these areas to build share
   </div>
 </div>
 {% endblock %}
-{% block in_page_nav %}
-<nav>
-  <strong>Jump To:</strong>
-  <a href="#court-notifications" class="in-page-nav__link">Court Notifications</a>
-  <a href="#rapid-response" class="in-page-nav__link">Rapid Response</a>
-  <a href="#voting-rights" class="in-page-nav__link">Voting Rights</a>
-  <a href="#creating-pathways-to-record-clearance" class="in-page-nav__link">Creating Pathways to Record Clearance</a>
-</nav>
-{% endblock %}
 
 {% block content %}
 <section class="slab">
@@ -43,6 +34,52 @@ Brigades across the country will work collectively in these areas to build share
       <p>
         <img src="{{ asset_url_for('images/icon_priority_action_areas.png') }}" style="width: 80px; margin-bottom: 10px;">
       </p>
+    </div>
+  </div>
+
+  <div class="grid-box">
+    <div class="width-one-fourth">
+      <a href="{{ url_for("brigade.paa_court_notifications") }}" class="card link-card">
+        <div class="card-content">
+          <img src="{{ asset_url_for("images/icon_paa_court_notifications.png") }}" class="card-icon" alt="">
+          <h4>Court Notifications</h4>
+          <p>Everyone who interacts with the justice system deserves a fair and modern experience.</p>
+          <span class="card-button button button-primary button-small">Get involved</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="width-one-fourth">
+      <a href="{{ url_for("brigade.paa_rapid_response") }}" class="card link-card">
+        <div class="card-content">
+          <img src="{{ asset_url_for("images/icon_paa_rapid_response.png") }}" class="card-icon" alt="">
+          <h4>Rapid Response</h4>
+          <p>When disaster strikes, Brigade members spring into action.</p>
+          <span class="card-button button button-primary button-small">Get involved</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="width-one-fourth">
+      <a href="{{ url_for("brigade.paa_voting_rights") }}" class="card link-card">
+        <div class="card-content">
+          <img src="{{ asset_url_for("images/icon_paa_voting.png") }}" class="card-icon" alt="">
+          <h4>Voting Rights</h4>
+          <p>How might we ensure people feel safe and secure in the 2020 election process?</p>
+          <span class="card-button button button-primary button-small">Get involved</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="width-one-fourth">
+      <a href="{{ url_for("brigade.paa_record_clearance") }}" class="card link-card">
+        <div class="card-content">
+          <img src="{{ asset_url_for("images/icon_paa_record_clearance.png") }}" class="card-icon" alt="">
+          <h4>Creating Pathways to Record Clearance</h4>
+          <p>A criminal record shouldn’t be a life sentence to poverty.</p>
+          <span class="card-button button button-primary button-small">Get involved</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -71,76 +108,11 @@ Brigades across the country will work collectively in these areas to build share
 
 <section class="slab">
   <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>Get Involved</h2>
+    </div>
     <div class="width-seven-twelfths">
-      <h2>The Priority Action Areas</h2>
-    </div>
-  </div>
-
-  <div class="grid-box grid-box--paa">
-    <div class="width-seven-twelfths">
-      <h3 id="court-notifications">Court Notifications</h3>
-      <p>
-        Court Notification projects, like Courtbot, have been very effective projects in communities across the country; from Tulsa, OK to Anchorage, AK These projects transform the local criminal justice ecosystem by enabling text court notifications and updating the systems in which people can pay fines.
-      </p>
-
-      <p>Are you working on (or looking to work on) a project in the Court Notifications area? Let Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
-      <a href="https://discourse.codeforamerica.org/t/priority-action-area-court-notifications/727"
-        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
-    </div>
-
-    <div class="width-one-third">
-      <img src="{{ asset_url_for("images/icon_paa_court_notifications.png") }}" style="height: 100px; margin: auto; display: block;">
-    </div>
-  </div>
-
-  <div class="grid-box grid-box--paa">
-    <div class="width-seven-twelfths">
-      <h3 id="rapid-response">Rapid Response</h3>
-      <p>
-        Brigade members have been at the front lines for rapid response initiatives such as Hurricane Harvey, Maria, and more. In the year of the largest pandemic of decades, Brigades are again pooling their knowledge, resources, and know-how to help people in moments of crisis.
-      </p>
-
-      <p>Are you working on (or looking to work on) a project in the Rapid Response area? Let other Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
-      <a href="https://discourse.codeforamerica.org/t/priority-action-area-rapid-response/730"
-        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
-    </div>
-
-    <div class="width-one-third">
-      <img src="{{ asset_url_for("images/icon_paa_rapid_response.png") }}" style="height: 100px; margin: auto; display: block;">
-    </div>
-  </div>
-
-  <div class="grid-box grid-box--paa">
-    <div class="width-seven-twelfths">
-      <h3 id="voting-rights">Voting Rights</h3>
-      <p>
-        It’s 2020 and the year of a major presidential election. There is a lot of energy around making sure that people feel safe and secure in the voting process, and who they are voting for. The Network has prioritized Voting Rights as a Priority Action Area to ensure that people have easy and safe access to exercise their right to vote?
-      </p>
-
-      <p>Are you working on (or looking to work on) a project in the Voting Rights area? Let other Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
-      <a href="https://discourse.codeforamerica.org/t/priority-action-area-voting-rights/728"
-        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
-    </div>
-
-    <div class="width-one-third">
-      <img src="{{ asset_url_for("images/icon_paa_voting.png") }}" style="height: 100px; margin: auto; display: block;">
-    </div>
-  </div>
-
-  <div class="grid-box grid-box--paa">
-    <div class="width-seven-twelfths">
-      <h3 id="creating-pathways-to-record-clearance">Creating Pathways to Record Clearance</h3>
-      <p>
-        Brigades have launched many projects to help people in their communities with the process of getting their records cleared. We want to continue to make an impact in this space where we can make a unique impact, whether it is in the area of fines and fees or helping local government identify records that are eligible for clearance.
-
-      <p>Are you working on (or looking to work on) a project in this area? Let other Brigade leaders know by posting about it on the Brigade Network Discourse.</p>
-      <a href="https://discourse.codeforamerica.org/t/priority-action-area-creating-pathways-to-record-clearance/729"
-        class="button button-primary button-linkout" target="_blank">View Discourse Post</a>
-      </p>
-    </div>
-
-    <div class="width-one-third">
-      <img src="{{ asset_url_for("images/icon_paa_record_clearance.png") }}" style="height: 100px; margin: auto; display: block;">
+      <p>Do you want to get involved? The best place to start is <a href="https://c4a.me/slack">by joining Code for America's Slack workspace</a> and collaborating with the project leaders and partners of each Priority Action Area.</p>
     </div>
   </div>
 </section>

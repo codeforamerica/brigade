@@ -106,6 +106,26 @@ def priority_action_areas():
     return render_template("priority_action_areas.html")
 
 
+@app.route("/priority-action-areas/court-notifications")
+def paa_court_notifications():
+    return render_template("priority_action_areas/court_notifications.html")
+
+
+@app.route("/priority-action-areas/rapid-response")
+def paa_rapid_response():
+    return render_template("priority_action_areas/rapid_response.html")
+
+
+@app.route("/priority-action-areas/voting-rights")
+def paa_voting_rights():
+    return render_template("priority_action_areas/voting_rights.html")
+
+
+@app.route("/priority-action-areas/creating-pathways-to-record-clearance")
+def paa_record_clearance():
+    return render_template("priority_action_areas/record_clearance.html")
+
+
 def brigade_projects(brigadeid=None):
     return redirect(url_for('.projects', brigadeid=brigadeid), code=301)
 
