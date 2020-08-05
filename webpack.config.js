@@ -72,6 +72,7 @@ module.exports = {
     new ManifestRevisionPlugin(path.join('brigade', 'build', 'manifest.json'), {
       rootAssetPath: rootAssetPath,
       extensionsRegex: /\.js/,
+      ignorePaths: ['.DS_Store'],
     })
   ]
 };
