@@ -1,0 +1,110 @@
+{% extends "priority_action_areas/base.html" %}
+{% block paa_name %}Rapid Response{% endblock %}
+{% block paa_description %}
+When disaster strikes, Brigade members spring into action.
+{% endblock %}
+{% block paa_icon_path %}{{ asset_url_for("images/icon_paa_rapid_response.png") }}{% endblock %}
+{% block paa_about %}
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>About this Priority Action Area</h2>
+    </div>
+
+    <div class="width-seven-twelfths">
+      <p>Brigades across the country started responding to crises through rapid response initiatives for Hurricane Harvey, Maria, and more. This expertise paid off this year as the world faced our largest pandemic in a century, when Brigades were able to quickly pool their knowledge, resources, and know-how.</p>
+
+      <p>Read more about efforts Brigades have engaged in responding to COVID-19 on <a href="https://discourse.codeforamerica.org/t/priority-action-area-rapid-response/730" target="_blank">the Rapid Response Discourse post</a>.</p>
+    </div>
+  </div>
+{% endblock %}
+
+{% set canvases = [
+  { "title": "Migrant Service Map", "tagline": "Providing a guide for migrants (and service providers) to find services closest to them", "url": "https://docs.google.com/document/d/1JAklDqBy8khmbXv0Et5k8_jV5duaVMpJh7sNAKPil9k/edit?usp=sharing", "brigade": "Code for Boston" },
+  { "title": "Covid19 Response", "tagline": "Helping North Carolinians shop safe and get help during COVID", "url": "https://docs.google.com/document/d/10bgIoWneOvGr0Hl-mCkzrM2gtlP3wVqzVLW6XqeQkvs/edit?usp=sharing", "brigade": "Code for Chapel Hill" },
+  { "title": "Essential Artists Dayton", "tagline": "Creating a free marketplace to support local artists.", "url": "https://docs.google.com/document/d/1omImxFx3jfngXKMSn0nggEJ_qnUmYjGoT7XqhHcAkr0/edit?usp=sharing", "brigade": "Code for Dayton" },
+  { "title": "Florida Eviction Protection", "tagline": "Helping Floridians understand their housing rights and connect them to resources for action", "url": "https://docs.google.com/document/d/1aHEhX-Op4XrZUyVczAqmowVyKfD5URBryXSi0YhnX38/edit", "brigade": "Code for South Florida" },
+  { "title": "Healthcare Rollcall", "tagline": "Helping the City of Baltimore understand the impact of COVID on the city's elder-care facilities.", "url": "https://docs.google.com/document/d/1Bl9Cu2co0rfdNQxuTyqVEo1Mi9Y5sWeFsXF-Ie3ZRjE/edit?usp=sharing", "brigade": "Code for Baltimore" },
+] %}
+
+{% block paa_projects %}
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>Projects</h2>
+    </div>
+
+    <div class="width-seven-twelfths">
+      <p>The Network has <a href="https://discourse.codeforamerica.org/t/index-of-covid-19-projects-in-the-network/715" target="_blank">responded to the COVID-19 Pandemic in force</a>, with Brigade members stepping up in our communities to offer their skills in response to the crisis we face. In particular, we’ve worked with local partners and created projects to help <a href="https://discourse.codeforamerica.org/t/april-13-workshop-priority-action-area-rapid-response/747" target="_blank">families find food</a> during the pandemic, help <a href="http://floswhistle.org/" target="_blank">nurses report needs</a> in their hospitals, and <a href="https://healthcare-rollcall.netlify.app/login" target="_blank">track the status of healthcare providers</a> during disaster.</p>
+
+      <p>Learn more about Rapid Response projects through their Brigade Project Canvases below:</p>
+
+    </div>
+
+    <div class="width-one-whole card-row">
+      <div class="card-row">
+        {% for canvas in canvases[0:3] %}
+        <a href="{{ canvas["url"] }}" target="_blank" class="card index-card">
+          <div class="card-content">
+            <img src="{{ asset_url_for("images/icon_document.png") }}" alt="" class="card-icon">
+            <p class="card-overhead">Project Canvas</p>
+            <h4 class="card-title">{{ canvas["title"] }}</h4>
+            <p>{{ canvas["tagline"] }}</p>
+            <p><em>by {{ canvas["brigade"] }}</em></p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="width-one-whole card-row">
+      <div class="card-row">
+        {% for canvas in canvases[3:] %}
+        <a href="{{ canvas["url"] }}" target="_blank" class="card index-card">
+          <div class="card-content">
+            <img src="{{ asset_url_for("images/icon_document.png") }}" alt="" class="card-icon">
+            <p class="card-overhead">Project Canvas</p>
+            <h4 class="card-title">{{ canvas["title"] }}</h4>
+            <p>{{ canvas["tagline"] }}</p>
+            <p><em>by {{ canvas["brigade"] }}</em></p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h3>What is a Brigade Project Canvas?</h3>
+
+      <p>
+        One way the National Advisory Council and Network Team are focused on
+        supporting the Priority Action Areas, is to ensure that successful
+        projects in each Priority Action Area are lifted up and are easily
+        accessible to other Brigades, should they wish to redeploy or share in
+        similar projects. Teams for a number of successful projects in this
+        Priority Action Area have created project canvasses to help other teams
+        engage in similar projects.
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block paa_partnership %}
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>Partnership</h2>
+    </div>
+    <div class="width-seven-twelfths">
+      <p><a href="https://wck.org/chefsforamerica" target="_blank">World Central Kitchen</a>, FEMA, <a href="https://www.mapbox.com/" target="_blank">Mapbox</a> and Code for America began working together in late March to mobilize  Network volunteers to crowdsource official school data on the availability of free or reduced-priced meals to families around the country. The goal was to easily display pick-up/location information on a national map so that community members could quickly identify areas that need support, and provide a resource for the families of children to ensure they had access to this in real-time during the pandemic.</p>
+
+      <p>As a result, the Network volunteers were able to input several dozen official school district links. In turn the effort has helped families with food security across the country, during the COVID-19 national shutdown.</p>
+
+      <p>
+        <a href="https://labs.mapbox.com/narratives/chefsforamerica/" target="_blank">Mapbox Dashboard</a><br />
+        Medium Blog: <a href="https://blog.mapbox.com/world-central-kitchens-map-to-feed-america-9c48dfa003df" target="_blank">Mapping distributed, crowd-sourced data from a spreadsheet</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}
