@@ -1,0 +1,33 @@
+{% extends "priority_action_areas/base.html" %}
+{% block paa_name %}Court Notifications{% endblock %}
+{% block paa_description %}
+Everyone who interacts with the court system deserves a fair and modern experience.
+{% endblock %}
+{% block paa_icon_path %}{{ asset_url_for("images/icon_paa_court_notifications.png") }}{% endblock %}
+{% block paa_about %}
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>About this Priority Action Area</h2>
+    </div>
+
+    <div class="width-seven-twelfths">
+      <p>With something as seemingly-straightforward as providing notifications about court obligations, these projects transform the local criminal justice ecosystem by making sure people know their obligations and can easily pay fines using a modern system.</p>
+
+      <p>Are you working on (or looking to work on) a project in the Court Notifications area? Let Brigade leaders know by <a href="https://discourse.codeforamerica.org/t/priority-action-area-court-notifications/727" target="_blank">posting about it on the Brigade Network Discourse</a>.</p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block paa_projects %}
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>Projects</h2>
+    </div>
+
+    <div class="width-seven-twelfths">
+      <p>Court notification projects, <a href="https://court.bot/" target="_blank">like Courtbot</a>, have been very effective projects in communities across the country; from Tulsa, OK to Anchorage, AK.  We want to see these projects and similar ones replicated in communities across the country as part of modernizing the way our courts communicate with our community members.</p>
+
+      <p>Stay tuned for more about these projects and to access project canvases!</p>
+    </div>
+  </div>
+{% endblock %}

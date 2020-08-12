@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{{ self.paa_name() }} - Priority Action Area{% endblock %}
+{% block description %}The Brigade Network's Priority Action Areas are areas where we feel we can have outsized impact in 2020 and beyond.{% endblock %}
+{% block subhero_title %}{{ self.paa_name() }}{% endblock %}
+{% block subhero_description %}<p class="lead-in-text">{{ self.paa_description() }}</p>{% endblock %}
+{% block hero_right %}
+<img src="{{ self.paa_icon_path() }}" class="card-icon" alt="">
+{% endblock %}
+{% block in_page_nav %}
+<nav>
+  <strong>Priority Action Areas:</strong>
+  <a href="{{ url_for("brigade.paa_court_notifications") }}" class="in-page-nav__link">Court Notifications</a>
+  <a href="{{ url_for("brigade.paa_rapid_response") }}" class="in-page-nav__link">Rapid Response</a>
+  <a href="{{ url_for("brigade.paa_record_clearance") }}" class="in-page-nav__link">Creating Pathways to Record Clearance</a>
+  <a href="{{ url_for("brigade.paa_voting_rights") }}" class="in-page-nav__link">Voting Rights</a>
+</nav>
+{% endblock %}
+
+{% block content %}
+<section class="slab">
+  {{ self.paa_about() }}
+</section>
+
+<section class="slab gray-bg-slab">
+  {{ self.paa_projects() }}
+</section>
+
+{% block paa_partnership %}{% endblock %}
+
+<section class="slab">
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>Get Involved</h2>
+    </div>
+
+    <div class="width-seven-twelfths">
+      <p>Do you want to get involved in a project in this Priority Action Area? <a href="https://c4a.me/slack" target="_blank">Join our Slack community</a> to pitch&nbsp;in.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}
