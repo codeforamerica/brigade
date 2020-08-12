@@ -118,8 +118,11 @@ def projects(brigadeid=None):
 
     # is this an exisiting group
     if brigadeid:
-        if not cfapi.is_existing_organization(brigadeid):
+        brigade = cfapi.find_brigade(brigadeid)
+        if not brigade:
             return render_template('404.html'), 404
+        elif brigade["id"] != brigadeid:
+            return redirect(url_for("brigade.projects", brigadeid=brigade["id"]))
 
     # Get the params
     projects = []
@@ -173,8 +176,11 @@ def rsvps(brigadeid=None):
     ''' Show the Brigade rsvps '''
 
     if brigadeid:
-        if not cfapi.is_existing_organization(brigadeid):
+        brigade = cfapi.find_brigade(brigadeid)
+        if not brigade:
             return render_template('404.html'), 404
+        elif brigade["id"] != brigadeid:
+            return redirect(url_for("brigade.rsvps", brigadeid=brigade["id"]))
 
     if not brigadeid:
         got = get(cfapi.BASE_URL + "/events/rsvps")
@@ -218,12 +224,11 @@ def code_of_conduct():
 def brigade(brigadeid):
     ''' Get this Brigade's info '''
 
-    if brigadeid:
-        if not cfapi.is_existing_organization(brigadeid):
-            return render_template('404.html'), 404
-
-    got = get(cfapi.BASE_URL + "/organizations/" + brigadeid)
-    brigade = got.json()
+    brigade = cfapi.find_brigade(brigadeid)
+    if not brigade:
+        return render_template('404.html'), 404
+    elif brigade["id"] != brigadeid:
+        return redirect(url_for("brigade.brigade", brigadeid=brigade["id"]))
 
     ''' If Brigade has upcoming events, check if the next event is happening today '''
     if 'current_events' in brigade and len(brigade['current_events']) > 0:
