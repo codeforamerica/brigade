@@ -131,8 +131,20 @@ def get_projects(projects, url, limit=10):
     return projects
 
 
-def is_existing_organization(orgid):
+def brigade_has_old_name(org, old_name):
+    if not org["properties"].get("previous_names"):
+        return False
+
+    return old_name in org["properties"]["previous_names"]
+
+def find_brigade(orgid):
     ''' tests that an organization exists on the cfapi'''
     got = get(BASE_URL + "/organizations.geojson").json()
-    orgids = [org["properties"]["id"] for org in got["features"]]
-    return orgid in orgids
+    existing_brigade = next(iter(filter(lambda org: org["properties"]["id"] == orgid, got["features"])), None)
+    if existing_brigade:
+        return existing_brigade["properties"]
+
+    old_name = orgid.replace("-", " ")
+    renamed_brigade = next(iter(filter(lambda org: brigade_has_old_name(org, old_name), got["features"])), None)
+    if renamed_brigade:
+        return renamed_brigade["properties"]
