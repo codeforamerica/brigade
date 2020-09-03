@@ -25,6 +25,11 @@ When disaster strikes, Brigade members spring into action.
   { "title": "Florida Eviction Protection", "tagline": "Helping Floridians understand their housing rights and connect them to resources for action", "url": "https://docs.google.com/document/d/1aHEhX-Op4XrZUyVczAqmowVyKfD5URBryXSi0YhnX38/edit", "brigade": "Code for South Florida" },
   { "title": "Healthcare Rollcall", "tagline": "Helping the City of Baltimore understand the impact of COVID on the city's elder-care facilities.", "url": "https://docs.google.com/document/d/1Bl9Cu2co0rfdNQxuTyqVEo1Mi9Y5sWeFsXF-Ie3ZRjE/edit?usp=sharing", "brigade": "Code for Baltimore" },
 ] %}
+{% set other_canvases = [
+  { "title": "Open Budget Oakland", "tagline": "Transforming Oakland budget data into an interactive display of charts and diagrams that is easy to read and use.", "url": "https://docs.google.com/document/d/1c61A_jZMLwbmkP46_Jw8Jg_4xVrqEGQ_xqEiIEuR55k/edit?usp=sharing", "brigade": "Open Oakland" },
+  { "title": "Maine Ballot", "tagline": "Provides concise, non-partisan information to make it easy to understand the ballot questions pending in Maine.", "url": "https://docs.google.com/document/d/1Cy9pB9Wr7Oq2nKFZB9NMxbQsO8FkucUGkHvv92W1zVg/edit?usp=sharing", "brigade": "Open Maine" },
+  { "title": "Council Data Project", "tagline": "Making City Council data, meetings, and actions more accessible to Seattle residents.", "url": "https://docs.google.com/document/d/1r-4LwDuk-0cEfyOuZUaz1ARHbvzenFI2lGuspNHyKUc/edit?usp=sharing", "brigade": "Open Seattle" },
+] %}
 
 {% block paa_projects %}
   <div class="grid-box">
@@ -58,6 +63,51 @@ When disaster strikes, Brigade members spring into action.
     <div class="width-one-whole card-row">
       <div class="card-row">
         {% for canvas in canvases[3:] %}
+        <a href="{{ canvas["url"] }}" target="_blank" class="card index-card">
+          <div class="card-content">
+            <img src="{{ asset_url_for("images/icon_document.png") }}" alt="" class="card-icon">
+            <p class="card-overhead">Project Canvas</p>
+            <h4 class="card-title">{{ canvas["title"] }}</h4>
+            <p>{{ canvas["tagline"] }}</p>
+            <p><em>by {{ canvas["brigade"] }}</em></p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h3>Local Transparency, Accountability, and the Fight for Racial&nbsp;Justice</h3>
+
+      <p>
+        Code for America stands against white supremacy, racism, and violence
+        against Black people in all its forms. While we believe that the work
+        towards racial justice and equality should be focused through
+        organizations who have done this work for centuries, we also believe in
+        people power and the collective impact Code for America Brigades can
+        bring to their respective communities.
+      </p>
+
+      <p>
+        We’ve identified data-driven projects in the Network that can be used in
+        support of racial justice locally that promote transparency,
+        accountability, and accessibility in our civic systems. From city budgets
+        to city council meetings and local ballot questions, these projects help
+        empower changemakers and are hyper-local in their applications.
+        Read more about the Code for America Network's projects in <a href="https://discourse.codeforamerica.org/t/local-transparency-accountability-and-the-fight-for-racial-justice/883" target="_blank">Local Transparency, Accountability, and the Fight for Racial Justice</a>.
+      </p>
+
+      <p>
+        Learn more about these data-driven projects through their Brigade
+        Project Canvases below:
+      </p>
+    </div>
+
+    <div class="width-one-whole card-row">
+      <div class="card-row">
+        {% for canvas in other_canvases[0:3] %}
         <a href="{{ canvas["url"] }}" target="_blank" class="card index-card">
           <div class="card-content">
             <img src="{{ asset_url_for("images/icon_document.png") }}" alt="" class="card-icon">
