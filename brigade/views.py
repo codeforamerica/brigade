@@ -54,6 +54,9 @@ def about():
 def national_advisory_council():
     return render_template("national_advisory_council.html")
 
+@app.route('/about/network-team')
+def network_team():
+    return render_template("network_team.html")
 
 @app.route('/about/national-advisory-council/2019-candidates')
 def national_advisory_council_candidates_2019():
