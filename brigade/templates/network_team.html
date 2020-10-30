@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block subhero_title %}
+National Network Team
+{% endblock %}
+{% block subhero_description %}
+<p class="lead-in-text">
+The Code for America Network Team is a staff team dedicated to building a movement of people making government work for the people, by the people, in the digital age.
+</p>
+{% endblock %}
+
+{% block content %}
+<section class="slab grey-bg-slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h2>About the Code for America Network Team</h2>
+
+      <p>
+      The Code for America Network Team supports the nationwide Brigade Network, organizes the <a href="https://www.codeforamerica.org/programs/fellowship" target="_blank">Code for America Community Fellowship</a>, and leads Code for America’s volunteer mobilization. To do this, the team works closely with Brigade leaders, the <a href="{{ url_for('.national_advisory_council') }}">National Advisory Council (NAC)</a>, and national partner organizations to develop and execute a program strategy to build a nationwide movement.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid-box">
+    <div class="width-one-third">
+      <a class="card link-card" href="https://www.codeforamerica.org/people/meredith-horowski" target="_blank">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/meredith-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Meredith Horowski</h4>
+          <h5>Senior Program Director, Network (she/her)</h5>
+          <p>As the Senior Director of the Code for America Network, Meredith establishes and leads the strategy for the Brigade Network, Community Fellowship, and volunteer mobilization in collaboration with Brigade members, our National Advisory Council (NAC), fellows, alumni, partners, and Code for America stakeholders.</p>
+          <p class="card-link">Meet Meredith</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="width-one-third">
+      <a class="card link-card" href="https://www.codeforamerica.org/people/veronica-young" target="_blank">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/veronica-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Veronica Young</h4>
+          <h5>Senior Program Manager, Brigade Network – West (she/her)</h5>
+          <p>As a Senior Program Manager, Veronica organizes national events and partnerships, and coordinates support and processes for Brigade leaders in the Western Region. Brigades in Western states (west of the Mississippi River, including Alaska, and Hawaii) should reach out to Veronica first for any general questions, support needs, or if there are any updates to your Brigade leadership or structure.</p>
+          <p class="card-link">Meet Veronica</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="width-one-third">
+      <a class="card link-card" href="https://www.codeforamerica.org/people/will-pfeffer" target="_blank">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/will-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Will Pfeffer</h4>
+          <h5>Senior Program Manager, Brigade Network – East (he/him)</h5>
+          <p>As a Senior Program Manager, Will organizes national events, partnerships, and coordinates support and processes for Brigade leaders in the Eastern Region. Brigades in Eastern states (east of the Mississippi River, and Puerto Rico), should reach out to Will first for any general questions, support needs, financial inquiries, or if there are any updates to your Brigade leadership or structure.</p>
+          <p class="card-link">Meet Will</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="grid-box">
+    <div class="width-one-third">
+      <a class="card link-card" href="https://www.codeforamerica.org/people/cecilia-fischer-benitez" target="_blank">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/ceci-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Ceci Fischer-Benitez</h4>
+          <h5>Network Specialist (she/her)</h5>
+          <p>As the Network Specialist, Ceci organizes logistics for events, processes financial disbursements, and hosts onboarding sessions for new Brigade leaders. Reach out to Ceci with any questions about getting your Brigade set up, using donated (in-kind) software for your Brigade, financial inquiries, or logistics for an upcoming event.</p>
+          <p class="card-link">Meet Ceci</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="width-one-third">
+      <div class="card link-card">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/em-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Em Burnett</h4>
+          <h5>Senior Manager, Network Communications (they/them)</h5>
+          <p>Em directs the strategy and execution of Brigade Network communications. In close partnership with Code for America’s Marketing Team, Em drives storytelling of Brigade Network happenings via the <a href="https://discourse.codeforamerica.org/c/announcements/Sparks/37" target="_blank">Brigade Sparks newsletter</a> and <a href="http://brigade.codeforamerica.org/events" target="_blank">hosting events</a> that feature Brigade Network projects. Reach out to Em if you want to get the word out about what you’re working on in your Brigade.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="width-one-third">
+      <a class="card link-card" href="https://www.codeforamerica.org/people/hashim-mteuzi" target="_blank">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/hashim-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Hashim Mteuzi</h4>
+          <h5>Associate Director, Network (he/him)</h5>
+          <p>As Associate Director, Hashim sets the strategy for the Code for America Community Fellowship and guides the Network Team’s Diversity, Equity, and Inclusion work. </p>
+          <p class="card-link">Meet Hashim</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="grid-box">
+    <div class="width-one-third">
+      <a class="card link-card" href="https://www.codeforamerica.org/people/filsan-abikar" target="_blank">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/filsan-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Filsan Abikar</h4>
+          <h5>Program Manager, Fellowship (she/her)</h5>
+          <p>Filsan is responsible for program execution  for the Code for America Community Fellowship. She is the primary point of contact for our Fellowship city partners and fellow applicants.</p>
+          <p class="card-link">Meet Filsan</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="width-one-third">
+      <div class="card link-card">
+        <img class="card-image" src="{{ asset_url_for('images/network-team/stephen-80.jpg') }}">
+        <div class="card-content">
+          <h4 class="card-title">Stephen T. Simpson</h4>
+          <h5>Senior Program Manager, Fellowship (he/him)</h5>
+          <p>Stephen helps set strategic and programmatic goals for the Code for America Community Fellowship. He also provides additional support to the Community Fellows through the management of the mentorship program and other career and self-improvement programs.</p>
+          <p class="card-link">Meet Stephen</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="slab gray-bg-slab">
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h2>How to Contact The Network Team</h2>
+
+      <p>We’re here for you! The best way to get in touch with us is by emailing <a href="mailto:brigade-info@codeforamerica.org">brigade-info@codeforamerica.org</a>. We will all get the email and you’ll get a response from one of us.</p>
+
+      <p>For Code of Conduct concerns, please email <a href="mailto:safespace@codeforamerica.org">safespace@codeforamerica.org</a> instead.</p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
