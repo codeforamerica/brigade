@@ -23,11 +23,11 @@ requests_logger.setLevel(logging.WARNING)
 def redirect_from(*urls):
     def decorator(f):
         def view_func(**kwargs):
-            route_name = ".".join([app.name, f.func_name])
+            route_name = ".".join([app.name, f.__name__])
             return redirect(url_for(route_name, **kwargs), code=302)
 
         for url in urls:
-            app.add_url_rule(url, 'redirect_' + f.func_name, view_func)
+            app.add_url_rule(url, 'redirect_' + f.__name__, view_func)
 
         return f
     return decorator
@@ -173,7 +173,7 @@ def projects(brigadeid=None):
         query.update({"status": status})
     if organization_type:
         query.update({"organization_type": organization_type})
-    url += '?' + urllib.urlencode(query)
+    url += '?' + urllib.parse.urlencode(query)
 
     projects = cfapi.get_projects(projects, url)
 

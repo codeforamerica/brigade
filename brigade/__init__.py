@@ -1,9 +1,9 @@
 import os
 
 from flask import Blueprint, Flask, render_template
+from .sitemap import sitemap_blueprint
 from flask_webpack import Webpack
 from filters import filters
-from sitemap import sitemap_blueprint
 
 brigade = Blueprint('brigade', __name__)
 
@@ -28,6 +28,7 @@ def create_app():
         app.config['SERVER_NAME'] = os.environ['SERVER_NAME']
     if 'SITEMAP_URL_SCHEME' in os.environ:
         app.config['SITEMAP_URL_SCHEME'] = os.environ['SITEMAP_URL_SCHEME']
+    app.config['SITEMAP_INCLUDE_RULES_WITHOUT_PARAMS'] = True
 
     app.register_blueprint(brigade)
     app.register_blueprint(filters)
