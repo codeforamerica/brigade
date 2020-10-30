@@ -204,7 +204,7 @@ class BrigadeTests(unittest.TestCase):
         with httmock.HTTMock(self.response_content):
             response = self.client.get('/sitemap.xml')
             self.assertEqual(200, response.status_code)
-            self.assertIn('<loc>http://localhost/brigades/TEST-ORG/</loc>', response.data)
+            self.assertIn('<loc>http://localhost/brigades/TEST-ORG/</loc>', response.data.decode('utf-8'))
 
     def test_filter_datetime(self):
         from filters import format_time

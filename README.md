@@ -9,7 +9,16 @@ The Code for America Brigade site is built on [Flask](http://flask.pocoo.org/) a
 
 Set up a [Python virtual environment](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md).
 
+```
+python3 -m venv env
+source env/bin/activate
+```
+
 Install the [required libraries](https://github.com/codeforamerica/howto/blob/master/Python-Virtualenv.md#install-packages).
+
+```
+pip install -r requirements.txt
+```
 
 ### Install Node and frontend dependencies with npm
 
