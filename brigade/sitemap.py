@@ -24,8 +24,10 @@ class SitemapBlueprint(Blueprint):
     ]
 
     OTHER_ROUTES = [
-        ('brigade.free_software_show', {"software": "bizspark"}),
+        ('brigade.free_software_show', {"software": "heroku"}),
         ('brigade.free_software_show', {"software": "twilio"}),
+        ('brigade.free_software_show', {"software": "newrelic"}),
+        ('brigade.free_software_show', {"software": "mapbox"}),
         ('brigade.free_software_show', {"software": "slack"}),
         ('brigade.free_software_show', {"software": "carto"}),
         ('brigade.free_software_show', {"software": "github"}),
