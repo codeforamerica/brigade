@@ -18,6 +18,27 @@ A criminal record shouldn’t be a life sentence to poverty.
   </div>
 {% endblock %}
 
+{% set canvases = [
+  { 
+    "title": "RecordSponge", 
+    "tagline": "Software that helps community organizations quickly analyze an individual’s criminal history to determine if they qualify to have their records expunged.", 
+    "url": "https://docs.google.com/document/d/1NIYGHUMaP17WfDg4cnMfxD7V83SpHxYU2HPXwLabqKo/edit?usp=sharing", 
+    "brigade": "Code for PDX" 
+  },
+  { 
+    "title": "ExpungeVT", 
+    "tagline": "Chrome app to streamline the process of gathering and highlighting relevant information from online dockets; and generates record clearing petitions tailored to the circumstances.", 
+    "url": "https://docs.google.com/document/d/1hHJ1HQiLsJw4sGttJsHultsdstzk1aZZNGht75H7eKY/edit?usp=sharing", 
+    "brigade": "Code for BTV" 
+  },
+  { 
+    "title": "CleanSlate", 
+    "tagline": "Chrome app to streamline the process of gathering and highlighting relevant information from online dockets; and generates record clearing petitions tailored to the circumstances.", 
+    "url": "https://docs.google.com/document/d/1MghbkJ0Oualzm8ZhdASrfLUHANm_OP6FxanFVpormkY/edit", 
+    "brigade": "Code for Boston" 
+  },
+] %}
+
 {% block paa_projects %}
   <div class="grid-box">
     <div class="width-one-whole">
@@ -27,7 +48,75 @@ A criminal record shouldn’t be a life sentence to poverty.
     <div class="width-seven-twelfths">
       <p>Across the country, Brigades have <a href="https://discourse.codeforamerica.org/t/index-of-safety-justice-projects-in-the-network-help-us-keep-this-up-to-date-wiki/392" target="_blank">launched projects</a> to help people get through the process of records clearance. Some of these projects include <a href="http://yourstlcourts.com/" target="_blank">YourSTLCourts</a> out of St Louis, MO, <a href="http://www.codeforpdx.org/projects/3" target="_blank">Access2Justice</a> from Portland, OR, <a href="http://www.codeforbtv.org/projects/expunge-vt" target="_blank">expunge-vt</a> from Burlington, VT, and <a href="https://github.com/hackforla/heart" target="_blank">Heart</a> out of Hack for LA.</p>
 
-      <p>Stay tuned for more about these projects and to access project canvasses!</p>
+      <p>Learn more about Creating Pathways to Record Clearance projects through their Brigade Project Canvases below:</p>
+    </div>
+
+    <div class="width-one-whole card-row">
+      <div class="card-row">
+        {% for canvas in canvases[0:3] %}
+        <a href="{{ canvas["url"] }}" target="_blank" class="card index-card">
+          <div class="card-content">
+            <img src="{{ asset_url_for("images/icon_document.png") }}" alt="" class="card-icon">
+            <p class="card-overhead">Project Canvas</p>
+            <h4 class="card-title">{{ canvas["title"] }}</h4>
+            <p>{{ canvas["tagline"] }}</p>
+            <p><em>by {{ canvas["brigade"] }}</em></p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
+
+  <div class="grid-box">
+    <div class="width-seven-twelfths">
+      <h3>What is a Brigade Project Canvas?</h3>
+      <p>
+        One way the National Advisory Council and Network Team are focused on
+        supporting the Priority Action Areas, is to ensure that successful
+        projects in each Priority Action Area are lifted up and are easily
+        accessible to other Brigades, should they wish to redeploy or share in
+        similar projects. Teams for a number of successful projects in this
+        Priority Action Area have created project canvasses to help other teams
+        engage in similar projects.
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block paa_partnership %}
+<section class="slab">
+
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>Partnership</h2>
+    </div>
+    <div class="width-seven-twelfths">
+      <p>
+        Code for America’s relationship with National Expungement Week has stayed strong, since our partnership last year on NDoCH. This year, National Expungement Week and Code for America worked together on a “Letter to the Editor” effort, advocating for automatic record clearance. The Network Team is working with Brigades across the country to get Letters to the Editor published in various publications. This is an ongoing effort.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="slab gray-bg-slab">
+  <div class="grid-box">
+    <div class="width-one-whole">
+      <h2>Record Clearance Working Group</h2>
+    </div>
+    <div class="width-seven-twelfths">
+      <p>
+        The Network Team and members of the #cleanslate group as part of Code for America’s Slack channel engaged in an ideation process to find ways to increase the Network’s impact in record clearance projects. Through this process, it became clear that Brigades still feel a lot of need for support in tackling record clearance projects in their communities. In order to fill this need, the Network Team, Criminal Justice Team at Code for America, and members of the core team, worked together to plan a Record Clearance working group in which volunteers interested in record clearance projects can learn about how to engage in record clearance projects.
+      </p>
+      <p>
+        The workshop series consisted of two workshop sessions, and an opportunity to sign up for office hours with members of the Criminal Justice team. The two workshop topics were:
+      </p>
+      <ul>
+        <li>Record clearance as policy—understanding which records are eligible and how the process works</li>
+        <li>Centering users in design—understanding who will use your product and what they’ll use it for</li>
+      </ul>
+    </div>
+  </div>
+
+</section>
 {% endblock %}
