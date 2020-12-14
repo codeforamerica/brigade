@@ -16,6 +16,27 @@ Every American should feel safe, secure, and knowledgeable about the voting&nbsp
   </div>
 {% endblock %}
 
+{% set canvases = [
+  { 
+    "title": "ParaVotar", 
+    "tagline": "A tool that facilitates voter education, information and ballot practice in Puerto Rico.", 
+    "url": "https://docs.google.com/document/d/1GPlNJRo-wv01PkOxs7XLLJ0VSHn18gsLt1s_V5Wto3E/edit?usp=sharing", 
+    "brigade": "Code for Puerto Rico" 
+  },
+  { 
+    "title": "GoVoteGSO", 
+    "tagline": "A project that answers common local questions about the voting questions in Greensboro and the Triad area.", 
+    "url": "https://docs.google.com/document/d/1LDa_WDOl5FCfsOwM1pqLnCfT2zj10HHGJz6lqFeioc8/edit?usp=sharing", 
+    "brigade": "Code for Greensboro" 
+  },
+  { 
+    "title": "BallotNav", 
+    "tagline": "A nonpartisan web app that aims to provide national voting information for all elections.", 
+    "url": "https://docs.google.com/document/d/1un5Ogy06rhMoV9TojHXvu_C6j_P_Aj2GOxIFMkvNTKE/edit?usp=sharing", 
+    "brigade": "Hack For LA" 
+  },
+] %}
+
 {% block paa_projects %}
   <div class="grid-box">
     <div class="width-one-whole">
@@ -26,18 +47,35 @@ Every American should feel safe, secure, and knowledgeable about the voting&nbsp
       <p>Projects currently exist to give people helpful information about the voting process like Open Oakland’s <a href="https://www.opendisclosure.io/" target="_blank">Open Disclosure</a> and Open Maine’s <a href="https://maineballot.org/vote/" target="_blank">Maine Ballot</a>.  These projects focus on access to information in the areas of campaign finance and ballot initiatives, and we’d like to deepen our impact in the space by looking into ways to intersect voting information with our work in record clearance. </p>
 
       <p>Are you working on (or looking to work on) a project in the Voting Rights area? Let other Brigade leaders know by <a href="https://discourse.codeforamerica.org/t/priority-action-area-voting-rights/728" target="_blank">posting about it on the Brigade Network Discourse</a>.</p>
+
+      <p>Learn more about Voting Rights projects through their Brigade Project Canvases below:</p>
     </div>
+
+    <div class="width-one-whole card-row">
+      <div class="card-row">
+        {% for canvas in canvases[0:3] %}
+        <a href="{{ canvas["url"] }}" target="_blank" class="card index-card">
+          <div class="card-content">
+            <img src="{{ asset_url_for("images/icon_document.png") }}" alt="" class="card-icon">
+            <p class="card-overhead">Project Canvas</p>
+            <h4 class="card-title">{{ canvas["title"] }}</h4>
+            <p>{{ canvas["tagline"] }}</p>
+            <p><em>by {{ canvas["brigade"] }}</em></p>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
   </div>
 {% endblock %}
 
 {% block paa_partnership %}
-<section class="slab gray-bg-slab">
+<section class="slab">
   <div class="grid-box">
-    <div class="width-one-whole">
-      <h2>Partnership</h2>
-    </div>
-
     <div class="width-seven-twelfths">
+      <h2>Partnerships</h2>
+      <h3>Vote.org Partnership</h3>
       <p>
       This year, Code for America engaged in
       <a href="https://discourse.codeforamerica.org/t/voter-information-research-team/767" target="_blank">a partnership with Vote.org</a> to ensure that accurate
@@ -45,11 +83,17 @@ Every American should feel safe, secure, and knowledgeable about the voting&nbsp
       people that are able to participate in the democratic process.
       Particularly in the times of COVID-19, voting information is constantly
       changing, which can lead to ambiguity and missed opportunities for people
-      to make their vote count. Eight Brigade members joined the Voter
-      Information Research Team and have been conducting research to help
-      voters find accurate information to exercise their right to vote.
+      to make their vote count. Eight Brigade members joined the Voter Information Research Team and added updated information and links to Vote.org's website, which reached over three million people before Election Day.
+      </p>
+      <h3>USC Partnership</h3>
+      <p>
+        In addition to the Vote.org partnership, four volunteers from the Brigade Network assisted with a project for the University of Southern California. USC’s Voting Location Sitting Tool expansion this year. The tool was created by the Center for Inclusive Democracy (CID) and provides assistance to county election offices when looking to place voting locations. The tool began in California, and is now serving ten states.  
+      </p>
+      <p>
+        Four volunteers contributed fifteen hours each to the project, helping with pulling down and prepping data, particularly with regard to GTFS and Open Street Map data. Their contributions were critical to the expansion of the tool.        
       </p>
     </div>
   </div>
 </section>
+
 {% endblock %}
