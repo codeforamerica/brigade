@@ -16,7 +16,7 @@
     "file-loader": "^4.2.0",
     "image-loader": "^0.0.1",
     "manifest-revision-webpack-plugin": "^0.4.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "sass-loader": "^6.0.6",
     "script-loader": "^0.7.2",
     "style-loader": "^0.19.1",
