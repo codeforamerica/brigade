@@ -27,6 +27,6 @@
     "heroku-postbuild": "webpack -p --bail"
   },
   "devDependencies": {
-    "sass-lint": "^1.12.1"
+    "sass-lint": "^1.13.0"
   }
 }
